@@ -1,0 +1,66 @@
+// Primary Font Manrope
+@font-face {
+  font-family: "Manrope";
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Extralight.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Extralight.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Extralight.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Light.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Light.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Light.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Regular.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Regular.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Medium.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Medium.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Semibold.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Semibold.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Semibold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Bold.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Bold.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Manrope";
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/Manrope/Manrope-Extrabold.woff2") format("woff2"),
+    url("~assets/fonts/Manrope/Manrope-Extrabold.woff") format("woff"),
+    url("~assets/fonts/Manrope/Manrope-Extrabold.ttf") format("truetype");
+}
+
+// Secondary Font JetBrains Mono

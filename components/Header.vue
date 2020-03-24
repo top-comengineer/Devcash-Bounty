@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-row justify-between px-6 py-4">
+  <div
+    class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6"
+  >
     <Logo />
     <div class="flex flex-row">
       <div class="ml-6">Home</div>

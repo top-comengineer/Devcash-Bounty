@@ -16,6 +16,8 @@
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
-    "ethers": "^4.0.45"
+    "ethers": "^4.0.45",
+    "node-sass": "^4.13.1",
+    "sass-loader": "^8.0.2"
   }
 }
