@@ -1,5 +1,5 @@
 <template>
-  <div class="container">{{ $t('home.title') }}</div>
+  <div class="container">{{ $t("home.title") }}</div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
 */
 .container {
   margin: 0 auto;
-  min-height: 100vh;
+  min-height: 67vh;
   display: flex;
   justify-content: center;
   align-items: center;

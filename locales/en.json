@@ -1,5 +1,32 @@
 {
-    "home": {
-      "title": "Devcash is cool"
-    }
+  "home": {
+    "title": "Devcash is cool"
+  },
+  "navigation": {
+    "home": "Home",
+    "bountyPlatform": "Bounty Platform",
+    "dex": "DEX",
+    "english": "English",
+    "signIn": "Sign In",
+    "ibo": "IBO"
+  },
+  "bountyPlatform": {
+    "exploreBounties": "Explore Bounties",
+    "createABounty": "Create a Bounty",
+    "visitDashboard": "Visit Dashboard"
+  },
+  "dex": {
+    "buyDevcash": "Buy Devcash",
+    "sellDevcash": "Sell Devcash"
+  },
+  "social": {
+    "discord": "Discord",
+    "facebook": "Facebook",
+    "twitter": "Twitter",
+    "github": "Github",
+    "medium": "Medium"
+  },
+  "footer": {
+    "credits": "© %1 Devcash."
+  }
 }

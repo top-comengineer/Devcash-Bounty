@@ -1,6 +1,8 @@
 <template>
   <div class="bg-dtBg text-dtText">
-    <Header />
+    <div class="d-container">
+      <Header />
+    </div>
     <nuxt />
     <Footer />
   </div>
