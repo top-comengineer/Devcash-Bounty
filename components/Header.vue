@@ -3,7 +3,10 @@
     class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6"
   >
     <Logo />
-    <ul class="flex flex-row justify-end items-center">
+    <!-- Menu icon shown on small screens -->
+    <Icon class="md:hidden" type="menu" widthClass="w-8" />
+    <!-- Navbar items shown on non-small screens -->
+    <ul class="hidden md:flex flex-row justify-end items-center">
       <li class="ml-8 font-bold">{{ $t("navigation.home") }}</li>
       <li class="ml-8 font-bold">{{ $t("navigation.bountyPlatform") }}</li>
       <li class="ml-8 font-bold">{{ $t("navigation.dex") }}</li>
@@ -20,9 +23,11 @@
 </template>
 <script>
 import Logo from "~/components/Logo.vue";
+import Icon from "~/components/Icon.vue";
 export default {
   components: {
-    Logo
+    Logo,
+    Icon
   }
 };
 </script>

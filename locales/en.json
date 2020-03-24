@@ -3,6 +3,7 @@
     "title": "Devcash is cool"
   },
   "navigation": {
+    "header": "Navigation",
     "home": "Home",
     "bountyPlatform": "Bounty Platform",
     "dex": "DEX",
@@ -11,15 +12,18 @@
     "ibo": "IBO"
   },
   "bountyPlatform": {
+    "header": "Bounty Platform",
     "exploreBounties": "Explore Bounties",
     "createABounty": "Create a Bounty",
     "visitDashboard": "Visit Dashboard"
   },
   "dex": {
+    "header": "DEX",
     "buyDevcash": "Buy Devcash",
     "sellDevcash": "Sell Devcash"
   },
   "social": {
+    "header": "Social",
     "discord": "Discord",
     "facebook": "Facebook",
     "twitter": "Twitter",
