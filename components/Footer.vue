@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full dt-footer-bg dt-footer-shadow rounded-tl-xl4 pt-8 pb-6 lg:pt-6 lg:pb-12"
+    class="w-full dt-footer-bg dt-footer-shadow rounded-tl-xl4 pt-6 pb-6 lg:pt-4 lg:pb-12"
   >
     <div class="d-container">
       <div class="w-full flex flex-row flex-wrap justify-between px-6 lg:px-16">
