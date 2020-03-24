@@ -1,14 +1,10 @@
 <template>
-  <div class="container"></div>
+  <div class="container">Test</div>
 </template>
 
 <script>
-import Footer from "~/components/Footer.vue";
-
 export default {
-  components: {
-    Footer
-  }
+  components: {}
 };
 </script>
 

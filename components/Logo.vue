@@ -10,5 +10,3 @@
     />
   </svg>
 </template>
-<style>
-</style>
