@@ -37,5 +37,13 @@
     "header": "Cash for the<br>developer economy",
     "paragraph": "Join our global community of blockchain developers and make the most of your skills.",
     "ctaButton": "Explore Bounties"
+  },
+  "whatIsSection": {
+    "header": "What is Devcash?",
+    "paragraph": "Devcash (DEV) is cash for the developer economy. It is the official currency of Blockchain Developers United. Devcash offers various services such as a bounty platform and a decentralize exchange to make developers’ jobs easier."
+  },
+  "IBOSection": {
+    "header": "Initial Bounty Offering",
+    "paragraph": "Initial bounty offering, or IBO in short, is inspired by ICO. Instead of money, you put your skills and time to build awesome things to get Devcash.  The IBO will be powered by Devcash Bounty Platform."
   }
 }

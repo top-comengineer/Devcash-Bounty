@@ -1,14 +1,20 @@
 <template>
   <div>
     <SectionHero />
+    <SectionWhatIs />
+    <SectionIBO />
   </div>
 </template>
 
 <script>
 import SectionHero from "~/components/Sections/SectionHero.vue";
+import SectionWhatIs from "~/components/Sections/SectionWhatIs.vue";
+import SectionIBO from "~/components/Sections/SectionIBO.vue";
 export default {
   components: {
-    SectionHero
+    SectionHero,
+    SectionWhatIs,
+    SectionIBO
   }
 };
 </script>

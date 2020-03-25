@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex flex-row flex-wrap justify-center lg:justify-between items-center overflow-hidden py-16 lg:py-24"
+    class="w-full flex flex-row flex-wrap justify-center lg:justify-between items-center overflow-hidden pt-16 lg:pt-24 pb-8 lg:pb:12"
   >
     <!-- Header, Paragraph and CTA Button -->
     <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col py-4">
