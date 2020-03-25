@@ -21,5 +21,6 @@ export default {
 body {
   font-family: "Manrope", sans-serif;
   font-weight: 400;
+  background-color: #010014;
 }
 </style>

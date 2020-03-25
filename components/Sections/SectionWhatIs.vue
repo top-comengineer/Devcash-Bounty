@@ -11,7 +11,7 @@
         <h2
           class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
         >{{$t('whatIsSection.header')}}</h2>
-        <!-- Line Left -->
+        <!-- Line Right -->
         <div class="flex-1 h-2px bg-dtPrimary rounded-bl-full"></div>
       </div>
       <!-- Paragraph -->

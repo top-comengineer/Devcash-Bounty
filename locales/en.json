@@ -60,5 +60,19 @@
     "header": "Decentralized Exchange",
     "paragraph": "The Devcash DEX is a decentralized exchange with an ETH/DEV market. It is fully automated on Ethereum smart contracts and offers zero-fee trading.",
     "ctaButton": "Visit DEX"
+  },
+  "tokenDetailsSection": {
+    "header": "Token Details",
+    "tokenSupplyHeader": "Token Supply",
+    "tokenSupplyText": "2,1B DEV",
+    "tokenTypeHeader": "Token Type",
+    "tokenTypeText": "ERC 21",
+    "tokenAllocationHeader": "Token Allocation",
+    "tokenAllocationText": "IBO"
+  },
+  "startExploringSection": {
+    "header": "Start Exploring",
+    "paragraph": "Start exploring Devcash bounty platform and join our global community of developers. Earn DEV using your skills or crowdsource developer talent.",
+    "ctaButton": "Explore Bounties"
   }
 }

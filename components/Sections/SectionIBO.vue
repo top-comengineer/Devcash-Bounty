@@ -1,7 +1,7 @@
 <template>
   <div class="d-container">
     <div
-      class="w-full flex flex-row flex-wrap justify-center lg:justify-around items-center pt-10 pb-10 lg:pt-16 lg:pb-24"
+      class="w-full flex flex-row flex-wrap justify-center lg:justify-around items-center pt-10 pb-10 lg:pt-24 lg:pb-40"
     >
       <div class="w-full md:w-4/5 lg:w-2/5 flex flex-col py-8 px-6">
         <!-- Header Text -->

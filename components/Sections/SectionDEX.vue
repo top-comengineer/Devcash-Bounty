@@ -1,8 +1,6 @@
 <template>
-  <div class="d-container">
-    <div
-      class="w-full flex flex-row flex-wrap justify-center items-center pt-12 pb-12 lg:pt-20 lg:pb-14"
-    >
+  <div class="d-container pt-12 pb-12 md:pt-20 md:pb-14 lg:pt-32 lg:pb-36">
+    <div class="w-full flex flex-row flex-wrap justify-center items-center">
       <div class="w-full flex flex-col items-center">
         <!-- Illustration -->
         <IllustrationDEX class="w-11/12 md:w-3/4 lg:w-3/5" />
