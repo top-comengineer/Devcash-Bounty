@@ -26,7 +26,7 @@
           </div>
           <!-- Bounty Platform Items -->
           <p class="my-2">{{ $t("bountyPlatform.exploreBounties") }}</p>
-          <p class="my-2">{{ $t("bountyPlatform.createABounty") }}</p>
+          <p class="my-2">{{ $t("bountyPlatform.postABounty") }}</p>
           <p class="my-2">{{ $t("bountyPlatform.visitDashboard") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">

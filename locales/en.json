@@ -14,7 +14,7 @@
   "bountyPlatform": {
     "header": "Bounty Platform",
     "exploreBounties": "Explore Bounties",
-    "createABounty": "Create a Bounty",
+    "postABounty": "Post a Bounty",
     "visitDashboard": "Visit Dashboard"
   },
   "dex": {
@@ -45,5 +45,20 @@
   "IBOSection": {
     "header": "Initial Bounty Offering",
     "paragraph": "Initial bounty offering, or IBO in short, is inspired by ICO. Instead of money, you put your skills and time to build awesome things to get Devcash.  The IBO will be powered by Devcash Bounty Platform."
+  },
+  "bountyPlatformSection": {
+    "header": "Bounty Platform",
+    "paragraph": "The Devcash bounty platform is a decentralized bounty platform where users utilize DEV to crowdsource developer talent or perform developer tasks and earn DEV.",
+    "postBountyHeader": "Post Bounties",
+    "postBountyParagraph": "Post a task, crowdsource developer talent.",
+    "postBountyButton": "Post a Bounty",
+    "huntBountyHeader": "Hunt Bounties",
+    "huntBountyParagraph": "Perform developer tasks, earn DEV.",
+    "huntBountyButton": "Hunt Bounties"
+  },
+  "dexSection": {
+    "header": "Decentralized Exchange",
+    "paragraph": "The Devcash DEX is a decentralized exchange with an ETH/DEV market. It is fully automated on Ethereum smart contracts and offers zero-fee trading.",
+    "ctaButton": "Visit DEX"
   }
 }

@@ -3,6 +3,8 @@
     <SectionHero />
     <SectionWhatIs />
     <SectionIBO />
+    <SectionBountyPlatform />
+    <SectionDEX />
   </div>
 </template>
 
@@ -10,11 +12,15 @@
 import SectionHero from "~/components/Sections/SectionHero.vue";
 import SectionWhatIs from "~/components/Sections/SectionWhatIs.vue";
 import SectionIBO from "~/components/Sections/SectionIBO.vue";
+import SectionBountyPlatform from "~/components/Sections/SectionBountyPlatform.vue";
+import SectionDEX from "~/components/Sections/SectionDEX.vue";
 export default {
   components: {
     SectionHero,
     SectionWhatIs,
-    SectionIBO
+    SectionIBO,
+    SectionBountyPlatform,
+    SectionDEX
   }
 };
 </script>
