@@ -1,10 +1,15 @@
 <template>
-  <div class="container">{{ $t("home.title") }}</div>
+  <div>
+    <SectionHero />
+  </div>
 </template>
 
 <script>
+import SectionHero from "~/components/Sections/SectionHero.vue";
 export default {
-  components: {}
+  components: {
+    SectionHero
+  }
 };
 </script>
 

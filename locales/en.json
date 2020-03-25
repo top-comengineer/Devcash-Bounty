@@ -32,5 +32,10 @@
   },
   "footer": {
     "credits": "© %1 Devcash."
+  },
+  "heroSection": {
+    "header": "Cash for the<br>developer economy",
+    "paragraph": "Join our global community of blockchain developers and make the most of your skills.",
+    "ctaButton": "Explore Bounties"
   }
 }

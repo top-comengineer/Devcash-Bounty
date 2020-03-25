@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6"
-  >
+  <div class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6 absolute">
     <Logo />
     <!-- Menu icon shown on small screens -->
     <Icon class="md:hidden" type="menu" widthClass="w-8" />
@@ -14,9 +12,7 @@
       <li class="ml-8 font-bold">
         <button
           class="bg-dtText text-dtBg font-bold rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
-        >
-          {{ $t("navigation.signIn") }}
-        </button>
+        >{{ $t("navigation.signIn") }}</button>
       </li>
     </ul>
   </div>

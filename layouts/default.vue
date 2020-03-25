@@ -1,6 +1,6 @@
 <template>
   <div class="bg-dtBg text-dtText">
-    <div class="d-container">
+    <div class="d-container relative">
       <Header />
     </div>
     <nuxt />
