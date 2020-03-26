@@ -2484,8 +2484,8 @@
 }
 @media only screen and (min-width: 1024px) {
   .hero-illustration {
-    margin-right: -50%;
-    margin-top: -33%;
+    margin-right: -60%;
+    margin-top: -40%;
   }
 }
 /* 

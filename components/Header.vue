@@ -5,8 +5,12 @@
     <Icon class="md:hidden" type="menu" widthClass="w-8" />
     <!-- Navbar items shown on non-small screens -->
     <ul class="hidden md:flex flex-row justify-end items-center">
-      <li class="ml-8 font-bold">{{ $t("navigation.home") }}</li>
-      <li class="ml-8 font-bold">{{ $t("navigation.bountyPlatform") }}</li>
+      <li class="ml-8 font-bold">
+        <nuxt-link to="/">{{ $t("navigation.home") }}</nuxt-link>
+      </li>
+      <li class="ml-8 font-bold">
+        <nuxt-link to="bountyplatform">{{ $t("navigation.bountyPlatform") }}</nuxt-link>
+      </li>
       <li class="ml-8 font-bold">{{ $t("navigation.dex") }}</li>
       <li class="ml-8 font-bold">{{ $t("navigation.english") }}</li>
       <li class="ml-8 font-bold">

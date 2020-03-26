@@ -50,26 +50,36 @@
             </div>
           </div>
           <!-- Social Items -->
-          <div class="flex flex-row items-center">
-            <Icon widthClass="w-5" type="discord" />
-            <p class="ml-3 my-2">{{ $t("social.discord") }}</p>
-          </div>
-          <div class="flex flex-row items-center">
-            <Icon widthClass="w-5" type="facebook" />
-            <p class="ml-3 my-2">{{ $t("social.facebook") }}</p>
-          </div>
-          <div class="flex flex-row items-center">
-            <Icon widthClass="w-5" type="twitter" />
-            <p class="ml-3 my-2">{{ $t("social.twitter") }}</p>
-          </div>
-          <div class="flex flex-row items-center">
-            <Icon widthClass="w-5" type="medium" />
-            <p class="ml-3 my-2">{{ $t("social.medium") }}</p>
-          </div>
-          <div class="flex flex-row items-center">
-            <Icon widthClass="w-5" type="github" />
-            <p class="ml-3 my-2">{{ $t("social.github") }}</p>
-          </div>
+          <a target="_blank" href>
+            <div class="flex flex-row items-center">
+              <Icon widthClass="w-5" type="discord" />
+              <p class="ml-3 my-2">{{ $t("social.discord") }}</p>
+            </div>
+          </a>
+          <a target="_blank" href>
+            <div class="flex flex-row items-center">
+              <Icon widthClass="w-5" type="facebook" />
+              <p class="ml-3 my-2">{{ $t("social.facebook") }}</p>
+            </div>
+          </a>
+          <a target="_blank" href>
+            <div class="flex flex-row items-center">
+              <Icon widthClass="w-5" type="twitter" />
+              <p class="ml-3 my-2">{{ $t("social.twitter") }}</p>
+            </div>
+          </a>
+          <a target="_blank" href>
+            <div class="flex flex-row items-center">
+              <Icon widthClass="w-5" type="medium" />
+              <p class="ml-3 my-2">{{ $t("social.medium") }}</p>
+            </div>
+          </a>
+          <a target="_blank" href>
+            <div class="flex flex-row items-center">
+              <Icon widthClass="w-5" type="github" />
+              <p class="ml-3 my-2">{{ $t("social.github") }}</p>
+            </div>
+          </a>
         </div>
         <div class="w-full lg:w-auto self-center flex flex-col items-center my-8">
           <Logo class="my-2" type="monoLight" />
