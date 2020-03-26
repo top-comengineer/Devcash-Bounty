@@ -1,6 +1,8 @@
 <template>
   <div>
-    Bounty Platform
+    <div class="w-full flex flex-row justify-center items-center py-72">
+      <h1 class="font-extrabold text-3xl text-center">Bounty Platform</h1>
+    </div>
   </div>
 </template>
 
