@@ -12,22 +12,32 @@
           <IllustrationSearch
             class="w-64 md:w-64 lg:w-72 h-auto absolute left-0 bottom-0 -ml-24 -mb-24 md:-ml-32 md:-mb-24 lg:-ml-32 lg:-mb-32"
           />
+          <!-- Start Exploring Card -->
           <div
-            class="w-full flex flex-col items-center bg-dtBackground rounded-tl-xl4 rounded-br-xl4 rounded-tr-xl rounded-bl-xl border-2 border-dtPrimary px-2 md:px-4 py-10 relative"
+            v-bind:class="[
+              $store.state.theme.dt ? 'bg-dtBackground' : 'bg-ltBackground'
+            ]"
+            class="w-full flex flex-col items-center rounded-tl-xl4 rounded-br-xl4 rounded-tr-xl rounded-bl-xl border-2 border-dtPrimary px-2 md:px-4 py-10 relative"
           >
             <!-- Header Text -->
             <h2
               class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
-            >{{$t('startExploringSection.header')}}</h2>
+            >
+              {{ $t("startExploringSection.header") }}
+            </h2>
             <!-- Paragraph Text -->
             <div class="w-full flex flex-row justify-center px-4 mt-4 mb-2">
-              <p class="text-lg text-dtText text-center">{{$t('startExploringSection.paragraph')}}</p>
+              <p class="text-lg text-center">
+                {{ $t("startExploringSection.paragraph") }}
+              </p>
             </div>
             <!-- Call to Action -->
             <div class="flex flex-row justify-center">
               <button
                 class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-xl2 rounded-br-xl2 rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
-              >{{ $t("startExploringSection.ctaButton") }}</button>
+              >
+                {{ $t("startExploringSection.ctaButton") }}
+              </button>
             </div>
           </div>
         </div>

@@ -25,7 +25,7 @@
           <div
             class="w-full md:w-2/3 xl:w-7/12 flex flex-row justify-center px-4 mt-4 mb-2 relative"
           >
-            <p class="text-lg text-dtText text-center">
+            <p class="text-lg text-center">
               {{ $t("dexSection.paragraph") }}
             </p>
           </div>

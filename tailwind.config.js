@@ -20,10 +20,10 @@ module.exports = {
       // Light theme colors
       ltPrimary: "#675CFF",
       ltSecondary: "#8850F8",
-      ltBackground: "#010014",
+      ltBackground: "#F8F7FC",
       ltBackgroundLighter: "#181726",
       ltBackgroundLightest: "#222133",
-      ltText: "#F2F1FF",
+      ltText: "#010014",
       ltSuccess: "#B1FFAA",
       ltDanger: "#FF8080",
       ltPending: "#FFDF80"

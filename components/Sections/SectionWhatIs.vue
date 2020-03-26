@@ -23,7 +23,7 @@
         <div
           class="w-full md:w-3/4 xl:w-7/12 flex flex-row justify-center px-4 pt-4 pb-8"
         >
-          <p class="text-lg text-dtText text-center">
+          <p class="text-lg text-center">
             {{ $t("whatIsSection.paragraph") }}
           </p>
         </div>

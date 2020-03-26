@@ -1,15 +1,15 @@
 export const state = () => ({
-    dk: true
+  dt: true
 });
-  
+
 export const mutations = {
-    change(state) {
-        state.dk = !state.dk
-    }
+  change(state) {
+    state.dt = !state.dt;
+  }
 };
 
 export const actions = {
-    change(context) {
-        context.commit('change')
-    }
+  change(context) {
+    context.commit("change");
+  }
 };

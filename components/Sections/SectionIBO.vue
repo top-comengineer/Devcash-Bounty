@@ -20,7 +20,7 @@
             {{ $t("IBOSection.header") }}
           </h2>
           <!-- Paragraph Text -->
-          <p class="text-lg text-dtText text-center lg:text-left mt-2">
+          <p class="text-lg text-center lg:text-left mt-2">
             {{ $t("IBOSection.paragraph") }}
           </p>
         </div>

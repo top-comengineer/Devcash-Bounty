@@ -18,7 +18,7 @@
             v-html="$t('heroSection.header')"
           ></h1>
           <div class="w-full xl:w-10/12 flex flex-row">
-            <p class="text-xl text-dtText text-center lg:text-left mt-2">
+            <p class="text-xl text-center lg:text-left mt-2">
               {{ $t("heroSection.paragraph") }}
             </p>
           </div>

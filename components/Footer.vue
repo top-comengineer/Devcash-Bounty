@@ -74,31 +74,61 @@
           <!-- Social Items -->
           <a target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon class="w-5 h-auto" type="discord" />
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="discord"
+              />
               <p class="ml-3 my-2">{{ $t("social.discord") }}</p>
             </div>
           </a>
           <a target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon class="w-5 h-auto" type="facebook" />
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="facebook"
+              />
               <p class="ml-3 my-2">{{ $t("social.facebook") }}</p>
             </div>
           </a>
           <a target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon class="w-5 h-auto" type="twitter" />
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="twitter"
+              />
               <p class="ml-3 my-2">{{ $t("social.twitter") }}</p>
             </div>
           </a>
           <a target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon class="w-5 h-auto" type="medium" />
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="medium"
+              />
               <p class="ml-3 my-2">{{ $t("social.medium") }}</p>
             </div>
           </a>
           <a target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon class="w-5 h-auto" type="github" />
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="github"
+              />
               <p class="ml-3 my-2">{{ $t("social.github") }}</p>
             </div>
           </a>
@@ -107,7 +137,10 @@
         <div
           class="w-full lg:w-auto self-center flex flex-col items-center my-8"
         >
-          <Logo class="w-32 md:w-40 h-auto my-2" type="monoLight" />
+          <Logo
+            :type="$store.state.theme.dt ? 'monoLight' : 'monoDark'"
+            class="w-32 md:w-40 h-auto my-2"
+          />
           <p class="my-2">
             {{ $t("footer.credits").replace("%1", currentYear) }}
           </p>

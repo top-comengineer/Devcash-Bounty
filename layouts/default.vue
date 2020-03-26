@@ -1,5 +1,12 @@
 <template>
-  <div class="bg-dtBackground text-dtText">
+  <div
+    class="transition-all ease-out duration-200"
+    v-bind:class="[
+      $store.state.theme.dt
+        ? 'bg-dtBackground text-dtText'
+        : 'bg-ltBackground text-ltText'
+    ]"
+  >
     <div class="d-container relative">
       <Header />
     </div>
