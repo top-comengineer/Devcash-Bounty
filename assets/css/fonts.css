@@ -1,4 +1,3 @@
-// Primary Font Manrope
 @font-face {
   font-family: "Manrope";
   font-weight: 200;
@@ -62,5 +61,3 @@
     url("~assets/fonts/Manrope/Manrope-Extrabold.woff") format("woff"),
     url("~assets/fonts/Manrope/Manrope-Extrabold.ttf") format("truetype");
 }
-
-// Secondary Font JetBrains Mono
