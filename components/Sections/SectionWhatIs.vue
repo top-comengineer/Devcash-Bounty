@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-row flex-wrap justify-center items-center py-12">
+  <div
+    class="w-full flex flex-row flex-wrap justify-center items-center pt-4 pb-8 md:py-12"
+  >
     <div class="w-full flex flex-col items-center">
       <!-- Illustration -->
       <IllustrationDMark class="w-64" />
@@ -10,14 +12,20 @@
         <!-- Header Text -->
         <h2
           class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
-        >{{$t('whatIsSection.header')}}</h2>
+        >
+          {{ $t("whatIsSection.header") }}
+        </h2>
         <!-- Line Right -->
         <div class="flex-1 h-2px bg-dtPrimary rounded-bl-full"></div>
       </div>
       <!-- Paragraph -->
       <div class="d-container flex flex-row justify-center">
-        <div class="w-full md:w-3/4 xl:w-7/12 flex flex-row justify-center px-4 pt-4 pb-8">
-          <p class="text-lg text-dtText text-center">{{$t('whatIsSection.paragraph')}}</p>
+        <div
+          class="w-full md:w-3/4 xl:w-7/12 flex flex-row justify-center px-4 pt-4 pb-8"
+        >
+          <p class="text-lg text-dtText text-center">
+            {{ $t("whatIsSection.paragraph") }}
+          </p>
         </div>
       </div>
       <!-- Bottom Divider -->
