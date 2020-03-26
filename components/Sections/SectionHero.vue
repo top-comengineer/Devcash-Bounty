@@ -20,6 +20,7 @@
           >{{$t('heroSection.paragraph')}}</p>
           <div class="flex flex-row">
             <button
+              @click="changeTheme"
               class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-xl2 rounded-br-xl2 rounded-tr-md rounded-bl-md px-8 py-2 my-4"
             >{{ $t("heroSection.ctaButton") }}</button>
           </div>
@@ -33,8 +34,13 @@ import IllustrationHero from "~/components/Illustrations/IllustrationHero.vue";
 export default {
   components: {
     IllustrationHero
+  },
+  methods: {
+    changeTheme() {
+      this.$store.commit('theme/change')
+    }
   }
-};
+}
 </script>
 <style scoped>
 .spacer {

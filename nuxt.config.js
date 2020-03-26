@@ -45,7 +45,10 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    ['nuxt-vuex-localstorage', {
+      localStorage: ['theme']
+    }]    
   ],
   /*
    ** Axios module configuration

@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
 import SectionHero from "~/components/Sections/SectionHero.vue";
 import SectionWhatIs from "~/components/Sections/SectionWhatIs.vue";
 import SectionIBO from "~/components/Sections/SectionIBO.vue";
