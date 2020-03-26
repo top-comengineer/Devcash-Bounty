@@ -1,5 +1,5 @@
 <template>
-  <div :class="currentTheme">
+  <div>
     <SectionHero />
     <SectionWhatIs />
     <SectionIBO />
@@ -37,10 +37,5 @@ export default {
       }
     };
   },
-  computed: {
-    currentTheme () {
-      return this.$store.state.theme.currentTheme
-    }
-  }
 };
 </script>

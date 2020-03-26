@@ -20,5 +20,11 @@ export const state = () => ({
   export const getters = {
     currentTheme(state) {
         return state.currentTheme;
+    },
+    dark(state) {
+        return state.currentTheme == THEMES.DARK
+    },
+    dt(state) {
+        return state.currentTheme == THEMES.DARK
     }
   };
