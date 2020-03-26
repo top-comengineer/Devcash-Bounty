@@ -1,3 +1,5 @@
+const { generateRoutes } = require('./utils/router')
+
 export default {
   mode: "universal",
   /*
@@ -27,7 +29,10 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/i18n.js"],
+  plugins: [
+    { src: '~/plugins/global-mixin.js' },
+    { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' }
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -65,16 +70,14 @@ export default {
         isDev ? "[path][name].[ext]" : "fonts/[name].[hash:7].[ext]",
       video: ({ isDev }) =>
         isDev ? "[path][name].[ext]" : "videos/[name].[hash:7].[ext]"
-    },
-    vendor: ["vue-i18n"]
+    }
   },
   router: {
-    middleware: "i18n"
+    middleware: ['i18n'],
+    extendRoutes (routes) {
+      const newRoutes = generateRoutes(routes)
+      routes.splice(0, routes.length)
+      routes.unshift(...newRoutes)
+    }
   },
-  /*
-   ** Generate routes
-   */
-  generate: {
-    routes: ["/", "/en"]
-  }
 };
