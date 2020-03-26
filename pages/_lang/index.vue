@@ -27,6 +27,14 @@ export default {
     SectionDEX,
     SectionTokenDetails,
     SectionStartExploring
+  },
+  head() {
+    return {
+      // Make this dynamic later
+      htmlAttrs: {
+        lang: "en"
+      }
+    };
   }
 };
 </script>
