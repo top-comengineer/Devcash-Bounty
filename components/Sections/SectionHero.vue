@@ -17,9 +17,11 @@
             class="font-extrabold text-3xl md:text-4xl text-center lg:text-left leading-tight text-dtPrimary"
             v-html="$t('heroSection.header')"
           ></h1>
-          <p class="text-xl text-dtText text-center lg:text-left mt-2">
-            {{ $t("heroSection.paragraph") }}
-          </p>
+          <div class="w-full xl:w-10/12 flex flex-row">
+            <p class="text-xl text-dtText text-center lg:text-left mt-2">
+              {{ $t("heroSection.paragraph") }}
+            </p>
+          </div>
           <div class="flex flex-row">
             <button
               @click="changeTheme"
