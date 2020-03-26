@@ -7,15 +7,26 @@
 module.exports = {
   theme: {
     colors: {
+      // Dark theme colors
       dtPrimary: "#675CFF",
       dtSecondary: "#8850F8",
-      dtBg: "#010014",
-      dtBgLighter: "#181726",
-      dtBgLightest: "#222133",
+      dtBackground: "#010014",
+      dtBackgroundLighter: "#181726",
+      dtBackgroundLightest: "#222133",
       dtText: "#F2F1FF",
       dtSuccess: "#B1FFAA",
       dtDanger: "#FF8080",
-      dtPending: "#FFDF80"
+      dtPending: "#FFDF80",
+      // Light theme colors
+      ltPrimary: "#675CFF",
+      ltSecondary: "#8850F8",
+      ltBackground: "#010014",
+      ltBackgroundLighter: "#181726",
+      ltBackgroundLightest: "#222133",
+      ltText: "#F2F1FF",
+      ltSuccess: "#B1FFAA",
+      ltDanger: "#FF8080",
+      ltPending: "#FFDF80"
     },
     borderRadius: {
       none: "0",

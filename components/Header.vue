@@ -15,7 +15,7 @@
       <li class="ml-8 font-bold">{{ $t("navigation.english") }}</li>
       <li class="ml-8 font-bold">
         <button
-          class="bg-dtText text-dtBg font-bold rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+          class="bg-dtText text-dtBackground font-bold rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
         >{{ $t("navigation.signIn") }}</button>
       </li>
     </ul>

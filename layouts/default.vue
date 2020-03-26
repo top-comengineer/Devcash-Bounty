@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dtBg text-dtText">
+  <div class="bg-dtBackground text-dtText">
     <div class="d-container relative">
       <Header />
     </div>
