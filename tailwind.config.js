@@ -40,6 +40,13 @@ module.exports = {
       xl4: "3rem",
       xl5: "6rem",
       full: "9999px"
+    },
+    extend: {
+      spacing: {
+        72: "18rem",
+        84: "21rem",
+        96: "24rem"
+      }
     }
   },
   variants: {},

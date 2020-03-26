@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-8 pb-12 lg:pt-24 lg:pb-16">
+  <div class="pt-8 pb-12 lg:pt-32 lg:pb-16">
     <!-- Header Part -->
     <div class="w-full flex flex-col items-center">
       <div class="w-full flex flex-row justify-center items-center mt-6">

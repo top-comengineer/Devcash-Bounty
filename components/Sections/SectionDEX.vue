@@ -3,7 +3,7 @@
     <div class="w-full flex flex-row flex-wrap justify-center items-center">
       <div class="w-full flex flex-col items-center">
         <!-- Illustration -->
-        <IllustrationDEX class="w-11/12 md:w-3/4 lg:w-3/5" />
+        <IllustrationDEX class="w-11/12 md:w-3/4" />
         <!-- Header Text -->
         <h2
           class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-6 md:mt-8"
