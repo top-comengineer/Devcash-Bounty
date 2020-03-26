@@ -25,7 +25,7 @@
       <div class="ml-8 font-bold">{{ $t("navigation.dex") }}</div>
       <div class="ml-8 font-bold">{{ $t("navigation.english") }}</div>
       <!-- Theme Switcher Button -->
-      <button @click="$store.commit('theme/change')" class="ml-8 rounded-full">
+      <button @click="toggleThemes" class="ml-8 rounded-full">
         <Icon
           class="w-8 h-8"
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -53,6 +53,16 @@ export default {
   components: {
     Logo,
     Icon
+  },
+  methods: {
+    toggleThemes() {
+      if (this.$store.state.theme.dt) {
+        document.querySelector("body").style.backgroundColor = "#F8F7FC";
+      } else {
+        document.querySelector("body").style.backgroundColor = "#010014";
+      }
+      this.$store.commit("theme/change");
+    }
   }
 };
 </script>

@@ -164,4 +164,11 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.dt-footer-shadow {
+  box-shadow: 0 -2px 0 0 rgba(103, 92, 255, 1);
+}
+.dt-footer-bg {
+  background-color: rgba(103, 92, 255, 0.04);
+}
+</style>
