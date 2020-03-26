@@ -36,10 +36,3 @@ export const ROUTES_ALIASES = {
     fr: '/categorie/:slug'
   }*/
 }
-
-export const THEMES = {
-    LIGHT: 'light',
-    DARK: 'dark'
-}
-
-export const DEFAULT_THEME = THEMES.DARK
