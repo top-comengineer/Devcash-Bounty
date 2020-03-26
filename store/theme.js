@@ -24,7 +24,7 @@ export const state = () => ({
     dark(state) {
         return state.currentTheme == THEMES.DARK
     },
-    dk(state) {
+    dt(state) {
         return state.currentTheme == THEMES.DARK
     }
   };
