@@ -3,7 +3,7 @@
     class="w-full flex flex-row flex-wrap justify-center items-center overflow-hidden pt-16 pb-8 lg:pt-24 lg:pb:12"
   >
     <!-- Illustration -->
-    <div class="w-full lg:w-1/2 flex flex-col pl-8 order-first lg:order-last">
+    <div class="w-full lg:w-1/2 flex flex-col order-first lg:order-last">
       <IllustrationHero />
     </div>
     <!-- Header, Paragraph and CTA Button -->

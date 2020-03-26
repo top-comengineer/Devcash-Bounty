@@ -2512,18 +2512,21 @@
 </template>
 <style>
 .hero-illustration {
-  margin-right: -90%;
+  margin-right: -95%;
   margin-top: -53%;
+  margin-left: 5%;
 }
 @media only screen and (min-width: 640px) {
   .hero-illustration {
     margin-right: -70%;
     margin-top: -40%;
+    margin-left: 10%;
   }
 }
 @media only screen and (min-width: 1024px) {
   .hero-illustration {
     margin-right: -60%;
+    margin-left: 3%;
     margin-top: -40%;
   }
 }
