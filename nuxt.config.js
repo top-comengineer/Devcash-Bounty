@@ -55,6 +55,17 @@ export default {
      ** You can extend webpack config here
      */
     extend(config, ctx) {},
+    filenames: {
+      app: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
+      chunk: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
+      css: ({ isDev }) => (isDev ? "[name].css" : "[name].[contenthash].css"),
+      img: ({ isDev }) =>
+        isDev ? "[path][name].[ext]" : "img/[name].[hash:7].[ext]",
+      font: ({ isDev }) =>
+        isDev ? "[path][name].[ext]" : "fonts/[name].[hash:7].[ext]",
+      video: ({ isDev }) =>
+        isDev ? "[path][name].[ext]" : "videos/[name].[hash:7].[ext]"
+    },
     vendor: ["vue-i18n"]
   },
   router: {
