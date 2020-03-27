@@ -1,7 +1,7 @@
 import { ethers, utils } from 'ethers'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
 
-export default class DevcashBounty {
+export class DevcashBounty {
     constructor(async_param) {
         if (typeof async_param === 'undefined') {
             throw new Error('Cannot be called directly');
@@ -38,7 +38,7 @@ export default class DevcashBounty {
 
         let uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
 
-        return DevcashBounty(
+        return new DevcashBounty(
             {
                 ethereum: ethereum,
                 provider: provider,
