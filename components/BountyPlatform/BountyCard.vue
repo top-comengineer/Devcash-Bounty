@@ -1,5 +1,6 @@
 <template>
-  <div
+  <nuxt-link
+    :to="getLocalizedRoute(bountyLink?bountyLink:'bountyplatform')"
     v-bind:class="[$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']"
     class="w-full flex flex-row justify-between items-center py-4 px-8 fill-current rounded-tl-xl3 rounded-br-xl3 rounded-tr-lg rounded-bl-lg transition-all ease-out duration-200"
   >
@@ -48,7 +49,7 @@
       <h4 class="text-dtPrimary font-extrabold text-2xl text-right">{{'{D}' + devAmount}}</h4>
       <h5 class="text-lg text-right mt-1">{{'Ξ' + ethAmount + ' / ' + '$'+usdAmount}}</h5>
     </div>
-  </div>
+  </nuxt-link>
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
@@ -58,6 +59,7 @@ export default {
   },
   props: {
     bountyName: null,
+    bountyLink: null,
     creatorAddress: null,
     devAmount: null,
     ethAmount: null,
