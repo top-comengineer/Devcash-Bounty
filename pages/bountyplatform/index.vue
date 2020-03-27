@@ -20,9 +20,8 @@ export default {
   },
   head() {
     return {
-      // Make this dynamic later
       htmlAttrs: {
-        lang: "en"
+        lang: this.$store.state.i18n.currentLocale
       }
     };
   }
