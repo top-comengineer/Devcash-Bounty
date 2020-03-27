@@ -13,13 +13,11 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
-            :class="{
+            v-bind:class="[ hideNavbar ? '-mt-24':'mt-0', {
               'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
               'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
               'shadow-lg': showNavbarShadow,
-              'mt-0' : showNavbar,
-              '-mt-24': !showNavbar
-            }"
+            }]"
           />
         </div>
       </div>
@@ -52,7 +50,7 @@ export default {
     return {
       scrollPos: 0,
       showNavbarShadow: false,
-      showNavbar: true
+      hideNavbar: false
     };
   },
   methods: {
@@ -62,18 +60,18 @@ export default {
         window.pageYOffset < 50 ||
         document.body.getBoundingClientRect().top > this.scrollPos + 10
       ) {
-        this.showNavbar = true;
+        this.hideNavbar = false;
       } else if (
         window.pageYOffset >= 100 &&
         document.body.getBoundingClientRect().top < this.scrollPos - 10
       ) {
-        this.showNavbar = false;
+        this.hideNavbar = true;
       }
       // Saves the new position for iteration.
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (window.pageYOffset >= 50 && !this.showNavBg) {
+      if (window.pageYOffset >= 50 && !this.showNavbarShadow) {
         this.showNavbarShadow = true;
       } else if (window.pageYOffset < 50 && this.showNavbarShadow) {
         this.showNavbarShadow = false;
