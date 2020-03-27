@@ -10,7 +10,10 @@
       <h5 class="font-mono-jet font-medium text-lg text-left mt-1">{{creatorAddress}}</h5>
     </div>
     <!-- Divider -->
-    <div class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"></div>
+    <div
+      v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+      class="md:hidden w-full h-px rounded-full opacity-5 my-3"
+    ></div>
     <!-- Submissions Left and Remaining Time -->
     <div
       class="w-full md:w-1/4 flex flex-col justify-center order-last md:order-none items-start md:items-end"
@@ -54,7 +57,10 @@
       <h5 class="text-lg text-right mt-1">{{'Ξ' + ethAmount + ' / ' + '$'+usdAmount}}</h5>
     </div>
     <!-- Divider -->
-    <div class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"></div>
+    <div
+      v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+      class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"
+    ></div>
   </nuxt-link>
 </template>
 <script>
