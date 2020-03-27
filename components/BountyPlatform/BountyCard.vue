@@ -10,7 +10,7 @@
   >
     <!-- Bounty Name and Address -->
     <div
-      class="w-full md:w-1/2 flex flex-col flex-wrap justify-center items-start"
+      class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start"
     >
       <h4 class="font-extrabold text-xl text-left">{{ bountyName }}</h4>
       <div class="flex flex-row items-center mt-1">
@@ -31,7 +31,7 @@
     ></div>
     <!-- Submissions Left and Remaining Time -->
     <div
-      class="w-full md:w-1/4 flex flex-col justify-center order-last md:order-none items-start md:items-end"
+      class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end"
     >
       <!-- Submissions Left -->
       <div class="flex flex-row justify-end items-center">
@@ -64,7 +64,7 @@
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div
-      class="w-full md:w-1/4 flex flex-col justify-center items-start md:items-end"
+      class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end"
     >
       <h4 class="text-dtPrimary font-extrabold text-2xl text-right">
         {{ "{D}" + devAmount }}

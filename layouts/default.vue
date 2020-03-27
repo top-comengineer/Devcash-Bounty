@@ -13,16 +13,20 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
-            v-bind:class="[ hideNavbar ? '-mt-24':'mt-0', {
-              'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
-              'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
-              'shadow-lg': showNavbarShadow,
-            }]"
+            v-bind:class="[
+              hideNavbar ? '-mt-24' : 'mt-0',
+              {
+                'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
+                'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
+                'shadow-lg': showNavbarShadow
+              }
+            ]"
           />
         </div>
       </div>
     </div>
-    <nuxt />
+    <nuxt v-if="!$slots.default" />
+    <slot />
     <Footer />
   </div>
 </template>
