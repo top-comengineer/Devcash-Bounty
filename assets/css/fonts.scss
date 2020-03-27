@@ -1,3 +1,4 @@
+/* Manrope Sans Serif Font*/
 @font-face {
   font-family: "Manrope";
   font-weight: 200;
@@ -60,4 +61,54 @@
   src: url("~assets/fonts/Manrope/Manrope-Extrabold.woff2") format("woff2"),
     url("~assets/fonts/Manrope/Manrope-Extrabold.woff") format("woff"),
     url("~assets/fonts/Manrope/Manrope-Extrabold.ttf") format("truetype");
+}
+
+/* JetBrains Mono Font */
+@font-face {
+  font-family: "JetBrainsMono";
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/JetBrainsMono-Regular.eot");
+  src: url("~assets/fonts/JetBrainsMono-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("~assets/fonts/JetBrainsMono-Regular.woff2") format("woff2"),
+    url("~assets/fonts/JetBrainsMono-Regular.woff") format("woff"),
+    url("~assets/fonts/JetBrainsMono-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/JetBrainsMono-Medium.eot");
+  src: url("~assets/fonts/JetBrainsMono-Medium.eot?#iefix")
+      format("embedded-opentype"),
+    url("~assets/fonts/JetBrainsMono-Medium.woff2") format("woff2"),
+    url("~assets/fonts/JetBrainsMono-Medium.woff") format("woff"),
+    url("~assets/fonts/JetBrainsMono-Medium.ttf") format("truetype");
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/JetBrainsMono-Bold.eot");
+  src: url("~assets/fonts/JetBrainsMono-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("~assets/fonts/JetBrainsMono-Bold.woff2") format("woff2"),
+    url("~assets/fonts/JetBrainsMono-Bold.woff") format("woff"),
+    url("~assets/fonts/JetBrainsMono-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "JetBrainsMono";
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  src: url("~assets/fonts/JetBrainsMono-Extrabold.eot");
+  src: url("~assets/fonts/JetBrainsMono-Extrabold.eot?#iefix")
+      format("embedded-opentype"),
+    url("~assets/fonts/JetBrainsMono-Extrabold.woff2") format("woff2"),
+    url("~assets/fonts/JetBrainsMono-Extrabold.woff") format("woff"),
+    url("~assets/fonts/JetBrainsMono-Extrabold.ttf") format("truetype");
 }

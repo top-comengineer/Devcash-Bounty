@@ -12,8 +12,8 @@ module.exports = {
       dtPrimaryLessSat: "#7066FF",
       dtSecondary: "#8850F8",
       dtBackground: "#010014",
-      dtBackgroundLighter: "#181726",
-      dtBackgroundLightest: "#222133",
+      dtBackgroundSecondary: "#181726",
+      dtBackgroundTertiary: "#222133",
       dtText: "#F2F1FF",
       dtSuccess: "#B1FFAA",
       dtDanger: "#FF8080",
@@ -23,12 +23,12 @@ module.exports = {
       dtPrimaryLessSat: "#7066FF",
       ltSecondary: "#8850F8",
       ltBackground: "#F8F7FC",
-      ltBackgroundLighter: "#181726",
-      ltBackgroundLightest: "#222133",
+      ltBackgroundSecondary: "#FFFFFF",
+      ltBackgroundTertiary: "#FFFFFF",
       ltText: "#010014",
-      ltSuccess: "#B1FFAA",
-      ltDanger: "#FF8080",
-      ltPending: "#FFDF80"
+      ltSuccess: "#009966",
+      ltDanger: "#990040",
+      ltPending: "#CD8900"
     },
     borderRadius: {
       none: "0",
