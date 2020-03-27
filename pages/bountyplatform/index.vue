@@ -61,7 +61,7 @@ export default {
   width: calc((100vw - 1280px) / 2);
   max-width: 20rem;
   min-width: 15rem;
-  height: calc(100vh - 8rem);
+  height: calc(100vh - 7rem);
 }
 .sidebarSpacer {
   width: calc((100vw - 1280px) / 2);
