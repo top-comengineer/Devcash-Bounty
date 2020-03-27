@@ -1,5 +1,5 @@
 <template>
-  <div class="relative">
+  <div click class="relative">
     <button @click="isOpen=!isOpen">
       <Icon
         v-bind:class="[isOpen?'-rotate-90':'rotate-0'] "
@@ -8,20 +8,22 @@
         :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
       />
     </button>
-    <div v-if="isOpen" class="md:hidden absolute right-0 dropdown">
-      <div
-        v-bind:class="[$store.state.theme.dt?'bg-dtText': 'bg-ltText']"
-        class="w-full flex flex-col items-center rounded-tl-xl3 rounded-br-xl3 rounded-bl-lg rounded-tr-lg px-4 py-8"
-      >
-        <button @click="toggleThemes" class="rounded-full">
-          <Icon
-            class="w-8 h-8"
-            :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
-            :type="$store.state.theme.dt ? 'dark' : 'light'"
-          />
-        </button>
+    <transition name="dropdownTransition">
+      <div v-if="isOpen" class="md:hidden absolute right-0 dropdown mt-2">
+        <div
+          v-bind:class="[$store.state.theme.dt?'bg-dtText': 'bg-ltText']"
+          class="w-full flex flex-col items-center rounded-tl-xl3 rounded-br-xl3 rounded-bl-lg rounded-tr-lg px-4 py-8"
+        >
+          <button @click="toggleThemes" class="rounded-full">
+            <Icon
+              class="w-8 h-8"
+              :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
+              :type="$store.state.theme.dt ? 'dark' : 'light'"
+            />
+          </button>
+        </div>
       </div>
-    </div>
+    </transition>
   </div>
 </template>
 <script>
@@ -58,5 +60,21 @@ export default {
 <style>
 .dropdown {
   width: calc(100vw - 2rem);
+}
+.dropdownTransition-enter-active {
+  transition: all 0.2s ease-out;
+  transform-origin: right top;
+}
+.dropdownTransition-leave-active {
+  transition: all 0.2s ease-out;
+  transform-origin: right top;
+}
+.dropdownTransition-enter {
+  opacity: 0;
+  transform: scale(0.5) translateY(-2rem);
+}
+.dropdownTransition-leave-to {
+  opacity: 0;
+  transform: scale(0.5) translateY(-2rem);
 }
 </style>
