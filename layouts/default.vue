@@ -15,7 +15,8 @@
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
             :class="{
               'bg-dtBackground': $store.state.theme.dt && showNavBg,
-              'bg-ltBackground': !$store.state.theme.dt && showNavBg
+              'bg-ltBackground': !$store.state.theme.dt && showNavBg,
+              'shadow-lg': showNavBg
             }"
           />
         </div>
@@ -64,18 +65,10 @@ export default {
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (
-        window.pageYOffset >= 50 &&
-        !this.showNavBg
-      ) {
+      if (window.pageYOffset >= 50 && !this.showNavBg) {
         this.showNavBg = true
-        defaultNavbar.classList.add("shadow-lg");
-      } else if (
-        window.pageYOffset < 50 &&
-        this.showNavBg
-      ) {
+      } else if (window.pageYOffset < 50 && this.showNavBg) {
         this.showNavBg = false
-        defaultNavbar.classList.remove("shadow-lg");
       }
     }
   },
