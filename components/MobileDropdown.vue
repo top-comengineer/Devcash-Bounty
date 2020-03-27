@@ -47,7 +47,7 @@
           </button>
           <!-- Theme Switch -->
           <button
-            @click="toggleThemes"
+            @click="$store.commit('theme/change')"
             class="w-full flex flex-row py-2 my-1 justify-center items-center"
           >
             <Icon
@@ -90,24 +90,6 @@ export default {
       isOpen: false
     };
   },
-  methods: {
-    toggleThemes() {
-      if (this.$store.state.theme.dt) {
-        document.querySelector("body").style.backgroundColor = "#F8F7FC";
-        if (defaultNavbar.classList.contains("bg-dtBackground")) {
-          defaultNavbar.classList.remove("bg-dtBackground");
-          defaultNavbar.classList.add("bg-ltBackground");
-        }
-      } else {
-        document.querySelector("body").style.backgroundColor = "#010014";
-        if (defaultNavbar.classList.contains("bg-ltBackground")) {
-          defaultNavbar.classList.remove("bg-ltBackground");
-          defaultNavbar.classList.add("bg-dtBackground");
-        }
-      }
-      this.$store.commit("theme/change");
-    }
-  }
 };
 </script>
 <style>

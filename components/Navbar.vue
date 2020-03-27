@@ -31,7 +31,7 @@
         {{ $t("navigation.english") }}
       </div>
       <!-- Theme Switcher Button -->
-      <button @click="toggleThemes" class="md:ml-6 lg:ml-8 rounded-full">
+      <button @click="$store.commit('theme/change')" class="md:ml-6 lg:ml-8 rounded-full">
         <Icon
           class="w-8 h-8"
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -62,23 +62,5 @@ export default {
     Icon,
     MobileDropdown
   },
-  methods: {
-    toggleThemes() {
-      if (this.$store.state.theme.dt) {
-        document.querySelector("body").style.backgroundColor = "#F8F7FC";
-        if (defaultNavbar.classList.contains("bg-dtBackground")) {
-          defaultNavbar.classList.remove("bg-dtBackground");
-          defaultNavbar.classList.add("bg-ltBackground");
-        }
-      } else {
-        document.querySelector("body").style.backgroundColor = "#010014";
-        if (defaultNavbar.classList.contains("bg-ltBackground")) {
-          defaultNavbar.classList.remove("bg-ltBackground");
-          defaultNavbar.classList.add("bg-dtBackground");
-        }
-      }
-      this.$store.commit("theme/change");
-    }
-  }
 };
 </script>

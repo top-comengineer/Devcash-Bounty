@@ -33,6 +33,13 @@ export default {
     Navbar,
     Footer
   },
+  head() {
+    return {
+      bodyAttrs: {
+        style: { 'background-color': this.$store.state.theme.dt ? '#F8F7FC' : '#010014'}
+      }
+    }
+  },
   data: function() {
     return {
       scrollPos: 0,
