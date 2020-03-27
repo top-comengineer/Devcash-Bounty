@@ -27,13 +27,6 @@ export default {
     SectionDEX,
     SectionTokenDetails,
     SectionStartExploring
-  },
-  head() {
-    return {
-      htmlAttrs: {
-        lang: this.$store.state.i18n.currentLocale
-      }
-    };
-  },
+  }
 };
 </script>

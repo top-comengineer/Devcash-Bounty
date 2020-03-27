@@ -41,6 +41,9 @@ export default {
     return {
       bodyAttrs: {
         style: `background-color:${this.$store.state.theme.dt ? '#010014' :'#F8F7FC'}`
+      },
+      htmlAttrs: {
+        lang: this.$store.state.i18n.currentLocale
       }
     }
   },
