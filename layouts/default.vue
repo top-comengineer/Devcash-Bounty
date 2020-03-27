@@ -37,7 +37,7 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        style: { 'background-color': this.$store.state.theme.dt ? '#F8F7FC' : '#010014'}
+        style: `background-color:${this.$store.state.theme.dt ? '#F8F7FC' : '#010014'}`
       }
     }
   },
