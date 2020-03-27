@@ -24,7 +24,7 @@
             sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
           ]"
           fill="#010014"
-          ;
+         
         />
         <path
           d="M107.43,0C48.26,0,.24,27.72.24,61.88s48,61.88,107.19,61.88S214.62,96,214.62,61.88,166.6,0,107.43,0Z"
