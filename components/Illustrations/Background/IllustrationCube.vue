@@ -24,7 +24,7 @@
             sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
           ]"
           fill="#010014"
-          ;
+         
         />
       </g>
     </svg>
