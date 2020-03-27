@@ -24,27 +24,21 @@
           <nuxt-link
             :to="getLocalizedRoute('index')"
             class="w-full flex flex-row py-2 my-1 justify-center"
-            >{{ $t("navigation.home") }}</nuxt-link
-          >
+          >{{ $t("navigation.home") }}</nuxt-link>
           <!-- Bounty Platform -->
           <nuxt-link
             to="bountyplatform"
             class="w-full flex flex-row py-2 my-1 justify-center"
-          >
-            {{ $t("navigation.bountyPlatform") }}
-          </nuxt-link>
+          >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
           <nuxt-link
             :to="getLocalizedRoute('bountyplatform')"
             class="w-full flex flex-row py-2 my-1 justify-center"
-            >{{ $t("navigation.dex") }}</nuxt-link
-          >
+          >{{ $t("navigation.dex") }}</nuxt-link>
           <!-- Language -->
           <button
             class="w-full flex flex-row py-2 my-1 justify-center text-xl font-bold"
-          >
-            {{ $t("navigation.english") }}
-          </button>
+          >{{ $t("navigation.english") }}</button>
           <!-- Theme Switch -->
           <button
             @click="$store.commit('theme/change')"
@@ -59,9 +53,9 @@
               "
               :type="$store.state.theme.dt ? 'dark' : 'light'"
             />
-            <div class="text-xl font-bold">
-              {{ $store.state.theme.dt ? $t("theme.dark") : $t("theme.light") }}
-            </div>
+            <div
+              class="text-xl font-bold"
+            >{{ $store.state.theme.dt ? $t("theme.dark") : $t("theme.light") }}</div>
           </button>
           <!-- Sign In Button -->
           <button
@@ -71,9 +65,7 @@
                 : ' bg-ltBackground text-ltText'
             ]"
             class="w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
-          >
-            {{ $t("navigation.signIn") }}
-          </button>
+          >{{ $t("navigation.signIn") }}</button>
         </div>
       </div>
     </transition>
@@ -89,7 +81,7 @@ export default {
     return {
       isOpen: false
     };
-  },
+  }
 };
 </script>
 <style>

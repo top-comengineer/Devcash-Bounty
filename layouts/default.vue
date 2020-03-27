@@ -13,11 +13,13 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
-            :class="[{
-              'bg-dtBackground': $store.state.theme.dt && showNavBg,
-              'bg-ltBackground': !$store.state.theme.dt && showNavBg,
-              'shadow-lg': showNavbarShadow
-            }, showNavbar?'mt-0':'-mt-24']"
+            :class="{
+              'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
+              'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
+              'shadow-lg': showNavbarShadow,
+              'mt-0' : showNavbar,
+              '-mt-24': !showNavbar
+            }"
           />
         </div>
       </div>
@@ -50,7 +52,7 @@ export default {
     return {
       scrollPos: 0,
       showNavbarShadow: false,
-      showMargin: true
+      showNavbar: true
     };
   },
   methods: {
