@@ -22,13 +22,20 @@ export class DevcashBounty {
      * @returns DevcashBounty instance
      */
     static async init() {
-        let ethereum = window.ethereum
-        ethereum.enable()
+        let usePublicProvider = false
+        if (window.ethereum) {
+            let ethereum = window.ethereum
+            ethereum.enable()
+            let provider = new ethers.providers.Web3Provider(web3.currentProvider);
+        } else {
+            usePublicProvider = true
+            let provider = new ethers.getDefaultProvider();
+            throw new Error('Not supported')
+        }
 
-        let provider = new ethers.providers.Web3Provider(web3.currentProvider);
-
-        let accounts = await this.provider.listAccounts()
+        let accounts = await provider.listAccounts()
         let signer = provider.getSigner(accounts[0])
+        console.log(signer)
 
         let tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer)
 

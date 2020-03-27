@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import { DevcashBounty } from '~/plugins/devcash/devcashBounty';
+
 import SectionHero from "~/components/Sections/SectionHero.vue";
 import SectionWhatIs from "~/components/Sections/SectionWhatIs.vue";
 import SectionTokenDetails from "~/components/Sections/SectionTokenDetails.vue";
@@ -17,6 +19,12 @@ export default {
     SectionWhatIs,
     SectionTokenDetails,
     SectionStartExploring
+  },
+  mounted: function() {
+    /*
+    DevcashBounty.init().then((result) => {
+
+    });*/
   }
 };
 </script>
