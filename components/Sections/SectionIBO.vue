@@ -6,10 +6,16 @@
       >
         <!-- Background Illustration Single D -->
         <IllustrationSingleD
+          :sdwColorClass="
+            $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
+          "
           class="w-32 md:w-56 lg:w-64 h-auto absolute right-0 top-0 -mr-8 md:-mr-10 lg:-mr-32"
         />
         <!-- Background Illustration Cube -->
         <IllustrationCube
+          :sdwColorClass="
+            $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
+          "
           class="w-48 md:w-64 lg:w-72 h-auto absolute bottom-0 left-0 -ml-16 md:-ml-10 lg:-ml-24"
         />
         <div class="w-full md:w-4/5 lg:w-2/5 flex flex-col py-8 px-6 relative">
@@ -26,6 +32,9 @@
         </div>
         <!-- Illustration -->
         <IllustrationIBO
+          :sdwColorClass="
+            $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
+          "
           class="w-10/12 md:w-2/4 lg:w-1/3 order-first lg:order-last relative"
         />
       </div>

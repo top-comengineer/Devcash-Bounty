@@ -6,14 +6,31 @@
           <div class="w-full relative">
             <!-- Background Illustration Right Window -->
             <IllustrationWindowRight
+              :sdwColorClass="
+                $store.state.theme.dt
+                  ? 'text-dtBackground'
+                  : 'text-ltBackground'
+              "
               class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 right-0 -mr-48 -mt-8 md:-mr-48 md:-mt-12 lg:-mr-36 lg:-mt-8"
             />
             <!-- Background Illustration Left Window -->
             <IllustrationWindowLeft
+              :sdwColorClass="
+                $store.state.theme.dt
+                  ? 'text-dtBackground'
+                  : 'text-ltBackground'
+              "
               class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 md:bottom-0 left-0 -mt-8 -ml-48 md:-ml-48 md:-mb-24 lg:-ml-36 lg:-mb-20"
             />
             <!-- Illustration -->
-            <IllustrationDEX class="w-full relative" />
+            <IllustrationDEX
+              :sdwColorClass="
+                $store.state.theme.dt
+                  ? 'text-dtBackground'
+                  : 'text-ltBackground'
+              "
+              class="w-full relative"
+            />
           </div>
           <!-- Header Text -->
           <h2

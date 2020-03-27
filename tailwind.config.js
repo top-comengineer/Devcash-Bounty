@@ -9,6 +9,7 @@ module.exports = {
     colors: {
       // Dark theme colors
       dtPrimary: "#675CFF",
+      dtPrimaryLessSat: "#7066FF",
       dtSecondary: "#8850F8",
       dtBackground: "#010014",
       dtBackgroundLighter: "#181726",
@@ -19,6 +20,7 @@ module.exports = {
       dtPending: "#FFDF80",
       // Light theme colors
       ltPrimary: "#675CFF",
+      dtPrimaryLessSat: "#7066FF",
       ltSecondary: "#8850F8",
       ltBackground: "#F8F7FC",
       ltBackgroundLighter: "#181726",
