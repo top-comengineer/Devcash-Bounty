@@ -222,6 +222,44 @@
         fill="#f2f1ff"
       />
     </svg>
+    <!-- Clock -->
+    <svg
+      v-else-if="type == 'clock'"
+      id="43c32ee8-9083-4958-872d-15e3c1dd45e7"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>clock</title>
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M29.09,8.44a1.4,1.4,0,0,0-.17-2l-4.3-3.58A1.4,1.4,0,1,0,22.84,5l4.3,3.58A1.4,1.4,0,0,0,29.09,8.44ZM9.16,5A1.39,1.39,0,0,0,7.38,2.88L3.08,6.45A1.39,1.39,0,1,0,4.87,8.6Zm7.54,6.56a1.05,1.05,0,1,0-2.1,0v7.29l5.8,3.46a1,1,0,1,0,1-1.72L16.7,17.84ZM16,5A12.51,12.51,0,1,0,28.6,17.49,12.56,12.56,0,0,0,16,5Zm0,22.24a9.73,9.73,0,1,1,9.8-9.73A9.76,9.76,0,0,1,16,27.22Z"
+      />
+    </svg>
+    <!-- Award -->
+    <svg
+      v-else-if="type == 'award'"
+      id="cae66d9b-a494-4751-aa32-daf8e38331a0"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>award</title>
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M26.94,8.9a1.1,1.1,0,0,0-1-.74l-6.27-.5L17,1.65a1.1,1.1,0,0,0-2,0l-2.71,6L6,8.15A1.1,1.1,0,0,0,5.33,10L10,14.56l-1.64,7.1A1.1,1.1,0,0,0,10,22.81l6-4,6,4a1.1,1.1,0,0,0,1.67-1.22l-2-7,5-4.49A1.1,1.1,0,0,0,26.94,8.9Z"
+      />
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M12,24v6.5a.5.5,0,0,0,.8.4L16,28.5l3.2,2.4a.5.5,0,0,0,.8-.4V24l-4-3Z"
+      />
+    </svg>
   </div>
 </template>
 <script>
