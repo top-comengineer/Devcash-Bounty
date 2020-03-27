@@ -16,7 +16,7 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   /*
    ** Customize the progress-bar color
@@ -33,7 +33,8 @@ export default {
     { src: '~/plugins/global-mixin.js' },
     { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
     { src: '~/plugins/local-storage.js', ssr: false },
-    { src: '~/plugins/encrypted-storage.js', ssr: false }
+    { src: '~/plugins/encrypted-storage.js', ssr: false },
+    { src: '~/plugins/devcash/devcashBounty.js', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
