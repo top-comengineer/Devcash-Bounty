@@ -11,13 +11,13 @@
 </template>
 
 <script>
-import SectionHero from "~/components/Sections/SectionHero.vue";
-import SectionWhatIs from "~/components/Sections/SectionWhatIs.vue";
-import SectionIBO from "~/components/Sections/SectionIBO.vue";
-import SectionBountyPlatform from "~/components/Sections/SectionBountyPlatform.vue";
-import SectionDEX from "~/components/Sections/SectionDEX.vue";
-import SectionTokenDetails from "~/components/Sections/SectionTokenDetails.vue";
-import SectionStartExploring from "~/components/Sections/SectionStartExploring.vue";
+import SectionHero from "~/components/Home/Sections/SectionHero.vue";
+import SectionWhatIs from "~/components/Home/Sections/SectionWhatIs.vue";
+import SectionIBO from "~/components/Home/Sections/SectionIBO.vue";
+import SectionBountyPlatform from "~/components/Home/Sections/SectionBountyPlatform.vue";
+import SectionDEX from "~/components/Home/Sections/SectionDEX.vue";
+import SectionTokenDetails from "~/components/Home/Sections/SectionTokenDetails.vue";
+import SectionStartExploring from "~/components/Home/Sections/SectionStartExploring.vue";
 export default {
   components: {
     SectionHero,
