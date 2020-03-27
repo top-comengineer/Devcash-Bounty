@@ -9,2482 +9,4828 @@
       <title>Hero</title>
       <path
         d="M1011.12,5l368.95,213c45,26,45,68,0,94L548.28,792.15c-39.2,22.63-99.21,25.94-144.49,9.93l-57.88,33.41c-11.48,6.63-30.09,6.63-41.57,0l-67.23-38.82H190l0-8.53.11-18.61L41.49,683.74c-41-23.69-45.4-60.53-13.09-87L3.94,582.6A7.88,7.88,0,0,1,0,575.78V497.12a7.88,7.88,0,0,1,3.94-6.82L108.34,430a7.87,7.87,0,0,1,7.82,0l2.23,1.27.12.06.23.12a3.94,3.94,0,0,1,2,3.41V495L140,483.85l.11-34.46h0V446a2.17,2.17,0,0,1,.77-1.85L141,444l1.48-.86a1.57,1.57,0,0,1,.8-.2h.15a2.85,2.85,0,0,1,1.17.4l32.75,18.9L204,446.92V409.64a8.69,8.69,0,0,1,3.89-6.5l17.73-10.24a8.64,8.64,0,0,1,7.79,0l32.08,18.52L564.16,239,969.55,5C981-1.66,999.64-1.66,1011.12,5Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M41.49,683.74c-45.92-26.51-45.92-69.48,0-96l290.94-168c11.48-6.63,30.09-6.63,41.57,0L636.86,571.53c45.92,26.51,45.92,69.49,0,96l-290.94,168c-11.48,6.63-30.09,6.63-41.57,0Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M207.31,597.07,193.67,605c-4.3,2.5-4.28,5.48.07,8l3.34,1.93,5.93-3.45-2.87-1.66c-.76-.44-.76-1.14,0-1.6l13.18-7.66a5.79,5.79,0,0,0,2.84-3.23l.33-1.22,2.11-.19a13.89,13.89,0,0,0,5.57-1.66l13.18-7.65a3,3,0,0,1,2.72,0l2.87,1.66,6-3.48-3.34-1.93a13.68,13.68,0,0,0-13.78,0l-13.64,7.93a2.61,2.61,0,0,1-1,.3l-5.11.52c-1.73.19-3,1-3.36,2l-.87,3A1.05,1.05,0,0,1,207.31,597.07Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M214.53,617.65a3,3,0,0,1-1.39-.32l-2.88-1.65-5.93,3.45,3.34,1.93a13.62,13.62,0,0,0,13.78,0l13.64-7.93a2.46,2.46,0,0,1,1-.3l5.1-.52c1.73-.19,3-1,3.36-2l.88-3a1.14,1.14,0,0,1,.51-.57l13.64-7.92c4.25-2.47,4.27-5.49,0-8L256.2,589l-6,3.47,2.87,1.66a.83.83,0,0,1,0,1.57l-13.17,7.65a5.78,5.78,0,0,0-2.84,3.23l-.33,1.22-2.11.19a13.93,13.93,0,0,0-5.57,1.66l-13.18,7.66A3,3,0,0,1,214.53,617.65Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M240.06,590.64l2.87,1.66,6-3.47v-4.05l-6,3.48-2.87-1.66a3,3,0,0,0-2.72,0l-13.18,7.65a13.91,13.91,0,0,1-5.57,1.66l-2.11.19-.33,1.22a5.81,5.81,0,0,1-2.84,3.23l-13.18,7.66a1,1,0,0,0-.6.82v4.05a1,1,0,0,1,.6-.82l13.17-7.66a5.81,5.81,0,0,0,2.84-3.23l.33-1.22,2.11-.19a13.93,13.93,0,0,0,5.57-1.66l13.17-7.66a3,3,0,0,1,2.72,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M193.71,613c-2.18-1.26-3.26-2.64-3.26-4V613c0,1.38,1.08,2.76,3.26,4l3.34,1.93,5.93-3.45v-4.05l-5.93,3.45Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M253.08,598.16l-2.87-1.66v-4.05l2.87,1.66a1,1,0,0,1,.57.79V599a1,1,0,0,0-.56-.79Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M214.57,622.92a13.61,13.61,0,0,1-6.89-1.87l-3.34-1.93v4.05l3.34,1.93a13.62,13.62,0,0,0,13.78,0l13.64-7.93a2.49,2.49,0,0,1,1-.3l5.1-.52c1.73-.19,3-1,3.36-2l.87-3a1.14,1.14,0,0,1,.51-.57l13.64-7.93c2.12-1.24,3.2-2.61,3.2-4v-4c0,1.38-1.08,2.74-3.2,4L246,606.81a1.14,1.14,0,0,0-.51.57l-.88,3c-.32,1-1.63,1.76-3.36,2l-5.1.52a2.47,2.47,0,0,0-1,.3L221.46,621A13.61,13.61,0,0,1,214.57,622.92Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M240.06,590.64l2.87,1.66,6-3.47v-4.05l-6,3.48-2.87-1.66a3,3,0,0,0-2.72,0l-13.18,7.65a13.91,13.91,0,0,1-5.57,1.66l-2.11.19-.33,1.22a5.81,5.81,0,0,1-2.84,3.23l-13.18,7.66a1,1,0,0,0-.6.82v4.05a1,1,0,0,1,.6-.82l13.17-7.66a5.81,5.81,0,0,0,2.84-3.23l.33-1.22,2.11-.19a13.93,13.93,0,0,0,5.57-1.66l13.17-7.66a3,3,0,0,1,2.72,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M193.71,613c-2.18-1.26-3.26-2.64-3.26-4V613c0,1.38,1.08,2.76,3.26,4l3.34,1.93,5.93-3.45v-4.05l-5.93,3.45Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M253.08,598.16l-2.87-1.66v-4.05l2.87,1.66a1,1,0,0,1,.57.79V599a1,1,0,0,0-.56-.79Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M214.57,622.92a13.61,13.61,0,0,1-6.89-1.87l-3.34-1.93v4.05l3.34,1.93a13.62,13.62,0,0,0,13.78,0l13.64-7.93a2.49,2.49,0,0,1,1-.3l5.1-.52c1.73-.19,3-1,3.36-2l.87-3a1.14,1.14,0,0,1,.51-.57l13.64-7.93c2.12-1.24,3.2-2.61,3.2-4v-4c0,1.38-1.08,2.74-3.2,4L246,606.81a1.14,1.14,0,0,0-.51.57l-.88,3c-.32,1-1.63,1.76-3.36,2l-5.1.52a2.47,2.47,0,0,0-1,.3L221.46,621A13.61,13.61,0,0,1,214.57,622.92Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M207.31,597.07,193.67,605c-4.3,2.5-4.28,5.48.07,8l3.34,1.93,5.93-3.45-2.87-1.66c-.76-.44-.76-1.14,0-1.6l13.18-7.66a5.79,5.79,0,0,0,2.84-3.23l.33-1.22,2.11-.19a13.89,13.89,0,0,0,5.57-1.66l13.18-7.65a3,3,0,0,1,2.72,0l2.87,1.66,6-3.48-3.34-1.93a13.68,13.68,0,0,0-13.78,0l-13.64,7.93a2.61,2.61,0,0,1-1,.3l-5.11.52c-1.73.19-3,1-3.36,2l-.87,3A1.05,1.05,0,0,1,207.31,597.07Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M214.53,617.65a3,3,0,0,1-1.39-.32l-2.88-1.65-5.93,3.45,3.34,1.93a13.62,13.62,0,0,0,13.78,0l13.64-7.93a2.46,2.46,0,0,1,1-.3l5.1-.52c1.73-.19,3-1,3.36-2l.88-3a1.14,1.14,0,0,1,.51-.57l13.64-7.92c4.25-2.47,4.27-5.49,0-8L256.2,589l-6,3.47,2.87,1.66a.83.83,0,0,1,0,1.57l-13.17,7.65a5.78,5.78,0,0,0-2.84,3.23l-.33,1.22-2.11.19a13.93,13.93,0,0,0-5.57,1.66l-13.18,7.66A3,3,0,0,1,214.53,617.65Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M207.31,597.07,193.67,605c-4.3,2.5-4.28,5.48.07,8l3.34,1.93,5.93-3.45-2.87-1.66c-.76-.44-.76-1.14,0-1.6l13.18-7.66a5.79,5.79,0,0,0,2.84-3.23l.33-1.22,2.11-.19a13.89,13.89,0,0,0,5.57-1.66l13.18-7.65a3,3,0,0,1,2.72,0l2.87,1.66,6-3.48-3.34-1.93a13.68,13.68,0,0,0-13.78,0l-13.64,7.93a2.61,2.61,0,0,1-1,.3l-5.11.52c-1.73.19-3,1-3.36,2l-.87,3A1.05,1.05,0,0,1,207.31,597.07Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M214.53,617.65a3,3,0,0,1-1.39-.32l-2.88-1.65-5.93,3.45,3.34,1.93a13.62,13.62,0,0,0,13.78,0l13.64-7.93a2.46,2.46,0,0,1,1-.3l5.1-.52c1.73-.19,3-1,3.36-2l.88-3a1.14,1.14,0,0,1,.51-.57l13.64-7.92c4.25-2.47,4.27-5.49,0-8L256.2,589l-6,3.47,2.87,1.66a.83.83,0,0,1,0,1.57l-13.17,7.65a5.78,5.78,0,0,0-2.84,3.23l-.33,1.22-2.11.19a13.93,13.93,0,0,0-5.57,1.66l-13.18,7.66A3,3,0,0,1,214.53,617.65Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M490.35,665.22c24.9-9.93,59.2-8.5,81.24,4.31,24.83,14.42,24.7,37.81-.28,52.22a68.08,68.08,0,0,1-8.14,4Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M543.11,726.65l5.65-3.26c5.61,3.26,5.59,8.16-.08,11.44-7.07,4.08-18.34,4.08-25.36,0l-14.75-8.57a38.45,38.45,0,0,0-27.44-4.48q5-8.59-7.67-15.94l-14.73-8.57c-7-4.08-7-10.61.08-14.69l24-13.89c5.62,3.26,5.59,8.16-.06,11.42l-9.89,5.71c-3.89,2.25-3.91,5.92,0,8.16l12.64,7.34q11.24,6.53,7,13.88a33.52,33.52,0,0,1,23.91,4.07L529,726.65A15.58,15.58,0,0,0,543.11,726.65Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M590.13,695.46c0,9.51-6.25,19-18.82,26.29a68,68,0,0,1-8.14,4l-72.81-60.52,0,8.12,72.81,60.52a68.17,68.17,0,0,0,8.14-4c12.57-7.26,18.84-16.78,18.82-26.3Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M472.91,694l9.89-5.71c2.84-1.64,4.26-3.7,4.26-5.75v-8.12c0,2.05-1.42,4.11-4.26,5.75l-9.89,5.71C471,687,470,688.47,470,690l0,8s0,.06,0,.09V698C470,696.53,471,695.07,472.91,694Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M523.32,734.81c7,4.08,18.29,4.08,25.36,0,2.83-1.62,4.25-3.65,4.26-5.71v8.05c0,2.05-1.41,4.11-4.26,5.75-7.06,4.08-18.34,4.08-25.36,0l-14.74-8.57a38.45,38.45,0,0,0-27.45-4.48v-8.12l.41-.07.19,0q-1.9-4-8.25-7.69l-14.74-8.57c-3.49-2-5.24-4.66-5.24-7.29V690c0,2.64,1.75,5.27,5.24,7.3l14.74,8.57q9.07,5.26,9.07,11.15v4.52a41.09,41.09,0,0,1,9.9-.41v-5.87a7.89,7.89,0,0,0,1.18-4v8.12a6.92,6.92,0,0,1-.26,1.84,38.13,38.13,0,0,1,15.2,5.08Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M590.13,695.46c0,9.51-6.25,19-18.82,26.29a68,68,0,0,1-8.14,4l-72.81-60.52,0,8.12,72.81,60.52a68.17,68.17,0,0,0,8.14-4c12.57-7.26,18.84-16.78,18.82-26.3Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M472.91,694l9.89-5.71c2.84-1.64,4.26-3.7,4.26-5.75v-8.12c0,2.05-1.42,4.11-4.26,5.75l-9.89,5.71C471,687,470,688.47,470,690l0,8s0,.06,0,.09V698C470,696.53,471,695.07,472.91,694Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M523.32,734.81c7,4.08,18.29,4.08,25.36,0,2.83-1.62,4.25-3.65,4.26-5.71v8.05c0,2.05-1.41,4.11-4.26,5.75-7.06,4.08-18.34,4.08-25.36,0l-14.74-8.57a38.45,38.45,0,0,0-27.45-4.48v-8.12l.41-.07.19,0q-1.9-4-8.25-7.69l-14.74-8.57c-3.49-2-5.24-4.66-5.24-7.29V690c0,2.64,1.75,5.27,5.24,7.3l14.74,8.57q9.07,5.26,9.07,11.15v4.52a41.09,41.09,0,0,1,9.9-.41v-5.87a7.89,7.89,0,0,0,1.18-4v8.12a6.92,6.92,0,0,1-.26,1.84,38.13,38.13,0,0,1,15.2,5.08Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M490.35,665.22c24.9-9.93,59.2-8.5,81.24,4.31,24.83,14.42,24.7,37.81-.28,52.22a68.08,68.08,0,0,1-8.14,4Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M543.11,726.65l5.65-3.26c5.61,3.26,5.59,8.16-.08,11.44-7.07,4.08-18.34,4.08-25.36,0l-14.75-8.57a38.45,38.45,0,0,0-27.44-4.48q5-8.59-7.67-15.94l-14.73-8.57c-7-4.08-7-10.61.08-14.69l24-13.89c5.62,3.26,5.59,8.16-.06,11.42l-9.89,5.71c-3.89,2.25-3.91,5.92,0,8.16l12.64,7.34q11.24,6.53,7,13.88a33.52,33.52,0,0,1,23.91,4.07L529,726.65A15.58,15.58,0,0,0,543.11,726.65Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M490.35,665.22c24.9-9.93,59.2-8.5,81.24,4.31,24.83,14.42,24.7,37.81-.28,52.22a68.08,68.08,0,0,1-8.14,4Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M543.11,726.65l5.65-3.26c5.61,3.26,5.59,8.16-.08,11.44-7.07,4.08-18.34,4.08-25.36,0l-14.75-8.57a38.45,38.45,0,0,0-27.44-4.48q5-8.59-7.67-15.94l-14.73-8.57c-7-4.08-7-10.61.08-14.69l24-13.89c5.62,3.26,5.59,8.16-.06,11.42l-9.89,5.71c-3.89,2.25-3.91,5.92,0,8.16l12.64,7.34q11.24,6.53,7,13.88a33.52,33.52,0,0,1,23.91,4.07L529,726.65A15.58,15.58,0,0,0,543.11,726.65Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M186.33,548.53l-65.62-37.89L4.47,577.75l67.59,39a7.88,7.88,0,0,0,7.88,0l106.39-61.42a3.94,3.94,0,0,0,0-6.82Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M184.37,561.65,79.94,621.94a7.87,7.87,0,0,1-7.88,0L3.94,582.6A7.88,7.88,0,0,1,0,575.78V497.12a7.88,7.88,0,0,1,3.94-6.82L108.34,430a7.87,7.87,0,0,1,7.82,0l2.63,1.5L8.41,492.88a7.87,7.87,0,0,0-3.94,6.82v78l67.59,39a7.87,7.87,0,0,0,7.88,0l108.35-64.83v2.89a7.88,7.88,0,0,1-3.92,6.82Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M184.37,561.65,79.94,621.94a7.87,7.87,0,0,1-7.88,0L3.94,582.6A7.88,7.88,0,0,1,0,575.78V497.12a7.88,7.88,0,0,1,3.94-6.82L108.34,430a7.87,7.87,0,0,1,7.82,0l2.63,1.5L8.41,492.88a7.87,7.87,0,0,0-3.94,6.82v78l67.59,39a7.87,7.87,0,0,0,7.88,0l108.35-64.83v2.89a7.88,7.88,0,0,1-3.92,6.82Z"
-        style="fill:#010014;opacity:0.25;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        style="opacity:0.25;isolation:isolate"
       />
       <path
         d="M120.71,434.86v75.78L4.47,577.75v-78a7.87,7.87,0,0,1,3.94-6.82L114.8,431.45a3.94,3.94,0,0,1,5.91,3.41Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M120.71,434.86v75.78L4.47,577.75v-78a7.87,7.87,0,0,1,3.94-6.82L114.8,431.45a3.94,3.94,0,0,1,5.91,3.41Z"
-        style="fill:#010014;opacity:0.5;isolation:isolate"
+        style="opacity:0.5;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M116.24,438V506.6a2.52,2.52,0,0,1-1.25,2.18L10.83,568.91a1.25,1.25,0,0,1-1.27,0,1.25,1.25,0,0,1-.62-1.1V499.19A2.51,2.51,0,0,1,10.19,497l104.16-60.13a1.25,1.25,0,0,1,1.89,1.09Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M186.33,548.53l-65.62-37.89L4.47,577.75l67.59,39a7.88,7.88,0,0,0,7.88,0l106.39-61.42a3.94,3.94,0,0,0,0-6.82Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M146.35,569.27c1.9,1.1,1.9,2.9,0,4L113,592.5a7.68,7.68,0,0,1-6.93,0L86.22,581c-1.9-1.1-1.9-2.9,0-4l33.32-19.23a7.68,7.68,0,0,1,6.93,0Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <g style="opacity:0.800000011920929">
         <path
           d="M117,528.22l2.61-1.5a.62.62,0,0,0,.25-.2.61.61,0,0,0,.11-.3v-.67a.6.6,0,0,1-.11.3.62.62,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.24-.2.61.61,0,0,1-.11-.3v.66a.61.61,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M113.44,530v-.66a.6.6,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.59-1.5a.61.61,0,0,1-.36-.5V530a.6.6,0,0,0,.36.5l2.59,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2A.62.62,0,0,0,113.44,530Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.91,533.08v.68a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.6.6,0,0,1-.35-.5v-.67a.61.61,0,0,0,.35.5l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.6.6,0,0,0,.36-.52Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M100.38,537.51v-.66a.61.61,0,0,1-.36.49l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.6.6,0,0,1-.36-.5v.67a.6.6,0,0,0,.11.3.61.61,0,0,0,.24.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0L100,538a.61.61,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93.85,540.62v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.6.6,0,0,1-.35-.5v-.67a.6.6,0,0,0,.35.5l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.25-.2A.61.61,0,0,0,93.85,540.62Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M87.33,545.05v-.66a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0L80,544.89a.6.6,0,0,1-.36-.5v.67a.6.6,0,0,0,.11.3.62.62,0,0,0,.24.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.25-.2A.6.6,0,0,0,87.33,545.05Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80.8,548.16v.67a.6.6,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.35-.5v-.67a.6.6,0,0,0,.11.3.61.61,0,0,0,.24.2l2.59,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.62.62,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M74.28,552.59v-.66a.61.61,0,0,1-.36.5l-2.61,1.5a1.91,1.91,0,0,1-1.73,0L67,552.43a.61.61,0,0,1-.35-.5v.67a.62.62,0,0,0,.35.5l2.6,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.25-.2A.6.6,0,0,0,74.28,552.59Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M67.74,555.7v.67a.6.6,0,0,1-.11.3.62.62,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5v-.67a.6.6,0,0,0,.35.5l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.62.62,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M61.21,560.13v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.36-.5v.67a.6.6,0,0,0,.11.3.61.61,0,0,0,.24.2l2.6,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M54.69,563.23v.67a.6.6,0,0,1-.36.5l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.24-.2.62.62,0,0,1-.11-.3v-.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M48.16,567.68V567a.61.61,0,0,1-.36.5L45.19,569a1.91,1.91,0,0,1-1.73,0l-2.6-1.5a.61.61,0,0,1-.36-.5v.67a.6.6,0,0,0,.36.5l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M41.63,570.77v.67a.62.62,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.61.61,0,0,1-.36-.5v-.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.24.2l2.6,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M30.39,576.55,27.8,575a.63.63,0,0,1-.25-.2.62.62,0,0,1-.11-.3v.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.25.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M126.09,530.49l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5v-.67a.62.62,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5V530a.62.62,0,0,1-.11.3A.61.61,0,0,1,126.09,530.49Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M115.22,535.09l-2.6-1.5a.62.62,0,0,1-.35-.49v.67a.61.61,0,0,0,.36.5l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.59.59,0,0,0,.25-.2.6.6,0,0,0,.11-.3v-.68a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.1,537.36l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5v.66a.61.61,0,0,1-.11.3.6.6,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.24-.2.6.6,0,0,1-.11-.3v-.67a.61.61,0,0,0,.35.51Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M102.16,542.63l-2.6-1.5a.61.61,0,0,1-.37-.5v.67a.6.6,0,0,0,.35.5l2.59,1.5a1.92,1.92,0,0,0,1.75,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93,544.9l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.6.6,0,0,0,.25-.2.61.61,0,0,0,.11-.3v.66a.6.6,0,0,1-.11.3.62.62,0,0,1-.25.2l-2.61,1.5a1.94,1.94,0,0,1-1.74,0L93,545.56a.62.62,0,0,1-.25-.2.6.6,0,0,1-.11-.3v-.67a.61.61,0,0,0,.11.3A.6.6,0,0,0,93,544.9Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M89.11,550.16l-2.6-1.5a.6.6,0,0,1-.35-.5v.67a.61.61,0,0,0,.35.5l2.59,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.25-.2.61.61,0,0,0,.11-.3v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80,552.43l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5v.66a.62.62,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0L80,553.1a.61.61,0,0,1-.24-.2.62.62,0,0,1-.11-.3v-.67a.61.61,0,0,0,.11.3A.62.62,0,0,0,80,552.43Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M76,557.7l-2.59-1.5a.59.59,0,0,1-.25-.2.6.6,0,0,1-.11-.3v.67a.61.61,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.25-.2.61.61,0,0,0,.11-.3v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.91,1.91,0,0,1-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M66.93,560l2.59,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.35-.5v-.67a.6.6,0,0,0,.11.3A.61.61,0,0,0,66.93,560Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M63,565.24l-2.6-1.5a.59.59,0,0,1-.25-.2.6.6,0,0,1-.11-.3v.67a.61.61,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M53.87,567.52l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.6.6,0,0,1-.24-.2.62.62,0,0,1-.11-.3V567a.61.61,0,0,0,.35.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M54.64,571.43v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.35-.5v.67a.61.61,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.25-.2A.61.61,0,0,0,54.64,571.43Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M43.41,577.22l-2.6-1.5a.61.61,0,0,1-.36-.5v-.67a.61.61,0,0,0,.36.5l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.61.61,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M36.87,580.32l-2.6-1.5a.61.61,0,0,1-.36-.5V579a.61.61,0,0,0,.36.5l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M132.58,534.26l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.36-.5v-.67a.6.6,0,0,0,.11.3.61.61,0,0,0,.24.2l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5v.67a.61.61,0,0,1-.36.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M126.05,537.36l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5a.62.62,0,0,1-.24-.2.61.61,0,0,1-.11-.3v.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.24.2l2.6,1.5a1.93,1.93,0,0,0,1.73,0L126,538a.61.61,0,0,0,.36-.5v-.65a.62.62,0,0,1-.36.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M119.53,541.79l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.63.63,0,0,1-.24-.2.62.62,0,0,1-.11-.3v-.67a.61.61,0,0,0,.35.5l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.6.6,0,0,0,.11-.3v.67a.6.6,0,0,1-.11.3A.6.6,0,0,1,119.53,541.79Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M110.39,547.06l2.61-1.5a.61.61,0,0,0,.36-.5v-.66a.61.61,0,0,1-.11.3.6.6,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5v.67a.61.61,0,0,0,.35.5l2.6,1.5a1.93,1.93,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.47,549.33l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.36-.5v-.67a.6.6,0,0,0,.11.3.61.61,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.6.6,0,0,0,.25-.2.6.6,0,0,0,.11-.3v.67a.61.61,0,0,1-.11.3A.61.61,0,0,1,106.47,549.33Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M97.33,554.6l2.61-1.5a.62.62,0,0,0,.36-.5v-.67a.61.61,0,0,1-.11.3.62.62,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.24-.2.61.61,0,0,1-.11-.3v.67a.62.62,0,0,0,.11.3.6.6,0,0,0,.24.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93.41,556.87l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.59-1.5a.61.61,0,0,1-.36-.5v-.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.25.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5v.67a.61.61,0,0,1-.11.3A.61.61,0,0,1,93.41,556.87Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M84.27,562.14l2.61-1.5a.61.61,0,0,0,.36-.5v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0L79.94,560a.61.61,0,0,1-.24-.2.6.6,0,0,1-.11-.3v.67a.59.59,0,0,0,.11.3.6.6,0,0,0,.24.2l2.59,1.5a1.92,1.92,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80.36,564.41l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5v-.67a.62.62,0,0,0,.11.3.61.61,0,0,0,.24.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v.67a.62.62,0,0,1-.11.3A.61.61,0,0,1,80.36,564.41Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M71.21,569.68l2.61-1.5a.62.62,0,0,0,.36-.49V567a.61.61,0,0,1-.36.5L71.21,569a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.6.6,0,0,1-.36-.5v.66a.62.62,0,0,0,.11.3.62.62,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M67.3,571.95l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.24-.2.61.61,0,0,1-.11-.3v-.67a.6.6,0,0,0,.11.3.62.62,0,0,0,.24.2l2.59,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.25-.2.6.6,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M58.17,577.22l2.61-1.5a.6.6,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.63.63,0,0,1-.24-.2.62.62,0,0,1-.11-.3v.67a.61.61,0,0,0,.11.3.6.6,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M54.24,579.48,51.63,581a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.6.6,0,0,1-.24-.2.61.61,0,0,1-.11-.3v-.67a.62.62,0,0,0,.11.3.63.63,0,0,0,.24.2l2.6,1.5a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.62.62,0,0,0,.36-.5V579a.61.61,0,0,1-.11.3A.61.61,0,0,1,54.24,579.48Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M43.37,584.09l-2.59-1.5a.61.61,0,0,1-.36-.48v.66a.62.62,0,0,0,.11.3.61.61,0,0,0,.25.2l2.6,1.49a1.93,1.93,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5v-.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.91,1.91,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M131.77,537.53v-.67a.6.6,0,0,0,.36.5l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5v.66a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.35-.49Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M125.24,540.63v.67a.62.62,0,0,0,.11.3.61.61,0,0,0,.24.2l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.61.61,0,0,0,.11-.3v-.67a.6.6,0,0,1-.11.3.62.62,0,0,1-.25.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.6.6,0,0,1-.25-.2A.59.59,0,0,1,125.24,540.63Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M118.71,545.06v-.67a.61.61,0,0,0,.36.5l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v.66a.62.62,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.61.61,0,0,1-.24-.2A.6.6,0,0,1,118.71,545.06Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M112.19,548.17v.67a.61.61,0,0,0,.11.3.62.62,0,0,0,.25.2l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.6.6,0,0,0,.36-.5v-.67a.62.62,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.62.62,0,0,1-.24-.2A.6.6,0,0,1,112.19,548.17Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M105.66,552.6v-.67a.59.59,0,0,0,.11.3.61.61,0,0,0,.24.2l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.6.6,0,0,0,.25-.2.61.61,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0L106,553.1a.61.61,0,0,1-.25-.2A.6.6,0,0,1,105.66,552.6Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M99.13,555.7v.67a.6.6,0,0,0,.36.5l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.6.6,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.61.61,0,0,1-.11.3.63.63,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.6.6,0,0,1-.35-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M92.6,560.14v-.67a.59.59,0,0,0,.11.3.61.61,0,0,0,.24.2l2.6,1.5a1.91,1.91,0,0,0,1.73,0L99.9,560a.6.6,0,0,0,.36-.5v.67a.6.6,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0L93,560.64a.6.6,0,0,1-.36-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M86.07,563.24v.67a.6.6,0,0,0,.35.5l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.36-.5v-.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M79.55,567.68V567a.6.6,0,0,0,.36.5l2.59,1.5a1.92,1.92,0,0,0,1.75,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.59-1.5a.6.6,0,0,1-.37-.51Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M73,570.78v.67a.61.61,0,0,0,.11.3.61.61,0,0,0,.25.2l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.63.63,0,0,0,.25-.2.61.61,0,0,0,.11-.3v-.67a.6.6,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.94,1.94,0,0,1-1.74,0l-2.59-1.5a.61.61,0,0,1-.35-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M66.49,575.22v-.67a.61.61,0,0,0,.36.5l2.59,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v.67a.62.62,0,0,1-.11.3.61.61,0,0,1-.25.2l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M60,578.32V579a.62.62,0,0,0,.35.5l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5a.61.61,0,0,0,.25-.2.62.62,0,0,0,.11-.3v-.67a.62.62,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.59-1.5a.6.6,0,0,1-.24-.2A.62.62,0,0,1,60,578.32Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M53.43,582.77v-.66a.61.61,0,0,0,.35.5l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.61.61,0,0,0,.25-.2.61.61,0,0,0,.11-.3v.67a.61.61,0,0,1-.36.5l-2.61,1.5a1.93,1.93,0,0,1-1.74,0l-2.6-1.5a.61.61,0,0,1-.35-.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M49.85,587.86l-2.6-1.5a.62.62,0,0,1-.36-.51v.67a.61.61,0,0,0,.36.5l2.6,1.5a1.92,1.92,0,0,0,1.73,0L54.2,587a.61.61,0,0,0,.36-.5v-.66a.62.62,0,0,1-.36.5l-2.61,1.5a1.92,1.92,0,0,1-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M117,527.55l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M110.47,531.32l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M106.55,533.59l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5A.53.53,0,0,1,106.55,533.59Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M97.42,538.86l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M93.49,541.13l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,93.49,541.13Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M84.36,546.4,87,544.9a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0L80,543.9a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M80.44,548.67l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5C80.92,547.94,80.92,548.39,80.44,548.67Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M71.3,553.93l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0L67,551.43a.53.53,0,0,0,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M67.38,556.2l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1L63,553.7a1.91,1.91,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,67.38,556.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M58.24,561.47l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0L53.91,559a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M54.32,563.74l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.59,1.5C54.81,563,54.8,563.46,54.32,563.74Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M45.19,569l2.61-1.5c.48-.28.48-.73,0-1L45.2,565a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M41.28,571.28l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.48A.54.54,0,0,1,41.28,571.28Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M30.42,572.54,27.8,574a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M126.09,529.82l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,126.09,529.82Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M115.24,531.08l-2.61,1.5c-.48.28-.48.73,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M106.1,536.35l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,106.1,536.35Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M102.18,538.62l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M93,543.89l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,93,543.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M89.13,546.16l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M80,551.43l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.92,1.92,0,0,1-1.74,0L80,552.43A.53.53,0,0,1,80,551.43Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M76.07,553.7l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M66.93,559l2.61-1.5a1.92,1.92,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0L66.93,560A.53.53,0,0,1,66.93,559Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M63,561.24l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M53.88,566.52l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1L58.2,569a1.91,1.91,0,0,1-1.74,0l-2.6-1.5C53.39,567.23,53.4,566.78,53.88,566.52Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M51.67,572.78l2.61-1.5c.48-.27.49-.73,0-1l-2.6-1.48a1.91,1.91,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M43.41,576.55l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M36.89,576.31l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M132.58,533.59l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,132.58,533.59Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M126.06,536.34l-2.6-1.5a1.91,1.91,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5A.53.53,0,0,0,126.06,536.34Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M119.53,541.13l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,119.53,541.13Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M110.38,546.4l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M106.46,548.67l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.5C106.95,547.94,106.95,548.39,106.46,548.67Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M97.33,553.93l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0L93,551.43a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M93.41,556.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5C93.89,555.47,93.89,555.93,93.41,556.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M84.27,561.47l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0L79.94,559a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M80.35,563.74l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,80.35,563.74Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M71.21,569l2.61-1.5c.48-.28.48-.73,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M67.3,571.28l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,67.3,571.28Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M58.17,576.55l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.74,0L53.84,574a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M54.24,578.82l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,54.24,578.82Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M43.39,580.08l-2.61,1.5c-.48.28-.48.73,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M132.13,536.35l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.59-1.5A.53.53,0,0,1,132.13,536.35Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M128.21,538.62l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.9,1.9,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M119.07,543.89l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5C118.59,544.62,118.59,544.17,119.07,543.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M115.14,546.16l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M106,551.43l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5A.53.53,0,0,1,106,551.43Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M102.1,553.7l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M93,559l2.61-1.5a1.92,1.92,0,0,1,1.74,0L99.9,559a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0L93,560A.53.53,0,0,1,93,559Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M89,561.24l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M79.9,566.52l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1L84.23,569a1.92,1.92,0,0,1-1.75,0l-2.59-1.5A.53.53,0,0,1,79.9,566.52Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M76,568.77l-2.61,1.5c-.48.28-.48.75,0,1l2.59,1.5a1.94,1.94,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M66.85,574l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0L66.85,575A.53.53,0,0,1,66.85,574Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M62.93,576.31l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M53.78,581.58l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,53.78,581.58Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M49.87,583.85l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M117,527.55l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M110.47,531.32l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.55,533.59l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5A.53.53,0,0,1,106.55,533.59Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M97.42,538.86l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93.49,541.13l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,93.49,541.13Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M84.36,546.4,87,544.9a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0L80,543.9a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80.44,548.67l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5C80.92,547.94,80.92,548.39,80.44,548.67Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M71.3,553.93l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0L67,551.43a.53.53,0,0,0,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M67.38,556.2l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1L63,553.7a1.91,1.91,0,0,1,1.74,0l2.6,1.5C67.86,555.47,67.86,555.93,67.38,556.2Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M58.24,561.47l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0L53.91,559a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M54.32,563.74l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.59,1.5C54.81,563,54.8,563.46,54.32,563.74Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M45.19,569l2.61-1.5c.48-.28.48-.73,0-1L45.2,565a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M41.28,571.28l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.48A.54.54,0,0,1,41.28,571.28Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M30.42,572.54,27.8,574a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M126.09,529.82l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,126.09,529.82Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M115.24,531.08l-2.61,1.5c-.48.28-.48.73,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.1,536.35l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,106.1,536.35Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M102.18,538.62l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93,543.89l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,93,543.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M89.13,546.16l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80,551.43l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.92,1.92,0,0,1-1.74,0L80,552.43A.53.53,0,0,1,80,551.43Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M76.07,553.7l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M66.93,559l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0L66.93,560A.53.53,0,0,1,66.93,559Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M63,561.24l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M53.88,566.52l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1L58.2,569a1.91,1.91,0,0,1-1.74,0l-2.6-1.5C53.39,567.23,53.4,566.78,53.88,566.52Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M51.67,572.78l2.61-1.5c.48-.27.49-.73,0-1l-2.6-1.48a1.91,1.91,0,0,0-1.73,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M43.41,576.55l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M36.89,576.31l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M132.58,533.59l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.93,1.93,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,132.58,533.59Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M126.06,536.34l-2.6-1.5a1.91,1.91,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0l2.61-1.5A.53.53,0,0,0,126.06,536.34Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M119.53,541.13l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.92,1.92,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,119.53,541.13Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M110.38,546.4l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106.46,548.67l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.59,1.5C106.95,547.94,106.95,548.39,106.46,548.67Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M97.33,553.93l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.93,1.93,0,0,0-1.74,0L93,551.43a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93.41,556.2l-2.61,1.5a1.92,1.92,0,0,1-1.74,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5C93.89,555.47,93.89,555.93,93.41,556.2Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M84.27,561.47l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.73,0L79.94,559a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M80.35,563.74l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,80.35,563.74Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M71.21,569l2.61-1.5c.48-.28.48-.73,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.74,0l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M67.3,571.28l-2.61,1.5a1.93,1.93,0,0,1-1.73,0l-2.59-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.73,0l2.6,1.5A.53.53,0,0,1,67.3,571.28Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M58.17,576.55l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.92,1.92,0,0,0-1.74,0L53.84,574a.53.53,0,0,0,0,1l2.6,1.5a1.91,1.91,0,0,0,1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M54.24,578.82l-2.61,1.5a1.92,1.92,0,0,1-1.73,0l-2.6-1.5a.53.53,0,0,1,0-1l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5A.53.53,0,0,1,54.24,578.82Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M43.39,580.08l-2.61,1.5c-.48.28-.48.73,0,1l2.59,1.5a1.91,1.91,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.92,1.92,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M132.13,536.35l2.61-1.5a1.91,1.91,0,0,1,1.74,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.59-1.5A.53.53,0,0,1,132.13,536.35Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M128.21,538.62l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.9,1.9,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M119.07,543.89l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5C118.59,544.62,118.59,544.17,119.07,543.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M115.14,546.16l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M106,551.43l2.61-1.5a1.93,1.93,0,0,1,1.74,0l2.59,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0l-2.6-1.5A.53.53,0,0,1,106,551.43Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M102.1,553.7l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.59-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M93,559l2.61-1.5a1.93,1.93,0,0,1,1.74,0L99.9,559a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.74,0L93,560A.53.53,0,0,1,93,559Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M89,561.24l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.93,1.93,0,0,0,1.73,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.73,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M79.9,566.52l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1L84.23,569a1.92,1.92,0,0,1-1.75,0l-2.59-1.5A.53.53,0,0,1,79.9,566.52Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M76,568.77l-2.61,1.5c-.48.28-.48.75,0,1l2.59,1.5a1.94,1.94,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M66.85,574l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0L66.85,575A.53.53,0,0,1,66.85,574Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M62.93,576.31l-2.61,1.5a.53.53,0,0,0,0,1l2.59,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M53.78,581.58l2.61-1.5a1.92,1.92,0,0,1,1.73,0l2.6,1.5a.53.53,0,0,1,0,1l-2.61,1.5a1.91,1.91,0,0,1-1.73,0l-2.6-1.5A.53.53,0,0,1,53.78,581.58Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M49.87,583.85l-2.61,1.5a.53.53,0,0,0,0,1l2.6,1.5a1.92,1.92,0,0,0,1.74,0l2.61-1.5a.53.53,0,0,0,0-1l-2.6-1.5a1.91,1.91,0,0,0-1.74,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M101.13,494a1.51,1.51,0,0,0-1.52.15L26,536.67a4.68,4.68,0,0,0-2.13,3.68,1.49,1.49,0,0,0,.62,1.37l1.26.73a1.49,1.49,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69l73.58-42.48a1.52,1.52,0,0,1,1.52-.15Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M24.5,531.43l1.26.73a1.5,1.5,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69L85.5,493.49a1.52,1.52,0,0,1,1.52-.15l-1.26-.73a1.51,1.51,0,0,0-1.52.15L26,526.38a4.69,4.69,0,0,0-2.13,3.69,1.49,1.49,0,0,0,.63,1.37Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M24.47,521.13l1.26.73a1.49,1.49,0,0,1-.62-1.37,4.7,4.7,0,0,1,2.13-3.69l47.58-27.46a1.49,1.49,0,0,1,1.52-.15l-1.26-.73a1.5,1.5,0,0,0-1.52.15L26,516.09a4.68,4.68,0,0,0-2.13,3.68,1.5,1.5,0,0,0,.62,1.35Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M24.44,510.85l1.26.73a1.51,1.51,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69l64.3-37.12a1.51,1.51,0,0,1,1.52-.15l-1.26-.73a1.51,1.51,0,0,0-1.52.15L26,505.8a4.69,4.69,0,0,0-2.13,3.69,1.5,1.5,0,0,0,.62,1.36Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M101.13,494a1.51,1.51,0,0,0-1.52.15L26,536.67a4.68,4.68,0,0,0-2.13,3.68,1.49,1.49,0,0,0,.62,1.37l1.26.73a1.49,1.49,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69l73.58-42.48a1.52,1.52,0,0,1,1.52-.15Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M24.5,531.43l1.26.73a1.5,1.5,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69L85.5,493.49a1.52,1.52,0,0,1,1.52-.15l-1.26-.73a1.51,1.51,0,0,0-1.52.15L26,526.38a4.69,4.69,0,0,0-2.13,3.69,1.49,1.49,0,0,0,.63,1.37Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M24.47,521.13l1.26.73a1.49,1.49,0,0,1-.62-1.37,4.7,4.7,0,0,1,2.13-3.69l47.58-27.46a1.49,1.49,0,0,1,1.52-.15l-1.26-.73a1.49,1.49,0,0,0-1.52.15L26,516.09a4.68,4.68,0,0,0-2.13,3.68,1.5,1.5,0,0,0,.62,1.35Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M24.44,510.85l1.26.73a1.51,1.51,0,0,1-.62-1.37,4.69,4.69,0,0,1,2.13-3.69l64.3-37.12a1.51,1.51,0,0,1,1.52-.15l-1.26-.73a1.51,1.51,0,0,0-1.52.15L26,505.8a4.69,4.69,0,0,0-2.13,3.69,1.5,1.5,0,0,0,.62,1.36Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M100.87,494.92,27.29,537.4a4.69,4.69,0,0,0-2.13,3.69c0,1.34,1,1.9,2.14,1.22l73.58-42.48a4.69,4.69,0,0,0,2.13-3.69C103,494.77,102,494.24,100.87,494.92Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.29,532l58.24-33.62a4.69,4.69,0,0,0,2.13-3.69c0-1.34-1-1.9-2.14-1.22L27.27,527.11a4.69,4.69,0,0,0-2.13,3.69C25.14,532.15,26.1,532.7,27.29,532Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.25,521.73l47.58-27.47A4.68,4.68,0,0,0,77,490.58c0-1.34-1-1.9-2.14-1.22L27.23,516.82a4.69,4.69,0,0,0-2.13,3.69C25.11,521.87,26.07,522.41,27.25,521.73Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.22,511.44l64.3-37.12a4.71,4.71,0,0,0,2.13-3.69c0-1.34-1-1.9-2.14-1.22l-64.3,37.12a4.69,4.69,0,0,0-2.13,3.69C25.08,511.58,26,512.12,27.22,511.44Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M100.87,494.92,27.29,537.4a4.69,4.69,0,0,0-2.13,3.69c0,1.34,1,1.9,2.14,1.22l73.58-42.48a4.69,4.69,0,0,0,2.13-3.69C103,494.77,102,494.24,100.87,494.92Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.29,532l58.24-33.62a4.69,4.69,0,0,0,2.13-3.69c0-1.34-1-1.9-2.14-1.22L27.27,527.11a4.69,4.69,0,0,0-2.13,3.69C25.14,532.15,26.1,532.7,27.29,532Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.25,521.73l47.58-27.47A4.68,4.68,0,0,0,77,490.58c0-1.34-1-1.9-2.14-1.22L27.23,516.82a4.69,4.69,0,0,0-2.13,3.69C25.11,521.87,26.07,522.41,27.25,521.73Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M27.22,511.44l64.3-37.12a4.71,4.71,0,0,0,2.13-3.69c0-1.34-1-1.9-2.14-1.22l-64.3,37.12a4.69,4.69,0,0,0-2.13,3.69C25.08,511.58,26,512.12,27.22,511.44Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M397.26,525l91.12-52.61,161.4,93.19-93.86,54.18a10.93,10.93,0,0,1-10.94,0L397.26,534.45a5.47,5.47,0,0,1,0-9.47Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M400,543.2l145,83.72a10.93,10.93,0,0,0,10.94,0l94.6-54.62a10.94,10.94,0,0,0,5.47-9.47V453.6a10.94,10.94,0,0,0-5.47-9.47l-145-83.7a10.93,10.93,0,0,0-10.86,0L491,362.49l153.27,85.22a10.93,10.93,0,0,1,5.47,9.47V565.56l-93.86,54.18a10.93,10.93,0,0,1-10.94,0l-150.45-90v4A10.93,10.93,0,0,0,400,543.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M400,543.2l145,83.72a10.93,10.93,0,0,0,10.94,0l94.6-54.62a10.94,10.94,0,0,0,5.47-9.47V453.6a10.94,10.94,0,0,0-5.47-9.47l-145-83.7a10.93,10.93,0,0,0-10.86,0L491,362.49l153.27,85.22a10.93,10.93,0,0,1,5.47,9.47V565.56l-93.86,54.18a10.93,10.93,0,0,1-10.94,0l-150.45-90v4A10.93,10.93,0,0,0,400,543.2Z"
-        style="fill:#010014;opacity:0.25;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        style="opacity:0.25;isolation:isolate"
       />
       <path
         d="M488.39,367.15V472.37l161.4,93.19V457.18a10.93,10.93,0,0,0-5.47-9.47l-147.73-85.3a5.47,5.47,0,0,0-8.2,4.74Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M488.39,367.15V472.37l161.4,93.19V457.18a10.93,10.93,0,0,0-5.47-9.47l-147.73-85.3a5.47,5.47,0,0,0-8.2,4.74Z"
-        style="fill:#010014;opacity:0.5;isolation:isolate"
+        style="opacity:0.5;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M494.59,371.46v95.3a3.5,3.5,0,0,0,1.74,3L641,553.29a1.74,1.74,0,0,0,2.63-1.52v-95.3a3.5,3.5,0,0,0-1.74-3L497.22,369.95a1.74,1.74,0,0,0-2.62,1.51Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M397.26,525l91.12-52.61,161.4,93.19-93.86,54.18a10.93,10.93,0,0,1-10.94,0L397.26,534.45a5.47,5.47,0,0,1,0-9.47Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M452.78,553.78c-2.65,1.53-2.65,4,0,5.55L499,586a10.67,10.67,0,0,0,9.62,0l27.61-15.95c2.65-1.53,2.65-4,0-5.55L490,537.83a10.67,10.67,0,0,0-9.62,0Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <g style="opacity:0.800000011920929">
         <path
           d="M493.54,496.78l-3.62-2.08a.84.84,0,0,1-.5-.69v-.93a.84.84,0,0,0,.16.41.85.85,0,0,0,.35.28l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.34-.28.84.84,0,0,0,.15-.41V494a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M498.48,499.23v-.92a.85.85,0,0,0,.16.41.86.86,0,0,0,.34.28l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v.93a.84.84,0,0,1-.15.42.83.83,0,0,1-.34.28L505,502a2.67,2.67,0,0,1-2.41,0L499,499.92a.85.85,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M507.55,503.54v.95a.85.85,0,0,0,.5.69l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69v-.92a.84.84,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L508,504.25a.84.84,0,0,1-.5-.71Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M516.61,509.69v-.92a.85.85,0,0,0,.5.68l3.62,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M525.68,514v.93a.84.84,0,0,0,.16.41.85.85,0,0,0,.34.28l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7V514a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.5-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M534.74,520.16v-.92a.86.86,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.63-2.08a.85.85,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M543.81,524.47v.93a.85.85,0,0,0,.5.7l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.86.86,0,0,0,.34-.28.85.85,0,0,0,.15-.41v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M552.86,530.63v-.92a.85.85,0,0,0,.5.69l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7v.93a.86.86,0,0,1-.49.7l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.63-2.08A.87.87,0,0,1,553,531,.85.85,0,0,1,552.86,530.63Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M561.93,534.94v.93a.84.84,0,0,0,.16.41.86.86,0,0,0,.35.28l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.85.85,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M571,541.09v-.92a.85.85,0,0,0,.5.69l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.34-.28.84.84,0,0,0,.15-.41v.93a.85.85,0,0,1-.49.7l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.62-2.08a.86.86,0,0,1-.5-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M580.06,545.4v.93a.83.83,0,0,0,.5.69l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.34-.28.84.84,0,0,0,.15-.41v-.93a.84.84,0,0,1-.15.41.85.85,0,0,1-.34.28l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.34-.28A.85.85,0,0,1,580.06,545.4Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M589.13,551.58v-.93a.85.85,0,0,0,.5.69l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M598.2,555.86v.93a.85.85,0,0,0,.5.7l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7v-.93a.84.84,0,0,1-.49.7l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.5-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M613.79,563.89l3.6-2.08a.85.85,0,0,0,.49-.69V562a.84.84,0,0,1-.49.69l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.62-2.08a.86.86,0,0,1-.5-.69v-.93a.85.85,0,0,0,.16.42.84.84,0,0,0,.34.28l3.62,2.08a2.66,2.66,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M480.91,499.93l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.7v-.93a.85.85,0,0,1-.15.41.87.87,0,0,1-.34.28l-3.6,2.08a2.68,2.68,0,0,1-2.41,0L480.91,499a.85.85,0,0,1-.5-.7v.92a.85.85,0,0,0,.5.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M496,506.32l3.6-2.08a.85.85,0,0,0,.49-.68v.92a.84.84,0,0,1-.15.41.85.85,0,0,1-.34.28l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L490,505.17a.84.84,0,0,1-.5-.69v-.94a.84.84,0,0,0,.16.42.85.85,0,0,0,.35.28l3.63,2.08a2.67,2.67,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508.68,509.47l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L499,509.47a.86.86,0,0,1-.5-.69v.91a.85.85,0,0,0,.15.41.84.84,0,0,0,.34.28l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v-.93a.84.84,0,0,1-.15.42A.86.86,0,0,1,508.68,509.47Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M514.14,516.79l3.6-2.08a.86.86,0,0,0,.35-.28.84.84,0,0,0,.16-.42v.93a.84.84,0,0,1-.49.7l-3.6,2.08a2.67,2.67,0,0,1-2.43,0l-3.62-2.08a.85.85,0,0,1-.34-.28.84.84,0,0,1-.16-.42V514a.84.84,0,0,0,.5.7l3.62,2.08a2.67,2.67,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.82,519.94l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.5-.69v.92a.85.85,0,0,0,.5.69l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v-.93a.85.85,0,0,1-.49.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M532.27,527.25l3.6-2.08a.83.83,0,0,0,.49-.7v.93a.84.84,0,0,1-.49.7l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.85.85,0,0,1-.34-.28.84.84,0,0,1-.16-.41v-.93a.85.85,0,0,0,.5.7l3.62,2.08a2.67,2.67,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M544.94,530.41l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.86.86,0,0,1-.5-.69v.92a.85.85,0,0,0,.16.41.86.86,0,0,0,.34.28l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.34-.28.84.84,0,0,0,.15-.41v-.93a.84.84,0,0,1-.49.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M550.4,537.72l3.6-2.08a.83.83,0,0,0,.5-.69v.93a.85.85,0,0,1-.15.41.87.87,0,0,1-.34.28l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.63-2.08a.85.85,0,0,1-.5-.7v-.93a.85.85,0,0,0,.5.69l3.63,2.08a2.66,2.66,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M563.07,540.87l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.63-2.08a.84.84,0,0,1-.34-.28.85.85,0,0,1-.16-.41v.93a.85.85,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.86.86,0,0,0,.49-.69v-.93a.84.84,0,0,1-.5.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M568.53,548.19l3.6-2.08a.84.84,0,0,0,.49-.69v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L562.5,547a.86.86,0,0,1-.35-.28.84.84,0,0,1-.16-.41v-.93a.85.85,0,0,0,.5.69l3.63,2.08a2.66,2.66,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M581.2,551.35l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69v.93a.86.86,0,0,0,.16.41.85.85,0,0,0,.35.28l3.62,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.34-.28.84.84,0,0,0,.15-.41v-.93a.85.85,0,0,1-.49.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M580.12,556.79v-.93a.85.85,0,0,0,.5.7l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.86.86,0,0,0,.49-.7v.93a.85.85,0,0,1-.49.7l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.5-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M595.72,564.83l3.6-2.08a.85.85,0,0,0,.49-.7v-.93a.85.85,0,0,1-.49.7l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.5-.7V562a.85.85,0,0,0,.5.7l3.62,2.08a2.68,2.68,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M604.8,569.13l3.6-2.08a.85.85,0,0,0,.49-.7v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L598.77,568a.86.86,0,0,1-.34-.28.84.84,0,0,1-.16-.41v-.93a.84.84,0,0,0,.16.42.85.85,0,0,0,.34.28l3.62,2.08a2.68,2.68,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M471.9,505.17l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69v.93a.85.85,0,0,0,.5.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M481,509.48l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.86.86,0,0,0,.49-.69v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0L481,510.38a.85.85,0,0,1-.34-.28.86.86,0,0,1-.16-.41v-.9a.86.86,0,0,0,.5.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M490,515.63l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7V514a.85.85,0,0,1-.49.7l-3.6,2.08a2.67,2.67,0,0,1-2.41,0L490,514.7a.85.85,0,0,1-.5-.7v.93a.83.83,0,0,0,.16.42A.84.84,0,0,0,490,515.63Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M502.72,522.95l-3.62-2.08a.85.85,0,0,1-.5-.7v-.92a.85.85,0,0,0,.5.69l3.62,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508.16,526.1l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.34-.28.83.83,0,0,0,.15-.41v-.93a.83.83,0,0,1-.15.41.84.84,0,0,1-.34.28l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.5-.7v.93a.85.85,0,0,0,.5.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M520.85,533.42l-3.62-2.08a.85.85,0,0,1-.5-.69v-.93a.83.83,0,0,0,.5.69l3.62,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.69,2.69,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.29,536.57l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.34-.28.83.83,0,0,0,.15-.41v-.93a.83.83,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.34-.28.84.84,0,0,1-.16-.41v.93a.85.85,0,0,0,.16.41A.84.84,0,0,0,526.29,536.57Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M539,543.88l-3.63-2.08a.85.85,0,0,1-.34-.28.86.86,0,0,1-.16-.41v-.93a.85.85,0,0,0,.5.69L539,543a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M544.42,547l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69v.93a.85.85,0,0,0,.16.41A.84.84,0,0,0,544.42,547Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M557.11,554.35l-3.63-2.08a.86.86,0,0,1-.5-.69v-.93a.85.85,0,0,0,.16.41.84.84,0,0,0,.34.28l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69v.92a.87.87,0,0,1-.15.41.86.86,0,0,1-.34.28l-3.6,2.08a2.67,2.67,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M562.55,557.5l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.63-2.08a.84.84,0,0,1-.34-.28.85.85,0,0,1-.16-.41v.93a.85.85,0,0,0,.5.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M575.23,564.82l-3.62-2.08a.84.84,0,0,1-.34-.28.86.86,0,0,1-.16-.41v-.93a.86.86,0,0,0,.16.41.85.85,0,0,0,.34.28l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.86.86,0,0,0,.34-.28.84.84,0,0,0,.15-.41V562a.86.86,0,0,1-.15.41.85.85,0,0,1-.34.28l-3.6,2.08a2.67,2.67,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M580.68,568l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.34-.28.84.84,0,0,0,.15-.41v-.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.67,2.67,0,0,1-2.41,0L580.68,567a.86.86,0,0,1-.5-.69v.93a.85.85,0,0,0,.16.42A.83.83,0,0,0,580.68,568Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M595.77,574.36l3.6-2.08a.84.84,0,0,0,.33-.27.85.85,0,0,0,.16-.4v.92a.85.85,0,0,1-.49.7l-3.61,2.07a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.5-.69v-.93a.86.86,0,0,0,.16.42.85.85,0,0,0,.35.28l3.63,2.08a2.65,2.65,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M473,509.7v-.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.86.86,0,0,1-.5-.69v.91a.86.86,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.68Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M482.09,514v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L472,515.63a.85.85,0,0,1-.5-.69V514a.85.85,0,0,0,.16.41.84.84,0,0,0,.34.28l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.83.83,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M491.16,520.17v-.93a.85.85,0,0,1-.15.41.87.87,0,0,1-.34.28l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L481,519.94a.85.85,0,0,1-.34-.28.86.86,0,0,1-.16-.41v.92a.85.85,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M500.22,524.48v.93a.85.85,0,0,1-.15.41.84.84,0,0,1-.34.28l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.83.83,0,0,1-.5-.69v-.93a.86.86,0,0,0,.16.41.85.85,0,0,0,.34.28l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M509.29,530.64v-.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.35-.28.85.85,0,0,1-.16-.42v.93a.85.85,0,0,0,.5.69l3.62,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.5-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M518.35,534.95v.93a.84.84,0,0,1-.5.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.85.85,0,0,1-.5-.69v-.93a.85.85,0,0,0,.5.69l3.62,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M527.42,541.11v-.93a.84.84,0,0,1-.15.41.85.85,0,0,1-.34.28l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.83.83,0,0,1-.5-.69v.93a.86.86,0,0,0,.16.41.85.85,0,0,0,.34.28l3.62,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M536.48,545.41v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L526.35,547a.84.84,0,0,1-.34-.28.85.85,0,0,1-.16-.41v-.93a.85.85,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M545.54,551.57v-.92a.84.84,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.43,0l-3.62-2.08a.86.86,0,0,1-.5-.69v.93a.86.86,0,0,0,.5.69l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.51-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M554.61,555.88v.93a.84.84,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.63-2.08a.84.84,0,0,1-.34-.28.85.85,0,0,1-.16-.42v-.93a.85.85,0,0,0,.16.42.87.87,0,0,0,.34.28l3.63,2.08a2.69,2.69,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.49-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M563.68,562v-.92a.84.84,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.63-2.08a.84.84,0,0,1-.34-.28.85.85,0,0,1-.16-.41V562a.85.85,0,0,0,.5.69l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.85.85,0,0,0,.34-.28A.86.86,0,0,0,563.68,562Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M572.74,566.35v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.65,2.65,0,0,1-2.41,0L562.61,568a.86.86,0,0,1-.34-.28.84.84,0,0,1-.16-.41v-.93a.85.85,0,0,0,.5.7l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.84.84,0,0,0,.49-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M581.81,572.52v-.92a.85.85,0,0,1-.15.41.83.83,0,0,1-.34.28l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.85.85,0,0,1-.5-.69v.93a.86.86,0,0,0,.16.41.85.85,0,0,0,.34.28l3.62,2.08a2.67,2.67,0,0,0,2.41,0l3.61-2.09a.85.85,0,0,0,.48-.7Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M586.78,579.59l3.6-2.08a.86.86,0,0,0,.49-.71v.93a.85.85,0,0,1-.49.69l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.84.84,0,0,1-.5-.69v-.92a.85.85,0,0,0,.5.7l3.63,2.08a2.68,2.68,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M493.54,495.85l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M502.61,501.09,499,499a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M508,504.24l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,508,504.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M520.72,511.55l-3.62-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M526.18,514.71l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,526.18,514.71Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M538.86,522l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.62,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M544.31,525.17l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,544.31,525.17Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M557,532.49l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0L563,529a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M562.43,535.64l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,562.43,535.64Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M575.13,543l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M580.57,546.11l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C579.9,545.1,579.9,545.72,580.57,546.11Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M593.26,553.43l-3.62-2.08c-.67-.39-.67-1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M598.68,556.58l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.06A.75.75,0,0,0,598.68,556.58Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M613.76,558.33l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M480.91,499l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,480.91,499Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M496,500.76l3.62,2.08c.67.39.67,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0L490,504.23a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M508.67,508.08,505,506a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,508.67,508.08Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M514.11,511.23l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M526.82,518.54l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.74.74,0,0,0,526.82,518.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M532.24,521.7l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M544.93,529l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,544.93,529Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M550.37,532.16l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M563.06,539.48l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08C563.73,540.49,563.73,539.86,563.06,539.48Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M568.5,542.63l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M581.19,550l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08C581.86,551,581.85,550.33,581.19,550Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M584.26,558.66l-3.63-2.08c-.67-.37-.67-1,0-1.41l3.61-2.06a2.65,2.65,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M595.72,563.9l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M604.78,563.56l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0L598.77,567a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M471.9,504.24l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,471.9,504.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M481,508.07l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.62,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L481,509.45A.74.74,0,0,1,481,508.07Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M490,514.71l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39L496,511.24a2.67,2.67,0,0,0-2.41,0l-3.6,2.08A.74.74,0,0,0,490,514.71Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M502.72,522l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M508.16,525.17l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C507.49,524.16,507.5,524.79,508.16,525.17Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M520.85,532.49l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M526.29,535.64l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C525.63,534.63,525.63,535.26,526.29,535.64Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M539,543l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39L541.4,543a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M544.42,546.11l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,544.42,546.11Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M557.12,553.43l-3.63-2.08c-.66-.39-.67-1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M562.55,556.58l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,562.55,556.58Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M575.23,563.89l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M580.68,567l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,580.68,567Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M595.75,568.8l3.63,2.08c.67.38.67,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M472.53,508.08,468.9,506a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,472.53,508.08Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M478,511.23l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L472,514.7a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M490.66,518.54,487,516.46a2.68,2.68,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08C491.33,519.55,491.32,518.93,490.66,518.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M496.11,521.7l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M508.79,529l-3.63-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,508.79,529Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M514.23,532.16l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M526.92,539.48l-3.63-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,526.92,539.48Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M532.36,542.63l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M545,550l-3.63-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.43,0l3.6-2.08A.74.74,0,0,0,545,550Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M550.49,553.08l3.62,2.08c.66.4.67,1,0,1.39l-3.6,2.08a2.69,2.69,0,0,1-2.41,0l-3.62-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M563.18,560.41l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,563.18,560.41Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M568.62,563.56l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0L562.6,567a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M581.32,570.88l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.74.74,0,0,0,581.32,570.88Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M586.75,574l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M493.54,495.85l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M502.61,501.09,499,499a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508,504.24l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,508,504.24Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M520.72,511.55l-3.62-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.18,514.71l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,526.18,514.71Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M538.86,522l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.62,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M544.31,525.17l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,544.31,525.17Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M557,532.49l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0L563,529a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M562.43,535.64l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,562.43,535.64Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M575.13,543l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M580.57,546.11l3.63,2.08a2.67,2.67,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C579.9,545.1,579.9,545.72,580.57,546.11Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M593.26,553.43l-3.62-2.08c-.67-.39-.67-1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M598.68,556.58l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.06A.75.75,0,0,0,598.68,556.58Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M613.76,558.33l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M480.91,499l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,480.91,499Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M496,500.76l3.62,2.08c.67.39.67,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0L490,504.23a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508.67,508.08,505,506a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,508.67,508.08Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M514.11,511.23l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.82,518.54l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.74.74,0,0,0,526.82,518.54Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M532.24,521.7l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M544.93,529l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,544.93,529Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M550.37,532.16l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M563.06,539.48l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08C563.73,540.49,563.73,539.86,563.06,539.48Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M568.5,542.63l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M581.19,550l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08C581.86,551,581.85,550.33,581.19,550Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M584.26,558.66l-3.63-2.08c-.67-.37-.67-1,0-1.41l3.61-2.06a2.65,2.65,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M595.72,563.9l3.6-2.08a.74.74,0,0,0,0-1.39l-3.63-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M604.78,563.56l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0L598.77,567a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M471.9,504.24l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.68,2.68,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,471.9,504.24Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M481,508.07l3.6-2.08a2.65,2.65,0,0,1,2.41,0l3.62,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L481,509.45A.74.74,0,0,1,481,508.07Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M490,514.71l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39L496,511.24a2.67,2.67,0,0,0-2.41,0l-3.6,2.08A.74.74,0,0,0,490,514.71Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M502.72,522l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508.16,525.17l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C507.49,524.16,507.5,524.79,508.16,525.17Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M520.85,532.49l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.68,2.68,0,0,1,2.41,0l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.29,535.64l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.63-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08C525.63,534.63,525.63,535.26,526.29,535.64Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M539,543l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39L541.4,543a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M544.42,546.11l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,544.42,546.11Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M557.12,553.43l-3.63-2.08c-.66-.39-.67-1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M562.55,556.58l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.73.73,0,0,0,0-1.39l-3.62-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,562.55,556.58Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M575.23,563.89l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M580.68,567l3.63,2.08a2.68,2.68,0,0,0,2.41,0l3.6-2.08a.74.74,0,0,0,0-1.39l-3.62-2.08a2.65,2.65,0,0,0-2.41,0l-3.6,2.08A.73.73,0,0,0,580.68,567Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M595.75,568.8l3.63,2.08c.67.38.67,1,0,1.39l-3.6,2.08a2.65,2.65,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.67,2.67,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M472.53,508.08,468.9,506a2.65,2.65,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,472.53,508.08Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M478,511.23l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0L472,514.7a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M490.66,518.54,487,516.46a2.68,2.68,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08C491.33,519.55,491.32,518.93,490.66,518.54Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M496.11,521.7l3.63,2.08a.74.74,0,0,1,0,1.39l-3.6,2.08a2.66,2.66,0,0,1-2.41,0l-3.63-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M508.79,529l-3.63-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.62,2.08a2.66,2.66,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,508.79,529Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M514.23,532.16l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.67,2.67,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M526.92,539.48l-3.63-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,526.92,539.48Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M532.36,542.63l3.63,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.62-2.08a.73.73,0,0,1,0-1.39l3.6-2.08a2.65,2.65,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M545,550l-3.63-2.08a2.66,2.66,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.66,2.66,0,0,0,2.43,0l3.6-2.08A.74.74,0,0,0,545,550Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M550.49,553.08l3.62,2.08c.66.4.67,1,0,1.39l-3.6,2.08a2.69,2.69,0,0,1-2.41,0l-3.62-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M563.18,560.41l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.73.73,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.73.73,0,0,0,563.18,560.41Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M568.62,563.56l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0L562.6,567a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M581.32,570.88l-3.62-2.08a2.67,2.67,0,0,0-2.41,0l-3.6,2.08a.74.74,0,0,0,0,1.39l3.63,2.08a2.65,2.65,0,0,0,2.41,0l3.6-2.08A.74.74,0,0,0,581.32,570.88Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M586.75,574l3.62,2.08a.73.73,0,0,1,0,1.39l-3.6,2.08a2.68,2.68,0,0,1-2.41,0l-3.63-2.08a.74.74,0,0,1,0-1.39l3.6-2.08a2.66,2.66,0,0,1,2.41,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M615.46,503.4l-94.38-54.48a1.94,1.94,0,0,0-1.95-.19l-1.62.94a1.94,1.94,0,0,1,1.95.2l94.36,54.48a6,6,0,0,1,2.73,4.72,1.92,1.92,0,0,1-.8,1.76l1.62-.94a1.92,1.92,0,0,0,.8-1.76,6,6,0,0,0-2.71-4.72Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.52,436.66,603,484.89a6,6,0,0,1,2.73,4.73,1.91,1.91,0,0,1-.8,1.76l1.62-.94a1.92,1.92,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.73l-83.5-48.22a1.92,1.92,0,0,0-1.95-.19l-1.62.93a1.94,1.94,0,0,1,1.95.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.55,423.47,613.91,478a6,6,0,0,1,2.73,4.72,1.91,1.91,0,0,1-.8,1.76l1.62-.94a1.93,1.93,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.72l-94.36-54.48a1.94,1.94,0,0,0-1.95-.19l-1.62.94a1.94,1.94,0,0,1,1.95.19Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.59,410.27l68.31,39.44a6,6,0,0,1,2.73,4.72,1.92,1.92,0,0,1-.8,1.76l1.62-.94a1.91,1.91,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.72l-68.3-39.44a1.95,1.95,0,0,0-2-.19l-1.62.94a2,2,0,0,1,2,.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M615.46,503.4l-94.38-54.48a1.94,1.94,0,0,0-1.95-.19l-1.62.94a1.94,1.94,0,0,1,1.95.2l94.36,54.48a6,6,0,0,1,2.73,4.72,1.92,1.92,0,0,1-.8,1.76l1.62-.94a1.92,1.92,0,0,0,.8-1.76,6,6,0,0,0-2.71-4.72Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M519.52,436.66,603,484.89a6,6,0,0,1,2.73,4.73,1.91,1.91,0,0,1-.8,1.76l1.62-.94a1.92,1.92,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.73l-83.5-48.22a1.92,1.92,0,0,0-1.95-.19l-1.62.93a1.94,1.94,0,0,1,1.95.2Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M519.55,423.47,613.91,478a6,6,0,0,1,2.73,4.72,1.91,1.91,0,0,1-.8,1.76l1.62-.94a1.93,1.93,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.72l-94.36-54.48a1.94,1.94,0,0,0-1.95-.19l-1.62.94a1.94,1.94,0,0,1,1.95.19Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M519.59,410.27l68.31,39.44a6,6,0,0,1,2.73,4.72,1.92,1.92,0,0,1-.8,1.76l1.62-.94a1.91,1.91,0,0,0,.8-1.76,6,6,0,0,0-2.73-4.72l-68.3-39.44a1.95,1.95,0,0,0-2-.19l-1.62.94a2,2,0,0,1,2,.2Z"
-        style="fill:#010014;opacity:0.15000000596046448;isolation:isolate"
+        style="opacity:0.15;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M613.84,504.34l-94.36-54.48c-1.51-.88-2.74-.18-2.74,1.56a6,6,0,0,0,2.73,4.73l94.36,54.48c1.51.87,2.74.17,2.74-1.57a6,6,0,0,0-2.73-4.72Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.5,443,603,491.18c1.51.88,2.74.17,2.74-1.56a6,6,0,0,0-2.73-4.73l-83.52-48.22c-1.51-.88-2.74-.17-2.75,1.56A6,6,0,0,0,519.5,443Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.53,429.76l94.38,54.48c1.51.88,2.74.17,2.74-1.57a6,6,0,0,0-2.73-4.72l-94.37-54.48c-1.51-.88-2.74-.18-2.74,1.56a6,6,0,0,0,2.73,4.73Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M519.57,416.57,587.88,456c1.51.87,2.74.17,2.75-1.57a6,6,0,0,0-2.73-4.72l-68.31-39.44c-1.51-.88-2.74-.18-2.75,1.56a6,6,0,0,0,2.73,4.73Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M638.44,621a9.81,9.81,0,0,0-8.85,0l-20.16,11.64a9.82,9.82,0,0,0-4.43,7.67v23.28a9.82,9.82,0,0,0,4.43,7.67l20.16,11.64a9.82,9.82,0,0,0,8.85,0l20.16-11.64a9.82,9.82,0,0,0,4.42-7.67V640.33a9.82,9.82,0,0,0-4.42-7.67Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M634,680.36c0,2.81,2,4,4.42,2.56l20.16-11.64a9.82,9.82,0,0,0,4.42-7.67V640.33c0-2.81-2-4-4.42-2.55l-20.16,11.64a9.82,9.82,0,0,0-4.42,7.67Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M611.44,581a9.81,9.81,0,0,0-8.85,0l-20.16,11.64a9.82,9.82,0,0,0-4.43,7.67v23.28a9.82,9.82,0,0,0,4.43,7.67l20.16,11.64a9.82,9.82,0,0,0,8.85,0l20.16-11.64a9.82,9.82,0,0,0,4.42-7.67V600.33a9.82,9.82,0,0,0-4.42-7.67Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M611.44,581a9.81,9.81,0,0,0-8.85,0l-20.16,11.64a9.82,9.82,0,0,0-4.43,7.67v23.28a9.82,9.82,0,0,0,4.43,7.67l20.16,11.64a9.82,9.82,0,0,0,8.85,0l20.16-11.64a9.82,9.82,0,0,0,4.42-7.67V600.33a9.82,9.82,0,0,0-4.42-7.67Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M607,640.36c0,2.81,2,4,4.42,2.55l20.16-11.64a9.82,9.82,0,0,0,4.42-7.67V600.33c0-2.81-2-4-4.42-2.55l-20.16,11.64a9.81,9.81,0,0,0-4.42,7.66Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M225.63,392.9a8.64,8.64,0,0,1,7.79,0L273.5,416a8.64,8.64,0,0,1,3.9,6.75v46.28a8.64,8.64,0,0,1-3.9,6.74L255.76,486a8.64,8.64,0,0,1-7.79,0l-40.07-23.14a8.64,8.64,0,0,1-3.89-6.75V409.89a8.64,8.64,0,0,1,3.89-6.74Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M274.2,428.4c0-.49-.35-.7-.78-.45L255.84,438.1a1.73,1.73,0,0,0-.78,1.35v1.89c0,.49.35.7.78.45l17.59-10.15a1.73,1.73,0,0,0,.78-1.35Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M274.2,435.77c0-.49-.35-.7-.78-.45l-17.59,10.15a1.73,1.73,0,0,0-.78,1.35v1.88c0,.5.35.7.78.45L273.42,439a1.73,1.73,0,0,0,.78-1.35Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M261.44,453.29l-9.57,5.53v7.37l9.57-5.53Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M267.82,449.61l-6.38,3.68v7.37l6.38-3.68Z"
-        style="fill:#010014;opacity:0.6000000238418579;isolation:isolate"
+        style="opacity:0.6;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M277.39,444.08l-9.57,5.53V457l9.57-5.53Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M263.49,457.1c-.63-.36-.63-1.54,0-2.63s1.65-1.68,2.27-1.31.63,1.54,0,2.63S264.12,457.46,263.49,457.1Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M251.86,483.8c0,2.47-1.75,3.49-3.89,2.25l-40.08-23.14a8.64,8.64,0,0,1-3.89-6.75V409.89c0-2.47,1.75-3.48,3.89-2.25L248,430.78a8.64,8.64,0,0,1,3.89,6.74Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
-      <g style="opacity:0.30000001192092896">
+      <g style="opacity:0.3">
         <path
           d="M207.87,413.1l14.83,8.56a.9.9,0,0,1,.45.78V423a.45.45,0,0,1-.67.39l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.46.46,0,0,1,.06-.23.45.45,0,0,1,.16-.17.44.44,0,0,1,.23-.06A.45.45,0,0,1,207.87,413.1Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,416.78l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.67.39l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.45.45,0,0,1,.23-.39.45.45,0,0,1,.45,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,420.46,222.7,429a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.45.45.45.45,0,0,1-.22-.06l-14.83-8.56a.89.89,0,0,1-.33-.33.9.9,0,0,1-.12-.45v-.59a.45.45,0,0,1,.45-.45A.45.45,0,0,1,207.87,420.46Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,424.14l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.45.45.45.45,0,0,1-.22-.06l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.45.45,0,0,1,.06-.23.45.45,0,0,1,.61-.17Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,444.5l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.67.39l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.45.45,0,0,1,.45-.45A.45.45,0,0,1,207.87,444.5Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,448.19l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.22.39.44.44,0,0,1-.45,0l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.45.45,0,0,1,.23-.39.44.44,0,0,1,.23-.06A.45.45,0,0,1,207.87,448.19Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,451.87l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.45.45.45.45,0,0,1-.22-.06l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.45.45,0,0,1,.06-.23.45.45,0,0,1,.61-.17Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M207.87,455.55l14.83,8.56a.9.9,0,0,1,.45.78v.59a.45.45,0,0,1-.06.22.45.45,0,0,1-.39.23.45.45,0,0,1-.22-.06l-14.83-8.56a.9.9,0,0,1-.45-.78v-.59a.44.44,0,0,1,.06-.22.45.45,0,0,1,.61-.16Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M356.44,419.55a5.42,5.42,0,0,0-4.88,0L340.44,426A5.41,5.41,0,0,0,338,430.2V443a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,370,443V430.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M354,452.28c0,1.55,1.1,2.18,2.44,1.41l11.12-6.42A5.42,5.42,0,0,0,370,443V430.2c0-1.55-1.1-2.18-2.44-1.41l-11.12,6.42a5.41,5.41,0,0,0-2.44,4.23Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M335.44,432.55a5.42,5.42,0,0,0-4.88,0L319.44,439A5.41,5.41,0,0,0,317,443.2V456a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,349,456V443.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M335.44,432.55a5.42,5.42,0,0,0-4.88,0L319.44,439A5.41,5.41,0,0,0,317,443.2V456a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,349,456V443.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M333,465.28c0,1.55,1.1,2.18,2.44,1.41l11.12-6.42A5.42,5.42,0,0,0,349,456V443.2c0-1.55-1.1-2.18-2.44-1.41l-11.12,6.42a5.41,5.41,0,0,0-2.44,4.23Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M313.44,446.55a5.42,5.42,0,0,0-4.88,0L297.44,453A5.41,5.41,0,0,0,295,457.2V470a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,327,470V457.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M311,479.28c0,1.55,1.1,2.18,2.44,1.41l11.12-6.42A5.41,5.41,0,0,0,327,470V457.2c0-1.55-1.1-2.18-2.44-1.41l-11.12,6.42a5.41,5.41,0,0,0-2.44,4.23Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
-      <path d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z" style="fill:#7066ff" />
-      <path d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z" style="fill:#7066ff" />
-      <path d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z" style="fill:#7066ff" />
-      <path d="M304.62,722l-.16,27.66H287.89l0,8.53h16.58l.16-27.66Z" style="fill:#7066ff" />
-      <path d="M288.6,739.76l0-8.53-31.77.34,0,8.53Z" style="fill:#7066ff" />
+      <path
+        d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M304.62,722l-.16,27.66H287.89l0,8.53h16.58l.16-27.66Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M288.6,739.76l0-8.53-31.77.34,0,8.53Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
       <path
         d="M210.26,730.31l51.8,52.12,13.46-7.77,0,8.53L262.08,791l-51.8-52.12Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <path d="M206.76,769l0-8.53-.69,18.4,0,8.53Z" style="fill:#7066ff" />
-      <path d="M190,788.14h47.75l0-9.6,0,8.53-.05,9.6H190Z" style="fill:#7066ff" />
-      <g style="opacity:0.699999988079071">
-        <path d="M304.62,722l-.16,27.66H287.89l0,8.53h16.58l.16-27.66Z" style="fill:#010014" />
-        <path d="M288.6,739.76l0-8.53-31.77.34,0,8.53Z" style="fill:#010014" />
+      <path
+        d="M206.76,769l0-8.53-.69,18.4,0,8.53Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M190,788.14h47.75l0-9.6,0,8.53-.05,9.6H190Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <g style="opacity:0.7">
+        <path
+          d="M304.62,722l-.16,27.66H287.89l0,8.53h16.58l.16-27.66Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
+        <path
+          d="M288.6,739.76l0-8.53-31.77.34,0,8.53Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
         <path
           d="M210.26,730.31l51.8,52.12,13.46-7.77,0,8.53L262.08,791l-51.8-52.12Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
-        <path d="M206.76,769l0-8.53-.69,18.4,0,8.53Z" style="fill:#010014" />
-        <path d="M190,788.14h47.75l0-9.6,0,8.53-.05,9.6H190Z" style="fill:#010014" />
+        <path
+          d="M206.76,769l0-8.53-.69,18.4,0,8.53Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
+        <path
+          d="M190,788.14h47.75l0-9.6,0,8.53-.05,9.6H190Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
       </g>
-      <path d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z" style="fill:#7066ff" />
-      <path d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z" style="fill:#7066ff" />
-      <path d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z" style="fill:#7066ff" />
-      <g style="opacity:0.4000000059604645">
-        <path d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z" style="fill:#010014" />
-        <path d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z" style="fill:#010014" />
-        <path d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z" style="fill:#010014" />
+      <path
+        d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <path
+        d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
+      />
+      <g style="opacity:0.4">
+        <path
+          d="M256.86,722l-.05,9.6,31.77-.34-.69,18.4h16.57l.16-27.66Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
+        <path
+          d="M210.26,730.31l51.8,52.12,13.46-7.77-51.8-52.12Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
+        <path
+          d="M190.16,760.48h16.57l-.69,18.4,31.76-.34,0,9.6H190Z"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
+        />
       </g>
       <path
         d="M626.47,429.83l0,9.16q0,8.16-5.35,8.15a21,21,0,0,1,5.28,14.27l0,9.16a9.76,9.76,0,0,0,4.42,7.65l3.54,2c0,4.08-2.68,5.59-6.22,3.55a17.47,17.47,0,0,1-8-13.77l0-10.69A24.1,24.1,0,0,0,614,443q6.22,0,6.24-9.17l0-10.69c0-5.1,3.57-7.12,8-4.56l15.07,8.7c0,4.07-2.68,5.59-6.22,3.55l-6.2-3.58C628.47,425.88,626.47,427,626.47,429.83Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M637.56,488.83l10-58.51c13.2,10.4,23.18,29.48,23.13,45.46,0,18-12.79,25.26-28.45,16.21A43.44,43.44,0,0,1,637.56,488.83Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M627,415.5c1.45-.84,3.46-.71,5.68.58l15.06,8.7c0,2-.67,3.42-1.77,4.06l-4.4,2.56c1.1-.64,1.77-2,1.77-4.06l-15.06-8.7c-2.23-1.29-4.24-1.42-5.69-.57Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M630.75,468l0-9.16a21,21,0,0,0-4.8-13.69L628,444q2.79-1.62,2.81-7.52l0-9.16a3.09,3.09,0,0,1,1.29-2.83l-4.4,2.56a3.09,3.09,0,0,0-1.3,2.84l0,9.15a12.09,12.09,0,0,1-1.08,5.66l-4.27,2.48a21,21,0,0,1,5.28,14.27l0,9.16a9.77,9.77,0,0,0,4.42,7.65l3.54,2c0,2-.66,3.42-1.76,4.06l4.4-2.54c1.1-.62,1.76-2,1.77-4.06l-3.55-2A9.8,9.8,0,0,1,630.75,468Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M618.4,440.48,614,443a5.89,5.89,0,0,0,3-.73l4.4-2.56A5.91,5.91,0,0,1,618.4,440.48Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M647.59,430.33l4.4-2.56c13.21,10.4,23.18,29.48,23.14,45.46,0,8.94-3.18,15.23-8.27,18.19l-4.4,2.56c5.09-3,8.25-9.25,8.27-18.19C670.77,459.81,660.79,440.73,647.59,430.33Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M627,415.5c1.45-.84,3.46-.71,5.68.58l15.06,8.7c0,2-.67,3.42-1.77,4.06l-4.4,2.56c1.1-.64,1.77-2,1.77-4.06l-15.06-8.7c-2.23-1.29-4.24-1.42-5.69-.57Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M630.75,468l0-9.16a21,21,0,0,0-4.8-13.69L628,444q2.79-1.62,2.81-7.52l0-9.16a3.09,3.09,0,0,1,1.29-2.83l-4.4,2.56a3.09,3.09,0,0,0-1.3,2.84l0,9.15a12.09,12.09,0,0,1-1.08,5.66l-4.27,2.48a21,21,0,0,1,5.28,14.27l0,9.16a9.77,9.77,0,0,0,4.42,7.65l3.54,2c0,2-.66,3.42-1.76,4.06l4.4-2.54c1.1-.62,1.76-2,1.77-4.06l-3.55-2A9.8,9.8,0,0,1,630.75,468Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M618.4,440.48,614,443a5.89,5.89,0,0,0,3-.73l4.4-2.56A5.91,5.91,0,0,1,618.4,440.48Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M647.59,430.33l4.4-2.56c13.21,10.4,23.18,29.48,23.14,45.46,0,8.94-3.18,15.23-8.27,18.19l-4.4,2.56c5.09-3,8.25-9.25,8.27-18.19C670.77,459.81,660.79,440.73,647.59,430.33Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M626.47,429.83l0,9.16q0,8.16-5.35,8.15a21,21,0,0,1,5.28,14.27l0,9.16a9.76,9.76,0,0,0,4.42,7.65l3.54,2c0,4.08-2.68,5.59-6.22,3.55a17.47,17.47,0,0,1-8-13.77l0-10.69A24.1,24.1,0,0,0,614,443q6.22,0,6.24-9.17l0-10.69c0-5.1,3.57-7.12,8-4.56l15.07,8.7c0,4.07-2.68,5.59-6.22,3.55l-6.2-3.58C628.47,425.88,626.47,427,626.47,429.83Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M637.56,488.83l10-58.51c13.2,10.4,23.18,29.48,23.13,45.46,0,18-12.79,25.26-28.45,16.21A43.44,43.44,0,0,1,637.56,488.83Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M626.47,429.83l0,9.16q0,8.16-5.35,8.15a21,21,0,0,1,5.28,14.27l0,9.16a9.76,9.76,0,0,0,4.42,7.65l3.54,2c0,4.08-2.68,5.59-6.22,3.55a17.47,17.47,0,0,1-8-13.77l0-10.69A24.1,24.1,0,0,0,614,443q6.22,0,6.24-9.17l0-10.69c0-5.09,3.57-7.12,8-4.56l15.07,8.7c0,4.07-2.68,5.59-6.22,3.55l-6.2-3.58C628.47,425.88,626.47,427,626.47,429.83Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M637.56,488.83l10-58.51c13.2,10.4,23.18,29.48,23.13,45.46,0,18-12.79,25.26-28.45,16.21A43.15,43.15,0,0,1,637.56,488.83Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M218.44,529.55a5.42,5.42,0,0,0-4.88,0L202.44,536A5.41,5.41,0,0,0,200,540.2V553a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,232,553V540.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M216,562.28c0,1.55,1.1,2.18,2.44,1.41l11.12-6.42A5.41,5.41,0,0,0,232,553V540.2c0-1.55-1.1-2.18-2.44-1.41l-11.12,6.42a5.41,5.41,0,0,0-2.44,4.23Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M193.44,544.55a5.42,5.42,0,0,0-4.88,0L177.44,551A5.41,5.41,0,0,0,175,555.2V568a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,207,568V555.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M193.44,544.55a5.42,5.42,0,0,0-4.88,0L177.44,551A5.41,5.41,0,0,0,175,555.2V568a5.41,5.41,0,0,0,2.44,4.23l11.12,6.42a5.42,5.42,0,0,0,4.88,0l11.12-6.42A5.41,5.41,0,0,0,207,568V555.2a5.41,5.41,0,0,0-2.44-4.23Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M191,577.28c0,1.55,1.1,2.18,2.44,1.41l11.12-6.42A5.41,5.41,0,0,0,207,568V555.2c0-1.55-1.1-2.18-2.44-1.41l-11.12,6.42a5.41,5.41,0,0,0-2.44,4.23Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M140.14,449.39,140,490.47a6.57,6.57,0,0,0,3,5.16l73.73,42.57c1.65,1,3,.19,3-1.71l.14-41.06Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M219.7,536.46l.14-41.06-79.7-46,1.49-.86,79.7,46-.14,41.08a2.12,2.12,0,0,1-.87,1.92l-1.48.86A2.15,2.15,0,0,0,219.7,536.46Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M219.7,536.46l.14-41.06-79.7-46,1.49-.86,79.7,46-.14,41.08a2.12,2.12,0,0,1-.87,1.92l-1.48.86A2.15,2.15,0,0,0,219.7,536.46Z"
-        style="fill:#010014;opacity:0.20000000298023224;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        style="opacity:0.2;isolation:isolate"
       />
       <path
         d="M140.14,449.39,140,490.47a6.57,6.57,0,0,0,3,5.16l73.73,42.57c1.65,1,3,.19,3-1.71l.14-41.06Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M142.5,443.17a2.11,2.11,0,0,1,2.13.21l73.73,42.56a6.58,6.58,0,0,1,3,5.16v3.43l-1.48.86V492a6.57,6.57,0,0,0-3-5.16l-73.73-42.56A2.1,2.1,0,0,0,141,444Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M142.5,443.17a2.11,2.11,0,0,1,2.13.21l73.73,42.56a6.58,6.58,0,0,1,3,5.16v3.43l-1.48.86V492a6.57,6.57,0,0,0-3-5.16l-73.73-42.56A2.1,2.1,0,0,0,141,444Z"
-        style="fill:#010014;opacity:0.75;isolation:isolate"
+        style="opacity:0.75;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M143.15,444.25c-1.65-1-3-.19-3,1.71v3.43l79.7,46V492a6.57,6.57,0,0,0-3-5.16Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M143.15,444.25c-1.65-1-3-.19-3,1.71v3.43l79.7,46V492a6.57,6.57,0,0,0-3-5.16Z"
-        style="fill:#010014;opacity:0.5;isolation:isolate"
+        style="opacity:0.5;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M152.33,451.06a3.28,3.28,0,0,1,1.49,2.58,1.05,1.05,0,0,1-.43,1l-.49.29a1.05,1.05,0,0,0,.43-1,3.28,3.28,0,0,0-1.49-2.58,1.05,1.05,0,0,0-1.05-.11l.49-.28a1.05,1.05,0,0,1,1.05.1Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.22,448.69a3.29,3.29,0,0,1,1.49,2.58,1,1,0,0,1-.44,1l-.49.29a1.06,1.06,0,0,0,.44-1,3.28,3.28,0,0,0-1.49-2.58,1.06,1.06,0,0,0-1.05-.11l.49-.29a1.05,1.05,0,0,1,1.05.11Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M143.06,446.21a1.05,1.05,0,0,1,1.05.1,3.28,3.28,0,0,1,1.49,2.58,1.05,1.05,0,0,1-.44,1l-.49.29a1.06,1.06,0,0,0,.44-1,3.29,3.29,0,0,0-1.49-2.58,1.05,1.05,0,0,0-1.05-.11Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M152.33,451.06a3.28,3.28,0,0,1,1.49,2.58,1.05,1.05,0,0,1-.43,1l-.49.29a1.05,1.05,0,0,0,.43-1,3.28,3.28,0,0,0-1.49-2.58,1.05,1.05,0,0,0-1.05-.11l.49-.28a1.05,1.05,0,0,1,1.05.1Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M148.22,448.69a3.29,3.29,0,0,1,1.49,2.58,1,1,0,0,1-.44,1l-.49.29a1.06,1.06,0,0,0,.44-1,3.28,3.28,0,0,0-1.49-2.58,1.06,1.06,0,0,0-1.05-.11l.49-.29a1.05,1.05,0,0,1,1.05.11Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M143.06,446.21a1.05,1.05,0,0,1,1.05.1,3.28,3.28,0,0,1,1.49,2.58,1.05,1.05,0,0,1-.44,1l-.49.29a1.06,1.06,0,0,0,.44-1,3.29,3.29,0,0,0-1.49-2.58,1.05,1.05,0,0,0-1.05-.11Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M151.83,451.35a3.28,3.28,0,0,1,1.49,2.58c0,.95-.67,1.33-1.5.85a3.29,3.29,0,0,1-1.49-2.58C150.33,451.25,151,450.87,151.83,451.35Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M147.73,449a3.28,3.28,0,0,1,1.49,2.58c0,.95-.68,1.33-1.5.85a3.29,3.29,0,0,1-1.49-2.58C146.23,448.88,146.9,448.5,147.73,449Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M143.63,446.61a3.29,3.29,0,0,1,1.48,2.58c0,.95-.67,1.33-1.49.85a3.28,3.28,0,0,1-1.49-2.58C142.13,446.51,142.8,446.13,143.63,446.61Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M207.51,519.44l-57.81-33.38a1.18,1.18,0,0,0-1.19-.12l-1,.58a1.19,1.19,0,0,1,1.19.12L206.52,520a3.68,3.68,0,0,1,1.67,2.89,1.18,1.18,0,0,1-.49,1.08l1-.58a1.17,1.17,0,0,0,.49-1.08,3.67,3.67,0,0,0-1.67-2.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.73,478.55,194.49,505a3.69,3.69,0,0,1,1.67,2.9,1.17,1.17,0,0,1-.49,1.08l1-.58a1.17,1.17,0,0,0,.49-1.07,3.68,3.68,0,0,0-1.67-2.9L149.72,478a1.2,1.2,0,0,0-1.2-.12l-1,.58a1.19,1.19,0,0,1,1.19.12Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.75,470.47l37.39,21.58a3.69,3.69,0,0,1,1.67,2.9,1.19,1.19,0,0,1-.1.61,1.17,1.17,0,0,1-.39.47l1-.58a1.17,1.17,0,0,0,.39-.47,1.19,1.19,0,0,0,.1-.61,3.69,3.69,0,0,0-1.68-2.9l-37.38-21.58a1.19,1.19,0,0,0-1.19-.12l-1,.58a1.18,1.18,0,0,1,1.19.12Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.77,462.38l50.53,29.17a3.7,3.7,0,0,1,1.67,2.9,1.18,1.18,0,0,1-.49,1.08l1-.58a1.17,1.17,0,0,0,.39-.47,1.18,1.18,0,0,0,.1-.6,3.69,3.69,0,0,0-1.67-2.9l-50.53-29.17a1.19,1.19,0,0,0-1.19-.12l-1,.58a1.19,1.19,0,0,1,1.19.12Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.6000000238418579">
+      <g style="opacity:0.6">
         <path
           d="M207.51,519.44l-57.81-33.38a1.19,1.19,0,0,0-1.19-.12l-1,.58a1.19,1.19,0,0,1,1.19.12L206.52,520a3.68,3.68,0,0,1,1.67,2.89,1.18,1.18,0,0,1-.49,1.08l1-.58a1.17,1.17,0,0,0,.49-1.08,3.68,3.68,0,0,0-1.67-2.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.73,478.55,194.49,505a3.68,3.68,0,0,1,1.67,2.9,1.17,1.17,0,0,1-.49,1.08l1-.58a1.17,1.17,0,0,0,.49-1.07,3.68,3.68,0,0,0-1.67-2.9L149.72,478a1.19,1.19,0,0,0-1.2-.12l-1,.58a1.19,1.19,0,0,1,1.19.12Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.75,470.47,186.13,492a3.69,3.69,0,0,1,1.67,2.9,1.18,1.18,0,0,1-.1.61,1.19,1.19,0,0,1-.39.47l1-.58a1.18,1.18,0,0,0,.49-1.08,3.69,3.69,0,0,0-1.67-2.9l-37.38-21.58a1.19,1.19,0,0,0-1.19-.12l-1,.58a1.19,1.19,0,0,1,1.19.12Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.77,462.38l50.53,29.17a3.7,3.7,0,0,1,1.67,2.9,1.18,1.18,0,0,1-.49,1.07l1-.58a1.17,1.17,0,0,0,.49-1.07,3.69,3.69,0,0,0-1.67-2.9l-50.53-29.17a1.18,1.18,0,0,0-1.19-.12l-1,.58a1.18,1.18,0,0,1,1.19.12Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M206.52,520,148.7,486.64c-.93-.54-1.68-.11-1.68,1a3.68,3.68,0,0,0,1.67,2.9l57.82,33.38c.93.53,1.68.1,1.68-1a3.68,3.68,0,0,0-1.67-2.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.72,482.41l45.74,26.42c.93.54,1.68.11,1.68-1a3.68,3.68,0,0,0-1.67-2.9l-45.75-26.42c-.93-.54-1.68-.11-1.68,1a3.68,3.68,0,0,0,1.67,2.9Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.74,474.32l37.38,21.58c.93.54,1.68.11,1.69-1a3.69,3.69,0,0,0-1.67-2.9l-37.39-21.58c-.93-.54-1.68-.11-1.68,1a3.69,3.69,0,0,0,1.67,2.9Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M148.76,466.24l50.53,29.17c.93.53,1.68.11,1.69-1a3.7,3.7,0,0,0-1.68-2.9l-50.53-29.17c-.93-.54-1.68-.11-1.68,1a3.69,3.69,0,0,0,1.67,2.9Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M206.52,520,148.7,486.64c-.93-.54-1.68-.11-1.68,1a3.69,3.69,0,0,0,1.67,2.9l57.82,33.38c.93.53,1.68.11,1.68-1a3.68,3.68,0,0,0-1.67-2.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.72,482.41l45.74,26.42c.93.54,1.68.11,1.68-1a3.68,3.68,0,0,0-1.67-2.9l-45.75-26.42c-.93-.54-1.68-.11-1.68,1a3.68,3.68,0,0,0,1.67,2.9Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.74,474.32l37.38,21.58c.93.54,1.68.11,1.69-1a3.69,3.69,0,0,0-1.67-2.9l-37.39-21.58c-.93-.54-1.68-.11-1.68,1a3.69,3.69,0,0,0,1.67,2.9Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M148.76,466.24l50.53,29.17c.93.53,1.68.11,1.69-1a3.7,3.7,0,0,0-1.68-2.9l-50.53-29.17c-.93-.54-1.68-.11-1.68,1a3.69,3.69,0,0,0,1.67,2.9Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M267.32,646.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42A6.26,6.26,0,0,0,246,659V673.8a6.26,6.26,0,0,0,2.82,4.89l12.86,7.42a6.26,6.26,0,0,0,5.64,0l12.86-7.42A6.26,6.26,0,0,0,283,673.8V659a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M267.32,646.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42A6.26,6.26,0,0,0,246,659V673.8a6.26,6.26,0,0,0,2.82,4.89l12.86,7.42a6.26,6.26,0,0,0,5.64,0l12.86-7.42A6.26,6.26,0,0,0,283,673.8V659a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M264.5,684.48c0,1.79,1.27,2.53,2.82,1.63l12.86-7.42A6.26,6.26,0,0,0,283,673.8V659c0-1.79-1.27-2.52-2.82-1.63l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M241.32,661.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42A6.26,6.26,0,0,0,220,674V688.8a6.26,6.26,0,0,0,2.82,4.89l12.86,7.42a6.26,6.26,0,0,0,5.64,0l12.86-7.42A6.26,6.26,0,0,0,257,688.8V674a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M241.32,661.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42A6.26,6.26,0,0,0,220,674V688.8a6.26,6.26,0,0,0,2.82,4.89l12.86,7.42a6.26,6.26,0,0,0,5.64,0l12.86-7.42A6.26,6.26,0,0,0,257,688.8V674a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M238.5,699.48c0,1.79,1.27,2.53,2.82,1.63l12.86-7.42A6.26,6.26,0,0,0,257,688.8V674c0-1.79-1.27-2.52-2.82-1.63l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M420,404.16l21.36,12.41c6.73,3.91,6.71,8.58-.1,12.51l-5.23,3-9.29-5.4,4.49-2.59c1.18-.69,1.19-1.79-.05-2.51l-20.64-12a9.06,9.06,0,0,1-4.45-5.06l-.52-1.91-3.3-.3a21.75,21.75,0,0,1-8.72-2.59l-20.63-12a4.68,4.68,0,0,0-4.26,0l-4.49,2.6-9.34-5.44,5.23-3a21.41,21.41,0,0,1,21.58,0L403,394.29a4.11,4.11,0,0,0,1.56.47l8,.81c2.71.3,4.75,1.51,5.27,3.06l1.36,4.64A1.64,1.64,0,0,0,420,404.16Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M408.69,436.38a4.72,4.72,0,0,0,2.17-.5l4.51-2.59,9.29,5.4-5.23,3a21.32,21.32,0,0,1-21.57,0l-21.36-12.41a3.87,3.87,0,0,0-1.56-.47l-8-.81c-2.71-.29-4.75-1.5-5.27-3.06l-1.37-4.64a1.79,1.79,0,0,0-.8-.9L338.15,407c-6.65-3.87-6.68-8.59.07-12.5l5.23-3,9.34,5.44-4.49,2.6a1.31,1.31,0,0,0,0,2.46l20.61,12a9.06,9.06,0,0,1,4.45,5.05l.52,1.92,3.3.3a21.78,21.78,0,0,1,8.72,2.6l20.63,12A4.71,4.71,0,0,0,408.69,436.38Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M368.72,394.09l-4.49,2.6-9.36-5.43v-6.35l9.34,5.44,4.49-2.59a4.67,4.67,0,0,1,4.26,0l20.63,12a21.77,21.77,0,0,0,8.72,2.6l3.3.3.52,1.91a9.1,9.1,0,0,0,4.45,5.06l20.63,12a1.55,1.55,0,0,1,.64.51,1.56,1.56,0,0,1,.29.77v6.35a1.56,1.56,0,0,0-.93-1.28l-20.61-12a9.09,9.09,0,0,1-4.45-5.06l-.52-1.91-3.3-.3a21.79,21.79,0,0,1-8.72-2.6l-20.62-12a4.71,4.71,0,0,0-4.26,0Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M441.28,429.07c3.41-2,5.1-4.13,5.1-6.28v6.36c0,2.16-1.7,4.32-5.1,6.28l-5.23,3-9.29-5.4V426.7l9.29,5.4Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M348.33,405.87l4.49-2.6v-6.35l-4.49,2.6a1.49,1.49,0,0,0-.89,1.24v6.35a1.51,1.51,0,0,1,.88-1.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M408.62,444.63a21.32,21.32,0,0,0,10.79-2.93l5.23-3V445l-5.23,3a21.32,21.32,0,0,1-21.57,0l-21.36-12.41a3.88,3.88,0,0,0-1.56-.47l-8-.81c-2.71-.3-4.75-1.51-5.27-3.06l-1.36-4.63a1.79,1.79,0,0,0-.8-.89l-21.36-12.41c-3.32-1.94-5-4.08-5-6.23v-6.34c0,2.15,1.69,4.3,5,6.23l21.36,12.41a1.79,1.79,0,0,1,.8.9l1.37,4.63c.5,1.57,2.55,2.76,5.27,3.06l8,.81a3.86,3.86,0,0,1,1.56.47l21.36,12.41A21.32,21.32,0,0,0,408.62,444.63Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M368.72,394.09l-4.49,2.6-9.36-5.43v-6.35l9.34,5.44,4.49-2.59a4.67,4.67,0,0,1,4.26,0l20.63,12a21.77,21.77,0,0,0,8.72,2.6l3.3.3.52,1.91a9.1,9.1,0,0,0,4.45,5.06l20.63,12a1.55,1.55,0,0,1,.64.51,1.56,1.56,0,0,1,.29.77v6.35a1.56,1.56,0,0,0-.93-1.28l-20.61-12a9.09,9.09,0,0,1-4.45-5.06l-.52-1.91-3.3-.3a21.79,21.79,0,0,1-8.72-2.6l-20.62-12a4.71,4.71,0,0,0-4.26,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M441.28,429.07c3.41-2,5.1-4.13,5.1-6.28v6.36c0,2.16-1.7,4.32-5.1,6.28l-5.23,3-9.29-5.4V426.7l9.29,5.4Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M348.33,405.87l4.49-2.6v-6.35l-4.49,2.6a1.49,1.49,0,0,0-.89,1.24v6.35a1.51,1.51,0,0,1,.88-1.24Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M408.62,444.63a21.32,21.32,0,0,0,10.79-2.93l5.23-3V445l-5.23,3a21.32,21.32,0,0,1-21.57,0l-21.36-12.41a3.88,3.88,0,0,0-1.56-.47l-8-.81c-2.71-.3-4.75-1.51-5.27-3.06l-1.36-4.63a1.79,1.79,0,0,0-.8-.89l-21.36-12.41c-3.32-1.94-5-4.08-5-6.23v-6.34c0,2.15,1.69,4.3,5,6.23l21.36,12.41a1.79,1.79,0,0,1,.8.9l1.37,4.63c.5,1.57,2.55,2.76,5.27,3.06l8,.81a3.86,3.86,0,0,1,1.56.47l21.36,12.41A21.32,21.32,0,0,0,408.62,444.63Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M420,404.16l21.36,12.41c6.73,3.91,6.71,8.58-.1,12.51l-5.23,3-9.29-5.4,4.49-2.59c1.18-.69,1.19-1.79-.05-2.51l-20.64-12a9.06,9.06,0,0,1-4.45-5.06l-.52-1.91-3.3-.3a21.75,21.75,0,0,1-8.72-2.59l-20.63-12a4.68,4.68,0,0,0-4.26,0l-4.49,2.6-9.34-5.44,5.23-3a21.41,21.41,0,0,1,21.58,0L403,394.29a4.11,4.11,0,0,0,1.56.47l8,.81c2.71.3,4.75,1.51,5.27,3.06l1.36,4.64A1.64,1.64,0,0,0,420,404.16Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M408.69,436.38a4.72,4.72,0,0,0,2.17-.5l4.51-2.59,9.29,5.4-5.23,3a21.32,21.32,0,0,1-21.57,0l-21.36-12.41a3.87,3.87,0,0,0-1.56-.47l-8-.81c-2.71-.29-4.75-1.5-5.27-3.06l-1.37-4.64a1.79,1.79,0,0,0-.8-.9L338.15,407c-6.65-3.87-6.68-8.59.07-12.5l5.23-3,9.34,5.44-4.49,2.6a1.31,1.31,0,0,0,0,2.46l20.61,12a9.06,9.06,0,0,1,4.45,5.05l.52,1.92,3.3.3a21.78,21.78,0,0,1,8.72,2.6l20.63,12A4.71,4.71,0,0,0,408.69,436.38Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M420,404.16l21.36,12.41c6.73,3.91,6.71,8.58-.1,12.51l-5.23,3-9.29-5.4,4.49-2.59c1.18-.69,1.19-1.79-.05-2.51l-20.64-12a9.06,9.06,0,0,1-4.45-5.06l-.52-1.91-3.3-.3a21.75,21.75,0,0,1-8.72-2.59l-20.63-12a4.68,4.68,0,0,0-4.26,0l-4.49,2.6-9.34-5.44,5.23-3a21.41,21.41,0,0,1,21.58,0L403,394.29a4.11,4.11,0,0,0,1.56.47l8,.81c2.71.3,4.75,1.51,5.27,3.06l1.36,4.64A1.64,1.64,0,0,0,420,404.16Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M408.69,436.38a4.72,4.72,0,0,0,2.17-.5l4.51-2.59,9.29,5.4-5.23,3a21.32,21.32,0,0,1-21.57,0l-21.36-12.41a3.87,3.87,0,0,0-1.56-.47l-8-.81c-2.71-.29-4.75-1.5-5.27-3.06l-1.37-4.64a1.79,1.79,0,0,0-.8-.9L338.15,407c-6.65-3.87-6.68-8.59.07-12.5l5.23-3,9.34,5.44-4.49,2.6a1.31,1.31,0,0,0,0,2.46l20.61,12a9.06,9.06,0,0,1,4.45,5.05l.52,1.92,3.3.3a21.78,21.78,0,0,1,8.72,2.6l20.63,12A4.71,4.71,0,0,0,408.69,436.38Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M358.91,454.81c-4.86-2.81-12.81-2.81-17.68,0l-91,52.51c-4.86,2.81-8.84,9.7-8.84,15.31v105c0,5.61,4,12.5,8.84,15.31l40.27,23.24c4.85,2.81,12.82,2.81,17.68,0l91-52.51C404,610.89,408,604,408,598.39v-105c0-5.61-4-12.5-8.84-15.31Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M358.91,454.81c-4.86-2.81-12.81-2.81-17.68,0l-91,52.51c-4.86,2.81-8.84,9.7-8.84,15.31v105c0,5.61,4,12.5,8.84,15.31l40.27,23.24c4.85,2.81,12.82,2.81,17.68,0l91-52.51C404,610.89,408,604,408,598.39v-105c0-5.61-4-12.5-8.84-15.31Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M248.67,535.37c0-1.12.8-1.58,1.77-1l39.92,23a3.92,3.92,0,0,1,1.77,3.06v4.28c0,1.12-.8,1.58-1.77,1l-39.92-23a3.92,3.92,0,0,1-1.77-3.06Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M248.67,552.1c0-1.12.8-1.58,1.77-1l39.92,23a3.92,3.92,0,0,1,1.77,3.06v4.28c0,1.12-.8,1.58-1.77,1l-39.92-23a3.92,3.92,0,0,1-1.77-3.06Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M277.64,591.87l21.73,12.54v16.73l-21.73-12.55Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M263.15,583.5l14.48,8.36v16.72l-14.48-8.36Z"
-        style="fill:#010014;opacity:0.6000000238418579;isolation:isolate"
+        style="opacity:0.6;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M241.43,571l21.73,12.54v16.72l-21.73-12.54Z"
-        style="fill:#010014;opacity:0.4000000059604645;isolation:isolate"
+        style="opacity:0.4;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M273,600.52c1.43-.82,1.43-3.49,0-6s-3.74-3.8-5.16-3-1.43,3.49,0,6S271.55,601.34,273,600.52Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M299.37,661.11c0,5.61,4,7.91,8.84,5.1l91-52.51C404,610.89,408,604,408,598.39v-105c0-5.61-4-7.91-8.84-5.1l-91,52.52c-4.86,2.81-8.84,9.7-8.84,15.31Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
-      <g style="opacity:0.30000001192092896">
+      <g style="opacity:0.3">
         <path
           d="M399.22,500.65l-33.66,19.43a2,2,0,0,0-1,1.77v1.34a1,1,0,0,0,1.53.88l33.66-19.43a2,2,0,0,0,1-1.77v-1.34a1,1,0,0,0-1.53-.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,509l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1.53.88L399.73,513a2,2,0,0,0,1-1.77v-1.33a1,1,0,0,0-1.53-.88Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,517.36l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1.53.88l33.66-19.43a2,2,0,0,0,1-1.77v-1.33a1,1,0,0,0-1.53-.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,525.72l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1.53.88l33.66-19.43a2,2,0,0,0,1-1.77V526.6a1,1,0,0,0-1.53-.88Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,571.93l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,.14.51,1,1,0,0,0,.37.37,1,1,0,0,0,1,0l33.66-19.43a2,2,0,0,0,1-1.77v-1.34a1,1,0,0,0-1.53-.88Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,580.28l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1.53.88l33.66-19.43a2,2,0,0,0,1-1.77v-1.33a1,1,0,0,0-.14-.51,1,1,0,0,0-.88-.51A1,1,0,0,0,399.22,580.28Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,588.64l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1.53.88l33.66-19.43a2,2,0,0,0,1-1.77v-1.33a1,1,0,0,0-1.53-.89Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M399.22,597l-33.66,19.43a2,2,0,0,0-1,1.77v1.33a1,1,0,0,0,1,1,1,1,0,0,0,.51-.14L399.73,601a2,2,0,0,0,1-1.77v-1.33a1,1,0,0,0-.51-.88,1,1,0,0,0-1,0Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M345.67,550.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89V577.8a6.26,6.26,0,0,0,2.82,4.89L340,590.11a6.26,6.26,0,0,0,5.64,0l12.86-7.42a6.26,6.26,0,0,0,2.82-4.89V563a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M345.67,550.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89V577.8a6.26,6.26,0,0,0,2.82,4.89L340,590.11a6.26,6.26,0,0,0,5.64,0l12.86-7.42a6.26,6.26,0,0,0,2.82-4.89V563a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#010014;opacity:0.5;isolation:isolate"
+        style="opacity:0.5;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M342.85,588.48c0,1.79,1.27,2.52,2.82,1.63l12.86-7.42a6.26,6.26,0,0,0,2.82-4.89V563c0-1.79-1.27-2.53-2.82-1.63l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M373.67,565.64a6.26,6.26,0,0,0-5.64,0l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89V592.8a6.26,6.26,0,0,0,2.82,4.89L368,605.11a6.26,6.26,0,0,0,5.64,0l12.86-7.42a6.26,6.26,0,0,0,2.82-4.89V578a6.26,6.26,0,0,0-2.82-4.89Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M370.85,603.48c0,1.79,1.27,2.52,2.82,1.63l12.86-7.42a6.26,6.26,0,0,0,2.82-4.89V578c0-1.79-1.27-2.53-2.82-1.63l-12.86,7.42a6.26,6.26,0,0,0-2.82,4.89Z"
-        style="fill:#010014;opacity:0.30000001192092896;isolation:isolate"
+        style="opacity:0.3;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        ;
       />
       <path
         d="M512.24,555.82l.31,108.54A14.81,14.81,0,0,1,505.83,676L339.46,772c-3.72,2.15-6.75.43-6.76-3.85l-.31-108.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M332.71,768.15l-.31-108.54L512.24,555.78l-3.34-1.93L329.06,657.68l.3,108.49c0,2.12.75,3.62,2,4.33l3.35,1.95C333.46,771.77,332.71,770.28,332.71,768.15Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M332.71,768.15l-.31-108.54L512.24,555.78l-3.34-1.93L329.06,657.68l.3,108.49c0,2.12.75,3.62,2,4.33l3.35,1.95C333.46,771.77,332.71,770.28,332.71,768.15Z"
-        style="fill:#010014;opacity:0.20000000298023224;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
+        style="opacity:0.2;isolation:isolate"
       />
       <path
         d="M512.24,555.82l.31,108.54A14.81,14.81,0,0,1,505.83,676L339.46,772c-3.72,2.15-6.75.43-6.76-3.85l-.31-108.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M506.9,541.79c-1.22-.71-2.92-.61-4.75.48l-166.37,96A14.85,14.85,0,0,0,329.06,650v7.75l3.35,1.95v-7.75a14.83,14.83,0,0,1,6.72-11.65L505.5,544.21c1.87-1.08,3.57-1.18,4.75-.47Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M506.9,541.79c-1.22-.71-2.92-.61-4.75.48l-166.37,96A14.85,14.85,0,0,0,329.06,650v7.75l3.35,1.95v-7.75a14.83,14.83,0,0,1,6.72-11.65L505.5,544.21c1.87-1.08,3.57-1.18,4.75-.47Z"
-        style="fill:#010014;opacity:0.75;isolation:isolate"
+        style="opacity:0.75;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M505.46,544.21c3.72-2.15,6.75-.42,6.77,3.87v7.75L332.39,659.66v-7.75a14.83,14.83,0,0,1,6.72-11.65Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M505.46,544.21c3.72-2.15,6.75-.42,6.77,3.87v7.75L332.39,659.66v-7.75a14.83,14.83,0,0,1,6.72-11.65Z"
-        style="fill:#010014;opacity:0.5;isolation:isolate"
+        style="opacity:0.5;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M342.06,642a7.39,7.39,0,0,0-3.37,5.82,2.38,2.38,0,0,0,1,2.15l1.12.65a2.38,2.38,0,0,1-1-2.15,7.4,7.4,0,0,1,3.37-5.82,2.38,2.38,0,0,1,2.38-.24l-1.12-.65a2.38,2.38,0,0,0-2.38.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M351.31,636.66a7.41,7.41,0,0,0-3.36,5.82,2.37,2.37,0,0,0,1,2.16l1.11.65a2.37,2.37,0,0,1-1-2.16,7.42,7.42,0,0,1,3.37-5.82,2.38,2.38,0,0,1,2.38-.24l-1.12-.65a2.38,2.38,0,0,0-2.38.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M363,631.08a2.38,2.38,0,0,0-2.38.24,7.38,7.38,0,0,0-3.36,5.82,2.37,2.37,0,0,0,1,2.16l1.12.65a2.38,2.38,0,0,1-1-2.15,7.38,7.38,0,0,1,3.36-5.82,2.38,2.38,0,0,1,2.38-.24Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M342.06,642a7.39,7.39,0,0,0-3.37,5.82,2.38,2.38,0,0,0,1,2.15l1.12.65a2.38,2.38,0,0,1-1-2.16,7.39,7.39,0,0,1,3.37-5.82,2.38,2.38,0,0,1,2.38-.24l-1.12-.65a2.38,2.38,0,0,0-2.38.24Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M351.31,636.66a7.41,7.41,0,0,0-3.36,5.82,2.37,2.37,0,0,0,1,2.16l1.11.65a2.37,2.37,0,0,1-1-2.16,7.42,7.42,0,0,1,3.37-5.82,2.38,2.38,0,0,1,2.38-.24l-1.12-.65a2.37,2.37,0,0,0-2.38.24Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M363,631.08a2.38,2.38,0,0,0-2.38.24,7.38,7.38,0,0,0-3.36,5.82,2.37,2.37,0,0,0,1,2.16l1.12.65a2.38,2.38,0,0,1-1-2.15,7.38,7.38,0,0,1,3.36-5.82,2.38,2.38,0,0,1,2.38-.24Z"
-        style="fill:#010014;opacity:0.10000000149011612;isolation:isolate"
+        style="opacity:0.1;isolation:isolate"
+        class="fill-current transition-all ease-out duration-200"
+        v-bind:class="[
+          sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+        ]"
+        fill="#010014"
       />
       <path
         d="M343.18,642.65a7.39,7.39,0,0,0-3.37,5.82c0,2.14,1.52,3,3.38,1.92a7.39,7.39,0,0,0,3.37-5.82C346.55,642.43,345,641.58,343.18,642.65Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M352.43,637.31a7.42,7.42,0,0,0-3.37,5.82c0,2.14,1.53,3,3.39,1.92a7.42,7.42,0,0,0,3.36-5.82C355.8,637.09,354.27,636.24,352.43,637.31Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M361.68,632a7.39,7.39,0,0,0-3.36,5.82c0,2.14,1.52,3,3.38,1.92a7.4,7.4,0,0,0,3.37-5.82C365.06,631.74,363.54,630.89,361.68,632Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M444.53,683.92l-83.19,48a8.31,8.31,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l83.19-48a2.65,2.65,0,0,1,2.69-.26l-2.24-1.33a2.65,2.65,0,0,0-2.68.29Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M481.23,644.45,361.32,713.68a8.33,8.33,0,0,0-3.78,6.54,2.66,2.66,0,0,0,1.11,2.43l2.21,1.3a2.66,2.66,0,0,1-1.11-2.43,8.31,8.31,0,0,1,3.78-6.54l119.91-69.23a2.67,2.67,0,0,1,2.69-.26l-2.23-1.3a2.69,2.69,0,0,0-2.67.26Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M358.59,704.4l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l109.39-63.16a2.67,2.67,0,0,1,2.69-.26l-2.23-1.3a2.68,2.68,0,0,0-2.69.27l-109.4,63.15a8.32,8.32,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M363.45,678.5,457.87,624a2.68,2.68,0,0,1,2.69-.27l-2.27-1.3a2.68,2.68,0,0,0-2.69.27l-94.4,54.51a8.33,8.33,0,0,0-3.78,6.54,2.66,2.66,0,0,0,1.11,2.43l2.23,1.29a2.65,2.65,0,0,1-1.11-2.42,8.31,8.31,0,0,1,3.78-6.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M494.31,583.37a2.67,2.67,0,0,0-2.69.26L361.16,659a8.32,8.32,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l130.46-75.32a2.65,2.65,0,0,1,2.69-.26Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.6000000238418579">
+      <g style="opacity:0.6">
         <path
           d="M444.53,683.91l-83.19,48a8.31,8.31,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l83.19-48a2.66,2.66,0,0,1,2.69-.26l-2.24-1.33a2.65,2.65,0,0,0-2.69.29Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M481.23,644.45,361.32,713.68a8.33,8.33,0,0,0-3.78,6.54,2.66,2.66,0,0,0,1.11,2.43l2.21,1.3a2.66,2.66,0,0,1-1.11-2.43,8.31,8.31,0,0,1,3.78-6.54l119.91-69.23a2.67,2.67,0,0,1,2.69-.26l-2.23-1.3a2.7,2.7,0,0,0-2.67.26Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M358.59,704.4l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l109.39-63.16a2.67,2.67,0,0,1,2.69-.26l-2.23-1.3a2.68,2.68,0,0,0-2.69.27l-109.4,63.15a8.32,8.32,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M363.45,678.5,457.87,624a2.68,2.68,0,0,1,2.69-.27l-2.27-1.3a2.68,2.68,0,0,0-2.69.27l-94.4,54.51a8.33,8.33,0,0,0-3.78,6.54,2.66,2.66,0,0,0,1.11,2.43l2.23,1.29a2.65,2.65,0,0,1-1.11-2.42,8.32,8.32,0,0,1,3.78-6.54Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M494.31,583.37a2.67,2.67,0,0,0-2.69.26L361.16,659a8.33,8.33,0,0,0-3.77,6.54,2.64,2.64,0,0,0,1.1,2.42l2.23,1.3a2.64,2.64,0,0,1-1.1-2.42,8.32,8.32,0,0,1,3.77-6.54l130.46-75.32a2.66,2.66,0,0,1,2.69-.26Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M363.39,660.25l130.46-75.32c2.09-1.2,3.79-.24,3.8,2.17a8.3,8.3,0,0,1-3.77,6.53L363.41,669c-2.09,1.21-3.79.22-3.79-2.16a8.32,8.32,0,0,1,3.77-6.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M363.47,687.2l94.43-54.51a8.34,8.34,0,0,0,3.77-6.54c0-2.38-1.7-3.37-3.79-2.16L363.45,678.5a8.31,8.31,0,0,0-3.78,6.54C359.67,687.43,361.38,688.38,363.47,687.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M472.91,642.28,363.52,705.43c-2.09,1.21-3.79.24-3.79-2.15a8.32,8.32,0,0,1,3.77-6.54l109.39-63.16c2.09-1.21,3.8-.21,3.8,2.17a8.35,8.35,0,0,1-3.78,6.54Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M483.46,645.74,363.55,715a8.31,8.31,0,0,0-3.78,6.54c0,2.38,1.71,3.38,3.8,2.16l119.91-69.23a8.3,8.3,0,0,0,3.77-6.54C487.25,645.51,485.55,644.54,483.46,645.74Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M446.76,685.21l-83.19,48a8.32,8.32,0,0,0-3.77,6.54c0,2.38,1.7,3.37,3.79,2.16l83.19-48a8.29,8.29,0,0,0,3.77-6.53C450.55,685,448.84,684,446.76,685.21Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M363.39,660.25l130.46-75.32c2.09-1.2,3.79-.24,3.8,2.17a8.3,8.3,0,0,1-3.77,6.53L363.41,669c-2.09,1.21-3.79.22-3.79-2.16a8.32,8.32,0,0,1,3.77-6.54Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M363.47,687.2l94.43-54.51a8.34,8.34,0,0,0,3.77-6.54c0-2.38-1.7-3.37-3.79-2.16L363.45,678.5a8.31,8.31,0,0,0-3.78,6.54C359.67,687.43,361.38,688.38,363.47,687.2Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M472.91,642.28,363.52,705.43c-2.09,1.21-3.79.25-3.79-2.15a8.32,8.32,0,0,1,3.77-6.54l109.39-63.16c2.09-1.21,3.8-.21,3.8,2.17a8.35,8.35,0,0,1-3.78,6.54Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M483.46,645.74,363.55,715a8.31,8.31,0,0,0-3.78,6.54c0,2.38,1.71,3.38,3.8,2.16l119.91-69.23a8.3,8.3,0,0,0,3.77-6.54C487.25,645.51,485.55,644.54,483.46,645.74Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M446.76,685.21l-83.19,48a8.32,8.32,0,0,0-3.77,6.54c0,2.38,1.7,3.37,3.79,2.16l83.19-48a8.29,8.29,0,0,0,3.77-6.53C450.55,685,448.84,684,446.76,685.21Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M116.88,599.66l0,14.62q0,13-8.53,13a33.54,33.54,0,0,1,8.43,22.77l0,14.62a15.58,15.58,0,0,0,7,12.21l5.65,3.26c0,6.5-4.27,8.92-9.92,5.66-7.07-4.08-12.68-13.85-12.68-22l0-17.06a38.44,38.44,0,0,0-9.84-26q9.92,0,10-14.63l0-17.05c0-8.13,5.7-11.35,12.77-7.27l24,13.88c0,6.5-4.27,8.92-9.93,5.66L124,595.62C120.09,593.38,116.88,595.18,116.88,599.66Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M134.58,693.79l16-93.33c21.06,16.6,37,47,36.9,72.52-.08,28.71-20.4,40.29-45.39,25.86A69.32,69.32,0,0,1,134.58,693.79Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M117.72,576.82c2.31-1.34,5.51-1.14,9.07.92l24,13.88-7,4.08-24-13.87c-3.56-2.05-6.76-2.26-9.07-.92Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M143.79,595.69l7-4.08c0,3.23-1.07,5.46-2.82,6.48l-7,4.08C142.73,601.14,143.79,598.92,143.79,595.69Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M123.73,660.58l0-14.62a33.46,33.46,0,0,0-7.66-21.84l3.28-1.91q4.46-2.59,4.48-12l0-14.62c0-2.22.8-3.79,2.07-4.52l-7,4.08c-1.27.74-2.06,2.3-2.07,4.52l0,14.6q0,5.81-1.73,9l-6.8,4A33.54,33.54,0,0,1,116.74,650l0,14.62a15.59,15.59,0,0,0,7,12.21l5.65,3.26c0,3.23-1.06,5.46-2.81,6.48l7-4c1.75-1,2.81-3.24,2.82-6.48l-5.65-3.26A15.62,15.62,0,0,1,123.73,660.58Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M104,616.66l-7,4.08a9.4,9.4,0,0,0,4.83-1.17l7-4.08A9.43,9.43,0,0,1,104,616.66Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M150.58,600.46l7-4.08c21.07,16.6,37,47,36.9,72.52,0,14.26-5.08,24.3-13.2,29l-7,4.08c8.12-4.72,13.16-14.75,13.2-29C187.56,647.49,171.64,617.06,150.58,600.46Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M117.72,576.82c2.31-1.34,5.51-1.14,9.07.92l24,13.88-7,4.08-24-13.87c-3.56-2.05-6.76-2.26-9.07-.92Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M143.79,595.69l7-4.08c0,3.23-1.07,5.46-2.82,6.48l-7,4.08C142.73,601.14,143.79,598.92,143.79,595.69Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M123.73,660.58l0-14.62a33.46,33.46,0,0,0-7.66-21.84l3.28-1.91q4.46-2.59,4.48-12l0-14.62c0-2.22.8-3.79,2.07-4.52l-7,4.08c-1.27.74-2.06,2.3-2.07,4.52l0,14.6q0,5.81-1.73,9l-6.8,4A33.54,33.54,0,0,1,116.74,650l0,14.62a15.59,15.59,0,0,0,7,12.21l5.65,3.26c0,3.23-1.06,5.46-2.81,6.48l7-4c1.75-1,2.81-3.24,2.82-6.48l-5.65-3.26A15.62,15.62,0,0,1,123.73,660.58Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M104,616.66l-7,4.08a9.4,9.4,0,0,0,4.83-1.17l7-4.08A9.43,9.43,0,0,1,104,616.66Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M150.58,600.46l7-4.08c21.07,16.6,37,47,36.9,72.52,0,14.26-5.08,24.3-13.2,29l-7,4.08c8.12-4.72,13.16-14.75,13.2-29C187.56,647.49,171.64,617.06,150.58,600.46Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M116.88,599.66l0,14.62q0,13-8.53,13a33.54,33.54,0,0,1,8.43,22.77l0,14.62a15.58,15.58,0,0,0,7,12.21l5.65,3.26c0,6.5-4.27,8.92-9.92,5.66-7.07-4.08-12.68-13.85-12.68-22l0-17.06a38.44,38.44,0,0,0-9.84-26q9.92,0,10-14.63l0-17.05c0-8.13,5.7-11.35,12.77-7.27l24,13.88c0,6.5-4.27,8.92-9.93,5.66L124,595.62C120.09,593.38,116.88,595.18,116.88,599.66Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M134.58,693.79l16-93.33c21.06,16.6,37,47,36.9,72.52-.08,28.71-20.4,40.29-45.39,25.86A69.47,69.47,0,0,1,134.58,693.79Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M116.88,599.66l0,14.62q0,13-8.53,13a33.54,33.54,0,0,1,8.43,22.77l0,14.62a15.58,15.58,0,0,0,7,12.21l5.65,3.26c0,6.5-4.27,8.92-9.92,5.66-7.07-4.08-12.68-13.85-12.68-22l0-17.06a38.44,38.44,0,0,0-9.84-26q9.92,0,10-14.63l0-17.05c0-8.13,5.7-11.35,12.77-7.27l24,13.88c0,6.5-4.27,8.92-9.93,5.66L124,595.62C120.09,593.38,116.88,595.18,116.88,599.66Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M134.58,693.79l16-93.33c21.06,16.6,37,47,36.9,72.52-.08,28.71-20.4,40.29-45.39,25.86A69.32,69.32,0,0,1,134.58,693.79Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M116.88,599.66l0,14.62q0,13-8.53,13a33.54,33.54,0,0,1,8.43,22.77l0,14.62a15.58,15.58,0,0,0,7,12.21l5.65,3.26c0,6.5-4.27,8.92-9.92,5.66-7.07-4.08-12.68-13.85-12.68-22l0-17.06a38.44,38.44,0,0,0-9.84-26q9.92,0,10-14.63l0-17.05c0-8.13,5.7-11.35,12.77-7.27l24,13.88c0,6.5-4.27,8.92-9.93,5.66L124,595.62C120.09,593.38,116.88,595.18,116.88,599.66Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M134.58,693.79l16-93.33c21.06,16.6,37,47,36.9,72.52-.08,28.71-20.4,40.29-45.39,25.86A69.32,69.32,0,0,1,134.58,693.79Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M262.31,499.69c-1.67,1-1.66,2.56,0,3.53l2.45,1.41a9.12,9.12,0,0,1-8.52,0c-3-1.77-3.07-4.59,0-6.35l6.37-3.7q5.46-3.17,3.31-6.88a16.59,16.59,0,0,0,11.87-1.94l6.37-3.7a12,12,0,0,1,11,0l10.39,6a9.12,9.12,0,0,1-8.53,0l-4.28-2.47a6.73,6.73,0,0,0-6.09,0l-5.46,3.17a14.49,14.49,0,0,1-10.33,1.76q1.84,3.18-3,6Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M263,508.23l45-18.3c7.45,6.22,6.43,14.81-3.1,20.33-10.72,6.23-28.17,6.23-39,0A23.14,23.14,0,0,1,263,508.23Z"
-        style="fill:#675cff"
+        v-bind:class="[
+          bgColorClass != null ? bgColorClass : defaultBgColorClass
+        ]"
+        fill="#675cff"
       />
       <path
         d="M262.3,503.2l5.46-3.17q3.51-2,3.52-4.27v-1.64a14.48,14.48,0,0,0,9.83-1.85l5.47-3.18a6.74,6.74,0,0,1,6.09,0l4.28,2.47a9.12,9.12,0,0,0,8.52,0v-3.51a9.11,9.11,0,0,1-8.53,0l-4.28-2.47a6.73,6.73,0,0,0-6.09,0l-5.46,3.17a14.5,14.5,0,0,1-10.33,1.76v3.4a8.37,8.37,0,0,1-3,2.58l-5.46,3.17a2.14,2.14,0,0,0-1.25,1.75v3.42s0,.06,0,.08v-.08A2.11,2.11,0,0,1,262.3,503.2Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M266.5,489.76a4,4,0,0,0-.61-2.06v3.51a4.05,4.05,0,0,1,.6,2.06Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M266,510.27c10.79,6.23,28.24,6.23,39,0,5.32-3.09,8-7.14,8-11.19v3.49c0,4.06-2.68,8.11-8,11.21-10.72,6.24-28.17,6.24-39,0a22.88,22.88,0,0,1-3-2v-2.9a9.19,9.19,0,0,1-6.8-.71,3.89,3.89,0,0,1-2.3-3.2v-3.51c0,1.15.77,2.31,2.3,3.19a9.12,9.12,0,0,0,8.52,0v3.51a7.21,7.21,0,0,1-1.17.53A23.87,23.87,0,0,0,266,510.27Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.699999988079071">
+      <g style="opacity:0.7">
         <path
           d="M262.3,503.2l5.46-3.17q3.51-2,3.52-4.27v-1.64a14.48,14.48,0,0,0,9.83-1.85l5.47-3.18a6.74,6.74,0,0,1,6.09,0l4.28,2.47a9.12,9.12,0,0,0,8.52,0v-3.51a9.11,9.11,0,0,1-8.53,0l-4.28-2.47a6.73,6.73,0,0,0-6.09,0l-5.46,3.17a14.5,14.5,0,0,1-10.33,1.76v3.4a8.37,8.37,0,0,1-3,2.58l-5.46,3.17a2.14,2.14,0,0,0-1.25,1.75v3.42s0,.06,0,.08v-.08A2.11,2.11,0,0,1,262.3,503.2Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M266.5,489.76a4,4,0,0,0-.61-2.06v3.51a4.05,4.05,0,0,1,.6,2.06Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M266,510.27c10.79,6.23,28.24,6.23,39,0,5.32-3.09,8-7.14,8-11.19v3.49c0,4.06-2.68,8.11-8,11.21-10.72,6.24-28.17,6.24-39,0a22.88,22.88,0,0,1-3-2v-2.9a9.19,9.19,0,0,1-6.8-.71,3.89,3.89,0,0,1-2.3-3.2v-3.51c0,1.15.77,2.31,2.3,3.19a9.12,9.12,0,0,0,8.52,0v3.51a7.21,7.21,0,0,1-1.17.53A23.87,23.87,0,0,0,266,510.27Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
       <path
         d="M262.31,499.69c-1.67,1-1.66,2.56,0,3.53l2.45,1.41a9.12,9.12,0,0,1-8.52,0c-3-1.77-3.07-4.59,0-6.35l6.37-3.7q5.46-3.17,3.31-6.88a16.59,16.59,0,0,0,11.87-1.94l6.37-3.7a12,12,0,0,1,11,0l10.39,6a9.12,9.12,0,0,1-8.53,0l-4.28-2.47a6.73,6.73,0,0,0-6.09,0l-5.46,3.17a14.49,14.49,0,0,1-10.33,1.76q1.84,3.18-3,6Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
       <path
         d="M263,508.23l45-18.3c7.45,6.22,6.43,14.81-3.1,20.33-10.72,6.23-28.17,6.23-39,0A23.14,23.14,0,0,1,263,508.23Z"
-        style="fill:#7066ff"
+        v-bind:class="[
+          fgColorClass != null ? fgColorClass : defaultFgColorClass
+        ]"
+        fill="#7066ff"
       />
-      <g style="opacity:0.4000000059604645">
+      <g style="opacity:0.4">
         <path
           d="M262.31,499.69c-1.67,1-1.66,2.56,0,3.53l2.45,1.41a9.12,9.12,0,0,1-8.52,0c-3-1.77-3.07-4.59,0-6.35l6.37-3.7q5.46-3.17,3.31-6.88a16.59,16.59,0,0,0,11.87-1.94l6.37-3.7a12,12,0,0,1,11,0l10.39,6a9.12,9.12,0,0,1-8.53,0l-4.28-2.47a6.73,6.73,0,0,0-6.09,0l-5.46,3.17a14.49,14.49,0,0,1-10.33,1.76q1.84,3.18-3,6Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
         <path
           d="M263,508.23l45-18.3c7.45,6.22,6.43,14.81-3.1,20.33-10.72,6.23-28.17,6.23-39,0A23.14,23.14,0,0,1,263,508.23Z"
-          style="fill:#010014"
+          class="fill-current transition-all ease-out duration-200"
+          v-bind:class="[
+            sdwColorClass != null ? sdwColorClass : defaultSdwColorClass
+          ]"
+          fill="#010014"
         />
       </g>
     </svg>
   </div>
 </template>
+<script>
+export default {
+  props: {
+    fgColorClass: null,
+    bgColorClass: null,
+    sdwColorClass: null
+  },
+  data: function() {
+    return {
+      defaultFgColorClass: "text-dtPrimaryLessSat",
+      defaultBgColorClass: "text-dtPrimary",
+      defaultSdwColorClass: "text-dtBackground"
+    };
+  }
+};
+</script>
 <style>
 .hero-illustration {
-  margin-right: -90%;
-  margin-top: -50%;
+  margin-right: -95%;
+  margin-top: -53%;
+  margin-left: 5%;
 }
 @media only screen and (min-width: 640px) {
   .hero-illustration {
     margin-right: -70%;
     margin-top: -40%;
+    margin-left: 10%;
   }
 }
 @media only screen and (min-width: 1024px) {
   .hero-illustration {
     margin-right: -60%;
+    margin-left: 3%;
     margin-top: -40%;
   }
 }

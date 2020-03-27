@@ -50,39 +50,73 @@
             </div>
           </div>
           <!-- Social Items -->
-          <a target="_blank" href>
+          <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon widthClass="w-5" type="discord" />
-              <p class="ml-3 my-2">{{ $t("social.discord") }}</p>
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="discord"
+              />
+              <p class="ml-3">{{ $t("social.discord") }}</p>
             </div>
           </a>
-          <a target="_blank" href>
+          <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon widthClass="w-5" type="facebook" />
-              <p class="ml-3 my-2">{{ $t("social.facebook") }}</p>
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="facebook"
+              />
+              <p class="ml-3">{{ $t("social.facebook") }}</p>
             </div>
           </a>
-          <a target="_blank" href>
+          <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon widthClass="w-5" type="twitter" />
-              <p class="ml-3 my-2">{{ $t("social.twitter") }}</p>
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="twitter"
+              />
+              <p class="ml-3">{{ $t("social.twitter") }}</p>
             </div>
           </a>
-          <a target="_blank" href>
+          <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon widthClass="w-5" type="medium" />
-              <p class="ml-3 my-2">{{ $t("social.medium") }}</p>
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="medium"
+              />
+              <p class="ml-3">{{ $t("social.medium") }}</p>
             </div>
           </a>
-          <a target="_blank" href>
+          <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
-              <Icon widthClass="w-5" type="github" />
-              <p class="ml-3 my-2">{{ $t("social.github") }}</p>
+              <Icon
+                :colorClass="
+                  $store.state.theme.dt ? 'text-dtText' : 'text-ltText'
+                "
+                class="w-5 h-5"
+                type="github"
+              />
+              <p class="ml-3">{{ $t("social.github") }}</p>
             </div>
           </a>
         </div>
+        <!-- Logo -->
         <div class="w-full lg:w-auto self-center flex flex-col items-center my-8">
-          <Logo class="my-2" type="monoLight" />
+          <Logo
+            :type="$store.state.theme.dt ? 'monoLight' : 'monoDark'"
+            class="w-32 md:w-40 h-auto my-2"
+          />
           <p class="my-2">{{ $t("footer.credits").replace("%1", currentYear) }}</p>
         </div>
       </div>
@@ -104,4 +138,11 @@ export default {
   }
 };
 </script>
-<style></style>
+<style>
+.dt-footer-shadow {
+  box-shadow: 0 -2px 0 0 rgba(103, 92, 255, 1);
+}
+.dt-footer-bg {
+  background-color: rgba(103, 92, 255, 0.04);
+}
+</style>
