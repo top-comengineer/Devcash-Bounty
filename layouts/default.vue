@@ -18,6 +18,9 @@
               'bg-ltBackground': !$store.state.theme.dt && showNavBg,
               'shadow-lg': showNavBg
             }"
+            :style="{
+              'margin-top': navBarMarginTop
+            }"
           />
         </div>
       </div>
@@ -44,7 +47,8 @@ export default {
   data: function() {
     return {
       scrollPos: 0,
-      showNavBg: false
+      showNavBg: false,
+      navBarMarginTop: '0rem'
     };
   },
   methods: {
@@ -54,12 +58,12 @@ export default {
         window.pageYOffset < 50 ||
         document.body.getBoundingClientRect().top > this.scrollPos + 10
       ) {
-        defaultNavbar.style.marginTop = "0rem";
+        this.navBarMarginTop = "0rem";
       } else if (
         window.pageYOffset >= 100 &&
         document.body.getBoundingClientRect().top < this.scrollPos - 10
       ) {
-        defaultNavbar.style.marginTop = "-6rem";
+        this.navBarMarginTop = "-6rem";
       }
       // Saves the new position for iteration.
       this.scrollPos = document.body.getBoundingClientRect().top;
