@@ -213,11 +213,11 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
-      class="fill-current"
-      v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
     >
       <title>dark</title>
       <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M12.7,4A12.26,12.26,0,1,0,28,19.3,11.14,11.14,0,0,1,12.7,4Z"
         fill="#f2f1ff"
       />
