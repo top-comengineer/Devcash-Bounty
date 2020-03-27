@@ -6,16 +6,10 @@
         <div class="w-full md:w-4/5 lg:w-3/5 items-center relative px-4">
           <!-- Background Illustration Compass -->
           <IllustrationCompass
-            :sdwColorClass="
-              $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
-            "
             class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 right-0 -mr-16 -mt-20 md:-mr-40 md:-mt-20 lg:-mr-36 lg:-mt-20"
           />
           <!-- Background Illustration Search -->
           <IllustrationSearch
-            :sdwColorClass="
-              $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
-            "
             class="w-64 md:w-64 lg:w-72 h-auto absolute left-0 bottom-0 -ml-24 -mb-24 md:-ml-32 md:-mb-24 lg:-ml-32 lg:-mb-32"
           />
           <!-- Start Exploring Card -->

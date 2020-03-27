@@ -4,12 +4,7 @@
   >
     <div class="w-full flex flex-col items-center">
       <!-- Illustration -->
-      <IllustrationDMark
-        :sdwColorClass="
-          $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
-        "
-        class="w-64"
-      />
+      <IllustrationDMark class="w-64" />
       <!-- Header -->
       <div class="w-full flex flex-row justify-center items-center mt-6">
         <!-- Line Left -->

@@ -22,14 +22,7 @@
           <!-- Token Supply -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <IllustrationTokenSupply
-                :sdwColorClass="
-                  $store.state.theme.dt
-                    ? 'text-dtBackground'
-                    : 'text-ltBackground'
-                "
-                class="w-full"
-              />
+              <IllustrationTokenSupply class="w-full" />
             </div>
             <p class="text-base text-center">
               {{ $t("tokenDetailsSection.tokenSupplyHeader") }}
@@ -43,14 +36,7 @@
           <!-- Token Type -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <IllustrationTokenType
-                :sdwColorClass="
-                  $store.state.theme.dt
-                    ? 'text-dtBackground'
-                    : 'text-ltBackground'
-                "
-                class="w-full"
-              />
+              <IllustrationTokenType class="w-full" />
             </div>
             <p class="text-base text-center">
               {{ $t("tokenDetailsSection.tokenTypeHeader") }}
@@ -64,14 +50,7 @@
           <!-- Token Allocation -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <IllustrationTokenAllocation
-                :sdwColorClass="
-                  $store.state.theme.dt
-                    ? 'text-dtBackground'
-                    : 'text-ltBackground'
-                "
-                class="w-full"
-              />
+              <IllustrationTokenAllocation class="w-full" />
             </div>
             <p class="text-base text-center">
               {{ $t("tokenDetailsSection.tokenAllocationHeader") }}

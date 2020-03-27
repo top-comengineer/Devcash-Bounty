@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6 absolute"
+    class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6"
   >
     <Logo
       class="w-32 md:w-40 h-auto"
@@ -58,8 +58,16 @@ export default {
     toggleThemes() {
       if (this.$store.state.theme.dt) {
         document.querySelector("body").style.backgroundColor = "#F8F7FC";
+        if (defaultNavbar.classList.contains("bg-dtBackground")) {
+          defaultNavbar.classList.remove("bg-dtBackground");
+          defaultNavbar.classList.add("bg-ltBackground");
+        }
       } else {
         document.querySelector("body").style.backgroundColor = "#010014";
+        if (defaultNavbar.classList.contains("bg-ltBackground")) {
+          defaultNavbar.classList.remove("bg-ltBackground");
+          defaultNavbar.classList.add("bg-dtBackground");
+        }
       }
       this.$store.commit("theme/change");
     }

@@ -4,11 +4,7 @@
   >
     <!-- Illustration -->
     <div class="w-full lg:w-1/2 flex flex-col order-first lg:order-last">
-      <IllustrationHero
-        :sdwColorClass="
-          $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
-        "
-      />
+      <IllustrationHero />
     </div>
     <!-- Header, Paragraph and CTA Button -->
     <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col py-4">

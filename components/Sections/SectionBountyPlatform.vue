@@ -32,11 +32,6 @@
           >
             <!-- Background Illustration Brackets -->
             <IllustrationBrackets
-              :sdwColorClass="
-                $store.state.theme.dt
-                  ? 'text-dtBackground'
-                  : 'text-ltBackground'
-              "
               class="hidden md:block md:w-64 lg:w-72 h-auto absolute left-0 bottom-0 md:-ml-24 lg:-ml-32 md:-mb-20 lg:-mb-20"
             />
             <!-- Post Bounties Card -->
@@ -57,14 +52,7 @@
                 {{ $t("bountyPlatformSection.postBountyParagraph") }}
               </p>
               <!-- Post Bounties Illustration -->
-              <IllustrationPostBounty
-                :sdwColorClass="
-                  $store.state.theme.dt
-                    ? 'text-dtBackground'
-                    : 'text-ltBackground'
-                "
-                class="w-3/4 h-auto mt-4"
-              />
+              <IllustrationPostBounty class="w-3/4 h-auto mt-4" />
               <!-- Post Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <button
@@ -81,11 +69,6 @@
           >
             <!-- Background Illustration Code -->
             <IllustrationCode
-              :sdwColorClass="
-                $store.state.theme.dt
-                  ? 'text-dtBackground'
-                  : 'text-ltBackground'
-              "
               class="hidden md:block md:w-56 lg:w-64 h-auto absolute top-0 right-0 md:-mr-32 lg:-mr-40 md:-mt-24 lg:-mt-36"
             />
             <!-- Hunt Bounties Card -->
@@ -106,14 +89,7 @@
                 {{ $t("bountyPlatformSection.huntBountyParagraph") }}
               </p>
               <!-- Hunt Bounties Illustration -->
-              <IllustrationHuntBounty
-                :sdwColorClass="
-                  $store.state.theme.dt
-                    ? 'text-dtBackground'
-                    : 'text-ltBackground'
-                "
-                class="w-3/4 h-auto mt-4"
-              />
+              <IllustrationHuntBounty class="w-3/4 h-auto mt-4" />
               <!-- Hunt Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <button

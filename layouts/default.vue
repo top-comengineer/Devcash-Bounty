@@ -7,20 +7,88 @@
         : 'bg-ltBackground text-ltText'
     ]"
   >
-    <div class="d-container relative">
-      <Header />
+    <div class="w-full flex flex-row justify-center relative">
+      <div class="fixed w-full z-50">
+        <div class="d-container">
+          <Navbar
+            id="defaultNavbar"
+            class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
+          />
+        </div>
+      </div>
     </div>
     <nuxt />
     <Footer />
   </div>
 </template>
 <script>
-import Header from "~/components/Header.vue";
+import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
 export default {
   components: {
-    Header,
+    Navbar,
     Footer
+  },
+  data: function() {
+    return {
+      scrollPos: 0
+    };
+  },
+  methods: {
+    navbarScroll() {
+      // Detects new state and compares it with the new one
+      if (
+        window.pageYOffset < 50 ||
+        document.body.getBoundingClientRect().top > this.scrollPos + 10
+      ) {
+        defaultNavbar.style.marginTop = "0rem";
+      } else if (
+        window.pageYOffset >= 100 &&
+        document.body.getBoundingClientRect().top < this.scrollPos - 10
+      ) {
+        defaultNavbar.style.marginTop = "-6rem";
+      }
+      // Saves the new position for iteration.
+      this.scrollPos = document.body.getBoundingClientRect().top;
+
+      // navbar shadow
+      if (this.$store.state.theme.dt) {
+        if (
+          window.pageYOffset >= 50 &&
+          !defaultNavbar.classList.contains("bg-dtBackground")
+        ) {
+          defaultNavbar.classList.add("bg-dtBackground");
+          defaultNavbar.classList.add("shadow-lg");
+        } else if (
+          window.pageYOffset < 50 &&
+          defaultNavbar.classList.contains("bg-dtBackground")
+        ) {
+          defaultNavbar.classList.remove("bg-dtBackground");
+          defaultNavbar.classList.remove("shadow-lg");
+        }
+      } else {
+        if (
+          window.pageYOffset >= 50 &&
+          !defaultNavbar.classList.contains("bg-ltBackground")
+        ) {
+          defaultNavbar.classList.add("bg-ltBackground");
+          defaultNavbar.classList.add("shadow-lg");
+        } else if (
+          window.pageYOffset < 50 &&
+          defaultNavbar.classList.contains("bg-ltBackground")
+        ) {
+          defaultNavbar.classList.remove("bg-ltBackground");
+          defaultNavbar.classList.remove("shadow-lg");
+        }
+      }
+    }
+  },
+  mounted() {
+    // Adding scroll event
+    window.addEventListener("scroll", this.navbarScroll);
+  },
+  destroyed() {
+    window.removeEventListener("scroll", this.navbarScroll);
   }
 };
 </script>
