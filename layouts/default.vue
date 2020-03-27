@@ -13,6 +13,10 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
+            :class="{
+              'bg-dtBackground': $store.state.theme.dt && showNavBg,
+              'bg-ltBackground': !$store.state.theme.dt && showNavBg
+            }"
           />
         </div>
       </div>
@@ -31,7 +35,8 @@ export default {
   },
   data: function() {
     return {
-      scrollPos: 0
+      scrollPos: 0,
+      showNavBg: false
     };
   },
   methods: {
@@ -52,34 +57,18 @@ export default {
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (this.$store.state.theme.dt) {
-        if (
-          window.pageYOffset >= 50 &&
-          !defaultNavbar.classList.contains("bg-dtBackground")
-        ) {
-          defaultNavbar.classList.add("bg-dtBackground");
-          defaultNavbar.classList.add("shadow-lg");
-        } else if (
-          window.pageYOffset < 50 &&
-          defaultNavbar.classList.contains("bg-dtBackground")
-        ) {
-          defaultNavbar.classList.remove("bg-dtBackground");
-          defaultNavbar.classList.remove("shadow-lg");
-        }
-      } else {
-        if (
-          window.pageYOffset >= 50 &&
-          !defaultNavbar.classList.contains("bg-ltBackground")
-        ) {
-          defaultNavbar.classList.add("bg-ltBackground");
-          defaultNavbar.classList.add("shadow-lg");
-        } else if (
-          window.pageYOffset < 50 &&
-          defaultNavbar.classList.contains("bg-ltBackground")
-        ) {
-          defaultNavbar.classList.remove("bg-ltBackground");
-          defaultNavbar.classList.remove("shadow-lg");
-        }
+      if (
+        window.pageYOffset >= 50 &&
+        !this.showNavBg
+      ) {
+        this.showNavBg = true
+        defaultNavbar.classList.add("shadow-lg");
+      } else if (
+        window.pageYOffset < 50 &&
+        this.showNavBg
+      ) {
+        this.showNavBg = false
+        defaultNavbar.classList.remove("shadow-lg");
       }
     }
   },
