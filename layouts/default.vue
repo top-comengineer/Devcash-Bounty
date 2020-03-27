@@ -13,14 +13,11 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
-            :class="{
-              'bg-dtBackground': $store.state.theme.dt && showNavBg,
-              'bg-ltBackground': !$store.state.theme.dt && showNavBg,
-              'shadow-lg': showNavBg
-            }"
-            :style="{
-              'margin-top': navBarMarginTop
-            }"
+            v-bind:class="[ hideNavbar ? '-mt-24':'mt-0', {
+              'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
+              'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
+              'shadow-lg': showNavbarShadow,
+            }]"
           />
         </div>
       </div>
@@ -40,18 +37,20 @@ export default {
   head() {
     return {
       bodyAttrs: {
-        style: `background-color:${this.$store.state.theme.dt ? '#010014' :'#F8F7FC'}`
+        class: this.$store.state.theme.dt
+          ? "bg-dtBackground"
+          : "bg-ltBackground"
       },
       htmlAttrs: {
         lang: this.$store.state.i18n.currentLocale
       }
-    }
+    };
   },
   data: function() {
     return {
       scrollPos: 0,
-      showNavBg: false,
-      navBarMarginTop: '0rem'
+      showNavbarShadow: false,
+      hideNavbar: false
     };
   },
   methods: {
@@ -61,21 +60,21 @@ export default {
         window.pageYOffset < 50 ||
         document.body.getBoundingClientRect().top > this.scrollPos + 10
       ) {
-        this.navBarMarginTop = "0rem";
+        this.hideNavbar = false;
       } else if (
         window.pageYOffset >= 100 &&
         document.body.getBoundingClientRect().top < this.scrollPos - 10
       ) {
-        this.navBarMarginTop = "-6rem";
+        this.hideNavbar = true;
       }
       // Saves the new position for iteration.
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (window.pageYOffset >= 50 && !this.showNavBg) {
-        this.showNavBg = true
-      } else if (window.pageYOffset < 50 && this.showNavBg) {
-        this.showNavBg = false
+      if (window.pageYOffset >= 50 && !this.showNavbarShadow) {
+        this.showNavbarShadow = true;
+      } else if (window.pageYOffset < 50 && this.showNavbarShadow) {
+        this.showNavbarShadow = false;
       }
     }
   },
