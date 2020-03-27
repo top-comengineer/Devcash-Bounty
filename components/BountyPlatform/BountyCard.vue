@@ -24,7 +24,7 @@
         />
         <h6 class="text-right text-sm">
           <span class="font-extrabold">{{remainingCount}}</span>
-          <span class="opacity-75">bounties left</span>
+          <span class="opacity-75">{{$t("bountyPlatform.bountyCard.bountiesLeft")}}</span>
         </h6>
       </div>
       <!-- Remaining Time -->
@@ -40,7 +40,7 @@
         />
         <h6 class="text-right text-sm">
           <span class="font-extrabold">{{remainingTime}}</span>
-          <span class="opacity-75">remaining</span>
+          <span class="opacity-75">{{$t("bountyPlatform.bountyCard.remaining")}}</span>
         </h6>
       </div>
     </div>

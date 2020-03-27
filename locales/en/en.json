@@ -34,6 +34,10 @@
         "statusExpired": "Expired"
       }
     },
+    "bountyCard": {
+      "remaining": "remaining",
+      "bountiesLeft": "bounties left"
+    },
     "create": {
       "header": "Create"
     }
