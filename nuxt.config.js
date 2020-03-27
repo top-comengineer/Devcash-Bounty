@@ -32,9 +32,9 @@ export default {
   plugins: [
     { src: '~/plugins/global-mixin.js' },
     { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
-    { src: '~/plugins/local-storage.js', ssr: false },
-    { src: '~/plugins/encrypted-storage.js', ssr: false },
-    { src: '~/plugins/devcash/devcashBounty.js', mode: 'client', ssr: false }
+    { src: '~/plugins/local-storage.client.js' },
+    { src: '~/plugins/encrypted-storage.client.js' },
+    { src: '~/plugins/devcash/devcashBounty.client.js' }
   ],
   /*
    ** Nuxt.js dev-modules

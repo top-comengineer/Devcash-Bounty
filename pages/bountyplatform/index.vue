@@ -99,7 +99,7 @@
 
 <script>
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
-import { DevcashBounty } from "~/plugins/devcash/devcashBounty";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 export default {
   components: {
     BountyCard
