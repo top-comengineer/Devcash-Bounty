@@ -74,5 +74,9 @@
     "header": "Start Exploring",
     "paragraph": "Start exploring Devcash bounty platform and join our global community of developers. Earn DEV using your skills or crowdsource developer talent.",
     "ctaButton": "Explore Bounties"
+  },
+  "theme": {
+    "dark": "Dark",
+    "light": "Light"
   }
 }

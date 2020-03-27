@@ -9,18 +9,59 @@
       />
     </button>
     <transition name="dropdownTransition">
-      <div v-if="isOpen" class="md:hidden absolute right-0 dropdown mt-2">
+      <div
+        v-bind:class="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
+        v-if="isOpen"
+        class="md:hidden absolute right-0 dropdown mt-4 text-xl font-bold"
+      >
         <div
           v-bind:class="[$store.state.theme.dt?'bg-dtText': 'bg-ltText']"
-          class="w-full flex flex-col items-center rounded-tl-xl3 rounded-br-xl3 rounded-bl-lg rounded-tr-lg px-4 py-8"
+          class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-xl3 rounded-br-xl3 rounded-bl-lg rounded-tr-lg px-4 py-4"
         >
-          <button @click="toggleThemes" class="rounded-full">
+          <!-- Home -->
+          <nuxt-link
+            to="/"
+            class="w-full flex flex-row py-2 my-1 justify-center"
+          >{{ $t("navigation.home") }}</nuxt-link>
+          <!-- Bounty Platform -->
+          <nuxt-link to="bountyplatform" class="w-full flex flex-row py-2 my-1 justify-center">
+            {{
+            $t("navigation.bountyPlatform")
+            }}
+          </nuxt-link>
+          <!-- DEX -->
+          <nuxt-link
+            to="bountyplatform"
+            class="w-full flex flex-row py-2 my-1 justify-center"
+          >{{ $t("navigation.dex") }}</nuxt-link>
+          <!-- Language -->
+          <nuxt-link
+            to="bountyplatform"
+            class="w-full flex flex-row py-2 my-1 justify-center"
+          >{{ $t("navigation.english") }}</nuxt-link>
+          <!-- Theme Switch -->
+          <button
+            @click="toggleThemes"
+            class="w-full flex flex-row py-2 my-1 justify-center items-center"
+          >
             <Icon
-              class="w-8 h-8"
+              class="w-6 h-6 mr-1"
               :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
               :type="$store.state.theme.dt ? 'dark' : 'light'"
             />
+            <div
+              class="text-xl font-bold"
+            >{{ $store.state.theme.dt ? $t("theme.dark") :$t("theme.light") }}</div>
           </button>
+          <!-- Sign In Button -->
+          <button
+            v-bind:class="[
+          $store.state.theme.dt
+            ? 'bg-dtBackground text-dtText'
+            : ' bg-ltBackground text-ltText'
+        ]"
+            class="w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
+          >{{ $t("navigation.signIn") }}</button>
         </div>
       </div>
     </transition>
@@ -62,19 +103,19 @@ export default {
   width: calc(100vw - 2rem);
 }
 .dropdownTransition-enter-active {
-  transition: all 0.2s ease-out;
+  transition: all 0.25s ease-out;
   transform-origin: right top;
 }
 .dropdownTransition-leave-active {
-  transition: all 0.2s ease-out;
+  transition: all 0.25s ease-out;
   transform-origin: right top;
 }
 .dropdownTransition-enter {
   opacity: 0;
-  transform: scale(0.5) translateY(-2rem);
+  transform: scaleX(0.25) scaleY(0.5) translateY(-2rem);
 }
 .dropdownTransition-leave-to {
   opacity: 0;
-  transform: scale(0.5) translateY(-2rem);
+  transform: scaleX(0.25) scaleY(0.5) translateY(-2rem);
 }
 </style>
