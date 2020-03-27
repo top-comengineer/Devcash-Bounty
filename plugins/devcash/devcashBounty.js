@@ -6,7 +6,6 @@ export class DevcashBounty {
         if (typeof async_param === 'undefined') {
             throw new Error('Cannot be called directly');
         }
-        this.ethereum = async_param.ethereum
         this.provider = async_param.provider
         this.accounts = async_param.accounts
         this.signer = async_param.signer,
@@ -22,32 +21,34 @@ export class DevcashBounty {
      * @returns DevcashBounty instance
      */
     static async init() {
-        let usePublicProvider = false
+        let signer
+        let provider
+        let accounts
+        let tokenContract
+        let uBCContract
+
+        // window.ethereum is provided by metamask
         if (window.ethereum) {
-            let ethereum = window.ethereum
-            ethereum.enable()
-            let provider = new ethers.providers.Web3Provider(web3.currentProvider);
+            // Use web3 provider with signer
+            window.ethereum.enable()
+            provider = new ethers.providers.Web3Provider(web3.currentProvider);
+            accounts = await provider.listAccounts()
+            signer = provider.getSigner(accounts[0])
+            tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer)
+            uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
         } else {
-            usePublicProvider = true
-            let provider = new ethers.getDefaultProvider();
-            throw new Error('Not supported')
+            // Use default/etherscan provider
+            provider = new ethers.getDefaultProvider();
+            tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider)
+            uBCContract = new ethers.Contract(uBCAddress,uBCABI,provider)
         }
-
-        let accounts = await provider.listAccounts()
-        let signer = provider.getSigner(accounts[0])
-        console.log(signer)
-
-        let tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer)
 
         let tokenName = await tokenContract.name()
         let tokenSymbol = await tokenContract.symbol()
         let tokenDecimals = await tokenContract.decimals()
 
-        let uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
-
         return new DevcashBounty(
             {
-                ethereum: ethereum,
                 provider: provider,
                 accounts: accounts,
                 signer: signer,
