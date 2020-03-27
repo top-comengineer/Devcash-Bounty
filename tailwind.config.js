@@ -30,6 +30,10 @@ module.exports = {
       ltDanger: "#990040",
       ltPending: "#CD8900"
     },
+    opacity: {
+      "5": "0.05",
+      "10": "0.1"
+    },
     borderRadius: {
       none: "0",
       sm: "0.125rem",
