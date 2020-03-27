@@ -17,7 +17,8 @@
     "postABounty": "Post a Bounty",
     "visitDashboard": "Visit Dashboard",
     "explore": {
-      "header": "Explore Bounties",
+      "header": "Explore",
+      "cardHeader": "Explore Bounties",
       "paragraph": "Devcash Bounty Platform is a decentralized bounty platform where users can post or hunt bounties.  You can explore the bounties below.",
       "sidebar": {
         "searchHeader": "Search",

@@ -260,6 +260,44 @@
         d="M12,24v6.5a.5.5,0,0,0,.8.4L16,28.5l3.2,2.4a.5.5,0,0,0,.8-.4V24l-4-3Z"
       />
     </svg>
+    <!-- Explore -->
+    <svg
+      v-else-if="type == 'explore'"
+      id="d5b9e97d-8862-4de7-8f2a-88fee8f14a08"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <title>explore</title>
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
+      />
+    </svg>
+    <!-- Create -->
+    <svg
+      v-else-if="type == 'create'"
+      id="17d1729a-bcf0-448e-b2c5-ad11fe03d3c4"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <title>create</title>
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M14.81,12A5.63,5.63,0,1,0,9.19,6.38,5.63,5.63,0,0,0,14.81,12ZM14,3.84a.84.84,0,1,1,1.69,0V5.53h1.69a.84.84,0,0,1,0,1.69H15.66V8.91a.84.84,0,1,1-1.69,0V7.22H12.28a.84.84,0,0,1,0-1.69H14Z"
+      />
+      <path
+        class="fill-current"
+        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M14.81,13.5a7.09,7.09,0,0,0,3.75-1.07V21a1.5,1.5,0,0,1-1.5,1.5h-9A4.5,4.5,0,0,1,3.56,18V4.5A1.5,1.5,0,0,1,5.06,3H8.54a7.13,7.13,0,0,0,6.28,10.5Z"
+      />
+    </svg>
   </div>
 </template>
 <script>
