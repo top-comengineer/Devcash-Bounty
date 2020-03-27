@@ -34,7 +34,7 @@ export default {
     { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
     { src: '~/plugins/local-storage.js', ssr: false },
     { src: '~/plugins/encrypted-storage.js', ssr: false },
-    { src: '~/plugins/devcash/devcashBounty.js', ssr: false }
+    { src: '~/plugins/devcash/devcashBounty.js', mode: 'client', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules

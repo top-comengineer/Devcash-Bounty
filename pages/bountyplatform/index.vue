@@ -8,9 +8,16 @@
 
 <script>
 import SectionStartExploring from "~/components/Home/Sections/SectionStartExploring.vue";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty";
 export default {
   components: {
     SectionStartExploring
+  },
+  mounted: function() {
+    /*
+    DevcashBounty.init().then((result) => {
+
+    });*/
   }
 };
 </script>
