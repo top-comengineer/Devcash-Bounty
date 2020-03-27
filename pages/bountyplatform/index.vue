@@ -1,17 +1,108 @@
 <template>
   <div>
-    <div class="w-full flex flex-row justify-center items-center py-72">
-      <h1 class="font-extrabold text-3xl text-center">Bounty Platform</h1>
+    <div class="d-container">
+      <div class="w-full flex flex-col justify-center items-center py-24">
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+        <BountyCard
+          class="my-2"
+          bountyName="Devcash Logo"
+          creatorAddress="0x60ca...5411"
+          devAmount="1,250,000"
+          ethAmount="2.778"
+          usdAmount="750"
+          remainingCount="0/1"
+          remainingTime="3 months"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import SectionStartExploring from "~/components/Home/Sections/SectionStartExploring.vue";
+import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty";
 export default {
   components: {
-    SectionStartExploring
+    BountyCard
   },
   mounted: function() {
     /*
