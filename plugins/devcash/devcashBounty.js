@@ -24,7 +24,6 @@ export class DevcashBounty {
         let signer
         let provider
         let accounts
-        let signer
         let tokenContract
         let uBCContract
 
