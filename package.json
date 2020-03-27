@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
+    "jazzicon": "^1.5.0",
     "nuxt": "^2.0.0",
     "secure-ls": "^1.2.6",
     "vuex-persistedstate": "^3.0.0"
