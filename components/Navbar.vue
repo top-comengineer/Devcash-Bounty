@@ -1,10 +1,7 @@
 <template>
   <div class="w-full flex flex-row justify-between items-center px-4 py-4 md:px-8 md:py-6">
     <nuxt-link to="/">
-      <Logo
-        class="mb-2 md:mb-0 w-32 md:w-40 h-auto"
-        :type="$store.state.theme.dt ? 'light' : 'dark'"
-      />
+      <Logo class="md:mb-0 w-32 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
     <!-- Menu icon shown on small screens -->
     <MobileDropdown />

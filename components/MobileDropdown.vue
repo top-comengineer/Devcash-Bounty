@@ -3,7 +3,7 @@
     <button @click="isOpen=!isOpen">
       <Icon
         v-bind:class="[isOpen?'-rotate-90':'rotate-0'] "
-        class="md:hidden w-8 h-8 mb-1 transform transition-all ease-out duration-200"
+        class="md:hidden w-8 h-8 transform transition-all ease-out duration-200"
         type="menu"
         :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
       />
