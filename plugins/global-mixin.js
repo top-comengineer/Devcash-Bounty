@@ -15,7 +15,7 @@ Vue.mixin({
       setLocale: 'i18n/setLocale'
     }),
     getLocalizedRoute (route, locale) {
-      locale = locale || this.$store.i18n.locale
+      locale = locale || this.$store.state.i18n.currentLocale
       // If route parameters is a string, consider it as the route's name
       if (typeof route === 'string') {
         route = { name: route }

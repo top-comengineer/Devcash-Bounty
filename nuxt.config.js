@@ -31,7 +31,9 @@ export default {
    */
   plugins: [
     { src: '~/plugins/global-mixin.js' },
-    { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' }
+    { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
+    { src: '~/plugins/local-storage.js', ssr: false },
+    { src: '~/plugins/encrypted-storage.js', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -45,10 +47,7 @@ export default {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios",
-    ['nuxt-vuex-localstorage', {
-      localStorage: ['theme']
-    }]    
+    "@nuxtjs/axios"
   ],
   /*
    ** Axios module configuration

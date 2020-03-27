@@ -11,14 +11,15 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.3.6",
     "nuxt": "^2.0.0",
-    "@nuxtjs/axios": "^5.3.6"
+    "secure-ls": "^1.2.6",
+    "vuex-persistedstate": "^3.0.0"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^1.0.0",
     "ethers": "^4.0.45",
     "node-sass": "^4.13.1",
-    "nuxt-vuex-localstorage": "^1.2.6",
     "sass-loader": "^8.0.2",
     "vue-i18n": "^8.15.6"
   }
