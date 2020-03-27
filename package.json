@@ -18,7 +18,6 @@
     "@nuxtjs/tailwindcss": "^1.0.0",
     "ethers": "^4.0.45",
     "node-sass": "^4.13.1",
-    "nuxt-vuex-localstorage": "^1.2.6",
     "sass-loader": "^8.0.2",
     "vue-i18n": "^8.15.6"
   }
