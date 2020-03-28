@@ -59,7 +59,7 @@
                 class="w-5 h-5"
                 type="discord"
               />
-              <p class="ml-3">{{ $t("social.discord") }}</p>
+              <p class="ml-2 md:ml-3">{{ $t("social.discord") }}</p>
             </div>
           </a>
           <a class="py-2 px-3 md:px-0" target="_blank" href>
@@ -71,7 +71,7 @@
                 class="w-5 h-5"
                 type="facebook"
               />
-              <p class="ml-3">{{ $t("social.facebook") }}</p>
+              <p class="ml-2 md:ml-3">{{ $t("social.facebook") }}</p>
             </div>
           </a>
           <a class="py-2 px-3 md:px-0" target="_blank" href>
@@ -83,7 +83,7 @@
                 class="w-5 h-5"
                 type="twitter"
               />
-              <p class="ml-3">{{ $t("social.twitter") }}</p>
+              <p class="ml-2 md:ml-3">{{ $t("social.twitter") }}</p>
             </div>
           </a>
           <a class="py-2 px-3 md:px-0" target="_blank" href>
@@ -95,7 +95,7 @@
                 class="w-5 h-5"
                 type="medium"
               />
-              <p class="ml-3">{{ $t("social.medium") }}</p>
+              <p class="ml-2 md:ml-3">{{ $t("social.medium") }}</p>
             </div>
           </a>
           <a class="py-2 px-3 md:px-0" target="_blank" href>
@@ -107,7 +107,7 @@
                 class="w-5 h-5"
                 type="github"
               />
-              <p class="ml-3">{{ $t("social.github") }}</p>
+              <p class="ml-2 md:ml-3">{{ $t("social.github") }}</p>
             </div>
           </a>
         </div>

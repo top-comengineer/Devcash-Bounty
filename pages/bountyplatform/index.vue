@@ -27,7 +27,7 @@ export default {
     return {
       fakeData: [
         {
-          bountyName: "Devcash DEX Frontend",
+          bountyName: "Devcash DEX Frontend Test Test Test",
           creatorAddress: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           devAmount: "12,500,000",
           ethAmount: "27.78",

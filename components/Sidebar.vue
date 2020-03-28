@@ -13,7 +13,7 @@
         class="bg-dtPrimary py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
       >
         <Icon type="explore" class="w-7 h-7 lg:mr-1 text-dtText" />
-        <h3 class="hidden lg:block">{{ $t("bountyPlatform.explore.header") }}</h3>
+        <h3 class="hidden lg:block transition-0">{{ $t("bountyPlatform.explore.header") }}</h3>
       </button>
       <button
         class="text-2xl font-bold py-3 lg:px-8 xl:px-10 flex flex-row justify-center lg:justify-start items-center"
@@ -23,7 +23,7 @@
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
           class="w-7 h-7 lg:mr-1"
         />
-        <h3 class="hidden lg:block">{{ $t("bountyPlatform.post.header") }}</h3>
+        <h3 class="hidden lg:block transition-0">{{ $t("bountyPlatform.post.header") }}</h3>
       </button>
     </div>
   </div>
