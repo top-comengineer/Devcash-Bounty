@@ -1,5 +1,5 @@
 <template>
-  <div class="overflow-x-hidden" id="ibo">
+  <div class="overflow-x-hidden" id="IBO">
     <div class="d-container relative z-10">
       <div
         class="w-full flex flex-row flex-wrap justify-center lg:justify-around items-center pt-16 pb-16 md:pt-24 md:pb-24 lg:pt-32 lg:pb-48"

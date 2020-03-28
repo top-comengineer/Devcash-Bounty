@@ -1,5 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
+    <GreetingCard class="my-1 md:my-2" />
     <BountyCard
       v-for="(item, i) in fakeData"
       :key="i"
@@ -17,11 +18,13 @@
 
 <script>
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
+import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 export default {
   layout: "bountyPlatform",
   components: {
-    BountyCard
+    BountyCard,
+    GreetingCard
   },
   data() {
     return {
