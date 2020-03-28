@@ -69,6 +69,9 @@ module.exports = {
       transitionDuration: {
         "0": "0ms"
       },
+      height: {
+        px2: "2px"
+      },
       width: {
         "36": "9rem",
         "1/7": "14.2857143%",

@@ -7,7 +7,7 @@
           <div class="flex flex-row my-3">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("navigation.header") }}</h4>
-              <div class="h-2px bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
+              <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
             </div>
           </div>
           <!-- Navigation Items -->
@@ -21,7 +21,7 @@
           <div class="flex flex-row my-3">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("bountyPlatform.header") }}</h4>
-              <div class="h-2px bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
+              <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
             </div>
           </div>
           <!-- Bounty Platform Items -->
@@ -34,7 +34,7 @@
           <div class="flex flex-row my-3">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("dex.header") }}</h4>
-              <div class="h-2px bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
+              <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
             </div>
           </div>
           <!-- DEX Items -->
@@ -46,7 +46,7 @@
           <div class="flex flex-row my-3">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("social.header") }}</h4>
-              <div class="h-2px bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
+              <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
             </div>
           </div>
           <!-- Social Items -->

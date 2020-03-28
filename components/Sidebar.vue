@@ -9,22 +9,21 @@
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-col py-8">
-      <button
-        class="bg-dtPrimary py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
+      <nuxt-link :to="getLocalizedRoute('bountyplatform')">
+        <div
+          class="bg-dtPrimary sidebar-tab py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
+        >
+          <Icon type="explore" class="w-7 h-7 text-dtText" />
+          <h3 class="hidden lg:block transition-0 ml-2">{{ $t("bountyPlatform.explore.header") }}</h3>
+        </div>
+      </nuxt-link>
+      <nuxt-link
+        :to="getLocalizedRoute('bountyplatform/post')"
+        class="tab-active py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
       >
-        <Icon type="explore" class="w-7 h-7 lg:mr-1 text-dtText" />
-        <h3 class="hidden lg:block transition-0">{{ $t("bountyPlatform.explore.header") }}</h3>
-      </button>
-      <button
-        class="text-2xl font-bold py-3 lg:px-8 xl:px-10 flex flex-row justify-center lg:justify-start items-center"
-      >
-        <Icon
-          type="create"
-          :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-          class="w-7 h-7 lg:mr-1"
-        />
-        <h3 class="hidden lg:block transition-0">{{ $t("bountyPlatform.post.header") }}</h3>
-      </button>
+        <Icon type="post" class="w-7 h-7 text-dtText" />
+        <h3 class="hidden lg:block transition-0 ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+      </nuxt-link>
     </div>
   </div>
 </template>
@@ -43,4 +42,11 @@ export default {
 };
 </script>
 <style>
+.sidebar-tab {
+  background-color: transparent !important;
+  transition: all 0.2s ease-out;
+}
+.nuxt-link-exact-active > .sidebar-tab {
+  background-color: #675cff;
+}
 </style>

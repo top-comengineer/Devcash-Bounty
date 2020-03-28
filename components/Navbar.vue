@@ -9,18 +9,30 @@
     <div class="hidden md:flex flex-row justify-end items-center">
       <!-- Home -->
       <div class="md:ml-6 lg:ml-8 font-bold">
-        <nuxt-link :to="getLocalizedRoute('index')">
-          {{
-          $t("navigation.home")
-          }}
+        <nuxt-link class="flex flex-col" :to="getLocalizedRoute('index')">
+          <div>
+            {{
+            $t("navigation.home")
+            }}
+          </div>
+          <div
+            v-bind:class="[$store.state.theme.dt?'bg-dtText':'bg-ltText']"
+            class="bottom-line h-px2 w-full bg-dtText rounded-tl-full rounded-br-full"
+          ></div>
         </nuxt-link>
       </div>
       <!-- Bounty Platform -->
       <div class="md:ml-6 lg:ml-8 font-bold">
-        <nuxt-link :to="getLocalizedRoute('bountyplatform')">
-          {{
-          $t("navigation.bountyPlatform")
-          }}
+        <nuxt-link class="flex flex-col" :to="getLocalizedRoute('bountyplatform')">
+          <div>
+            {{
+            $t("navigation.bountyPlatform")
+            }}
+          </div>
+          <div
+            v-bind:class="[$store.state.theme.dt?'bg-dtText':'bg-ltText']"
+            class="bottom-line h-px2 w-full rounded-tl-full rounded-br-full"
+          ></div>
         </nuxt-link>
       </div>
       <!-- DEX -->
@@ -59,3 +71,12 @@ export default {
   }
 };
 </script>
+<style>
+.bottom-line {
+  transform: scaleX(0);
+  transition: all 2s ease-out;
+}
+.nuxt-link-exact-active > .bottom-line {
+  transform: scaleX(1);
+}
+</style>

@@ -1,17 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
-    <BountyCard
-      v-for="(item, i) in fakeData"
-      :key="i"
-      class="my-1 md:my-2"
-      :bountyName="item.bountyName"
-      :creatorAddress="item.creatorAddress"
-      :devAmount="item.devAmount"
-      :ethAmount="item.ethAmount"
-      :usdAmount="item.usdAmount"
-      :remainingCount="item.remainingCount"
-      :remainingTime="item.remainingTime"
-    />
+    <h1 clas="font-extrabold text-3xl">POST</h1>
   </div>
 </template>
 

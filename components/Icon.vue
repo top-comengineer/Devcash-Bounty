@@ -270,15 +270,15 @@
         d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
       />
     </svg>
-    <!-- Create -->
+    <!-- Post -->
     <svg
-      v-else-if="type == 'create'"
+      v-else-if="type == 'post'"
       id="17d1729a-bcf0-448e-b2c5-ad11fe03d3c4"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
     >
-      <title>create</title>
+      <title>Post</title>
       <path
         class="fill-current transition-colors ease-out duration-200"
         v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"

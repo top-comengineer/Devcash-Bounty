@@ -6,7 +6,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 300 230"
     >
-      <title>create-bounty</title>
+      <title>post-bounty</title>
       <path
         d="M74.82,196.67,74.66,72.9l89.56-51.71-1.66-1L73,71.94l.15,123.75a2.34,2.34,0,0,0,1,2.15l1.67,1A2.3,2.3,0,0,1,74.82,196.67Z"
         class="fill-current transition-all ease-out duration-200"
