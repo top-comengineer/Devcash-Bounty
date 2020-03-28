@@ -10,12 +10,14 @@
     <!-- Sidebar Content -->
     <div class="w-full flex flex-col py-8">
       <button
-        class="bg-dtPrimary py-3 text-2xl font-bold flex flex-row justify-center items-center text-dtText"
+        class="bg-dtPrimary py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
       >
         <Icon type="explore" class="w-7 h-7 lg:mr-1 text-dtText" />
         <h3 class="hidden lg:block">{{ $t("bountyPlatform.explore.header") }}</h3>
       </button>
-      <button class="py-3 text-2xl font-bold flex flex-row justify-center items-center">
+      <button
+        class="text-2xl font-bold py-3 lg:px-8 xl:px-10 flex flex-row justify-center lg:justify-start items-center"
+      >
         <Icon
           type="create"
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
