@@ -60,4 +60,29 @@ export class DevcashBounty {
             }
         )
     }
+
+    async getOpenBounties() {
+        let uBounties = new Array()
+        let numOpenBounties = await this.uBCContract.numUbounties()
+        for (let i=0; i < numOpenBounties; i++) {
+            let uBounty = await this.uBCContract.ubounties(i)
+            uBounty.index = i
+            uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
+            uBounties.push(uBounty)
+        }
+        return uBounties
+    }
+
+    async getBountySubmissions(uBounty) {
+        let submissions = new Array()
+        for (let i=0; i < uBounty.numSubmissions; i++) {
+            submission = new Object()
+            submission.submissionString = await uBCContract.getSubmissionString(uBounty.index, i)
+            submission.submissionHash = await uBCContract.getSubmissionHash(uBounty.index, i)
+            let submitterIndex = await uBCContract.getSubmitter(uBounty.index, i)
+            submission.submitter = await uBCContract.hunterList(submitterIndex)
+            submissions.push(submission)            
+        }
+        return submissions
+    }
 }
