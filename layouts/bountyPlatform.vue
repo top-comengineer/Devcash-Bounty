@@ -1,11 +1,14 @@
 <template>
   <DefaultLayout>
     <div class="w-full flex flex-row justify-center relative my-24">
-      <div class="sidebarSpacer-2 flex flex-row justify-end">
+      <div
+        class="sidebarSpacer-2 flex flex-row justify-end transition-all ease-out duration-200"
+      >
         <transition name="sidebarTransition">
           <Sidebar v-if="show" />
         </transition>
       </div>
+      <div class="px-2"></div>
       <div class="d-container-2">
         <nuxt />
       </div>
@@ -41,7 +44,12 @@ export default {
 }
 .sidebarSpacer-2 {
   width: calc((100vw - 1280px) / 2);
-  min-width: 15rem;
+  min-width: 5rem;
+}
+@media only screen and (min-width: 1024px) {
+  .sidebarSpacer-2 {
+    min-width: 15rem;
+  }
 }
 .top-24 {
   top: 6rem;
