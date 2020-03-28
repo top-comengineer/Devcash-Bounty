@@ -16,10 +16,10 @@
             v-bind:class="[
               hideNavbar ? '-mt-24' : 'mt-0',
               {
-                'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarShadow,
-                'bg-ltBackgroundSecondary': !$store.state.theme.dt && showNavbarShadow,
-                'shadow-xlS': $store.state.theme.dt && showNavbarShadow,
-                'shadow-xl': !$store.state.theme.dt && showNavbarShadow
+                'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarBg,
+                'bg-ltBackgroundSecondary': !$store.state.theme.dt && showNavbarBg,
+                'shadow-xlS': $store.state.theme.dt && showNavbarBg,
+                'shadow-xl': !$store.state.theme.dt && showNavbarBg
               }
             ]"
           />
@@ -54,7 +54,7 @@ export default {
   data: function() {
     return {
       scrollPos: 0,
-      showNavbarShadow: false,
+      showNavbarBg: false,
       hideNavbar: false
     };
   },
@@ -76,12 +76,15 @@ export default {
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (window.pageYOffset >= 20 && !this.showNavbarShadow) {
-        this.showNavbarShadow = true;
-      } else if (window.pageYOffset < 20 && this.showNavbarShadow) {
-        this.showNavbarShadow = false;
+      if (window.pageYOffset >= 15 && !this.showNavbarBg) {
+        this.showNavbarBg = true;
+      } else if (window.pageYOffset < 15 && this.showNavbarBg) {
+        this.showNavbarBg = false;
       }
     }
+  },
+  beforeMount() {
+    this.navbarScroll();
   },
   mounted() {
     // Adding scroll event
