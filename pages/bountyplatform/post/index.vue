@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex flex-col justify-center items-center">
-    <h1 clas="font-extrabold text-3xl">POST</h1>
+  <div class="w-full flex flex-col justify-center items-center py-72">
+    <h1 class="font-extrabold text-4xl">POST</h1>
   </div>
 </template>
 

@@ -9,20 +9,45 @@
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-col py-8">
-      <nuxt-link :to="getLocalizedRoute('bountyplatform')">
-        <div
-          class="bg-dtPrimary sidebar-tab py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
+      <nuxt-link
+        :to="getLocalizedRoute('bountyplatform')"
+        v-slot="{  navigate, href, isExactActive  }"
+      >
+        <a
+          @click="navigate"
+          :href="href"
+          v-bind:class="[{
+            'bg-dtPrimary text-dtText': isExactActive
+          }] "
+          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold py-3 lg:px-8 xl:px-10 transition-colors ease-out duration-200"
         >
-          <Icon type="explore" class="w-7 h-7 text-dtText" />
-          <h3 class="hidden lg:block transition-0 ml-2">{{ $t("bountyPlatform.explore.header") }}</h3>
-        </div>
+          <Icon
+            :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
+            type="explore"
+            class="w-7 h-7"
+          />
+          <h3 class="hidden lg:block duration-0 ml-2">{{ $t("bountyPlatform.explore.header") }}</h3>
+        </a>
       </nuxt-link>
       <nuxt-link
-        :to="getLocalizedRoute('bountyplatform/post')"
-        class="tab-active py-3 lg:px-8 xl:px-10 text-2xl font-bold flex flex-row justify-center lg:justify-start items-center text-dtText"
+        :to="getLocalizedRoute('bountyplatform-post')"
+        v-slot="{ navigate, href, isExactActive }"
       >
-        <Icon type="post" class="w-7 h-7 text-dtText" />
-        <h3 class="hidden lg:block transition-0 ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+        <a
+          @click="navigate"
+          :href="href"
+          v-bind:class="[{
+            'bg-dtPrimary text-dtText': isExactActive
+          }] "
+          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold py-3 lg:px-8 xl:px-10"
+        >
+          <Icon
+            type="post"
+            :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
+            class="w-7 h-7"
+          />
+          <h3 class="hidden lg:block duration-0 ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+        </a>
       </nuxt-link>
     </div>
   </div>
@@ -42,11 +67,4 @@ export default {
 };
 </script>
 <style>
-.sidebar-tab {
-  background-color: transparent !important;
-  transition: all 0.2s ease-out;
-}
-.nuxt-link-exact-active > .sidebar-tab {
-  background-color: #675cff;
-}
 </style>

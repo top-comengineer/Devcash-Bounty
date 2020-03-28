@@ -9,30 +9,37 @@
     <div class="hidden md:flex flex-row justify-end items-center">
       <!-- Home -->
       <div class="md:ml-6 lg:ml-8 font-bold">
-        <nuxt-link class="flex flex-col" :to="getLocalizedRoute('index')">
-          <div>
-            {{
-            $t("navigation.home")
-            }}
-          </div>
-          <div
-            v-bind:class="[$store.state.theme.dt?'bg-dtText':'bg-ltText']"
-            class="bottom-line h-px2 w-full bg-dtText rounded-tl-full rounded-br-full"
-          ></div>
+        <nuxt-link :to="getLocalizedRoute('index')" v-slot="{  navigate, href, isExactActive  }">
+          <a @click="navigate" :href="href" class="flex flex-col">
+            <div>
+              {{
+              $t("navigation.home")
+              }}
+            </div>
+            <div
+              v-bind:class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
+              class="bottom-line h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+            ></div>
+          </a>
         </nuxt-link>
       </div>
       <!-- Bounty Platform -->
       <div class="md:ml-6 lg:ml-8 font-bold">
-        <nuxt-link class="flex flex-col" :to="getLocalizedRoute('bountyplatform')">
-          <div>
-            {{
-            $t("navigation.bountyPlatform")
-            }}
-          </div>
-          <div
-            v-bind:class="[$store.state.theme.dt?'bg-dtText':'bg-ltText']"
-            class="bottom-line h-px2 w-full rounded-tl-full rounded-br-full"
-          ></div>
+        <nuxt-link
+          :to="getLocalizedRoute('bountyplatform')"
+          v-slot="{  navigate, href, isActive  }"
+        >
+          <a @click="navigate" :href="href" class="flex flex-col">
+            <div>
+              {{
+              $t("navigation.bountyPlatform")
+              }}
+            </div>
+            <div
+              v-bind:class="[isActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
+              class="bottom-line h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+            ></div>
+          </a>
         </nuxt-link>
       </div>
       <!-- DEX -->
@@ -71,12 +78,3 @@ export default {
   }
 };
 </script>
-<style>
-.bottom-line {
-  transform: scaleX(0);
-  transition: all 2s ease-out;
-}
-.nuxt-link-exact-active > .bottom-line {
-  transform: scaleX(1);
-}
-</style>
