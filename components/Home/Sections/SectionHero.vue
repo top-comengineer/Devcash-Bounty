@@ -20,6 +20,7 @@
           </div>
           <div class="flex flex-row my-4">
             <nuxt-link
+              :class="$store.state.theme.dt?'btn-dt-primary':'btn-lt-primary'"
               class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2"
               :to="getLocalizedRoute('bountyplatform')"
             >{{ $t("heroSection.ctaButton") }}</nuxt-link>

@@ -11,9 +11,12 @@
             </div>
           </div>
           <!-- Navigation Items -->
-          <p class="my-2">{{ $t("navigation.home") }}</p>
-          <p class="my-2">{{ $t("navigation.ibo") }}</p>
-          <p class="my-2">{{ $t("navigation.bountyPlatform") }}</p>
+          <nuxt-link :to="getLocalizedRoute('index')" class="my-2">{{ $t("navigation.home") }}</nuxt-link>
+          <nuxt-link :to="getLocalizedRoute('index-#ibo')" class="my-2">{{ $t("navigation.ibo") }}</nuxt-link>
+          <nuxt-link
+            :to="getLocalizedRoute('bountyplatform')"
+            class="my-2"
+          >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <p class="my-2">{{ $t("navigation.dex") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
@@ -25,8 +28,14 @@
             </div>
           </div>
           <!-- Bounty Platform Items -->
-          <p class="my-2">{{ $t("bountyPlatform.exploreBounties") }}</p>
-          <p class="my-2">{{ $t("bountyPlatform.postABounty") }}</p>
+          <nuxt-link
+            :to="getLocalizedRoute('bountyplatform')"
+            class="my-2"
+          >{{ $t("bountyPlatform.exploreBounties") }}</nuxt-link>
+          <nuxt-link
+            :to="getLocalizedRoute('bountyplatform-post')"
+            class="my-2"
+          >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
           <p class="my-2">{{ $t("bountyPlatform.visitDashboard") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">

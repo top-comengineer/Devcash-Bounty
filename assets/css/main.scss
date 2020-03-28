@@ -15,3 +15,29 @@
 .font-mono-jet {
   font-family: "JetBrainsMono";
 }
+.btn-dt-primary {
+  box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-dt-primary:hover,
+.btn-dt-primary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#f2f1ff, 1);
+  transform: scale(1.025);
+  outline: none !important;
+}
+.btn-lt-primary {
+  box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#010014, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-lt-primary:hover,
+.btn-lt-primary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#010014, 1);
+  transform: scale(1.025);
+  outline: none !important;
+}

@@ -46,6 +46,7 @@
               <!-- Post Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <nuxt-link
+                  :class="$store.state.theme.dt?'btn-dt-primary':'btn-lt-primary'"
                   :to="getLocalizedRoute('bountyplatform-post')"
                   class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
                 >{{ $t("bountyPlatformSection.postBountyButton") }}</nuxt-link>
@@ -78,6 +79,7 @@
               <!-- Hunt Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <nuxt-link
+                  :class="$store.state.theme.dt?'btn-dt-primary':'btn-lt-primary'"
                   :to="getLocalizedRoute('bountyplatform')"
                   class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
                 >{{ $t("bountyPlatformSection.huntBountyButton") }}</nuxt-link>
