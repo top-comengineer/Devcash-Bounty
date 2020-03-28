@@ -1,9 +1,7 @@
 <template>
   <DefaultLayout>
-    <div class="w-full flex flex-row justify-center relative my-24">
-      <div
-        class="sidebarSpacer-2 flex flex-row justify-end transition-all ease-out duration-200"
-      >
+    <div class="w-full flex flex-row justify-center relative my-20 md:my-24">
+      <div class="sidebarSpacer-2 flex flex-row justify-end transition-all ease-out duration-200">
         <transition name="sidebarTransition">
           <Sidebar v-if="show" />
         </transition>
@@ -44,15 +42,17 @@ export default {
 }
 .sidebarSpacer-2 {
   width: calc((100vw - 1280px) / 2);
-  min-width: 4rem;
+  min-width: 3rem;
+}
+@media only screen and (min-width: 768px) {
+  .sidebarSpacer-2 {
+    min-width: 4rem;
+  }
 }
 @media only screen and (min-width: 1024px) {
   .sidebarSpacer-2 {
     min-width: 15rem;
   }
-}
-.top-24 {
-  top: 6rem;
 }
 .sidebarTransition-enter-active {
   transition: all 0.2s ease-out;
