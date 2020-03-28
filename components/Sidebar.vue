@@ -21,7 +21,7 @@
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
           class="w-7 h-7 lg:mr-1"
         />
-        <h3 class="hidden lg:block">{{ $t("bountyPlatform.create.header") }}</h3>
+        <h3 class="hidden lg:block">{{ $t("bountyPlatform.post.header") }}</h3>
       </button>
     </div>
   </div>

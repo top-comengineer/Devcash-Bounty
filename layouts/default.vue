@@ -18,8 +18,8 @@
               {
                 'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarShadow,
                 'bg-ltBackgroundSecondary': !$store.state.theme.dt && showNavbarShadow,
-                'shadow-lgS': $store.state.theme.dt && showNavbarShadow,
-                'shadow-lg': !$store.state.theme.dt && showNavbarShadow
+                'shadow-xlS': $store.state.theme.dt && showNavbarShadow,
+                'shadow-xl': !$store.state.theme.dt && showNavbarShadow
               }
             ]"
           />

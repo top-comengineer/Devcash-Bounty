@@ -39,8 +39,8 @@
       "remaining": "remaining",
       "bountiesLeft": "bounties left"
     },
-    "create": {
-      "header": "Create"
+    "post": {
+      "header": "Post"
     }
   },
   "dex": {
