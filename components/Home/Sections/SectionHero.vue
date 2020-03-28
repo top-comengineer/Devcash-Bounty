@@ -10,24 +10,18 @@
     <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col py-4">
       <div class="flex flex-row justify-center lg:justify-start">
         <div class="spacer"></div>
-        <div
-          class="flex flex-col items-center lg:items-start hero-text px-4 py-4 md:px-16 md:py-6"
-        >
+        <div class="flex flex-col items-center lg:items-start hero-text px-4 py-4 md:px-16 md:py-6">
           <h1
             class="font-extrabold text-3xl md:text-4xl text-center lg:text-left leading-tight text-dtPrimary"
             v-html="$t('heroSection.header')"
           ></h1>
           <div class="w-full xl:w-10/12 flex flex-row">
-            <p class="text-xl text-center lg:text-left mt-2">
-              {{ $t("heroSection.paragraph") }}
-            </p>
+            <p class="text-xl text-center lg:text-left mt-2">{{ $t("heroSection.paragraph") }}</p>
           </div>
           <div class="flex flex-row">
             <button
-              class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-xl2 rounded-br-xl2 rounded-tr-md rounded-bl-md px-8 py-2 my-4"
-            >
-              {{ $t("heroSection.ctaButton") }}
-            </button>
+              class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-4"
+            >{{ $t("heroSection.ctaButton") }}</button>
           </div>
         </div>
       </div>

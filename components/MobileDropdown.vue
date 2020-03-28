@@ -18,7 +18,7 @@
       >
         <div
           v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
-          class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-xl3 rounded-br-xl3 rounded-bl-lg rounded-tr-lg px-4 py-4"
+          class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg px-4 py-4"
         >
           <!-- Home -->
           <nuxt-link
@@ -41,7 +41,7 @@
           >{{ $t("navigation.english") }}</button>
           <!-- Theme Switch -->
           <button
-            @click="$store.commit('theme/change')"
+            @click="$store.commit('theme/change'); isOpen=false"
             class="w-full flex flex-row py-2 my-1 justify-center items-center"
           >
             <Icon

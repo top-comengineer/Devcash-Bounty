@@ -1,16 +1,23 @@
 <template>
   <DefaultLayout>
     <div class="w-full flex flex-row justify-center relative my-20 md:my-24">
-      <div class="sidebarSpacer-2 flex flex-row justify-end transition-all ease-out duration-200">
-        <transition name="sidebarTransition">
-          <Sidebar v-if="show" />
-        </transition>
+      <!-- Sidebar container -->
+      <div
+        class="sidebar-spacer-left flex flex-row justify-end mr-2 md:mr-4 relative transition-all ease-out duration-200"
+      >
+        <!-- Sidebar -->
+        <div
+          class="sidebar-container sticky md:pt-2 pb-6 md:pb-2 transition-all ease-out duration-200"
+        >
+          <Sidebar class="overflow-scroll" />
+        </div>
       </div>
-      <div class="px-2"></div>
+      <!-- Centered, Page Content -->
       <div class="d-container-2">
         <nuxt />
       </div>
-      <div class="sidebarSpacer"></div>
+      <!-- Right spacer -->
+      <div class="mr-2 md:mr-4 sidebar-spacer-right"></div>
     </div>
   </DefaultLayout>
 </template>
@@ -22,13 +29,7 @@ export default {
     DefaultLayout,
     Sidebar
   },
-  data() {
-    return {
-      show: false
-    };
-  },
   mounted: function() {
-    this.show = true;
     /*
     DevcashBounty.init().then((result) => {
 
@@ -37,20 +38,41 @@ export default {
 };
 </script>
 <style>
-.sidebarSpacer {
+.sidebar-container {
+  width: 100%;
+  height: calc(100vh - 7rem);
+  overflow: visible;
+  top: 5.25rem;
+}
+@media only screen and (min-width: 768px) {
+  .sidebar-container {
+    width: 4rem;
+    min-width: 4rem;
+    max-width: 4rem;
+    top: 6rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .sidebar-container {
+    width: calc((100vw - 1280px) / 2);
+    max-width: 20rem;
+    min-width: 15rem;
+  }
+}
+.sidebar-spacer-right {
   width: calc((100vw - 1280px) / 2);
 }
-.sidebarSpacer-2 {
+.sidebar-spacer-left {
   width: calc((100vw - 1280px) / 2);
   min-width: 3rem;
 }
 @media only screen and (min-width: 768px) {
-  .sidebarSpacer-2 {
+  .sidebar-spacer-left {
     min-width: 4rem;
   }
 }
 @media only screen and (min-width: 1024px) {
-  .sidebarSpacer-2 {
+  .sidebar-spacer-left {
     min-width: 15rem;
   }
 }

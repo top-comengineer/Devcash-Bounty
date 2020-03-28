@@ -1,9 +1,9 @@
 <template>
-  <div class="w-full flex flex-col justify-center items-center pr-4 xl:pr-0">
+  <div class="w-full flex flex-col justify-center items-center">
     <BountyCard
       v-for="(n, i) in 30"
       :key="i"
-      class="my-2"
+      class="my-1 md:my-2"
       bountyName="Devcash Logo"
       creatorAddress="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
       devAmount="1,250,000"

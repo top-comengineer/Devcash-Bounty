@@ -6,20 +6,18 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center py-4 px-6 md:px-8 fill-current rounded-tl-xl3 rounded-br-xl3 rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center py-4 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Bounty Name and Address -->
-    <div
-      class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start"
-    >
+    <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
       <h4 class="font-extrabold text-xl text-left">{{ bountyName }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon :diameter="20" :address="creatorAddress" />
         <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2">
           {{
-            creatorAddress.substring(0, 6) +
-              "..." +
-              creatorAddress.substring(creatorAddress.length - 4)
+          creatorAddress.substring(0, 6) +
+          "..." +
+          creatorAddress.substring(creatorAddress.length - 4)
           }}
         </h5>
       </div>
@@ -42,9 +40,11 @@
         />
         <h6 class="text-right text-sm">
           <span class="font-extrabold">{{ remainingCount }}</span>
-          <span class="opacity-75">{{
+          <span class="opacity-75">
+            {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
-          }}</span>
+            }}
+          </span>
         </h6>
       </div>
       <!-- Remaining Time -->
@@ -56,22 +56,18 @@
         />
         <h6 class="text-right text-sm">
           <span class="font-extrabold">{{ remainingTime }}</span>
-          <span class="opacity-75">{{
+          <span class="opacity-75">
+            {{
             $t("bountyPlatform.bountyCard.remaining")
-          }}</span>
+            }}
+          </span>
         </h6>
       </div>
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
-    <div
-      class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end"
-    >
-      <h4 class="text-dtPrimary font-extrabold text-xl text-right">
-        {{ "{D}" + devAmount }}
-      </h4>
-      <h5 class="text-lg text-right mt-1">
-        {{ "Ξ" + ethAmount + " / " + "$" + usdAmount }}
-      </h5>
+    <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end">
+      <h4 class="text-dtPrimary font-extrabold text-xl text-right">{{ "{D}" + devAmount }}</h4>
+      <h5 class="text-lg text-right mt-1">{{ "Ξ" + ethAmount + " / " + "$" + usdAmount }}</h5>
     </div>
     <!-- Divider -->
     <div

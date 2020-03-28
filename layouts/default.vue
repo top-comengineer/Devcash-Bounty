@@ -16,9 +16,10 @@
             v-bind:class="[
               hideNavbar ? '-mt-24' : 'mt-0',
               {
-                'bg-dtBackground': $store.state.theme.dt && showNavbarShadow,
-                'bg-ltBackground': !$store.state.theme.dt && showNavbarShadow,
-                'shadow-lg': showNavbarShadow
+                'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarShadow,
+                'bg-ltBackgroundSecondary': !$store.state.theme.dt && showNavbarShadow,
+                'shadow-lgS': $store.state.theme.dt && showNavbarShadow,
+                'shadow-lg': !$store.state.theme.dt && showNavbarShadow
               }
             ]"
           />
@@ -75,9 +76,9 @@ export default {
       this.scrollPos = document.body.getBoundingClientRect().top;
 
       // navbar shadow
-      if (window.pageYOffset >= 50 && !this.showNavbarShadow) {
+      if (window.pageYOffset >= 20 && !this.showNavbarShadow) {
         this.showNavbarShadow = true;
-      } else if (window.pageYOffset < 50 && this.showNavbarShadow) {
+      } else if (window.pageYOffset < 20 && this.showNavbarShadow) {
         this.showNavbarShadow = false;
       }
     }

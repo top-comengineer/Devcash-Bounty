@@ -30,6 +30,17 @@ module.exports = {
       ltDanger: "#990040",
       ltPending: "#CD8900"
     },
+    boxShadow: {
+      md:
+        " 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)",
+      lg:
+        " 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)",
+      xl:
+        " 0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04)",
+      "2xl": "0 25px 50px -12px rgba(0, 0, 0, .25)",
+      lgS:
+        "0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.2)"
+    },
     opacity: {
       "5": "0.05",
       "10": "0.1"
@@ -41,10 +52,10 @@ module.exports = {
       md: "0.375rem",
       lg: "0.5rem",
       xl: "0.75rem",
-      xl2: "1rem",
-      xl3: "1.5rem",
-      xl4: "3rem",
-      xl5: "6rem",
+      "2xl": "1rem",
+      "3xl": "1.5rem",
+      "4xl": "3rem",
+      "5xl": "6rem",
       full: "9999px"
     },
     extend: {

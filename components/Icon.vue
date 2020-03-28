@@ -270,7 +270,7 @@
     >
       <title>explore</title>
       <path
-        class="fill-current transition-colors ease-out duration-200 "
+        class="fill-current transition-colors ease-out duration-200"
         v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
