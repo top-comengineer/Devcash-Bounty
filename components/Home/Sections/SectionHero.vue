@@ -18,10 +18,11 @@
           <div class="w-full xl:w-10/12 flex flex-row">
             <p class="text-xl text-center lg:text-left mt-2">{{ $t("heroSection.paragraph") }}</p>
           </div>
-          <div class="flex flex-row">
-            <button
-              class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-4"
-            >{{ $t("heroSection.ctaButton") }}</button>
+          <div class="flex flex-row my-4">
+            <nuxt-link
+              class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2"
+              :to="getLocalizedRoute('bountyplatform')"
+            >{{ $t("heroSection.ctaButton") }}</nuxt-link>
           </div>
         </div>
       </div>
