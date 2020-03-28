@@ -7,7 +7,7 @@
       >
         <!-- Sidebar -->
         <div
-          class="sidebar-container sticky md:pt-2 pb-6 md:pb-2 transition-all ease-out duration-200"
+          class="sidebar-container sticky pt-1 pb-6 md:pt-2 md:pb-2 transition-all ease-out duration-200"
         >
           <Sidebar class="overflow-scroll" />
         </div>
@@ -22,7 +22,7 @@
   </DefaultLayout>
 </template>
 <script>
-import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import DefaultLayout from "~/layouts/default.vue";
 import Sidebar from "~/components/Sidebar.vue";
 export default {
@@ -45,7 +45,7 @@ export default {
   width: 100%;
   height: calc(100vh - 7rem);
   overflow: visible;
-  top: 5.25rem;
+  top: 5rem;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container {
