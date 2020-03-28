@@ -13,7 +13,7 @@
       <h4 class="font-extrabold text-xl text-left">{{ bountyName }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon :diameter="20" :address="creatorAddress" />
-        <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2">
+        <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-75">
           {{
           creatorAddress.substring(0, 6) +
           "..." +
@@ -39,7 +39,7 @@
           type="award"
         />
         <h6 class="text-right text-sm">
-          <span class="font-extrabold">{{ remainingCount }}</span>
+          <span class="font-bold">{{ remainingCount }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -55,7 +55,7 @@
           type="clock"
         />
         <h6 class="text-right text-sm">
-          <span class="font-extrabold">{{ remainingTime }}</span>
+          <span class="font-bold">{{ remainingTime }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.remaining")
