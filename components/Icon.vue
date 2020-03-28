@@ -270,7 +270,7 @@
     >
       <title>explore</title>
       <path
-        class="fill-current"
+        class="fill-current transition-colors ease-out duration-200 "
         v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
@@ -286,7 +286,7 @@
     >
       <title>create</title>
       <path
-        class="fill-current"
+        class="fill-current transition-colors ease-out duration-200"
         v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M14.81,12A5.63,5.63,0,1,0,9.19,6.38,5.63,5.63,0,0,0,14.81,12ZM14,3.84a.84.84,0,1,1,1.69,0V5.53h1.69a.84.84,0,0,1,0,1.69H15.66V8.91a.84.84,0,1,1-1.69,0V7.22H12.28a.84.84,0,0,1,0-1.69H14Z"

@@ -5,7 +5,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="sidebar my-2 sticky top-24 rounded-tr-xl3 rounded-br-xl3 rounded-tl-xl rounded-bl-xl transition-all ease-out duration-200"
+    class="sidebar my-2 sticky top-24  rounded-bl-sm rounded-tl-sm rounded-br-xl3 rounded-tr-xl3 lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-col py-8">
@@ -48,9 +48,9 @@ export default {
 </script>
 <style>
 .sidebar {
-  width: 5rem;
-  min-width: 5rem;
-  max-width: 5rem;
+  width: 4rem;
+  min-width: 4rem;
+  max-width: 4rem;
   height: calc(100vh - 7rem);
   overflow: scroll;
 }

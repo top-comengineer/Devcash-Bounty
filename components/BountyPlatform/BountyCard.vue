@@ -15,7 +15,7 @@
       <h4 class="font-extrabold text-xl text-left">{{ bountyName }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon :diameter="20" :address="creatorAddress" />
-        <h5 class="font-mono-jet font-medium text-lg text-left mb-1 ml-2">
+        <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2">
           {{
             creatorAddress.substring(0, 6) +
               "..." +
@@ -66,7 +66,7 @@
     <div
       class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end"
     >
-      <h4 class="text-dtPrimary font-extrabold text-2xl text-right">
+      <h4 class="text-dtPrimary font-extrabold text-xl text-right">
         {{ "{D}" + devAmount }}
       </h4>
       <h5 class="text-lg text-right mt-1">

@@ -44,7 +44,7 @@ export default {
 }
 .sidebarSpacer-2 {
   width: calc((100vw - 1280px) / 2);
-  min-width: 5rem;
+  min-width: 4rem;
 }
 @media only screen and (min-width: 1024px) {
   .sidebarSpacer-2 {

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-all ease-out duration-200 break-all"
+    class="transition-colors ease-out duration-200 break-all"
     v-bind:class="[
       $store.state.theme.dt
         ? 'bg-dtBackground text-dtText'
