@@ -1,19 +1,17 @@
 <template>
   <DefaultLayout>
-    <div class="w-full flex flex-row justify-center relative my-20 md:my-24">
+    <div class="w-full flex flex-col md:flex-row justify-center relative my-20 md:my-24">
       <!-- Sidebar container -->
       <div
-        class="sidebar-spacer-left flex flex-row justify-end mr-2 md:mr-4 relative transition-all ease-out duration-200"
+        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end mr-2 md:mr-4 transition-all ease-out duration-200 z-10"
       >
         <!-- Sidebar -->
-        <div
-          class="sidebar-container sticky pt-1 pb-6 md:pt-2 md:pb-2 transition-all ease-out duration-200"
-        >
+        <div class="sidebar-container sticky md:pt-2 md:pb-2 transition-all ease-out duration-200">
           <Sidebar class="overflow-scroll" />
         </div>
       </div>
       <!-- Centered, Page Content -->
-      <div class="d-container-2">
+      <div class="d-container-2 px-2 md:px-0">
         <nuxt />
       </div>
       <!-- Right spacer -->
@@ -43,13 +41,14 @@ export default {
 <style>
 .sidebar-container {
   width: 100%;
-  height: calc(100vh - 7rem);
+  height: auto;
   overflow: visible;
   top: 5rem;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container {
     width: 4rem;
+    height: calc(100vh - 7rem);
     min-width: 4rem;
     max-width: 4rem;
     top: 6rem;
@@ -66,11 +65,12 @@ export default {
   width: calc((100vw - 1280px) / 2);
 }
 .sidebar-spacer-left {
-  width: calc((100vw - 1280px) / 2);
+  width: 100%;
   min-width: 3rem;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-spacer-left {
+    width: calc((100vw - 1280px) / 2);
     min-width: 4rem;
   }
 }

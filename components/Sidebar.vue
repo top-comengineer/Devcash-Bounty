@@ -2,13 +2,13 @@
   <div
     v-bind:class="[
       $store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg'
+        ? 'bg-dtBackgroundSecondary shadow-nlgSS md:shadow-none'
+        : 'bg-ltBackgroundSecondary shadow-nlg md:shadow-xlS'
     ]"
-    class="w-full h-full rounded-bl-sm rounded-tl-sm rounded-br-3xl rounded-tr-3xl lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
+    class="w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
   >
     <!-- Sidebar Content -->
-    <div class="w-full flex flex-col py-8">
+    <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
       <nuxt-link
         :to="getLocalizedRoute('bountyplatform')"
         v-slot="{  navigate, href, isExactActive  }"
@@ -19,7 +19,7 @@
           v-bind:class="[{
             'bg-dtPrimary text-dtText': isExactActive
           }] "
-          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold py-3 lg:px-8 xl:px-10 transition-colors ease-out duration-200"
+          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold px-3 py-3 lg:px-8 xl:px-10 transition-colors ease-out duration-200"
         >
           <Icon
             :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
@@ -39,7 +39,7 @@
           v-bind:class="[{
             'bg-dtPrimary text-dtText': isExactActive
           }] "
-          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold py-3 lg:px-8 xl:px-10"
+          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold px-3 py-3 lg:px-8 xl:px-10"
         >
           <Icon
             type="post"
