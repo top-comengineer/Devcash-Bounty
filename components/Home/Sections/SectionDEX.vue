@@ -28,8 +28,8 @@
           <!-- Call to Action -->
           <div class="flex flex-row justify-center relative">
             <button
-              :class="$store.state.theme.dt?'btn-dt-primary':'btn-lt-primary'"
-              class="bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
+              :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
+              class="hover_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
             >{{ $t("dexSection.ctaButton") }}</button>
           </div>
         </div>

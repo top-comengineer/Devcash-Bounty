@@ -22,29 +22,79 @@
 .focus_bg-dtPrimary-25:focus {
   background-color: rgba(#675cff, 0.25);
 }
-.btn-dt-primary {
+// Hover Scale
+.hover_scale-md:hover {
+  transform: scale(1.035);
+}
+.focus_scale-md:focus {
+  transform: scale(1.035);
+}
+.hover_scale-lg:hover {
+  transform: scale(1.075);
+}
+.focus_scale-lg:focus {
+  transform: scale(1.075);
+}
+// Dark Theme Primary Color Button
+.btn-dtPrimary {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
   transform: scale(1);
   transform-origin: left bottom;
   transition: all 0.2s ease-in-out;
 }
-.btn-dt-primary:hover,
-.btn-dt-primary:focus {
+.btn-dtPrimary:hover,
+.btn-dtPrimary:focus {
   box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
     -0.25rem 0.25rem 0 0 rgba(#f2f1ff, 1);
-  transform: scale(1.025);
   outline: none !important;
 }
-.btn-lt-primary {
+// Dark Theme Text Color Button
+.btn-dtText {
+  box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#675cff, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-dtText:hover,
+.btn-dtText:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#675cff, 1);
+  outline: none !important;
+}
+// Light Theme Primary Color Button
+.btn-ltPrimary {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#010014, 1);
   transform: scale(1);
   transform-origin: left bottom;
   transition: all 0.2s ease-in-out;
 }
-.btn-lt-primary:hover,
-.btn-lt-primary:focus {
+.btn-ltPrimary:hover,
+.btn-ltPrimary:focus {
   box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
     -0.25rem 0.25rem 0 0 rgba(#010014, 1);
-  transform: scale(1.025);
+  outline: none !important;
+}
+// Light Theme Text Color Button
+.btn-ltText {
+  box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#675cff, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-ltText:hover,
+.btn-ltText:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#675cff, 1);
+  outline: none !important;
+}
+
+.hover_bg-dtText-15:hover,
+.focus_bg-dtText-15:focus {
+  background-color: rgba(#f2f1ff, 0.15);
+  outline: none !important;
+}
+.hover_bg-ltText-15:hover,
+.focus_bg-ltText-15:focus {
+  background-color: rgba(#010014, 0.15);
   outline: none !important;
 }
