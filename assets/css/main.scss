@@ -15,6 +15,13 @@
 .font-mono-jet {
   font-family: "JetBrainsMono";
 }
+.bg-dtPrimary-25 {
+  background-color: rgba(#675cff, 0.25);
+}
+.hover_bg-dtPrimary-25:hover,
+.focus_bg-dtPrimary-25:focus {
+  background-color: rgba(#675cff, 0.25);
+}
 .btn-dt-primary {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
   transform: scale(1);

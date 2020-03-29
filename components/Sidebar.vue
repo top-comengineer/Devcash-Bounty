@@ -3,7 +3,7 @@
     v-bind:class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary shadow-nlgS md:shadow-none'
-        : 'bg-ltBackgroundSecondary shadow-nlg md:shadow-xlS'
+        : 'bg-ltBackgroundSecondary shadow-nlg md:shadow-lg'
     ]"
     class="w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
   >
@@ -16,17 +16,20 @@
         <a
           @click="navigate"
           :href="href"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
           v-bind:class="[{
-            'bg-dtPrimary text-dtText': isExactActive
+            'bg-dtPrimary text-dtText': isExactActive,
+            'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
           }] "
-          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold px-3 py-3 lg:px-8 xl:px-10 transition-colors ease-out duration-200"
         >
           <Icon
             :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
             type="explore"
-            class="w-7 h-7"
+            class="w-8 h-8 lg:w-7 lg:h-7"
           />
-          <h3 class="hidden lg:block duration-0 ml-2">{{ $t("bountyPlatform.explore.header") }}</h3>
+          <h3
+            class="text-xl font-bold hidden lg:block duration-0 ml-2"
+          >{{ $t("bountyPlatform.explore.header") }}</h3>
         </a>
       </nuxt-link>
       <nuxt-link
@@ -36,17 +39,20 @@
         <a
           @click="navigate"
           :href="href"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
           v-bind:class="[{
-            'bg-dtPrimary text-dtText': isExactActive
+            'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
+            'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
           }] "
-          class="flex flex-row justify-center lg:justify-start items-center text-2xl font-bold px-3 py-3 lg:px-8 xl:px-10"
         >
           <Icon
             type="post"
             :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
-            class="w-7 h-7"
+            class="w-8 h-8 lg:w-7 lg:h-7"
           />
-          <h3 class="hidden lg:block duration-0 ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+          <h3
+            class="text-xl font-bold hidden lg:block duration-0 ml-2"
+          >{{ $t("bountyPlatform.post.header") }}</h3>
         </a>
       </nuxt-link>
     </div>
