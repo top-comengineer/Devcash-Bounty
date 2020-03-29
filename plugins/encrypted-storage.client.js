@@ -7,7 +7,7 @@ export default ({store}) => {
   window.onNuxtReady(() => {
     createPersistedState({
         key: 'vuex-devcashls',
-        paths: [],
+        paths: ['devcashData'],
         storage: {
             getItem: (key) => ls.get(key),
             setItem: (key, value) => ls.set(key, value),
