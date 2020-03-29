@@ -1,5 +1,6 @@
 import { ethers, utils } from 'ethers'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
+import { AccountNotFoundError } from './errors.js'
 
 export class DevcashBounty {
     constructor(async_param) {
@@ -18,9 +19,14 @@ export class DevcashBounty {
 
     /**
      * init() - connect to ethereum and initialize devcash contracts
+     * @params account - logged in account
+
      * @returns DevcashBounty instance
+     * @throws AccountNotFoundError if account is not null and account doesn't exist
      */
-    static async init() {
+    static async init(accountToLogin) {
+        accountToLogin = accountToLogin || null
+
         let signer
         let provider
         let accounts
@@ -28,12 +34,19 @@ export class DevcashBounty {
         let uBCContract
 
         // window.ethereum is provided by metamask
-        if (window.ethereum) {
+        if (window.ethereum && accountToLogin) {
             // Use web3 provider with signer
             window.ethereum.enable()
             provider = new ethers.providers.Web3Provider(web3.currentProvider);
             accounts = await provider.listAccounts()
-            signer = provider.getSigner(accounts[0])
+            for (a in accounts) {
+                if (a.toLowerCase() == accountToLogin.toLowerCase()) {
+                    signer = provider.getSigner(a)
+                }
+            }
+            if (!signer) {
+                throw new AccountNotFoundError(`Account ${accountToLogin} not found by any provider`)
+            }
             tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer)
             uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
         } else {
@@ -86,3 +99,6 @@ export class DevcashBounty {
         return submissions
     }
 }
+
+// Other exports
+export { AccountNotFoundError }

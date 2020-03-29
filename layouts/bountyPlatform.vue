@@ -20,21 +20,12 @@
   </DefaultLayout>
 </template>
 <script>
-import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import DefaultLayout from "~/layouts/default.vue";
 import Sidebar from "~/components/Sidebar.vue";
 export default {
   components: {
     DefaultLayout,
     Sidebar
-  },
-  mounted: function() {
-    /*
-    DevcashBounty.init().then((result) => {
-      result.getOpenBounties().then((result) => {
-        console.log(result)
-      })
-    });*/
   }
 };
 </script>

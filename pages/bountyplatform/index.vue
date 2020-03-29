@@ -19,7 +19,7 @@
 <script>
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
-import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
+import { DevcashBounty, AccountNotFoundError } from "~/plugins/devcash/devcashBounty.client";
 export default {
   layout: "bountyPlatform",
   components: {
@@ -167,6 +167,30 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    async initEthConnector() {
+      if (this.$store.state.devcash.connector == null) {
+        try {
+          let connector = await DevcashBounty.init(this.$store.state.devcashData.loggedInAccount);
+          this.$store.commit('devcash/setConnector', connector)
+        } catch(e) {
+          // TODO - handle these correctly
+          if (e instanceof AccountNotFoundError) {
+            alert('account not logged in anymore - do something')
+          } else {
+            alert(`Unknown error ${e}`)
+          }
+        }
+      }      
+    }
+  },
+  mounted() {
+    this.initEthConnector().then((_) => {
+      this.$store.state.devcash.connector.getOpenBounties().then((bounties) => {
+        console.log(bounties)
+      });
+    });
   }
 };
 </script>
