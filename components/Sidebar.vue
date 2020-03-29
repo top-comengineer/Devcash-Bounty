@@ -2,7 +2,7 @@
   <div
     v-bind:class="[
       $store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary shadow-nlgSS md:shadow-none'
+        ? 'bg-dtBackgroundSecondary shadow-nlgS md:shadow-none'
         : 'bg-ltBackgroundSecondary shadow-nlg md:shadow-xlS'
     ]"
     class="w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
