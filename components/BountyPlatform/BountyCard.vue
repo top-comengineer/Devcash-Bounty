@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="getLocalizedRoute(bountyLink ? bountyLink : 'bountyplatform')"
+    :to="getLocalizedRoute('bountyplatform')"
     v-bind:class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
@@ -10,14 +10,14 @@
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
-      <h4 class="font-extrabold text-xl text-left">{{ bountyName }}</h4>
+      <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
       <div class="flex flex-row items-center mt-1">
-        <Jazzicon :diameter="20" :address="creatorAddress" />
+        <Jazzicon :diameter="20" :address="bounty.hunter" />
         <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-75">
           {{
-          creatorAddress.substring(0, 6) +
+          bounty.hunter.substring(0, 6) +
           "..." +
-          creatorAddress.substring(creatorAddress.length - 4)
+          bounty.hunter.substring(bounty.hunter.length - 4)
           }}
         </h5>
       </div>
@@ -39,7 +39,7 @@
           type="award"
         />
         <h6 class="text-right text-sm">
-          <span class="font-bold">{{ remainingCount }}</span>
+          <span class="font-bold">{{ `${bounty.numSubmissions} of ${bounty.numLeft}` }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -55,7 +55,7 @@
           type="clock"
         />
         <h6 class="text-right text-sm">
-          <span class="font-bold">{{ remainingTime }}</span>
+          <span class="font-bold">{{ formatTimeLeft() }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.remaining")
@@ -66,8 +66,8 @@
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end">
-      <h4 class="text-dtPrimary font-extrabold text-xl text-right">{{ "{D}" + devAmount }}</h4>
-      <h5 class="text-lg text-right mt-1">{{ "Ξ" + ethAmount + " / " + "$" + usdAmount }}</h5>
+      <h4 class="text-dtPrimary font-extrabold text-xl text-right">{{ "{D}" + '1,000' }}</h4>
+      <h5 class="text-lg text-right mt-1">{{ "Ξ" + '1' + " / " + "$" + '1' }}</h5>
     </div>
     <!-- Divider -->
     <div
@@ -85,17 +85,34 @@ export default {
     Jazzicon
   },
   props: {
-    bountyName: null,
-    bountyLink: null,
-    creatorAddress: null,
-    devAmount: null,
-    ethAmount: null,
-    usdAmount: null,
-    remainingCount: null,
-    remainingTime: null
+    bounty: null
   },
   data: function() {
     return {};
+  },
+  methods: {
+    formatTimeLeft() {
+      const secondsSinceEpoch = Math.round(new Date().getTime() / 1000)  
+      console.log(secondsSinceEpoch)
+      console.log(this.bounty.deadline)
+      const secondsSinceEpochDeadline = Math.round(this.bounty.deadline / 1000)
+      const delta = secondsSinceEpochDeadline - secondsSinceEpoch
+      console.log(delta)
+      if (delta <= 0) {
+        return "∞"
+      } else if (delta>= 2629746) {
+        let monthsLeft = Math.floor(delta / 2629746)
+        return `${monthsLeft} months`
+      } else if (delta >= 86400) {
+        let daysLeft = Math.floor(delta / 86400)
+        return `${daysLeft} days`
+      } else if (delta >= 3600) {
+        let hoursLeft = Math.floor(delta/ 3600)
+        return `${hoursLeft} hours`
+      }
+      let minutesLeft = Math.floor(delta / 60)
+      return `${minutesLeft} minutes`
+    }
   }
 };
 </script>
