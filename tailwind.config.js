@@ -28,7 +28,9 @@ module.exports = {
       ltText: "#010014",
       ltSuccess: "#009966",
       ltDanger: "#990040",
-      ltPending: "#CD8900"
+      ltPending: "#CD8900",
+      // Transparent
+      transparent: "transparent"
     },
     boxShadow: {
       none: "none",

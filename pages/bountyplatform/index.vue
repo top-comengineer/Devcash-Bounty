@@ -1,24 +1,26 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
     <GreetingCard class="my-1 md:my-2" />
-    <h1 v-if="loading">Loading</h1>
-    <BountyCard v-else
-      v-for="(item, i) in bounties"
-      :key="i"
-      class="my-1 md:my-2"
-      :bounty="item"
-    />
+    <div v-if="loading" class="w-full flex flex-col justify-center items-center">
+      <BountyCardPlaceholder class="my-1 md:my-2" v-for="(n, i ) in 10" :key="i" />
+    </div>
+    <BountyCard v-else v-for="(item, i) in bounties" :key="i" class="my-1 md:my-2" :bounty="item" />
   </div>
 </template>
 
 <script>
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
+import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
-import { DevcashBounty, AccountNotFoundError } from "~/plugins/devcash/devcashBounty.client";
+import {
+  DevcashBounty,
+  AccountNotFoundError
+} from "~/plugins/devcash/devcashBounty.client";
 export default {
   layout: "bountyPlatform",
   components: {
     BountyCard,
+    BountyCardPlaceholder,
     GreetingCard
   },
   data() {
@@ -31,24 +33,26 @@ export default {
     async initEthConnector() {
       if (this.$store.state.devcash.connector == null) {
         try {
-          let connector = await DevcashBounty.init(this.$store.state.devcashData.loggedInAccount);
-          this.$store.commit('devcash/setConnector', connector)
-        } catch(e) {
+          let connector = await DevcashBounty.init(
+            this.$store.state.devcashData.loggedInAccount
+          );
+          this.$store.commit("devcash/setConnector", connector);
+        } catch (e) {
           // TODO - handle these correctly
           if (e instanceof AccountNotFoundError) {
-            alert('account not logged in anymore - do something')
+            alert("account not logged in anymore - do something");
           } else {
-            alert(`Unknown error ${e}`)
+            alert(`Unknown error ${e}`);
           }
         }
-      }      
+      }
     }
   },
   mounted() {
-    this.initEthConnector().then((_) => {
-      this.$store.state.devcash.connector.getOpenBounties().then((bounties) => {
-        this.bounties = bounties
-        this.loading = false
+    this.initEthConnector().then(_ => {
+      this.$store.state.devcash.connector.getOpenBounties().then(bounties => {
+        this.bounties = bounties;
+        this.loading = false;
       });
     });
   }
