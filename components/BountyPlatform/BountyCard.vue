@@ -101,7 +101,7 @@ export default {
       } else if (delta>= 2629746) {
         let monthsLeft = Math.floor(delta / 2629746)
         return `${monthsLeft} months`
-      } else if (delta >= 86400) {∂
+      } else if (delta >= 86400) {
         let daysLeft = Math.floor(delta / 86400);
         return `${daysLeft} days`;
       } else if (delta >= 3600) {
