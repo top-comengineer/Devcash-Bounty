@@ -11,12 +11,19 @@
             </div>
           </div>
           <!-- Navigation Items -->
+          <!-- Home -->
           <nuxt-link :to="getLocalizedRoute('index')" class="my-2">{{ $t("navigation.home") }}</nuxt-link>
-          <nuxt-link :to="getLocalizedRoute({name: 'index', hash: '#IBO'})" class="my-2">{{ $t("navigation.ibo") }}</nuxt-link>
+          <!-- IBO -->
+          <nuxt-link
+            :to="getLocalizedRoute({name: 'index', hash: '#IBO'})"
+            class="my-2"
+          >{{ $t("navigation.ibo") }}</nuxt-link>
+          <!-- Bounty Platform-->
           <nuxt-link
             :to="getLocalizedRoute('bountyplatform')"
             class="my-2"
           >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
+          <!-- DEX -->
           <p class="my-2">{{ $t("navigation.dex") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
@@ -28,14 +35,17 @@
             </div>
           </div>
           <!-- Bounty Platform Items -->
+          <!-- Bounty Platform / Explore -->
           <nuxt-link
             :to="getLocalizedRoute('bountyplatform')"
             class="my-2"
           >{{ $t("bountyPlatform.exploreBounties") }}</nuxt-link>
+          <!-- Bounty Platform / Post -->
           <nuxt-link
             :to="getLocalizedRoute('bountyplatform-post')"
             class="my-2"
           >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
+          <!-- Bounty Platform / Dashboard -->
           <p class="my-2">{{ $t("bountyPlatform.visitDashboard") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
@@ -47,7 +57,9 @@
             </div>
           </div>
           <!-- DEX Items -->
+          <!-- Buy Devcash -->
           <p class="my-2">{{ $t("dex.buyDevcash") }}</p>
+          <!-- Sell Devcash -->
           <p class="my-2">{{ $t("dex.sellDevcash") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
@@ -59,6 +71,7 @@
             </div>
           </div>
           <!-- Social Items -->
+          <!-- Discord -->
           <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
               <Icon
@@ -71,6 +84,7 @@
               <p class="ml-2 md:ml-3">{{ $t("social.discord") }}</p>
             </div>
           </a>
+          <!-- Facebook -->
           <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
               <Icon
@@ -83,6 +97,7 @@
               <p class="ml-2 md:ml-3">{{ $t("social.facebook") }}</p>
             </div>
           </a>
+          <!-- Twitter -->
           <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
               <Icon
@@ -95,6 +110,7 @@
               <p class="ml-2 md:ml-3">{{ $t("social.twitter") }}</p>
             </div>
           </a>
+          <!-- Medium -->
           <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
               <Icon
@@ -107,6 +123,7 @@
               <p class="ml-2 md:ml-3">{{ $t("social.medium") }}</p>
             </div>
           </a>
+          <!-- GitHub -->
           <a class="py-2 px-3 md:px-0" target="_blank" href>
             <div class="flex flex-row items-center">
               <Icon
@@ -120,7 +137,7 @@
             </div>
           </a>
         </div>
-        <!-- Logo -->
+        <!-- Logo and Credits -->
         <div class="w-full lg:w-auto self-center flex flex-col items-center my-8">
           <Logo
             :type="$store.state.theme.dt ? 'monoLight' : 'monoDark'"
