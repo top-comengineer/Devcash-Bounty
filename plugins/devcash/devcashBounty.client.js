@@ -74,13 +74,23 @@ export class DevcashBounty {
         )
     }
 
-    async getOpenBounties() {
+    async getUbounties() {
         let uBounties = new Array()
-        let numOpenBounties = await this.uBCContract.numUbounties()
-        for (let i=0; i < numOpenBounties; i++) {
+        let numUbounties = await this.uBCContract.numUbounties()
+        for (let i=0; i < numUbounties; i++) {
             let uBounty = await this.uBCContract.ubounties(i)
             uBounty.index = i
             uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
+            // Get balance
+            let bc = await this.uBCContract.bCList(uBounty.bountyChestIndex)
+            let tokenBalance = await this.tokenContract.balanceOf(bc)
+            if (uBounty.numLeft != 0) {
+                tokenBalance = tokenBalance.div(uBounty.numLeft)
+            }
+            uBounty.tokenBalanceRaw = tokenBalance
+            tokenBalance = utils.formatUnits(tokenBalance, this.tokenDecimals)
+            tokenBalance = utils.commify(tokenBalance)
+            uBounty.tokenBalance = tokenBalance.endsWith(".0") ? tokenBalance.replace(".0", "") : tokenBalance
             uBounties.push(uBounty)
         }
         return uBounties

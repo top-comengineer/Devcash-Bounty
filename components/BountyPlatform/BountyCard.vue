@@ -92,17 +92,15 @@ export default {
   },
   methods: {
     formatTimeLeft() {
-      const secondsSinceEpoch = Math.round(new Date().getTime() / 1000);
-      console.log(secondsSinceEpoch);
-      console.log(this.bounty.deadline);
-      const secondsSinceEpochDeadline = Math.round(this.bounty.deadline / 1000);
-      const delta = secondsSinceEpochDeadline - secondsSinceEpoch;
-      console.log(delta);
-      if (delta <= 0) {
-        return "∞";
-      } else if (delta >= 2629746) {
-        let monthsLeft = Math.floor(delta / 2629746);
-        return `${monthsLeft} months`;
+      const secondsSinceEpoch = Math.round(new Date().getTime() / 1000)  
+      const secondsSinceEpochDeadline = Math.round(this.bounty.deadline / 1000)
+      const delta = secondsSinceEpochDeadline - secondsSinceEpoch
+      
+      if (delta <= 0 || this.bounty.deadline >= 281474976710655) {
+        return "∞"
+      } else if (delta>= 2629746) {
+        let monthsLeft = Math.floor(delta / 2629746)
+        return `${monthsLeft} months`
       } else if (delta >= 86400) {
         let daysLeft = Math.floor(delta / 86400);
         return `${daysLeft} days`;
