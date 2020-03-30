@@ -5,7 +5,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center relative pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Bounty Name and Address -->
     <div

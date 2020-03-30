@@ -42,7 +42,23 @@
     "post": {
       "header": "Post",
       "cardHeader": "Post a Bounty",
-      "cardParagraph": "Enter the details of your bounty below to create it."
+      "cardParagraph": "Enter the details of your bounty below to create it.",
+      "bountyTitle": "Bounty Title",
+      "bountyTitlePlaceholder": "Enter the title of your bounty",
+      "bountyDescription": "Bounty Description",
+      "bountyDescriptionPlaceholder": "Enter the description of your bounty here.",
+      "bountyCount": "Number of Bounties",
+      "bountyCountPlaceholder": "Enter the number of bounties",
+      "bountyAmount": "Bounty Amount",
+      "bountyAmountPlaceholder": "Enter the amount for each bounty",
+      "bountyForEach": "For Each Bounty",
+      "bountyDeadline": "Bounty Deadline",
+      "bountyDeadlinePlaceholder": "Enter a date. E.g. 03/15/2020 18:30",
+      "contactName": "Contact Name",
+      "contactNamePlaceholder": "Enter the name of the contact",
+      "contactEmail": "Contact Email",
+      "contactEmailPlaceholder": "Enter the email of the contact",
+      "postBountyButton": "Post Bounty"
     }
   },
   "dex": {

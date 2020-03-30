@@ -6,7 +6,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center relative pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
@@ -92,18 +92,21 @@ export default {
   },
   methods: {
     formatTimeLeft() {
-      if (this.bounty.deadline >= 281474976710655 || this.bounty.deadline <= 0) {
-        return "∞"
+      if (
+        this.bounty.deadline >= 281474976710655 ||
+        this.bounty.deadline <= 0
+      ) {
+        return "∞";
       }
 
-      const currentDate = new Date()
-      const deadlineDate = new Date(this.bounty.deadline * 1000)
+      const currentDate = new Date();
+      const deadlineDate = new Date(this.bounty.deadline * 1000);
 
-      const delta = deadlineDate.getTime() - currentDate.getTime()
-      
-      if (delta>= 2629746) {
-        let monthsLeft = Math.floor(delta / 2629746)
-        return `${monthsLeft} months`
+      const delta = deadlineDate.getTime() - currentDate.getTime();
+
+      if (delta >= 2629746) {
+        let monthsLeft = Math.floor(delta / 2629746);
+        return `${monthsLeft} months`;
       } else if (delta >= 86400) {
         let daysLeft = Math.floor(delta / 86400);
         return `${daysLeft} days`;
