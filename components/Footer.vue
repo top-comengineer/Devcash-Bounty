@@ -4,7 +4,7 @@
       <div class="w-full flex flex-row flex-wrap justify-between px-6 lg:px-16">
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Navigation Header -->
-          <div class="flex flex-row my-3">
+          <div class="flex flex-row my-3 px-3 py-1 rounded-full">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("navigation.header") }}</h4>
               <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
@@ -15,24 +15,28 @@
           <nuxt-link
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="getLocalizedRoute('index')"
-            class="my-2"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.home") }}</nuxt-link>
           <!-- IBO -->
           <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="getLocalizedRoute({name: 'index', hash: '#IBO'})"
-            class="my-2"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.ibo") }}</nuxt-link>
           <!-- Bounty Platform-->
           <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="getLocalizedRoute('bountyplatform')"
-            class="my-2"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
-          <p class="my-2">{{ $t("navigation.dex") }}</p>
+          <p
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("navigation.dex") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Bounty Platform Header -->
-          <div class="flex flex-row my-3">
+          <div class="flex flex-row my-3 px-3 py-1 rounded-full">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("bountyPlatform.header") }}</h4>
               <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
@@ -41,20 +45,24 @@
           <!-- Bounty Platform Items -->
           <!-- Bounty Platform / Explore -->
           <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="getLocalizedRoute('bountyplatform')"
-            class="my-2"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.exploreBounties") }}</nuxt-link>
           <!-- Bounty Platform / Post -->
           <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="getLocalizedRoute('bountyplatform-post')"
-            class="my-2"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
           <!-- Bounty Platform / Dashboard -->
-          <p class="my-2">{{ $t("bountyPlatform.visitDashboard") }}</p>
+          <p
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("bountyPlatform.visitDashboard") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- DEX Header -->
-          <div class="flex flex-row my-3">
+          <div class="flex flex-row my-3 px-3 py-1 rounded-full">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("dex.header") }}</h4>
               <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
@@ -62,13 +70,17 @@
           </div>
           <!-- DEX Items -->
           <!-- Buy Devcash -->
-          <p class="my-2">{{ $t("dex.buyDevcash") }}</p>
+          <p
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("dex.buyDevcash") }}</p>
           <!-- Sell Devcash -->
-          <p class="my-2">{{ $t("dex.sellDevcash") }}</p>
+          <p
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("dex.sellDevcash") }}</p>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Social Header -->
-          <div class="flex flex-row my-3">
+          <div class="flex flex-row my-3 px-3 py-1 rounded-full">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("social.header") }}</h4>
               <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
@@ -76,7 +88,12 @@
           </div>
           <!-- Social Items -->
           <!-- Discord -->
-          <a class="py-2 px-3 md:px-0" target="_blank" href>
+          <a
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank"
+            href
+          >
             <div class="flex flex-row items-center">
               <Icon
                 :colorClass="
@@ -89,7 +106,12 @@
             </div>
           </a>
           <!-- Facebook -->
-          <a class="py-2 px-3 md:px-0" target="_blank" href>
+          <a
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank"
+            href
+          >
             <div class="flex flex-row items-center">
               <Icon
                 :colorClass="
@@ -102,7 +124,12 @@
             </div>
           </a>
           <!-- Twitter -->
-          <a class="py-2 px-3 md:px-0" target="_blank" href>
+          <a
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank"
+            href
+          >
             <div class="flex flex-row items-center">
               <Icon
                 :colorClass="
@@ -115,7 +142,12 @@
             </div>
           </a>
           <!-- Medium -->
-          <a class="py-2 px-3 md:px-0" target="_blank" href>
+          <a
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank"
+            href
+          >
             <div class="flex flex-row items-center">
               <Icon
                 :colorClass="
@@ -128,7 +160,12 @@
             </div>
           </a>
           <!-- GitHub -->
-          <a class="py-2 px-3 md:px-0" target="_blank" href>
+          <a
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank"
+            href
+          >
             <div class="flex flex-row items-center">
               <Icon
                 :colorClass="
