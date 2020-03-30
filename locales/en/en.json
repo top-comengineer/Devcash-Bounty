@@ -40,7 +40,9 @@
       "bountiesLeft": "bounties left"
     },
     "post": {
-      "header": "Post"
+      "header": "Post",
+      "cardHeader": "Post a Bounty",
+      "cardParagraph": "Enter the details of your bounty below to create it."
     }
   },
   "dex": {
