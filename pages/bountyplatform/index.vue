@@ -50,7 +50,7 @@ export default {
   },
   mounted() {
     this.initEthConnector().then(_ => {
-      this.$store.state.devcash.connector.getOpenBounties().then(bounties => {
+      this.$store.state.devcash.connector.getUbounties().then(bounties => {
         this.bounties = bounties;
         this.loading = false;
       });
