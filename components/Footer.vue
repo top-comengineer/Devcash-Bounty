@@ -12,7 +12,7 @@
           </div>
           <!-- Navigation Items -->
           <nuxt-link :to="getLocalizedRoute('index')" class="my-2">{{ $t("navigation.home") }}</nuxt-link>
-          <nuxt-link :to="getLocalizedRoute('index-#IBO')" class="my-2">{{ $t("navigation.ibo") }}</nuxt-link>
+          <nuxt-link :to="getLocalizedRoute({name: 'index', hash: '#IBO'})" class="my-2">{{ $t("navigation.ibo") }}</nuxt-link>
           <nuxt-link
             :to="getLocalizedRoute('bountyplatform')"
             class="my-2"
