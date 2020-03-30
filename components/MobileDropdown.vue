@@ -2,7 +2,7 @@
   <div click class="relative">
     <button @click="isOpen = !isOpen">
       <Icon
-        v-bind:class="[isOpen ? '-rotate-90' : 'rotate-0']"
+        :class="[isOpen ? '-rotate-90' : 'rotate-0']"
         class="md:hidden w-8 h-8 transform transition-all ease-out duration-200"
         type="menu"
         :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -10,14 +10,14 @@
     </button>
     <transition name="dropdownTransition">
       <div
-        v-bind:class="
+        :class="
           $store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'
         "
         v-if="isOpen"
         class="md:hidden absolute right-0 dropdown mt-4 text-xl font-bold"
       >
         <div
-          v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
+          :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
           class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg px-4 py-4"
         >
           <!-- Home -->
@@ -59,7 +59,7 @@
           </button>
           <!-- Sign In Button -->
           <button
-            v-bind:class="[
+            :class="[
               $store.state.theme.dt
                 ? 'bg-dtBackground text-dtText'
                 : ' bg-ltBackground text-ltText'

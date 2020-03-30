@@ -1,6 +1,6 @@
 <template>
   <div
-    v-bind:class="
+    :class="
       [!$store.state.theme.dt?'shadow-lgS':'']
     "
     class="w-full flex flex-col relative overflow-hidden flex-wrap justify-center items-center bg-dtPrimary py-6 md:py-10 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-bind:class="[
+    :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
@@ -12,23 +12,23 @@
       class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start opacity-animation"
     >
       <h4
-        v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+        :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
         class="text-transparent font-extrabold text-xl text-left rounded-full px-4 opacity-75"
       >Awesome Bounty</h4>
       <div class="flex flex-row items-center mt-1">
         <div
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="jazziconPlaceholder rounded-full opacity-50 flex"
         ></div>
         <h5
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="text-transparent font-mono-jet font-medium text-md text-left ml-2 opacity-50 rounded-full px-4"
         >0xFFFF...FFFF</h5>
       </div>
     </div>
     <!-- Divider -->
     <div
-      v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
+      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
       class="md:hidden w-full h-px rounded-full opacity-5 my-3"
     ></div>
     <!-- Submissions Left and Remaining Time -->
@@ -38,11 +38,11 @@
       <!-- Submissions Left -->
       <div class="flex flex-row justify-end items-center">
         <div
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="w-4 h-4 mr-1 rounded-full opacity-50"
         ></div>
         <h6
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="text-right text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">1 of 1</span>
@@ -56,11 +56,11 @@
       <!-- Remaining Time -->
       <div class="flex flex-row justify-end items-center mt-1">
         <div
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="w-4 h-4 mr-1 rounded-full opacity-50"
         ></div>
         <h6
-          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="text-right text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">11 months</span>
@@ -80,13 +80,13 @@
         class="bg-dtPrimary font-extrabold text-xl text-right text-transparent rounded-full px-2"
       >{D}10,000,000</h4>
       <h5
-        v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+        :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
         class="text-lg text-right mt-1 text-transparent rounded-full px-2 opacity-50"
       >Ξ10.10 / $1,000</h5>
     </div>
     <!-- Divider -->
     <div
-      v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
+      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
       class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"
     ></div>
   </div>

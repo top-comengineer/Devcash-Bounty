@@ -11,7 +11,7 @@
       <title>discord</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M17.71,20.8s-.74-.9-1.36-1.7a6.49,6.49,0,0,0,3.72-2.49,11.67,11.67,0,0,1-2.36,1.24,13.33,13.33,0,0,1-3,.9,14.12,14.12,0,0,1-5.32,0,17,17,0,0,1-3-.9,11.93,11.93,0,0,1-1.5-.71L4.71,17a.28.28,0,0,1-.08-.06c-.37-.21-.58-.36-.58-.36a6.4,6.4,0,0,0,3.6,2.47c-.62.8-1.38,1.74-1.38,1.74A7.43,7.43,0,0,1,0,17.62,28.48,28.48,0,0,1,3,5.4,10,10,0,0,1,8.73,3.2l.21.25A13.78,13.78,0,0,0,3.53,6.2S4,5.94,4.75,5.59A15.19,15.19,0,0,1,9.41,4.27a2,2,0,0,1,.35,0,17.05,17.05,0,0,1,4.15,0,16.52,16.52,0,0,1,6.18,2A13.6,13.6,0,0,0,15,3.54l.29-.34A10,10,0,0,1,21,5.4a28.48,28.48,0,0,1,3,12.22A7.49,7.49,0,0,1,17.71,20.8ZM8.16,11a2.21,2.21,0,0,0-2.1,2.33,2.23,2.23,0,0,0,2.1,2.33,2.21,2.21,0,0,0,2.1-2.33A2.2,2.2,0,0,0,8.16,11Zm7.5,0a2.21,2.21,0,0,0-2.1,2.33,2.23,2.23,0,0,0,2.1,2.33,2.21,2.21,0,0,0,2.1-2.33A2.21,2.21,0,0,0,15.66,11Z"
         fill="#f2f1ff"
       />
@@ -27,7 +27,7 @@
       <title>facebook</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M24,12.07A12,12,0,1,0,10.13,24V15.56h-3V12.07h3V9.41c0-3,1.79-4.7,4.53-4.7A18.36,18.36,0,0,1,17.34,5v3H15.83a1.74,1.74,0,0,0-2,1.89v2.26H17.2l-.53,3.49h-2.8V24A12.05,12.05,0,0,0,24,12.07Z"
         fill="#f2f1ff"
       />
@@ -43,7 +43,7 @@
       <title>twitter</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M7.55,21.6a13.8,13.8,0,0,0,14-13.8c0-.21,0-.42,0-.63A9.93,9.93,0,0,0,24,4.66a10,10,0,0,1-2.83.76,4.86,4.86,0,0,0,2.17-2.68,10,10,0,0,1-3.13,1.18,5,5,0,0,0-5.92-1,4.82,4.82,0,0,0-2.48,5.38A14.05,14.05,0,0,1,1.67,3.27,4.82,4.82,0,0,0,3.19,9.76,5,5,0,0,1,1,9.15v.06a4.87,4.87,0,0,0,4,4.75A5,5,0,0,1,2.69,14a4.92,4.92,0,0,0,4.6,3.37,10,10,0,0,1-6.12,2.08A10.21,10.21,0,0,1,0,19.42,14.1,14.1,0,0,0,7.55,21.6"
         fill="#f2f1ff"
       />
@@ -59,7 +59,7 @@
       <title>medium</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M24,0V24H0V0ZM8.69,5.42H4v.27L5.52,7.5a.62.62,0,0,1,.2.53v7.13a.82.82,0,0,1-.22.71L3.82,17.92v.27h4.8v-.27L6.92,15.86a.85.85,0,0,1-.23-.71V9l4.21,9.2h.49L15,9v7.4a.32.32,0,0,1-.13.29l-1.3,1.26v.27h6.32v-.27l-1.26-1.23a.38.38,0,0,1-.14-.36V7.28a.38.38,0,0,1,.14-.36l1.29-1.23V5.42H15.48l-3.18,7.92L8.69,5.42Z"
         fill="#f2f1ff"
       />
@@ -75,7 +75,7 @@
       <title>github</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M12,0A12.09,12.09,0,0,0,.16,10.34,12.34,12.34,0,0,0,8.21,24c.6.11.82-.27.82-.59l0-2.09c-3.34.74-4-1.65-4-1.65a3.2,3.2,0,0,0-1.33-1.8c-1.09-.76.08-.75.08-.75a2.53,2.53,0,0,1,1.84,1.27,2.52,2.52,0,0,0,3.49,1,2.65,2.65,0,0,1,.76-1.64c-2.66-.31-5.47-1.37-5.47-6.08a4.83,4.83,0,0,1,1.23-3.3A4.53,4.53,0,0,1,5.7,5.1s1-.33,3.3,1.26a11.1,11.1,0,0,1,6,0C17.3,4.77,18.3,5.1,18.3,5.1a4.53,4.53,0,0,1,.12,3.26,4.82,4.82,0,0,1,1.23,3.3c0,4.73-2.81,5.77-5.48,6.07A3,3,0,0,1,15,20l0,3.38c0,.33.22.71.82.59a12.34,12.34,0,0,0,8-13.65A12.1,12.1,0,0,0,12,0Z"
         fill="#f2f1ff"
       />
@@ -91,7 +91,7 @@
       <title>reddit</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M12,0A12,12,0,1,1,0,12,12,12,0,0,1,12,0Zm4.81,4.71a1.2,1.2,0,0,0-1.08.7l-2.81-.63a.29.29,0,0,0-.22,0,.27.27,0,0,0-.12.2l-.86,4.19A8.17,8.17,0,0,0,7.14,10.7,1.66,1.66,0,0,0,6,10.2a1.71,1.71,0,0,0-1.68,1.74,1.74,1.74,0,0,0,1,1.59,3.33,3.33,0,0,0,0,.53c0,2.69,3,4.88,6.75,4.88s6.75-2.18,6.75-4.88a3.47,3.47,0,0,0,0-.53,1.77,1.77,0,0,0,1-1.59A1.72,1.72,0,0,0,18,10.2a1.66,1.66,0,0,0-1.17.5,8.19,8.19,0,0,0-4.52-1.49l.78-3.75L15.61,6a1.2,1.2,0,1,0,1.2-1.3ZM14.63,15.94l.12,0a.3.3,0,0,1,.1.07.35.35,0,0,1,0,.46,4.29,4.29,0,0,1-2.86.91,4.36,4.36,0,0,1-2.86-.92.33.33,0,0,1,0-.46.3.3,0,0,1,.1-.07l.12,0,.12,0a.3.3,0,0,1,.1.07,3.67,3.67,0,0,0,2.42.73A3.62,3.62,0,0,0,14.41,16a.3.3,0,0,1,.1-.07Zm.43-3.88a1.24,1.24,0,0,1,.77,1.15,1.23,1.23,0,0,1-2.37.5,1.25,1.25,0,0,1,.25-1.36,1.23,1.23,0,0,1,1.35-.28ZM9.35,12a1.21,1.21,0,0,1,0,2.42,1.23,1.23,0,0,1-1.2-1.24A1.21,1.21,0,0,1,9.35,12Z"
         fill="#f2f1ff"
       />
@@ -107,7 +107,7 @@
       <title>instagram</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M12,5.85A6.15,6.15,0,1,0,18.15,12,6.14,6.14,0,0,0,12,5.85ZM12,16a4,4,0,1,1,4-4,4,4,0,0,1-4,4ZM19.84,5.6a1.43,1.43,0,1,1-1.43-1.44A1.43,1.43,0,0,1,19.84,5.6Zm4.07,1.46A7.1,7.1,0,0,0,22,2a7.14,7.14,0,0,0-5-1.94C15,0,9,0,7,.08A7.14,7.14,0,0,0,2,2,7.12,7.12,0,0,0,.08,7C0,9,0,15,.08,16.95A7.1,7.1,0,0,0,2,22a7.16,7.16,0,0,0,5,1.94c2,.11,7.92.11,9.9,0A7.1,7.1,0,0,0,22,22a7.15,7.15,0,0,0,1.94-5c.11-2,.11-7.92,0-9.9Zm-2.56,12a4,4,0,0,1-2.28,2.28c-1.58.63-5.33.48-7.07.48s-5.5.14-7.07-.48a4,4,0,0,1-2.28-2.28C2,17.49,2.17,13.74,2.17,12S2,6.5,2.65,4.93A4,4,0,0,1,4.93,2.64C6.51,2,10.26,2.16,12,2.16s5.5-.14,7.07.48a4,4,0,0,1,2.28,2.28c.63,1.58.48,5.33.48,7.07s.14,5.5-.48,7.07Z"
         fill="#f2f1ff"
       />
@@ -123,19 +123,19 @@
       <title>menu</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M7,9H27a2,2,0,0,0,0-4H3A4,4,0,0,0,7,9Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M27,14H11a4,4,0,0,0,4,4H27a2,2,0,0,0,0-4Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M27,23H3a4,4,0,0,0,4,4H27a2,2,0,0,0,0-4Z"
         fill="#f2f1ff"
       />
@@ -151,7 +151,7 @@
       <title>light</title>
       <circle
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         cx="16"
         cy="16"
         r="6.01"
@@ -159,49 +159,49 @@
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M16,24.4a1.2,1.2,0,0,0-1.2,1.2v1.2a1.2,1.2,0,1,0,2.4,0V25.6A1.2,1.2,0,0,0,16,24.4Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M16,7.6a1.2,1.2,0,0,0,1.2-1.2V5.2a1.2,1.2,0,0,0-2.4,0V6.4A1.2,1.2,0,0,0,16,7.6Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M7.6,16a1.2,1.2,0,0,0-1.2-1.2H5.2a1.2,1.2,0,0,0,0,2.4H6.4A1.2,1.2,0,0,0,7.6,16Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M26.8,14.8H25.6a1.2,1.2,0,0,0,0,2.4h1.2a1.2,1.2,0,1,0,0-2.4Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M8.36,21.94l-.85.85a1.2,1.2,0,1,0,1.7,1.7l.85-.85a1.2,1.2,0,1,0-1.7-1.7Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M23.64,10.06l.85-.85a1.2,1.2,0,0,0-1.7-1.7l-.85.85a1.2,1.2,0,1,0,1.7,1.7Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M8.36,10.06a1.2,1.2,0,0,0,1.7-1.7l-.85-.85a1.2,1.2,0,1,0-1.7,1.7Z"
         fill="#f2f1ff"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M23.64,21.94a1.2,1.2,0,1,0-1.7,1.7l.85.85a1.2,1.2,0,1,0,1.7-1.7Z"
         fill="#f2f1ff"
       />
@@ -217,7 +217,7 @@
       <title>dark</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         d="M12.7,4A12.26,12.26,0,1,0,28,19.3,11.14,11.14,0,0,1,12.7,4Z"
         fill="#f2f1ff"
       />
@@ -233,7 +233,7 @@
       <title>clock</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M29.09,8.44a1.4,1.4,0,0,0-.17-2l-4.3-3.58A1.4,1.4,0,1,0,22.84,5l4.3,3.58A1.4,1.4,0,0,0,29.09,8.44ZM9.16,5A1.39,1.39,0,0,0,7.38,2.88L3.08,6.45A1.39,1.39,0,1,0,4.87,8.6Zm7.54,6.56a1.05,1.05,0,1,0-2.1,0v7.29l5.8,3.46a1,1,0,1,0,1-1.72L16.7,17.84ZM16,5A12.51,12.51,0,1,0,28.6,17.49,12.56,12.56,0,0,0,16,5Zm0,22.24a9.73,9.73,0,1,1,9.8-9.73A9.76,9.76,0,0,1,16,27.22Z"
       />
@@ -249,7 +249,7 @@
       <title>award</title>
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M16,30A14,14,0,1,0,2,16,14,14,0,0,0,16,30Zm8.65-17.71a.9.9,0,0,1,0,1.38l-4.08,3.67,1.65,5.76a.9.9,0,0,1-1.37,1L16,20.83,11.1,24.1a.9.9,0,0,1-1.38-1l1.34-5.81-3.79-3.7a.9.9,0,0,1,.56-1.54L13,11.7l2.22-4.92a.9.9,0,0,1,1.64,0L19,11.7l5.13.41A.9.9,0,0,1,24.65,12.29Z"
       />
@@ -265,7 +265,7 @@
       <title>explore</title>
       <path
         class="fill-current transition-colors ease-out duration-200"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
       />
@@ -281,13 +281,13 @@
       <title>Post</title>
       <path
         class="fill-current transition-colors ease-out duration-200"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M14.81,12A5.63,5.63,0,1,0,9.19,6.38,5.63,5.63,0,0,0,14.81,12ZM14,3.84a.84.84,0,1,1,1.69,0V5.53h1.69a.84.84,0,0,1,0,1.69H15.66V8.91a.84.84,0,1,1-1.69,0V7.22H12.28a.84.84,0,0,1,0-1.69H14Z"
       />
       <path
         class="fill-current"
-        v-bind:class="[colorClass != null ? colorClass : defaultColorClass]"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
         fill="#f2f1ff"
         d="M14.81,13.5a7.09,7.09,0,0,0,3.75-1.07V21a1.5,1.5,0,0,1-1.5,1.5h-9A4.5,4.5,0,0,1,3.56,18V4.5A1.5,1.5,0,0,1,5.06,3H8.54a7.13,7.13,0,0,0,6.28,10.5Z"
       />

@@ -1,6 +1,6 @@
 <template>
   <div
-    v-bind:class="[
+    :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary shadow-nlgS md:shadow-none'
         : 'bg-ltBackgroundSecondary shadow-nlg md:shadow-lg'
@@ -17,7 +17,7 @@
           @click="navigate"
           :href="href"
           class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
-          v-bind:class="[{
+          :class="[{
             'bg-dtPrimary text-dtText': isExactActive,
             'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
           }] "
@@ -40,7 +40,7 @@
           @click="navigate"
           :href="href"
           class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
-          v-bind:class="[{
+          :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
             'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
           }] "

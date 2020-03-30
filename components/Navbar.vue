@@ -21,7 +21,7 @@
             }}
           </div>
           <div
-            v-bind:class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
+            :class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
             class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
           ></div>
         </a>
@@ -40,7 +40,7 @@
             }}
           </div>
           <div
-            v-bind:class="[isActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
+            :class="[isActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
             class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
           ></div>
         </a>
@@ -77,7 +77,7 @@
       </button>
       <!-- Sign In Button -->
       <button
-        v-bind:class="[
+        :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText'
