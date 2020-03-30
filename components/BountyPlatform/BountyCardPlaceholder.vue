@@ -13,16 +13,16 @@
     >
       <h4
         v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-        class="text-transparent font-extrabold text-xl text-left rounded-full px-4"
+        class="text-transparent font-extrabold text-xl text-left rounded-full px-4 opacity-75"
       >Awesome Bounty</h4>
       <div class="flex flex-row items-center mt-1">
         <div
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="jazziconPlaceholder rounded-full"
+          class="jazziconPlaceholder rounded-full opacity-50"
         ></div>
         <h5
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-transparent font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-75 rounded-full px-4"
+          class="text-transparent font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-50 rounded-full px-4"
         >0xFFFF...FFFF</h5>
       </div>
     </div>
@@ -40,10 +40,10 @@
         <div class="w-4 h-4 mr-1 bg-transparent"></div>
         <h6
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-right text-sm text-transparent rounded-full opacity-75"
+          class="text-right text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">1 of 1</span>
-          <span class="opacity-75">
+          <span>
             {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
             }}
@@ -55,10 +55,10 @@
         <div class="w-4 h-4 mr-1 bg-transparent"></div>
         <h6
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-right text-sm text-transparent rounded-full opacity-75"
+          class="text-right text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">11 months</span>
-          <span class="opacity-75">
+          <span>
             {{
             $t("bountyPlatform.bountyCard.remaining")
             }}
@@ -75,7 +75,7 @@
       >{D}10,000,000</h4>
       <h5
         v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-        class="text-lg text-right mt-1 text-transparent rounded-full px-2"
+        class="text-lg text-right mt-1 text-transparent rounded-full px-2 opacity-50"
       >Ξ10.10 / $1,000</h5>
     </div>
     <!-- Divider -->

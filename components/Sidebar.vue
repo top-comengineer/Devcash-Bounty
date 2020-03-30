@@ -28,7 +28,7 @@
             class="w-8 h-8 lg:w-7 lg:h-7"
           />
           <h3
-            class="text-xl font-bold hidden lg:block duration-0 ml-2"
+            class="text-xl font-bold hidden lg:block ml-2"
           >{{ $t("bountyPlatform.explore.header") }}</h3>
         </a>
       </nuxt-link>
@@ -50,9 +50,7 @@
             :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
             class="w-8 h-8 lg:w-7 lg:h-7"
           />
-          <h3
-            class="text-xl font-bold hidden lg:block duration-0 ml-2"
-          >{{ $t("bountyPlatform.post.header") }}</h3>
+          <h3 class="text-xl font-bold hidden lg:block ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
         </a>
       </nuxt-link>
     </div>
