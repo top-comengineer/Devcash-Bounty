@@ -6,14 +6,14 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center py-4 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
       <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
       <div class="flex flex-row items-center mt-1">
-        <Jazzicon :diameter="20" :address="bounty.hunter" />
-        <h5 class="font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-75">
+        <Jazzicon class="flex" :diameter="20" :address="bounty.hunter" />
+        <h5 class="font-mono-jet font-medium text-md text-left ml-2 opacity-75">
           {{
           bounty.hunter.substring(0, 6) +
           "..." +
@@ -92,26 +92,26 @@ export default {
   },
   methods: {
     formatTimeLeft() {
-      const secondsSinceEpoch = Math.round(new Date().getTime() / 1000)  
-      console.log(secondsSinceEpoch)
-      console.log(this.bounty.deadline)
-      const secondsSinceEpochDeadline = Math.round(this.bounty.deadline / 1000)
-      const delta = secondsSinceEpochDeadline - secondsSinceEpoch
-      console.log(delta)
+      const secondsSinceEpoch = Math.round(new Date().getTime() / 1000);
+      console.log(secondsSinceEpoch);
+      console.log(this.bounty.deadline);
+      const secondsSinceEpochDeadline = Math.round(this.bounty.deadline / 1000);
+      const delta = secondsSinceEpochDeadline - secondsSinceEpoch;
+      console.log(delta);
       if (delta <= 0) {
-        return "∞"
-      } else if (delta>= 2629746) {
-        let monthsLeft = Math.floor(delta / 2629746)
-        return `${monthsLeft} months`
+        return "∞";
+      } else if (delta >= 2629746) {
+        let monthsLeft = Math.floor(delta / 2629746);
+        return `${monthsLeft} months`;
       } else if (delta >= 86400) {
-        let daysLeft = Math.floor(delta / 86400)
-        return `${daysLeft} days`
+        let daysLeft = Math.floor(delta / 86400);
+        return `${daysLeft} days`;
       } else if (delta >= 3600) {
-        let hoursLeft = Math.floor(delta/ 3600)
-        return `${hoursLeft} hours`
+        let hoursLeft = Math.floor(delta / 3600);
+        return `${hoursLeft} hours`;
       }
-      let minutesLeft = Math.floor(delta / 60)
-      return `${minutesLeft} minutes`
+      let minutesLeft = Math.floor(delta / 60);
+      return `${minutesLeft} minutes`;
     }
   }
 };

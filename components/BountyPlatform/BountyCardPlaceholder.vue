@@ -5,7 +5,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center py-4 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Bounty Name and Address -->
     <div
@@ -18,11 +18,11 @@
       <div class="flex flex-row items-center mt-1">
         <div
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="jazziconPlaceholder rounded-full opacity-50"
+          class="jazziconPlaceholder rounded-full opacity-50 flex"
         ></div>
         <h5
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-transparent font-mono-jet font-medium text-md text-left mb-1 ml-2 opacity-50 rounded-full px-4"
+          class="text-transparent font-mono-jet font-medium text-md text-left ml-2 opacity-50 rounded-full px-4"
         >0xFFFF...FFFF</h5>
       </div>
     </div>
@@ -37,7 +37,10 @@
     >
       <!-- Submissions Left -->
       <div class="flex flex-row justify-end items-center">
-        <div class="w-4 h-4 mr-1 bg-transparent"></div>
+        <div
+          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          class="w-4 h-4 mr-1 rounded-full opacity-50"
+        ></div>
         <h6
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="text-right text-sm text-transparent rounded-full opacity-50"
@@ -52,7 +55,10 @@
       </div>
       <!-- Remaining Time -->
       <div class="flex flex-row justify-end items-center mt-1">
-        <div class="w-4 h-4 mr-1 bg-transparent"></div>
+        <div
+          v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
+          class="w-4 h-4 mr-1 rounded-full opacity-50"
+        ></div>
         <h6
           v-bind:class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
           class="text-right text-sm text-transparent rounded-full opacity-50"
