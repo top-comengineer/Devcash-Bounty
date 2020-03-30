@@ -72,7 +72,7 @@
         <Icon
           class="w-8 h-8"
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-          :type="$store.state.theme.dt ? 'dark' : 'light'"
+          :type="$store.state.theme.dt ? 'light' : 'dark'"
         />
       </button>
       <!-- Sign In Button -->

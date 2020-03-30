@@ -51,11 +51,11 @@
                   ? 'text-dtBackground'
                   : 'text-ltBackground'
               "
-              :type="$store.state.theme.dt ? 'dark' : 'light'"
+              :type="$store.state.theme.dt ? 'light' : 'dark'"
             />
             <div
               class="text-xl font-bold"
-            >{{ $store.state.theme.dt ? $t("theme.dark") : $t("theme.light") }}</div>
+            >{{ $store.state.theme.dt ? $t("theme.light") : $t("theme.dark") }}</div>
           </button>
           <!-- Sign In Button -->
           <button
