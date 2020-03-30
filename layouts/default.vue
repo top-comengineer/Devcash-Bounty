@@ -1,7 +1,7 @@
 <template>
   <div
     class="transition-colors ease-out duration-200"
-    v-bind:class="[
+    :class="[
       $store.state.theme.dt
         ? 'bg-dtBackground text-dtText'
         : 'bg-ltBackground text-ltText'
@@ -13,7 +13,7 @@
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
-            v-bind:class="[
+            :class="[
               hideNavbar ? '-mt-24' : 'mt-0',
               {
                 'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarBg,

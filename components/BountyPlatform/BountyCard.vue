@@ -1,7 +1,7 @@
 <template>
   <nuxt-link
     :to="getLocalizedRoute('bountyplatform')"
-    v-bind:class="[
+    :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
@@ -24,7 +24,7 @@
     </div>
     <!-- Divider -->
     <div
-      v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
+      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
       class="md:hidden w-full h-px rounded-full opacity-5 my-3"
     ></div>
     <!-- Submissions Left and Remaining Time -->
@@ -71,7 +71,7 @@
     </div>
     <!-- Divider -->
     <div
-      v-bind:class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
+      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
       class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"
     ></div>
   </nuxt-link>

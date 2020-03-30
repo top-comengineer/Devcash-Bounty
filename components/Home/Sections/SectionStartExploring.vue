@@ -14,7 +14,7 @@
           />
           <!-- Start Exploring Card -->
           <div
-            v-bind:class="[
+            :class="[
               $store.state.theme.dt ? 'bg-dtBackground' : 'bg-ltBackground'
             ]"
             class="w-full flex flex-col items-center rounded-tl-4xl rounded-br-4xl rounded-tr-xl rounded-bl-xl border-2 border-dtPrimary px-2 md:px-4 py-10 relative"

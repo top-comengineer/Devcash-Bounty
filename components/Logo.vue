@@ -8,7 +8,7 @@
     <title>logo-horizontal-light</title>
     <path
       class="fill-current transition-all ease-out duration-200"
-      v-bind:class="[
+      :class="[
         type == 'monoLight'
           ? 'text-dtText'
           : type == 'monoDark'
@@ -20,7 +20,7 @@
     />
     <path
       class="fill-current transition-all ease-out duration-200"
-      v-bind:class="[
+      :class="[
         type == 'dark' || type == 'monoDark'
           ? 'text-dtBackground'
           : type == 'monoPrimary'? 'text-dtPrimary': 'text-dtText'

@@ -12,7 +12,11 @@
           </div>
           <!-- Navigation Items -->
           <!-- Home -->
-          <nuxt-link :to="getLocalizedRoute('index')" class="my-2">{{ $t("navigation.home") }}</nuxt-link>
+          <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            :to="getLocalizedRoute('index')"
+            class="my-2"
+          >{{ $t("navigation.home") }}</nuxt-link>
           <!-- IBO -->
           <nuxt-link
             :to="getLocalizedRoute({name: 'index', hash: '#IBO'})"
