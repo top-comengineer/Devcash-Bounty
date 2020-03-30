@@ -85,6 +85,7 @@ module.exports = {
       },
       width: {
         "36": "9rem",
+        "44": "11rem",
         "1/7": "14.2857143%",
         "2/7": "28.5714286%",
         "3/7": "42.8571429%",
@@ -94,6 +95,8 @@ module.exports = {
       }
     }
   },
-  variants: {},
+  variants: {
+    width: ['responsive', 'hover', 'focus']
+  },
   plugins: []
 };

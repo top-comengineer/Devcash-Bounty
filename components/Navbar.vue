@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-row justify-between items-center px-4 py-4 lg:px-8 lg:py-6">
     <nuxt-link :to="getLocalizedRoute('index')">
-      <Logo class="md:mb-0 w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
+      <Logo class="w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
     <!-- Menu icon shown on small screens -->
     <MobileDropdown />
