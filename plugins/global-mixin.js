@@ -31,6 +31,9 @@ Vue.mixin({
       }
       // Cleanup href
       href = (href.match(/^\/\/+$/)) ? '/' : href
+      if (href.includes("#") && href.endsWith("/")) {
+          href = href.slice(0, href.length - 1)
+      }
       return href
     },
     getRouteBaseName (route) {
