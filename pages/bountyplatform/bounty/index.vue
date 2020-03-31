@@ -58,7 +58,7 @@
         :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full md:w-auto flex flex-col flex-wrap relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg my-1 md:my-2"
+        class="w-full md:w-auto md:max-w-xs flex flex-col flex-wrap relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg my-1 md:my-2"
       >
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
