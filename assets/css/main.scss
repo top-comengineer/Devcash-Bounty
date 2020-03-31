@@ -35,6 +35,7 @@
 .focus_scale-lg:focus {
   transform: scale(1.065);
 }
+
 // Dark Theme Primary Color Button
 .btn-dtPrimary {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
@@ -48,6 +49,7 @@
     -0.25rem 0.25rem 0 0 rgba(#f2f1ff, 1);
   outline: none !important;
 }
+
 // Dark Theme Text Color Button
 .btn-dtText {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#675cff, 1);
@@ -74,6 +76,7 @@
     -0.25rem 0.25rem 0 0 rgba(#010014, 1);
   outline: none !important;
 }
+
 // Light Theme Text Color Button
 .btn-ltText {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#675cff, 1);
@@ -88,6 +91,20 @@
   outline: none !important;
 }
 
+// For Both Light Theme and Dark Theme, Text Color Button
+.btn-textSecondary {
+  box-shadow: 0 0.5rem 1rem 0 rgba(#181726, 0.25), 0 0 0 0 rgba(#181726, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-textSecondary:hover,
+.btn-textSecondary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#181726, 0.5),
+    -0.35rem 0.35rem 0 0 rgba(#181726, 1);
+  outline: none !important;
+}
+
 .hover_bg-dtText-15:hover,
 .focus_bg-dtText-15:focus {
   background-color: rgba(#f2f1ff, 0.15);
@@ -97,4 +114,29 @@
 .focus_bg-ltText-15:focus {
   background-color: rgba(#010014, 0.15);
   outline: none !important;
+}
+
+input {
+  outline: none;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  font-weight: 400;
+  opacity: 0.75;
+}
+::-moz-placeholder {
+  /* Firefox 19+ */
+  font-weight: 400;
+  opacity: 0.75;
+}
+:-ms-input-placeholder {
+  /* IE 10+ */
+  font-weight: 400;
+  opacity: 0.75;
+}
+:-moz-placeholder {
+  /* Firefox 18- */
+  font-weight: 400;
+  opacity: 0.75;
 }

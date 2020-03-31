@@ -10,7 +10,7 @@
       v-if="type=='post'"
       class="hidden md:block h-full w-auto absolute left-0"
       :src="require('~/assets/images/illustrations/background/plus-left.svg')"
-      alt="Plus Left Illustration"
+      alt="Post Left Illustration"
     />
     <img
       v-else

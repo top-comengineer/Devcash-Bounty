@@ -24,7 +24,7 @@ module.exports = {
       ltSecondary: "#8850F8",
       ltBackground: "#F8F7FC",
       ltBackgroundSecondary: "#FFFFFF",
-      ltBackgroundTertiary: "#FFFFFF",
+      ltBackgroundTertiary: "#F2F1FF",
       ltText: "#010014",
       ltSuccess: "#009966",
       ltDanger: "#990040",
@@ -97,7 +97,7 @@ module.exports = {
     }
   },
   variants: {
-    width: ['responsive', 'hover', 'focus']
+    width: ["responsive", "hover", "focus"]
   },
   plugins: []
 };
