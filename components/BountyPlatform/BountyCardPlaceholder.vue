@@ -5,7 +5,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center relative pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >
     <!-- Bounty Name and Address -->
     <div
@@ -43,7 +43,7 @@
         ></div>
         <h6
           :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-right text-sm text-transparent rounded-full opacity-50"
+          class="text-left text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">1 of 1</span>
           <span>
@@ -61,7 +61,7 @@
         ></div>
         <h6
           :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-right text-sm text-transparent rounded-full opacity-50"
+          class="text-left text-sm text-transparent rounded-full opacity-50"
         >
           <span class="font-bold">11 months</span>
           <span>
@@ -77,11 +77,11 @@
       class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end opacity-animation"
     >
       <h4
-        class="bg-dtPrimary font-extrabold text-xl text-right text-transparent rounded-full px-2"
+        class="bg-dtPrimary font-extrabold text-xl text-left md:text-right text-transparent rounded-full px-2"
       >{D}10,000,000</h4>
       <h5
         :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-        class="text-lg text-right mt-1 text-transparent rounded-full px-2 opacity-50"
+        class="text-lg text-left md:text-right mt-1 text-transparent rounded-full px-2 opacity-50"
       >Ξ10.10 / $1,000</h5>
     </div>
     <!-- Divider -->

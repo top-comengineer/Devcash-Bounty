@@ -131,7 +131,7 @@
     <CTACard
       class="my-1 md:my-2"
       :buttonAction="null"
-      :buttonText="$t('bountyPlatform.post.postBountyButton')"
+      :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
     />
   </div>
 </template>

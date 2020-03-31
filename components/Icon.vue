@@ -292,6 +292,22 @@
         d="M14.81,13.5a7.09,7.09,0,0,0,3.75-1.07V21a1.5,1.5,0,0,1-1.5,1.5h-9A4.5,4.5,0,0,1,3.56,18V4.5A1.5,1.5,0,0,1,5.06,3H8.54a7.13,7.13,0,0,0,6.28,10.5Z"
       />
     </svg>
+    <!-- Email -->
+    <svg
+      v-else-if="type == 'email'"
+      id="f646dd47-a5f2-419c-b82c-046c5dc8e892"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 14 14"
+    >
+      <title>Email</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M11.67,2.33H2.33A1.17,1.17,0,0,0,1.17,3.5v7a1.17,1.17,0,0,0,1.17,1.17h9.33a1.17,1.17,0,0,0,1.17-1.17v-7A1.17,1.17,0,0,0,11.67,2.33Zm0,2.33L7,7.58,2.33,4.67V3.5L7,6.42,11.67,3.5Z"
+      />
+    </svg>
   </div>
 </template>
 <script>

@@ -58,7 +58,16 @@
       "contactNamePlaceholder": "Enter the name of the contact",
       "contactEmail": "Contact Email",
       "contactEmailPlaceholder": "Enter the email of the contact",
-      "postBountyButton": "Post Bounty"
+      "buttonPostBounty": "Post Bounty"
+    },
+    "singleBounty": {
+      "buttonHunt": "Hunt",
+      "buttonContribute": "Contribute",
+      "bountyDescription": "Bounty Description",
+      "tagActive": "Active",
+      "tagCompleted": "Completed",
+      "tagExpired": "Expired",
+      "createdBy": "Created By"
     }
   },
   "dex": {

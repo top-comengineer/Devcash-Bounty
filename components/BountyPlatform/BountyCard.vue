@@ -6,7 +6,7 @@
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-    class="w-full flex flex-row flex-wrap justify-between items-center relative pt-4 pb-5 px-6 md:px-8 fill-current rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
@@ -66,8 +66,10 @@
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end">
-      <h4 class="text-dtPrimary font-extrabold text-xl text-right">{{ "{D}" + '1,000' }}</h4>
-      <h5 class="text-lg text-right mt-1">{{ "Ξ" + '1' + " / " + "$" + '1' }}</h5>
+      <h4
+        class="text-dtPrimary font-extrabold text-xl text-left md:text-right"
+      >{{ "{D}" + '1,000' }}</h4>
+      <h5 class="text-lg text-left md:text-right mt-1">{{ "Ξ" + '1' + " / " + "$" + '1' }}</h5>
     </div>
     <!-- Divider -->
     <div
