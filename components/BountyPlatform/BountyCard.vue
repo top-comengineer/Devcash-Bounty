@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="getLocalizedRoute('bountyplatform')"
+    :to="getLocalizedRoute('bountyplatform-bounty')"
     :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'

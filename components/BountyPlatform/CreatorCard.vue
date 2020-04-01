@@ -14,7 +14,7 @@
         class="w-5 h-5"
         type="email"
       />
-      <h6 class="font-semibold ml-2 break-all">{{email}}</h6>
+      <h6 class="ml-2 text-sm break-all">{{email}}</h6>
     </div>
   </div>
 </template>
