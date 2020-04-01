@@ -125,6 +125,13 @@ button:focus {
   outline: none;
 }
 
+button,
+a,
+input,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-weight: 400;
