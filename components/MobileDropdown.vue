@@ -90,21 +90,20 @@ export default {
 <style>
 .dropdown {
   width: calc(100vw - 2rem);
+  transform-origin: right top;
 }
 .dropdownTransition-enter-active {
   transition: all 0.25s ease-out;
-  transform-origin: right top;
 }
 .dropdownTransition-leave-active {
   transition: all 0.25s ease-out;
-  transform-origin: right top;
 }
 .dropdownTransition-enter {
   opacity: 0;
-  transform: scaleX(0.25) scaleY(0.5) translateY(-2rem);
+  transform: scaleX(0.25) scaleY(0.5) rotate(2.5deg) translateY(-4rem);
 }
 .dropdownTransition-leave-to {
   opacity: 0;
-  transform: scaleX(0.25) scaleY(0.5) translateY(-2rem);
+  transform: scaleX(0.25) scaleY(0.5) rotate(2.5deg) translateY(-4rem);
 }
 </style>
