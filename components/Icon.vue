@@ -308,17 +308,81 @@
         d="M11.67,2.33H2.33A1.17,1.17,0,0,0,1.17,3.5v7a1.17,1.17,0,0,0,1.17,1.17h9.33a1.17,1.17,0,0,0,1.17-1.17v-7A1.17,1.17,0,0,0,11.67,2.33Zm0,2.33L7,7.58,2.33,4.67V3.5L7,6.42,11.67,3.5Z"
       />
     </svg>
+    <!-- Arrow Down -->
+    <svg
+      v-else-if="type == 'arrow-down'"
+      id="6f661883-87ef-4100-80c8-e92cf4a5f264"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>arrow-down</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M28,9.86a1,1,0,0,1,.73,1.76l-12,12.11a1,1,0,0,1-1.47,0L3.3,11.61A1,1,0,0,1,4,9.86Z"
+      />
+    </svg>
+    <!-- Language -->
+    <svg
+      v-else-if="type == 'language'"
+      id="80cc7d50-e363-4c84-8761-f957b3a19625"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>language</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M16,3A13,13,0,1,0,29,16,13,13,0,0,0,16,3Zm9,7.8H21.16a20.34,20.34,0,0,0-1.79-4.63A10.44,10.44,0,0,1,25,10.8ZM16,5.65a18.31,18.31,0,0,1,2.48,5.15h-5A18.31,18.31,0,0,1,16,5.65ZM5.94,18.6a10.17,10.17,0,0,1,0-5.2h4.39a21.47,21.47,0,0,0-.18,2.6,21.47,21.47,0,0,0,.18,2.6ZM7,21.2h3.83a20.34,20.34,0,0,0,1.79,4.63A10.38,10.38,0,0,1,7,21.2Zm3.83-10.4H7a10.38,10.38,0,0,1,5.63-4.63,20.34,20.34,0,0,0-1.79,4.63ZM16,26.35a18.31,18.31,0,0,1-2.48-5.15h5A18.31,18.31,0,0,1,16,26.35Zm3-7.75H13a19.13,19.13,0,0,1-.21-2.6A19,19,0,0,1,13,13.4H19a19,19,0,0,1,.21,2.6A19.11,19.11,0,0,1,19,18.6Zm.33,7.23a20.34,20.34,0,0,0,1.79-4.63H25a10.44,10.44,0,0,1-5.63,4.63Zm2.3-7.23a21.47,21.47,0,0,0,.18-2.6,21.47,21.47,0,0,0-.18-2.6h4.39a10.17,10.17,0,0,1,0,5.2Z"
+      />
+    </svg>
+    <!-- Notifications New -->
+    <svg
+      v-else-if="type == 'notification-new'"
+      id="f86f33dd-fc53-44c6-9752-840689abe527"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>notification-new</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M23.75,21.25V15.92a6.67,6.67,0,0,1-6.67-6.67,6.59,6.59,0,0,1,.67-3.07V5.25a2,2,0,0,0-4,0v.91c-3.83.91-6,4.32-6,8.43v6.67L5.08,23.92v1.33H26.42V23.92Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M15.75,29.25a2.67,2.67,0,0,0,2.67-2.67H13.08A2.67,2.67,0,0,0,15.75,29.25Z"
+      />
+      <circle
+        class="fill-current"
+        :class="[secondaryColorClass != null ? secondaryColorClass : defaultSecondaryColorClass]"
+        fill="#ff8080"
+        cx="23.75"
+        cy="9.25"
+        r="4.67"
+      />
+    </svg>
   </div>
 </template>
 <script>
 export default {
   props: {
     type: null,
-    colorClass: null
+    colorClass: null,
+    secondaryColorClass: null
   },
   data: function() {
     return {
-      defaultColorClass: "text-dtText"
+      defaultColorClass: "text-dtText",
+      defaultSecondaryColorClass: "text-dtDanger"
     };
   }
 };

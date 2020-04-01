@@ -58,10 +58,34 @@
       <button
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         href="/"
-        class="flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
+        class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 rounded-full transition-all ease-out duration-200"
       >
-        <div>{{ $t("navigation.english") }}</div>
-        <div class="h-px2 w-full"></div>
+        <div class="flex flex-row items-center p-1">
+          <Icon
+            class="w-8 h-8 lg:w-6 lg:h-6 transition-all ease-out duration-200"
+            :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+            type="language"
+          />
+          <div class="mx-1 hidden lg:block">{{ $t("navigation.english") }}</div>
+          <Icon
+            class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
+            :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+            type="arrow-down"
+          />
+        </div>
+        <div class="hidden lg:block h-px2 w-full"></div>
+      </button>
+      <!-- Notifications New -->
+      <button
+        :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+        class="rounded-full lg:ml-2 p-1"
+      >
+        <Icon
+          class="w-8 h-8"
+          :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+          :secondaryColorClass="$store.state.theme.dt ? 'text-dtDanger' : 'text-ltDanger'"
+          type="notification-new"
+        />
       </button>
       <!-- Theme Switcher Button -->
       <button

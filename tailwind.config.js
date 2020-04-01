@@ -84,6 +84,10 @@ module.exports = {
         84: "21rem",
         96: "24rem"
       },
+      scale: {
+        115: "1.15",
+        120: "1.2"
+      },
       transitionDuration: {
         "0": "0ms"
       },
@@ -103,6 +107,7 @@ module.exports = {
     }
   },
   variants: {
+    scale: ["responsive", "hover", "focus"],
     width: ["responsive", "hover", "focus"]
   },
   plugins: []

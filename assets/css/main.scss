@@ -120,6 +120,11 @@ input {
   outline: none;
 }
 
+button:hover,
+button:focus {
+  outline: none;
+}
+
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   font-weight: 400;

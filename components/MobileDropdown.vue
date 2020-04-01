@@ -1,9 +1,12 @@
 <template>
   <div click class="relative">
-    <button @click="isOpen = !isOpen">
+    <button
+      :class="[isOpen ? '-rotate-90' : 'rotate-0']"
+      class="transform scale-100 focus:scale-115 hover:scale-115 transition-all ease-out duration-200"
+      @click="isOpen = !isOpen"
+    >
       <Icon
-        :class="[isOpen ? '-rotate-90' : 'rotate-0']"
-        class="md:hidden w-8 h-8 transform transition-all ease-out duration-200"
+        class="md:hidden w-8 h-8 transform"
         type="menu"
         :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
       />
