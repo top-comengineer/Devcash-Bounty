@@ -36,3 +36,9 @@ export const ROUTES_ALIASES = {
     fr: '/categorie/:slug'
   }*/
 }
+
+export const SIDEBAR_CONTEXTS = {
+  explore: 'explore',
+  single: 'singleBounty',
+  post: 'post'
+}

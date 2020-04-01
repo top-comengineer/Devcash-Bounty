@@ -120,6 +120,7 @@
 </template>
 
 <script>
+import { SIDEBAR_CONTEXTS } from "~/config"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
@@ -134,6 +135,13 @@ export default {
     Jazzicon,
     Icon,
     CreatorCard
+  },
+  mounted() {
+    // Set sidebar context
+    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.single)
+  },
+  destroyed() {
+    this.$store.commit('general/setSidebarContext', null)
   }
 };
 </script>

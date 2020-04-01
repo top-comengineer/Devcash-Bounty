@@ -137,6 +137,7 @@
 </template>
 
 <script>
+import { SIDEBAR_CONTEXTS } from "~/config"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 export default {
@@ -144,6 +145,13 @@ export default {
   components: {
     GreetingCard,
     CTACard
+  },
+  mounted() {
+    // Set sidebar context
+    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.post)
+  },
+  destroyed() {
+    this.$store.commit('general/setSidebarContext', null)
   }
 };
 </script>

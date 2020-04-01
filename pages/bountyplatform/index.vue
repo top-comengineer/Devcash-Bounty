@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import { SIDEBAR_CONTEXTS } from "~/config"
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
@@ -49,12 +50,18 @@ export default {
     }
   },
   mounted() {
+    // Set sidebar context
+    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.explore)
+    // Load
     this.initEthConnector().then(_ => {
       this.$store.state.devcash.connector.getUbounties().then(bounties => {
         this.bounties = bounties;
         this.loading = false;
       });
     });
+  },
+  destroyed() {
+    this.$store.commit('general/setSidebarContext', null)
   }
 };
 </script>
