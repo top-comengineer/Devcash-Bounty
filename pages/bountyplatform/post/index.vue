@@ -146,7 +146,7 @@ export default {
     GreetingCard,
     CTACard
   },
-  mounted() {
+  beforeMount() {
     // Set sidebar context
     this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.post)
   },

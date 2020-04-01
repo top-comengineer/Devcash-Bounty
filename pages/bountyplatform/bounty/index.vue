@@ -136,7 +136,7 @@ export default {
     Icon,
     CreatorCard
   },
-  mounted() {
+  beforeMount() {
     // Set sidebar context
     this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.single)
   },

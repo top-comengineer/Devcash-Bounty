@@ -50,8 +50,6 @@ export default {
     }
   },
   mounted() {
-    // Set sidebar context
-    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.explore)
     // Load
     this.initEthConnector().then(_ => {
       this.$store.state.devcash.connector.getUbounties().then(bounties => {
@@ -59,6 +57,10 @@ export default {
         this.loading = false;
       });
     });
+  },
+  beforeMount() {
+    // Set sidebar context
+    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.explore)
   },
   destroyed() {
     this.$store.commit('general/setSidebarContext', null)

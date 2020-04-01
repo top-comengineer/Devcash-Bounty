@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+import { SIDEBAR_CONTEXTS } from "~/config";
 import Icon from "~/components/Icon.vue";
 export default {
   components: {
@@ -66,7 +67,9 @@ export default {
     bountyName: null
   },
   data: function() {
-    return {};
+    return {
+      sidebarContexts: SIDEBAR_CONTEXTS
+    };
   }
 };
 </script>
