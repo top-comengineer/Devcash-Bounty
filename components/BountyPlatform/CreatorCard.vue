@@ -5,7 +5,7 @@
   >
     <div class="flex flex-row md:justify-center items-center">
       <Jazzicon class="flex" :diameter="48" :address="address" />
-      <h6 v-html="threeLineAddress(address)" class="font-mono-jet text-sm font-medium ml-3"></h6>
+      <h6 v-html="threeLineAddress(address)" class="font-mono-jet text-sm ml-3"></h6>
     </div>
     <h5 v-if="name!=null" class="font-bold mt-3">{{name}}</h5>
     <div v-if="email!=null" class="flex flex-row items-center">
