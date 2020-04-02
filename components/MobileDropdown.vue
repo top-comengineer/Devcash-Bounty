@@ -24,28 +24,70 @@
           class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg px-4 py-4"
         >
           <!-- Home -->
-          <nuxt-link
-            :to="getLocalizedRoute('index')"
-            class="w-full flex flex-row py-2 my-1 justify-center"
-          >{{ $t("navigation.home") }}</nuxt-link>
+          <nuxt-link :to="getLocalizedRoute('index')" v-slot="{  navigate, href, isExactActive  }">
+            <a
+              :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
+              @click="navigate"
+              :href="href"
+              class="w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg px-4"
+            >
+              <div class="flex flex-col items-center">
+                <div>{{ $t("navigation.home") }}</div>
+                <div
+                  :class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtBackground':'bg-ltBackground']"
+                  class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+                ></div>
+              </div>
+            </a>
+          </nuxt-link>
           <!-- Bounty Platform -->
           <nuxt-link
-            to="bountyplatform"
-            class="w-full flex flex-row py-2 my-1 justify-center"
-          >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
-          <!-- DEX -->
-          <nuxt-link
             :to="getLocalizedRoute('bountyplatform')"
-            class="w-full flex flex-row py-2 my-1 justify-center"
-          >{{ $t("navigation.dex") }}</nuxt-link>
+            v-slot="{  navigate, href, isExactActive  }"
+          >
+            <a
+              :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
+              @click="navigate"
+              :href="href"
+              class="w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg px-4"
+            >
+              <div class="flex flex-col items-center">
+                <div>{{ $t("navigation.bountyPlatform") }}</div>
+                <div
+                  :class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtBackground':'bg-ltBackground']"
+                  class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+                ></div>
+              </div>
+            </a>
+          </nuxt-link>
+          <!-- DEX -->
+          <a
+            to="/"
+            :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
+            class="w-full flex flex-row py-2 my-1 justify-center transition-all ease-out duration-200 rounded-lg"
+          >{{ $t("navigation.dex") }}</a>
           <!-- Language -->
           <button
-            class="w-full flex flex-row py-2 my-1 justify-center text-xl font-bold"
-          >{{ $t("navigation.english") }}</button>
+            :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
+            class="w-full flex flex-row py-2 my-1 justify-center items-center text-xl font-bold transition-all ease-out duration-200 rounded-lg"
+          >
+            <Icon
+              class="w-6 h-6 transition-all ease-out duration-200"
+              :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
+              type="language"
+            />
+            <div class="mx-1">{{ $t("navigation.english") }}</div>
+            <Icon
+              class="w-4 h-4 transition-all ease-out duration-200"
+              :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
+              type="arrow-down"
+            />
+          </button>
           <!-- Theme Switch -->
           <button
             @click="$store.commit('theme/change'); isOpen=false"
-            class="w-full flex flex-row py-2 my-1 justify-center items-center"
+            class="w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg rounded-lg"
+            :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
           >
             <Icon
               class="w-6 h-6 mr-1"

@@ -116,12 +116,25 @@
   outline: none !important;
 }
 
+.hover_bg-dtBackground-15:hover,
+.focus_bg-dtBackground-15:focus {
+  background-color: rgba(#010014, 0.15);
+  outline: none !important;
+}
+.hover_bg-ltBackground-15:hover,
+.focus_bg-ltBackground-15:focus {
+  background-color: rgba(#f2f1ff, 0.15);
+  outline: none !important;
+}
+
 input {
   outline: none;
 }
 
 button:hover,
-button:focus {
+button:focus,
+a:hover,
+a:focus {
   outline: none;
 }
 
