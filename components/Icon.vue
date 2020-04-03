@@ -424,6 +424,186 @@
         d="M19.8,5.7H12L10.05,3.75H4.2A2,2,0,0,0,2.25,5.7V17.4a2,2,0,0,0,1.95,2H19.8a2,2,0,0,0,2-2V7.65A2,2,0,0,0,19.8,5.7Zm-.46,5.47a.41.41,0,0,1,0,.63l-1.87,1.68.75,2.64a.41.41,0,0,1-.63.46l-2.25-1.5-2.25,1.5a.41.41,0,0,1-.63-.44l.61-2.66-1.74-1.69a.41.41,0,0,1,.26-.71L14,10.9l1-2.25a.41.41,0,0,1,.75,0l1,2.25,2.35.19A.41.41,0,0,1,19.34,11.17Z"
       />
     </svg>
+    <!-- Bounty Complete -->
+    <svg
+      v-else-if="type == 'bounty-complete'"
+      id="8f9f3bc6-259c-4ad3-b188-8694b59aa694"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>bounty-complete</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M21,14a1,1,0,0,1,0,2H9a1,1,0,0,1,0-2h4.55l-2-2H9a1,1,0,0,1,0-2h.75a2.89,2.89,0,0,1,.4-3.47,2.85,2.85,0,0,1,4.08,0l1.71,1.74L21,3.06a.45.45,0,0,0-.25,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L9.22,3.11a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L5.36,3.18A.25.25,0,0,0,5,3.4V28.6a.25.25,0,0,0,.36.22l1.42-.71a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.42.71A.25.25,0,0,0,25,28.6V7.17L18.33,14ZM9,18h9a1,1,0,0,1,0,2H9a1,1,0,0,1,0-2Zm12,6H9a1,1,0,0,1,0-2H21a1,1,0,0,1,0,2Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M27.08,1a1.36,1.36,0,0,0-1-.41,1.33,1.33,0,0,0-1,.41l-9.2,9.42L13.16,7.58a1.35,1.35,0,0,0-1.94,0,1.36,1.36,0,0,0,0,1.89l4.72,4.83L27.08,2.89A1.34,1.34,0,0,0,27.08,1Z"
+      />
+    </svg>
+    <!-- Cancel -->
+    <svg
+      v-else-if="type == 'cancel'"
+      id="218b30da-4bee-4332-9e79-ab168f428713"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>cancel</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M18.49,16l7-7A1.77,1.77,0,1,0,23,6.52l-7,7-7-7A1.77,1.77,0,1,0,6.52,9l7,7-7,7A1.77,1.77,0,0,0,9,25.48l7-7,7,7a1.77,1.77,0,0,0,2.5-2.5Z"
+      />
+    </svg>
+    <!-- Done -->
+    <svg
+      v-else-if="type == 'done'"
+      id="bbc320b3-9f05-48a1-b883-a31a4cdeed04"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>done</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M11.28,25,4.36,17.91a2,2,0,0,1,0-2.78h0a2,2,0,0,1,2.84,0l4.08,4.16L24.79,5.46a2,2,0,0,1,2.86,0h0a2,2,0,0,1,0,2.78Z"
+      />
+    </svg>
+    <!-- Fee -->
+    <svg
+      v-else-if="type == 'fee'"
+      id="a93db7f0-1af5-4cbb-bc8d-590561003eca"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>fee</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M6.38,18.25V15.44A3.49,3.49,0,0,0,4.5,12,3.49,3.49,0,0,0,6.38,8.56V5.75A1.56,1.56,0,0,1,7.94,4.19h2.18A2.13,2.13,0,0,0,12.31,2H7A2.8,2.8,0,0,0,4.19,4.81V8.09A4,4,0,0,1,2,12a4,4,0,0,1,2.19,3.91v3.28A2.8,2.8,0,0,0,7,22a2.19,2.19,0,0,0,1.22-.36V19.81H7.94A1.56,1.56,0,0,1,6.38,18.25Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M21.26,8.22a10,10,0,0,0-7.45-6.06L12.69,8.53a3.71,3.71,0,0,1,1.49-.31Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M21.81,10.16l-3.47,19.7a10,10,0,0,0,3.47-19.7Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M14.38,16.56V13.75a1.57,1.57,0,0,1,1.56-1.56h2.19A2.14,2.14,0,0,0,20.31,10H15a2.8,2.8,0,0,0-2.81,2.81v3.28A4,4,0,0,1,10,20a4,4,0,0,1,2.19,3.91v3.28A2.8,2.8,0,0,0,15,30a2.14,2.14,0,0,0,2.19-2.19H15.94a1.57,1.57,0,0,1-1.56-1.56V23.44A3.49,3.49,0,0,0,12.5,20,3.49,3.49,0,0,0,14.38,16.56Z"
+      />
+    </svg>
+    <!-- New Bounty -->
+    <svg
+      v-else-if="type == 'new-bounty'"
+      id="6281d12d-0a8b-4f50-a8f1-64dbd112acb4"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>new-bounty</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M20.93,10.65a1.53,1.53,0,0,1-.82.24A1.49,1.49,0,0,1,19,10.45a1.51,1.51,0,0,1-.2-1.88l2.52-3.88a4.44,4.44,0,0,1-.07-1.54l-.08,0a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L9.22,3.11a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L5.36,3.18A.25.25,0,0,0,5,3.4V28.6a.25.25,0,0,0,.36.22l1.42-.71a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.42.71A.25.25,0,0,0,25,28.6V8.16l-.18,0ZM9,10h5a1,1,0,0,1,0,2H9a1,1,0,0,1,0-2Zm0,4h8a1,1,0,0,1,0,2H9a1,1,0,0,1,0-2ZM21,24H9a1,1,0,0,1,0-2H21a1,1,0,0,1,0,2Zm0-4H9a1,1,0,0,1,0-2H21a1,1,0,0,1,0,2Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M27.89,1.61a3,3,0,0,0-4.24,0A3,3,0,0,0,23,4.91l-2.9,4.48,4.48-2.9a3,3,0,0,0,3.3-4.88Z"
+      />
+    </svg>
+    <!-- Personal Bounty -->
+    <svg
+      v-else-if="type == 'personal-bounty'"
+      id="9776f15d-f6db-462d-a1ea-8a7976d39c82"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>personal-bounty</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M20.93,10.65a1.53,1.53,0,0,1-.82.24A1.49,1.49,0,0,1,19,10.45a1.51,1.51,0,0,1-.2-1.88l2.52-3.88a4.44,4.44,0,0,1-.07-1.54l-.08,0a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0l-1.56-.78a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L9.22,3.11a.49.49,0,0,0-.44,0l-1.56.78a.49.49,0,0,1-.44,0L5.36,3.18A.25.25,0,0,0,5,3.4V28.6a.25.25,0,0,0,.36.22l1.42-.71a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.56.78a.49.49,0,0,0,.44,0l1.56-.78a.49.49,0,0,1,.44,0l1.42.71A.25.25,0,0,0,25,28.6V8.16l-.18,0ZM15,10.5a4,4,0,1,1-4,4A4,4,0,0,1,15,10.5ZM23,26H7V24c0-2.66,5.33-4,8-4s8,1.34,8,4Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M27.89,1.61a3,3,0,0,0-4.24,0A3,3,0,0,0,23,4.91l-2.9,4.48,4.48-2.9a3,3,0,0,0,3.3-4.88Z"
+      />
+    </svg>
+    <!-- Reclaim -->
+    <svg
+      v-else-if="type == 'reclaim'"
+      id="4e0003a6-8e3e-4aaa-a834-25a21747cfa0"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>reclaim</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M26,4H20V7h4a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H22.5A1.5,1.5,0,0,0,21,22.5V25H11V22.5A1.5,1.5,0,0,0,9.5,21H8a1,1,0,0,1-1-1V8A1,1,0,0,1,8,7h4V4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4Zm-4.48,8A1,1,0,0,0,20,12l-3,3V1A1,1,0,0,0,15,1V15l-3-3a1,1,0,0,0-1.47,1.47L16,19l5.52-5.52A1,1,0,0,0,21.52,12Z"
+      />
+    </svg>
+    <!-- Submission Received -->
+    <svg
+      v-else-if="type == 'submission-received'"
+      id="1806eec9-cfb1-4ee8-aa6e-2a966009427d"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>submission</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M29,19.82,20.48,28a1.57,1.57,0,1,1-2.17-2.27l4.55-4.34H7a2,2,0,0,1-2-2V4.6a1.6,1.6,0,1,1,3.2,0V17.29a1,1,0,0,0,1,1H22.87L18.32,14a1.57,1.57,0,1,1,2.17-2.27Z"
+      />
+    </svg>
+    <!-- Submission Sent -->
+    <svg
+      v-else-if="type == 'submission-sent'"
+      id="92d26df9-70e1-4e39-aed4-90144c073402"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>submission-sent</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M12.18,3,4,11.52a1.57,1.57,0,1,0,2.27,2.17l4.34-4.55V25a2,2,0,0,0,2,2H27.4a1.6,1.6,0,0,0,0-3.2H14.71a1,1,0,0,1-1-1V9.13L18,13.68a1.57,1.57,0,1,0,2.27-2.17Z"
+      />
+    </svg>
   </div>
 </template>
 <script>
