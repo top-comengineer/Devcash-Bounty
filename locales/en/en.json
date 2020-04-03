@@ -61,7 +61,12 @@
       "buttonPostBounty": "Post Bounty"
     },
     "overview": {
-      "header": "Overview"
+      "header": "Overview",
+      "totalEarned": "Total Earned",
+      "bountiesHunted": "Bounties Hunted",
+      "totalAwarded": "Total Awarded",
+      "bountiesPosted": "Bounties Posted",
+      "approvedBalance": "Approved Balance"
     },
     "bountyHunter": {
       "header": "Bounty Hunter"

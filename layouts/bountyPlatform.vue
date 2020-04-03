@@ -21,7 +21,7 @@
 </template>
 <script>
 import DefaultLayout from "~/layouts/default.vue";
-import Sidebar from "~/components/Sidebar.vue";
+import Sidebar from "~/components/BountyPlatform/Sidebar.vue";
 export default {
   components: {
     DefaultLayout,
