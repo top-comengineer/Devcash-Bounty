@@ -9,6 +9,7 @@
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
+      <!-- Explore -->
       <nuxt-link
         :to="getLocalizedRoute('bountyplatform')"
         v-slot="{  navigate, href, isExactActive  }"
@@ -16,7 +17,7 @@
         <a
           @click="navigate"
           :href="href"
-          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
           :class="[{
             'bg-dtPrimary text-dtText': isExactActive,
             'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
@@ -28,10 +29,11 @@
             class="w-8 h-8 lg:w-7 lg:h-7"
           />
           <h3
-            class="text-xl font-bold hidden lg:block ml-2"
+            class="text-lg font-bold hidden lg:block ml-2"
           >{{ $t("bountyPlatform.explore.header") }}</h3>
         </a>
       </nuxt-link>
+      <!-- Post -->
       <nuxt-link
         :to="getLocalizedRoute('bountyplatform-post')"
         v-slot="{ navigate, href, isExactActive }"
@@ -39,7 +41,7 @@
         <a
           @click="navigate"
           :href="href"
-          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:px-8 transition-colors ease-out duration-200"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
           :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
             'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
@@ -50,7 +52,79 @@
             :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
             class="w-8 h-8 lg:w-7 lg:h-7"
           />
-          <h3 class="text-xl font-bold hidden lg:block ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+          <h3 class="text-lg font-bold hidden lg:block ml-2">{{ $t("bountyPlatform.post.header") }}</h3>
+        </a>
+      </nuxt-link>
+      <!-- Overview -->
+      <nuxt-link
+        :to="getLocalizedRoute('bountyplatform-overview')"
+        v-slot="{ navigate, href, isExactActive }"
+      >
+        <a
+          @click="navigate"
+          :href="href"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+          :class="[{
+            'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
+            'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
+          }] "
+        >
+          <Icon
+            type="overview"
+            :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
+            class="w-8 h-8 lg:w-7 lg:h-7"
+          />
+          <h3
+            class="text-lg font-bold hidden lg:block ml-2"
+          >{{ $t("bountyPlatform.overview.header") }}</h3>
+        </a>
+      </nuxt-link>
+      <!-- Bounty Hunter-->
+      <nuxt-link
+        :to="getLocalizedRoute('bountyplatform-bountyhunter')"
+        v-slot="{ navigate, href, isExactActive }"
+      >
+        <a
+          @click="navigate"
+          :href="href"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+          :class="[{
+            'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
+            'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
+          }] "
+        >
+          <Icon
+            type="bounty-hunter"
+            :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
+            class="w-8 h-8 lg:w-7 lg:h-7"
+          />
+          <h3
+            class="text-lg font-bold hidden lg:block ml-2"
+          >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
+        </a>
+      </nuxt-link>
+      <!-- Bounty Manager -->
+      <nuxt-link
+        :to="getLocalizedRoute('bountyplatform-bountymanager')"
+        v-slot="{ navigate, href, isExactActive }"
+      >
+        <a
+          @click="navigate"
+          :href="href"
+          class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+          :class="[{
+            'bg-dtPrimary hover:bg-dtPrimary text-dtText': isExactActive,
+            'hover_bg-dtPrimary-25 focus_bg-dtPrimary-25':  !isExactActive
+          }] "
+        >
+          <Icon
+            type="bounty-manager"
+            :colorClass="isExactActive?'text-dtText':$store.state.theme.dt?'text-dtText':'text-ltText'"
+            class="w-8 h-8 lg:w-7 lg:h-7"
+          />
+          <h3
+            class="text-lg font-bold hidden lg:block ml-2"
+          >{{ $t("bountyPlatform.bountyManager.header") }}</h3>
         </a>
       </nuxt-link>
     </div>

@@ -60,6 +60,15 @@
       "contactEmailPlaceholder": "Enter the email of the contact",
       "buttonPostBounty": "Post Bounty"
     },
+    "overview": {
+      "header": "Overview"
+    },
+    "bountyHunter": {
+      "header": "Bounty Hunter"
+    },
+    "bountyManager": {
+      "header": "Bounty Manager"
+    },
     "singleBounty": {
       "buttonHunt": "Hunt",
       "buttonContribute": "Contribute",
