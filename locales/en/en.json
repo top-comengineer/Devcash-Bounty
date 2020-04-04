@@ -103,7 +103,8 @@
       "tagCompleted": "Completed",
       "tagExpired": "Expired",
       "createdBy": "Created By"
-    }
+    },
+    "buttonLoadMore": "Load More"
   },
   "dex": {
     "header": "DEX",
