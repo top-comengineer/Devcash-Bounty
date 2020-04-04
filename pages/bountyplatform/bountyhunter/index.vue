@@ -4,11 +4,69 @@
     <div
       :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
+        : 'bg-ltBackgroundSecondary shadow-lgD']"
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
       <!-- Header -->
       <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
+      <!-- Submissions -->
+      <div class="w-full flex flex-col flex-wrap my-4">
+        <SubmissionCard
+          class="my-2"
+          bountyName="ETH Hackathon Project"
+          status="pending"
+          amountDEV="575,000"
+          amountETH="1.278"
+          amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          message="Resending the submission, added the instructions in README.md"
+          date="03.16.2020, 16:45"
+        />
+        <SubmissionCard
+          class="my-2"
+          bountyName="ETH Hackathon Project"
+          status="pending"
+          amountDEV="575,000"
+          amountETH="1.278"
+          amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          message="Resending the submission, added the instructions in README.md"
+          date="03.16.2020, 16:45"
+        />
+        <SubmissionCard
+          class="my-2"
+          bountyName="ETH Hackathon Project"
+          status="pending"
+          amountDEV="575,000"
+          amountETH="1.278"
+          amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          message="Resending the submission, added the instructions in README.md"
+          date="03.16.2020, 16:45"
+        />
+        <SubmissionCard
+          class="my-2"
+          bountyName="ETH Hackathon Project"
+          status="pending"
+          amountDEV="575,000"
+          amountETH="1.278"
+          amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          message="Resending the submission, added the instructions in README.md"
+          date="03.16.2020, 16:45"
+        />
+        <SubmissionCard
+          class="my-2"
+          bountyName="ETH Hackathon Project"
+          status="pending"
+          amountDEV="575,000"
+          amountETH="1.278"
+          amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          message="Resending the submission, added the instructions in README.md"
+          date="03.16.2020, 16:45"
+        />
+      </div>
       <!-- Load More Button -->
       <div class="flex flex-row justify-center mt-2">
         <button
@@ -26,9 +84,12 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 export default {
   layout: "bountyPlatform",
-  components: {},
+  components: {
+    SubmissionCard
+  },
   beforeMount() {
     // Set sidebar context
     this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.post);

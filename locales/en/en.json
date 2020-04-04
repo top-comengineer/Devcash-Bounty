@@ -97,7 +97,8 @@
       "approved": "Approved",
       "feedback": "Feedback",
       "showFeedback": "Show Feedback",
-      "hideFeedback": "Hide Feedback"
+      "hideFeedback": "Hide Feedback",
+      "you": "You"
     },
     "bountyManager": {
       "header": "Bounty Manager",

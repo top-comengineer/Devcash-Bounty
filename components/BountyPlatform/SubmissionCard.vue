@@ -4,43 +4,66 @@
       :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundTertiary'
-        : 'bg-ltBackgroundSecondary shadow-lgD'
-    ]"
-      class="w-full flex flex-row flex-wrap justify-between items-center rounded-lg px-4 md:px-6 py-2 md:py-4"
+        : 'bg-ltBackgroundSecondary shadow-lgD']"
+      class="w-full flex flex-col flex-wrap justify-between items-center rounded-lg overflow-hidden"
     >
-      <!-- Icon and Message -->
-      <div class="w-full md:w-6/12 lg:w-7/12 flex flex-row justify-start items-center my-2">
-        <!-- Icon -->
-        <div>
-          <Icon
-            :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-            class="w-8 h-8 md:w-10 md:h-10"
-            :type="pickIcon()"
-          />
-        </div>
-        <!-- Message -->
-        <p v-html="formattedMessage()" class="text-left px-4"></p>
-      </div>
-      <!-- Address and Date -->
-      <div class="w-full md:w-5/12 lg:w-4/12 flex flex-col justify-end my-2">
-        <!-- If there is an address -->
-        <div v-if="address" class="flex flex-row justify-start md:justify-end">
-          <div
-            :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltTextLight'"
-            class="flex flex-row justify-start md:justify-end items-center rounded-full mb-2"
-          >
-            <Jazzicon class="flex m-1" :diameter="20" :address="address" />
-            <h5 class="font-mono-jet font-bold text-left ml-2 mr-3 break-all">
+      <!-- Top Part -->
+      <div
+        :class="[
+      $store.state.theme.dt
+        ? 'bg-dtBackgroundQuaternary'
+        : 'bg-ltBackgroundSecondary']"
+        class="w-full flex flex-row flex-wrap justify-between items-center py-2 md:py-0"
+      >
+        <!-- Senders Address and Project Name -->
+        <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
+          <Jazzicon class="flex m-1" :diameter="20" :address="address" />
+          <h5 class="text-left ml-2 mr-3">
+            <span class="font-mono-jet font-bold">
               {{
               address.substring(0, 6) +
               "..." +
               address.substring(address.length - 4)
               }}
-            </h5>
-          </div>
+            </span>
+            <span
+              class="font-mono-jet text-sm opacity-75"
+            >({{$t('bountyPlatform.bountyHunter.you')}})</span>
+            <span>-></span>
+            <span class="font-extrabold">{{bountyName}}</span>
+          </h5>
         </div>
+        <!-- Bounty Amount and Status Tag -->
+        <div class="w-full md:w-auto flex flex-row px-4 py-2">
+          <!-- Bounty Amount in DEV, ETH and USD -->
+          <div class="flex flex-col md:items-end">
+            <h5
+              :class="$store.state.theme.dt?'text-dtPending':'text-ltPending'"
+              class="font-extrabold text-left md:text-right"
+            >{D}{{amountDEV}}</h5>
+            <h6 class="text-sm text-left">(Ξ{{amountETH}} / ${{amountUSD}})</h6>
+          </div>
+          <!-- Status Tag -->
+        </div>
+      </div>
+      <!-- Thin Status Bar -->
+      <div
+        :class="{
+        'bg-dtPending': status=='pending' && $store.state.theme.dt,
+        'bg-ltPending': status=='pending' && !$store.state.theme.dt,
+        'bg-dtSuccess': status=='approved' && $store.state.theme.dt,
+        'bg-ltSuccess': status=='approved' && !$store.state.theme.dt,
+        'bg-dtDanger': status=='rejected' && $store.state.theme.dt,
+        'bg-ltDanger': status=='rejected' && !$store.state.theme.dt,
+      } "
+        class="w-full h-px opacity-50"
+      ></div>
+      <!-- Bottom Part -->
+      <div class="w-full flex flex-col px-4 md:px-6 py-4">
+        <!-- Message -->
+        <p>{{message}}</p>
         <!-- Date -->
-        <p class="text-left md:text-right opacity-75">{{date}}</p>
+        <p class="text-sm opacity-75 mt-6">{{date}}</p>
       </div>
     </div>
   </div>
@@ -54,11 +77,14 @@ export default {
     Jazzicon
   },
   props: {
-    messageType: null,
-    perspective: null,
-    date: null,
     bountyName: null,
-    address: null
+    status: null,
+    message: null,
+    address: null,
+    amountDEV: null,
+    amountETH: null,
+    amountUSD: null,
+    date: null
   },
   methods: {
     formattedMessage() {
