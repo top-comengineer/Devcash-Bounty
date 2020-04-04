@@ -25,16 +25,98 @@
         totalUSD="1,590"
         address="0xd63bf92ACdAf488fa6eF02174fb86208Ad774555"
       />
-      <!-- Activity Card -->
+      <!-- Activity Main Card -->
       <div
         :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-        class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-6 md:px-12 mx-2 my-2"
+        class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-12 md:py-8 mx-2 my-2"
       >
-        <h2 class="text-2xl font-extrabold">Activity</h2>
+        <!-- Header -->
+        <h2 class="text-2xl font-extrabold ml-4">Activity</h2>
+        <!-- ActivityCards -->
+        <div class="w-full flex flex-col flex-wrap my-4">
+          <ActivityCard
+            class="my-1"
+            messageType="bountyCreated"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            messageType="submissionReceived"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            messageType="submissionSent"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="manager"
+            messageType="submissionApproved"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="hunter"
+            messageType="submissionApproved"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="manager"
+            messageType="submissionRejected"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="hunter"
+            messageType="submissionRejected"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="manager"
+            messageType="bountyAwarded"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            perspective="hunter"
+            messageType="bountyAwarded"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            messageType="feeChanged"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            messageType="bountyCompleted"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+          <ActivityCard
+            class="my-1"
+            messageType="bountyReclaimed"
+            bountyName="Devcash Event Feedback"
+            date="03.12.2020 - 12:04"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -43,10 +125,12 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import OverviewCard from "~/components/BountyPlatform/OverviewCard.vue";
+import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
 export default {
   layout: "bountyPlatform",
   components: {
-    OverviewCard
+    OverviewCard,
+    ActivityCard
   },
   beforeMount() {
     // Set sidebar context

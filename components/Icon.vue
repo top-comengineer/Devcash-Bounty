@@ -572,15 +572,15 @@
         d="M26,4H20V7h4a1,1,0,0,1,1,1V20a1,1,0,0,1-1,1H22.5A1.5,1.5,0,0,0,21,22.5V25H11V22.5A1.5,1.5,0,0,0,9.5,21H8a1,1,0,0,1-1-1V8A1,1,0,0,1,8,7h4V4H6A2,2,0,0,0,4,6V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6A2,2,0,0,0,26,4Zm-4.48,8A1,1,0,0,0,20,12l-3,3V1A1,1,0,0,0,15,1V15l-3-3a1,1,0,0,0-1.47,1.47L16,19l5.52-5.52A1,1,0,0,0,21.52,12Z"
       />
     </svg>
-    <!-- Submission Received -->
+    <!-- Receive -->
     <svg
-      v-else-if="type == 'submission-received'"
+      v-else-if="type == 'receive'"
       id="1806eec9-cfb1-4ee8-aa6e-2a966009427d"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
     >
-      <title>submission</title>
+      <title>Receive</title>
       <path
         class="fill-current"
         :class="[colorClass != null ? colorClass : defaultColorClass]"
@@ -588,15 +588,15 @@
         d="M29,19.82,20.48,28a1.57,1.57,0,1,1-2.17-2.27l4.55-4.34H7a2,2,0,0,1-2-2V4.6a1.6,1.6,0,1,1,3.2,0V17.29a1,1,0,0,0,1,1H22.87L18.32,14a1.57,1.57,0,1,1,2.17-2.27Z"
       />
     </svg>
-    <!-- Submission Sent -->
+    <!-- Send -->
     <svg
-      v-else-if="type == 'submission-sent'"
+      v-else-if="type == 'send'"
       id="92d26df9-70e1-4e39-aed4-90144c073402"
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
     >
-      <title>submission-sent</title>
+      <title>Send</title>
       <path
         class="fill-current"
         :class="[colorClass != null ? colorClass : defaultColorClass]"

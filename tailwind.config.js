@@ -26,6 +26,7 @@ module.exports = {
       ltBackgroundSecondary: "#FFFFFF",
       ltBackgroundTertiary: "#F2F1FF",
       ltText: "#010014",
+      ltTextLight: "#EEEEEE",
       ltSuccess: "#009966",
       ltDanger: "#990040",
       ltPending: "#CD8900",
@@ -36,6 +37,8 @@ module.exports = {
       none: "none",
       md:
         " 0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)",
+      lgL:
+        " 0 10px 15px -3px rgba(0, 0, 0, .05), 0 4px 6px -2px rgba(0, 0, 0, .025)",
       lg:
         " 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)",
       lgS:

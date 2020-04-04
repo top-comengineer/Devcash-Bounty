@@ -22,7 +22,7 @@
         <h2 class="text-3xl font-extrabold break-all">{{count}}</h2>
       </div>
       <!-- Approved Balance -->
-      <div v-else class="flex flex-row justify-center items-center mt-6">
+      <div v-else class="flex flex-row flex-1 justify-center items-center mt-6">
         <Jazzicon class="flex" :diameter="36" :address="address" />
         <h2 class="font-mono-jet text-sm ml-2 font-bold" v-html="twoLineAddress(address)"></h2>
       </div>
