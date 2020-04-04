@@ -14,7 +14,7 @@
     <!-- Header and Paragraph -->
     <button
       @click="buttonAction!=null?buttonAction:null"
-      class="hover_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 z-10"
+      class="hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 z-10"
     >{{ buttonText!=null?buttonText:"Button" }}</button>
     <!-- Right Background Illustration -->
     <img

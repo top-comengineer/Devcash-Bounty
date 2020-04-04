@@ -106,7 +106,7 @@
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText'
         ]"
-        class="hover_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+        class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
       >{{ $t("navigation.signIn") }}</button>
     </div>
   </div>

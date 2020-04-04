@@ -32,7 +32,7 @@
               <nuxt-link
                 :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
                 :to="getLocalizedRoute('bountyplatform')"
-                class="hover_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
+                class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
               >{{ $t("startExploringSection.ctaButton") }}</nuxt-link>
             </div>
           </div>

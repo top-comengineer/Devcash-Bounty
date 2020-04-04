@@ -6,16 +6,18 @@
         ? 'bg-dtBackgroundTertiary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-      class="w-full flex flex-row flex-wrap justify-between items-center rounded-lg px-6 py-4"
+      class="w-full flex flex-row flex-wrap justify-between items-center rounded-lg px-4 md:px-6 py-2 md:py-4"
     >
       <!-- Icon and Message -->
       <div class="w-full md:w-6/12 lg:w-7/12 flex flex-row justify-start items-center my-2">
         <!-- Icon -->
-        <Icon
-          :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-          class="w-10 h-10"
-          :type="pickIcon()"
-        />
+        <div>
+          <Icon
+            :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+            class="w-8 h-8 md:w-10 md:h-10"
+            :type="pickIcon()"
+          />
+        </div>
         <!-- Message -->
         <p v-html="formattedMessage()" class="text-left px-4"></p>
       </div>

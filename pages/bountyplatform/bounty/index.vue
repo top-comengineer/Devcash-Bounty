@@ -63,10 +63,10 @@
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
           <button
-            class="w-full hover_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
-            class="w-full hover_scale-md bg-dtSecondary text-dtText btn-textSecondary border-2 border-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText btn-textSecondary border-2 border-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
         </div>
         <!-- Submissions Left and Remaining Time -->
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-import { SIDEBAR_CONTEXTS } from "~/config"
+import { SIDEBAR_CONTEXTS } from "~/config";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
@@ -138,10 +138,10 @@ export default {
   },
   beforeMount() {
     // Set sidebar context
-    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.single)
+    this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.single);
   },
   destroyed() {
-    this.$store.commit('general/setSidebarContext', null)
+    this.$store.commit("general/setSidebarContext", null);
   }
 };
 </script>
