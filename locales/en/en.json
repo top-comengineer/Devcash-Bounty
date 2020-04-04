@@ -90,10 +90,21 @@
       }
     },
     "bountyHunter": {
-      "header": "Bounty Hunter"
+      "header": "Bounty Hunter",
+      "submissionsSent": "Submissions Sent",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "approved": "Approved",
+      "feedback": "Feedback",
+      "showFeedback": "Show Feedback",
+      "hideFeedback": "Hide Feedback"
     },
     "bountyManager": {
-      "header": "Bounty Manager"
+      "header": "Bounty Manager",
+      "submissionsReceived": "Submissions Received",
+      "approved": "Approve",
+      "reject": "Reject",
+      "leaveFeedback": "Leave Feedback"
     },
     "singleBounty": {
       "buttonHunt": "Hunt",

@@ -22,7 +22,7 @@
       totalDEV="2,650,000"
       totalETH="5.891"
       totalUSD="1,590"
-      address="0xd63bf92ACdAf488fa6eF02174fb86208Ad774555"
+      address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
     />
     <!-- Activity Main Card -->
     <div
@@ -32,7 +32,7 @@
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
       <!-- Header -->
-      <h2 class="text-2xl font-extrabold ml-4">Activity</h2>
+      <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
       <!-- ActivityCards -->
       <div class="w-full flex flex-col flex-wrap my-4">
         <ActivityCard
@@ -46,7 +46,7 @@
           messageType="submissionReceived"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
           class="my-1"
@@ -60,7 +60,7 @@
           messageType="submissionApproved"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
           class="my-1"
@@ -75,7 +75,7 @@
           messageType="submissionRejected"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
           class="my-1"
@@ -90,7 +90,7 @@
           messageType="bountyAwarded"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
           class="my-1"
