@@ -66,7 +66,22 @@
       "bountiesHunted": "Bounties Hunted",
       "totalAwarded": "Total Awarded",
       "bountiesPosted": "Bounties Posted",
-      "approvedBalance": "Approved Balance"
+      "approvedBalance": "Approved Balance",
+      "activity": "Activity",
+      "activityCard": {
+        "creator": {
+          "bountyCreated": "You've created a bounty called 1%.",
+          "bountyPersonalCreated": "You've created a personal bounty called %1.",
+          "submissionReceived": "You've received a submission to %1.",
+          "submissionApproved": "You've approved a submission sent to %1.",
+          "submissionRejected": "You've rejected a submission sent to %1.",
+          "bountyRewardSent": "You've sent a bounty reward for %1.",
+          "bountyReclaimed": "You've reclaimed the funds for %1.",
+          "feeChanged": "You've changed the fee for %1.",
+          "bountyCompleted": "%1 has been completed."
+        },
+        "hunter": {}
+      }
     },
     "bountyHunter": {
       "header": "Bounty Hunter"
