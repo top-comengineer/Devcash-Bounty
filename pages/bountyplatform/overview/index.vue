@@ -49,6 +49,7 @@
             messageType="submissionReceived"
             bountyName="Devcash Event Feedback"
             date="03.12.2020 - 12:04"
+            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           />
           <ActivityCard
             class="my-1"
@@ -62,6 +63,7 @@
             messageType="submissionApproved"
             bountyName="Devcash Event Feedback"
             date="03.12.2020 - 12:04"
+            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           />
           <ActivityCard
             class="my-1"
@@ -76,6 +78,7 @@
             messageType="submissionRejected"
             bountyName="Devcash Event Feedback"
             date="03.12.2020 - 12:04"
+            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           />
           <ActivityCard
             class="my-1"
@@ -90,6 +93,7 @@
             messageType="bountyAwarded"
             bountyName="Devcash Event Feedback"
             date="03.12.2020 - 12:04"
+            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           />
           <ActivityCard
             class="my-1"

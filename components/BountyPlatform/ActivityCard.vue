@@ -4,12 +4,12 @@
       :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundTertiary'
-        : 'bg-ltBackgroundSecondary shadow-lgL border-2 border-ltTextLight'
+        : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
       class="w-full flex flex-row flex-wrap justify-between items-center rounded-lg px-6 py-4"
     >
       <!-- Icon and Message -->
-      <div class="flex flex-row justify-start items-center my-2">
+      <div class="w-full md:w-6/12 lg:w-7/12 flex flex-row justify-start items-center my-2">
         <!-- Icon -->
         <Icon
           :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -20,9 +20,25 @@
         <p v-html="formattedMessage()" class="text-left px-4"></p>
       </div>
       <!-- Address and Date -->
-      <div class="flex flex-row justify-end my-2">
+      <div class="w-full md:w-5/12 lg:w-4/12 flex flex-col justify-end my-2">
+        <!-- If there is an address -->
+        <div v-if="address" class="flex flex-row justify-start md:justify-end">
+          <div
+            :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltTextLight'"
+            class="flex flex-row justify-start md:justify-end items-center rounded-full mb-2"
+          >
+            <Jazzicon class="flex m-1" :diameter="20" :address="address" />
+            <h5 class="font-mono-jet font-bold text-left ml-2 mr-3 break-all">
+              {{
+              address.substring(0, 6) +
+              "..." +
+              address.substring(address.length - 4)
+              }}
+            </h5>
+          </div>
+        </div>
         <!-- Date -->
-        <p class="text-right opacity-75">{{date}}</p>
+        <p class="text-left md:text-right opacity-75">{{date}}</p>
       </div>
     </div>
   </div>
