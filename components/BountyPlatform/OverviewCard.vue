@@ -1,24 +1,31 @@
 <template>
-  <div class="px-2 mt-1 mb-3 md:my-2">
+  <div class="flex">
     <div
       :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg'
     ]"
-      class="w-full flex flex-col flex-wrap justify-between items-center rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6"
+      class="w-full flex flex-col flex-wrap items-center rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6"
     >
       <!-- Total Earned or Total Awarded -->
       <h6
         class="text-sm opacity-75"
-      >{{type=="earned"?$t("bountyPlatform.overview.totalEarned"):$t("bountyPlatform.overview.totalAwarded")}}</h6>
-      <h2 class="text-dtPrimary text-2xl font-extrabold">{D}{{totalDEV}}</h2>
-      <h3 class="font-semibold mt-1">(Ξ{{totalETH}} / ${{totalUSD}})</h3>
+      >{{type=="earned"?$t("bountyPlatform.overview.totalEarned"):type=='awarded'?$t("bountyPlatform.overview.totalAwarded"):$t("bountyPlatform.overview.approvedBalance")}}</h6>
+      <h2 class="text-dtPrimary text-3xl font-extrabold break-all">{D}{{totalDEV}}</h2>
+      <h3 class="font-semibold mt-1 break-all">(Ξ{{totalETH}} / ${{totalUSD}})</h3>
       <!-- Bounties Hunted or Bounties Posted -->
-      <h6
-        class="text-sm opacity-75 mt-6"
-      >{{type=="earned"?$t("bountyPlatform.overview.bountiesHunted"):$t("bountyPlatform.overview.bountiesPosted")}}</h6>
-      <h2 class="text-2xl font-extrabold">{{count}}</h2>
+      <div class="flex flex-col items-center mt-6" v-if="type == 'earned' || type == 'awarded'">
+        <h6
+          class="text-sm opacity-75"
+        >{{type=="earned"?$t("bountyPlatform.overview.bountiesHunted"):$t("bountyPlatform.overview.bountiesPosted")}}</h6>
+        <h2 class="text-3xl font-extrabold break-all">{{count}}</h2>
+      </div>
+      <!-- Approved Balance -->
+      <div v-else class="flex flex-row justify-center items-center mt-6">
+        <Jazzicon class="flex" :diameter="36" :address="address" />
+        <h2 class="font-mono-jet text-sm ml-2 font-bold" v-html="twoLineAddress(address)"></h2>
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +42,22 @@ export default {
     totalDEV: null,
     totalETH: null,
     totalUSD: null,
-    count: null
+    count: null,
+    address: null
+  },
+  methods: {
+    twoLineAddress: function(address) {
+      return address.substring(0, 21) + "<br>" + address.substring(21, 42);
+    },
+    threeLineAddress: function(address) {
+      return (
+        address.substring(0, 14) +
+        "<br>" +
+        address.substring(14, 28) +
+        "<br>" +
+        address.substring(28, 42)
+      );
+    }
   }
 };
 </script>
