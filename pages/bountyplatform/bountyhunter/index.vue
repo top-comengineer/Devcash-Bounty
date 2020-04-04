@@ -4,7 +4,7 @@
     <div
       :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lgD']"
+        : 'bg-ltBackgroundSecondary shadow-lg']"
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
       <!-- Header -->
@@ -20,51 +20,40 @@
           amountUSD="345"
           address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 16:45"
+          date="03.16.2020, 14:40"
         />
         <SubmissionCard
           class="my-2"
           bountyName="ETH Hackathon Project"
-          status="pending"
+          status="rejected"
           amountDEV="575,000"
           amountETH="1.278"
           amountUSD="345"
           address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 16:45"
+          message="My hackathon project is attached to this submission."
+          date="03.15.2020, 16:45"
         />
         <SubmissionCard
           class="my-2"
-          bountyName="ETH Hackathon Project"
-          status="pending"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
+          bountyName="Ethereum NPM Package"
+          status="approved"
+          amountDEV="1,500,000"
+          amountETH="3.333"
+          amountUSD="900"
           address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 16:45"
+          date="02.28.2020, 15:03"
         />
         <SubmissionCard
           class="my-2"
-          bountyName="ETH Hackathon Project"
-          status="pending"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
+          bountyName="ETH Library Written in Dart"
+          status="approved"
+          amountDEV="3,500,000"
+          amountETH="7.78"
+          amountUSD="2100"
           address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 16:45"
-        />
-        <SubmissionCard
-          class="my-2"
-          bountyName="ETH Hackathon Project"
-          status="pending"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 16:45"
+          date="02.15.2020, 14:35"
         />
       </div>
       <!-- Load More Button -->

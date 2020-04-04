@@ -92,10 +92,6 @@
     "bountyHunter": {
       "header": "Bounty Hunter",
       "submissionsSent": "Submissions Sent",
-      "pending": "Pending",
-      "rejected": "Rejected",
-      "approved": "Approved",
-      "feedback": "Feedback",
       "showFeedback": "Show Feedback",
       "hideFeedback": "Hide Feedback",
       "you": "You"
@@ -106,6 +102,12 @@
       "approved": "Approve",
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
+    },
+    "statusTag": {
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "approved": "Approved",
+      "feedback": "Feedback"
     },
     "singleBounty": {
       "buttonHunt": "Hunt",

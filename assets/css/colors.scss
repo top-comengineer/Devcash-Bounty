@@ -1,0 +1,75 @@
+// Dark Theme Color Variables
+$dtText: #f2f1ff;
+$dtPending: #ffdf80;
+$dtSuccess: #b1ffaa;
+$dtDanger: #ff8080;
+
+// Light Theme Color Variables
+$ltText: #010014;
+$ltPending: #cd8900;
+$ltSuccess: #009966;
+$ltDanger: #990040;
+
+// Dark Theme Background Color Classes
+.bg-dtText-5 {
+  background-color: rgba($dtText, 0.05);
+}
+.bg-dtText-10 {
+  background-color: rgba($dtText, 0.1);
+}
+.bg-dtPending-10 {
+  background-color: rgba($dtPending, 0.1);
+}
+.bg-dtSuccess-10 {
+  background-color: rgba($dtSuccess, 0.1);
+}
+.bg-dtDanger-10 {
+  background-color: rgba($dtDanger, 0.1);
+}
+.border-dtText-10 {
+  border-color: rgba($dtText, 0.1);
+}
+.border-dtText-40 {
+  border-color: rgba($dtText, 0.4);
+}
+.border-dtPending-40 {
+  border-color: rgba($dtPending, 0.4);
+}
+.border-dtSuccess-40 {
+  border-color: rgba($dtSuccess, 0.4);
+}
+.border-dtDanger-40 {
+  border-color: rgba($dtDanger, 0.4);
+}
+
+// Light Theme Background Color Classes
+.bg-ltText-5 {
+  background-color: rgba($ltText, 0.05);
+}
+.bg-ltText-10 {
+  background-color: rgba($ltText, 0.1);
+}
+.bg-ltPending-10 {
+  background-color: rgba($ltPending, 0.1);
+}
+.bg-ltSuccess-10 {
+  background-color: rgba($ltSuccess, 0.1);
+}
+.bg-ltDanger-10 {
+  background-color: rgba($ltDanger, 0.1);
+}
+.border-ltText-10 {
+  border-color: rgba($ltText, 0.1);
+}
+.border-ltText-40 {
+  border-color: rgba($ltText, 0.4);
+}
+.border-ltPending-40 {
+  border-color: rgba($ltPending, 0.4);
+}
+.border-ltSuccess-40 {
+  border-color: rgba($ltSuccess, 0.4);
+}
+.border-ltDanger-40 {
+  border-color: rgba($ltDanger, 0.4);
+}

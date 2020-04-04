@@ -3,17 +3,17 @@
     <div
       :class="[
       $store.state.theme.dt
-        ? 'bg-dtBackgroundTertiary'
-        : 'bg-ltBackgroundSecondary shadow-lgD']"
-      class="w-full flex flex-col flex-wrap justify-between items-center rounded-lg overflow-hidden"
+        ? 'bg-dtBackgroundTertiary border-dtText-10'
+        : 'bg-ltBackgroundSecondary border-ltText-10 shadow-lgDL']"
+      class="w-full flex flex-col flex-wrap justify-between items-center border rounded-lg overflow-hidden"
     >
       <!-- Top Part -->
       <div
         :class="[
       $store.state.theme.dt
-        ? 'bg-dtBackgroundQuaternary'
-        : 'bg-ltBackgroundSecondary']"
-        class="w-full flex flex-row flex-wrap justify-between items-center py-2 md:py-0"
+        ? 'bg-dtText-5'
+        : 'bg-ltText-5']"
+        class="w-full flex flex-row flex-wrap justify-between items-center py-2"
       >
         <!-- Senders Address and Project Name -->
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
@@ -34,16 +34,46 @@
           </h5>
         </div>
         <!-- Bounty Amount and Status Tag -->
-        <div class="w-full md:w-auto flex flex-row px-4 py-2">
+        <div class="w-full md:w-auto flex flex-row items-center px-4 py-2">
           <!-- Bounty Amount in DEV, ETH and USD -->
-          <div class="flex flex-col md:items-end">
+          <div class="flex flex-col">
             <h5
-              :class="$store.state.theme.dt?'text-dtPending':'text-ltPending'"
-              class="font-extrabold text-left md:text-right"
+              :class="{
+              'text-dtPending': status=='pending' && $store.state.theme.dt,
+              'text-ltPending': status=='pending' && !$store.state.theme.dt,
+              'text-dtSuccess': status=='approved' && $store.state.theme.dt,
+              'text-ltSuccess': status=='approved' && !$store.state.theme.dt,
+              'text-dtDanger': status=='rejected' && $store.state.theme.dt,
+              'text-ltDanger': status=='rejected' && !$store.state.theme.dt}"
+              class="font-bold text-left"
             >{D}{{amountDEV}}</h5>
             <h6 class="text-sm text-left">(Ξ{{amountETH}} / ${{amountUSD}})</h6>
           </div>
           <!-- Status Tag -->
+          <div class="ml-6">
+            <div
+              :class="{
+            'bg-dtPending-10 border-dtPending-40': status=='pending' && $store.state.theme.dt,
+            'bg-ltPending-10 border-ltPending-40': status=='pending' && !$store.state.theme.dt,
+            'bg-dtSuccess-10 border-dtSuccess-40': status=='approved' && $store.state.theme.dt,
+            'bg-ltSuccess-10 border-ltSuccess-40': status=='approved' && !$store.state.theme.dt,
+            'bg-dtDanger-10 border-dtDanger-40': status=='rejected' && $store.state.theme.dt,
+            'bg-ltDanger-10 border-ltDanger-40': status=='rejected' && !$store.state.theme.dt}"
+              class="flex flex-row items-center px-2 py-1 border rounded-md"
+            >
+              <Icon class="w-4 h-4" :type="pickIcon()" :colorClass="pickIconColorClass()" />
+              <h6
+                :class="{
+                'text-dtPending': status=='pending' && $store.state.theme.dt,
+                'text-ltPending': status=='pending' && !$store.state.theme.dt,
+                'text-dtSuccess': status=='approved' && $store.state.theme.dt,
+                'text-ltSuccess': status=='approved' && !$store.state.theme.dt,
+                'text-dtDanger': status=='rejected' && $store.state.theme.dt,
+                'text-ltDanger': status=='rejected' && !$store.state.theme.dt}"
+                class="font-bold mx-1 text-sm"
+              >{{pickStatusTagText()}}</h6>
+            </div>
+          </div>
         </div>
       </div>
       <!-- Thin Status Bar -->
@@ -54,12 +84,11 @@
         'bg-dtSuccess': status=='approved' && $store.state.theme.dt,
         'bg-ltSuccess': status=='approved' && !$store.state.theme.dt,
         'bg-dtDanger': status=='rejected' && $store.state.theme.dt,
-        'bg-ltDanger': status=='rejected' && !$store.state.theme.dt,
-      } "
+        'bg-ltDanger': status=='rejected' && !$store.state.theme.dt}"
         class="w-full h-px opacity-50"
       ></div>
       <!-- Bottom Part -->
-      <div class="w-full flex flex-col px-4 md:px-6 py-4">
+      <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
         <p>{{message}}</p>
         <!-- Date -->
@@ -87,145 +116,49 @@ export default {
     date: null
   },
   methods: {
-    formattedMessage() {
-      // Bounty Created
-      if (this.messageType == "bountyCreated") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyCreated"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Submission Received
-      else if (this.messageType == "submissionReceived") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.submissionReceived"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Submission Sent
-      else if (this.messageType == "submissionSent") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.hunter.submissionSent"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Submission Approved
-      else if (this.messageType == "submissionApproved") {
-        let message = this.$t(
-          this.perspective == "manager"
-            ? "bountyPlatform.overview.activityCard.manager.submissionApproved"
-            : "bountyPlatform.overview.activityCard.hunter.submissionApproved"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Submission Rejected
-      else if (this.messageType == "submissionRejected") {
-        let message = this.$t(
-          this.perspective == "manager"
-            ? "bountyPlatform.overview.activityCard.manager.submissionRejected"
-            : "bountyPlatform.overview.activityCard.hunter.submissionRejected"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Bounty Awarded
-      else if (this.messageType == "bountyAwarded") {
-        let message = this.$t(
-          this.perspective == "manager"
-            ? "bountyPlatform.overview.activityCard.manager.bountyAwarded"
-            : "bountyPlatform.overview.activityCard.hunter.bountyAwarded"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Fee Changed
-      else if (this.messageType == "feeChanged") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.feeChanged"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Bounty Completed
-      else if (this.messageType == "bountyCompleted") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyCompleted"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-      // Bounty Reclaimed
-      else if (this.messageType == "bountyReclaimed") {
-        let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyReclaimed"
-        ).replace(
-          "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
-        );
-        return message;
-      }
-    },
-    // Pick the right icon for the card
+    // Pick the right icon for status tag
     pickIcon() {
-      // Bounty Created
-      if (this.messageType == "bountyCreated") {
-        return "new-bounty";
+      // Pending
+      if (this.status == "pending") {
+        return "clock";
       }
-      // Personal Bounty Created
-      else if (this.messageType == "personalBountyCreated") {
-        return "personal-bounty";
-      }
-      // Submission Received
-      else if (this.messageType == "submissionReceived") {
-        return "receive";
-      }
-      // Submission Sent
-      else if (this.messageType == "submissionSent") {
-        return "send";
-      }
-      // Submission Approved
-      else if (this.messageType == "submissionApproved") {
+      // Approved
+      else if (this.status == "approved") {
         return "done";
       }
-      // Submission Rejected
-      else if (this.messageType == "submissionRejected") {
+      // Rejected
+      else if (this.status == "rejected") {
         return "cancel";
       }
-      // Bounty Awarded
-      else if (this.messageType == "bountyAwarded") {
-        return "award";
+    },
+    // Pick the right color class for the icon on status tag
+    pickIconColorClass() {
+      // Pending
+      if (this.status == "pending") {
+        return this.$store.state.theme.dt ? "text-dtPending" : "text-ltPending";
       }
-      // Fee Changed
-      else if (this.messageType == "feeChanged") {
-        return "fee";
+      // Approved
+      else if (this.status == "approved") {
+        return this.$store.state.theme.dt ? "text-dtSuccess" : "text-ltSuccess";
       }
-      // Bounty Completed
-      else if (this.messageType == "bountyCompleted") {
-        return "bounty-complete";
+      // Rejected
+      else if (this.status == "rejected") {
+        return this.$store.state.theme.dt ? "text-dtDanger" : "text-ltDanger";
       }
-      // Bounty Reclaimed
-      else if (this.messageType == "bountyReclaimed") {
-        return "reclaim";
+    },
+    // Pick the right text for the status tag
+    pickStatusTagText() {
+      // Pending
+      if (this.status == "pending") {
+        return this.$t("bountyPlatform.statusTag.pending");
+      }
+      // Approved
+      else if (this.status == "approved") {
+        return this.$t("bountyPlatform.statusTag.approved");
+      }
+      // Rejected
+      else if (this.status == "rejected") {
+        return this.$t("bountyPlatform.statusTag.rejected");
       }
     }
   }
