@@ -78,7 +78,7 @@
       <!-- Notifications New -->
       <button
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-        class="rounded-full lg:ml-2 p-1"
+        class="rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
@@ -91,7 +91,7 @@
       <button
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         @click="$store.commit('theme/change')"
-        class="rounded-full lg:ml-2 p-1"
+        class="rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
