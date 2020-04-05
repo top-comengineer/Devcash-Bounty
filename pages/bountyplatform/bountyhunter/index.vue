@@ -68,16 +68,71 @@
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
       </div>
     </div>
+    <!-- Personal Bounties Card -->
+    <div
+      :class="[$store.state.theme.dt
+        ? 'bg-dtBackgroundSecondary'
+        : 'bg-ltBackgroundSecondary shadow-lgD']"
+      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
+    >
+      <!-- Header -->
+      <h2
+        class="text-2xl font-extrabold ml-4"
+      >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
+      <!-- Personal Bounties -->
+      <div class="w-full flex flex-col flex-wrap my-4">
+        <BountyCard
+          type="secondary"
+          v-for="(item, i) in bounties"
+          :key="i"
+          class="my-1 md:my-2"
+          :bounty="item"
+        />
+      </div>
+      <!-- Load More Button -->
+      <div class="flex flex-row justify-center mt-2">
+        <button
+          :class="[
+          $store.state.theme.dt
+            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
+            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
+        ]"
+          class="text-lg hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+        >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
+import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 export default {
   layout: "bountyPlatform",
   components: {
-    SubmissionCard
+    SubmissionCard,
+    BountyCard
+  },
+  data() {
+    return {
+      bounties: [
+        {
+          name: "ETH Hackathon Project",
+          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
+          numSubmissions: "1",
+          numLeft: "1",
+          deadline: "1586120000"
+        },
+        {
+          name: "Ethereum NPM Package",
+          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
+          numSubmissions: "1",
+          numLeft: "1",
+          deadline: "1586115000"
+        }
+      ]
+    };
   },
   beforeMount() {
     // Set sidebar context

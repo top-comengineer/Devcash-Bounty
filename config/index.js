@@ -1,30 +1,30 @@
 // i18n messages
-const en = require('../locales/en')
-const fr = require('../locales/fr')
+const en = require("../locales/en");
+const zh = require("../locales/zh");
 
 // i18n config
 export const LOCALES = [
   {
-    code: 'en',
-    iso: 'en-US',
-    name: 'English'
+    code: "en",
+    iso: "en-US",
+    name: "English",
   },
   {
-    code: 'fr',
-    iso: 'fr-FR',
-    name: 'French'
-  }
-]
-export const DEFAULT_LOCALE = 'en'
+    code: "zh",
+    iso: "zh",
+    name: "Chinese",
+  },
+];
+export const DEFAULT_LOCALE = "en";
 export const I18N = {
   en,
-  fr
-}
+  zh,
+};
 
 // Define custom paths for localized routes
 // If a route/locale is omitted, defaults to Nuxt's generated path
 export const ROUTES_ALIASES = {
-    /*
+  /*
   about: {
     fr: '/a-propos',
     en: '/about-us'
@@ -35,10 +35,10 @@ export const ROUTES_ALIASES = {
   'category-slug': {
     fr: '/categorie/:slug'
   }*/
-}
+};
 
 export const SIDEBAR_CONTEXTS = {
-  explore: 'explore',
-  single: 'singleBounty',
-  post: 'post'
-}
+  explore: "explore",
+  single: "singleBounty",
+  post: "post",
+};

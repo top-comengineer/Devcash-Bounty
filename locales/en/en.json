@@ -132,6 +132,7 @@
     "bountyHunter": {
       "header": "Bounty Hunter",
       "submissionsSent": "Submissions Sent",
+      "personalBounties": "Personal Bounties",
       "showFeedback": "Show Feedback",
       "hideFeedback": "Hide Feedback",
       "you": "You"
