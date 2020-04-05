@@ -13,46 +13,46 @@
       <div class="w-full flex flex-col flex-wrap my-4">
         <SubmissionCard
           class="my-2"
+          perspective="hunter"
           bountyName="ETH Hackathon Project"
           status="pending"
           amountDEV="575,000"
           amountETH="1.278"
           amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Resending the submission, added the instructions in README.md"
           date="03.16.2020, 14:40"
         />
         <SubmissionCard
           class="my-2"
+          perspective="hunter"
           bountyName="ETH Hackathon Project"
           status="rejected"
           amountDEV="575,000"
           amountETH="1.278"
           amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="My hackathon project is attached to this submission."
           date="03.15.2020, 16:45"
         />
         <SubmissionCard
           class="my-2"
+          perspective="hunter"
           bountyName="Ethereum NPM Package"
           status="approved"
           amountDEV="1,500,000"
           amountETH="3.333"
           amountUSD="900"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
+          message="Link to the finished package we’ve created:<br><u>https://github.com/antoine/ethnpmpackage</u>"
           date="02.28.2020, 15:03"
         />
         <SubmissionCard
           class="my-2"
+          perspective="hunter"
           bountyName="ETH Library Written in Dart"
           status="approved"
           amountDEV="3,500,000"
           amountETH="7.78"
           amountUSD="2100"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
+          message="Here is the repo for the completed library:<br><u>https://github.com/antoine/ethlibrary</u>"
           date="02.15.2020, 14:35"
         />
       </div>
@@ -122,14 +122,14 @@ export default {
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586120000"
+          deadline: "1586170000"
         },
         {
           name: "Ethereum NPM Package",
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586115000"
+          deadline: "1586180000"
         }
       ]
     };

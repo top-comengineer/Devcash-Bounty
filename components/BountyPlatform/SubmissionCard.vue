@@ -17,16 +17,18 @@
       >
         <!-- Senders Address and Project Name -->
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
-          <Jazzicon class="flex m-1" :diameter="20" :address="address" />
+          <Jazzicon
+            class="flex m-1"
+            :diameter="20"
+            :address="perspective=='hunter'?selfAddress:address"
+          />
           <h5 class="text-left ml-2 mr-3">
             <span class="font-mono-jet font-bold">
-              {{
-              address.substring(0, 6) +
-              "..." +
-              address.substring(address.length - 4)
-              }}
+              {{perspective=='hunter'?selfAddress.substring(0, 6) + "..." + selfAddress.substring(selfAddress.length - 4):
+              address.substring(0, 6) + "..." + address.substring(address.length - 4)}}
             </span>
             <span
+              v-if="perspective=='hunter'"
               class="font-mono-jet text-sm opacity-75"
             >({{$t('bountyPlatform.bountyHunter.you')}})</span>
             <span>-></span>
@@ -90,7 +92,7 @@
       <!-- Bottom Part -->
       <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
-        <p>{{message}}</p>
+        <p v-html="message"></p>
         <!-- Date -->
         <p class="text-sm opacity-75 mt-6">{{date}}</p>
       </div>
@@ -108,12 +110,19 @@ export default {
   props: {
     bountyName: null,
     status: null,
+    perspective: null,
     message: null,
     address: null,
     amountDEV: null,
     amountETH: null,
     amountUSD: null,
     date: null
+  },
+  data() {
+    return {
+      // Address of the signed in account
+      selfAddress: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+    };
   },
   methods: {
     // Pick the right icon for status tag

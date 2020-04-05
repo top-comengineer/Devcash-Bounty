@@ -15,47 +15,51 @@
       <div class="w-full flex flex-col flex-wrap my-4">
         <SubmissionCard
           class="my-2"
-          bountyName="ETH Hackathon Project"
+          perspective="manager"
+          bountyName="Devcash Event Feedback"
           status="pending"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 14:40"
+          amountDEV="833"
+          amountETH="0.00185"
+          amountUSD="0.5"
+          address="0x691B5b5ebcf2667Dad625b1483F428Aa98067ED6"
+          message="The venue was cool: <b>8/10</b>.<br>The presentations were quite informative: <b>8.5/10</b>.<br>The food could be better: <b>6/10</b>."
+          date="03.17.2020 - 13:33"
         />
         <SubmissionCard
           class="my-2"
-          bountyName="ETH Hackathon Project"
-          status="rejected"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="My hackathon project is attached to this submission."
-          date="03.15.2020, 16:45"
+          perspective="manager"
+          bountyName="Devcash Memes"
+          status="pending"
+          amountDEV="12,500"
+          amountETH="0.0277"
+          amountUSD="7.5"
+          address="0xD69BB46Ace0C47a0d14Cf73e70B0c02328cc5b3f"
+          message="Here is my submission:<br><u>https://imgur.com/gallery/fPPN3bl</u>"
+          date="03.16.2020 - 16:45"
         />
         <SubmissionCard
           class="my-2"
-          bountyName="Ethereum NPM Package"
-          status="approved"
-          amountDEV="1,500,000"
-          amountETH="3.333"
-          amountUSD="900"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="02.28.2020, 15:03"
+          perspective="manager"
+          bountyName="Devcash Event Feedback"
+          status="pending"
+          amountDEV="833"
+          amountETH="0.00185"
+          amountUSD="0.5"
+          address="0x0A00079D01e1d0eaFD2b2CA8D74ff030C2f7e726"
+          message="Venue was quite nice and spacious: <b>8/10</b>.<br>Presentations were a little advanced for me: <b>8.5/10</b>.<br>Food was okay: <b>6/10</b>."
+          date="03.14.2020 - 11:55"
         />
         <SubmissionCard
           class="my-2"
-          bountyName="ETH Library Written in Dart"
-          status="approved"
-          amountDEV="3,500,000"
-          amountETH="7.78"
-          amountUSD="2100"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="02.15.2020, 14:35"
+          perspective="manager"
+          bountyName="Devcash Memes"
+          status="pending"
+          amountDEV="12,500"
+          amountETH="0.0277"
+          amountUSD="7.5"
+          address="0x3a958Fb94D8B185D4D333A52CDd1e52D52224562"
+          message="<u>https://imgur.com/gallery/ffOzC14</u>"
+          date="03.12.2020 - 12:04"
         />
       </div>
       <!-- Load More Button -->
@@ -86,6 +90,7 @@
           v-for="(item, i) in bounties"
           :key="i"
           class="my-2"
+          perspective="manager"
           :bounty="item"
         />
       </div>
@@ -122,14 +127,14 @@ export default {
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586120000"
+          deadline: "1586170000"
         },
         {
           name: "Ethereum NPM Package",
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586115000"
+          deadline: "1586180000"
         }
       ]
     };
