@@ -30,9 +30,11 @@
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
-          <p
+          <a
+            href="/"
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.dex") }}</p>
+          >{{ $t("navigation.dex") }}</a>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Bounty Platform Header -->
@@ -55,10 +57,24 @@
             :to="getLocalizedRoute('bountyplatform-post')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
-          <!-- Bounty Platform / Dashboard -->
-          <p
+          <!-- Bounty Platform / Overview -->
+          <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            :to="getLocalizedRoute('bountyplatform-overview')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.visitDashboard") }}</p>
+          >{{ $t("bountyPlatform.overview.header") }}</nuxt-link>
+          <!-- Bounty Platform / Bounty Hunter -->
+          <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            :to="getLocalizedRoute('bountyplatform-bountyhunter')"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("bountyPlatform.bountyHunter.header") }}</nuxt-link>
+          <!-- Bounty Platform / Bounty Manager -->
+          <nuxt-link
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
+            :to="getLocalizedRoute('bountyplatform-bountymanager')"
+            class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+          >{{ $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- DEX Header -->
@@ -70,13 +86,17 @@
           </div>
           <!-- DEX Items -->
           <!-- Buy Devcash -->
-          <p
+          <a
+            href="/"
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("dex.buyDevcash") }}</p>
+          >{{ $t("dex.buyDevcash") }}</a>
           <!-- Sell Devcash -->
-          <p
+          <a
+            href="/"
+            :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("dex.sellDevcash") }}</p>
+          >{{ $t("dex.sellDevcash") }}</a>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Social Header -->
