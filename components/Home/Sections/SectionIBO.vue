@@ -16,9 +16,9 @@
           <!-- Header Text -->
           <h2
             class="font-bold text-2xl md:text-3xl text-center lg:text-left leading-tight text-dtPrimary"
-          >{{ $t("IBOSection.header") }}</h2>
+          >{{ $t("home.IBOSection.header") }}</h2>
           <!-- Paragraph Text -->
-          <p class="text-lg text-center lg:text-left mt-2">{{ $t("IBOSection.paragraph") }}</p>
+          <p class="text-lg text-center lg:text-left mt-2">{{ $t("home.IBOSection.paragraph") }}</p>
         </div>
         <!-- Illustration -->
         <IllustrationIBO class="w-10/12 md:w-2/4 lg:w-1/3 order-first lg:order-last relative" />

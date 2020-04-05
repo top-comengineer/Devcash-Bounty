@@ -22,10 +22,10 @@
             <!-- Header Text -->
             <h2
               class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
-            >{{ $t("startExploringSection.header") }}</h2>
+            >{{ $t("home.startExploringSection.header") }}</h2>
             <!-- Paragraph Text -->
             <div class="w-full flex flex-row justify-center px-4 mt-4 mb-2">
-              <p class="text-lg text-center">{{ $t("startExploringSection.paragraph") }}</p>
+              <p class="text-lg text-center">{{ $t("home.startExploringSection.paragraph") }}</p>
             </div>
             <!-- Call to Action -->
             <div class="flex flex-row justify-center">
@@ -33,7 +33,7 @@
                 :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
                 :to="getLocalizedRoute('bountyplatform')"
                 class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
-              >{{ $t("startExploringSection.ctaButton") }}</nuxt-link>
+              >{{ $t("home.startExploringSection.ctaButton") }}</nuxt-link>
             </div>
           </div>
         </div>

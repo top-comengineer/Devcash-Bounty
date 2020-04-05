@@ -1,9 +1,9 @@
 {
   "home": {
     "heroSection": {
-      "header": "Cash for the<br>developer economy",
-      "paragraph": "Join our global community of blockchain developers and make the most of your skills.",
-      "ctaButton": "Explore Bounties"
+      "header": "开发者经济的现金",
+      "paragraph": "加入我们的全球区块链开发人员社区，充分利用您的技能。",
+      "ctaButton": "探索赏金"
     },
     "whatIsSection": {
       "header": "What is Devcash?",
@@ -44,13 +44,13 @@
     }
   },
   "navigation": {
-    "header": "Navigation",
-    "home": "Home",
-    "bountyPlatform": "Bounty Platform",
-    "dex": "DEX",
-    "english": "English",
-    "signIn": "Sign In",
-    "ibo": "IBO"
+    "header": "导航",
+    "home": "家",
+    "bountyPlatform": "赏金平台",
+    "dex": "敏捷",
+    "english": "英语",
+    "signIn": "登入",
+    "ibo": "伊波"
   },
   "bountyPlatform": {
     "header": "Bounty Platform",

@@ -18,19 +18,19 @@
           <!-- Header Text -->
           <h2
             class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-6 md:mt-8 relative"
-          >{{ $t("dexSection.header") }}</h2>
+          >{{ $t("home.dexSection.header") }}</h2>
           <!-- Paragraph Text -->
           <div
             class="w-full md:w-2/3 xl:w-7/12 flex flex-row justify-center px-4 mt-4 mb-2 relative"
           >
-            <p class="text-lg text-center">{{ $t("dexSection.paragraph") }}</p>
+            <p class="text-lg text-center">{{ $t("home.dexSection.paragraph") }}</p>
           </div>
           <!-- Call to Action -->
           <div class="flex flex-row justify-center relative">
             <button
               :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
-            >{{ $t("dexSection.ctaButton") }}</button>
+            >{{ $t("home.dexSection.ctaButton") }}</button>
           </div>
         </div>
       </div>

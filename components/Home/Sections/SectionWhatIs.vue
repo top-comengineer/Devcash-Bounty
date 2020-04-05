@@ -10,14 +10,14 @@
         <!-- Header Text -->
         <h2
           class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
-        >{{ $t("whatIsSection.header") }}</h2>
+        >{{ $t("home.whatIsSection.header") }}</h2>
         <!-- Line Right -->
         <div class="flex-1 h-px2 bg-dtPrimary rounded-bl-full"></div>
       </div>
       <!-- Paragraph -->
       <div class="d-container flex flex-row justify-center">
         <div class="w-full md:w-3/4 xl:w-7/12 flex flex-row justify-center px-4 pt-4 pb-8">
-          <p class="text-lg text-center">{{ $t("whatIsSection.paragraph") }}</p>
+          <p class="text-lg text-center">{{ $t("home.whatIsSection.paragraph") }}</p>
         </div>
       </div>
       <!-- Bottom Divider -->

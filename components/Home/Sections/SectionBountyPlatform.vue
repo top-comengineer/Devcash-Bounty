@@ -8,10 +8,10 @@
           <!-- Header Text -->
           <h2
             class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
-          >{{ $t("bountyPlatformSection.header") }}</h2>
+          >{{ $t("home.bountyPlatformSection.header") }}</h2>
           <!-- Paragraph Text -->
           <div class="w-full md:w-2/3 xl:w-7/12 flex flex-row justify-center px-4 mt-4 mb-2">
-            <p class="text-lg text-center">{{ $t("bountyPlatformSection.paragraph") }}</p>
+            <p class="text-lg text-center">{{ $t("home.bountyPlatformSection.paragraph") }}</p>
           </div>
         </div>
         <!-- Cards -->
@@ -36,11 +36,11 @@
               <!-- Post Bounties Header -->
               <h3
                 class="font-bold text-xl md:text-2xl text-center leading-tight text-dtPrimary px-6"
-              >{{ $t("bountyPlatformSection.postBountyHeader") }}</h3>
+              >{{ $t("home.bountyPlatformSection.postBountyHeader") }}</h3>
               <!-- Post Bounties Paragraph -->
               <p
                 class="text-lg text-center mt-2 px-4"
-              >{{ $t("bountyPlatformSection.postBountyParagraph") }}</p>
+              >{{ $t("home.bountyPlatformSection.postBountyParagraph") }}</p>
               <!-- Post Bounties Illustration -->
               <IllustrationPostBounty class="w-3/4 h-auto mt-4" />
               <!-- Post Bounties Call to Action -->
@@ -49,7 +49,7 @@
                   :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
                   :to="getLocalizedRoute('bountyplatform-post')"
                   class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
-                >{{ $t("bountyPlatformSection.postBountyButton") }}</nuxt-link>
+                >{{ $t("home.bountyPlatformSection.postBountyButton") }}</nuxt-link>
               </div>
             </div>
           </div>
@@ -69,11 +69,11 @@
               <!-- Hunt Bounties Header -->
               <h3
                 class="font-bold text-xl md:text-2xl text-center leading-tight text-dtPrimary px-6"
-              >{{ $t("bountyPlatformSection.huntBountyHeader") }}</h3>
+              >{{ $t("home.bountyPlatformSection.huntBountyHeader") }}</h3>
               <!-- Hunt Bounties Paragraph -->
               <p
                 class="text-lg text-center mt-2 px-4"
-              >{{ $t("bountyPlatformSection.huntBountyParagraph") }}</p>
+              >{{ $t("home.bountyPlatformSection.huntBountyParagraph") }}</p>
               <!-- Hunt Bounties Illustration -->
               <IllustrationHuntBounty class="w-3/4 h-auto mt-4" />
               <!-- Hunt Bounties Call to Action -->
@@ -82,7 +82,7 @@
                   :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
                   :to="getLocalizedRoute('bountyplatform')"
                   class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-4"
-                >{{ $t("bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+                >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
               </div>
             </div>
           </div>

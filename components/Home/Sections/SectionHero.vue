@@ -13,17 +13,17 @@
         <div class="flex flex-col items-center lg:items-start hero-text px-4 py-4 md:px-16 md:py-6">
           <h1
             class="font-extrabold text-3xl md:text-4xl text-center lg:text-left leading-tight text-dtPrimary"
-            v-html="$t('heroSection.header')"
+            v-html="$t('home.heroSection.header')"
           ></h1>
           <div class="w-full xl:w-10/12 flex flex-row">
-            <p class="text-xl text-center lg:text-left mt-2">{{ $t("heroSection.paragraph") }}</p>
+            <p class="text-xl text-center lg:text-left mt-2">{{ $t("home.heroSection.paragraph") }}</p>
           </div>
           <div class="flex flex-row my-4">
             <nuxt-link
               :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2"
               :to="getLocalizedRoute('bountyplatform')"
-            >{{ $t("heroSection.ctaButton") }}</nuxt-link>
+            >{{ $t("home.heroSection.ctaButton") }}</nuxt-link>
           </div>
         </div>
       </div>
