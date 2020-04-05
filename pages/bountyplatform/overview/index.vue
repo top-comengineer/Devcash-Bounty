@@ -36,26 +36,26 @@
       <!-- ActivityCards -->
       <div class="w-full flex flex-col flex-wrap my-4">
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="bountyCreated"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="submissionReceived"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
           address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="submissionSent"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="manager"
           messageType="submissionApproved"
           bountyName="Devcash Event Feedback"
@@ -63,14 +63,14 @@
           address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="hunter"
           messageType="submissionApproved"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="manager"
           messageType="submissionRejected"
           bountyName="Devcash Event Feedback"
@@ -78,14 +78,14 @@
           address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="hunter"
           messageType="submissionRejected"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="manager"
           messageType="bountyAwarded"
           bountyName="Devcash Event Feedback"
@@ -93,26 +93,26 @@
           address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           perspective="hunter"
           messageType="bountyAwarded"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="feeChanged"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="bountyCompleted"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"
         />
         <ActivityCard
-          class="my-1"
+          class="my-2"
           messageType="bountyReclaimed"
           bountyName="Devcash Event Feedback"
           date="03.12.2020 - 12:04"

@@ -41,7 +41,8 @@ module.exports = {
         "0 10px 15px -3px rgba(0, 0, 0, .05), 0 4px 6px -2px rgba(0, 0, 0, .025)",
       lg:
         "0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)",
-      lgD: "0 5px 15px 0px rgba(0, 0, 0, .1), 0 2px 6px 0px rgba(0, 0, 0, .05)",
+      lgD:
+        "0 5px 15px 0px rgba(0, 0, 0, .08), 0 2px 6px 0px rgba(0, 0, 0, .04)",
       lgDL:
         "0 5px 15px 0px rgba(0, 0, 0, .05), 0 2px 6px 0px rgba(0, 0, 0, .025)",
       lgS:

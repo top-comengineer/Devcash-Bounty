@@ -85,7 +85,7 @@
           type="secondary"
           v-for="(item, i) in bounties"
           :key="i"
-          class="my-1 md:my-2"
+          class="my-2"
           :bounty="item"
         />
       </div>

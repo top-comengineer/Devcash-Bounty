@@ -1,15 +1,15 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
-    <GreetingCard class="my-1 md:my-2" />
+    <GreetingCard class="my-2" />
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
-      <BountyCardPlaceholder class="my-1 md:my-2" v-for="(n, i ) in 10" :key="i" />
+      <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
-    <BountyCard v-else v-for="(item, i) in bounties" :key="i" class="my-1 md:my-2" :bounty="item" />
+    <BountyCard v-else v-for="(item, i) in bounties" :key="i" class="my-2" :bounty="item" />
   </div>
 </template>
 
 <script>
-import { SIDEBAR_CONTEXTS } from "~/config"
+import { SIDEBAR_CONTEXTS } from "~/config";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
@@ -60,10 +60,10 @@ export default {
   },
   beforeMount() {
     // Set sidebar context
-    this.$store.commit('general/setSidebarContext', SIDEBAR_CONTEXTS.explore)
+    this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.explore);
   },
   destroyed() {
-    this.$store.commit('general/setSidebarContext', null)
+    this.$store.commit("general/setSidebarContext", null);
   }
 };
 </script>
