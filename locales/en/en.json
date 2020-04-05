@@ -140,6 +140,7 @@
     "bountyManager": {
       "header": "Bounty Manager",
       "submissionsReceived": "Submissions Received",
+      "yourBounties": "Your Bounties",
       "approved": "Approve",
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
