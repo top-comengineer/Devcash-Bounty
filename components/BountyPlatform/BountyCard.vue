@@ -14,12 +14,18 @@
       <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon class="flex" :diameter="20" :address="bounty.hunter" />
-        <h5 class="font-mono-jet font-medium text-md text-left ml-2 opacity-75">
-          {{
-          bounty.hunter.substring(0, 6) +
-          "..." +
-          bounty.hunter.substring(bounty.hunter.length - 4)
-          }}
+        <h5 class="font-mono-jet text-md text-left ml-2 opacity-75">
+          <span class="font-medium">
+            {{
+            bounty.hunter.substring(0, 6) +
+            "..." +
+            bounty.hunter.substring(bounty.hunter.length - 4)
+            }}
+          </span>
+          <span
+            v-if="bounty.hunter==selfAddress"
+            class="font-mono-jet text-sm opacity-50"
+          >({{$t('bountyPlatform.bountyHunter.you')}})</span>
         </h5>
       </div>
     </div>
@@ -91,8 +97,11 @@ export default {
     bounty: null,
     type: null
   },
-  data: function() {
-    return {};
+  data() {
+    return {
+      // Address of the signed in account
+      selfAddress: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+    };
   },
   methods: {
     formatTimeLeft() {

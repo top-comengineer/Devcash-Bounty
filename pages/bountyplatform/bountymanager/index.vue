@@ -123,18 +123,32 @@ export default {
     return {
       bounties: [
         {
-          name: "ETH Hackathon Project",
-          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
+          name: "Devcash Frontend",
+          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "1",
           numLeft: "1",
           deadline: "1586170000"
         },
         {
-          name: "Ethereum NPM Package",
-          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
+          name: "Devcash Logo",
+          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "1",
           numLeft: "1",
           deadline: "1586180000"
+        },
+        {
+          name: "Devcash Memes",
+          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
+          numSubmissions: "15",
+          numLeft: "20",
+          deadline: "1586190000"
+        },
+        {
+          name: "Devcash Event Feedback",
+          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
+          numSubmissions: "65",
+          numLeft: "100",
+          deadline: "1586200000"
         }
       ]
     };
