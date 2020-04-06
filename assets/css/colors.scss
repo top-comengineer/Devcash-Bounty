@@ -73,3 +73,31 @@ $ltDanger: #990040;
 .border-ltDanger-40 {
   border-color: rgba($ltDanger, 0.4);
 }
+
+// Dark Theme Success Hover & Focus
+.hover_bg-dtSuccess-15:hover,
+.focus_bg-dtSuccess-15:focus {
+  background-color: rgba($dtSuccess, 0.15);
+  outline: none !important;
+}
+
+// Dark Theme Danger Hover & Focus
+.hover_bg-dtDanger-15:hover,
+.focus_bg-dtDanger-15:focus {
+  background-color: rgba($dtDanger, 0.15);
+  outline: none !important;
+}
+
+// Light Theme Success Hover & Focus
+.hover_bg-ltSuccess-15:hover,
+.focus_bg-ltSuccess-15:focus {
+  background-color: rgba($ltSuccess, 0.15);
+  outline: none !important;
+}
+
+// Light Theme Danger Hover & Focus
+.hover_bg-ltDanger-15:hover,
+.focus_bg-ltDanger-15:focus {
+  background-color: rgba($ltDanger, 0.15);
+  outline: none !important;
+}

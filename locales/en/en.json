@@ -135,13 +135,15 @@
       "personalBounties": "Personal Bounties",
       "showFeedback": "Show Feedback",
       "hideFeedback": "Hide Feedback",
-      "you": "You"
+      "you": "You",
+      "approvedButton": "Approve",
+      "rejectButton": "Reject"
     },
     "bountyManager": {
       "header": "Bounty Manager",
       "submissionsReceived": "Submissions Received",
       "yourBounties": "Your Bounties",
-      "approved": "Approve",
+      "approve": "Approve",
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
     },

@@ -19,6 +19,7 @@
           amountDEV="575,000"
           amountETH="1.278"
           amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Resending the submission, added the instructions in README.md"
           date="03.16.2020, 14:40"
         />
@@ -30,6 +31,7 @@
           amountDEV="575,000"
           amountETH="1.278"
           amountUSD="345"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="My hackathon project is attached to this submission."
           date="03.15.2020, 16:45"
         />
@@ -41,6 +43,7 @@
           amountDEV="1,500,000"
           amountETH="3.333"
           amountUSD="900"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Link to the finished package we’ve created:<br><u>https://github.com/antoine/ethnpmpackage</u>"
           date="02.28.2020, 15:03"
         />
@@ -52,6 +55,7 @@
           amountDEV="3,500,000"
           amountETH="7.78"
           amountUSD="2100"
+          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
           message="Here is the repo for the completed library:<br><u>https://github.com/antoine/ethlibrary</u>"
           date="02.15.2020, 14:35"
         />
