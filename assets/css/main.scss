@@ -106,6 +106,33 @@
   outline: none !important;
 }
 
+// For Dark Theme, Text Color Button
+.btn-dtTextTertiary {
+  box-shadow: 0 0.5rem 1rem 0 rgba(#222133, 0.25), 0 0 0 0 rgba(#222133, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-dtTextTertiary:hover,
+.btn-dtTextTertiary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#222133, 0.5),
+    -0.35rem 0.35rem 0 0 rgba(#222133, 1);
+  outline: none !important;
+}
+
+// For Dark Theme, Text Color Button
+.btn-ltTextTertiary {
+  box-shadow: 0 0 0 0 rgba(#222133, 0), 0 0 0 0 rgba(#ffffff, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-ltTextTertiary:hover,
+.btn-ltTextTertiary:focus {
+  box-shadow: 0 0 0 0 rgba(#222133, 0), -0.35rem 0.35rem 0 0 rgba(#ffffff, 1);
+  outline: none !important;
+}
+
 input {
   outline: none;
 }

@@ -83,8 +83,8 @@
           <!-- Modal Wrapper -->
           <div class="origin-top-right absolute right-0 pt-2" v-if="isLangModalOpen">
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground border-dtText' : 'bg-ltText text-ltBackground border-ltText'"
-              class="w-56 flex flex-col relative border-2 shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
+              class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
                 @click="changeLang('en')"
@@ -153,27 +153,69 @@
           class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
         >{{ $t("navigation.signIn") }}</button>
         <!-- Sign In Modal -->
-        <transition name="SignInModalTransition">
+        <transition name="signInModalTransition">
           <!-- Modal Wrapper -->
-          <div class="flex flex-row absolute right-0 pt-2" v-if="isSignInModalOpen">
+          <div class="origin-top-right absolute right-0 pt-3" v-if="isSignInModalOpen">
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground border-dtText' : 'bg-ltText text-ltBackground border-ltText'"
-              class="w-56 flex flex-col relative origin-top-right border shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
+              class="flex flex-col relative origin-top-right shadow-2xlS rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg overflow-hidden px-6 py-5"
             >
+              <!-- MetaMask Button -->
               <button
-                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
+                class="flex flex-row items-center bg-dtOrange border-2 border-dtOrange hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
               >
-                <h3 class="font-bold">Button 1</h3>
+                <div
+                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
+                  class="h-12 w-12 p-2"
+                >
+                  <img
+                    class="w-full h-full"
+                    :src="require('~/assets/images/wallet-logos/MetaMask.svg')"
+                    alt="MetaMask"
+                  />
+                </div>
+                <div class="flex flex-row flex-1 justify-center">
+                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">MetaMask</h4>
+                </div>
               </button>
+              <!-- Authereum Button -->
               <button
-                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
+                class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
               >
-                <h3 class="font-bold">Button 2</h3>
+                <div
+                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
+                  class="h-12 w-12 p-2"
+                >
+                  <img
+                    class="w-full h-full"
+                    :src="require('~/assets/images/wallet-logos/Authereum.svg')"
+                    alt="Authereum"
+                  />
+                </div>
+                <div class="flex flex-row flex-1 justify-center">
+                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">Authereum</h4>
+                </div>
               </button>
+              <!-- Portis Button -->
               <button
-                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
+                class="flex flex-row items-center bg-dtBlue border-2 border-dtBlue hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
               >
-                <h3 class="font-bold">Button 2</h3>
+                <div
+                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
+                  class="h-12 w-12 p-2"
+                >
+                  <img
+                    class="w-full h-full"
+                    :src="require('~/assets/images/wallet-logos/Portis.svg')"
+                    alt="Portis"
+                  />
+                </div>
+                <div class="flex flex-row flex-1 justify-center">
+                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">Portis</h4>
+                </div>
               </button>
             </div>
           </div>
@@ -225,6 +267,20 @@ export default {
   transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }
 .langModalTransition-leave-to {
+  opacity: 0;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+.signInModalTransition-enter-active {
+  transition: all 0.2s ease-out;
+}
+.signInModalTransition-leave-active {
+  transition: all 0.2s ease-out;
+}
+.signInModalTransition-enter {
+  opacity: 0.25;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+.signInModalTransition-leave-to {
   opacity: 0;
   transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }

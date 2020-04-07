@@ -19,6 +19,9 @@ module.exports = {
       dtSuccess: "#B1FFAA",
       dtDanger: "#FF8080",
       dtPending: "#FFDF80",
+      dtOrange: "#F5841F",
+      dtRed: "#FF4C2F",
+      dtBlue: "#6DB2D8",
       // Light theme colors
       ltPrimary: "#675CFF",
       dtPrimaryLessSat: "#7066FF",
@@ -91,6 +94,7 @@ module.exports = {
         96: "24rem"
       },
       scale: {
+        107: "1.07",
         115: "1.15",
         120: "1.2"
       },
@@ -109,6 +113,9 @@ module.exports = {
         "4/7": "57.1428571%",
         "5/7": "71.4285714%",
         "6/7": "85.7142857%"
+      },
+      margin: {
+        "1.5": "0.375rem"
       }
     }
   },
