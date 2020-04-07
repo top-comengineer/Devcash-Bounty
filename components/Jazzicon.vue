@@ -26,7 +26,6 @@ export default {
     }
   },
   mounted() {
-    var Jazzicon = require("jazzicon");
     this.generateIcon();
   }
 };
