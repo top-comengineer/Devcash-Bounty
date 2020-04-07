@@ -1,4 +1,5 @@
 // Dark Theme Color Variables
+$dtPrimary: #675cff;
 $dtText: #f2f1ff;
 $dtBackground: #010014;
 $dtPending: #ffdf80;
@@ -6,6 +7,7 @@ $dtSuccess: #b1ffaa;
 $dtDanger: #ff8080;
 
 // Light Theme Color Variables
+$ltPrimary: #675cff;
 $ltText: #010014;
 $ltBackground: #f8f7fc;
 $ltPending: #cd8900;
@@ -94,6 +96,13 @@ $ltDanger: #990040;
 .hover_bg-dtBackground-15:hover,
 .focus_bg-dtBackground-15:focus {
   background-color: rgba($dtBackground, 0.15);
+  outline: none !important;
+}
+
+// Dark Theme Primary Hover & Focus
+.hover_bg-dtPrimary-35:hover,
+.focus_bg-dtPrimary-35:focus {
+  background-color: rgba($dtPrimary, 0.35);
   outline: none !important;
 }
 

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-colors ease-out duration-200"
+    class="transition-colors ease-out duration-200 keep-all"
     :class="[
       $store.state.theme.dt
         ? 'bg-dtBackground text-dtText'
@@ -100,5 +100,8 @@ body {
   font-family: "Manrope", sans-serif;
   font-weight: 400;
   background-color: #010014;
+}
+.keep-all {
+  word-break: keep-all;
 }
 </style>

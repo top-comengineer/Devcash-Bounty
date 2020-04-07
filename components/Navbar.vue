@@ -69,7 +69,7 @@
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
               type="language"
             />
-            <div class="mx-1 hidden lg:block">{{ $t("navigation.english") }}</div>
+            <div class="mx-1 hidden lg:block">{{ currentLang }}</div>
             <Icon
               class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -81,22 +81,36 @@
         <!-- Language Modal -->
         <transition name="langModalTransition">
           <!-- Modal Wrapper -->
-          <div class="right-0 absolute pt-2" v-if="isLangModalOpen">
+          <div class="flex flex-row absolute right-0 pt-2" v-if="isLangModalOpen">
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText'"
-              class="langModal shadow-xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg overflow-hidden"
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
+              class="w-56 flex flex-col relative origin-top-right shadow-xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
-                :class="$store.state.theme.dt ? 'text-dtBackground hover_bg-dtBackground-15 focus_bg-dtBackground-15' : 'text-ltBackground hover_bg-ltBackground-15 focus_bg-ltBackground-15'"
-                class="w-full text-xl py-3 px-8"
+                @click="changeLang('en')"
+                :class="lang == 'en'?'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
-                <h3 class="font-bold">English</h3>
+                <div class="mx-4">
+                  <Icon v-if="lang == 'en'" colorClass="text-dtText" type="done" class="w-6 h-6" />
+                  <div v-else class="w-6 h-6"></div>
+                </div>
+                <div class="flex flex-row">
+                  <h3 class="font-bold">English</h3>
+                  <h4 class="ml-1 text-sm">(en)</h4>
+                </div>
               </button>
               <button
-                :class="$store.state.theme.dt ? 'text-dtBackground hover_bg-dtBackground-15 focus_bg-dtBackground-15' : 'text-ltBackground hover_bg-ltBackground-15 focus_bg-ltBackground-15'"
-                class="w-full text-xl py-3 px-8"
+                @click="changeLang('zh')"
+                :class="lang == 'zh'?'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
-                <h3 class="font-bold">Chinese</h3>
+                <div class="mx-4">
+                  <Icon v-if="lang == 'zh'" colorClass="text-dtText" type="done" class="w-6 h-6" />
+                  <div v-else class="w-6 h-6"></div>
+                </div>
+                <h3 class="font-bold">简化字</h3>
+                <h4 class="ml-1 text-sm">(zh-Hans)</h4>
               </button>
             </div>
           </div>
@@ -148,17 +162,27 @@ export default {
     Icon,
     MobileDropdown
   },
+  methods: {
+    changeLang(iso) {
+      if (iso == "en") {
+        this.lang = "en";
+        this.currentLang = this.$t("navigation.english");
+      } else if (iso == "zh") {
+        this.lang = "zh";
+        this.currentLang = this.$t("navigation.chinese");
+      }
+    }
+  },
   data() {
     return {
-      isLangModalOpen: false
+      isLangModalOpen: false,
+      lang: "en",
+      currentLang: this.$t("navigation.english")
     };
   }
 };
 </script>
 <style>
-.langModal {
-  transform-origin: top right;
-}
 .langModalTransition-enter-active {
   transition: all 0.2s ease-out;
 }
