@@ -3,7 +3,7 @@
     :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg'
+        : 'bg-ltBackgroundSecondary shadow-lgD'
     ]"
     class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >

@@ -3,9 +3,9 @@
     :to="getLocalizedRoute('bountyplatform-bounty')"
     :class="{
       'bg-dtBackgroundSecondary': $store.state.theme.dt && !type,
-      'bg-ltBackgroundSecondary shadow-lgD': !$store.state.theme.dt && !type,
-      'bg-dtBackgroundTertiary' : $store.state.theme.dt && type == 'secondary',
-      'bg-ltBackgroundSecondary shadow-lgD' : !$store.state.theme.dt && type == 'secondary',
+      'bg-ltBackgroundSecondary shadow-lg': !$store.state.theme.dt && !type,
+      'bg-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
+      'bg-ltBackgroundSecondary shadow-lgD': !$store.state.theme.dt && type == 'secondary'
     } "
     class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >

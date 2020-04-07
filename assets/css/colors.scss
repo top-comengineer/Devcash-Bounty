@@ -1,11 +1,13 @@
 // Dark Theme Color Variables
 $dtText: #f2f1ff;
+$dtBackground: #010014;
 $dtPending: #ffdf80;
 $dtSuccess: #b1ffaa;
 $dtDanger: #ff8080;
 
 // Light Theme Color Variables
 $ltText: #010014;
+$ltBackground: #f8f7fc;
 $ltPending: #cd8900;
 $ltSuccess: #009966;
 $ltDanger: #990040;
@@ -88,6 +90,13 @@ $ltDanger: #990040;
   outline: none !important;
 }
 
+// Dark Theme Background Hover & Focus
+.hover_bg-dtBackground-15:hover,
+.focus_bg-dtBackground-15:focus {
+  background-color: rgba($dtBackground, 0.15);
+  outline: none !important;
+}
+
 // Light Theme Success Hover & Focus
 .hover_bg-ltSuccess-15:hover,
 .focus_bg-ltSuccess-15:focus {
@@ -99,5 +108,12 @@ $ltDanger: #990040;
 .hover_bg-ltDanger-15:hover,
 .focus_bg-ltDanger-15:focus {
   background-color: rgba($ltDanger, 0.15);
+  outline: none !important;
+}
+
+// Light Theme Background Hover & Focus
+.hover_bg-ltBackground-15:hover,
+.focus_bg-ltBackground-15:focus {
+  background-color: rgba($ltBackground, 0.15);
   outline: none !important;
 }

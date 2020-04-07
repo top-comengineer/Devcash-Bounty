@@ -4,7 +4,9 @@
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
-    <BountyCard v-else v-for="(item, i) in bounties" :key="i" class="my-2" :bounty="item" />
+    <div class="w-full flex flex-col justify-center items-center">
+      <BountyCard v-for="(item, i) in bounties" :key="i" class="my-2" :bounty="item" />
+    </div>
   </div>
 </template>
 
