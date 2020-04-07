@@ -12,3 +12,4 @@ class ExtendableError extends Error {
   
 
 export class AccountNotFoundError extends ExtendableError {}
+export class NoAccountsFoundError extends ExtendableError {}

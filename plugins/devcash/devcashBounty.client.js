@@ -1,6 +1,6 @@
 import { ethers, utils } from 'ethers'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
-import { AccountNotFoundError } from './errors.js'
+import { NoAccountsFoundError, AccountNotFoundError } from './errors.js'
 
 export const WalletProviders = {
     metamask: 'metamask',
@@ -69,18 +69,28 @@ export class DevcashBounty {
         let uBCContract
 
         // window.ethereum is provided by metamask
-        if (this.hasMetamask() && walletProvider == WalletProviders.etherscan && accountToLogin) {
+        if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
             // Use web3 provider with signer
             window.ethereum.enable()
             provider = new ethers.providers.Web3Provider(web3.currentProvider);
             accounts = await provider.listAccounts()
-            for (a in accounts) {
-                if (a.toLowerCase() == accountToLogin.toLowerCase()) {
-                    signer = provider.getSigner(a)
-                }
+            // Check to see if they have any accounts created
+            if (accounts.length == 0) {
+                throw new NoAccountsFoundError('No accounts found')
             }
-            if (!signer) {
-                throw new AccountNotFoundError(`Account ${accountToLogin} not found by any provider`)
+            // Check if specific account is specified
+            if (accountToLogin != null) {
+                for (a in accounts) {
+                    if (a.toLowerCase() == accountToLogin.toLowerCase()) {
+                        signer = provider.getSigner(a)
+                    }
+                }
+                if (!signer) {
+                    throw new AccountNotFoundError(`Account ${accountToLogin} not found in metamask`)
+                }
+            } else {
+                // Login default account
+                signer = provider.getSigner(accounts[0])
             }
             tokenContract = new ethers.Contract(tokenAddress, tokenABI, signer)
             uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
@@ -158,4 +168,4 @@ export class DevcashBounty {
 }
 
 // Other exports
-export { AccountNotFoundError }
+export { AccountNotFoundError, NoAccountsFoundError }

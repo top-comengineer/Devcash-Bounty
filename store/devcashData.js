@@ -15,6 +15,9 @@ export const state = () => ({
     },
     setLastRefresh(state, lastRefresh) {
       state.lastRefresh = lastRefresh
+    },
+    setProvider(state, provider) {
+      state.provider = provider
     }
   };
   
@@ -27,6 +30,9 @@ export const state = () => ({
     },
     setLastRefresh(context, lastRefresh) {
       context.commit('setLastRefresh', lastRefresh)
+    },
+    setProvider(context, provider) {
+      context.commit('setProvider', provider)
     }
   };
   
@@ -55,5 +61,8 @@ export const state = () => ({
         return true
       }
       return false
+    },
+    isLoggedIn(state) {
+      return state.loggedInAccount != null
     }
   }
