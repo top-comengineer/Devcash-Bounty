@@ -32,7 +32,7 @@ module.exports = {
       ltDanger: "#990040",
       ltPending: "#CD8900",
       // Transparent
-      transparent: "transparent",
+      transparent: "transparent"
     },
     boxShadow: {
       none: "none",
@@ -62,14 +62,13 @@ module.exports = {
       xlSS:
         "0 20px 25px -5px rgba(0, 0, 0, .4), 0 10px 10px -5px rgba(0, 0, 0, .16)",
       "2xl": "0 25px 50px -12px rgba(0, 0, 0, .25)",
-      xlS:
-        "0 20px 25px -5px rgba(0, 0, 0, .2), 0 10px 10px -5px rgba(0, 0, 0, .1)",
+      "2xlS": "0 25px 50px -12px rgba(0, 0, 0, .4)"
     },
     opacity: {
       "5": "0.05",
       "10": "0.1",
       "50": "0.5",
-      "75": "0.75",
+      "75": "0.75"
     },
     borderRadius: {
       none: "0",
@@ -82,24 +81,24 @@ module.exports = {
       "3xl": "1.5rem",
       "4xl": "3rem",
       "5xl": "6rem",
-      full: "9999px",
+      full: "9999px"
     },
     extend: {
       spacing: {
         7: "1.75rem",
         72: "18rem",
         84: "21rem",
-        96: "24rem",
+        96: "24rem"
       },
       scale: {
         115: "1.15",
-        120: "1.2",
+        120: "1.2"
       },
       transitionDuration: {
-        "0": "0ms",
+        "0": "0ms"
       },
       height: {
-        px2: "2px",
+        px2: "2px"
       },
       width: {
         "36": "9rem",
@@ -109,13 +108,13 @@ module.exports = {
         "3/7": "42.8571429%",
         "4/7": "57.1428571%",
         "5/7": "71.4285714%",
-        "6/7": "85.7142857%",
-      },
-    },
+        "6/7": "85.7142857%"
+      }
+    }
   },
   variants: {
     scale: ["responsive", "hover", "focus"],
-    width: ["responsive", "hover", "focus"],
+    width: ["responsive", "hover", "focus"]
   },
-  plugins: [],
+  plugins: []
 };

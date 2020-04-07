@@ -81,10 +81,10 @@
         <!-- Language Modal -->
         <transition name="langModalTransition">
           <!-- Modal Wrapper -->
-          <div class="flex flex-row absolute right-0 pt-2" v-if="isLangModalOpen">
+          <div class="origin-top-right absolute right-0 pt-2" v-if="isLangModalOpen">
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-              class="w-56 flex flex-col relative origin-top-right shadow-xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground border-dtText' : 'bg-ltText text-ltBackground border-ltText'"
+              class="w-56 flex flex-col relative border-2 shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
                 @click="changeLang('en')"
@@ -141,14 +141,44 @@
         />
       </button>
       <!-- Sign In Button -->
-      <button
-        :class="[
+      <div class="relative">
+        <button
+          @click="isSignInModalOpen=!isSignInModalOpen"
+          @blur="isSignInModalOpen=false"
+          :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText'
         ]"
-        class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
-      >{{ $t("navigation.signIn") }}</button>
+          class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+        >{{ $t("navigation.signIn") }}</button>
+        <!-- Sign In Modal -->
+        <transition name="SignInModalTransition">
+          <!-- Modal Wrapper -->
+          <div class="flex flex-row absolute right-0 pt-2" v-if="isSignInModalOpen">
+            <div
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground border-dtText' : 'bg-ltText text-ltBackground border-ltText'"
+              class="w-56 flex flex-col relative origin-top-right border shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+            >
+              <button
+                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+              >
+                <h3 class="font-bold">Button 1</h3>
+              </button>
+              <button
+                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+              >
+                <h3 class="font-bold">Button 2</h3>
+              </button>
+              <button
+                class="flex flex-row justify-center items-center py-3 transition-colors duration-200 ease-out"
+              >
+                <h3 class="font-bold">Button 2</h3>
+              </button>
+            </div>
+          </div>
+        </transition>
+      </div>
     </div>
   </div>
 </template>
@@ -177,7 +207,8 @@ export default {
     return {
       isLangModalOpen: false,
       lang: "en",
-      currentLang: this.$t("navigation.english")
+      currentLang: this.$t("navigation.english"),
+      isSignInModalOpen: false
     };
   }
 };
@@ -191,10 +222,10 @@ export default {
 }
 .langModalTransition-enter {
   opacity: 0.25;
-  transform: scaleX(0.8) scaleY(0.6) translateY(-2.5rem);
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }
 .langModalTransition-leave-to {
   opacity: 0;
-  transform: scaleX(0.8) scaleY(0.6) translateY(-2.5rem);
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }
 </style>
