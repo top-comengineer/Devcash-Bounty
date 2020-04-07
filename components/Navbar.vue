@@ -256,6 +256,7 @@ export default {
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
         window.open('https://metamask.io/download.html', '_blank')
+        return
       }
       // Sign in flow
       this.isSignInModalOpen = false
