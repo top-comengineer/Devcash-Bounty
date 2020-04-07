@@ -69,7 +69,7 @@
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
               type="language"
             />
-            <div class="mx-1 hidden lg:block">{{ currentLang }}</div>
+            <div class="mx-1 hidden lg:block">{{ currentLocaleName }}</div>
             <Icon
               class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -87,30 +87,20 @@
               class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
-                @click="changeLang('en')"
-                :class="lang == 'en'?'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                v-for="locale in supportedLocales"
+                :key="locale.code"
+                @click="changeLang(locale)"
+                :class="locale.code == $store.state.i18n.currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
                 <div class="mx-4">
-                  <Icon v-if="lang == 'en'" colorClass="text-dtText" type="done" class="w-6 h-6" />
+                  <Icon v-if="locale.code == $store.state.i18n.currentLocale" colorClass="text-dtText" type="done" class="w-6 h-6" />
                   <div v-else class="w-6 h-6"></div>
                 </div>
                 <div class="flex flex-row">
-                  <h3 class="font-bold">English</h3>
-                  <h4 class="ml-1 text-sm">(en)</h4>
+                  <h3 class="font-bold">{{ locale.name }}</h3>
+                  <h4 class="ml-1 text-sm">({{ locale.iso }})</h4>
                 </div>
-              </button>
-              <button
-                @click="changeLang('zh')"
-                :class="lang == 'zh'?'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
-                class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
-              >
-                <div class="mx-4">
-                  <Icon v-if="lang == 'zh'" colorClass="text-dtText" type="done" class="w-6 h-6" />
-                  <div v-else class="w-6 h-6"></div>
-                </div>
-                <h3 class="font-bold">简化字</h3>
-                <h4 class="ml-1 text-sm">(zh-Hans)</h4>
               </button>
             </div>
           </div>
@@ -241,6 +231,7 @@ import Logo from "~/components/Logo.vue";
 import Icon from "~/components/Icon.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
 import { WalletProviders, DevcashBounty, NoAccountsFoundError } from "~/plugins/devcash/devcashBounty.client";
+import { LOCALES } from "~/config"
 import { mapGetters } from 'vuex';
 
 export default {
@@ -250,14 +241,8 @@ export default {
     MobileDropdown
   },
   methods: {
-    changeLang(iso) {
-      if (iso == "en") {
-        this.lang = "en";
-        this.currentLang = this.$t("navigation.english");
-      } else if (iso == "zh") {
-        this.lang = "zh";
-        this.currentLang = this.$t("navigation.chinese");
-      }
+    changeLang(locale) {
+      this.$router.push(this.getSwitchLocaleRoute(locale.code))
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
@@ -301,20 +286,20 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: 'devcashData/isLoggedIn'
+      isLoggedIn: 'devcashData/isLoggedIn',
+      currentLocaleName: 'i18n/currentLocaleName'
     })
   },  
   data() {
     return {
       isLangModalOpen: false,
-      lang: "en",
-      currentLang: this.$t("navigation.english"),
       isSignInModalOpen: false,
       hasMetamask: false,
       hasPortis: false,
       hasAuthereum: false,
       walletProviders: WalletProviders,
-      loggingInLoading: false
+      loggingInLoading: false,
+      supportedLocales: LOCALES
     };
   },
   mounted() {

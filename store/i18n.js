@@ -20,5 +20,14 @@ export const state = () => ({
   export const getters = {
     currentLocale(state) {
         return state.currentLocale;
+    },
+    currentLocaleName(state) {
+      let l
+      for (l of LOCALES) {
+        if (l.code == state.currentLocale) {
+          return l.name
+        }
+      }
+      return "Unknown"
     }
   };

@@ -22,6 +22,7 @@ export default function ({ app, store, route, error, redirect, hotReload }) {
       locale = l.code
     }
   })
+  console.log(locale)
   if (LOCALES.findIndex(l => l.code === locale) === -1) {
     return error({ message: 'Page not found.', statusCode: 404 })
   }

@@ -1,6 +1,6 @@
 // i18n messages
 const en = require("../locales/en");
-const zh = require("../locales/zh");
+const zhHans = require("../locales/zh-Hans");
 
 // i18n config
 export const LOCALES = [
@@ -10,15 +10,15 @@ export const LOCALES = [
     name: "English",
   },
   {
-    code: "zh",
-    iso: "zh",
+    code: "zhHans",
+    iso: "zh-Hans",
     name: "Chinese",
   },
 ];
 export const DEFAULT_LOCALE = "en";
 export const I18N = {
   en,
-  zh,
+  zhHans,
 };
 
 // Define custom paths for localized routes
