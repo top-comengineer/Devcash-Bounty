@@ -191,10 +191,10 @@ export default {
 }
 .langModalTransition-enter {
   opacity: 0.25;
-  transform: scaleX(0.9) scaleY(0.6) translateY(-2rem);
+  transform: scaleX(0.8) scaleY(0.6) translateY(-2.5rem);
 }
 .langModalTransition-leave-to {
   opacity: 0;
-  transform: scaleX(0.9) scaleY(0.6) translateY(-2rem);
+  transform: scaleX(0.8) scaleY(0.6) translateY(-2.5rem);
 }
 </style>
