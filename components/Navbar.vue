@@ -174,6 +174,7 @@
               <button
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
                 class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
+                @click="signIn(walletProviders.authereum)"
               >
                 <div
                   :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
@@ -186,7 +187,7 @@
                   />
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
-                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ hasAuthereum ? 'Authereum' : 'Get Authereum' }}</h4>
+                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ 'Authereum' }}</h4>
                 </div>
               </button>
               <!-- Portis Button -->
@@ -205,7 +206,7 @@
                   />
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
-                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ hasPortis ? 'Portis' : 'Get Portis' }}</h4>
+                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ 'Portis' }}</h4>
                 </div>
               </button>
             </div>
@@ -247,34 +248,40 @@ export default {
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
         window.open('https://metamask.io/download.html', '_blank')
-      } else if (provider == this.walletProviders.portis && !this.hasPortis) {
-        window.open('https://wallet.portis.io/', '_blank')
-      } else if (provider == this.walletProviders.authereum && !this.hasAuthereum) {
-        window.open('https://authereum.com/welcome', '_blank')
-      } else {
-        // Sign in flow
-        this.isSignInModalOpen = false
-        this.loggingInLoading = true
-        try {
-          let connector = await DevcashBounty.init(
-            null,
-            provider
-          );
-          this.$store.commit("devcash/setConnector", connector);
-          this.$store.commit("devcashData/setProvider", provider)
-          this.$store.commit("devcashData/setLoggedInAccount", await connector.signer.getAddress())
-          this.loggingInLoading = false
-        } catch (e) {
-          // TODO - handle these correctly
-          if (e instanceof NoAccountsFoundError) {
-            // NO accounts found in metamask
-            alert("No accounts found");
-          } else {
-            alert(`Unknown error ${e}`);
+      } else if (provider == this.walletProviders.portis) {
+        alert('Portis not supported')
+        return
+      }
+      // Sign in flow
+      this.isSignInModalOpen = false
+      this.loggingInLoading = true
+      try {
+        // Initialize connector to ethereum
+        let connector = await DevcashBounty.init(
+          null,
+          provider
+        );
+        // Set state
+        this.$store.commit("devcash/setConnector", connector);
+        // Set persistent state for logged in account
+        this.$store.commit("devcashData/setProvider", provider)
+        this.$store.commit("devcashData/setLoggedInAccount", await connector.signer.getAddress())
+      } catch (e) {
+        if (e instanceof NoAccountsFoundError) {
+          // NO accounts found in provider
+          if (provider == this.walletProviders.metamask) {
+            window.open('https://metamask.io/download.html', '_blank')
+          } else if (provider == this.walletProviders.authereum) {
+            window.open('https://authereum.com/welcome', '_blank')
+          } else if (provider == this.walletProviders.portis) {
+            window.open('https://wallet.portis.io/', '_blank')
           }
-        } finally {
-          this.loggingInLoading = false
+        } else {
+          // TODO - handle this correctly
+          alert(`Unknown error ${e}`);
         }
+      } finally {
+        this.loggingInLoading = false
       }
     },
     signOut() {
@@ -295,8 +302,6 @@ export default {
       isLangModalOpen: false,
       isSignInModalOpen: false,
       hasMetamask: false,
-      hasPortis: false,
-      hasAuthereum: false,
       walletProviders: WalletProviders,
       loggingInLoading: false,
       supportedLocales: LOCALES
@@ -305,8 +310,6 @@ export default {
   mounted() {
     // Initialize these here since it's client side
     this.hasMetamask = DevcashBounty.hasMetamask()
-    this.hasPortis = DevcashBounty.hasPortis()
-    this.hasAuthereum = DevcashBounty.hasAuthereum()
   }
 };
 </script>

@@ -1,4 +1,5 @@
 import { ethers, utils } from 'ethers'
+import { Authereum } from 'authereum'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
 import { NoAccountsFoundError, AccountNotFoundError } from './errors.js'
 
@@ -35,22 +36,6 @@ export class DevcashBounty {
     }
 
     /**
-     * hasPortis() - returns true if portis is available
-     */
-    static hasPortis() {
-        // TODO - implement me
-        return false
-    }
-
-    /**
-     * hasAuthereum() - returns true if authereum is available
-     */
-    static hasAuthereum() {
-        // TODO - implement me
-        return false
-    }
-
-    /**
      * init() - connect to ethereum and initialize devcash contracts
      * @params account - logged in account
      * @params walletProvider - WalletProvider to use, if missing then default is used
@@ -62,17 +47,32 @@ export class DevcashBounty {
         accountToLogin = accountToLogin || null
         walletProvider = walletProvider || WalletProviders.etherscan
 
+        let needsSigner = false
         let signer
         let provider
         let accounts
         let tokenContract
         let uBCContract
 
-        // window.ethereum is provided by metamask
+        // Get provider
         if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
             // Use web3 provider with signer
             await window.ethereum.enable()
             provider = new ethers.providers.Web3Provider(web3.currentProvider);
+            needsSigner = true
+        } else if (walletProvider == WalletProviders.authereum) {
+            // Authereum
+            const authereum = new Authereum('mainnet')
+            provider = new ethers.providers.Web3Provider(await authereum.getProvider())
+            needsSigner = true
+        } else {
+            // Etherscan provider (no signer)
+            provider = new ethers.getDefaultProvider();
+            needsSigner = false
+        }
+
+        // If using default provider, signer isn't required
+        if (needsSigner) {
             accounts = await provider.listAccounts()
             // Check to see if they have any accounts created
             if (accounts.length == 0) {
@@ -86,7 +86,7 @@ export class DevcashBounty {
                     }
                 }
                 if (!signer) {
-                    throw new AccountNotFoundError(`Account ${accountToLogin} not found in metamask`)
+                    throw new AccountNotFoundError(`Account ${accountToLogin} not found in ${walletProvider}`)
                 }
             } else {
                 // Login default account
