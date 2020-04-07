@@ -232,9 +232,10 @@
 import Logo from "~/components/Logo.vue";
 import Icon from "~/components/Icon.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
-import { WalletProviders, DevcashBounty, NoAccountsFoundError } from "~/plugins/devcash/devcashBounty.client";
 import { LOCALES } from "~/config"
 import { mapGetters } from 'vuex';
+import { WalletProviders, DevcashBounty, NoAccountsFoundError } from "~/plugins/devcash/devcashBounty.client";
+
 
 export default {
   components: {
@@ -255,9 +256,6 @@ export default {
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
         window.open('https://metamask.io/download.html', '_blank')
-      } else if (provider == this.walletProviders.portis) {
-        alert('Portis not supported')
-        return
       }
       // Sign in flow
       this.isSignInModalOpen = false

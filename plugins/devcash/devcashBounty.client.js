@@ -3,6 +3,10 @@ import { Authereum, AuthereumSigner } from 'authereum'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
 import { NoAccountsFoundError, AccountNotFoundError } from './errors.js'
 
+if (process.client) {
+    var Portis = require('@portis/web3')
+}
+
 export const WalletProviders = {
     metamask: 'metamask',
     portis: 'portis',
@@ -65,7 +69,14 @@ export class DevcashBounty {
             const authereum = new Authereum('mainnet')
             const authereumProvider = authereum.getProvider()
             await authereumProvider.enable()
-            provider = new ethers.providers.Web3Provider(web3.currentProvider)
+            provider = new ethers.providers.Web3Provider(authereumProvider)
+            needsSigner = true
+        } else if (walletProvider == WalletProviders.portis) {
+            // Portis
+            const portis = new Portis('5395216c-1124-49de-bfbe-7893409825be', 'mainnet')
+            const portisProvider = portis.provider
+            await portisProvider.enable()
+            provider = new ethers.providers.Web3Provider(portis.provider)
             needsSigner = true
         } else {
             // Etherscan provider (no signer)
