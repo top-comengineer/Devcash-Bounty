@@ -71,7 +71,7 @@ export class DevcashBounty {
         // window.ethereum is provided by metamask
         if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
             // Use web3 provider with signer
-            window.ethereum.enable()
+            await window.ethereum.enable()
             provider = new ethers.providers.Web3Provider(web3.currentProvider);
             accounts = await provider.listAccounts()
             // Check to see if they have any accounts created
