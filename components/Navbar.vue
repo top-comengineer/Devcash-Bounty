@@ -134,7 +134,7 @@
       <div v-if="!isLoggedIn" class="relative">
         <button
           @click="isSignInModalOpen=!isSignInModalOpen && !loggingInLoading"
-          @blur="isSignInModalOpen=false"
+          @blur="signInBlur"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
@@ -194,6 +194,7 @@
               <button
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
                 class="flex flex-row items-center bg-dtBlue border-2 border-dtBlue hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
+                @click="signIn(walletProviders.portis)"
               >
                 <div
                   :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
@@ -244,6 +245,12 @@ export default {
   methods: {
     changeLang(locale) {
       this.$router.push(this.getSwitchLocaleRoute(locale.code))
+    },
+    signInBlur() {
+      // Delay blur to avoid interfering with button presses
+      setTimeout(() => {
+        this.isSignInModalOpen = false
+      }, 50)
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {

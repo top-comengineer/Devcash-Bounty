@@ -1,5 +1,5 @@
 import { ethers, utils } from 'ethers'
-import { Authereum } from 'authereum'
+import { Authereum, AuthereumSigner } from 'authereum'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
 import { NoAccountsFoundError, AccountNotFoundError } from './errors.js'
 
@@ -63,7 +63,9 @@ export class DevcashBounty {
         } else if (walletProvider == WalletProviders.authereum) {
             // Authereum
             const authereum = new Authereum('mainnet')
-            provider = new ethers.providers.Web3Provider(await authereum.getProvider())
+            const authereumProvider = authereum.getProvider()
+            await authereumProvider.enable()
+            provider = new ethers.providers.Web3Provider(web3.currentProvider)
             needsSigner = true
         } else {
             // Etherscan provider (no signer)
