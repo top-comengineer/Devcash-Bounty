@@ -12,6 +12,7 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { mapGetters } from 'vuex';
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
@@ -28,8 +29,7 @@ export default {
   },
   data() {
     return {
-      loading: true,
-      bounties: []
+      loading: true
     };
   },
   methods: {
@@ -37,7 +37,8 @@ export default {
       if (this.$store.state.devcash.connector == null) {
         try {
           let connector = await DevcashBounty.init(
-            this.$store.state.devcashData.loggedInAccount
+            this.$store.state.devcashData.loggedInAccount,
+            this.$store.state.devcashData.provider
           );
           this.$store.commit("devcash/setConnector", connector);
         } catch (e) {
@@ -51,13 +52,28 @@ export default {
       }
     }
   },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      bounties: 'devcashData/getOpenBounties',
+      shouldRefresh: 'devcashData/shouldRefresh'
+    })
+  },
   mounted() {
-    // Load
+    // Init connector
     this.initEthConnector().then(_ => {
-      this.$store.state.devcash.connector.getUbounties().then(bounties => {
-        this.bounties = bounties;
-        this.loading = false;
-      });
+      // Show bounty data immediately if cached
+      if (this.bounties != null) {
+        this.loading = false
+      }
+      // Re-load ubounties if shouldRefresh
+      if (this.bounties == null || this.shouldRefresh) {
+        this.$store.state.devcash.connector.getUbounties().then(uBounties => {
+          this.$store.commit("devcashData/setBounties", uBounties)
+          this.$store.commit("devcashData/setLastRefresh", new Date().getTime())
+          this.loading = false
+        });
+      }
     });
   },
   beforeMount() {

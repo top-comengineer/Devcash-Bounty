@@ -2,6 +2,13 @@ import { ethers, utils } from 'ethers'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
 import { AccountNotFoundError } from './errors.js'
 
+export const WalletProviders = {
+    metamask: 'metamask',
+    portis: 'portis',
+    authereum: 'authereum',
+    etherscan: 'etherscan'
+}
+
 export class DevcashBounty {
     constructor(async_param) {
         if (typeof async_param === 'undefined') {
@@ -18,14 +25,42 @@ export class DevcashBounty {
     }
 
     /**
+     * hasMetamask() - returns true if metamask is available
+     */
+    static hasMetamask() {
+        if (window.ethereum) {
+            return true
+        }
+        return false
+    }
+
+    /**
+     * hasPortis() - returns true if portis is available
+     */
+    static hasPortis() {
+        // TODO - implement me
+        return false
+    }
+
+    /**
+     * hasAuthereum() - returns true if authereum is available
+     */
+    static hasAuthereum() {
+        // TODO - implement me
+        return false
+    }
+
+    /**
      * init() - connect to ethereum and initialize devcash contracts
      * @params account - logged in account
-
+     * @params walletProvider - WalletProvider to use, if missing then default is used
+     *
      * @returns DevcashBounty instance
      * @throws AccountNotFoundError if account is not null and account doesn't exist
      */
-    static async init(accountToLogin) {
+    static async init(accountToLogin, walletProvider) {
         accountToLogin = accountToLogin || null
+        walletProvider = walletProvider || WalletProviders.etherscan
 
         let signer
         let provider
@@ -34,7 +69,7 @@ export class DevcashBounty {
         let uBCContract
 
         // window.ethereum is provided by metamask
-        if (window.ethereum && accountToLogin) {
+        if (this.hasMetamask() && walletProvider == WalletProviders.etherscan && accountToLogin) {
             // Use web3 provider with signer
             window.ethereum.enable()
             provider = new ethers.providers.Web3Provider(web3.currentProvider);
@@ -78,7 +113,19 @@ export class DevcashBounty {
         let uBounties = new Array()
         let numUbounties = await this.uBCContract.numUbounties()
         for (let i=0; i < numUbounties; i++) {
-            let uBounty = await this.uBCContract.ubounties(i)
+            let rawUBounty = await this.uBCContract.ubounties(i)
+            // Convert smart contract data into a plain object
+            let uBounty = {}
+            uBounty.numLeft = rawUBounty[0]
+            uBounty.numSubmissions = rawUBounty[1]
+            uBounty.hunterIndex = rawUBounty[2]
+            uBounty.creatorIndex = rawUBounty[3]
+            uBounty.bountyChestIndex = rawUBounty[4]
+            uBounty.deadline = rawUBounty[5]
+            uBounty.name = rawUBounty[6]
+            uBounty.description = rawUBounty[7]
+            uBounty.infoHash = rawUBounty[8]
+            // Set hunter
             uBounty.index = i
             uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
             // Get balance
