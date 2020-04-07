@@ -100,9 +100,28 @@ $ltDanger: #990040;
 }
 
 // Dark Theme Primary Hover & Focus
+.hover_bg-dtPrimary-25:hover,
+.focus_bg-dtPrimary-25:focus {
+  background-color: rgba($dtPrimary, 0.25);
+}
+
 .hover_bg-dtPrimary-35:hover,
 .focus_bg-dtPrimary-35:focus {
   background-color: rgba($dtPrimary, 0.35);
+  outline: none !important;
+}
+
+// Dark Theme Text Hover & Focus
+.hover_bg-dtText-15:hover,
+.focus_bg-dtText-15:focus {
+  background-color: rgba($dtText, 0.15);
+  outline: none !important;
+}
+
+// Light Theme Text Hover & Focus
+.hover_bg-ltText-15:hover,
+.focus_bg-ltText-15:focus {
+  background-color: rgba($ltText, 0.15);
   outline: none !important;
 }
 
