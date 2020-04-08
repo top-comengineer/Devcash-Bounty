@@ -242,7 +242,7 @@
           <Jazzicon
             class="flex"
             :diameter="32"
-            address="0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5"
+            :address="$store.state.loggedInAccount?$store.state.loggedInAccount:''"
           />
         </button>
         <!-- Sign Out Modal -->
