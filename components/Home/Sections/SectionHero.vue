@@ -10,7 +10,9 @@
     <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col py-4">
       <div class="flex flex-row justify-center lg:justify-start">
         <div class="spacer"></div>
-        <div class="flex flex-col items-center lg:items-start hero-text px-4 py-4 md:px-16 md:py-6">
+        <div
+          class="flex flex-1 flex-col items-center lg:items-start hero-text px-4 py-4 md:px-16 md:py-6"
+        >
           <h1
             class="font-extrabold text-3xl md:text-4xl text-center lg:text-left leading-tight text-dtPrimary"
             v-html="$t('home.heroSection.header')"
@@ -40,6 +42,6 @@ export default {
 </script>
 <style scoped>
 .spacer {
-  width: calc((100vw - 1280px) / 1.5);
+  width: calc((100vw - 1280px) / 2);
 }
 </style>
