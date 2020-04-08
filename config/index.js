@@ -7,18 +7,18 @@ export const LOCALES = [
   {
     code: "en",
     iso: "en-US",
-    name: "English",
+    name: "English"
   },
   {
     code: "zhHans",
     iso: "zh-Hans",
-    name: "Chinese",
-  },
+    name: "简化字"
+  }
 ];
 export const DEFAULT_LOCALE = "en";
 export const I18N = {
   en,
-  zhHans,
+  zhHans
 };
 
 // Define custom paths for localized routes
@@ -40,5 +40,5 @@ export const ROUTES_ALIASES = {
 export const SIDEBAR_CONTEXTS = {
   explore: "explore",
   single: "singleBounty",
-  post: "post",
+  post: "post"
 };
