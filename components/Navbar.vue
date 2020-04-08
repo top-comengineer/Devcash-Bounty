@@ -242,7 +242,7 @@
           <Jazzicon
             class="flex"
             :diameter="32"
-            :address="$store.state.loggedInAccount?$store.state.loggedInAccount:''"
+            :address="$store.state.devcashData.loggedInAccount"
           />
         </button>
         <!-- Sign Out Modal -->
