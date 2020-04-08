@@ -604,6 +604,28 @@
         d="M12.18,3,4,11.52a1.57,1.57,0,1,0,2.27,2.17l4.34-4.55V25a2,2,0,0,0,2,2H27.4a1.6,1.6,0,0,0,0-3.2H14.71a1,1,0,0,1-1-1V9.13L18,13.68a1.57,1.57,0,1,0,2.27-2.17Z"
       />
     </svg>
+    <!-- Sign Out -->
+    <svg
+      v-else-if="type == 'sign-out'"
+      id="8bd3d775-be8a-4725-80de-9c871b0cef79"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 32 32"
+    >
+      <title>Sign Out</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M3,3A2,2,0,0,1,5,1H20a2,2,0,0,1,2,2V8a1,1,0,0,1-1,1h0a1,1,0,0,1-1-1V3H7.4l5.428,2.467A2,2,0,0,1,14,7.288V24h6V19a1,1,0,0,1,1-1h0a1,1,0,0,1,1,1v5a2,2,0,0,1-2,2H14v3.382a1,1,0,0,1-1.447.894L4.106,26.053A2,2,0,0,1,3,24.264Z"
+      />
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M25,10.315a.5.5,0,0,1,.874-.332L29,13.5l-3.126,3.517A.5.5,0,0,1,25,16.685V14.5H17a1,1,0,0,1,0-2h8Z"
+      />
+    </svg>
   </div>
 </template>
 <script>

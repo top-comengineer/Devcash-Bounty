@@ -94,13 +94,18 @@
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
                 <div class="mx-4">
-                  <Icon v-if="locale.code == $store.state.i18n.currentLocale" colorClass="text-dtText" type="done" class="w-6 h-6" />
+                  <Icon
+                    v-if="locale.code == $store.state.i18n.currentLocale"
+                    colorClass="text-dtText"
+                    type="done"
+                    class="w-6 h-6"
+                  />
                   <div v-else class="w-6 h-6"></div>
                 </div>
-                <div class="flex flex-row">
-                  <h3 class="font-bold">{{ locale.name }}</h3>
-                  <h4 class="ml-1 text-sm">({{ locale.iso }})</h4>
-                </div>
+                <h3 class="whitespace-no-wrap">
+                  <span class="font-bold">{{ locale.name }}</span>
+                  <span class="font-light">({{ locale.iso }})</span>
+                </h3>
               </button>
             </div>
           </div>
@@ -145,7 +150,10 @@
         <!-- Sign In Modal -->
         <transition name="signInModalTransition">
           <!-- Modal Wrapper -->
-          <div class="origin-top-right absolute right-0 pt-3" v-if="isSignInModalOpen && !loggingInLoading">
+          <div
+            class="origin-top-right absolute right-0 pt-3"
+            v-if="isSignInModalOpen && !loggingInLoading"
+          >
             <div
               :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
               class="flex flex-col relative origin-top-right shadow-2xlS rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg overflow-hidden px-6 py-5"
@@ -167,7 +175,9 @@
                   />
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
-                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ hasMetamask ? 'MetaMask' : 'Get MetaMask' }}</h4>
+                  <h4
+                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                  >{{ hasMetamask ? 'MetaMask' : 'Get MetaMask' }}</h4>
                 </div>
               </button>
               <!-- Authereum Button -->
@@ -187,7 +197,9 @@
                   />
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
-                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ 'Authereum' }}</h4>
+                  <h4
+                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                  >{{ 'Authereum' }}</h4>
                 </div>
               </button>
               <!-- Portis Button -->
@@ -207,7 +219,9 @@
                   />
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
-                  <h4 class="text-dtBackground text-lg font-extrabold ml-8 mr-10">{{ 'Portis' }}</h4>
+                  <h4
+                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                  >{{ 'Portis' }}</h4>
                 </div>
               </button>
             </div>
@@ -215,98 +229,164 @@
         </transition>
       </div>
       <div v-else class="relative">
+        <!-- Avatar -->
         <button
-          @click="signOut()"
+          @click="isSignOutModalOpen=!isSignOutModalOpen && !loggingInLoading"
+          @blur="signOutBlur"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
-            : ' bg-ltText text-ltBackground btn-ltText'
-        ]"
-          class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
-        >{{ $t("navigation.signOut") }}</button>
+            : ' bg-ltText text-ltBackground btn-ltText']"
+          class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0.5"
+        >
+          <Jazzicon
+            class="flex"
+            :diameter="32"
+            address="0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5"
+          />
+        </button>
+        <!-- Sign Out Modal -->
+        <transition name="signInModalTransition">
+          <!-- Modal Wrapper -->
+          <div
+            class="origin-top-right absolute right-0 pt-2"
+            v-if="isSignOutModalOpen && !loggingInLoading"
+          >
+            <div
+              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
+              class="flex flex-col relative origin-top-right shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+            >
+              <!-- Overview Button -->
+              <nuxt-link
+                :to="getLocalizedRoute('bountyplatform-overview')"
+                @click="signOut()"
+                class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
+              >
+                <div class="pl-6 pr-1">
+                  <Icon
+                    :colorClass="$store.state.theme.dt?'text-dtBackground':'text-ltBackground'"
+                    type="overview"
+                    class="w-6 h-6"
+                  />
+                </div>
+                <div class="flex flex-row pr-6 pl-1">
+                  <h3 class="whitespace-no-wrap font-bold">{{$t("bountyPlatform.overview.header")}}</h3>
+                </div>
+              </nuxt-link>
+              <!-- Sign Out Button -->
+              <button
+                @click="signOut()"
+                class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
+              >
+                <div class="pl-6 pr-1">
+                  <Icon
+                    :colorClass="$store.state.theme.dt?'text-dtBackground':'text-ltBackground'"
+                    type="sign-out"
+                    class="w-6 h-6"
+                  />
+                </div>
+                <div class="flex flex-row pr-6 pl-1">
+                  <h3 class="whitespace-no-wrap font-bold">{{$t("navigation.signOut")}}</h3>
+                </div>
+              </button>
+            </div>
+          </div>
+        </transition>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Logo from "~/components/Logo.vue";
+import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
-import { LOCALES } from "~/config"
-import { mapGetters } from 'vuex';
-import { WalletProviders, DevcashBounty, NoAccountsFoundError } from "~/plugins/devcash/devcashBounty.client";
-
+import { LOCALES } from "~/config";
+import { mapGetters } from "vuex";
+import {
+  WalletProviders,
+  DevcashBounty,
+  NoAccountsFoundError
+} from "~/plugins/devcash/devcashBounty.client";
 
 export default {
   components: {
     Logo,
     Icon,
+    Jazzicon,
     MobileDropdown
   },
   methods: {
     changeLang(locale) {
-      this.$router.push(this.getSwitchLocaleRoute(locale.code))
+      this.$router.push(this.getSwitchLocaleRoute(locale.code));
     },
     signInBlur() {
       // Delay blur to avoid interfering with button presses
       setTimeout(() => {
-        this.isSignInModalOpen = false
-      }, 50)
+        this.isSignInModalOpen = false;
+      }, 50);
+    },
+    signOutBlur() {
+      // Delay blur to avoid interfering with button presses
+      setTimeout(() => {
+        this.isSignOutModalOpen = false;
+      }, 50);
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
-        window.open('https://metamask.io/download.html', '_blank')
-        return
+        window.open("https://metamask.io/download.html", "_blank");
+        return;
       }
       // Sign in flow
-      this.isSignInModalOpen = false
-      this.loggingInLoading = true
+      this.isSignInModalOpen = false;
+      this.loggingInLoading = true;
       try {
         // Initialize connector to ethereum
-        let connector = await DevcashBounty.init(
-          null,
-          provider
-        );
+        let connector = await DevcashBounty.init(null, provider);
         // Set state
         this.$store.commit("devcash/setConnector", connector);
         // Set persistent state for logged in account
-        this.$store.commit("devcashData/setProvider", provider)
-        this.$store.commit("devcashData/setLoggedInAccount", await connector.signer.getAddress())
+        this.$store.commit("devcashData/setProvider", provider);
+        this.$store.commit(
+          "devcashData/setLoggedInAccount",
+          await connector.signer.getAddress()
+        );
       } catch (e) {
         if (e instanceof NoAccountsFoundError) {
           // NO accounts found in provider
           if (provider == this.walletProviders.metamask) {
-            window.open('https://metamask.io/download.html', '_blank')
+            window.open("https://metamask.io/download.html", "_blank");
           } else if (provider == this.walletProviders.authereum) {
-            window.open('https://authereum.com/welcome', '_blank')
+            window.open("https://authereum.com/welcome", "_blank");
           } else if (provider == this.walletProviders.portis) {
-            window.open('https://wallet.portis.io/', '_blank')
+            window.open("https://wallet.portis.io/", "_blank");
           }
         } else {
           // TODO - handle this correctly
           alert(`Unknown error ${e}`);
         }
       } finally {
-        this.loggingInLoading = false
+        this.loggingInLoading = false;
       }
     },
     signOut() {
-      this.$store.commit("devcashData/setProvider", null)
-      this.$store.commit("devcashData/setLoggedInAccount", null)
-      this.$store.commit("devcash/setConnector", null)
+      this.$store.commit("devcashData/setProvider", null);
+      this.$store.commit("devcashData/setLoggedInAccount", null);
+      this.$store.commit("devcash/setConnector", null);
     }
   },
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: 'devcashData/isLoggedIn',
-      currentLocaleName: 'i18n/currentLocaleName'
+      isLoggedIn: "devcashData/isLoggedIn",
+      currentLocaleName: "i18n/currentLocaleName"
     })
-  },  
+  },
   data() {
     return {
       isLangModalOpen: false,
       isSignInModalOpen: false,
+      isSignOutModalOpen: false,
       hasMetamask: false,
       walletProviders: WalletProviders,
       loggingInLoading: false,
@@ -315,7 +395,7 @@ export default {
   },
   mounted() {
     // Initialize these here since it's client side
-    this.hasMetamask = DevcashBounty.hasMetamask()
+    this.hasMetamask = DevcashBounty.hasMetamask();
   }
 };
 </script>
