@@ -2,7 +2,7 @@
   <div click class="relative">
     <button
       :class="[isOpen ? '-rotate-90' : 'rotate-0']"
-      class="transform scale-100 focus:scale-115 hover:scale-115 transition-all ease-out duration-200"
+      class="flex flex-row items-center transform scale-100 focus:scale-115 hover:scale-115 transition-all ease-out duration-200"
       @click="isOpen = !isOpen"
     >
       <Icon
@@ -66,23 +66,6 @@
             :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
             class="w-full flex flex-row py-2 my-1 justify-center transition-all ease-out duration-200 rounded-lg"
           >{{ $t("navigation.dex") }}</a>
-          <!-- Language -->
-          <button
-            :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
-            class="w-full flex flex-row py-2 my-1 justify-center items-center text-xl font-bold transition-all ease-out duration-200 rounded-lg"
-          >
-            <Icon
-              class="w-6 h-6 transition-all ease-out duration-200"
-              :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
-              type="language"
-            />
-            <div class="mx-1">{{ $t("navigation.english") }}</div>
-            <Icon
-              class="w-4 h-4 transition-all ease-out duration-200"
-              :colorClass="$store.state.theme.dt ? 'text-dtBackground' : 'text-ltBackground'"
-              type="arrow-down"
-            />
-          </button>
           <!-- Theme Switch -->
           <button
             @click="$store.commit('theme/change'); isOpen=false"

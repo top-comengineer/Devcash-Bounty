@@ -1,14 +1,16 @@
 <template>
-  <div class="w-full flex flex-row justify-between items-center px-4 py-4 lg:px-8 lg:py-6">
+  <div class="w-full flex flex-row justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6">
     <nuxt-link :to="getLocalizedRoute('index')">
       <Logo class="w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
-    <!-- Menu icon shown on small screens -->
-    <MobileDropdown />
-    <!-- Navbar items shown on non-small screens -->
-    <div class="hidden md:flex flex-row justify-end items-center">
+    <!-- Navbar items -->
+    <div class="flex flex-row justify-end items-center">
       <!-- Home -->
-      <nuxt-link :to="getLocalizedRoute('index')" v-slot="{  navigate, href, isExactActive  }">
+      <nuxt-link
+        class="hidden md:block"
+        :to="getLocalizedRoute('index')"
+        v-slot="{  navigate, href, isExactActive  }"
+      >
         <a
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           @click="navigate"
@@ -27,7 +29,11 @@
         </a>
       </nuxt-link>
       <!-- Bounty Platform -->
-      <nuxt-link :to="getLocalizedRoute('bountyplatform')" v-slot="{  navigate, href, isActive  }">
+      <nuxt-link
+        class="hidden md:block"
+        :to="getLocalizedRoute('bountyplatform')"
+        v-slot="{  navigate, href, isActive  }"
+      >
         <a
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           @click="navigate"
@@ -49,7 +55,7 @@
       <a
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         href="/"
-        class="flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
+        class="hidden md:flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
       >
         <div>{{ $t("navigation.dex") }}</div>
         <div class="h-px2 w-full"></div>
@@ -112,9 +118,10 @@
         </transition>
       </div>
       <!-- Notifications New -->
-      <button
+      <!-- 
+        <button
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-        class="rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
+        class="hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
@@ -123,11 +130,12 @@
           type="notification-new"
         />
       </button>
+      -->
       <!-- Theme Switcher Button -->
       <button
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         @click="$store.commit('theme/change')"
-        class="rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
+        class="hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
@@ -136,7 +144,8 @@
         />
       </button>
       <!-- Sign In/Out Button -->
-      <div v-if="!isLoggedIn" class="relative">
+      <div v-if="!isLoggedIn" class="hidden md:block relative">
+        <!-- Sign In Button -->
         <button
           @click="isSignInModalOpen=!isSignInModalOpen && !loggingInLoading"
           @blur="signInBlur"
@@ -145,8 +154,11 @@
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText'
         ]"
-          class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
-        >{{ loggingInLoading ? "Signing in..." : $t("navigation.signIn") }}</button>
+          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+        >
+          <Spinner v-if="loggingInLoading" class="mr-1" />
+          <h4>{{ loggingInLoading ? $t("navigation.signingIn") : $t("navigation.signIn") }}</h4>
+        </button>
         <!-- Sign In Modal -->
         <transition name="signInModalTransition">
           <!-- Modal Wrapper -->
@@ -180,28 +192,6 @@
                   >{{ hasMetamask ? 'MetaMask' : 'Get MetaMask' }}</h4>
                 </div>
               </button>
-              <!-- Authereum Button -->
-              <button
-                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
-                class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
-                @click="signIn(walletProviders.authereum)"
-              >
-                <div
-                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
-                  class="h-12 w-12 p-2"
-                >
-                  <img
-                    class="w-full h-full"
-                    :src="require('~/assets/images/wallet-logos/Authereum.svg')"
-                    alt="Authereum"
-                  />
-                </div>
-                <div class="flex flex-row flex-1 justify-center">
-                  <h4
-                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
-                  >{{ 'Authereum' }}</h4>
-                </div>
-              </button>
               <!-- Portis Button -->
               <button
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
@@ -224,11 +214,33 @@
                   >{{ 'Portis' }}</h4>
                 </div>
               </button>
+              <!-- Authereum Button -->
+              <button
+                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
+                class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1.5"
+                @click="signIn(walletProviders.authereum)"
+              >
+                <div
+                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
+                  class="h-12 w-12 p-2"
+                >
+                  <img
+                    class="w-full h-full"
+                    :src="require('~/assets/images/wallet-logos/Authereum.svg')"
+                    alt="Authereum"
+                  />
+                </div>
+                <div class="flex flex-row flex-1 justify-center">
+                  <h4
+                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                  >{{ 'Authereum' }}</h4>
+                </div>
+              </button>
             </div>
           </div>
         </transition>
       </div>
-      <div v-else class="relative">
+      <div v-else class="hidden md:block relative">
         <!-- Avatar -->
         <button
           @click="isSignOutModalOpen=!isSignOutModalOpen && !loggingInLoading"
@@ -237,7 +249,7 @@
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText']"
-          class="hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0.5"
+          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0.5"
         >
           <Jazzicon
             class="flex"
@@ -293,6 +305,8 @@
           </div>
         </transition>
       </div>
+      <!-- Menu icon shown on small screens -->
+      <MobileDropdown class="ml-2" />
     </div>
   </div>
 </template>
@@ -300,6 +314,7 @@
 import Logo from "~/components/Logo.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
+import Spinner from "~/components/Spinner.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
 import { LOCALES } from "~/config";
 import { mapGetters } from "vuex";
@@ -314,6 +329,7 @@ export default {
     Logo,
     Icon,
     Jazzicon,
+    Spinner,
     MobileDropdown
   },
   methods: {
