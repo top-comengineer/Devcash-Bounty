@@ -46,8 +46,7 @@ export default {
 }
 
 /* On mouse-over, add a grey background color */
-.radio-container:hover input ~ .radio-checkmark {
-}
+/* .radio-container:hover input ~ .radio-checkmark {}
 
 /* When the radio button is checked, add a blue background */
 .radio-container input:checked ~ .radio-checkmark {
