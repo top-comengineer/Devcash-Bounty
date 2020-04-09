@@ -47,7 +47,8 @@ export default {
 }
 
 /* Create a custom checkbox */
-.normal-checkmark-dt {
+.normal-checkmark-dt,
+.normal-checkmark-lt {
   position: absolute;
   top: 0;
   left: 0;
@@ -61,13 +62,15 @@ export default {
 /* .checkbox-container:hover input ~ .normal-checkmark-dt {}
 
 /* When the checkbox is checked, add a blue background */
-.checkbox-container input:checked ~ .normal-checkmark-dt {
+.checkbox-container input:checked ~ .normal-checkmark-dt,
+.checkbox-container input:checked ~ .normal-checkmark-lt {
   background-color: #675cff;
   border-color: #675cff;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
-.normal-checkmark-dt:after {
+.normal-checkmark-dt:after,
+.normal-checkmark-lt:after {
   content: "";
   position: absolute;
   display: none;
@@ -79,7 +82,8 @@ export default {
 }
 
 /* Show the checkmark when checked */
-.checkbox-container input:checked ~ .normal-checkmark-dt:after {
+.checkbox-container input:checked ~ .normal-checkmark-dt:after,
+.checkbox-container input:checked ~ .normal-checkmark-lt:after {
   display: block;
 }
 
@@ -95,43 +99,6 @@ export default {
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-/* Create a custom checkbox */
-.normal-checkmark-lt {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 1.2rem;
-  width: 1.2rem;
-  border-width: 0.1rem;
-  border-style: solid;
-}
-
-/* On mouse-over, add a grey background color */
-/* .checkbox-container:hover input ~ .normal-checkmark-lt {}
-
-/* When the checkbox is checked, add a blue background */
-.checkbox-container input:checked ~ .normal-checkmark-lt {
-  background-color: #675cff;
-  border-color: #675cff;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.normal-checkmark-lt:after {
-  content: "";
-  position: absolute;
-  display: none;
-}
-
-.checkbox-container input:checked ~ h5 {
-  color: #675cff;
-  font-weight: 800;
-}
-
-/* Show the checkmark when checked */
-.checkbox-container input:checked ~ .normal-checkmark-lt:after {
-  display: block;
-}
-
 /* Style the checkmark/indicator */
 .checkbox-container .normal-checkmark-lt:after {
   top: 0.05rem;
