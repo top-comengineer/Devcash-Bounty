@@ -55,6 +55,12 @@
     "signOut": "Sign Out",
     "ibo": "IBO"
   },
+  "wallet": {
+    "metamask": "MetaMask",
+    "getMetamask": "Get MetaMask",
+    "portis": "Portis",
+    "authereum": "Authereum"
+  },
   "bountyPlatform": {
     "header": "Bounty Platform",
     "exploreBounties": "Explore Bounties",

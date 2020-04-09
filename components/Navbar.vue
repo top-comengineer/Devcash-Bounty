@@ -67,7 +67,7 @@
           @focus="isLangModalOpen=true"
           @blur="isLangModalOpen=false"
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-          class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 rounded-full transition-all ease-out duration-200"
+          class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
         >
           <div class="flex flex-row items-center p-1">
             <Icon
@@ -189,7 +189,7 @@
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
                     class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
-                  >{{ hasMetamask ? 'MetaMask' : 'Get MetaMask' }}</h4>
+                  >{{ hasMetamask ? $t("wallet.metamask") : $t("wallet.getMetamask") }}</h4>
                 </div>
               </button>
               <!-- Portis Button -->
@@ -211,7 +211,7 @@
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
                     class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
-                  >{{ 'Portis' }}</h4>
+                  >{{ $t("wallet.portis") }}</h4>
                 </div>
               </button>
               <!-- Authereum Button -->
@@ -233,7 +233,7 @@
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
                     class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
-                  >{{ 'Authereum' }}</h4>
+                  >{{ $t("wallet.authereum") }}</h4>
                 </div>
               </button>
             </div>
