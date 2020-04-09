@@ -128,14 +128,14 @@
         </a>
       </nuxt-link>
       <!-- Divider -->
-      <div class="px-4 lg:px-6 xl:pr-8 my-4">
+      <div class="px-4 lg:px-6 xl:pr-8 mt-4 mb-5">
         <div
           :class="$store.state.theme.dt?'bg-dtText':'bg-ltText'"
           class="w-full h-px2 rounded-full opacity-10"
         ></div>
       </div>
       <!-- Context aware options -->
-      <div class="hidden px-4 lg:px-6 xl:pl-8">
+      <div class="px-4 lg:px-6 xl:pl-8 hidden lg:block">
         <!-- If context is Explore -->
         <div
           v-if="$store.state.general.sidebarContext == sidebarContexts.explore"
@@ -160,44 +160,14 @@
           </div>
           <!-- Sort Text and Sort Options -->
           <h4 class="text-lg font-bold mt-8">Sort</h4>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="radio" name="exploreRadioGroup" />
-            </label>
-            <h5 class="ml-2">Most Recent</h5>
-          </div>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="radio" name="exploreRadioGroup" />
-            </label>
-            <h5 class="ml-2">Highest Value</h5>
-          </div>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="radio" name="exploreRadioGroup" />
-            </label>
-            <h5 class="ml-2">Expiry</h5>
-          </div>
+          <RadioButton checked="checked" class="mt-3" name="exploreRadioGroup" text="Most Recent" />
+          <RadioButton class="mt-3" name="exploreRadioGroup" text="Highest Value" />
+          <RadioButton class="mt-3" name="exploreRadioGroup" text="Expiry" />
           <!-- Status Text and Status Options -->
           <h4 class="text-lg font-bold mt-8">Status</h4>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="checkbox" />
-            </label>
-            <h5 class="ml-2">Active</h5>
-          </div>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="checkbox" />
-            </label>
-            <h5 class="ml-2">Completed</h5>
-          </div>
-          <div class="flex flex-row items-center mt-2">
-            <label>
-              <input type="checkbox" />
-            </label>
-            <h5 class="ml-2">Expired</h5>
-          </div>
+          <CheckmarkButton checked="checked" class="mt-3" text="Active" />
+          <CheckmarkButton class="mt-3" text="Completed" />
+          <CheckmarkButton class="mt-3" text="Expired" />
         </div>
       </div>
     </div>
@@ -206,9 +176,13 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import Icon from "~/components/Icon.vue";
+import RadioButton from "~/components/RadioButton.vue";
+import CheckmarkButton from "~/components/CheckmarkButton.vue";
 export default {
   components: {
-    Icon
+    Icon,
+    RadioButton,
+    CheckmarkButton
   },
   props: {
     bountyName: null
