@@ -68,6 +68,7 @@ module.exports = {
       "2xlS": "0 25px 50px -12px rgba(0, 0, 0, .4)"
     },
     opacity: {
+      "0": "0",
       "5": "0.05",
       "10": "0.1",
       "50": "0.5",
@@ -118,13 +119,15 @@ module.exports = {
         "1.5": "0.375rem"
       },
       padding: {
-        "0.5": "0.125rem"
+        "0.5": "0.125rem",
+        "1.5": "0.375rem"
       }
     }
   },
   variants: {
     scale: ["responsive", "hover", "focus"],
-    width: ["responsive", "hover", "focus"]
+    width: ["responsive", "hover", "focus"],
+    borderWidth: ["responsive", "hover", "focus"]
   },
   plugins: []
 };

@@ -127,6 +127,79 @@
           >{{ $t("bountyPlatform.bountyManager.header") }}</h3>
         </a>
       </nuxt-link>
+      <!-- Divider -->
+      <div class="px-4 lg:px-6 xl:pr-8 my-4">
+        <div
+          :class="$store.state.theme.dt?'bg-dtText':'bg-ltText'"
+          class="w-full h-px2 rounded-full opacity-10"
+        ></div>
+      </div>
+      <!-- Context aware options -->
+      <div class="hidden px-4 lg:px-6 xl:pl-8">
+        <!-- If context is Explore -->
+        <div
+          v-if="$store.state.general.sidebarContext == sidebarContexts.explore"
+          class="flex flex-col"
+        >
+          <!-- Search Text and Search Bar -->
+          <h4 class="text-lg font-bold">Search</h4>
+          <div class="flex flex-row relative mt-2">
+            <Icon
+              :colorClass="{'text-dtPrimary': isSearchFocused,'text-dtText': $store.state.theme.dt && !isSearchFocused, 'text-ltText': !$store.state.theme.dt && !isSearchFocused}"
+              class="absolute h-5 w-5 searchIcon ml-3"
+              type="search"
+            />
+            <input
+              @focus="isSearchFocused=true"
+              @blur="isSearchFocused=false"
+              :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary border-dtText':'bg-ltBackgroundSecondary border-ltText']"
+              class="w-full font-bold border-2 focus:border-dtPrimary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1.5"
+              type="text"
+              placeholder="Bounty name"
+            />
+          </div>
+          <!-- Sort Text and Sort Options -->
+          <h4 class="text-lg font-bold mt-8">Sort</h4>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="radio" name="exploreRadioGroup" />
+            </label>
+            <h5 class="ml-2">Most Recent</h5>
+          </div>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="radio" name="exploreRadioGroup" />
+            </label>
+            <h5 class="ml-2">Highest Value</h5>
+          </div>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="radio" name="exploreRadioGroup" />
+            </label>
+            <h5 class="ml-2">Expiry</h5>
+          </div>
+          <!-- Status Text and Status Options -->
+          <h4 class="text-lg font-bold mt-8">Status</h4>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="checkbox" />
+            </label>
+            <h5 class="ml-2">Active</h5>
+          </div>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="checkbox" />
+            </label>
+            <h5 class="ml-2">Completed</h5>
+          </div>
+          <div class="flex flex-row items-center mt-2">
+            <label>
+              <input type="checkbox" />
+            </label>
+            <h5 class="ml-2">Expired</h5>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -142,10 +215,15 @@ export default {
   },
   data: function() {
     return {
-      sidebarContexts: SIDEBAR_CONTEXTS
+      sidebarContexts: SIDEBAR_CONTEXTS,
+      isSearchFocused: false
     };
   }
 };
 </script>
 <style>
+.searchIcon {
+  top: 50%;
+  transform: translateY(-50%);
+}
 </style>

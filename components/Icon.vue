@@ -626,6 +626,22 @@
         d="M25,10.315a.5.5,0,0,1,.874-.332L29,13.5l-3.126,3.517A.5.5,0,0,1,25,16.685V14.5H17a1,1,0,0,1,0-2h8Z"
       />
     </svg>
+    <!-- Search -->
+    <svg
+      v-else-if="type == 'search'"
+      id="8badac04-8c04-4e3a-b7ea-24f60e9d1362"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 16 16"
+    >
+      <title>search</title>
+      <path
+        class="fill-current"
+        :class="[colorClass != null ? colorClass : defaultColorClass]"
+        fill="#f2f1ff"
+        d="M11.006,9.805h-.632l-.224-.216a5.211,5.211,0,1,0-.56.56l.216.224v.632l3.405,3.4A.844.844,0,0,0,14.4,13.21Zm-4.8,0a3.6,3.6,0,1,1,3.6-3.6A3.6,3.6,0,0,1,6.2,9.805Z"
+      />
+    </svg>
   </div>
 </template>
 <script>
