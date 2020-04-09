@@ -61,10 +61,10 @@
         <div class="h-px2 w-full"></div>
       </a>
       <!-- Language -->
-      <div @mouseover="isLangModalOpen=true" @mouseleave="isLangModalOpen=false" class="relative">
+      <div class="relative">
         <!-- Language Button -->
         <button
-          @focus="isLangModalOpen=true"
+          @click="isLangModalOpen=!isLangModalOpen"
           @blur="isLangModalOpen=false"
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
