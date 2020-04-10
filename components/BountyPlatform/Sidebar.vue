@@ -177,7 +177,7 @@
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
             : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
         ]"
-            class="flex flex-row justify-center items-center text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl pr-6 pl-4 py-1"
+            class="flex flex-row justify-center items-center text-lg hover_scale-md focus_scale-md font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl pr-6 pl-4 py-1"
           >
             <Icon
               type="back"

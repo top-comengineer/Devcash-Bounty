@@ -116,12 +116,74 @@
         </div>
       </div>
     </div>
+    <!-- Submissions, Comments and Activity -->
+    <div class="w-full flex flex-row flex-wrap">
+      <div
+        :class="[$store.state.theme.dt
+        ? 'bg-dtBackgroundSecondary'
+        : 'bg-ltBackgroundSecondary shadow-lg']"
+        class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
+      >
+        <!-- Submission, Comments and Activity Switch -->
+        <div
+          :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary'"
+          class="w-144 flex flex-row mt-2 mb-4 p-1 rounded-full"
+        >
+          <div class="w-full flex flex-row relative">
+            <div
+              :class="{'left-0':activeTab=='submissions', 'left-1/2 -translate-x-1/2':activeTab=='comments', 'left-full -translate-x-full':activeTab=='activity', 'shadow-lgSS': $store.state.theme.dt, 'shadow-lgS': !$store.state.theme.dt}"
+              class="absolute w-1/3 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
+            ></div>
+            <button
+              :class="activeTab=='submissions'?'font-bold text-dtText':'font-medium'"
+              @click="activeTab='submissions'"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+            >Submissions</button>
+            <button
+              :class="activeTab=='comments'?'font-bold text-dtText':'font-medium'"
+              @click="activeTab='comments'"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+            >Comments</button>
+            <button
+              :class="activeTab=='activity'?'font-bold text-dtText':'font-medium'"
+              @click="activeTab='activity'"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+            >Activity</button>
+          </div>
+        </div>
+        <SubmissionCard
+          class="my-2"
+          perspective="hunter"
+          context="singleBounty"
+          status="pending"
+          amountDEV="57,500"
+          amountETH="0.127"
+          amountUSD="34.5"
+          address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
+          message="Here is the link to my submission:<br><u>https://github.com/guy/submission</u>"
+          date="03.16.2020, 14:40"
+        />
+        <SubmissionCard
+          class="my-2"
+          perspective="hunter"
+          context="singleBounty"
+          status="rejected"
+          amountDEV="57,500"
+          amountETH="0.127"
+          amountUSD="34.5"
+          address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
+          message="Files are is attached to this submission."
+          date="03.15.2020, 16:45"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
+import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
@@ -131,10 +193,16 @@ export default {
   layout: "bountyPlatform",
   components: {
     GreetingCard,
+    SubmissionCard,
     CTACard,
     Jazzicon,
     Icon,
     CreatorCard
+  },
+  data() {
+    return {
+      activeTab: "submissions"
+    };
   },
   beforeMount() {
     // Set sidebar context

@@ -26,8 +26,8 @@
               v-if="perspective=='hunter' && address==selfAddress"
               class="font-mono-jet text-sm opacity-75"
             >({{$t('bountyPlatform.bountyHunter.you')}})</span>
-            <span>-></span>
-            <span class="font-extrabold">{{bountyName}}</span>
+            <span v-if="bountyName">-></span>
+            <span v-if="bountyName" class="font-extrabold">{{bountyName}}</span>
           </h5>
         </div>
         <!-- Bounty Amount and Status Tag or Approve Decline Options -->
@@ -144,6 +144,7 @@ export default {
     bountyName: null,
     status: null,
     perspective: null,
+    context: null,
     message: null,
     address: null,
     amountDEV: null,
