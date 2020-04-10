@@ -4,7 +4,7 @@
       :class="[
       $store.state.theme.dt
         ? 'bg-dtBackgroundTertiary'
-        : 'bg-ltBackgroundSecondary shadow-lgDL']"
+        : 'bg-ltBackgroundSecondary shadow-lgD']"
       class="w-full flex flex-col flex-wrap justify-between items-center rounded-lg overflow-hidden"
     >
       <!-- Top Part -->
