@@ -7,7 +7,7 @@
     >
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
-        <h1 class="font-extrabold text-2xl md:text-3xl">Bounty Header</h1>
+        <h1 class="font-extrabold text-2xl md:text-3xl">Devcash Frontend</h1>
         <div class="flex flex-row items-center mt-1">
           <Jazzicon
             class="flex"
@@ -22,11 +22,11 @@
         <!-- Bounty Amount in Devcash -->
         <h2
           class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
-        >{{ '{D}' + '1,000' }}</h2>
+        >{{ '{D}' + '15,000,000' }}</h2>
         <!-- Bounty Amount in ETH & USD -->
         <h3
           class="text-lg md:text-xl text-left md:text-right mt-1"
-        >{{ "Ξ" + '1' + " / " + "$" + '1' }}</h3>
+        >{{ "Ξ" + '33.33' + " / " + "$" + '9000' }}</h3>
       </div>
     </div>
     <!-- Bounty Description and Hunt & Contribue Cards -->
