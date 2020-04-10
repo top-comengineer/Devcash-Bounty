@@ -122,12 +122,12 @@
         :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
+        class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-4 md:px-12 my-1 md:my-2"
       >
         <!-- Submission, Comments and Activity Switch -->
         <div
           :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary'"
-          class="w-144 flex flex-row mt-2 mb-6 p-1 rounded-full"
+          class="max-w-full w-144 flex flex-row mt-2 mb-6 p-1 rounded-full"
         >
           <div class="w-full flex flex-row relative">
             <div
@@ -137,17 +137,17 @@
             <button
               :class="activeTab=='submissions'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='submissions'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
             >Submissions</button>
             <button
               :class="activeTab=='comments'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='comments'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
             >Comments</button>
             <button
               :class="activeTab=='activity'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='activity'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
             >Activity</button>
           </div>
         </div>
