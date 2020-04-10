@@ -126,8 +126,8 @@
       >
         <!-- Submission, Comments and Activity Switch -->
         <div
-          :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary'"
-          class="max-w-full w-144 flex flex-row mt-2 mb-6 p-1 rounded-full"
+          :class="$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtText-10':'bg-ltBackground border-ltText-10'"
+          class="max-w-full lg:w-156 flex flex-row mt-2 mb-6 p-1 rounded-full border"
         >
           <div class="w-full flex flex-row relative">
             <div
@@ -135,19 +135,25 @@
               class="absolute w-1/3 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
             ></div>
             <button
-              :class="activeTab=='submissions'?'font-bold text-dtText':'font-medium'"
+              :class="[activeTab=='submissions'?'font-bold text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='submissions', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='submissions' }]"
               @click="activeTab='submissions'"
-              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
-            >Submissions</button>
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+            >
+              Submissions
+              <span class="text-sm font-light">(2)</span>
+            </button>
             <button
-              :class="activeTab=='comments'?'font-bold text-dtText':'font-medium'"
+              :class="[activeTab=='comments'?'font-bold text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='comments', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='comments' }]"
               @click="activeTab='comments'"
-              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
-            >Comments</button>
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+            >
+              Comments
+              <span class="text-sm font-light">(4)</span>
+            </button>
             <button
-              :class="activeTab=='activity'?'font-bold text-dtText':'font-medium'"
+              :class="[activeTab=='activity'?'font-bold text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='activity', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='activity' }]"
               @click="activeTab='activity'"
-              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate"
+              class="w-1/3 text-sm md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >Activity</button>
           </div>
         </div>
