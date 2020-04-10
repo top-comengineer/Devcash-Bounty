@@ -127,7 +127,7 @@
         <!-- Submission, Comments and Activity Switch -->
         <div
           :class="$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtText-10':'bg-ltBackground border-ltText-10'"
-          class="max-w-full lg:w-156 flex flex-row mt-2 mb-6 p-1 rounded-full border"
+          class="max-w-full lg:w-168 flex flex-row mt-2 mb-6 p-1 rounded-full border"
         >
           <div class="w-full flex flex-row relative">
             <div
@@ -157,30 +157,95 @@
             >Activity</button>
           </div>
         </div>
-        <SubmissionCard
-          class="my-2"
-          perspective="hunter"
-          context="singleBounty"
-          status="pending"
-          amountDEV="57,500"
-          amountETH="0.127"
-          amountUSD="34.5"
-          address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
-          message="Here is the link to my submission:<br><u>https://github.com/guy/submission</u>"
-          date="03.16.2020, 14:40"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="hunter"
-          context="singleBounty"
-          status="rejected"
-          amountDEV="57,500"
-          amountETH="0.127"
-          amountUSD="34.5"
-          address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
-          message="Files are is attached to this submission."
-          date="03.15.2020, 16:45"
-        />
+        <!-- Submissions -->
+        <div v-if="activeTab=='submissions'" class="w-full flex flex-col">
+          <SubmissionCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            status="pending"
+            amountDEV="57,500"
+            amountETH="0.127"
+            amountUSD="34.5"
+            address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
+            message="Here is the link to my submission:<br><u>https://github.com/guy/submission</u>"
+            date="03.16.2020, 14:40"
+          />
+          <SubmissionCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            status="rejected"
+            amountDEV="57,500"
+            amountETH="0.127"
+            amountUSD="34.5"
+            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
+            message="Files are is attached to this submission."
+            date="03.15.2020, 16:45"
+          />
+          <!-- Load More Button -->
+          <!-- 
+          <div class="flex flex-row justify-center mt-2">
+          <button
+            :class="[
+          $store.state.theme.dt
+            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
+            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
+            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+        </div>
+          -->
+        </div>
+        <!-- Comments -->
+        <div v-if="activeTab=='comments'" class="w-full flex flex-col">
+          <CommentCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            address="0x903d7b2c8c4e18128a22da150f82f16f8b9d5d30"
+            message="This is cool!"
+            date="03.19.2020, 13:58"
+          />
+          <CommentCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            status="rejected"
+            address="0x8a91c9a16cd62693649d80afa85a09dbbdcb8508"
+            message="Can’t wait for it to be live 🙂"
+            date="03.19.2020, 13:39"
+          />
+          <CommentCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            status="rejected"
+            address="0xe224152ebb6e6bd44de79a0c194a367cd59c8d78"
+            message="Did someone start working on it already?"
+            date="03.18.2020, 12:22"
+          />
+          <CommentCard
+            class="my-2"
+            perspective="hunter"
+            context="singleBounty"
+            status="rejected"
+            address="0x1fa9c39d07688308006a5fd976983bcc60eadb41"
+            message="Wow, this is awesome!"
+            date="03.18.2020, 12:15"
+          />
+          <!-- Load More Button -->
+          <!-- 
+          <div class="flex flex-row justify-center mt-2">
+          <button
+            :class="[
+          $store.state.theme.dt
+            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
+            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
+            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+        </div>
+          -->
+        </div>
       </div>
     </div>
   </div>
@@ -190,6 +255,7 @@
 import { SIDEBAR_CONTEXTS } from "~/config";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
+import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
@@ -200,6 +266,7 @@ export default {
   components: {
     GreetingCard,
     SubmissionCard,
+    CommentCard,
     CTACard,
     Jazzicon,
     Icon,
