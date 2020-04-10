@@ -127,7 +127,7 @@
         <!-- Submission, Comments and Activity Switch -->
         <div
           :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary'"
-          class="w-144 flex flex-row mt-2 mb-4 p-1 rounded-full"
+          class="w-144 flex flex-row mt-2 mb-6 p-1 rounded-full"
         >
           <div class="w-full flex flex-row relative">
             <div
@@ -137,17 +137,17 @@
             <button
               :class="activeTab=='submissions'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='submissions'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
             >Submissions</button>
             <button
               :class="activeTab=='comments'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='comments'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
             >Comments</button>
             <button
               :class="activeTab=='activity'?'font-bold text-dtText':'font-medium'"
               @click="activeTab='activity'"
-              class="w-1/3 text-xl leading-tight py-2 px-4 relative"
+              class="w-1/3 text-xl leading-tight py-2 px-4 relative truncate"
             >Activity</button>
           </div>
         </div>
