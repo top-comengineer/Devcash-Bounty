@@ -65,7 +65,23 @@ export default {
       // Bounty Created
       if (this.messageType == "bountyCreated") {
         let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyCreated"
+          this.perspective == "manager"
+            ? "bountyPlatform.overview.activityCard.manager.bountyCreated"
+            : "bountyPlatform.overview.activityCard.general.bountyCreated"
+        ).replace(
+          "1%",
+          `"<span class="font-extrabold">${this.bountyName}</span>"`
+        );
+        return message;
+      }
+      // Personal Bounty Created
+      else if (this.messageType == "bountyPersonalCreated") {
+        let message = this.$t(
+          this.perspective == "manager"
+            ? "bountyPlatform.overview.activityCard.manager.bountyPersonalCreated"
+            : this.perspective == "hunter"
+            ? "bountyPlatform.overview.activityCard.hunter.bountyPersonalCreated"
+            : "bountyPlatform.overview.activityCard.general.bountyPersonalCreated"
         ).replace(
           "1%",
           `"<span class="font-extrabold">${this.bountyName}</span>"`
@@ -92,12 +108,21 @@ export default {
         );
         return message;
       }
+      // Submission Made
+      else if (this.messageType == "submissionMade") {
+        let message = this.$t(
+          "bountyPlatform.overview.activityCard.general.submissionMade"
+        );
+        return message;
+      }
       // Submission Approved
       else if (this.messageType == "submissionApproved") {
         let message = this.$t(
           this.perspective == "manager"
             ? "bountyPlatform.overview.activityCard.manager.submissionApproved"
-            : "bountyPlatform.overview.activityCard.hunter.submissionApproved"
+            : this.perspective == "hunter"
+            ? "bountyPlatform.overview.activityCard.hunter.submissionApproved"
+            : "bountyPlatform.overview.activityCard.general.submissionApproved"
         ).replace(
           "1%",
           `"<span class="font-extrabold">${this.bountyName}</span>"`
@@ -109,7 +134,9 @@ export default {
         let message = this.$t(
           this.perspective == "manager"
             ? "bountyPlatform.overview.activityCard.manager.submissionRejected"
-            : "bountyPlatform.overview.activityCard.hunter.submissionRejected"
+            : this.perspective == "hunter"
+            ? "bountyPlatform.overview.activityCard.hunter.submissionRejected"
+            : "bountyPlatform.overview.activityCard.general.submissionRejected"
         ).replace(
           "1%",
           `"<span class="font-extrabold">${this.bountyName}</span>"`
@@ -141,7 +168,9 @@ export default {
       // Bounty Completed
       else if (this.messageType == "bountyCompleted") {
         let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyCompleted"
+          this.perspective == "manager"
+            ? "bountyPlatform.overview.activityCard.manager.bountyCompleted"
+            : "bountyPlatform.overview.activityCard.general.bountyCompleted"
         ).replace(
           "1%",
           `"<span class="font-extrabold">${this.bountyName}</span>"`
@@ -151,7 +180,9 @@ export default {
       // Bounty Reclaimed
       else if (this.messageType == "bountyReclaimed") {
         let message = this.$t(
-          "bountyPlatform.overview.activityCard.manager.bountyReclaimed"
+          this.perspective == "manager"
+            ? "bountyPlatform.overview.activityCard.manager.bountyReclaimed"
+            : "bountyPlatform.overview.activityCard.general.bountyReclaimed"
         ).replace(
           "1%",
           `"<span class="font-extrabold">${this.bountyName}</span>"`
@@ -166,11 +197,14 @@ export default {
         return "new-bounty";
       }
       // Personal Bounty Created
-      else if (this.messageType == "personalBountyCreated") {
+      else if (this.messageType == "bountyPersonalCreated") {
         return "personal-bounty";
       }
       // Submission Received
-      else if (this.messageType == "submissionReceived") {
+      else if (
+        this.messageType == "submissionReceived" ||
+        this.messageType == "submissionMade"
+      ) {
         return "receive";
       }
       // Submission Sent

@@ -246,6 +246,48 @@
         </div>
           -->
         </div>
+        <!-- Activity -->
+        <div v-if="activeTab=='activity'" class="w-full flex flex-col">
+          <ActivityCard
+            class="my-2"
+            perspective="general"
+            messageType="submissionRejected"
+            date="03.18.2020, 13:12"
+            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
+          />
+          <ActivityCard
+            class="my-2"
+            perspective="general"
+            messageType="submissionMade"
+            date="03.16.2020, 14:40"
+            address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
+          />
+          <ActivityCard
+            class="my-2"
+            perspective="general"
+            messageType="submissionMade"
+            date="03.15.2020, 16:45"
+            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
+          />
+          <ActivityCard
+            class="my-2"
+            perspective="general"
+            messageType="bountyCreated"
+            date="03.14.2020, 12:30"
+          />
+          <!-- Load More Button -->
+          <!-- 
+          <div class="flex flex-row justify-center mt-2">
+          <button
+            :class="[
+          $store.state.theme.dt
+            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
+            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
+            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+        </div>
+          -->
+        </div>
       </div>
     </div>
   </div>
@@ -256,6 +298,7 @@ import { SIDEBAR_CONTEXTS } from "~/config";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
+import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
@@ -267,6 +310,7 @@ export default {
     GreetingCard,
     SubmissionCard,
     CommentCard,
+    ActivityCard,
     CTACard,
     Jazzicon,
     Icon,

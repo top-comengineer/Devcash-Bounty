@@ -56,6 +56,22 @@
         />
         <ActivityCard
           class="my-2"
+          messageType="bountyPersonalCreated"
+          perspective="manager"
+          bountyName="Devcash Meme"
+          date="03.12.2020 - 12:04"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
+        />
+        <ActivityCard
+          class="my-2"
+          messageType="bountyPersonalCreated"
+          perspective="hunter"
+          bountyName="ETH Library"
+          date="03.12.2020 - 12:04"
+          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
+        />
+        <ActivityCard
+          class="my-2"
           perspective="manager"
           messageType="submissionApproved"
           bountyName="Devcash Event Feedback"
