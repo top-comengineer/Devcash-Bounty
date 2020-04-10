@@ -39,6 +39,9 @@ export const ROUTES_ALIASES = {
 
 export const SIDEBAR_CONTEXTS = {
   explore: "explore",
-  single: "singleBounty",
-  post: "post"
+  singleBounty: "singleBounty",
+  post: "post",
+  overview: "overview",
+  bountyHunter: "bountyHunter",
+  bountyManager: "bountyManager"
 };

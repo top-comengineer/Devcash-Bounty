@@ -68,7 +68,7 @@
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
             : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
         ]"
-          class="text-lg hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
       </div>
     </div>
@@ -101,7 +101,7 @@
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
             : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
         ]"
-          class="text-lg hover_scale-lg focus_scale-lg md:ml-4 lg:ml-6 font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
       </div>
     </div>
@@ -140,7 +140,10 @@ export default {
   },
   beforeMount() {
     // Set sidebar context
-    this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.post);
+    this.$store.commit(
+      "general/setSidebarContext",
+      SIDEBAR_CONTEXTS.bountyHunter
+    );
   },
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);

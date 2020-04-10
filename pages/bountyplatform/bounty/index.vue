@@ -138,7 +138,10 @@ export default {
   },
   beforeMount() {
     // Set sidebar context
-    this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.single);
+    this.$store.commit(
+      "general/setSidebarContext",
+      SIDEBAR_CONTEXTS.singleBounty
+    );
   },
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
