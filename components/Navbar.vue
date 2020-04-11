@@ -249,7 +249,7 @@
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
             : ' bg-ltText text-ltBackground btn-ltText']"
-          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0.5"
+          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
         >
           <Jazzicon
             class="flex"
