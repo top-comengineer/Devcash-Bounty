@@ -2,7 +2,8 @@ import { SIDEBAR_CONTEXTS } from "~/config";
 
 export const state = () => ({
   sidebarContext: null,
-  isSubmissionModalOpen: false
+  isSubmissionModalOpen: false,
+  isContributeModalOpen: false
 });
 
 export const mutations = {
@@ -14,6 +15,12 @@ export const mutations = {
   },
   openSubmissionModal(state) {
     state.isSubmissionModalOpen = true;
+  },
+  closeContributeModal(state) {
+    state.isContributeModalOpen = false;
+  },
+  openContributeModal(state) {
+    state.isContributeModalOpen = true;
   }
 };
 
@@ -26,5 +33,11 @@ export const actions = {
   },
   openSubmissionModal(context) {
     context.commit("openSubmissionModal");
+  },
+  closeContributeModal(context) {
+    context.commit("closeContributeModal");
+  },
+  openContributeModal(context) {
+    context.commit("openContributeModal");
   }
 };

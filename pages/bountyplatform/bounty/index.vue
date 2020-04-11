@@ -11,9 +11,31 @@
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
         class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
       >
-        <div class="d-container h-full px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12">
+        <div
+          class="d-container h-full flex flex-row justify-center items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
+        >
           <transition name="modalTransition">
             <SubmissionModal v-if="isSubmissionModalContentVisible" />
+          </transition>
+        </div>
+      </div>
+    </transition>
+    <!-- Contribute Modal -->
+    <transition
+      name="modalBgTransition"
+      @after-enter="isContributeModalContentVisible=true"
+      @after-leave="isContributeModalContentVisible=false"
+    >
+      <div
+        v-if="$store.state.general.isContributeModalOpen"
+        :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+      >
+        <div
+          class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
+        >
+          <transition name="modalTransition">
+            <ContributeModal v-if="isContributeModalContentVisible" />
           </transition>
         </div>
       </div>
@@ -89,6 +111,7 @@
             class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
+            @click="$store.commit('general/openContributeModal')"
             class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText btn-textSecondary border-2 border-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
         </div>
@@ -345,6 +368,7 @@ import Icon from "~/components/Icon.vue";
 import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
 import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
+import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
 
 export default {
   layout: "bountyPlatform",
@@ -358,7 +382,8 @@ export default {
     Icon,
     CreatorCard,
     BountyCardStatusTag,
-    SubmissionModal
+    SubmissionModal,
+    ContributeModal
   },
   methods: {
     autoGrow() {
@@ -370,7 +395,8 @@ export default {
   data() {
     return {
       activeTab: "submissions",
-      isSubmissionModalContentVisible: false
+      isSubmissionModalContentVisible: false,
+      isContributeModalContentVisible: false
     };
   },
   beforeMount() {
@@ -383,6 +409,7 @@ export default {
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
     this.$store.commit("general/closeSubmissionModal");
+    this.$store.commit("general/closeContributeModal");
   }
 };
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-4xlS':'bg-ltBackgroundSecondary shadow-4xl'"
-    class="submissionModal w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-6 md:py-5 relative"
+    class="overflow-y-scroll w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-6 md:py-5 relative"
   >
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
@@ -137,10 +137,7 @@ export default {
   }
 };
 </script>
-<style>
-.submissionModal {
-  overflow-y: scroll;
-}
+<style scoped>
 .submissionDescArea {
   min-height: 18rem;
   height: 18rem;

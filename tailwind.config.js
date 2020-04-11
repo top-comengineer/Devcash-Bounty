@@ -52,6 +52,8 @@ module.exports = {
         "0 10px 15px -3px rgba(0, 0, 0, .2), 0 4px 6px -2px rgba(0, 0, 0, .1)",
       lgSS:
         "0 10px 15px -3px rgba(0, 0, 0, .4), 0 4px 6px -2px rgba(0, 0, 0, .2)",
+      lgDSS:
+        "0 5px 15px 0px rgba(0, 0, 0, .4), 0 2px 6px 0px rgba(0, 0, 0, .2)",
       nlg:
         "0 -10px 15px -3px rgba(0, 0, 0, .1), 0 -4px 6px -2px rgba(0, 0, 0, .05)",
       nlgS:
