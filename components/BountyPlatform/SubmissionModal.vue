@@ -6,13 +6,18 @@
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
       <button
+        @mouseover="isCloseHovered=true"
+        @mouseleave="isCloseHovered=false"
+        @focus="isCloseFocused=true"
+        @blur="isCloseFocused=false"
         @click="$store.commit('general/closeSubmissionModal')"
         :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary'"
-        class="fixed rounded-full p-3 md:p-4 transform -translate-x-full z-40"
+        class="fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
       >
         <Icon
+          :class="isCloseHovered || isCloseFocused? 'scale-120':'scale-100'"
           :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
-          class="w-5 h-5 md:w-7 md:h-7"
+          class="w-6 h-6 md:w-8 md:h-8 transition-all duration-200 ease-out transform"
           type="cancel"
         />
       </button>
@@ -123,6 +128,12 @@ export default {
     GreetingCard,
     CTACard,
     Icon
+  },
+  data() {
+    return {
+      isCloseHovered: false,
+      isCloseFocused: false
+    };
   }
 };
 </script>
@@ -134,5 +145,11 @@ export default {
   min-height: 18rem;
   height: 18rem;
   transform-origin: center top;
+}
+.closeButton {
+  border-top-left-radius: 2rem;
+  border-top-right-radius: 0.75rem;
+  border-bottom-left-radius: 2rem;
+  border-bottom-left-radius: 2rem;
 }
 </style>

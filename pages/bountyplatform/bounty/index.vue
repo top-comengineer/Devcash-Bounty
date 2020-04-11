@@ -1,15 +1,23 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
     <!-- Submission Modal -->
-    <div
-      v-if="$store.state.general.isSubmissionModalOpen"
-      :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-      class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+    <transition
+      name="modalBgTransition"
+      @after-enter="isSubmissionModalContentVisible=true"
+      @after-leave="isSubmissionModalContentVisible=false"
     >
-      <div class="d-container h-full px-2 md:px-32 lg:px-48 pt-24 md:pt-32 pb-12">
-        <SubmissionModal />
+      <div
+        v-if="$store.state.general.isSubmissionModalOpen"
+        :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+      >
+        <div class="d-container h-full px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12">
+          <transition name="modalTransition">
+            <SubmissionModal v-if="isSubmissionModalContentVisible" />
+          </transition>
+        </div>
       </div>
-    </div>
+    </transition>
     <!-- Header Card -->
     <div
       :class="[!$store.state.theme.dt?'shadow-lgS':'']"
@@ -362,7 +370,7 @@ export default {
   data() {
     return {
       activeTab: "submissions",
-      isHuntModalOpen: false
+      isSubmissionModalContentVisible: false
     };
   },
   beforeMount() {
@@ -374,6 +382,7 @@ export default {
   },
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
+    this.$store.commit("general/closeSubmissionModal");
   }
 };
 </script>
@@ -383,5 +392,31 @@ export default {
   height: 3rem;
   max-height: 9rem;
   transform-origin: center top;
+}
+.modalBgTransition-enter-active {
+  transition: all 0.1s ease-out;
+}
+.modalBgTransition-leave-active {
+  transition: all 0.1s ease-out;
+}
+.modalBgTransition-enter {
+  opacity: 0;
+}
+.modalBgTransition-leave-to {
+  opacity: 0;
+}
+.modalTransition-enter-active {
+  transition: all 0.15s ease-out;
+}
+.modalTransition-leave-active {
+  transition: all 0.15s ease-out;
+}
+.modalTransition-enter {
+  opacity: 0;
+  transform: scale(0.75);
+}
+.modalTransition-leave-to {
+  opacity: 0;
+  transform: scale(0.75);
 }
 </style>
