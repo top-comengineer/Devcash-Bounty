@@ -1,18 +1,30 @@
-import { SIDEBAR_CONTEXTS } from '~/config'
+import { SIDEBAR_CONTEXTS } from "~/config";
 
 export const state = () => ({
-    sidebarContext: null
-  });
-  
-  export const mutations = {
-    setSidebarContext(state, sbContext) {
-      state.sidebarContext = sbContext;
-    }
-  };
-  
-  export const actions = {
-    setSidebarContext(context, sbContext) {
-      context.commit("setSidebarContext", sbContext);
-    }
-  };
-  
+  sidebarContext: null,
+  isSubmissionModalOpen: false
+});
+
+export const mutations = {
+  setSidebarContext(state, sbContext) {
+    state.sidebarContext = sbContext;
+  },
+  closeSubmissionModal(state) {
+    state.isSubmissionModalOpen = false;
+  },
+  openSubmissionModal(state) {
+    state.isSubmissionModalOpen = true;
+  }
+};
+
+export const actions = {
+  setSidebarContext(context, sbContext) {
+    context.commit("setSidebarContext", sbContext);
+  },
+  closeSubmissionModal(context) {
+    context.commit("closeSubmissionModal");
+  },
+  openSubmissionModal(context) {
+    context.commit("openSubmissionModal");
+  }
+};

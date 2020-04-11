@@ -50,13 +50,13 @@
     />
     <img
       v-else-if="type=='submission'"
-      class="hidden md:block h-full w-auto absolute left-0"
+      class="h-full w-auto absolute right-0"
       :src="require('~/assets/images/illustration-background/submission-right.svg')"
       alt="Submission Right Illustration"
     />
     <img
       v-else-if="type=='contribute'"
-      class="hidden md:block h-full w-auto absolute left-0"
+      class="h-full w-auto absolute right-0"
       :src="require('~/assets/images/illustration-background/contribute-right.svg')"
       alt="Contribute Right Illustration"
     />

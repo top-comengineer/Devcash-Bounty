@@ -64,8 +64,12 @@ module.exports = {
         "0 20px 25px -5px rgba(0, 0, 0, .2), 0 10px 10px -5px rgba(0, 0, 0, .08)",
       xlSS:
         "0 20px 25px -5px rgba(0, 0, 0, .4), 0 10px 10px -5px rgba(0, 0, 0, .16)",
+      xlDSS:
+        "0 12px 35px -4px rgba(0, 0, 0, .4), 0 6px 15px -2px rgba(0, 0, 0, .16)",
       "2xl": "0 25px 50px -12px rgba(0, 0, 0, .25)",
-      "2xlS": "0 25px 50px -12px rgba(0, 0, 0, .4)"
+      "2xlS": "0 25px 50px -12px rgba(0, 0, 0, .4)",
+      "4xl": "0 15px 100px -5px rgba(0, 0, 0, .35)",
+      "4xlS": "0 15px 100px -5px rgba(0, 0, 0, .9)"
     },
     opacity: {
       "0": "0",
@@ -84,8 +88,9 @@ module.exports = {
       xl: "0.75rem",
       "2xl": "1rem",
       "3xl": "1.5rem",
-      "4xl": "3rem",
-      "5xl": "6rem",
+      "4xl": "2.5rem",
+      "5xl": "4rem",
+      "6xl": "5rem",
       full: "9999px"
     },
     extend: {

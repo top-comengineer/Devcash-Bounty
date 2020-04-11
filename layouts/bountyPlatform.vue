@@ -1,6 +1,6 @@
 <template>
   <DefaultLayout>
-    <div class="w-full flex flex-col md:flex-row justify-center relative py-20 md:py-24">
+    <div class="w-full flex flex-col md:flex-row justify-center relative py-20 md:py-24 z-20">
       <!-- Sidebar container -->
       <div
         class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end mr-2 md:mr-4 transition-all ease-out duration-200 z-10"

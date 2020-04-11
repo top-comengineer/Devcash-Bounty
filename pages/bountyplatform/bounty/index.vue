@@ -1,5 +1,15 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center">
+    <!-- Submission Modal -->
+    <div
+      v-if="$store.state.general.isSubmissionModalOpen"
+      :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
+      class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+    >
+      <div class="d-container h-full px-2 md:px-32 lg:px-48 pt-24 md:pt-32 pb-12">
+        <SubmissionModal />
+      </div>
+    </div>
     <!-- Header Card -->
     <div
       :class="[!$store.state.theme.dt?'shadow-lgS':'']"
@@ -67,6 +77,7 @@
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
           <button
+            @click="$store.commit('general/openSubmissionModal')"
             class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
@@ -325,6 +336,7 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
 import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
+import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 
 export default {
   layout: "bountyPlatform",
@@ -337,7 +349,8 @@ export default {
     Jazzicon,
     Icon,
     CreatorCard,
-    BountyCardStatusTag
+    BountyCardStatusTag,
+    SubmissionModal
   },
   methods: {
     autoGrow() {
@@ -348,7 +361,8 @@ export default {
   },
   data() {
     return {
-      activeTab: "submissions"
+      activeTab: "submissions",
+      isHuntModalOpen: false
     };
   },
   beforeMount() {

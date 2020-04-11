@@ -3,7 +3,7 @@
     :class="
       [!$store.state.theme.dt?'shadow-lgS':'']
     "
-    class="w-full flex flex-row relative overflow-hidden flex-wrap justify-center items-center bg-dtSecondary py-6 md:py-10 px-6 md:px-8 rounded-b-3xl"
+    class="w-full flex flex-row relative overflow-hidden flex-wrap justify-center items-center bg-dtSecondary py-6 md:py-10 px-6 md:px-8 rounded-br-3xl rounded-bl-lg"
   >
     <!-- Left Background Illustration -->
     <img
@@ -14,7 +14,7 @@
     <!-- Header and Paragraph -->
     <button
       @click="buttonAction!=null?buttonAction:null"
-      class="hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 z-10"
+      class="max-w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 z-10"
     >{{ buttonText!=null?buttonText:"Button" }}</button>
     <!-- Right Background Illustration -->
     <img

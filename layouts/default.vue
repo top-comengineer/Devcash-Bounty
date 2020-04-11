@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-colors ease-out duration-200"
+    class="transition-colors ease-out duration-200 relative"
     :class="[
       $store.state.theme.dt
         ? 'bg-dtBackground text-dtText'

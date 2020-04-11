@@ -189,7 +189,28 @@
       "tagActive": "Active",
       "tagCompleted": "Completed",
       "tagExpired": "Expired",
-      "createdBy": "Created By"
+      "createdBy": "Created By",
+      "submission": {
+        "cardHeader": "Send a Submission",
+        "cardParagraph": "Enter the details of your submission below.",
+        "descriptionHeader": "Submission Description",
+        "descriptionPlaceholder": "Enter the description of your submission here.\nYou can use  **Markdown** to format the text.\n\nExample:\n# Description\nDescription of the **submission**...",
+        "attachments": "Attachments",
+        "optional": "(Optional)",
+        "buttonChooseFile": "Choose a File",
+        "noFile": "No file chosen",
+        "buttonSubmit": "Submit"
+      },
+      "contribute": {
+        "cardHeader": "Contribute",
+        "cardParagraph": "Pick or enter an amount to contribute.",
+        "pickAmount": "Pick an amount",
+        "orEnterCustomAmount": "Or enter a custom one",
+        "customAmount": "Custom Amount",
+        "customAmountPlaceholder": "Enter the amount",
+        "buttonContribute": "Contribute",
+        "bountyAddress": "bountyAddress"
+      }
     },
     "buttonLoadMore": "Load More"
   },

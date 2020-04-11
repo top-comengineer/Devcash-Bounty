@@ -96,7 +96,7 @@
         >{{ $t("bountyPlatform.bountyManager.header") }}</h3>
       </nuxt-link>
       <!-- Divider -->
-      <div class="px-4 lg:px-6 mt-4 mb-5">
+      <div class="px-4 lg:px-6 mt-4 mb-5 hidden lg:block">
         <div
           :class="$store.state.theme.dt?'bg-dtText':'bg-ltText'"
           class="w-full h-px2 rounded-full opacity-10"
