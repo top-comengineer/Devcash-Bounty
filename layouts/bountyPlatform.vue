@@ -6,8 +6,10 @@
         class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end mr-2 md:mr-4 transition-all ease-out duration-200 z-10"
       >
         <!-- Sidebar -->
-        <div class="sidebar-container sticky md:pt-2 md:pb-2 transition-all ease-out duration-200">
-          <Sidebar class="overflow-scroll" />
+        <div
+          class="sidebar-container sticky md:pt-2 md:pb-2 transition-all ease-out duration-200 overflow-hidden"
+        >
+          <Sidebar class="overflow-y-scroll overflow-x-hidden" />
         </div>
       </div>
       <!-- Centered, Page Content -->
