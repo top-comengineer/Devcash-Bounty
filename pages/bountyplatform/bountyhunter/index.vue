@@ -112,12 +112,12 @@
         <div class="flex flex-row flex-wrap items-center">
           <div class="flex flex-row flex-wrap my-2 mr-10">
             <div class="flex flex-col items-center mx-4">
-              <h6 class="opacity-75">Count</h6>
-              <h6 class="font-bold">2</h6>
+              <h6 class="opacity-75 text-sm">Count</h6>
+              <h5 class="font-bold">2</h5>
             </div>
             <div class="flex flex-col items-center mx-4">
-              <h6 class="opacity-75">Amount</h6>
-              <h6 class="font-bold">{D}2,075,000</h6>
+              <h6 class="opacity-75 text-sm">Amount</h6>
+              <h5 class="font-bold">{D}2,075,000</h5>
             </div>
           </div>
           <div class="flex flex-row flex-wrap my-3">
