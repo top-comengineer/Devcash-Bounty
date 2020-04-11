@@ -4,6 +4,7 @@
       :class="[isOpen ? '-rotate-90' : 'rotate-0']"
       class="flex flex-row items-center transform scale-100 focus:scale-115 hover:scale-115 transition-all ease-out duration-200"
       @click="isOpen = !isOpen"
+      @blur="isOpen=false"
     >
       <Icon
         class="md:hidden w-8 h-8 transform"
