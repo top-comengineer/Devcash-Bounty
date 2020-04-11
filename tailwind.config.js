@@ -132,6 +132,9 @@ module.exports = {
       inset: {
         full: "100%",
         "1/2": "50%"
+      },
+      borderWidth: {
+        "3": "3px"
       }
     }
   },

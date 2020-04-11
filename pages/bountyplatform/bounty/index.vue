@@ -5,9 +5,13 @@
       :class="[!$store.state.theme.dt?'shadow-lgS':'']"
       class="w-full flex flex-row flex-wrap justify-between items-center bg-dtPrimary text-dtText relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 my-1 md:my-2"
     >
+      <!-- Status Tag -->
+      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" type="active" />
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
+        <!-- Header -->
         <h1 class="font-extrabold text-2xl md:text-3xl">Devcash Frontend</h1>
+        <!-- Avatar & Address -->
         <div class="flex flex-row items-center mt-1">
           <Jazzicon
             class="flex"
@@ -320,6 +324,7 @@ import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
+import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
 
 export default {
   layout: "bountyPlatform",
@@ -331,7 +336,8 @@ export default {
     CTACard,
     Jazzicon,
     Icon,
-    CreatorCard
+    CreatorCard,
+    BountyCardStatusTag
   },
   methods: {
     autoGrow() {
