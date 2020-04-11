@@ -13,6 +13,18 @@
       alt="Post Left Illustration"
     />
     <img
+      v-else-if="type=='submission'"
+      class="hidden md:block h-full w-auto absolute left-0"
+      :src="require('~/assets/images/illustration-background/submission-left.svg')"
+      alt="Submission Left Illustration"
+    />
+    <img
+      v-else-if="type=='contribute'"
+      class="hidden md:block h-full w-auto absolute left-0"
+      :src="require('~/assets/images/illustration-background/contribute-left.svg')"
+      alt="Contribute Left Illustration"
+    />
+    <img
       v-else
       class="hidden md:block h-full w-auto absolute left-0 ml-4 md:ml-8"
       :src="require('~/assets/images/illustration-background/explore-left.svg')"
@@ -35,6 +47,18 @@
       class="h-full w-auto absolute right-0"
       :src="require('~/assets/images/illustration-background/plus-right.svg')"
       alt="Post Right Illustration"
+    />
+    <img
+      v-else-if="type=='submission'"
+      class="hidden md:block h-full w-auto absolute left-0"
+      :src="require('~/assets/images/illustration-background/submission-right.svg')"
+      alt="Submission Right Illustration"
+    />
+    <img
+      v-else-if="type=='contribute'"
+      class="hidden md:block h-full w-auto absolute left-0"
+      :src="require('~/assets/images/illustration-background/contribute-right.svg')"
+      alt="Contribute Right Illustration"
     />
     <img
       v-else
