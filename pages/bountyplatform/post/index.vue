@@ -33,9 +33,9 @@
         <!-- Bounty Description -->
         <div class="w-full flex flex-col my-3">
           <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
-          <input
+          <textarea
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
           />
@@ -213,3 +213,10 @@ export default {
   }
 };
 </script>
+<style>
+.bountyDescArea {
+  min-height: 27rem;
+  height: 27rem;
+  transform-origin: center top;
+}
+</style>

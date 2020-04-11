@@ -95,7 +95,7 @@
       "bountyTitle": "Bounty Title",
       "bountyTitlePlaceholder": "Enter the title of your bounty",
       "bountyDescription": "Bounty Description",
-      "bountyDescriptionPlaceholder": "Enter the description of your bounty",
+      "bountyDescriptionPlaceholder": "Enter the description of your bounty.\nYou can use  **Markdown** to format the text.\n\nExample:\n# Bounty Scope\nExplanation of the **scope** of the bounty...\n\n## Requirements\nExplanation of the requirements to complete the bounty...\n1. Requirement 1\n2. Requirement 2",
       "bountyType": "Bounty Type",
       "bountyTypePublic": "Public",
       "bountyTypePrivate": "Private",
