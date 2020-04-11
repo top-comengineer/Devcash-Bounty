@@ -14,7 +14,7 @@
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
         <!-- Checkboxes -->
-        <div class="flex flex-row justify end">
+        <div class="flex flex-row flex-wrap justify end">
           <CheckmarkButton
             checked="checked"
             class="my-3 mx-3"
@@ -102,10 +102,19 @@
         : 'bg-ltBackgroundSecondary shadow-lgD']"
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
-      <!-- Header -->
-      <h2
-        class="text-2xl font-extrabold ml-4"
-      >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
+      <!-- Header Row -->
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <!-- Header -->
+        <h2
+          class="text-2xl font-extrabold mx-4 my-2"
+        >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
+        <!-- Checkboxes -->
+        <div class="flex flex-row flex-wrap justify end">
+          <CheckmarkButton checked="checked" class="my-3 mx-3" text="Active" />
+          <CheckmarkButton class="my-3 mx-3" text="Completed" />
+          <CheckmarkButton class="my-3 mx-3" text="Expired" />
+        </div>
+      </div>
       <!-- Personal Bounties -->
       <div class="w-full flex flex-col flex-wrap my-4">
         <BountyCard
@@ -151,14 +160,20 @@ export default {
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586170000"
+          deadline: "1586599900",
+          devAmount: "575,000",
+          ethAmount: "1.278",
+          usdAmount: "345"
         },
         {
           name: "Ethereum NPM Package",
           hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586180000"
+          deadline: "1586599900",
+          devAmount: "1,500,000",
+          ethAmount: "3.333",
+          usdAmount: "900"
         }
       ]
     };

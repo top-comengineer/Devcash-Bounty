@@ -14,7 +14,7 @@
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyManager.submissionsReceived')}}</h2>
         <!-- Checkboxes -->
-        <div class="flex flex-row justify end">
+        <div class="flex flex-row flex-wrap justify end">
           <CheckmarkButton
             checked="checked"
             class="my-3 mx-3"
@@ -94,8 +94,19 @@
         : 'bg-ltBackgroundSecondary shadow-lgD']"
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
-      <!-- Header -->
-      <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.bountyManager.yourBounties')}}</h2>
+      <!-- Header Row -->
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <!-- Header -->
+        <h2
+          class="text-2xl font-extrabold mx-4 my-2"
+        >{{$t('bountyPlatform.bountyManager.yourBounties')}}</h2>
+        <!-- Checkboxes -->
+        <div class="flex flex-row flex-wrap justify end">
+          <CheckmarkButton checked="checked" class="my-3 mx-3" text="Active" />
+          <CheckmarkButton class="my-3 mx-3" text="Completed" />
+          <CheckmarkButton class="my-3 mx-3" text="Expired" />
+        </div>
+      </div>
       <!-- Your Bounties -->
       <div class="w-full flex flex-col flex-wrap my-4">
         <BountyCard
@@ -142,28 +153,40 @@ export default {
           hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586170000"
+          deadline: "1586595900",
+          devAmount: "15,000,000",
+          ethAmount: "33.33",
+          usdAmount: "9000"
         },
         {
           name: "Devcash Logo",
           hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "1",
           numLeft: "1",
-          deadline: "1586180000"
+          deadline: "1586598900",
+          devAmount: "1,250,000",
+          ethAmount: "2.778",
+          usdAmount: "750"
         },
         {
           name: "Devcash Memes",
           hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "15",
           numLeft: "20",
-          deadline: "1586190000"
+          deadline: "1586592900",
+          devAmount: "12,500",
+          ethAmount: "0.0277",
+          usdAmount: "7.5"
         },
         {
           name: "Devcash Event Feedback",
           hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
           numSubmissions: "65",
           numLeft: "100",
-          deadline: "1586200000"
+          deadline: "1586599900",
+          devAmount: "833",
+          ethAmount: "0.00185",
+          usdAmount: "0.5"
         }
       ]
     };

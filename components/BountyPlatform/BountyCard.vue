@@ -7,10 +7,10 @@
       'bg-dtBackgroundTertiary border-dtBackgroundTertiary border-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
       'bg-ltBackgroundSecondary shadow-lgD border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && type == 'secondary'
     } "
-    class="w-full flex flex-row flex-wrap justify-between items-center border-2 hover:border-dtPrimary focus:border-dtPrimary relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8 transition-colors duration-300 ease-in-out"
+    class="w-full flex flex-row flex-wrap justify-between items-center border-2 hover:border-dtPrimary focus:border-dtPrimary relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-2 md:px-4 transition-colors duration-300 ease-out"
   >
     <!-- Bounty Name and Address -->
-    <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
+    <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start px-4">
       <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon class="flex" :diameter="20" :address="bounty.hunter" />
@@ -36,7 +36,7 @@
     ></div>
     <!-- Submissions Left and Remaining Time -->
     <div
-      class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end"
+      class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end px-4"
     >
       <!-- Submissions Left -->
       <div class="flex flex-row justify-end items-center">
@@ -72,11 +72,13 @@
       </div>
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
-    <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end">
+    <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
       <h4
         class="text-dtPrimary font-extrabold text-xl text-left md:text-right"
-      >{{ "{D}" + '1,000' }}</h4>
-      <h5 class="text-lg text-left md:text-right mt-1">{{ "Ξ" + '1' + " / " + "$" + '1' }}</h5>
+      >{D}{{bounty.devAmount?bounty.devAmount:'1,000'}}</h4>
+      <h5
+        class="text-lg text-left md:text-right mt-1"
+      >Ξ{{bounty.ethAmount?bounty.ethAmount:'1'}} / ${{bounty.usdAmount?bounty.devAmount:'1' }}</h5>
     </div>
     <!-- Divider -->
     <div
