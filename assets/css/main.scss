@@ -47,6 +47,20 @@
   outline: none !important;
 }
 
+// Dark Theme Secondary Color Button
+.btn-dtSecondary {
+  box-shadow: 0 0 0 0 rgba(#8850f8, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-dtSecondary:hover,
+.btn-dtSecondary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#8850f8, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#f2f1ff, 1);
+  outline: none !important;
+}
+
 // Dark Theme Text Color Button
 .btn-dtText {
   box-shadow: 0 0.5rem 1rem 0 rgba(#010014, 0.25), 0 0 0 0 rgba(#675cff, 0.5),
@@ -72,6 +86,20 @@
 .btn-ltPrimary:hover,
 .btn-ltPrimary:focus {
   box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#675cff, 0.5),
+    -0.25rem 0.25rem 0 0 rgba(#010014, 1);
+  outline: none !important;
+}
+
+// Light Theme Secondary Color Button
+.btn-ltSecondary {
+  box-shadow: 0 0 0 0 rgba(#8850f8, 0.5), 0 0 0 0 rgba(#010014, 1);
+  transform: scale(1);
+  transform-origin: left bottom;
+  transition: all 0.2s ease-in-out;
+}
+.btn-ltSecondary:hover,
+.btn-ltSecondary:focus {
+  box-shadow: -0.5rem 0.5rem 1rem 0 rgba(#8850f8, 0.5),
     -0.25rem 0.25rem 0 0 rgba(#010014, 1);
   outline: none !important;
 }
@@ -140,8 +168,13 @@ input {
 button:hover,
 button:focus,
 a:hover,
-a:focus {
+a:focus,
+textarea {
   outline: none;
+}
+
+textarea {
+  resize: none;
 }
 
 button,

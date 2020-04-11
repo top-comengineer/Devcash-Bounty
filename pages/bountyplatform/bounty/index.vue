@@ -198,6 +198,23 @@
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
+          <!-- New Comment -->
+          <div class="w-full flex flex-row items-start flex-wrap mt-2 mb-6 lg:px-4">
+            <!-- New Comment Input -->
+            <textarea
+              @input="autoGrow()"
+              ref="commentArea"
+              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary']"
+              class="commentArea w-full md:flex-1 text-lg font-bold border border-dtSecondary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+              type="text"
+              placeholder="Start writing a comment..."
+            />
+            <!-- Comment Button -->
+            <button
+              :class="$store.state.theme.dt?'btn-dtSecondary':'btn-ltSecondary'"
+              class="w-full md:w-auto hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
+            >{{ "Comment" }}</button>
+          </div>
           <CommentCard
             class="my-2"
             perspective="hunter"
@@ -316,6 +333,13 @@ export default {
     Icon,
     CreatorCard
   },
+  methods: {
+    autoGrow() {
+      this.$refs.commentArea.style.height = "5px";
+      this.$refs.commentArea.style.height =
+        this.$refs.commentArea.scrollHeight + "px";
+    }
+  },
   data() {
     return {
       activeTab: "submissions"
@@ -333,3 +357,12 @@ export default {
   }
 };
 </script>
+<style>
+.commentArea {
+  resize: none;
+  min-height: 3rem;
+  height: 3rem;
+  max-height: 9rem;
+  transform-origin: center top;
+}
+</style>
