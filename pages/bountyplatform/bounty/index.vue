@@ -359,7 +359,6 @@ export default {
 </script>
 <style>
 .commentArea {
-  resize: none;
   min-height: 3rem;
   height: 3rem;
   max-height: 9rem;

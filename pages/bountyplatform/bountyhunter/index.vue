@@ -7,8 +7,31 @@
         : 'bg-ltBackgroundSecondary shadow-lg']"
       class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
     >
-      <!-- Header -->
-      <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
+      <!-- Header Row -->
+      <div class="flex flex-row flex-wrap justify-between items-center">
+        <!-- Header -->
+        <h2
+          class="text-2xl font-extrabold mx-4 my-2"
+        >{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
+        <!-- Checkboxes -->
+        <div class="flex flex-row justify end">
+          <CheckmarkButton
+            checked="checked"
+            class="my-3 mx-3"
+            :text="$t('bountyPlatform.statusTag.pending')"
+          />
+          <CheckmarkButton
+            checked="checked"
+            class="my-3 mx-3"
+            :text="$t('bountyPlatform.statusTag.approved')"
+          />
+          <CheckmarkButton
+            checked="checked"
+            class="my-3 mx-3"
+            :text="$t('bountyPlatform.statusTag.rejected')"
+          />
+        </div>
+      </div>
       <!-- Submissions -->
       <div class="w-full flex flex-col flex-wrap my-4">
         <SubmissionCard
@@ -112,11 +135,13 @@
 import { SIDEBAR_CONTEXTS } from "~/config";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
+import CheckmarkButton from "~/components/CheckmarkButton.vue";
 export default {
   layout: "bountyPlatform",
   components: {
     SubmissionCard,
-    BountyCard
+    BountyCard,
+    CheckmarkButton
   },
   data() {
     return {
