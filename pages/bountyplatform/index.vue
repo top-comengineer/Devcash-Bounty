@@ -4,7 +4,7 @@
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
-    <div class="w-full flex flex-col justify-center items-center">
+    <div v-else class="w-full flex flex-col justify-center items-center">
       <BountyCard v-for="(item, i) in bounties" :key="i" class="my-2" :bounty="item" />
     </div>
   </div>
@@ -44,9 +44,14 @@ export default {
         } catch (e) {
           // TODO - handle these correctly
           if (e instanceof AccountNotFoundError) {
-            alert("account not logged in anymore - do something");
+            // TODO - re-use this sign out logic, maybe add an alert to tell them they're signed out?
+            this.$store.commit("devcashData/setProvider", null);
+            this.$store.commit("devcashData/setLoggedInAccount", null);
+            this.$store.commit("devcash/setConnector", null);
+            this.initEthConnector()
           } else {
             alert(`Unknown error ${e}`);
+            throw e
           }
         }
       }
