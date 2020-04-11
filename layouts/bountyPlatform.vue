@@ -33,13 +33,13 @@ export default {
 .sidebar-container {
   width: 100%;
   height: auto;
-  overflow: visible;
+  overflow-y: scroll;
   top: 5rem;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container {
     width: 4rem;
-    height: calc(100vh - 7rem);
+    height: calc(100vh - 6.5rem);
     min-width: 4rem;
     max-width: 4rem;
     top: 6rem;
