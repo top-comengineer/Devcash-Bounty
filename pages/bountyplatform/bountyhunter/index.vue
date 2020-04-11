@@ -108,11 +108,23 @@
         <h2
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
-        <!-- Checkboxes -->
-        <div class="flex flex-row flex-wrap justify end">
-          <CheckmarkButton checked="checked" class="my-3 mx-3" text="Active" />
-          <CheckmarkButton class="my-3 mx-3" text="Completed" />
-          <CheckmarkButton class="my-3 mx-3" text="Expired" />
+        <!-- Count, Amount & Checkboxes -->
+        <div class="flex flex-row flex-wrap items-center">
+          <div class="flex flex-row flex-wrap my-2 mr-10">
+            <div class="flex flex-col items-center mx-4">
+              <h6 class="opacity-75">Count</h6>
+              <h6 class="font-bold">2</h6>
+            </div>
+            <div class="flex flex-col items-center mx-4">
+              <h6 class="opacity-75">Amount</h6>
+              <h6 class="font-bold">{D}2,075,000</h6>
+            </div>
+          </div>
+          <div class="flex flex-row flex-wrap my-3">
+            <CheckmarkButton checked="checked" class="mx-3 my-2" text="Active" />
+            <CheckmarkButton class="mx-3 my-2" text="Completed" />
+            <CheckmarkButton class="mx-3 my-2" text="Expired" />
+          </div>
         </div>
       </div>
       <!-- Personal Bounties -->
@@ -126,7 +138,8 @@
         />
       </div>
       <!-- Load More Button -->
-      <div class="flex flex-row justify-center mt-2">
+      <!-- 
+        <div class="flex flex-row justify-center mt-2">
         <button
           :class="[
           $store.state.theme.dt
@@ -136,6 +149,7 @@
           class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
       </div>
+      -->
     </div>
   </div>
 </template>

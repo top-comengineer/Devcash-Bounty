@@ -14,7 +14,7 @@
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyManager.submissionsReceived')}}</h2>
         <!-- Checkboxes -->
-        <div class="flex flex-row flex-wrap justify end">
+        <div class="flex flex-row flex-wrap">
           <CheckmarkButton
             checked="checked"
             class="my-3 mx-3"
@@ -100,11 +100,23 @@
         <h2
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyManager.yourBounties')}}</h2>
-        <!-- Checkboxes -->
-        <div class="flex flex-row flex-wrap justify end">
-          <CheckmarkButton checked="checked" class="my-3 mx-3" text="Active" />
-          <CheckmarkButton class="my-3 mx-3" text="Completed" />
-          <CheckmarkButton class="my-3 mx-3" text="Expired" />
+        <!-- Count, Amount & Checkboxes -->
+        <div class="flex flex-row flex-wrap items-center">
+          <div class="flex flex-row flex-wrap my-2 mr-10">
+            <div class="flex flex-col items-center mx-4">
+              <h6 class="opacity-75">Count</h6>
+              <h6 class="font-bold">6</h6>
+            </div>
+            <div class="flex flex-col items-center mx-4">
+              <h6 class="opacity-75">Amount</h6>
+              <h6 class="font-bold">{D}22,250,327</h6>
+            </div>
+          </div>
+          <div class="flex flex-row flex-wrap my-3">
+            <CheckmarkButton checked="checked" class="mx-3 my-2" text="Active" />
+            <CheckmarkButton class="mx-3 my-2" text="Completed" />
+            <CheckmarkButton class="mx-3 my-2" text="Expired" />
+          </div>
         </div>
       </div>
       <!-- Your Bounties -->
