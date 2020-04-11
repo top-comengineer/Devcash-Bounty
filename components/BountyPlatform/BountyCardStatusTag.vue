@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-3 rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-0.5 md:py-1"
+    class="border-3 rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-0.5"
     :class="{'bg-dtSuccess border-dtBackground': $store.state.theme.dt && type=='active', 'bg-ltSuccess border-ltBackground': !$store.state.theme.dt && type=='active'}"
   >
     <h5
