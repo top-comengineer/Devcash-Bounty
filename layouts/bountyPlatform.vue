@@ -35,7 +35,6 @@ export default {
 .sidebar-container {
   width: 100%;
   height: auto;
-  overflow-y: scroll;
   top: 5rem;
 }
 @media only screen and (min-width: 768px) {
