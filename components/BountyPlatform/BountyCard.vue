@@ -2,12 +2,12 @@
   <nuxt-link
     :to="getLocalizedRoute('bountyplatform-bounty')"
     :class="{
-      'bg-dtBackgroundSecondary': $store.state.theme.dt && !type,
-      'bg-ltBackgroundSecondary shadow-lg': !$store.state.theme.dt && !type,
-      'bg-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
-      'bg-ltBackgroundSecondary shadow-lgD': !$store.state.theme.dt && type == 'secondary'
+      'bg-dtBackgroundSecondary border-dtBackgroundSecondary border-dtBackgroundSecondary': $store.state.theme.dt && !type,
+      'bg-ltBackgroundSecondary shadow-lg border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && !type,
+      'bg-dtBackgroundTertiary border-dtBackgroundTertiary border-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
+      'bg-ltBackgroundSecondary shadow-lgD border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && type == 'secondary'
     } "
-    class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
+    class="w-full flex flex-row flex-wrap justify-between items-center border-2 hover:border-dtPrimary focus:border-dtPrimary relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8 transition-colors duration-300 ease-in-out"
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start">
