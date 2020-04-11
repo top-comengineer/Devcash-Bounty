@@ -123,7 +123,7 @@
               @focus="isSearchFocused=true"
               @blur="isSearchFocused=false"
               :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary border-dtText':'bg-ltBackgroundSecondary border-ltText']"
-              class="w-full font-bold border-2 focus:border-dtPrimary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1.5"
+              class="w-full font-bold border-2 focus:border-dtPrimary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1_5"
               type="text"
               placeholder="Bounty name"
             />
@@ -162,7 +162,7 @@
           <!-- Approve Button -->
           <button
             :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
-            class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1.5 mt-3"
+            class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
           >Approve</button>
         </div>
         <!-- If context is Single Bounty -->
