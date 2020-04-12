@@ -1,14 +1,12 @@
 <template>
   <div
     :class="[$store.state.theme.dt ? 'shadow-lgDSS' : 'shadow-lgD']"
-    class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 pb-2 pt-1"
+    class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 py-2"
   >
-    <div class="flex flex-col justify-center items-center mr-6">
+    <div class="flex flex-col justify-center items-center mx-3 mt-3 mb-4">
       <!-- Bounty Address Text and Copy Button  -->
       <div class="flex flex-row flex-wrap items-center">
-        <h5 class="font-bold mr-2">
-          {{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}
-        </h5>
+        <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
         <button class="w-6 h-6">
           <Icon
             :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -18,17 +16,14 @@
         </button>
       </div>
       <!-- Avatar and Address -->
-      <div class="flex flex-row items-center mt-3">
+      <div class="flex flex-row items-center mt-2">
         <Jazzicon class="flex" :diameter="48" :address="address" />
-        <h6
-          v-html="threeLineAddress(bountyAddress)"
-          class="font-mono-jet text-sm ml-3"
-        ></h6>
+        <h6 v-html="threeLineAddress(bountyAddress)" class="font-mono-jet text-sm ml-3"></h6>
       </div>
     </div>
     <!-- QR Code -->
     <div
-      class="flex flex-row justify-center h-32 w-32 rounded-lg overflow-hidden border-3 border-dtPrimary my-4"
+      class="flex flex-row justify-center h-32 w-32 rounded-lg overflow-hidden border-3 border-dtPrimary my-4 mx-1"
     >
       <vue-qr
         :text="bountyAddress"
