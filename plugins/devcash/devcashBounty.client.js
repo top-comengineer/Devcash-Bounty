@@ -93,7 +93,8 @@ export class DevcashBounty {
             }
             // Check if specific account is specified
             if (accountToLogin != null) {
-                for (a in accounts) {
+                let a
+                for (a of accounts) {
                     if (a.toLowerCase() == accountToLogin.toLowerCase()) {
                         signer = provider.getSigner(a)
                     }
