@@ -9,7 +9,7 @@
         <div
           class="sidebar-container sticky md:pt-2 md:pb-2 transition-all ease-out duration-200 overflow-hidden"
         >
-          <Sidebar class="overflow-y-scroll overflow-x-hidden" />
+          <Sidebar class="overflow-y-auto overflow-x-hidden" />
         </div>
       </div>
       <!-- Centered, Page Content -->

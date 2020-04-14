@@ -65,7 +65,7 @@
         <!-- Language Button -->
         <button
           @click="isLangModalOpen=!isLangModalOpen"
-          @blur="isLangModalOpen=false"
+          @blur="langBlur"
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
         >
@@ -95,7 +95,7 @@
               <button
                 v-for="locale in supportedLocales"
                 :key="locale.code"
-                @click="changeLang(locale)"
+                @click="changeLang(locale); isLangModalOpen=false"
                 :class="locale.code == $store.state.i18n.currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
@@ -346,6 +346,12 @@ export default {
       // Delay blur to avoid interfering with button presses
       setTimeout(() => {
         this.isSignOutModalOpen = false;
+      }, 50);
+    },
+    langBlur() {
+      // Delay blur to avoid interfering with button presses
+      setTimeout(() => {
+        this.isLangModalOpen = false;
       }, 50);
     },
     async signIn(provider) {

@@ -1,7 +1,7 @@
 <template>
   <div
     :class="$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-4xlS':'bg-ltBackgroundSecondary shadow-4xl'"
-    class="overflow-y-scroll w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-6 md:py-5 relative"
+    class="overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
   >
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">

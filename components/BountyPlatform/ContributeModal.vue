@@ -5,7 +5,7 @@
         ? 'bg-dtBackgroundSecondary shadow-4xlS'
         : 'bg-ltBackgroundSecondary shadow-4xl'
     "
-    class="overflow-y-scroll w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-6 md:py-5 relative"
+    class="overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
   >
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
@@ -56,9 +56,9 @@
             class="flex-1 h-px2 opacity-10 rounded-tl-full rounded-br-full"
           ></div>
           <!-- Header Text -->
-          <h5 class="font-bold text-xl text-center leading-tight px-6">
-            {{ $t("bountyPlatform.singleBounty.contribute.pickAmount") }}
-          </h5>
+          <h5
+            class="font-bold text-xl text-center leading-tight px-6"
+          >{{ $t("bountyPlatform.singleBounty.contribute.pickAmount") }}</h5>
           <!-- Line Right -->
           <div
             :class="$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText'"
@@ -74,9 +74,7 @@
                 $store.state.theme.dt ? 'btn-dtSecondary' : 'btn-ltSecondary'
               "
               class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
-            >
-              {{ "{D}10,000" }}
-            </button>
+            >{{ "{D}10,000" }}</button>
             <p>{{ "(Ξ0.0378 / $5)" }}</p>
           </div>
           <!-- {D}20,000 Button -->
@@ -86,9 +84,7 @@
                 $store.state.theme.dt ? 'btn-dtSecondary' : 'btn-ltSecondary'
               "
               class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
-            >
-              {{ "{D}20,000" }}
-            </button>
+            >{{ "{D}20,000" }}</button>
             <p>{{ "(Ξ0.0757 / $10)" }}</p>
           </div>
           <!-- {D}40,000 Button -->
@@ -98,9 +94,7 @@
                 $store.state.theme.dt ? 'btn-dtSecondary' : 'btn-ltSecondary'
               "
               class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
-            >
-              {{ "{D}40,000" }}
-            </button>
+            >{{ "{D}40,000" }}</button>
             <p>{{ "(Ξ0.1551 / $20)" }}</p>
           </div>
         </div>
@@ -117,7 +111,7 @@
           <!-- Header Text -->
           <h5 class="font-bold text-xl text-center leading-tight px-6">
             {{
-              $t("bountyPlatform.singleBounty.contribute.orEnterCustomAmount")
+            $t("bountyPlatform.singleBounty.contribute.orEnterCustomAmount")
             }}
           </h5>
           <!-- Line Right -->
@@ -127,9 +121,7 @@
           ></div>
         </div>
         <!-- Custom Amount -->
-        <div
-          class="w-full lg:w-2/3 flex flex-row justify-center items-start flex-wrap my-8"
-        >
+        <div class="w-full lg:w-2/3 flex flex-row justify-center items-start flex-wrap my-8">
           <!-- Enter Amount -->
           <input
             :class="[
@@ -151,9 +143,7 @@
               $store.state.theme.dt ? 'btn-dtSecondary' : 'btn-ltSecondary'
             "
             class="w-full md:w-auto hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
-          >
-            {{ $t("bountyPlatform.singleBounty.contribute.buttonContribute") }}
-          </button>
+          >{{ $t("bountyPlatform.singleBounty.contribute.buttonContribute") }}</button>
         </div>
       </div>
       <!-- Divider -->
