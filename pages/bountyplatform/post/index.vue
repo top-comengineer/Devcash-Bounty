@@ -60,14 +60,14 @@
                 class="absolute w-1/2 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
               ></div>
               <button
-                :class="[activeTab=='public'?'font-bold text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='public', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='public' }]"
+                :class="[activeTab=='public'?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='public', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='public' }]"
                 @click.prevent="activeTab='public'"
-                class="w-1/2 text-sm md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
               <button
-                :class="[activeTab=='private'?'font-bold text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='private', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='private' }]"
+                :class="[activeTab=='private'?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='private', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='private' }]"
                 @click.prevent="activeTab='private'"
-                class="w-1/2 text-sm md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
             </div>
           </div>

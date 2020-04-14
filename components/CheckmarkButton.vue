@@ -9,7 +9,7 @@
       v-else
       class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-ltText normal-checkmark-lt"
     ></span>
-    <h5 class="leading-tight font-medium">{{text}}</h5>
+    <h5 class="leading-tight font-bold">{{text}}</h5>
   </label>
 </template>
 <script>
@@ -78,7 +78,6 @@ export default {
 
 .checkbox-container input:checked ~ h5 {
   color: #675cff;
-  font-weight: 800;
 }
 
 /* Show the checkmark when checked */

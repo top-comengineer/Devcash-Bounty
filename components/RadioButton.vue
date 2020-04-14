@@ -2,7 +2,7 @@
   <label class="radio-container flex flex-row items-center">
     <input :checked="checked" type="radio" :name="name" />
     <span :class="$store.state.theme.dt?'border-dtText':'border-ltText'" class="radio-checkmark"></span>
-    <h5 class="leading-tight font-medium">{{text}}</h5>
+    <h5 class="leading-tight font-bold">{{text}}</h5>
   </label>
 </template>
 <script>
@@ -55,7 +55,6 @@ export default {
 
 .radio-container input:checked ~ h5 {
   color: #675cff;
-  font-weight: 800;
 }
 
 /* Create the indicator (the dot/circle - hidden when not checked) */
