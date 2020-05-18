@@ -28,14 +28,14 @@ async function start() {
     await nuxt.ready()
   }
 
-  // Give nuxt middleware to express
-  app.use(nuxt.render)
   // Other middlewares
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-
   // Setup API routes
   app.use('/test', testRouter);
+
+  // Give nuxt middleware to express
+  app.use(nuxt.render)
 
   // Listen the server
   app.listen(port, host)
