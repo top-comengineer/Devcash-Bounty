@@ -1,7 +1,14 @@
-const express = require('express')
-const consola = require('consola')
+const express = require('express');
 const { Nuxt, Builder } = require('nuxt')
-const app = express()
+
+// DB Models
+const models = require("./models");
+
+// Routes
+const testRouter = require('./routes/test');
+
+// App
+const app = express();
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
@@ -23,6 +30,12 @@ async function start() {
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
+  // Other middlewares
+  app.use(express.json());
+  app.use(express.urlencoded({ extended: false }));
+
+  // Setup API routes
+  app.use('/test', testRouter);
 
   // Listen the server
   app.listen(port, host)
@@ -31,4 +44,8 @@ async function start() {
     badge: true
   })
 }
-start()
+
+// Create all tables if they don't exist then start server
+models.sequelize.sync().then(function() {
+  start()
+});

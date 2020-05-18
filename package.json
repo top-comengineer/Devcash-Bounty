@@ -16,10 +16,15 @@
     "authereum": "0.0.4-beta.130",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
+    "getenv": "^1.0.0",
     "jazzicon": "^1.5.0",
     "nodemon": "^2.0.4",
     "nuxt": "^2.0.0",
+    "pg": "^8.2.1",
+    "pg-hstore": "^2.3.3",
     "secure-ls": "^1.2.6",
+    "sequelize": "^5.21.9",
+    "sqlite3": "^4.2.0",
     "vue-qr": "^2.2.1",
     "vuex-persistedstate": "^3.0.0",
     "web3": "^1.2.6"
@@ -29,6 +34,7 @@
     "ethers": "^4.0.45",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
+    "sequelize-cli": "^5.5.1",
     "vue-i18n": "^8.15.6"
   }
 }
