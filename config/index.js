@@ -3,7 +3,7 @@ const en = require("../locales/en");
 const zhHans = require("../locales/zh-Hans");
 
 // i18n config
-export const LOCALES = [
+module.exports.LOCALES = [
   {
     code: "en",
     iso: "en-US",
@@ -15,15 +15,15 @@ export const LOCALES = [
     name: "简化字"
   }
 ];
-export const DEFAULT_LOCALE = "en";
-export const I18N = {
+module.exports.DEFAULT_LOCALE = "en";
+module.exports.I18N = {
   en,
   zhHans
 };
 
 // Define custom paths for localized routes
 // If a route/locale is omitted, defaults to Nuxt's generated path
-export const ROUTES_ALIASES = {
+module.exports.ROUTES_ALIASES = {
   /*
   about: {
     fr: '/a-propos',
@@ -37,7 +37,7 @@ export const ROUTES_ALIASES = {
   }*/
 };
 
-export const SIDEBAR_CONTEXTS = {
+module.exports.SIDEBAR_CONTEXTS = {
   explore: "explore",
   singleBounty: "singleBounty",
   post: "post",

@@ -1,6 +1,6 @@
 const { generateRoutes } = require('./utils/router')
 
-export default {
+module.exports = {
   mode: "universal",
   /*
    ** Headers of the page
