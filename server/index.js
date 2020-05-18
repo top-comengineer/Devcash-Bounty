@@ -5,7 +5,7 @@ const { Nuxt, Builder } = require('nuxt')
 const models = require("./models");
 
 // Routes
-const testRouter = require('./routes/test');
+const ubountyRouter = require('./routes/bounty');
 
 // App
 const app = express();
@@ -32,7 +32,7 @@ async function start() {
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   // Setup API routes
-  app.use('/test', testRouter);
+  app.use('/bounty', ubountyRouter);
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
