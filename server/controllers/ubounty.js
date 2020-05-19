@@ -1,4 +1,3 @@
-const { body } = require('express-validator/check')
 const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
 const models  = require('../models');

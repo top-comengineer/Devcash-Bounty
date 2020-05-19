@@ -1,5 +1,5 @@
-export const tokenAddress = "0x0fca8Fdb0FB115A33BAadEc6e7A141FFC1bC7d5a"//"0xD021315678991ee801655C75101986200f0a011D"////;
-export const tokenABI = [
+module.exports.tokenAddress = "0x4a0c2edcd5b772cbf4bb8b8f456a372a6d35f3b2"//"0xD021315678991ee801655C75101986200f0a011D"////;
+module.exports.tokenABI = [
 	{
 		"constant": true,
 		"inputs": [],
@@ -270,8 +270,8 @@ export const tokenABI = [
 ]
 
 //uBountyCreator
-export const uBCAddress = "0x7A5BEf5a5deF90f496c9859A993765Ae4D5BcE33"//"0xab3A3f3Df683513De7d060a045A01a13b811F422"//"0x1b111DB39178adC3Facf848f524dE18E0Ae427dE"
-export const uBCABI = [
+module.exports.uBCAddress = "0x5463Ed2BcF2CB7Bf7D49d0A06Bbc671FA5Bf3EC3"//"0xab3A3f3Df683513De7d060a045A01a13b811F422"//"0x1b111DB39178adC3Facf848f524dE18E0Ae427dE"
+module.exports.uBCABI = [
 	{
 		"inputs": [],
 		"payable": false,
@@ -996,7 +996,7 @@ export const uBCABI = [
 	}
 ]
 
-export const bcABI = [
+module.exports.bcABI = [
 	{
 		"inputs": [],
 		"payable": false,
@@ -1004,7 +1004,7 @@ export const bcABI = [
 		"type": "constructor"
 	}] //Bounty Chest ABI
 
-export const orderbookABI = [
+module.exports.orderbookABI = [
 	{
 		"constant": false,
 		"inputs": [
@@ -1222,9 +1222,9 @@ export const orderbookABI = [
 		"type": "constructor"
 	}
 ]
-export const orderbookAddress = "0xb46fB379705414036E4212AA88554f53dAeA6F05"//"0x363F60A48D0eAFFa565AD8F6E4AB9c5Ac56C6CbC"//""//
+module.exports.orderbookAddress = "0xb46fB379705414036E4212AA88554f53dAeA6F05"//"0x363F60A48D0eAFFa565AD8F6E4AB9c5Ac56C6CbC"//""//
 
-export const OLABI = [
+module.exports.OLABI = [
 	{
 		"constant": true,
 		"inputs": [],

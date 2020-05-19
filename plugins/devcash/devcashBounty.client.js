@@ -62,25 +62,25 @@ export class DevcashBounty {
         if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
             // Use web3 provider with signer
             await window.ethereum.enable()
-            provider = new ethers.providers.Web3Provider(web3.currentProvider);
+            provider = new ethers.providers.Web3Provider(web3.currentProvider, "ropsten");
             needsSigner = true
         } else if (walletProvider == WalletProviders.authereum) {
             // Authereum
-            const authereum = new Authereum('mainnet')
+            const authereum = new Authereum('ropsten') // mainnet
             const authereumProvider = authereum.getProvider()
             await authereumProvider.enable()
-            provider = new ethers.providers.Web3Provider(authereumProvider)
+            provider = new ethers.providers.Web3Provider(authereumProvider, "ropsten")
             needsSigner = true
         } else if (walletProvider == WalletProviders.portis) {
             // Portis
-            const portis = new Portis('5395216c-1124-49de-bfbe-7893409825be', 'mainnet')
+            const portis = new Portis('5395216c-1124-49de-bfbe-7893409825be', 'ropsten')
             const portisProvider = portis.provider
             await portisProvider.enable()
-            provider = new ethers.providers.Web3Provider(portis.provider)
+            provider = new ethers.providers.Web3Provider(portis.provider, "ropsten")
             needsSigner = true
         } else {
             // Etherscan provider (no signer)
-            provider = new ethers.getDefaultProvider();
+            provider = new ethers.getDefaultProvider("ropsten");
             needsSigner = false
         }
 

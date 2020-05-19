@@ -1,5 +1,8 @@
 const express = require('express');
+const cron = require("node-cron");
 const { Nuxt, Builder } = require('nuxt')
+const { EtherClient } = require("./utils/ether_client")
+const { RedisDB } = require("./redis")
 
 // DB Models
 const models = require("./models");
@@ -44,6 +47,26 @@ async function start() {
     badge: true
   })
 }
+
+const redis = new RedisDB()
+
+// Setup cron for verifying data
+EtherClient.init().then(async etherClient => {
+  // Every 5 minutes update cache 
+  cron.schedule("*/5 * * * *", async function() {
+    console.log("Updating Bounty Cache")
+    let curNUbounties = await redis.getNUbounties()
+    let onChainUBounties = await etherClient.getNUbounties()
+    if (onChainUBounties > curNUbounties) {
+      console.log(`Adding ${onChainUBounties-curNUbounties} new bounties`)
+      uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
+      await redis.setUBounties(uBounties)
+    } else {
+      console.log("No new bounties to add")
+    }
+    console.log("Done updating cache")
+  });
+})
 
 // Create all tables if they don't exist then start server
 models.sequelize.sync().then(function() {
