@@ -13,7 +13,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            model: 'UBounty',
             key: 'id'
         }
     },

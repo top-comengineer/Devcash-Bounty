@@ -55,6 +55,20 @@ class RedisDB {
     async getNUbounties() {
         return (await this.getUBounties()).length
     }
+
+    async updateBountyCache(etherClient) {
+        console.log("Updating Bounty Cache")
+        let curNUbounties = await this.getNUbounties()
+        let onChainUBounties = await etherClient.getNUbounties()
+        if (onChainUBounties > curNUbounties) {
+          console.log(`Adding ${onChainUBounties-curNUbounties} new bounties`)
+          uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
+          await this.setUBounties(uBounties)
+        } else {
+          console.log("No new bounties to add")
+        }
+        console.log("Done updating cache")        
+    }
 }
 
 // exports

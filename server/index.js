@@ -52,19 +52,9 @@ const redis = new RedisDB()
 
 // Setup cron for verifying data
 EtherClient.init().then(async etherClient => {
-  // Every 5 minutes update cache 
+  // Every 5 minutes update on-chain bounty cache 
   cron.schedule("*/5 * * * *", async function() {
-    console.log("Updating Bounty Cache")
-    let curNUbounties = await redis.getNUbounties()
-    let onChainUBounties = await etherClient.getNUbounties()
-    if (onChainUBounties > curNUbounties) {
-      console.log(`Adding ${onChainUBounties-curNUbounties} new bounties`)
-      uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
-      await redis.setUBounties(uBounties)
-    } else {
-      console.log("No new bounties to add")
-    }
-    console.log("Done updating cache")
+    await redis.updateBountyCache(etherClient)
   });
 })
 
