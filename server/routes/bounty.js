@@ -8,4 +8,9 @@ router.post(
   uBountyController.createUBounty,
 )
 
+router.get(
+  '/list', 
+  uBountyController.getUBounties,
+)
+
 module.exports = router;

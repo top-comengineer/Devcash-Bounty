@@ -16,12 +16,40 @@ const crypto = require('crypto');
 }
 */
 
-module.exports.createUBounty = (req, res, next) => {
+// ubounties?page=1&limit=10
+module.exports.getUBounties = async (req, res, next) => {
+  try {
+    // Access the provided 'page' and 'limit' query parameters
+    let page = parseInt(req.query.page) || 1;
+    if (page < 1) {
+      return res.status(422).json({ error: "Page cannot be less than 1" });
+    }
+    let limit = parseInt(req.query.limit) || 1000; 
+    let offset = 0 + (page - 1) * limit
+    // Get uBounties
+    let result = await models.UBounty.findAndCountAll({
+      offset: offset,
+      limit: limit,
+      order: [
+          ['createdAt', 'DESC']
+      ]
+    })
+    return res.status(200).json({
+        status: true,
+        innerData: result
+    })
+  } catch(err) {
+    console.log(err)
+    res.status(500).json({ error: "Unable to retrieve bounties" });
+    return next(err)
+  }
+}
+
+module.exports.createUBounty = async (req, res, next) => {
    try {
       const errors = validationResult(req); // Finds the validation errors in this request and wraps them in an object with handy functions
       if (!errors.isEmpty()) {
-        res.status(422).json({ errors: errors.array() });
-        return;
+        return res.status(422).json({ errors: errors.array() });
       }
 
       const { creator, title, description, hunter, contactName, contactEmail } = req.body
@@ -29,7 +57,7 @@ module.exports.createUBounty = (req, res, next) => {
       const toHash = JSON.stringify({creator:creator, title: title, description: description})
       const hash = crypto.createHash("sha256").update(toHash).digest("hex")
 
-      models.UBountyStaged.create({
+      let bounty = await models.UBountyStaged.create({
         creator: creator,
         title: title,
         description: description,
@@ -37,15 +65,13 @@ module.exports.createUBounty = (req, res, next) => {
         contactName: contactName,
         contactEmail: contactEmail,
         hash: hash
-      }).then(bounty => {
-          res.json(bounty)
-      }).catch(err => {
-          res.status(500).send({
-              message: "Failed to create uBounty"
-          })
       })
+      return res.json(bounty)
    } catch(err) {
-     return next(err)
+    res.status(500).send({
+        message: "Failed to create uBounty"
+    })
+    return next(err)
    }
 }
 

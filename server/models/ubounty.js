@@ -43,6 +43,10 @@ module.exports = (sequelize, DataTypes) => {
   // Set submissions one-to-many relationship
   UBounty.associate = function(models) {
     models.UBounty.hasMany(models.Submission, {as: 'submissions', foreignKey: 'ubounty_id'})
+    models.UBounty.hasMany(models.SubmissionStaged, {as: 'submissions_staging', foreignKey: 'ubounty_id'})
+    models.UBounty.hasMany(models.RevisionStaged, {as: 'revisions_staging', foreignKey: 'ubounty_id'})
+    models.UBounty.hasMany(models.Revision, {as: 'revisions', foreignKey: 'ubounty_id'})
+
   };
 
   return UBounty;

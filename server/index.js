@@ -9,6 +9,8 @@ const models = require("./models");
 
 // Routes
 const ubountyRouter = require('./routes/bounty');
+const submissionRouter = require('./routes/submission');
+const revisionRouter = require('./routes/revision');
 
 // App
 const app = express();
@@ -36,6 +38,8 @@ async function start() {
   app.use(express.urlencoded({ extended: false }));
   // Setup API routes
   app.use('/bounty', ubountyRouter);
+  app.use('/submission', submissionRouter);
+  app.use('/revision', revisionRouter);
 
   // Give nuxt middleware to express
   app.use(nuxt.render)
