@@ -49,6 +49,22 @@ class EtherClient {
         return (await this.uBCContract.numUbounties()).toNumber()
     }
 
+    async getUBounty(id) {
+        let rawUBounty = await this.uBCContract.ubounties(id)
+        // Convert smart contract data into a plain object
+        let uBounty = {}
+        uBounty.numLeft = rawUBounty[0]
+        uBounty.numSubmissions = rawUBounty[1]
+        uBounty.hunterIndex = rawUBounty[2]
+        uBounty.creatorIndex = rawUBounty[3]
+        uBounty.bountyChestIndex = rawUBounty[4]
+        uBounty.deadline = rawUBounty[5]
+        uBounty.name = rawUBounty[6]
+        uBounty.description = rawUBounty[7]
+        uBounty.infoHash = rawUBounty[8]  
+        return uBounty
+    }
+
     async getUbounties(count) {
         let uBounties = new Array()
         let numUbounties = await this.getNUbounties()
