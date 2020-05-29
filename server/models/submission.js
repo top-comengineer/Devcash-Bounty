@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     hash: {
       type: DataTypes.STRING,
       allowNull: false
-  }    
+    }    
   }, {
       tableName: 'submissions',
       uniqueKeys: {
