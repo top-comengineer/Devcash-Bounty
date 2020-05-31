@@ -64,7 +64,23 @@ class EtherClient {
         uBounty.deadline = rawUBounty[5]
         uBounty.name = rawUBounty[6]
         uBounty.description = rawUBounty[7]
-        uBounty.infoHash = rawUBounty[8]  
+        uBounty.infoHash = rawUBounty[8]
+        uBounty.index = id
+        //TODO - hunter broken
+        //uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
+        // Get balance
+        /*
+        let bc = await this.uBCContract.bCList(uBounty.bountyChestIndex)
+        let tokenBalance = await this.tokenContract.balanceOf(bc)
+        if (uBounty.numLeft != 0) {
+            tokenBalance = tokenBalance.div(uBounty.numLeft)
+        }
+        uBounty.tokenBalanceRaw = tokenBalance
+        tokenBalance = utils.formatUnits(tokenBalance, this.tokenDecimals)
+        tokenBalance = utils.commify(tokenBalance)
+        uBounty.tokenBalance = tokenBalance.endsWith(".0") ? tokenBalance.replace(".0", "") : tokenBalance*/
+        // Get submissions
+        uBounty.submissions = await this.getBountySubmissions(uBounty)
         return uBounty
     }
 
@@ -74,36 +90,10 @@ class EtherClient {
         // Assert count <= numUBounties
         count = Math.min(count, numUbounties)
         for (let i=numUbounties-count; i < numUbounties; i++) {
-            let rawUBounty = await this.uBCContract.ubounties(i)
-            // Convert smart contract data into a plain object
-            let uBounty = {}
-            uBounty.numLeft = rawUBounty[0]
-            uBounty.numSubmissions = rawUBounty[1]
-            uBounty.hunterIndex = rawUBounty[2]
-            uBounty.creatorIndex = rawUBounty[3]
-            uBounty.bountyChestIndex = rawUBounty[4]
-            uBounty.deadline = rawUBounty[5]
-            uBounty.name = rawUBounty[6]
-            uBounty.description = rawUBounty[7]
-            uBounty.infoHash = rawUBounty[8]
-            // Set hunter
-            uBounty.index = i
-
-            //TODO - hunter broken
-            //uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
-            // Get balance
-            let bc = await this.uBCContract.bCList(uBounty.bountyChestIndex)
-            let tokenBalance = await this.tokenContract.balanceOf(bc)
-            if (uBounty.numLeft != 0) {
-                tokenBalance = tokenBalance.div(uBounty.numLeft)
+            uBounty = await this.getUBounty(i)
+            if (uBounty != null && uBounty != undefined) {
+                uBounties.push(uBounty)
             }
-            uBounty.tokenBalanceRaw = tokenBalance
-            tokenBalance = utils.formatUnits(tokenBalance, this.tokenDecimals)
-            tokenBalance = utils.commify(tokenBalance)
-            uBounty.tokenBalance = tokenBalance.endsWith(".0") ? tokenBalance.replace(".0", "") : tokenBalance
-            // Get submissions
-            uBounty.submissions = await this.getBountySubmissions(uBounty)
-            uBounties.push(uBounty)
         }
         return uBounties
     }
@@ -113,13 +103,25 @@ class EtherClient {
         for (let i=0; i < uBounty.numSubmissions; i++) {
             let submission = {}
             submission.index = i
-            submission.submissionString = await this.uBCContract.getSubmissionString(uBounty.index, i)
-            //submission.submissionHash = await this.uBCContract.getSubmissionHash(uBounty.index, i)
-            //let submitterIndex = await this.uBCContract.getSubmitter(uBounty.index, i)
-            //submission.submitter = await uBCContract.hunterList(submitterIndex)
+            submission.submission = await this.uBCContract.getSubmission(uBounty.index, submission.index)
+            submission.revisions = await this.getSubmissionRevisions(uBounty, submission.submission)
             submissions.push(submission)            
         }
         return submissions
+    }
+
+    async getSubmissionRevisions(uBounty, submission) {
+        let revisions = new Array()
+        for (let i=0; i < submission[3]; i++) {
+            let revision = {}
+            revision.index = i
+            revision.revision = await this.uBCContract.getRevision(uBounty.index, submission.index, revision.index)
+            //submission.submissionHash = await this.uBCContract.getSubmissionHash(uBounty.index, i)
+            //let submitterIndex = await this.uBCContract.getSubmitter(uBounty.index, i)
+            //submission.submitter = await uBCContract.hunterList(submitterIndex)
+            revisions.push(revision)            
+        }
+        return revisions
     }
 }
 

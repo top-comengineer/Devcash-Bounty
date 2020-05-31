@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 const { Nuxt, Builder } = require('nuxt')
 const { EtherClient } = require("./utils/ether_client")
 const { RedisDB } = require("./redis")
-const { verifyAndReleaseBounties, verifyAndReleaseSubmissions } = require("./utils/release_data")
+const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
 // DB Models
 const models = require("./models");
@@ -75,21 +75,47 @@ function setupEthersJobs() {
     etherClient.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
       console.log(`Submission ${submissionIndex} created`)
       // Retrieve bounty and submission with hashes
-      let uBounty = etherClient.getUBounty(uBountyIndex)
-      let submission = {}
-      submission.index = submissionIndex
-      submission.submissionString = await this.uBCContract.getSubmissionString(uBounty.index, submissionIndex)
-      let submissionHash = await this.uBCContract.getSubmissionString(uBounty.index, submissionIndex)
-      await verifyAndReleaseSubmissions[submission]
+      let uBounty = await etherClient.getUBounty(uBountyIndex)
+      uBounty.submissions.forEach(async submission => {
+        if (submission.index == submissionIndex) {
+          await verifyAndReleaseSubmissions([submission])
+        }
+      })
+    })
+    // Listen to revision event
+    etherClient.uBCContract.on("revised", async (uBountyIndex, submissionIndex, revisionIndex, event) => {
+      // Retrieve bounty
+      console.log(`Revision ${revisionIndex} created`)
+      // Retrieve bounty and revisions with hashes
+      let uBounty = await etherClient.getUBounty(uBountyIndex)
+      if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
+        uBounty.submissions.forEach(async submission => {
+          if (submission.revisions != undefined && submission.revisions.length > 0) {
+            submission.revisions.forEach(async revision => {
+              if (revision.index == revisionIndex) {
+                await verifyAndReleaseRevisions([revision])
+              }
+            })
+          }
+        })    
+      }
     })
     // Fallback for missed events
+    // TODO - change to more reasonable schedule, 1 minute is for testing
     cron.schedule("* * * * *", async function() {
       let uBounties = await redis.getUBounties()
       await verifyAndReleaseBounties(uBounties)
       uBounties.forEach(async uBounty => {
-        await verifyAndReleaseSubmissions(uBounty.submissions)
+        if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
+          await verifyAndReleaseSubmissions(uBounty.submissions)
+          uBounty.submissions.forEach(async submission => {
+            if (submission.revisions != undefined && submission.revisions.length > 0) {
+              await verifyAndReleaseRevisions(submission.revisions)
+            }
+          })
+        }
       })
-    })
+    })    
   })
 }
 

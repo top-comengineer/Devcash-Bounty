@@ -1,5 +1,10 @@
 "use strict"
 
+var Sequelize = require('sequelize');
+
+// DB Models
+const models = require("../models")
+
 // Verify & Release bounty data
 // @param uBounties - on-chain bounty array
 module.exports.verifyAndReleaseBounties = async function (uBounties) {
@@ -62,7 +67,7 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
 }
 
 // Verify & Release submission data
-// @param submissions - on-chain bounty array
+// @param submissiones - on-chain submission array
 module.exports.verifyAndReleaseSubmissions = async function (submissions) {
     let hashes = []
     let hashIdMap = {}
@@ -97,8 +102,7 @@ module.exports.verifyAndReleaseSubmissions = async function (submissions) {
         } else {
           // Insert
           await models.Submission.create({
-            id: hashIdMap[stagedBounty.hash],
-            submission_id: hashIdMap[stagedBounty.hash],
+            submission_id: hashIdMap[stagedSubmission.hash],
             creator: stagedSubmission.creator,
             submission_data: stagedSubmission.submission_data,
             approved: stagedSubmission.approved,
@@ -117,6 +121,70 @@ module.exports.verifyAndReleaseSubmissions = async function (submissions) {
         }
       } catch (error) {
         console.log(`Encountered error updating submissions ${error}`)
+        t.tollback()
+      }
+    })
+}
+
+// Verify & Release revision data
+// @param revisions - on-chain bounty array
+module.exports.verifyAndReleaseRevisions = async function (revisions) {
+    let hashes = []
+    let hashIdMap = {}
+    // Get uBounties from blockchain
+    revisions.forEach(async revision => {
+      // revisionString holds the hash
+      hashes.push(revision.revisionString)
+      hashIdMap[revision.revisionString] = revision.index
+    })
+    // Get staged revisions from database
+    let stagedRevisions = await models.RevisionStaged.findAll({
+      where: {
+        hash: { [Sequelize.Op.in]: hashes }
+      }          
+    })
+    // Move from staged to prod table
+    console.log(`Updating ${stagedRevisions.length} revisions`)
+    stagedRevisions.forEach(async stagedRevision => {
+      // Start a transaction
+      const t = await sequelize.transaction();
+      console.log(`moving staged revision ${stagedRevision.id} to release table`)
+      try {
+        // Create revision if doesn't exist
+        let subExists = await models.Revision.count({where: {hash: stagedRevision.hash}}) > 0
+        if (subExists) {
+          // Delete
+          await models.RevisionStaged.destroy({
+            where: {
+              hash: stagedRevision.hash
+            }
+          }, { transaction: t })
+        } else {
+          // Insert
+          await models.Revision.create({
+            // The ID/index of this revisionm on-chain
+            revision_id: hashIdMap[stagedRevision.hash],
+            creator: stagedRevision.creator,
+            revision_data: stagedRevision.revision_data,
+            // The FK reference to the uBounty this revision belongs to
+            ubounty_id: stagedRevision.ubounty_id,
+            // The FK reference to the submission this revision belongs to
+            submission_id: stagedRevision.submission_id,
+            // The hash of this revision data
+            hash: stagedRevision.hash        
+          }, { transaction: t })
+          // Delete
+          let destroyed = await models.RevisionStaged.destroy({
+            where: {
+              hash: stagedRevision.hash
+            }
+          }, { transaction: t }) > 1
+          if (!destroyed) {
+            throw new Error(`Failed to destroy revision ${stagedRevision.hash}`)
+          }
+        }
+      } catch (error) {
+        console.log(`Encountered error updating revision ${error}`)
         t.tollback()
       }
     })
