@@ -1,4 +1,4 @@
-module.exports.tokenAddress = "0x4a0c2edcd5b772cbf4bb8b8f456a372a6d35f3b2"//"0xD021315678991ee801655C75101986200f0a011D"////;
+module.exports.tokenAddress = "0x0f54093364b396461AAdf85C015Db597AAb56203"//"0xD021315678991ee801655C75101986200f0a011D"////;
 module.exports.tokenABI = [
 	{
 		"inputs": [],
@@ -316,7 +316,7 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = "0x5463Ed2BcF2CB7Bf7D49d0A06Bbc671FA5Bf3EC3"//"0xab3A3f3Df683513De7d060a045A01a13b811F422"//"0x1b111DB39178adC3Facf848f524dE18E0Ae427dE"
+module.exports.uBCAddress = "0x29Da2bC318976DFE97e892E104d99694a114E28f"
 module.exports.uBCABI = [
 	{
 		"constant": false,

@@ -1,6 +1,7 @@
 "use strict"
 
 const Redis = require('ioredis')
+const redislock = require('ioredis-lock')
 const JSONCache = require('redis-json')
 const { BigNumber } = require('ethers/utils/bignumber')
 
@@ -12,6 +13,8 @@ class RedisDB {
         // TODO allow customizing host/port
         this.redis = new Redis()
         this.jsonCache = new JSONCache(this.redis)
+        this.locker = redislock.createLock(this.redis, {timeout: 500000})
+        this.retryingLocker = redislock.createLock(this.redis, {timeout: 200000, retries: 10, delay: 1000})
     }
 
     // Cached on-chain uBounties
@@ -22,15 +25,15 @@ class RedisDB {
         }
         return uBounties
     }
-
-    async setUBounties(uBounties) {
+   
+    async setUBounties(uBounties, clobber = false) {
         if (typeof uBounties != 'object') {
             console.log(`Bad call to setUbounties, expected 'object' but got '${typeof uBounties}'`)
             return null
         }
         // Don't add ones we already have
         let toAdd
-        if (await this.getNUbounties() > 0) {
+        if (await this.getNUbounties() > 0 && !clobber) {
             toAdd = new Array()
             let curUbounties = await this.getUBounties()
             uBounties.forEach(newUBounty => {
@@ -52,22 +55,51 @@ class RedisDB {
         return toAdd
     }
 
+    async setUBountiesLock(uBounties, clobber = false) {
+        try {
+            try {
+                await this.retryingLocker.acquire(`${prefix}:bountycachelock`)
+                await this.setUBounties(uBounties, clobber)
+            } catch (e) {
+                console.log(`Error updating bounty cache ${e}`)
+            }
+            await this.locker.release()
+       } catch (e) {
+           // Squish lock-related errors
+       }
+    }
+
     async getNUbounties() {
         return (await this.getUBounties()).length
     }
 
     async updateBountyCache(etherClient) {
-        console.log("Updating Bounty Cache")
-        let curNUbounties = await this.getNUbounties()
-        let onChainUBounties = await etherClient.getNUbounties()
-        if (onChainUBounties > curNUbounties) {
-          console.log(`Adding ${onChainUBounties-curNUbounties} new bounties`)
-          uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
-          await this.setUBounties(uBounties)
-        } else {
-          console.log("No new bounties to add")
-        }
-        console.log("Done updating cache")        
+        try {
+            try {
+                await this.locker.acquire(`${prefix}:bountycachelock`)
+                console.log("Updating Bounty Cache")
+                let curNUbounties = await this.getNUbounties()
+                let onChainUBounties = await etherClient.getNUbounties()
+                if (onChainUBounties > curNUbounties) {
+                    console.log(`Adding ${onChainUBounties-curNUbounties} new bounties`)
+                    let uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
+                    await this.setUBounties(uBounties)
+                } else {
+                console.log("No new bounties to add")
+                }
+                // Update submissions and revisions
+                let allUBounties = await this.getUBounties()
+                for (const bounty of allUBounties) {
+                    bounty.submissions = await etherClient.getBountySubmissions(bounty)
+                }
+                await this.setUBounties(allUBounties, true)
+            } catch (e) {
+                console.log(`Error updating bounty cache ${e}`)
+            }
+            await this.locker.release()
+       } catch (e) {
+           // Squish lock-related errors
+       }
     }
 }
 

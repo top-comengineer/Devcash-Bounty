@@ -1,9 +1,7 @@
 "use strict"
 
-var Sequelize = require('sequelize');
-
 // DB Models
-const models = require("../models")
+const { Op, sequelize, UBountyStaged, UBounty, SubmissionStaged, Submission, RevisionStaged, Revision } = require("../models")
 
 // Verify & Release bounty data
 // @param uBounties - on-chain bounty array
@@ -16,30 +14,29 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
       hashIdMap[uBounty.description] = uBounty.index
     })
     // Get staged bounties from database
-    let stagedBounties = await models.UBounty.findAll({
+    let stagedBounties = await UBountyStaged.findAll({
       where: {
-        hash: { [Sequelize.Op.in]: hashes }
-      }          
+        hash: { [Op.in]: hashes }
+      }
     })
     // Move from staged to prod table
     console.log(`Updating ${stagedBounties.length} bounties`)
     stagedBounties.forEach(async stagedBounty => {
       // Start a transaction
-      const t = await sequelize.transaction();
-      console.log(`moving staged bounty ${stagedBounty.id} to release table`)
-      try {
+      await sequelize.transaction(async (t) => {
+        console.log(`moving staged bounty ${stagedBounty.id} to release table`)
         // Create bounty if doesn't exist
-        let uBountyExists = await models.UBounty.count({where: {hash: stagedBounty.hash}}) > 0
+        let uBountyExists = await UBounty.count({where: {hash: stagedBounty.hash}}) > 0
         if (uBountyExists) {
           // Delete
-          await models.UBountyStaged.destroy({
+          await UBountyStaged.destroy({
             where: {
               hash: stagedBounty.hash
             }
           }, { transaction: t })
         } else {
           // Insert
-          await models.UBounty.create({
+          await UBounty.create({
             id: hashIdMap[stagedBounty.hash],
             creator: stagedBounty.creator,
             hunter: stagedBounty.hunter,
@@ -50,19 +47,12 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
             hash: stagedBounty.hash           
           }, { transaction: t })
           // Delete
-          let destroyed = await models.UBountyStaged.destroy({
-            where: {
-              hash: stagedBounty.hash
-            }
-          }, { transaction: t }) > 1
+          let destroyed = await stagedBounty.destroy({ transaction: t })
           if (!destroyed) {
             throw new Error(`Failed to destroy uBounty ${stagedBounty.hash}`)
           }
         }
-      } catch (error) {
-        console.log(`Encountered error updating bounties ${error}`)
-        t.tollback()
-      }
+      });
     })
 }
 
@@ -78,30 +68,29 @@ module.exports.verifyAndReleaseSubmissions = async function (submissions) {
       hashIdMap[submission.submissionString] = submission.index
     })
     // Get staged submissions from database
-    let stagedSubmissions = await models.SubmissionStaged.findAll({
+    let stagedSubmissions = await SubmissionStaged.findAll({
       where: {
-        hash: { [Sequelize.Op.in]: hashes }
+        hash: { [Op.in]: hashes }
       }          
     })
     // Move from staged to prod table
     console.log(`Updating ${stagedSubmissions.length} submissions`)
     stagedSubmissions.forEach(async stagedSubmission => {
       // Start a transaction
-      const t = await sequelize.transaction();
-      console.log(`moving staged submission ${stagedSubmission.id} to release table`)
-      try {
+      await sequelize.transaction(async (t) => {
+        console.log(`moving staged submission ${stagedSubmission.id} to release table`)
         // Create bounty if doesn't exist
-        let subExists = await models.Submission.count({where: {hash: stagedSubmission.hash}}) > 0
+        let subExists = await Submission.count({where: {hash: stagedSubmission.hash}}) > 0
         if (subExists) {
           // Delete
-          await models.SubmissionStaged.destroy({
+          await SubmissionStaged.destroy({
             where: {
               hash: stagedSubmission.hash
             }
           }, { transaction: t })
         } else {
           // Insert
-          await models.Submission.create({
+          await Submission.create({
             submission_id: hashIdMap[stagedSubmission.hash],
             creator: stagedSubmission.creator,
             submission_data: stagedSubmission.submission_data,
@@ -110,19 +99,12 @@ module.exports.verifyAndReleaseSubmissions = async function (submissions) {
             hash: stagedSubmission.hash          
           }, { transaction: t })
           // Delete
-          let destroyed = await models.SubmissionStaged.destroy({
-            where: {
-              hash: stagedSubmission.hash
-            }
-          }, { transaction: t }) > 1
+          let destroyed = await stagedSubmission.destroy({ transaction: t })
           if (!destroyed) {
             throw new Error(`Failed to destroy submission ${stagedSubmission.hash}`)
           }
         }
-      } catch (error) {
-        console.log(`Encountered error updating submissions ${error}`)
-        t.tollback()
-      }
+      });
     })
 }
 
@@ -138,30 +120,29 @@ module.exports.verifyAndReleaseRevisions = async function (revisions) {
       hashIdMap[revision.revisionString] = revision.index
     })
     // Get staged revisions from database
-    let stagedRevisions = await models.RevisionStaged.findAll({
+    let stagedRevisions = await RevisionStaged.findAll({
       where: {
-        hash: { [Sequelize.Op.in]: hashes }
+        hash: { [Op.in]: hashes }
       }          
     })
     // Move from staged to prod table
     console.log(`Updating ${stagedRevisions.length} revisions`)
     stagedRevisions.forEach(async stagedRevision => {
       // Start a transaction
-      const t = await sequelize.transaction();
-      console.log(`moving staged revision ${stagedRevision.id} to release table`)
-      try {
+      await sequelize.transaction(async (t) => {
+        console.log(`moving staged revision ${stagedRevision.id} to release table`)
         // Create revision if doesn't exist
-        let subExists = await models.Revision.count({where: {hash: stagedRevision.hash}}) > 0
+        let subExists = await Revision.count({where: {hash: stagedRevision.hash}}) > 0
         if (subExists) {
           // Delete
-          await models.RevisionStaged.destroy({
+          await RevisionStaged.destroy({
             where: {
               hash: stagedRevision.hash
             }
           }, { transaction: t })
         } else {
           // Insert
-          await models.Revision.create({
+          await Revision.create({
             // The ID/index of this revisionm on-chain
             revision_id: hashIdMap[stagedRevision.hash],
             creator: stagedRevision.creator,
@@ -174,18 +155,11 @@ module.exports.verifyAndReleaseRevisions = async function (revisions) {
             hash: stagedRevision.hash        
           }, { transaction: t })
           // Delete
-          let destroyed = await models.RevisionStaged.destroy({
-            where: {
-              hash: stagedRevision.hash
-            }
-          }, { transaction: t }) > 1
+          let destroyed = await stagedRevision.destroy({ transaction: t })
           if (!destroyed) {
             throw new Error(`Failed to destroy revision ${stagedRevision.hash}`)
           }
         }
-      } catch (error) {
-        console.log(`Encountered error updating revision ${error}`)
-        t.tollback()
-      }
+      })
     })
 }

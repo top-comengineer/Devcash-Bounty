@@ -1,13 +1,12 @@
 const express = require('express');
 const cron = require("node-cron");
-var Sequelize = require('sequelize');
 const { Nuxt, Builder } = require('nuxt')
 const { EtherClient } = require("./utils/ether_client")
 const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
 // DB Models
-const models = require("./models");
+const { sequelize } = require("./models");
 
 // Routes
 const ubountyRouter = require('./routes/bounty');
@@ -57,10 +56,12 @@ async function start() {
 const redis = new RedisDB()
 
 function setupEthersJobs() {
+  // TODO - set sane cron intervals for production
+
   // Setup cron for verifying data
   EtherClient.init().then(async etherClient => {
     // Every 5 minutes update on-chain bounty cache 
-    cron.schedule("*/5 * * * *", async function() {
+    cron.schedule("* * * * *", async function() {
       await redis.updateBountyCache(etherClient)
     });
     // Listen to bounty event to confirm it
@@ -68,6 +69,17 @@ function setupEthersJobs() {
       console.log(`Bounty ${uBountyIndex} created`)
       // Retrieve bounty from chain
       let uBounty = await etherClient.getUBounty(uBountyIndex)
+      // Update in cache
+      exists = false
+      for (const bounty of await redis.getUBounties()) {
+        if (bounty.index == uBountyIndex) {
+          exists = true
+          break
+        }
+      }
+      if (!exists) {
+        await redis.setUBountiesLock([uBounty], false)
+      }
       // Verify and release from staging tables
       await verifyAndReleaseBounties([uBounty])
     })
@@ -76,6 +88,17 @@ function setupEthersJobs() {
       console.log(`Submission ${submissionIndex} created`)
       // Retrieve bounty and submission with hashes
       let uBounty = await etherClient.getUBounty(uBountyIndex)
+      // Update in cache
+      exists = false
+      for (const bounty of await redis.getUBounties()) {
+        if (bounty.index == uBountyIndex) {
+          exists = true
+          break
+        }
+      }
+      if (!exists) {
+        await redis.setUBountiesLock([uBounty], false)
+      }      
       uBounty.submissions.forEach(async submission => {
         if (submission.index == submissionIndex) {
           await verifyAndReleaseSubmissions([submission])
@@ -88,6 +111,17 @@ function setupEthersJobs() {
       console.log(`Revision ${revisionIndex} created`)
       // Retrieve bounty and revisions with hashes
       let uBounty = await etherClient.getUBounty(uBountyIndex)
+      // Update in cache
+      exists = false
+      for (const bounty of await redis.getUBounties()) {
+        if (bounty.index == uBountyIndex) {
+          exists = true
+          break
+        }
+      }
+      if (!exists) {
+        await redis.setUBountiesLock([uBounty], false)
+      }      
       if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
         uBounty.submissions.forEach(async submission => {
           if (submission.revisions != undefined && submission.revisions.length > 0) {
@@ -120,7 +154,7 @@ function setupEthersJobs() {
 }
 
 // Create all tables if they don't exist then start server
-models.sequelize.sync().then(function() {
+sequelize.sync().then(function() {
   setupEthersJobs()
   start()
 });

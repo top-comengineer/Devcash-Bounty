@@ -32,12 +32,12 @@ module.exports.getUBounties = async (req, res, next) => {
       limit: limit,
       order: [
           ['createdAt', 'DESC']
-      ]
+      ],
+      include: ['submissions', 'revisions']
     })
-    return res.status(200).json({
-        status: true,
-        innerData: result
-    })
+    return res.status(200).json(
+      result.rows
+    )
   } catch(err) {
     console.log(err)
     res.status(500).json({ error: "Unable to retrieve bounties" });
@@ -55,7 +55,8 @@ module.exports.createUBounty = async (req, res, next) => {
       const { creator, title, description, hunter, contactName, contactEmail } = req.body
       // Hash data for on-chain verification
       const toHash = JSON.stringify({creator:creator, title: title, description: description})
-      const hash = crypto.createHash("sha256").update(toHash).digest("hex")
+      const hash = crypto.createHash("sha256").update(creator).update(title).update(description)
+      let hashHex = hunter != undefined ? hash.update(hunter).digest("hex") : hash.digest("hex")
 
       let bounty = await models.UBountyStaged.create({
         creator: creator,
@@ -64,7 +65,7 @@ module.exports.createUBounty = async (req, res, next) => {
         hunter: hunter == null || hunter.length < 1 ? null : hunter,
         contactName: contactName,
         contactEmail: contactEmail,
-        hash: hash
+        hash: hashHex
       })
       return res.json(bounty)
    } catch(err) {
