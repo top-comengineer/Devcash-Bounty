@@ -111,6 +111,12 @@ $ltDanger: #990040;
   background-color: rgba($dtPrimary, 0.25);
 }
 
+.hover_bg-dtPrimary-15:hover,
+.focus_bg-dtPrimary-15:focus {
+  background-color: rgba($dtPrimary, 0.15);
+}
+
+
 .hover_bg-dtPrimary-35:hover,
 .focus_bg-dtPrimary-35:focus {
   background-color: rgba($dtPrimary, 0.35);

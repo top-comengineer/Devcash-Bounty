@@ -1,9 +1,13 @@
 <template>
-  <label class="radio-container flex flex-row items-center">
-    <input :checked="checked" type="radio" :name="name" />
-    <span :class="$store.state.theme.dt?'border-dtText':'border-ltText'" class="radio-checkmark"></span>
-    <h5 class="leading-tight font-bold">{{text}}</h5>
-  </label>
+  <div
+    class="hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 rounded-full transition-colors duration-200 py-0_5"
+  >
+    <label class="radio-container flex flex-row items-center">
+      <input :checked="checked" type="radio" :name="name" />
+      <span :class="$store.state.theme.dt?'border-dtText':'border-ltText'" class="radio-checkmark"></span>
+      <h5 class="leading-tight font-bold">{{text}}</h5>
+    </label>
+  </div>
 </template>
 <script>
 export default {

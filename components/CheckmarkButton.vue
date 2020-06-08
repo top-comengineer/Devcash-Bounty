@@ -1,16 +1,20 @@
 <template>
-  <label class="checkbox-container flex flex-row items-center">
-    <input :checked="checked" type="checkbox" :name="name" />
-    <span
-      v-if="$store.state.theme.dt"
-      class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-dtText normal-checkmark-dt"
-    ></span>
-    <span
-      v-else
-      class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-ltText normal-checkmark-lt"
-    ></span>
-    <h5 class="leading-tight font-bold">{{text}}</h5>
-  </label>
+  <div
+    class="hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 rounded-full transition-colors duration-200 py-0_5"
+  >
+    <label class="checkbox-container flex flex-row items-center">
+      <input :checked="checked" type="checkbox" :name="name" />
+      <span
+        v-if="$store.state.theme.dt"
+        class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-dtText normal-checkmark-dt"
+      ></span>
+      <span
+        v-else
+        class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-ltText normal-checkmark-lt"
+      ></span>
+      <h5 class="leading-tight font-bold">{{text}}</h5>
+    </label>
+  </div>
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
