@@ -250,8 +250,8 @@
             <textarea
               @input="autoGrow()"
               ref="commentArea"
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary']"
-              class="commentArea w-full md:flex-1 text-lg font-bold border border-dtSecondary rounded-lg px-4 py-2"
+              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary hover:border-dtText focus:border-dtText active:border-dtText':'bg-ltBackgroundTertiary hover:border-ltText focus:border-ltText active:border-ltText']"
+              class="commentArea w-full md:flex-1 text-lg font-bold border border-dtSecondary rounded-lg px-4 py-2 transition-colors duration-200"
               type="text"
               placeholder="Start writing a comment..."
             />
