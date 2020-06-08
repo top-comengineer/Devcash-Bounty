@@ -17,6 +17,7 @@ const crypto = require('crypto');
 */
 
 // ubounties?page=1&limit=10
+//TODO - add hunter param
 module.exports.getUBounties = async (req, res, next) => {
   try {
     // Access the provided 'page' and 'limit' query parameters
@@ -54,7 +55,6 @@ module.exports.createUBounty = async (req, res, next) => {
 
       const { creator, title, description, hunter, contactName, contactEmail } = req.body
       // Hash data for on-chain verification
-      const toHash = JSON.stringify({creator:creator, title: title, description: description})
       const hash = crypto.createHash("sha256").update(creator).update(title).update(description)
       let hashHex = hunter != undefined ? hash.update(hunter).digest("hex") : hash.digest("hex")
 

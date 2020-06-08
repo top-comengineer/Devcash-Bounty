@@ -27,6 +27,7 @@
       </nuxt-link>
       <!-- Post -->
       <nuxt-link
+        v-if="isLoggedIn"
         :to="getLocalizedRoute('bountyplatform-post')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -43,6 +44,7 @@
       </nuxt-link>
       <!-- Overview -->
       <nuxt-link
+        v-if="isLoggedIn"
         :to="getLocalizedRoute('bountyplatform-overview')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -61,6 +63,7 @@
       </nuxt-link>
       <!-- Bounty Hunter-->
       <nuxt-link
+        v-if="isLoggedIn"
         :to="getLocalizedRoute('bountyplatform-bountyhunter')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -79,6 +82,7 @@
       </nuxt-link>
       <!-- Bounty Manager -->
       <nuxt-link
+        v-if="isLoggedIn"
         :to="getLocalizedRoute('bountyplatform-bountymanager')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -141,7 +145,7 @@
         </div>
         <!-- If context is Post, Overview, Bounty Hunter or Bounty Manager -->
         <div
-          v-else-if="$store.state.general.sidebarContext == sidebarContexts.post || $store.state.general.sidebarContext == sidebarContexts.overview || $store.state.general.sidebarContext == sidebarContexts.bountyHunter ||  $store.state.general.sidebarContext == sidebarContexts.bountyManager"
+          v-else-if="isLoggedIn && ($store.state.general.sidebarContext == sidebarContexts.post || $store.state.general.sidebarContext == sidebarContexts.overview || $store.state.general.sidebarContext == sidebarContexts.bountyHunter ||  $store.state.general.sidebarContext == sidebarContexts.bountyManager)"
           class="flex flex-col"
         >
           <!-- Balance Text -->
@@ -192,6 +196,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
 import { SIDEBAR_CONTEXTS } from "~/config";
 import Icon from "~/components/Icon.vue";
 import RadioButton from "~/components/RadioButton.vue";
@@ -210,7 +215,13 @@ export default {
       sidebarContexts: SIDEBAR_CONTEXTS,
       isSearchFocused: false
     };
-  }
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+    })
+  }  
 };
 </script>
 <style>

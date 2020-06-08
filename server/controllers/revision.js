@@ -24,7 +24,6 @@ module.exports.createRevision = async (req, res, next) => {
 
       const { creator, data, ubounty_id, submission_id } = req.body
       // Hash data for on-chain verification
-      const toHash = JSON.stringify({creator:creator, data: data, ubounty_id: ubounty_id, submission_id: submission_id})
       const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).update(submission_id).digest("hex")
 
       let count = await model.UBounty.count({ where: { id: ubounty_id } })

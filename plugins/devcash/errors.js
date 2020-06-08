@@ -13,3 +13,6 @@ class ExtendableError extends Error {
 
 export class AccountNotFoundError extends ExtendableError {}
 export class NoAccountsFoundError extends ExtendableError {}
+export class InvalidAddressError extends ExtendableError {}
+export class InvalidHunterAddressError extends ExtendableError {}
+export class InvalidEmailError extends ExtendableError {}

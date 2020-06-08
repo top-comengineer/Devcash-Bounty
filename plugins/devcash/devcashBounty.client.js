@@ -1,7 +1,8 @@
 import { ethers, utils } from 'ethers'
+import { crypto } from 'crypto'
 import { Authereum, AuthereumSigner } from 'authereum'
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from './config.js'
-import { NoAccountsFoundError, AccountNotFoundError } from './errors.js'
+import { NoAccountsFoundError, AccountNotFoundError, InvalidAddressError, InvalidHunterAddressError, InvalidEmailError } from './errors.js'
 
 if (process.client) {
     var Portis = require('@portis/web3')
@@ -13,6 +14,8 @@ export const WalletProviders = {
     authereum: 'authereum',
     etherscan: 'etherscan'
 }
+
+const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
 
 export class DevcashBounty {
     constructor(async_param) {
@@ -62,25 +65,25 @@ export class DevcashBounty {
         if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
             // Use web3 provider with signer
             await window.ethereum.enable()
-            provider = new ethers.providers.Web3Provider(web3.currentProvider, "ropsten");
+            provider = new ethers.providers.Web3Provider(web3.currentProvider, process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet");
             needsSigner = true
         } else if (walletProvider == WalletProviders.authereum) {
             // Authereum
             const authereum = new Authereum('ropsten') // mainnet
             const authereumProvider = authereum.getProvider()
             await authereumProvider.enable()
-            provider = new ethers.providers.Web3Provider(authereumProvider, "ropsten")
+            provider = new ethers.providers.Web3Provider(authereumProvider, process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet")
             needsSigner = true
         } else if (walletProvider == WalletProviders.portis) {
             // Portis
-            const portis = new Portis('5395216c-1124-49de-bfbe-7893409825be', 'ropsten')
+            const portis = new Portis('5395216c-1124-49de-bfbe-7893409825be', process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet")
             const portisProvider = portis.provider
             await portisProvider.enable()
-            provider = new ethers.providers.Web3Provider(portis.provider, "ropsten")
+            provider = new ethers.providers.Web3Provider(portis.provider, process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet")
             needsSigner = true
         } else {
             // Etherscan provider (no signer)
-            provider = new ethers.getDefaultProvider("ropsten");
+            provider = new ethers.getDefaultProvider(process.env.NODE_ENV !== 'production' ? "ropsten" : undefined);
             needsSigner = false
         }
 
@@ -133,36 +136,42 @@ export class DevcashBounty {
         )
     }
 
-    async getUbounties() {
+    async getNUbounties() {
+        return (await this.uBCContract.numUbounties()).toNumber()
+    }
+
+    async getUBounty(id) {
+        let rawUBounty = await this.uBCContract.ubounties(id)
+        if (rawUBounty == null || rawUBounty == undefined) {
+            return null
+        }
+        // Convert smart contract data into a plain object
+        let uBounty = {}
+        uBounty.numLeft = rawUBounty[0]
+        uBounty.numSubmissions = rawUBounty[1]
+        uBounty.hunterIndex = rawUBounty[2]
+        uBounty.creatorIndex = rawUBounty[3]
+        uBounty.bountyChestIndex = rawUBounty[4]
+        uBounty.deadline = rawUBounty[5]
+        uBounty.name = rawUBounty[6]
+        uBounty.description = rawUBounty[7]
+        uBounty.infoHash = rawUBounty[8]
+        uBounty.index = id
+        // Get submissions
+        uBounty.submissions = await this.getBountySubmissions(uBounty)
+        return uBounty
+    }
+
+    async getUbounties(count) {
         let uBounties = new Array()
-        let numUbounties = await this.uBCContract.numUbounties()
-        for (let i=0; i < numUbounties; i++) {
-            let rawUBounty = await this.uBCContract.ubounties(i)
-            // Convert smart contract data into a plain object
-            let uBounty = {}
-            uBounty.numLeft = rawUBounty[0]
-            uBounty.numSubmissions = rawUBounty[1]
-            uBounty.hunterIndex = rawUBounty[2]
-            uBounty.creatorIndex = rawUBounty[3]
-            uBounty.bountyChestIndex = rawUBounty[4]
-            uBounty.deadline = rawUBounty[5]
-            uBounty.name = rawUBounty[6]
-            uBounty.description = rawUBounty[7]
-            uBounty.infoHash = rawUBounty[8]
-            // Set hunter
-            uBounty.index = i
-            uBounty.hunter = await this.uBCContract.hunterList(uBounty.hunterIndex)
-            // Get balance
-            let bc = await this.uBCContract.bCList(uBounty.bountyChestIndex)
-            let tokenBalance = await this.tokenContract.balanceOf(bc)
-            if (uBounty.numLeft != 0) {
-                tokenBalance = tokenBalance.div(uBounty.numLeft)
+        let numUbounties = await this.getNUbounties()
+        // Assert count <= numUBounties
+        count = Math.min(count, numUbounties)
+        for (let i=numUbounties-count; i < numUbounties; i++) {
+            let uBounty = await this.getUBounty(i)
+            if (uBounty != null && uBounty != undefined) {
+                uBounties.push(uBounty)
             }
-            uBounty.tokenBalanceRaw = tokenBalance
-            tokenBalance = utils.formatUnits(tokenBalance, this.tokenDecimals)
-            tokenBalance = utils.commify(tokenBalance)
-            uBounty.tokenBalance = tokenBalance.endsWith(".0") ? tokenBalance.replace(".0", "") : tokenBalance
-            uBounties.push(uBounty)
         }
         return uBounties
     }
@@ -170,14 +179,125 @@ export class DevcashBounty {
     async getBountySubmissions(uBounty) {
         let submissions = new Array()
         for (let i=0; i < uBounty.numSubmissions; i++) {
-            submission = new Object()
-            submission.submissionString = await uBCContract.getSubmissionString(uBounty.index, i)
-            submission.submissionHash = await uBCContract.getSubmissionHash(uBounty.index, i)
-            let submitterIndex = await uBCContract.getSubmitter(uBounty.index, i)
-            submission.submitter = await uBCContract.hunterList(submitterIndex)
-            submissions.push(submission)            
+            let submission = {}
+            let subRaw = await this.uBCContract.getSubmission(uBounty.index, i)
+            submission.index = i
+            submission.submissionString = subRaw[0]
+            submission.submitterIndex = subRaw[1]
+            submission.approved = subRaw[2]
+            submission.numRevisions = subRaw[3]
+            if (submission.numRevisions > 0) {
+                submission.revisions = await this.getSubmissionRevisions(uBounty, submission)
+            } else {
+                submission.revisions = []
+            }
+            submissions.push(submission)
         }
         return submissions
+    }
+
+    async getSubmissionRevisions(uBounty, submission) {
+        let revisions = new Array()
+        for (let i=0; i < submission[3]; i++) {
+            let revision = {}
+            revision.index = i
+            revision.revision = await this.uBCContract.getRevision(uBounty.index, submission.index, revision.index)
+            revisions.push(revision)            
+        }
+        return revisions
+    }
+
+    async hashUbounty(uBounty) {
+        const creator = uBounty.creator, title = uBounty.title, description = uBounty.description, hunter = uBounty.hunter
+        const hash = crypto.createHash("sha256").update(creator).update(title).update(description)
+        return hunter != undefined && hunter != null ? hash.update(hunter).digest("hex") : hash.digest("hex")
+    }
+
+    async hashSubmission(submission) {
+        const creator = submission.creator, data = submission.data, ubounty_id = submission.ubounty_id
+        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).digest("hex")
+        return hash
+    }
+
+    async hashRevision(revision) {
+        const creator = revision.creator, data = revision.data, ubounty_id = revision.ubounty_id, submission_id = revision.submission_id
+        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).update(submission_id).digest("hex")
+        return hash
+    }
+
+    // Create uBounty object and add hash
+    async createUBounty(creator, title, description, contactName, contactEmail, hunter = undefined) {
+        let hasHunter = hunter != null && hunter != undefined
+        try {
+            utils.getAddress(creator);
+        } catch (e) { throw new InvalidAddressError("Creator address is invalid"); }
+        if (!emailRegexp.test(contactEmail)) {
+            throw new InvalidEmailError("Contact email is invalid")
+        }
+        if (hasHunter) {
+            try {
+                utils.getAddress(hunter);
+            } catch (e) { throw new InvalidHunterAddressError("Hunter address is invalid"); }
+        }
+        let ubounty = {
+            creator: creator,
+            title: title,
+            description: description,
+            contactName: contactName,
+            contactEmail: contactEmail
+        }
+        if (hasHunter) {
+            uBounty.hunter = hunter
+        }
+        uBounty.hash = this.hashUbounty(ubounty)
+        return uBounty
+    }
+
+    // Create submission object and add hash
+    async createSubmission(creator, data, ubounty_id) {
+        try {
+            utils.getAddress(creator);
+        } catch (e) { throw new InvalidAddressError("Creator address is invalid"); }
+        let submission = {
+            creator: creator,
+            data: data,
+            ubounty_id: ubounty_id
+        }
+        submission.hash = this.hashSubmission(submission)
+        return submission
+    }
+
+    // Create revision object and add hash
+    async createRevision(creator, data, ubounty_id, submission_id) {
+        try {
+            utils.getAddress(creator);
+        } catch (e) { throw new InvalidAddressError("Creator address is invalid"); }
+        let revision = {
+            creator: creator,
+            data: data,
+            ubounty_id: ubounty_id,
+            submission_id: submission_id
+        }
+        revision.hash = this.hashRevision(revision)
+        return revision
+    }
+
+    // Get balances
+    async getETHBalance(){
+        let ethBalance = await this.signer.getBalance()
+        ethBalance = utils.formatEther(ethBalance)
+        ethBalance = utils.commify(ethBalance)
+        let devcashBalance = await this.tokenContract.balanceOf(signer._address)
+        devcashBalance = ethers.utils.formatUnits(devcashBalance,this.tokenDecimals)
+        devcashBalance = ethers.utils.commify(devcashBalance)        
+        let approvedBalance = await this.tokenContract.allowance(signer._address, this.uBCAddress)
+        approvedBalance = ethers.utils.formatUnits(approvedBalance,this.tokenDecimals)
+        approvedBalance = ethers.utils.commify(approvedBalance)           
+        return {
+            eth: ethBalance,
+            devcash: devcashBalance,
+            approved: approvedBalance
+        }
     }
 }
 
