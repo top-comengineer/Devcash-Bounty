@@ -116,7 +116,7 @@
           class="flex flex-col"
         >
           <!-- Search Text and Search Bar -->
-          <h4 class="text-lg font-bold">Search</h4>
+          <h4 class="text-lg font-bold">{{$t("bountyPlatform.explore.sidebar.searchHeader")}}</h4>
           <div class="flex flex-row relative mt-2">
             <Icon
               :colorClass="{'text-dtPrimary': isSearchFocused,'text-dtText': $store.state.theme.dt && !isSearchFocused, 'text-ltText': !$store.state.theme.dt && !isSearchFocused}"
@@ -129,19 +129,39 @@
               :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary border-dtText':'bg-ltBackgroundSecondary border-ltText']"
               class="w-full font-bold border-2 focus:border-dtPrimary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1_5"
               type="text"
-              placeholder="Bounty name"
+              :placeholder="$t('bountyPlatform.explore.sidebar.searchPlaceholder')"
             />
           </div>
           <!-- Sort Text and Sort Options -->
-          <h4 class="text-lg font-bold mt-8">Sort</h4>
-          <RadioButton checked="checked" class="mt-3" name="exploreRadioGroup" text="Most Recent" />
-          <RadioButton class="mt-3" name="exploreRadioGroup" text="Highest Value" />
-          <RadioButton class="mt-3" name="exploreRadioGroup" text="Expiry" />
+          <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.sortHeader")}}</h4>
+          <RadioButton
+            checked="checked"
+            class="mt-3"
+            name="exploreRadioGroup"
+            :text="$t('bountyPlatform.explore.sidebar.sortRecency')"
+          />
+          <RadioButton
+            class="mt-3"
+            name="exploreRadioGroup"
+            :text="$t('bountyPlatform.explore.sidebar.sortValue')"
+          />
+          <RadioButton
+            class="mt-3"
+            name="exploreRadioGroup"
+            :text="$t('bountyPlatform.explore.sidebar.sortExpiry')"
+          />
           <!-- Status Text and Status Options -->
-          <h4 class="text-lg font-bold mt-8">Status</h4>
-          <CheckmarkButton checked="checked" class="mt-3" text="Active" />
-          <CheckmarkButton class="mt-3" text="Completed" />
-          <CheckmarkButton class="mt-3" text="Expired" />
+          <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.statusHeader")}}</h4>
+          <CheckmarkButton
+            checked="checked"
+            class="mt-3"
+            :text="$t('bountyPlatform.explore.sidebar.statusActive')"
+          />
+          <CheckmarkButton
+            class="mt-3"
+            :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
+          />
+          <CheckmarkButton class="mt-3" :text="$t('bountyPlatform.explore.sidebar.statusExpired')" />
         </div>
         <!-- If context is Post, Overview, Bounty Hunter or Bounty Manager -->
         <div
@@ -149,25 +169,27 @@
           class="flex flex-col"
         >
           <!-- Balance Text -->
-          <h5 class="text-sm opacity-75">Balance</h5>
+          <h5 class="text-sm opacity-75">{{$t('bountyPlatform.sidebarContextual.balance') }}</h5>
           <h4 class="font-extrabold text-lg mt-1 break-all">{D}12,700,000</h4>
           <!-- Balance in Devcash -->
-          <h5 class="text-sm mt-6 opacity-75">Approved Balance</h5>
+          <h5
+            class="text-sm mt-6 opacity-75"
+          >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</h5>
           <h4 class="font-extrabold text-dtPrimary text-xl mt-1 break-all">{D}2,650,000</h4>
           <!-- Amount to Approve  -->
-          <h5 class="font-bold mt-6">Amount to Approve</h5>
+          <h5 class="font-bold mt-6">{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
           <!-- Amount Input -->
           <input
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
-            placeholder="Enter an amount"
+            :placeholder="$t('bountyPlatform.sidebarContextual.amountToApprovePlaceholder')"
           />
           <!-- Approve Button -->
           <button
             :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
             class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
-          >Approve</button>
+          >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
         </div>
         <!-- If context is Single Bounty -->
         <div
@@ -188,7 +210,7 @@
               :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
               class="h-5 w-5"
             />
-            <h5 class="ml-1">Go Back</h5>
+            <h5 class="ml-1">{{$t('bountyPlatform.sidebarContextual.buttonGoBack')}}</h5>
           </nuxt-link>
         </div>
       </div>
@@ -219,9 +241,9 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: "devcashData/isLoggedIn",
+      isLoggedIn: "devcashData/isLoggedIn"
     })
-  }  
+  }
 };
 </script>
 <style>

@@ -176,6 +176,14 @@
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
     },
+    "sidebarContextual": {
+      "balance": "Balance",
+      "approvedBalance": "Approved Balance",
+      "amountToApprove": "Amount to Approve",
+      "amountToApprovePlaceholder": "Enter an amount",
+      "buttonApprove": "Approve",
+      "buttonGoBack": "Go Back"
+    },
     "statusTag": {
       "pending": "Pending",
       "rejected": "Rejected",
