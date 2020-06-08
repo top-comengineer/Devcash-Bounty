@@ -15,7 +15,10 @@
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
         >
           <transition name="modalTransition">
-            <SubmissionModal v-if="isSubmissionModalContentVisible" :closeModal="() => this.isSubmissionModalOpen = false" />
+            <SubmissionModal
+              v-if="isSubmissionModalContentVisible"
+              :closeModal="() => this.isSubmissionModalOpen = false"
+            />
           </transition>
         </div>
       </div>
@@ -35,7 +38,10 @@
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
         >
           <transition name="modalTransition">
-            <ContributeModal v-if="isContributeModalContentVisible" :closeModal="() => this.isContributeModalOpen = false" />
+            <ContributeModal
+              v-if="isContributeModalContentVisible"
+              :closeModal="() => this.isContributeModalOpen = false"
+            />
           </transition>
         </div>
       </div>
@@ -53,16 +59,14 @@
         <h1 class="font-extrabold text-2xl md:text-3xl">{{ bounty.title }}</h1>
         <!-- Avatar & Address -->
         <div class="flex flex-row items-center mt-1">
-          <Jazzicon
-            class="flex"
-            :diameter="24"
-            :address="bounty.bountyChest"
-          />
-          <h3 class="font-mono-jet font-medium text-lg md:text-xl ml-2">{{
+          <Jazzicon class="flex" :diameter="24" :address="bounty.bountyChest" />
+          <h3 class="font-mono-jet font-medium text-lg md:text-xl ml-2">
+            {{
             bounty.bountyChest.substring(0, 6) +
             "..." +
             bounty.bountyChest.substring(bounty.bountyChest.length - 4)
-          }}</h3>
+            }}
+          </h3>
         </div>
       </div>
       <!-- Bounty Amount in Devcash, ETH & USD -->
@@ -87,9 +91,7 @@
         class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
       >
         <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
-        <p class="mt-2 leading-loose">
-            {{ bounty.description }}
-        </p>
+        <p class="mt-2 leading-loose">{{ bounty.description }}</p>
       </div>
       <!-- Divider -->
       <div class="w-4 hidden md:block"></div>
@@ -121,7 +123,9 @@
               type="award"
             />
             <h6 class="text-sm">
-              <span class="font-bold">{{ this.bounty.submissions.length + ' of ' + this.bounty.numLeft }}</span>
+              <span
+                class="font-bold"
+              >{{ this.bounty.submissions.length + ' of ' + this.bounty.numLeft }}</span>
               <span class="opacity-75">
                 {{
                 $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -354,7 +358,7 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
-import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
@@ -398,48 +402,54 @@ export default {
             this.$store.commit("devcashData/setProvider", null);
             this.$store.commit("devcashData/setLoggedInAccount", null);
             this.$store.commit("devcash/setConnector", null);
-            this.initEthConnector()
+            this.initEthConnector();
           } else {
             alert(`Unknown error ${e}`);
-            throw e
+            throw e;
           }
         }
       }
-    },      
+    },
     autoGrow() {
       this.$refs.commentArea.style.height = "5px";
       this.$refs.commentArea.style.height =
         this.$refs.commentArea.scrollHeight + "px";
     },
     formatAmount() {
-        let tokenDecimals = 8
-        if (!this.$store.state.devcash.connector) {
-            this.initEthConnector()
-        } else {
-            tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
-        }
-        return DevcashBounty.formatAmount(this.bounty, tokenDecimals)
+      let tokenDecimals = 8;
+      if (!this.$store.state.devcash.connector) {
+        this.initEthConnector();
+      } else {
+        tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
+      }
+      return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
     },
     formatTimeLeft() {
-        return DevcashBounty.formatTimeLeft(this.bounty)
-    } 
+      return DevcashBounty.formatTimeLeft(this.bounty);
+    }
   },
   asyncData({ error, params, $axios }) {
-    return $axios.get(`/bounty/one?id=${params.id}`).then(res => {
-      return {
-        bounty: res.data
-      };
-    }).catch(e => {
-        return error({ statusCode: 404, message: `Bounty "${params.id}" not found` })
-    })
-  },  
+    return $axios
+      .get(`/bounty/one?id=${params.id}`)
+      .then(res => {
+        return {
+          bounty: res.data
+        };
+      })
+      .catch(e => {
+        return error({
+          statusCode: 404,
+          message: `Bounty "${params.id}" not found`
+        });
+      });
+  },
   data() {
     return {
       activeTab: "submissions",
       isSubmissionModalContentVisible: false,
       isContributeModalContentVisible: false,
       isSubmissionModalOpen: false,
-      isContributeModalOpen: false,
+      isContributeModalOpen: false
     };
   },
   beforeMount() {
@@ -464,10 +474,10 @@ export default {
   transform-origin: center top;
 }
 .modalBgTransition-enter-active {
-  transition: all 0.1s ease-out;
+  transition: all 0.075s ease-out;
 }
 .modalBgTransition-leave-active {
-  transition: all 0.1s ease-out;
+  transition: all 0.075s ease-out;
 }
 .modalBgTransition-enter {
   opacity: 0;
@@ -483,10 +493,10 @@ export default {
 }
 .modalTransition-enter {
   opacity: 0;
-  transform: scale(0.75);
+  transform: scale(0.85);
 }
 .modalTransition-leave-to {
   opacity: 0;
-  transform: scale(0.75);
+  transform: scale(0.85);
 }
 </style>
