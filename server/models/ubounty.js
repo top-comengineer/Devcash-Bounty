@@ -31,6 +31,22 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
     },
+    deadline: {
+        type: DataTypes.BIGINT,
+        allowNull: false
+    },
+    numLeft: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+    },
+    bountyChest: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    bountyAmount: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     // The hash of this uBounty data
     hash: {
         type: DataTypes.STRING,

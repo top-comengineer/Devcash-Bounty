@@ -7,7 +7,7 @@
       @after-leave="isSubmissionModalContentVisible=false"
     >
       <div
-        v-if="$store.state.general.isSubmissionModalOpen"
+        v-if="isSubmissionModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
         class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
       >
@@ -15,7 +15,7 @@
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
         >
           <transition name="modalTransition">
-            <SubmissionModal v-if="isSubmissionModalContentVisible" />
+            <SubmissionModal v-if="isSubmissionModalContentVisible" :closeModal="() => this.isSubmissionModalOpen = false" />
           </transition>
         </div>
       </div>
@@ -27,7 +27,7 @@
       @after-leave="isContributeModalContentVisible=false"
     >
       <div
-        v-if="$store.state.general.isContributeModalOpen"
+        v-if="isContributeModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
         class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
       >
@@ -35,7 +35,7 @@
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
         >
           <transition name="modalTransition">
-            <ContributeModal v-if="isContributeModalContentVisible" />
+            <ContributeModal v-if="isContributeModalContentVisible" :closeModal="() => this.isContributeModalOpen = false" />
           </transition>
         </div>
       </div>
@@ -50,15 +50,19 @@
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
         <!-- Header -->
-        <h1 class="font-extrabold text-2xl md:text-3xl">Devcash Frontend</h1>
+        <h1 class="font-extrabold text-2xl md:text-3xl">{{ bounty.title }}</h1>
         <!-- Avatar & Address -->
         <div class="flex flex-row items-center mt-1">
           <Jazzicon
             class="flex"
             :diameter="24"
-            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+            :address="bounty.bountyChest"
           />
-          <h3 class="font-mono-jet font-medium text-lg md:text-xl ml-2">0xFD611...4F2d</h3>
+          <h3 class="font-mono-jet font-medium text-lg md:text-xl ml-2">{{
+            bounty.bountyChest.substring(0, 6) +
+            "..." +
+            bounty.bountyChest.substring(bounty.bountyChest.length - 4)
+          }}</h3>
         </div>
       </div>
       <!-- Bounty Amount in Devcash, ETH & USD -->
@@ -66,7 +70,7 @@
         <!-- Bounty Amount in Devcash -->
         <h2
           class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
-        >{{ '{D}' + '15,000,000' }}</h2>
+        >{{ '{D}' + formatAmount() }}</h2>
         <!-- Bounty Amount in ETH & USD -->
         <h3
           class="text-lg md:text-xl text-left md:text-right mt-1"
@@ -84,15 +88,7 @@
       >
         <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
         <p class="mt-2 leading-loose">
-          The goal for this project is to develop a new frontend for the Devcash platform.
-          <br />The frontend should utilize Ether.js to connect to the Ethereum blockchain using MetaMask and various other wallets. Creating, managing, and claiming bounties should be decentralized and occur on the Ethereum blockchain. Any off-chain functionality should be implemented using an already existing backend.
-          <br />
-          <br />Requirements:
-          <br />- The frontend should consist of 2 main sections: 1- A home page where the features of Devcash and Devcash Bounty Platform is explains, 2- Devcash Bounty Platform, where users can create bounties using Devcash or hunt bounties and earn Devcash.
-          - In the Devcash Bounty Platform section, users should be able to create, post or search bounties. Each bounty should have its dedicated page displaying information such as bounty name, total bounty in DEV, USD and ETH, time remaining, project description etc.
-          <br />
-          <br />Project timeline:
-          This project should be done in less than 5 months.
+            {{ bounty.description }}
         </p>
       </div>
       <!-- Divider -->
@@ -107,11 +103,11 @@
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
           <button
-            @click="$store.commit('general/openSubmissionModal')"
+            @click="isSubmissionModalOpen = true"
             class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
-            @click="$store.commit('general/openContributeModal')"
+            @click="isContributeModalOpen = true"
             class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText btn-textSecondary border-2 border-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
         </div>
@@ -125,7 +121,7 @@
               type="award"
             />
             <h6 class="text-sm">
-              <span class="font-bold">{{ '1' + ' of ' + '1' }}</span>
+              <span class="font-bold">{{ this.bounty.submissions.length + ' of ' + this.bounty.numLeft }}</span>
               <span class="opacity-75">
                 {{
                 $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -141,7 +137,7 @@
               type="clock"
             />
             <h6 class="text-sm">
-              <span class="font-bold">{{ "2 months"}}</span>
+              <span class="font-bold">{{ formatTimeLeft() }}</span>
               <span class="opacity-75">
                 {{
                 $t("bountyPlatform.bountyCard.remaining")
@@ -155,9 +151,9 @@
           <h5 class="text-lg font-bold">{{$t("bountyPlatform.singleBounty.createdBy")}}</h5>
           <!-- Creator Card -->
           <CreatorCard
-            name="Antoine De Vuyst"
-            email="antoine@devcash.xyz"
-            address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+            :name="bounty.contactName"
+            :email="bounty.contactEmail"
+            :address="bounty.creator"
           />
         </div>
       </div>
@@ -358,6 +354,7 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
@@ -386,17 +383,63 @@ export default {
     ContributeModal
   },
   methods: {
+    async initEthConnector() {
+      if (this.$store.state.devcash.connector == null) {
+        try {
+          let connector = await DevcashBounty.init(
+            this.$store.state.devcashData.loggedInAccount,
+            this.$store.state.devcashData.provider
+          );
+          this.$store.commit("devcash/setConnector", connector);
+        } catch (e) {
+          // TODO - handle these correctly
+          if (e instanceof AccountNotFoundError) {
+            // TODO - re-use this sign out logic, maybe add an alert to tell them they're signed out?
+            this.$store.commit("devcashData/setProvider", null);
+            this.$store.commit("devcashData/setLoggedInAccount", null);
+            this.$store.commit("devcash/setConnector", null);
+            this.initEthConnector()
+          } else {
+            alert(`Unknown error ${e}`);
+            throw e
+          }
+        }
+      }
+    },      
     autoGrow() {
       this.$refs.commentArea.style.height = "5px";
       this.$refs.commentArea.style.height =
         this.$refs.commentArea.scrollHeight + "px";
-    }
+    },
+    formatAmount() {
+        let tokenDecimals = 8
+        if (!this.$store.state.devcash.connector) {
+            this.initEthConnector()
+        } else {
+            tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+        }
+        return DevcashBounty.formatAmount(this.bounty, tokenDecimals)
+    },
+    formatTimeLeft() {
+        return DevcashBounty.formatTimeLeft(this.bounty)
+    } 
   },
+  asyncData({ error, params, $axios }) {
+    return $axios.get(`/bounty/one?id=${params.id}`).then(res => {
+      return {
+        bounty: res.data
+      };
+    }).catch(e => {
+        return error({ statusCode: 404, message: `Bounty "${params.id}" not found` })
+    })
+  },  
   data() {
     return {
       activeTab: "submissions",
       isSubmissionModalContentVisible: false,
-      isContributeModalContentVisible: false
+      isContributeModalContentVisible: false,
+      isSubmissionModalOpen: false,
+      isContributeModalOpen: false,
     };
   },
   beforeMount() {

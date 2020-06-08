@@ -49,6 +49,10 @@ class EtherClient {
         return (await this.uBCContract.numUbounties()).toNumber()
     }
 
+    async getBountyChest(id) {
+        return await this.uBCContract.bCList(id)
+    }
+
     async getUBounty(id) {
         let rawUBounty = await this.uBCContract.ubounties(id)
         if (rawUBounty == null || rawUBounty == undefined) {
@@ -66,6 +70,8 @@ class EtherClient {
         uBounty.description = rawUBounty[7]
         uBounty.infoHash = rawUBounty[8]
         uBounty.index = id
+        uBounty.bc = await this.getBountyChest(id)
+        uBounty.amount = (await this.tokenContract.balanceOf(uBounty.bc)).toString()
         // Get submissions
         uBounty.submissions = await this.getBountySubmissions(uBounty)
         return uBounty

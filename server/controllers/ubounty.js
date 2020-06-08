@@ -1,6 +1,6 @@
 const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
-const models  = require('../models');
+const { UBounty, UBountyStaged, Op }  = require('../models');
 const crypto = require('crypto');
 
 // POST new bounty
@@ -12,12 +12,11 @@ const crypto = require('crypto');
   "description": "Hello my bounty",
   "hunter": "0x...", // Optional
   "contactName": "Jeff",
-  "contactEmail": "jeff@gmail.com"  
+  "contactEmail": "jeff@gmail.com",
 }
 */
 
 // ubounties?page=1&limit=10
-//TODO - add hunter param
 module.exports.getUBounties = async (req, res, next) => {
   try {
     // Access the provided 'page' and 'limit' query parameters
@@ -27,17 +26,56 @@ module.exports.getUBounties = async (req, res, next) => {
     }
     let limit = parseInt(req.query.limit) || 1000; 
     let offset = 0 + (page - 1) * limit
+    let hunter = req.query.hunter
+    let hunterQuery
+    try {
+      hunter = utils.getAddress(hunter)
+      hunterQuery = {[Op.or]: [hunter, null]}
+    } catch (e) {
+      hunterQuery = {[Op.eq]: null}
+    }
     // Get uBounties
-    let result = await models.UBounty.findAndCountAll({
+    let result = await UBounty.findAndCountAll({
       offset: offset,
       limit: limit,
       order: [
           ['createdAt', 'DESC']
       ],
+      where: {
+        hunter: hunterQuery
+      },
       include: ['submissions', 'revisions']
     })
     return res.status(200).json(
       result.rows
+    )
+  } catch(err) {
+    console.log(err)
+    res.status(500).json({ error: "Unable to retrieve bounties" });
+    return next(err)
+  }
+}
+
+module.exports.getUBounty = async (req, res, next) => {
+  try {
+    let id = parseInt(req.query.id) || null;
+    if (id == null) {
+      return res.status(422).json({ error: "id parameter is required" });
+    }
+    // Get uBounties
+    let result = await UBounty.findOne({
+      where: {
+        id: {[Op.eq]: id}
+      },
+      include: ['submissions', 'revisions']
+    })
+    if (result == null) {
+      return res.status(404).json(
+        {"error":"bounty not found"}
+      )
+    }
+    return res.status(200).json(
+      result
     )
   } catch(err) {
     console.log(err)
@@ -58,7 +96,7 @@ module.exports.createUBounty = async (req, res, next) => {
       const hash = crypto.createHash("sha256").update(creator).update(title).update(description)
       let hashHex = hunter != undefined ? hash.update(hunter).digest("hex") : hash.digest("hex")
 
-      let bounty = await models.UBountyStaged.create({
+      let bounty = await UBountyStaged.create({
         creator: creator,
         title: title,
         description: description,

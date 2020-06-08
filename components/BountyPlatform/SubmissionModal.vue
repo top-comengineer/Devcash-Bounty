@@ -10,7 +10,7 @@
         @mouseleave="isCloseHovered=false"
         @focus="isCloseFocused=true"
         @blur="isCloseFocused=false"
-        @click="$store.commit('general/closeSubmissionModal')"
+        @click="closeModal()"
         :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary'"
         class="fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
       >
@@ -128,6 +128,9 @@ export default {
     GreetingCard,
     CTACard,
     Icon
+  },
+  props: {
+    closeModal: Function
   },
   data() {
     return {

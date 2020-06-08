@@ -30,6 +30,7 @@ module.exports = {
    ** Plugins to load before mounting the App
    */
   plugins: [
+    { src: '~/plugins/vue-qr.js', ssr: false },
     { src: '~/plugins/global-mixin.js' },
     { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
     { src: '~/plugins/local-storage.client.js' },

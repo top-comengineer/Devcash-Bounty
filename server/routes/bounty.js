@@ -13,4 +13,9 @@ router.get(
   uBountyController.getUBounties,
 )
 
+router.get(
+  '/one', 
+  uBountyController.getUBounty,
+)
+
 module.exports = router;

@@ -14,7 +14,7 @@
         @mouseleave="isCloseHovered = false"
         @focus="isCloseFocused = true"
         @blur="isCloseFocused = false"
-        @click="$store.commit('general/closeContributeModal')"
+        @click="closeModal()"
         :class="
           $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary'
@@ -177,6 +177,9 @@ export default {
     CTACard,
     Icon
   },
+  props: {
+    closeModal: Function
+  },  
   data() {
     return {
       isCloseHovered: false,

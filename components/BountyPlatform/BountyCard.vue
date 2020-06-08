@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="getLocalizedRoute('bountyplatform-bounty')"
+    :to="getLocalizedRoute({name:'bountyplatform-bounty-id', params: {id: bounty.id}})"
     :class="{
       'bg-dtBackgroundSecondary border-dtBackgroundSecondary border-dtBackgroundSecondary': $store.state.theme.dt && !type,
       'bg-ltBackgroundSecondary shadow-lg border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && !type,
@@ -13,17 +13,17 @@
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start px-4">
       <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
       <div class="flex flex-row items-center mt-1">
-        <Jazzicon class="flex" :diameter="20" :address="bounty.hunter" />
+        <Jazzicon class="flex" :diameter="20" :address="bounty.bountyChest" />
         <h5 class="font-mono-jet text-md text-left ml-2 opacity-75">
           <span class="font-medium">
             {{
-            bounty.hunter.substring(0, 6) +
+            bounty.bountyChest.substring(0, 6) +
             "..." +
-            bounty.hunter.substring(bounty.hunter.length - 4)
+            bounty.creator.substring(bounty.bountyChest.length - 4)
             }}
           </span>
           <span
-            v-if="bounty.hunter==selfAddress"
+            v-if="this.isLoggedIn && bounty.hunter == this.loggedInAccount"
             class="font-mono-jet text-sm opacity-50"
           >({{$t('bountyPlatform.bountyHunter.you')}})</span>
         </h5>
@@ -46,7 +46,7 @@
           type="award"
         />
         <h6 class="text-right text-sm">
-          <span class="font-bold">{{ `${bounty.numSubmissions} of ${bounty.numLeft}` }}</span>
+          <span class="font-bold">{{ `${bounty.submissions.length} of ${bounty.numLeft}` }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -75,7 +75,7 @@
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
       <h4
         class="text-dtPrimary font-extrabold text-xl text-left md:text-right"
-      >{D}{{bounty.devAmount?bounty.devAmount:'1,000'}}</h4>
+      >{D}{{ formatAmount() }}</h4>
       <h5
         class="text-lg text-left md:text-right mt-1"
       >Ξ{{bounty.ethAmount?bounty.ethAmount:'1'}} / ${{bounty.usdAmount?bounty.devAmount:'1' }}</h5>
@@ -90,6 +90,9 @@
 <script>
 import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
+import { mapGetters } from "vuex";
+import { utils } from 'ethers'
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 export default {
   components: {
     Icon,
@@ -99,39 +102,20 @@ export default {
     bounty: null,
     type: null
   },
-  data() {
-    return {
-      // Address of the signed in account
-      selfAddress: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-    };
-  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    })
+  },  
   methods: {
+    formatAmount() {
+      return DevcashBounty.formatAmount(this.bounty, this.$store.state.devcash.connector.tokenDecimals || 8)
+    },
     formatTimeLeft() {
-      if (
-        this.bounty.deadline >= 281474976710655 ||
-        this.bounty.deadline <= 0
-      ) {
-        return "∞";
-      }
-
-      const currentDate = new Date();
-      const deadlineDate = new Date(this.bounty.deadline * 1000);
-
-      const delta = deadlineDate.getTime() - currentDate.getTime();
-
-      if (delta >= 2629746) {
-        let monthsLeft = Math.floor(delta / 2629746);
-        return `${monthsLeft} months`;
-      } else if (delta >= 86400) {
-        let daysLeft = Math.floor(delta / 86400);
-        return `${daysLeft} days`;
-      } else if (delta >= 3600) {
-        let hoursLeft = Math.floor(delta / 3600);
-        return `${hoursLeft} hours`;
-      }
-      let minutesLeft = Math.floor(delta / 60);
-      return `${minutesLeft} minutes`;
-    }
+      return DevcashBounty.formatTimeLeft(this.bounty)
+    } 
   }
 };
 </script>

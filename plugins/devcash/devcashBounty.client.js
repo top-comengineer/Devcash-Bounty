@@ -42,6 +42,44 @@ export class DevcashBounty {
         return false
     }
 
+    static formatAmount(bounty, tokenDecimals) {
+        let delta = bounty.numLeft - bounty.submissions.length
+        if (delta <= 0) {
+            return "0"
+        }
+        let totalAmount = utils.bigNumberify(bounty.bountyAmount)
+        totalAmount = totalAmount.div(bounty.numLeft)
+        totalAmount = utils.formatUnits(totalAmount, tokenDecimals)
+        return totalAmount  
+    }
+
+    static formatTimeLeft(bounty) {
+        if (
+            bounty.deadline >= 281474976710655 ||
+            bounty.deadline <= 0
+        ) {
+            return "∞";
+        }
+
+        const currentDate = new Date();
+        const deadlineDate = new Date(bounty.deadline * 1000);
+
+        const delta = deadlineDate.getTime() - currentDate.getTime();
+
+        if (delta >= 2629746) {
+            let monthsLeft = Math.floor(delta / 2629746);
+            return `${monthsLeft} months`;
+        } else if (delta >= 86400) {
+            let daysLeft = Math.floor(delta / 86400);
+            return `${daysLeft} days`;
+        } else if (delta >= 3600) {
+            let hoursLeft = Math.floor(delta / 3600);
+            return `${hoursLeft} hours`;
+        }
+        let minutesLeft = Math.floor(delta / 60);
+        return `${minutesLeft} minutes`;
+    }
+
     /**
      * init() - connect to ethereum and initialize devcash contracts
      * @params account - logged in account
@@ -69,7 +107,7 @@ export class DevcashBounty {
             needsSigner = true
         } else if (walletProvider == WalletProviders.authereum) {
             // Authereum
-            const authereum = new Authereum('ropsten') // mainnet
+            const authereum = new Authereum(process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet")
             const authereumProvider = authereum.getProvider()
             await authereumProvider.enable()
             provider = new ethers.providers.Web3Provider(authereumProvider, process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet")
@@ -83,7 +121,7 @@ export class DevcashBounty {
             needsSigner = true
         } else {
             // Etherscan provider (no signer)
-            provider = new ethers.getDefaultProvider(process.env.NODE_ENV !== 'production' ? "ropsten" : undefined);
+            provider = new ethers.getDefaultProvider(process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet");
             needsSigner = false
         }
 
@@ -113,7 +151,7 @@ export class DevcashBounty {
             uBCContract = new ethers.Contract(uBCAddress,uBCABI,signer)
         } else {
             // Use default/etherscan provider
-            provider = new ethers.getDefaultProvider();
+            provider = new ethers.getDefaultProvider(process.env.NODE_ENV !== 'production' ? "ropsten" : "mainnet");
             tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider)
             uBCContract = new ethers.Contract(uBCAddress,uBCABI,provider)
         }
@@ -288,11 +326,11 @@ export class DevcashBounty {
         ethBalance = utils.formatEther(ethBalance)
         ethBalance = utils.commify(ethBalance)
         let devcashBalance = await this.tokenContract.balanceOf(signer._address)
-        devcashBalance = ethers.utils.formatUnits(devcashBalance,this.tokenDecimals)
-        devcashBalance = ethers.utils.commify(devcashBalance)        
+        devcashBalance = utils.formatUnits(devcashBalance,this.tokenDecimals)
+        devcashBalance = utils.commify(devcashBalance)        
         let approvedBalance = await this.tokenContract.allowance(signer._address, this.uBCAddress)
-        approvedBalance = ethers.utils.formatUnits(approvedBalance,this.tokenDecimals)
-        approvedBalance = ethers.utils.commify(approvedBalance)           
+        approvedBalance = utils.formatUnits(approvedBalance,this.tokenDecimals)
+        approvedBalance = utils.commify(approvedBalance)           
         return {
             eth: ethBalance,
             devcash: devcashBalance,

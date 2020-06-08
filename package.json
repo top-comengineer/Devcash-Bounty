@@ -6,6 +6,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon server/index.js --watch server",
+    "debug": "cross-env NODE_ENV=development DEBUG='nuxt:*' nodemon server/index.js --watch server",
     "build": "nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate"
@@ -23,7 +24,7 @@
     "jazzicon": "^1.5.0",
     "node-cron": "^2.0.3",
     "nodemon": "^2.0.4",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.12.2",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "redis-json": "^4.0.1",

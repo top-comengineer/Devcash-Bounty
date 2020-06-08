@@ -41,12 +41,10 @@
 <script>
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
-import VueQr from "vue-qr";
 export default {
   components: {
     Jazzicon,
-    Icon,
-    VueQr
+    Icon
   },
   props: {
     address: null,
