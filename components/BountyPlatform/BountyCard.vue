@@ -111,7 +111,11 @@ export default {
   },  
   methods: {
     formatAmount() {
-      return DevcashBounty.formatAmount(this.bounty, this.$store.state.devcash.connector.tokenDecimals || 8)
+      let tokenDecimals = 8
+      if (this.$store.state.devcash.connector) {
+          tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+      }   
+      return DevcashBounty.formatAmount(this.bounty, tokenDecimals)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty)
