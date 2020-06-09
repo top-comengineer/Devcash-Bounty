@@ -31,6 +31,7 @@
     "secure-ls": "^1.2.6",
     "sequelize": "^5.21.9",
     "sqlite3": "^4.2.0",
+    "vue-clickaway": "^2.2.2",
     "vue-qr": "^2.2.1",
     "vuex-persistedstate": "^3.0.0",
     "web3": "^1.2.6"

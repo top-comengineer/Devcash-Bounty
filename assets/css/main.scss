@@ -1,5 +1,8 @@
 @import "fonts.scss";
 @import "colors.scss";
+:root{
+  --var-color: rgba(128,128,255, 0.5)
+}
 .d-container {
   max-width: 1280px;
   width: 100%;

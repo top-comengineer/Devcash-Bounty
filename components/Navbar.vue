@@ -64,8 +64,8 @@
       <div class="relative">
         <!-- Language Button -->
         <button
-          @click="isLangModalOpen=!isLangModalOpen"
-          @blur="langBlur"
+          @click="toggleLangModal"
+          @keydown.esc.exact="hideLangModal"
           :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
         >
@@ -93,9 +93,12 @@
               class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
-                v-for="locale in supportedLocales"
+                v-for="(locale, index) in supportedLocales"
                 :key="locale.code"
-                @click="changeLang(locale); isLangModalOpen=false"
+                v-on-clickaway="hideLangModal"
+                @click="changeLang(locale); hideLangModal()"
+                @keydown.tab.exact="index+1 == supportedLocales.length?hideLangModal():null"
+                @keydown.esc.exact="hideLangModal"
                 :class="locale.code == $store.state.i18n.currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
@@ -147,8 +150,8 @@
       <div v-if="!isLoggedIn" class="hidden md:block relative">
         <!-- Sign In Button -->
         <button
-          @click="isSignInModalOpen=!isSignInModalOpen && !loggingInLoading"
-          @blur="signInBlur"
+          @click="toggleSignInModal"
+          @keydown.esc.exact="hideSignInModal"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
@@ -163,6 +166,7 @@
         <transition name="signInModalTransition">
           <!-- Modal Wrapper -->
           <div
+            v-on-clickaway="hideSignInModal"
             class="origin-top-right absolute right-0 pt-3"
             v-if="isSignInModalOpen && !loggingInLoading"
           >
@@ -175,6 +179,7 @@
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
                 class="flex flex-row items-center bg-dtOrange border-2 border-dtOrange hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.metamask)"
+                @keydown.esc.exact="hideSignInModal"
               >
                 <div
                   :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
@@ -197,6 +202,7 @@
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
                 class="flex flex-row items-center bg-dtBlue border-2 border-dtBlue hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.portis)"
+                @keydown.esc.exact="hideSignInModal"
               >
                 <div
                   :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
@@ -219,6 +225,8 @@
                 :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
                 class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.authereum)"
+                @keydown.esc.exact="hideSignInModal"
+                @keydown.tab.exact="hideSignInModal"
               >
                 <div
                   :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
@@ -243,8 +251,8 @@
       <div v-else class="hidden md:block relative">
         <!-- Avatar -->
         <button
-          @click="isSignOutModalOpen=!isSignOutModalOpen && !loggingInLoading"
-          @blur="signOutBlur"
+          @click="toggleSignOutModal"
+          @keydown.esc.exact="hideSignOutModal"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtText text-dtBackground btn-dtText'
@@ -261,6 +269,7 @@
         <transition name="signInModalTransition">
           <!-- Modal Wrapper -->
           <div
+            v-on-clickaway="hideSignOutModal"
             class="origin-top-right absolute right-0 pt-2"
             v-if="isSignOutModalOpen && !loggingInLoading"
           >
@@ -271,7 +280,7 @@
               <!-- Overview Button -->
               <nuxt-link
                 :to="getLocalizedRoute('bountyplatform-overview')"
-                @click="signOut()"
+                @keydown.esc.exact="hideSignInModal"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
@@ -288,6 +297,8 @@
               <!-- Sign Out Button -->
               <button
                 @click="signOut()"
+                @keydown.esc.exact="hideSignOutModal"
+                @keydown.tab.exact="hideSignOutModal"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
@@ -323,8 +334,10 @@ import {
   DevcashBounty,
   NoAccountsFoundError
 } from "~/plugins/devcash/devcashBounty.client";
+import { mixin as clickaway } from "vue-clickaway";
 
 export default {
+  mixins: [clickaway],
   components: {
     Logo,
     Icon,
@@ -333,26 +346,26 @@ export default {
     MobileDropdown
   },
   methods: {
+    toggleLangModal() {
+      this.isLangModalOpen = !this.isLangModalOpen;
+    },
+    hideLangModal() {
+      this.isLangModalOpen = false;
+    },
+    toggleSignInModal() {
+      this.isSignInModalOpen = !this.isSignInModalOpen;
+    },
+    hideSignInModal() {
+      this.isSignInModalOpen = false;
+    },
+    toggleSignOutModal() {
+      this.isSignOutModalOpen = !this.isSignOutModalOpen;
+    },
+    hideSignOutModal() {
+      this.isSignOutModalOpen = false;
+    },
     changeLang(locale) {
       this.$router.push(this.getSwitchLocaleRoute(locale.code));
-    },
-    signInBlur() {
-      // Delay blur to avoid interfering with button presses
-      setTimeout(() => {
-        this.isSignInModalOpen = false;
-      }, 50);
-    },
-    signOutBlur() {
-      // Delay blur to avoid interfering with button presses
-      setTimeout(() => {
-        this.isSignOutModalOpen = false;
-      }, 50);
-    },
-    langBlur() {
-      // Delay blur to avoid interfering with button presses
-      setTimeout(() => {
-        this.isLangModalOpen = false;
-      }, 50);
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
