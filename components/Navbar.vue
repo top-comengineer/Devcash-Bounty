@@ -1,6 +1,11 @@
 <template>
   <div class="w-full flex flex-row justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6">
-    <nuxt-link :to="localePath('index')">
+    <nuxt-link
+      :to="localePath('index')"
+      class="focus:scale-110 hover:scale-110 transform transition-transform duration-200"
+      @keydown.esc.exact="hideSignOutModal"
+      v-on:click.native="hideSignOutModal"
+    >
       <Logo class="w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
     <!-- Navbar items -->
@@ -280,7 +285,8 @@
               <!-- Overview Button -->
               <nuxt-link
                 :to="localePath('bountyplatform-overview')"
-                @click="signOut()"
+                @keydown.esc.exact="hideSignOutModal"
+                @click="hideSignOutModal"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
@@ -364,7 +370,7 @@ export default {
       this.isSignOutModalOpen = false;
     },
     changeLang(locale) {
-      this.$i18n.setLocaleCookie(locale)
+      this.$i18n.setLocaleCookie(locale);
       this.$router.replace(this.switchLocalePath(locale.code));
     },
     async signIn(provider) {
@@ -408,7 +414,7 @@ export default {
       this.$store.commit("devcashData/setProvider", null);
       this.$store.commit("devcashData/setLoggedInAccount", null);
       this.$store.commit("devcash/setConnector", null);
-      this.$router.replace('/');
+      this.$router.replace("/");
     }
   },
   computed: {
@@ -416,13 +422,13 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn"
     }),
-    availableLocales () {
-      return this.$i18n.locales
+    availableLocales() {
+      return this.$i18n.locales;
     },
-    currentLocale () {
+    currentLocale() {
       for (let locale of this.$i18n.locales) {
         if (locale.code == this.$i18n.locale) {
-          return locale
+          return locale;
         }
       }
     }
