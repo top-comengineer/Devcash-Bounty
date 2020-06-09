@@ -280,7 +280,7 @@
               <!-- Overview Button -->
               <nuxt-link
                 :to="getLocalizedRoute('bountyplatform-overview')"
-                @keydown.esc.exact="hideSignInModal"
+                @keydown.esc.exact="hideSignOutModal"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
