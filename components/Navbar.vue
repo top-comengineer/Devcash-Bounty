@@ -408,7 +408,7 @@ export default {
       this.$store.commit("devcashData/setProvider", null);
       this.$store.commit("devcashData/setLoggedInAccount", null);
       this.$store.commit("devcash/setConnector", null);
-      this.$router.replace('/');
+      this.$router.replace(this.localePath('/'));
     }
   },
   computed: {
