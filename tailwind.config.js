@@ -37,7 +37,20 @@ module.exports = {
       // Transparent
       transparent: "transparent",
       // Css variables
-      varColor: "var(--var-color)"
+      primary: "var(--primary)",
+      primaryLessSat: "var(--primaryLessSat)",
+      secondary: "var(--secondary)",
+      background: "var(--background)",
+      backgroundSec: "var(--backgroundSec)",
+      backgroundTer: "var(--backgroundTer)",
+      backgroundQua: "var(--backgroundQua)",
+      text: "var(--text)",
+      success: "var(--success)",
+      danger: "var(--danger)",
+      pending: "var(--pending)",
+      metamaskOrange: "var(--metamaskOrange)",
+      authereumRed: "var(--authereumRed)",
+      portisBlue: "var(--portisBlue)",
     },
     boxShadow: {
       none: "none",
