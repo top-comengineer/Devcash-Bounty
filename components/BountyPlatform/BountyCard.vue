@@ -1,6 +1,6 @@
 <template>
   <nuxt-link
-    :to="getLocalizedRoute({name:'bountyplatform-bounty-id', params: {id: bounty.id}})"
+    :to="localePath({name:'bountyplatform-bounty-id', params: {id: bounty.id}})"
     :class="{
       'bg-dtBackgroundSecondary border-dtBackgroundSecondary border-dtBackgroundSecondary': $store.state.theme.dt && !type,
       'bg-ltBackgroundSecondary shadow-lg border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && !type,

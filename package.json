@@ -15,6 +15,7 @@
     "@nuxtjs/axios": "^5.3.6",
     "@portis/web3": "^2.0.0-beta.54",
     "authereum": "0.0.4-beta.130",
+    "cookie-parser": "^1.4.5",
     "cross-env": "^7.0.2",
     "express": "^4.17.1",
     "express-validator": "^6.5.0",
@@ -22,9 +23,11 @@
     "ioredis": "^4.17.1",
     "ioredis-lock": "^4.0.0",
     "jazzicon": "^1.5.0",
+    "js-cookie": "^2.2.1",
     "node-cron": "^2.0.3",
     "nodemon": "^2.0.4",
     "nuxt": "^2.12.2",
+    "nuxt-i18n": "^6.12.2",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "redis-json": "^4.0.1",
@@ -33,7 +36,6 @@
     "sqlite3": "^4.2.0",
     "vue-clickaway": "^2.2.2",
     "vue-qr": "^2.2.1",
-    "vuex-persistedstate": "^3.0.0",
     "web3": "^1.2.6"
   },
   "devDependencies": {
@@ -41,7 +43,6 @@
     "ethers": "^4.0.45",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
-    "sequelize-cli": "^5.5.1",
-    "vue-i18n": "^8.15.6"
+    "sequelize-cli": "^5.5.1"
   }
 }

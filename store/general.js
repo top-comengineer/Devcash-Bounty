@@ -1,5 +1,3 @@
-import { SIDEBAR_CONTEXTS } from "~/config";
-
 export const state = () => ({
   sidebarContext: null
 });

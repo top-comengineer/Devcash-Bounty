@@ -25,7 +25,7 @@
           class="w-full flex flex-col justify-center items-center shadow-xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg px-4 py-4"
         >
           <!-- Home -->
-          <nuxt-link :to="getLocalizedRoute('index')" v-slot="{  navigate, href, isExactActive  }">
+          <nuxt-link :to="localePath('index')" v-slot="{  navigate, href, isExactActive  }">
             <a
               :class="[$store.state.theme.dt?'hover_bg-dtBackground-15 focus_bg-dtBackground-15': 'hover_bg-ltBackground-15 focus_bg-ltText-15']"
               @click="navigate"
@@ -43,7 +43,7 @@
           </nuxt-link>
           <!-- Bounty Platform -->
           <nuxt-link
-            :to="getLocalizedRoute('bountyplatform')"
+            :to="localePath('bountyplatform')"
             v-slot="{  navigate, href, isExactActive  }"
           >
             <a

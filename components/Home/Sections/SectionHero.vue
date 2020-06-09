@@ -24,7 +24,7 @@
             <nuxt-link
               :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2"
-              :to="getLocalizedRoute('bountyplatform')"
+              :to="localePath('bountyplatform')"
             >{{ $t("home.heroSection.ctaButton") }}</nuxt-link>
           </div>
         </div>

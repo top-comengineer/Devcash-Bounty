@@ -1,5 +1,3 @@
-const { generateRoutes } = require('./utils/router')
-
 module.exports = {
   mode: "universal",
   /*
@@ -16,7 +14,7 @@ module.exports = {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],   
   },
   /*
    ** Customize the progress-bar color
@@ -31,11 +29,7 @@ module.exports = {
    */
   plugins: [
     { src: '~/plugins/vue-qr.js', ssr: false },
-    { src: '~/plugins/global-mixin.js' },
-    { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
-    { src: '~/plugins/local-storage.client.js' },
-    { src: '~/plugins/encrypted-storage.client.js' },
-    { src: '~/plugins/devcash/devcashBounty.client.js' }
+    { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -49,7 +43,36 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    [
+      'nuxt-i18n',
+      {
+        seo: false,
+        locales: [
+          {
+            code: "en",
+            iso: "en",
+            name: "English",
+            file: 'en.json'
+          },
+          {
+            code: "zhHans",
+            iso: "zh-Hans",
+            name: "简化字",
+            file: 'zh-Hans.json'
+          }
+        ],
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected',
+          alwaysRedirect: true,
+          fallbackLocale: 'en'
+        },
+        lazy: true,
+        defaultLocale: 'en',
+        langDir: 'locales/'
+      }
+    ]   
   ],
   /*
    ** Axios module configuration
@@ -77,11 +100,6 @@ module.exports = {
     }
   },
   router: {
-    middleware: ['i18n'],
-    extendRoutes (routes) {
-      const newRoutes = generateRoutes(routes)
-      routes.splice(0, routes.length)
-      routes.unshift(...newRoutes)
-    }
-  },
+    middleware: ['theme', 'devcash']
+  }  
 };

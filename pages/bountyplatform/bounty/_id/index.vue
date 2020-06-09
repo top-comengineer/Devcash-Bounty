@@ -461,8 +461,8 @@ export default {
   },
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
-    this.$store.commit("general/closeSubmissionModal");
-    this.$store.commit("general/closeContributeModal");
+    this.isSubmissionModalOpen = false;
+    this.isContributeModalOpen = false;
   }
 };
 </script>

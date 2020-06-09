@@ -49,7 +49,7 @@ export class DevcashBounty {
         }
         let totalAmount = utils.bigNumberify(bounty.bountyAmount)
         totalAmount = totalAmount.div(bounty.numLeft)
-        totalAmount = utils.formatUnits(totalAmount, tokenDecimals)
+        totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals))
         return totalAmount  
     }
 

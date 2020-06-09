@@ -14,19 +14,19 @@
           <!-- Home -->
           <nuxt-link
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('index')"
+            :to="localePath('index')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.home") }}</nuxt-link>
           <!-- IBO -->
           <nuxt-link
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute({name: 'index', hash: '#IBO'})"
+            :to="localePath({name: 'index', hash: '#IBO'})"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.ibo") }}</nuxt-link>
           <!-- Bounty Platform-->
           <nuxt-link
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform')"
+            :to="localePath('bountyplatform')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
@@ -48,31 +48,35 @@
           <!-- Bounty Platform / Explore -->
           <nuxt-link
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform')"
+            :to="localePath('bountyplatform')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.exploreBounties") }}</nuxt-link>
           <!-- Bounty Platform / Post -->
           <nuxt-link
+            v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform-post')"
+            :to="localePath('bountyplatform-post')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
           <!-- Bounty Platform / Overview -->
           <nuxt-link
+            v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform-overview')"
+            :to="localePath('bountyplatform-overview')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.overview.header") }}</nuxt-link>
           <!-- Bounty Platform / Bounty Hunter -->
           <nuxt-link
+            v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform-bountyhunter')"
+            :to="localePath({name:'bountyplatform-bountyhunter-hunter', params: {hunter: loggedInAccount}})"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.bountyHunter.header") }}</nuxt-link>
           <!-- Bounty Platform / Bounty Manager -->
           <nuxt-link
+            v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="getLocalizedRoute('bountyplatform-bountymanager')"
+            :to="localePath({name:'bountyplatform-bountymanager-creator', params: {creator: loggedInAccount}})"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
         </div>
@@ -213,10 +217,19 @@
 <script>
 import Logo from "~/components/Logo.vue";
 import Icon from "~/components/Icon.vue";
+import { mapGetters } from "vuex";
+
 export default {
   components: {
     Logo,
     Icon
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    })
   },
   data: function() {
     return {

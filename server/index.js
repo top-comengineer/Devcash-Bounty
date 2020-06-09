@@ -1,5 +1,6 @@
 const express = require('express');
 const cron = require("node-cron");
+const cookieParser = require('cookie-parser')
 const { Nuxt, Builder } = require('nuxt')
 const { EtherClient } = require("./utils/ether_client")
 const { RedisDB } = require("./redis")
@@ -42,6 +43,8 @@ async function start() {
   app.use('/submission', submissionRouter);
   app.use('/revision', revisionRouter);
 
+  // Cookie parser
+  app.use(cookieParser())
   // Give nuxt middleware to express
   app.use(nuxt.render)
 

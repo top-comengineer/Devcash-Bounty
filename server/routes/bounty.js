@@ -14,6 +14,16 @@ router.get(
 )
 
 router.get(
+  '/listpersonal', 
+  uBountyController.getPersonalUbounties,
+)
+
+router.get(
+  '/listcreated', 
+  uBountyController.getCreatorUbounties,
+)
+
+router.get(
   '/one', 
   uBountyController.getUBounty,
 )

@@ -40,15 +40,19 @@ export default {
     Footer
   },
   head() {
+    const i18nSeo = this.$nuxtI18nSeo()
     return {
+      htmlAttrs: {
+        lang: this.$i18n.locale
+      },
+      meta: [
+        ...i18nSeo.meta
+      ],
       bodyAttrs: {
         class: this.$store.state.theme.dt
           ? "bg-dtBackground"
           : "bg-ltBackground"
-      },
-      htmlAttrs: {
-        lang: this.$store.state.i18n.currentLocale
-      }
+      },      
     };
   },
   data: function() {
