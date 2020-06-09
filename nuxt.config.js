@@ -3,28 +3,18 @@ module.exports = {
   /*
    ** Headers of the page
    */
-  head(c) {
-    const { req } = c.context
-    let bodyClass = ''
-    if (req && 'cookies' in req) {
-      bodyClass = req.cookies.devcash_theme === 'dark' ? 'bg-dtBackground' : 'bg-ltBackground'
-    }
-    return {
-      title: process.env.npm_package_name || "",
-      meta: [
-        { charset: "utf-8" },
-        { name: "viewport", content: "width=device-width, initial-scale=1" },
-        {
-          hid: "description",
-          name: "description",
-          content: process.env.npm_package_description || ""
-        }
-      ],
-      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
-      bodyAttrs: {
-        class: bodyClass
-      }      
-    }
+  head: {
+    title: process.env.npm_package_name || "",
+    meta: [
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
+      }
+    ],
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],   
   },
   /*
    ** Customize the progress-bar color
@@ -39,8 +29,7 @@ module.exports = {
    */
   plugins: [
     { src: '~/plugins/vue-qr.js', ssr: false },
-    { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
-    { src: '~/plugins/localStorage.client.js', ssr: false },
+    { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false }
   ],
   /*
    ** Nuxt.js dev-modules
@@ -109,5 +98,8 @@ module.exports = {
       video: ({ isDev }) =>
         isDev ? "[path][name].[ext]" : "videos/[name].[hash:7].[ext]"
     }
-  }
+  },
+  router: {
+    middleware: ['theme', 'devcash']
+  }  
 };

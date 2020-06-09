@@ -34,7 +34,6 @@
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
-import * as Cookies from "js-cookie";
 export default {
   components: {
     Navbar,
@@ -48,7 +47,12 @@ export default {
       },
       meta: [
         ...i18nSeo.meta
-      ]
+      ],
+      bodyAttrs: {
+        class: this.$store.state.theme.dt
+          ? "bg-dtBackground"
+          : "bg-ltBackground"
+      },      
     };
   },
   data: function() {
@@ -87,10 +91,6 @@ export default {
     this.navbarScroll();
   },
   mounted() {
-    // Set theme
-    if (Cookies.get("devcash_theme") == "light") {
-      this.$store.state.theme.dt = false;
-    }
     // Adding scroll event
     window.addEventListener("scroll", this.navbarScroll);
   },

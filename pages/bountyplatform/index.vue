@@ -88,7 +88,6 @@ export default {
         this.totalPages = 1
       }
       this.loading = false
-      this.$store.commit("devcashData/setBounties", this.bounties);
     }
   },
   mounted() {
