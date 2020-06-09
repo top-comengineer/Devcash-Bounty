@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 rounded-full transition-colors duration-200 py-0_5"
-  >
+  <div>
     <label class="checkbox-container flex flex-row items-center">
       <input :checked="checked" type="checkbox" :name="name" />
       <span
