@@ -414,11 +414,7 @@ export default {
       this.$store.commit("devcashData/setProvider", null);
       this.$store.commit("devcashData/setLoggedInAccount", null);
       this.$store.commit("devcash/setConnector", null);
-<<<<<<< HEAD
-      this.$router.replace("/");
-=======
-      this.$router.replace(this.localePath('/'));
->>>>>>> ed1d91d103e13dc5d1079a1c303cc3b577638081
+      this.$router.replace(this.localePath("/"));
     }
   },
   computed: {
