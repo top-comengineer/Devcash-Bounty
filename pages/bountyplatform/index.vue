@@ -13,7 +13,7 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { mapGetters } from "vuex";
-import Axios from 'axios'
+import Axios from "axios";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
@@ -60,34 +60,40 @@ export default {
             this.$store.commit("devcashData/setProvider", null);
             this.$store.commit("devcashData/setLoggedInAccount", null);
             this.$store.commit("devcash/setConnector", null);
-            this.initEthConnector()
+            this.initEthConnector();
           } else {
             alert(`Unknown error ${e}`);
-            throw e
+            throw e;
           }
         }
       }
     },
     async getBounties() {
-      await this.initEthConnector()
-      let key = `${this.page}:${this.perPage}:${this.isLoggedIn ? this.loggedInAccount: ''}`
+      await this.initEthConnector();
+      let key = `${this.page}:${this.perPage}:${
+        this.isLoggedIn ? this.loggedInAccount : ""
+      }`;
       if (key in this.hasPageMap) {
-        return this.hasPageMap[key]
+        return this.hasPageMap[key];
       }
-      let hunterParam = this.isLoggedIn ? `&hunter=${this.loggedInAccount}` : ''
-      let res = await Axios.get(`/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}`)
+      let hunterParam = this.isLoggedIn
+        ? `&hunter=${this.loggedInAccount}`
+        : "";
+      let res = await Axios.get(
+        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}`
+      );
       if (res.status != 200) {
         // TODO error handling
-        return
+        return;
       }
-      this.hasPageMap[key] = res.data
-      this.bounties = res.data
-      this.loading = false
+      this.hasPageMap[key] = res.data;
+      this.bounties = res.data;
+      this.loading = false;
       this.$store.commit("devcashData/setBounties", this.bounties);
     }
   },
   mounted() {
-    this.getBounties()
+    this.getBounties();
   },
   beforeMount() {
     // Set sidebar context
