@@ -35,7 +35,9 @@ module.exports = {
       ltDanger: "#990040",
       ltPending: "#CD8900",
       // Transparent
-      transparent: "transparent"
+      transparent: "transparent",
+      // Css variables
+      varColor: "var(--var-color)"
     },
     boxShadow: {
       none: "none",
