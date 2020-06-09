@@ -105,11 +105,11 @@
           <div class="flex flex-row flex-wrap my-2 mr-10">
             <div class="flex flex-col items-center mx-4">
               <h6 class="opacity-75 text-sm">Count</h6>
-              <h5 class="font-bold">6</h5>
+              <h5 class="font-bold">{{ totalBountyCount }}</h5>
             </div>
             <div class="flex flex-col items-center mx-4">
               <h6 class="opacity-75 text-sm">Amount</h6>
-              <h5 class="font-bold">{D}22,250,327</h5>
+              <h5 class="font-bold">{D}{{ totalBountyAmountDisplay }}</h5>
             </div>
           </div>
           <div class="flex flex-row flex-wrap my-3">
@@ -131,8 +131,9 @@
         />
       </div>
       <!-- Load More Button -->
-      <div class="flex flex-row justify-center mt-2">
+      <div v-if="hasMoreBounties && !bountiesLoading" class="flex flex-row justify-center mt-2">
         <button
+          @click="loadMoreBounties()"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
@@ -147,9 +148,14 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { utils } from "ethers";
+import Axios from "axios";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
+
+const defaultBountyLimit = 10
+
 export default {
   layout: "bountyPlatform",
   components: {
@@ -157,51 +163,55 @@ export default {
     BountyCard,
     CheckmarkButton
   },
-  data() {
-    return {
-      bounties: [
-        {
-          name: "Devcash Frontend",
-          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
-          numSubmissions: "1",
-          numLeft: "1",
-          deadline: "1586595900",
-          devAmount: "15,000,000",
-          ethAmount: "33.33",
-          usdAmount: "9000"
-        },
-        {
-          name: "Devcash Logo",
-          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
-          numSubmissions: "1",
-          numLeft: "1",
-          deadline: "1586598900",
-          devAmount: "1,250,000",
-          ethAmount: "2.778",
-          usdAmount: "750"
-        },
-        {
-          name: "Devcash Memes",
-          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
-          numSubmissions: "15",
-          numLeft: "20",
-          deadline: "1586592900",
-          devAmount: "12,500",
-          ethAmount: "0.0277",
-          usdAmount: "7.5"
-        },
-        {
-          name: "Devcash Event Feedback",
-          hunter: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d",
-          numSubmissions: "65",
-          numLeft: "100",
-          deadline: "1586599900",
-          devAmount: "833",
-          ethAmount: "0.00185",
-          usdAmount: "0.5"
+  asyncData({ error, params, $axios }) {
+    return $axios
+      .get(`/bounty/listcreated?page=1&limit=${defaultBountyLimit}&creator=${params.creator}`)
+      .then(res => {
+        let totalBountyAmount = utils.bigNumberify("0")
+        for (let bounty of res.data.items) {
+            totalBountyAmount = totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
         }
-      ]
-    };
+        let totalBountyAmountDisplay = utils.commify(utils.formatUnits(totalBountyAmount, 8))
+        return {
+          page: 1,
+          perPage: defaultBountyLimit,
+          bounties: res.data.items,
+          totalBountyCount: res.data.count,
+          totalBountyAmount: totalBountyAmount,
+          totalBountyAmountDisplay: totalBountyAmountDisplay,
+          creator: params.creator,
+          bountiesLoading: false,
+          hasMoreBounties: Math.floor(res.data.count / defaultBountyLimit) > 1
+        };
+      })
+      .catch(e => {
+        throw e
+        return error({
+          statusCode: e.response != undefined ? r.response.status : 500,
+          message: e.response != undefined && e.response.status == 422 ? `Address "${params.creator}" is invalid` : "Unknown error occured"
+        });
+      });
+    },
+    methods: {
+      async loadMoreBounties() {
+        this.page++
+        this.bountiesLoading = true;
+        try {
+            let res = await Axios.get(`/bounty/listcreated?page=${this.page}&limit=${defaultBountyLimit}&creator=${this.creator}`)
+            for (let bounty of res.data.items) {
+                this.totalBountyAmount = this.totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
+            }
+            this.totalBountyAmountDisplay = utils.commify(utils.formatUnits(this.totalBountyAmount, 8))
+            this.bounties.push(res.data.items)
+            this.totalBountyCount = res.data.count
+            this.totalBountyAmount
+            this.hasMoreBounties = Math.floor(res.data.count / defaultBountyLimit) > 1
+        } catch (e) {
+            this.page--
+        } finally {
+            this.bountiesLoading = false
+        }
+    }
   },
   beforeMount() {
     // Set sidebar context

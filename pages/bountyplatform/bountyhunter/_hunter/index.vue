@@ -113,11 +113,11 @@
           <div class="flex flex-row flex-wrap my-2 mr-10">
             <div class="flex flex-col items-center mx-4">
               <h6 class="opacity-75 text-sm">Count</h6>
-              <h5 class="font-bold">2</h5>
+              <h5 class="font-bold">{{ totalBountyCount }}</h5>
             </div>
             <div class="flex flex-col items-center mx-4">
               <h6 class="opacity-75 text-sm">Amount</h6>
-              <h5 class="font-bold">{D}2,075,000</h5>
+              <h5 class="font-bold">{D}{{ totalBountyAmountDisplay }}</h5>
             </div>
           </div>
           <div class="flex flex-row flex-wrap my-3">
@@ -137,28 +137,32 @@
           :bounty="item"
         />
       </div>
-      <!-- Load More Button -->
-      <!-- 
-        <div class="flex flex-row justify-center mt-2">
+      <div v-if="hasMoreBounties && !bountiesLoading" class="flex flex-row justify-center mt-2">
         <button
-          :class="[
-          $store.state.theme.dt
+            @click="loadMoreBounties()"
+            :class="[
+            $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
             : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
         ]"
-          class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
-      </div>
-      -->
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { utils } from "ethers";
+import Axios from "axios";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
+
+const defaultBountyLimit = 10
+
 export default {
   layout: "bountyPlatform",
   components: {
@@ -166,31 +170,54 @@ export default {
     BountyCard,
     CheckmarkButton
   },
-  data() {
-    return {
-      bounties: [
-        {
-          name: "ETH Hackathon Project",
-          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
-          numSubmissions: "1",
-          numLeft: "1",
-          deadline: "1586599900",
-          devAmount: "575,000",
-          ethAmount: "1.278",
-          usdAmount: "345"
-        },
-        {
-          name: "Ethereum NPM Package",
-          hunter: "0xec37D7AF90De2B6AeB1331Ef45DA8924189458A6",
-          numSubmissions: "1",
-          numLeft: "1",
-          deadline: "1586599900",
-          devAmount: "1,500,000",
-          ethAmount: "3.333",
-          usdAmount: "900"
+  asyncData({ error, params, $axios }) {
+    return $axios
+      .get(`/bounty/listpersonal?page=1&limit=${defaultBountyLimit}&hunter=${params.hunter}`)
+      .then(res => {
+        let totalBountyAmount = utils.bigNumberify(0)
+        for (let bounty of res.data.items) {
+            totalBountyAmount = totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
         }
-      ]
-    };
+        let totalBountyAmountDisplay = utils.commify(utils.formatUnits(totalBountyAmount, 8))
+        return {
+          page: 1,
+          perPage: defaultBountyLimit,
+          bounties: res.data.items,
+          totalBountyCount: res.data.count,
+          totalBountyAmount: totalBountyAmount,
+          totalBountyAmountDisplay: totalBountyAmountDisplay,
+          hunter: params.hunter,
+          bountiesLoading: false,
+          hasMoreBounties: Math.floor(res.data.count / defaultBountyLimit) > 1
+        };
+      })
+      .catch(e => {
+        return error({
+          statusCode: e.response != undefined ? r.response.status : 500,
+          message: e.response != undefined && e.response.status == 422 ? `Address "${params.hunter}" is invalid` : "Unknown error occured"
+        });
+      });
+  },
+  methods: {
+      async loadMoreBounties() {
+        this.page++
+        this.bountiesLoading = true;
+        try {
+            let res = await Axios.get(`/bounty/listpersonal?page=${this.page}&limit=${defaultBountyLimit}&hunter=${this.hunter}`)
+            for (let bounty of res.data.items) {
+                this.totalBountyAmount = this.totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
+            }
+            this.totalBountyAmountDisplay = utils.commify(utils.formatUnits(this.totalBountyAmount, 8))
+            this.bounties.push(res.data.items)
+            this.totalBountyCount = res.data.count
+            this.totalBountyAmount
+            this.hasMoreBounties = Math.floor(res.data.count / defaultBountyLimit) > 1
+        } catch (e) {
+            this.page--
+        } finally {
+            this.bountiesLoading = false
+        }
+    }
   },
   beforeMount() {
     // Set sidebar context

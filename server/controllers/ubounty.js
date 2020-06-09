@@ -47,7 +47,90 @@ module.exports.getUBounties = async (req, res, next) => {
       include: ['submissions', 'revisions']
     })
     return res.status(200).json(
-      result.rows
+      {
+        count: result.count,
+        items: result.rows
+      }
+    )
+  } catch(err) {
+    console.log(err)
+    res.status(500).json({ error: "Unable to retrieve bounties" });
+    return next(err)
+  }
+}
+
+module.exports.getPersonalUbounties = async (req, res, next) => {
+  try {
+    // Access the provided 'page' and 'limit' query parameters
+    let page = parseInt(req.query.page) || 1;
+    if (page < 1) {
+      return res.status(422).json({ error: "Page cannot be less than 1" });
+    }
+    let limit = parseInt(req.query.limit) || 1000; 
+    let offset = 0 + (page - 1) * limit
+    let hunter = req.query.hunter
+    try {
+      hunter = utils.getAddress(hunter)
+    } catch (e) {
+      return res.status(422).json({ error: "Invalid hunter address" });
+    }
+    // Get uBounties
+    let result = await UBounty.findAndCountAll({
+      offset: offset,
+      limit: limit,
+      order: [
+          ['createdAt', 'DESC']
+      ],
+      where: {
+        hunter: {[Op.eq]: hunter}
+      },
+      include: ['submissions', 'revisions']
+    })
+    return res.status(200).json(
+      {
+        count: result.count,
+        items: result.rows
+      }
+    )
+  } catch(err) {
+    console.log(err)
+    res.status(500).json({ error: "Unable to retrieve bounties" });
+    return next(err)
+  }
+}
+
+module.exports.getCreatorUbounties = async (req, res, next) => {
+  try {
+    // Access the provided 'page' and 'limit' query parameters
+    let page = parseInt(req.query.page) || 1;
+    if (page < 1) {
+      return res.status(422).json({ error: "Page cannot be less than 1" });
+    }
+    let limit = parseInt(req.query.limit) || 1000; 
+    let offset = 0 + (page - 1) * limit
+    let creator = req.query.creator
+    try {
+      creator = utils.getAddress(creator)
+    } catch (e) {
+      return res.status(422).json({ error: "Invalid creator address" });
+    }
+    // Get uBounties
+    let result = await UBounty.findAndCountAll({
+      offset: offset,
+      limit: limit,
+      order: [
+          ['createdAt', 'DESC']
+      ],
+      where: {
+        creator: {[Op.eq]: creator}
+      },
+      include: ['submissions', 'revisions']
+    })
+    return res.status(200).json(
+      {
+        count: result.count,
+        items: result.rows
+      }
     )
   } catch(err) {
     console.log(err)

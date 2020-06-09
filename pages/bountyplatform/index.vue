@@ -34,7 +34,8 @@ export default {
       bountiesCurPage: [],
       page: 1,
       perPage: 10,
-      hasPageMap: {}
+      hasPageMap: {},
+      totalPages: 1
     };
   },
   computed: {
@@ -80,8 +81,12 @@ export default {
         // TODO error handling
         return
       }
-      this.hasPageMap[key] = res.data
-      this.bounties = res.data
+      this.hasPageMap[key] = res.data.items
+      this.bounties = res.data.items
+      this.totalPages = Math.floor(res.data.count / res.data.perPage)
+      if (this.totalPages <= 0) {
+        this.totalPages = 1
+      }
       this.loading = false
       this.$store.commit("devcashData/setBounties", this.bounties);
     }

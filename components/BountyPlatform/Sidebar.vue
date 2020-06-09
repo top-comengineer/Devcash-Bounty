@@ -64,7 +64,7 @@
       <!-- Bounty Hunter-->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="localePath('bountyplatform-bountyhunter')"
+        :to="localePath({name: 'bountyplatform-bountyhunter-hunter', params: {hunter: loggedInAccount}})"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.bountyHunter,
@@ -83,7 +83,7 @@
       <!-- Bounty Manager -->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="localePath('bountyplatform-bountymanager')"
+        :to="localePath({name:'bountyplatform-bountymanager-creator', params: {creator: loggedInAccount}})"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.bountyManager,
@@ -241,7 +241,8 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: "devcashData/isLoggedIn"
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
     })
   }
 };
