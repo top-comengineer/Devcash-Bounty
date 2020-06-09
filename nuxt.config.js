@@ -1,22 +1,30 @@
-const { generateRoutes } = require('./utils/router')
-
 module.exports = {
   mode: "universal",
   /*
    ** Headers of the page
    */
-  head: {
-    title: process.env.npm_package_name || "",
-    meta: [
-      { charset: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      {
-        hid: "description",
-        name: "description",
-        content: process.env.npm_package_description || ""
-      }
-    ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+  head(c) {
+    const { req } = c.context
+    let bodyClass = ''
+    if (req && 'cookies' in req) {
+      bodyClass = req.cookies.devcash_theme === 'dark' ? 'bg-dtBackground' : 'bg-ltBackground'
+    }
+    return {
+      title: process.env.npm_package_name || "",
+      meta: [
+        { charset: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          hid: "description",
+          name: "description",
+          content: process.env.npm_package_description || ""
+        }
+      ],
+      link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+      bodyAttrs: {
+        class: bodyClass
+      }      
+    }
   },
   /*
    ** Customize the progress-bar color
@@ -31,11 +39,8 @@ module.exports = {
    */
   plugins: [
     { src: '~/plugins/vue-qr.js', ssr: false },
-    { src: '~/plugins/global-mixin.js' },
-    { src: "~/plugins/vue-i18n.js",  injectAs: 'i18n' },
-    { src: '~/plugins/local-storage.client.js' },
-    { src: '~/plugins/encrypted-storage.client.js' },
-    { src: '~/plugins/devcash/devcashBounty.client.js' }
+    { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
+    { src: '~/plugins/localStorage.client.js', ssr: false },
   ],
   /*
    ** Nuxt.js dev-modules
@@ -49,7 +54,36 @@ module.exports = {
    */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    "@nuxtjs/axios"
+    "@nuxtjs/axios",
+    [
+      'nuxt-i18n',
+      {
+        seo: false,
+        locales: [
+          {
+            code: "en",
+            iso: "en-US",
+            name: "English",
+            file: 'en.json'
+          },
+          {
+            code: "zhHans",
+            iso: "zh-Hans",
+            name: "简化字",
+            file: 'zh-Hans.json'
+          }
+        ],
+        detectBrowserLanguage: {
+          useCookie: true,
+          cookieKey: 'i18n_redirected',
+          alwaysRedirect: true,
+          fallbackLocale: 'en'
+        },
+        lazy: true,
+        defaultLocale: 'en',
+        langDir: 'locales/'
+      }
+    ]   
   ],
   /*
    ** Axios module configuration
@@ -75,13 +109,5 @@ module.exports = {
       video: ({ isDev }) =>
         isDev ? "[path][name].[ext]" : "videos/[name].[hash:7].[ext]"
     }
-  },
-  router: {
-    middleware: ['i18n'],
-    extendRoutes (routes) {
-      const newRoutes = generateRoutes(routes)
-      routes.splice(0, routes.length)
-      routes.unshift(...newRoutes)
-    }
-  },
+  }
 };

@@ -11,7 +11,7 @@
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
       <!-- Explore -->
       <nuxt-link
-        :to="getLocalizedRoute('bountyplatform')"
+        :to="localePath('bountyplatform')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.explore || $store.state.general.sidebarContext == sidebarContexts.singleBounty,
@@ -28,7 +28,7 @@
       <!-- Post -->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="getLocalizedRoute('bountyplatform-post')"
+        :to="localePath('bountyplatform-post')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.post,
@@ -45,7 +45,7 @@
       <!-- Overview -->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="getLocalizedRoute('bountyplatform-overview')"
+        :to="localePath('bountyplatform-overview')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.overview,
@@ -64,7 +64,7 @@
       <!-- Bounty Hunter-->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="getLocalizedRoute('bountyplatform-bountyhunter')"
+        :to="localePath('bountyplatform-bountyhunter')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.bountyHunter,
@@ -83,7 +83,7 @@
       <!-- Bounty Manager -->
       <nuxt-link
         v-if="isLoggedIn"
-        :to="getLocalizedRoute('bountyplatform-bountymanager')"
+        :to="localePath('bountyplatform-bountymanager')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-dtPrimary hover:bg-dtPrimary text-dtText': $store.state.general.sidebarContext == sidebarContexts.bountyManager,
@@ -197,7 +197,7 @@
           class="flex flex-col"
         >
           <nuxt-link
-            :to="getLocalizedRoute('bountyplatform')"
+            :to="localePath('bountyplatform')"
             :class="[
           $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'

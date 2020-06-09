@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-row justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6">
-    <nuxt-link :to="getLocalizedRoute('index')">
+    <nuxt-link :to="localePath('index')">
       <Logo class="w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
     <!-- Navbar items -->
@@ -8,7 +8,7 @@
       <!-- Home -->
       <nuxt-link
         class="hidden md:block"
-        :to="getLocalizedRoute('index')"
+        :to="localePath('index')"
         v-slot="{  navigate, href, isExactActive  }"
       >
         <a
@@ -31,7 +31,7 @@
       <!-- Bounty Platform -->
       <nuxt-link
         class="hidden md:block"
-        :to="getLocalizedRoute('bountyplatform')"
+        :to="localePath('bountyplatform')"
         v-slot="{  navigate, href, isActive  }"
       >
         <a
@@ -75,7 +75,7 @@
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
               type="language"
             />
-            <div class="mx-1 hidden lg:block">{{ currentLocaleName }}</div>
+            <div class="mx-1 hidden lg:block">{{ currentLocale }}</div>
             <Icon
               class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -93,15 +93,15 @@
               class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
-                v-for="locale in supportedLocales"
+                v-for="locale in availableLocales"
                 :key="locale.code"
                 @click="changeLang(locale); isLangModalOpen=false"
-                :class="locale.code == $store.state.i18n.currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                :class="locale.code == currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
                 <div class="mx-4">
                   <Icon
-                    v-if="locale.code == $store.state.i18n.currentLocale"
+                    v-if="locale.code == currentLocale"
                     colorClass="text-dtText"
                     type="done"
                     class="w-6 h-6"
@@ -270,7 +270,7 @@
             >
               <!-- Overview Button -->
               <nuxt-link
-                :to="getLocalizedRoute('bountyplatform-overview')"
+                :to="localePath('bountyplatform-overview')"
                 @click="signOut()"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
@@ -316,7 +316,6 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import Spinner from "~/components/Spinner.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
-import { LOCALES } from "~/config";
 import { mapGetters } from "vuex";
 import {
   WalletProviders,
@@ -334,7 +333,8 @@ export default {
   },
   methods: {
     changeLang(locale) {
-      this.$router.push(this.getSwitchLocaleRoute(locale.code));
+      this.$i18n.setLocaleCookie(locale)
+      this.$router.push(this.switchLocalePath(locale.code));
     },
     signInBlur() {
       // Delay blur to avoid interfering with button presses
@@ -400,9 +400,14 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: "devcashData/isLoggedIn",
-      currentLocaleName: "i18n/currentLocaleName"
-    })
+      isLoggedIn: "devcashData/isLoggedIn"
+    }),
+    availableLocales () {
+      return this.$i18n.locales
+    },
+    currentLocale () {
+      return this.$i18n.locale
+    }
   },
   data() {
     return {
@@ -411,8 +416,7 @@ export default {
       isSignOutModalOpen: false,
       hasMetamask: false,
       walletProviders: WalletProviders,
-      loggingInLoading: false,
-      supportedLocales: LOCALES
+      loggingInLoading: false
     };
   },
   mounted() {

@@ -1,0 +1,245 @@
+{
+    "home": {
+      "heroSection": {
+        "header": "Cash for the<br>developer economy",
+        "paragraph": "Join our global community of blockchain developers and make the most of your skills.",
+        "ctaButton": "Explore Bounties"
+      },
+      "whatIsSection": {
+        "header": "What is Devcash?",
+        "paragraph": "Devcash (DEV) is cash for the developer economy. It is the official currency of Blockchain Developers United. Devcash offers various services such as a bounty platform and a decentralize exchange to make developers’ jobs easier."
+      },
+      "IBOSection": {
+        "header": "Initial Bounty Offering",
+        "paragraph": "Initial bounty offering, or IBO in short, is inspired by ICO. Instead of money, you put your skills and time to build awesome things to get Devcash.  The IBO will be powered by Devcash Bounty Platform."
+      },
+      "bountyPlatformSection": {
+        "header": "Bounty Platform",
+        "paragraph": "The Devcash bounty platform is a decentralized bounty platform where users utilize DEV to crowdsource developer talent or perform developer tasks and earn DEV.",
+        "postBountyHeader": "Post Bounties",
+        "postBountyParagraph": "Post a task, crowdsource developer talent.",
+        "postBountyButton": "Post a Bounty",
+        "huntBountyHeader": "Hunt Bounties",
+        "huntBountyParagraph": "Perform developer tasks, earn DEV.",
+        "huntBountyButton": "Hunt Bounties"
+      },
+      "dexSection": {
+        "header": "Decentralized Exchange",
+        "paragraph": "The Devcash DEX is a decentralized exchange with an ETH/DEV market. It is fully automated on Ethereum smart contracts and offers zero-fee trading.",
+        "ctaButton": "Visit DEX"
+      },
+      "tokenDetailsSection": {
+        "header": "Token Details",
+        "tokenSupplyHeader": "Token Supply",
+        "tokenSupplyText": "2,1B DEV",
+        "tokenTypeHeader": "Token Type",
+        "tokenTypeText": "ERC 21",
+        "tokenAllocationHeader": "Token Allocation",
+        "tokenAllocationText": "IBO"
+      },
+      "startExploringSection": {
+        "header": "Start Exploring",
+        "paragraph": "Start exploring Devcash bounty platform and join our global community of developers. Earn DEV using your skills or crowdsource developer talent.",
+        "ctaButton": "Explore Bounties"
+      }
+    },
+    "navigation": {
+      "header": "Navigation",
+      "home": "Home",
+      "bountyPlatform": "Bounty Platform",
+      "dex": "DEX",
+      "english": "English",
+      "chinese": "简化字",
+      "signIn": "Sign In",
+      "signingIn": "Signing In",
+      "signOut": "Sign Out",
+      "ibo": "IBO"
+    },
+    "wallet": {
+      "metamask": "MetaMask",
+      "getMetamask": "Get MetaMask",
+      "portis": "Portis",
+      "authereum": "Authereum"
+    },
+    "bountyPlatform": {
+      "header": "Bounty Platform",
+      "exploreBounties": "Explore Bounties",
+      "postABounty": "Post a Bounty",
+      "explore": {
+        "header": "Explore",
+        "cardHeader": "Explore Bounties",
+        "cardParagraph": "Devcash Bounty Platform is a decentralized bounty platform where users can post or hunt bounties.  You can explore the bounties below.",
+        "sidebar": {
+          "searchHeader": "Search",
+          "searchPlaceholder": "Bounty name",
+          "sortHeader": "Sort",
+          "sortDescending": "Descending",
+          "sortAscending": "Ascending",
+          "sortRecency": "Recency",
+          "sortValue": "Value",
+          "sortExpiry": "Expiry",
+          "statusHeader": "Status",
+          "statusActive": "Active",
+          "statusCompleted": "Completed",
+          "statusExpired": "Expired"
+        }
+      },
+      "bountyCard": {
+        "remaining": "remaining",
+        "bountiesLeft": "bounties left",
+        "tag": {
+          "active": "Active",
+          "completed": "Completed",
+          "expired": "Expired"
+        }
+      },
+      "post": {
+        "header": "Post",
+        "cardHeader": "Post a Bounty",
+        "cardParagraph": "Enter the details of your bounty below to create it.",
+        "bountyTitle": "Bounty Title",
+        "bountyTitlePlaceholder": "Enter the title of your bounty",
+        "bountyDescription": "Bounty Description",
+        "bountyDescriptionPlaceholder": "Enter the description of your bounty.\nYou can use  **Markdown** to format the text.\n\nExample:\n# Bounty Scope\nExplanation of the **scope** of the bounty...\n\n## Requirements\nExplanation of the requirements to complete the bounty...\n1. Requirement 1\n2. Requirement 2",
+        "bountyType": "Bounty Type",
+        "bountyTypePublic": "Public",
+        "bountyTypePrivate": "Private",
+        "bountyTypeHunterAddress": "Hunter's Address",
+        "bountyTypeHunterAddressPlaceholder": "Enter the adress of the hunter",
+        "bountyCount": "Number of Bounties",
+        "bountyCountPlaceholder": "Enter the number of bounties",
+        "bountyAmount": "Bounty Amount",
+        "bountyAmountPlaceholder": "Enter the amount for each bounty",
+        "bountyForEach": "(For Each Bounty)",
+        "bountyDeadline": "Bounty Deadline",
+        "bountyDeadlinePlaceholder": "Enter a date. E.g. 03/15/2020 18:30",
+        "contactName": "Contact Name",
+        "contactNamePlaceholder": "Enter the name of the contact",
+        "contactEmail": "Contact Email",
+        "contactEmailPlaceholder": "Enter the email of the contact",
+        "buttonPostBounty": "Post Bounty"
+      },
+      "overview": {
+        "header": "Overview",
+        "totalEarned": "Total Earned",
+        "bountiesHunted": "Bounties Hunted",
+        "totalAwarded": "Total Awarded",
+        "bountiesPosted": "Bounties Posted",
+        "approvedBalance": "Approved Balance",
+        "activity": "Activity",
+        "activityCard": {
+          "manager": {
+            "bountyCreated": "You've created a bounty called 1%.",
+            "bountyPersonalCreated": "You've created a personal bounty called 1%.",
+            "submissionReceived": "You've received a submission to 1%.",
+            "submissionApproved": "You've approved a submission sent to 1%.",
+            "submissionRejected": "You've rejected a submission sent to 1%.",
+            "bountyAwarded": "You've sent a bounty award for 1%.",
+            "bountyReclaimed": "You've reclaimed the funds for 1%.",
+            "feeChanged": "You've changed the fee for 1%.",
+            "bountyCompleted": "1% has been completed."
+          },
+          "hunter": {
+            "bountyPersonalCreated": "A personal bounty called 1% has been created for you.",
+            "submissionSent": "You've sent a submission to 1%.",
+            "submissionApproved": "Your submission to 1% has been approved.",
+            "submissionRejected": "Your submission to 1% has been rejected.",
+            "bountyAwarded": "You've received a bounty award for 1%."
+          },
+          "general": {
+            "bountyCreated": "The bounty has been created.",
+            "bountyPersonalCreated": "The personal bounty has been created.",
+            "submissionMade": "A submission has been made.",
+            "submissionApproved": "A submission has been approved.",
+            "submissionRejected": "A submission has been rejected.",
+            "bountyAwarded": "A bounty award has been given.",
+            "bountyReclaimed": "The funds for the bounty has been reclaimed.",
+            "bountyCompleted": "The bounty has been completed."
+          }
+        }
+      },
+      "bountyHunter": {
+        "header": "Bounty Hunter",
+        "submissionsSent": "Submissions Sent",
+        "personalBounties": "Personal Bounties",
+        "showFeedback": "Show Feedback",
+        "hideFeedback": "Hide Feedback",
+        "you": "You",
+        "approvedButton": "Approve",
+        "rejectButton": "Reject"
+      },
+      "bountyManager": {
+        "header": "Bounty Manager",
+        "submissionsReceived": "Submissions Received",
+        "yourBounties": "Your Bounties",
+        "approve": "Approve",
+        "reject": "Reject",
+        "leaveFeedback": "Leave Feedback"
+      },
+      "sidebarContextual": {
+        "balance": "Balance",
+        "approvedBalance": "Approved Balance",
+        "amountToApprove": "Amount to Approve",
+        "amountToApprovePlaceholder": "Enter an amount",
+        "buttonApprove": "Approve",
+        "buttonGoBack": "Go Back"
+      },
+      "statusTag": {
+        "pending": "Pending",
+        "rejected": "Rejected",
+        "approved": "Approved",
+        "feedback": "Feedback"
+      },
+      "singleBounty": {
+        "buttonHunt": "Hunt",
+        "buttonContribute": "Contribute",
+        "bountyDescription": "Bounty Description",
+        "tagActive": "Active",
+        "tagCompleted": "Completed",
+        "tagExpired": "Expired",
+        "createdBy": "Created By",
+        "submission": {
+          "cardHeader": "Send a Submission",
+          "cardParagraph": "Enter the details of your submission below.",
+          "descriptionHeader": "Submission Description",
+          "descriptionPlaceholder": "Enter the description of your submission here.\nYou can use  **Markdown** to format the text.\n\nExample:\n# Description\nDescription of the **submission**...",
+          "attachments": "Attachments",
+          "optional": "(Optional)",
+          "buttonChooseFile": "Choose a File",
+          "noFile": "No file chosen",
+          "buttonSubmit": "Submit"
+        },
+        "contribute": {
+          "cardHeader": "Contribute",
+          "cardParagraph": "Pick or enter an amount to contribute.",
+          "pickAmount": "Pick an amount",
+          "orEnterCustomAmount": "Or enter a custom one",
+          "customAmount": "Custom Amount",
+          "customAmountPlaceholder": "Enter the amount",
+          "buttonContribute": "Contribute",
+          "bountyAddress": "Bounty Address"
+        }
+      },
+      "buttonLoadMore": "Load More"
+    },
+    "dex": {
+      "header": "DEX",
+      "buyDevcash": "Buy Devcash",
+      "sellDevcash": "Sell Devcash"
+    },
+    "social": {
+      "header": "Social",
+      "discord": "Discord",
+      "facebook": "Facebook",
+      "twitter": "Twitter",
+      "github": "Github",
+      "medium": "Medium"
+    },
+    "footer": {
+      "credits": "© %1 Devcash."
+    },
+    "theme": {
+      "dark": "Dark",
+      "light": "Light"
+    }
+  }

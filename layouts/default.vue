@@ -34,21 +34,21 @@
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
+import * as Cookies from "js-cookie";
 export default {
   components: {
     Navbar,
     Footer
   },
   head() {
+    const i18nSeo = this.$nuxtI18nSeo()
     return {
-      bodyAttrs: {
-        class: this.$store.state.theme.dt
-          ? "bg-dtBackground"
-          : "bg-ltBackground"
-      },
       htmlAttrs: {
-        lang: this.$store.state.i18n.currentLocale
-      }
+        lang: this.$i18n.locale
+      },
+      meta: [
+        ...i18nSeo.meta
+      ]
     };
   },
   data: function() {
@@ -87,6 +87,10 @@ export default {
     this.navbarScroll();
   },
   mounted() {
+    // Set theme
+    if (Cookies.get("devcash_theme") == "light") {
+      this.$store.state.theme.dt = false;
+    }
     // Adding scroll event
     window.addEventListener("scroll", this.navbarScroll);
   },
