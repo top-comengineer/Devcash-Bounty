@@ -70,7 +70,8 @@ module.exports = {
         },
         lazy: true,
         defaultLocale: 'en',
-        langDir: 'locales/'
+        langDir: 'locales/',
+        vueI18n: { fallbackLocale: 'en' }
       }
     ]   
   ],
