@@ -1,6 +1,8 @@
 <template>
   <div>
-    <label class="checkbox-container flex flex-row items-center">
+    <label
+      class="checkbox-container flex flex-row items-center p-1 hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 transition-colors duration-200 rounded-md"
+    >
       <input :checked="checked" type="checkbox" :name="name" />
       <span
         v-if="$store.state.theme.dt"
@@ -31,7 +33,7 @@ export default {
 /* Customize the label (the container) */
 .checkbox-container {
   position: relative;
-  padding-left: 1.8rem;
+  padding-left: 2rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -52,8 +54,8 @@ export default {
 .normal-checkmark-dt,
 .normal-checkmark-lt {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0.25rem;
+  left: 0.25rem;
   height: 1.2rem;
   width: 1.2rem;
   border-width: 0.1rem;

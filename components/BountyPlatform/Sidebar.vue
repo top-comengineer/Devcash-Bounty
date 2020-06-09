@@ -136,17 +136,17 @@
           <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.sortHeader")}}</h4>
           <RadioButton
             checked="checked"
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             name="exploreRadioGroup"
             :text="$t('bountyPlatform.explore.sidebar.sortRecency')"
           />
           <RadioButton
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             name="exploreRadioGroup"
             :text="$t('bountyPlatform.explore.sidebar.sortValue')"
           />
           <RadioButton
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             name="exploreRadioGroup"
             :text="$t('bountyPlatform.explore.sidebar.sortExpiry')"
           />
@@ -154,15 +154,15 @@
           <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.statusHeader")}}</h4>
           <CheckmarkButton
             checked="checked"
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusActive')"
           />
           <CheckmarkButton
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
           />
           <CheckmarkButton
-            class="mt-3 my-1"
+            class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusExpired')"
           />
         </div>

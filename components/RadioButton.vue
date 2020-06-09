@@ -1,6 +1,8 @@
 <template>
   <div>
-    <label class="radio-container flex flex-row items-center">
+    <label
+      class="radio-container flex flex-row items-center p-1 hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 transition-colors duration-200 rounded-md"
+    >
       <input :checked="checked" type="radio" :name="name" />
       <span :class="$store.state.theme.dt?'border-dtText':'border-ltText'" class="radio-checkmark"></span>
       <h5 class="leading-tight font-bold">{{text}}</h5>
@@ -20,7 +22,7 @@ export default {
 /* The radio-container */
 .radio-container {
   position: relative;
-  padding-left: 1.8rem;
+  padding-left: 2rem;
   cursor: pointer;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -38,8 +40,8 @@ export default {
 /* Create a custom radio button */
 .radio-checkmark {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0.25rem;
+  left: 0.25rem;
   height: 1.2rem;
   width: 1.2rem;
   border-width: 0.1rem;
