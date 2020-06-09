@@ -60,6 +60,7 @@
           >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
           <!-- Bounty Platform / Overview -->
           <nuxt-link
+            v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             :to="localePath('bountyplatform-overview')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"

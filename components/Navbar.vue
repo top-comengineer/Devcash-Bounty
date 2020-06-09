@@ -365,7 +365,7 @@ export default {
     },
     changeLang(locale) {
       this.$i18n.setLocaleCookie(locale)
-      this.$router.push(this.switchLocalePath(locale.code));
+      this.$router.replace(this.switchLocalePath(locale.code));
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {
@@ -408,6 +408,7 @@ export default {
       this.$store.commit("devcashData/setProvider", null);
       this.$store.commit("devcashData/setLoggedInAccount", null);
       this.$store.commit("devcash/setConnector", null);
+      this.$router.replace('/');
     }
   },
   computed: {
