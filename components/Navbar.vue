@@ -75,7 +75,7 @@
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
               type="language"
             />
-            <div class="mx-1 hidden lg:block">{{ currentLocale }}</div>
+            <div class="mx-1 hidden lg:block">{{ currentLocale.name }}</div>
             <Icon
               class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
               :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
@@ -99,12 +99,12 @@
                 @click="changeLang(locale); hideLangModal()"
                 @keydown.tab.exact="index+1 == availableLocales.length?hideLangModal():null"
                 @keydown.esc.exact="hideLangModal"
-                :class="locale.code == currentLocale ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                :class="locale.code == currentLocale.code ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
                 <div class="mx-4">
                   <Icon
-                    v-if="locale.code == currentLocale"
+                    v-if="locale.code == currentLocale.code"
                     colorClass="text-dtText"
                     type="done"
                     class="w-6 h-6"
@@ -420,7 +420,11 @@ export default {
       return this.$i18n.locales
     },
     currentLocale () {
-      return this.$i18n.locale
+      for (let locale of this.$i18n.locales) {
+        if (locale.code == this.$i18n.locale) {
+          return locale
+        }
+      }
     }
   },
   data() {
