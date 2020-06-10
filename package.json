@@ -43,6 +43,7 @@
     "@nuxtjs/tailwindcss": "^1.0.0",
     "ethers": "^4.0.45",
     "node-sass": "^4.14.1",
+    "prettier": "^2.0.5",
     "sass-loader": "^8.0.2",
     "sequelize-cli": "^5.5.1"
   }
