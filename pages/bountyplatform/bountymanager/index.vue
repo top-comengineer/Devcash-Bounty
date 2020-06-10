@@ -1,11 +1,7 @@
 <template>
   <div class="w-full flex flex-row flex-wrap justify-center">
-    <h1 v-if="!isLoggedIn">
-        Not logged in
-    </h1>
-    <h1 v-else-if="bountiesLoading">
-        Bounties are loading
-    </h1>
+    <h1 v-if="!isLoggedIn">Not logged in</h1>
+    <h1 v-else-if="bountiesLoading">Bounties are loading</h1>
     <!-- Submissions Received Card -->
     <div
       :class="[$store.state.theme.dt
@@ -175,7 +171,7 @@ export default {
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount"
     })
-  },  
+  },
   methods: {
     async loadMoreBounties() {
       this.page++;
@@ -194,7 +190,8 @@ export default {
         );
         this.bounties = this.bounties.concat(res.data.items);
         this.totalBountyCount = res.data.count;
-        this.hasMoreBounties = Math.floor(res.data.count / defaultBountyLimit) > 1;
+        this.hasMoreBounties =
+          Math.floor(res.data.count / defaultBountyLimit) > 1;
       } catch (e) {
         this.page--;
       } finally {
@@ -204,9 +201,9 @@ export default {
     }
   },
   mounted() {
-      if (this.isLoggedIn) {
-          this.loadMoreBounties()
-      }
+    if (this.isLoggedIn) {
+      this.loadMoreBounties();
+    }
   },
   beforeMount() {
     // Set sidebar context
@@ -229,9 +226,10 @@ export default {
       hasMoreBounties: false,
       bounties: [],
       // For meta tags
-      pageDescription:
-        "Manage the bounties you posted on the Devcash Bounty Platform.",
-      pageTitle: "Devcash | Bounty Platform | Bounty Manager",
+      pageTitle: this.$t("meta.bountyPlatform.bountyManager.pageTitle"),
+      pageDescription: this.$t(
+        "meta.bountyPlatform.bountyManager.pageDescription"
+      ),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL

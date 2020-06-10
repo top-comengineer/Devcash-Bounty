@@ -31,9 +31,8 @@ export default {
   data() {
     return {
       // For meta tags
-      pageDescription:
-        "Devcash (DEV) is cash for the developer economy. It is the official currency of Blockchain Developers United. Devcash offers various services such as a bounty platform and a decentralize exchange to make developers’ jobs easier.",
-      pageTitle: "Devcash | Cash for the Developer Economy",
+      pageTitle: this.$t("meta.home.pageTitle"),
+      pageDescription: this.$t("meta.home.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/home.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL

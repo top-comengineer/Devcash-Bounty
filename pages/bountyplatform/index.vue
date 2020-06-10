@@ -37,9 +37,8 @@ export default {
       hasPageMap: {},
       totalPages: 1,
       // For meta tags
-      pageDescription:
-        "Devcash Bounty Platform is a decentralized bounty platform where users utilize DEV to crowdsource developer talent or perform developer tasks and earn DEV.",
-      pageTitle: "Devcash | Bounty Platform",
+      pageTitle: this.$t("meta.bountyPlatform.pageTitle"),
+      pageDescription: this.$t("meta.bountyPlatform.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL
