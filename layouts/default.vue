@@ -52,7 +52,10 @@ export default {
         class: this.$store.state.theme.dt
           ? "bg-dtBackground"
           : "bg-ltBackground"
-      },      
+      },
+      link: [
+        ...i18nSeo.link
+      ]
     };
   },
   data: function() {

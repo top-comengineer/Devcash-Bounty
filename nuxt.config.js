@@ -47,6 +47,14 @@ module.exports = {
     [
       'nuxt-i18n',
       {
+        strategy: "prefix_and_default",
+        baseUrl: (c) => {
+          if (process.server) {
+            const { req } = c
+            return req.protocol + '://' + req.get('host')
+          }
+          return window.location.protocol + "//" + window.location.host;
+        },        
         seo: false,
         locales: [
           {
@@ -101,6 +109,6 @@ module.exports = {
     }
   },
   router: {
-    middleware: ['theme', 'devcash']
+    middleware: ['theme', 'devcash', 'baseurl']
   }  
 };
