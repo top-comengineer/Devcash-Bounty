@@ -2,6 +2,7 @@ const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
 const { UBounty, UBountyStaged, Op }  = require('../models');
 const crypto = require('crypto');
+const removeMd = require('remove-markdown');
 
 // POST new bounty
 // Sample body
@@ -157,6 +158,12 @@ module.exports.getUBounty = async (req, res, next) => {
         {"error":"bounty not found"}
       )
     }
+    let descriptionMeta = removeMd(result.description)
+    if (descriptionMeta.length > 160) {
+      descriptionMeta = descriptionMeta.substring(0, 157) + "..."
+    }
+    result = result.toJSON()
+    result.descriptionMeta = descriptionMeta
     return res.status(200).json(
       result
     )

@@ -31,6 +31,7 @@
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
     "redis-json": "^4.0.1",
+    "remove-markdown": "^0.3.0",
     "secure-ls": "^1.2.6",
     "sequelize": "^5.21.9",
     "sqlite3": "^4.2.0",
