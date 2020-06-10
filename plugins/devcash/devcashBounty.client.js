@@ -43,7 +43,7 @@ export class DevcashBounty {
     }
 
     static formatAmount(bounty, tokenDecimals) {
-        let delta = bounty.numLeft - bounty.submissions.length
+        let delta = bounty.numLeft - bounty.submissions.filter(sub => sub.approved).length 
         if (delta <= 0) {
             return "0"
         }
