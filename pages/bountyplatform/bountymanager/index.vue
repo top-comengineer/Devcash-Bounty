@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full flex flex-row flex-wrap justify-center">
+  <div class="w-full flex flex-row flex-wrap justify-center px-1 md:px-4">
     <h1 v-if="!isLoggedIn">Not logged in</h1>
     <h1 v-else-if="bountiesLoading">Bounties are loading</h1>
     <!-- Submissions Received Card -->
@@ -7,7 +7,7 @@
       :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
+      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
     >
       <!-- Header Row -->
       <div class="flex flex-row flex-wrap justify-between items-center">
@@ -94,7 +94,7 @@
       :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lgD']"
-      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
+      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
     >
       <!-- Header Row -->
       <div class="flex flex-row flex-wrap justify-between items-center">

@@ -1,35 +1,37 @@
 <template>
   <div class="w-full flex flex-row flex-wrap justify-center">
-    <OverviewCard
-      class="w-full md:w-1/2 xl:w-1/3 px-2 my-2"
-      type="earned"
-      totalDEV="2,562,138"
-      totalETH="5.844"
-      totalUSD="1,578"
-      count="13"
-    />
-    <OverviewCard
-      class="w-full md:w-1/2 xl:w-1/3 px-2 my-2"
-      type="awarded"
-      totalDEV="11,342,527"
-      totalETH="25.214"
-      totalUSD="6,808"
-      count="36"
-    />
-    <OverviewCard
-      class="w-full md:w-1/2 xl:w-1/3 px-2 my-2"
-      type="balance"
-      totalDEV="2,650,000"
-      totalETH="5.891"
-      totalUSD="1,590"
-      address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-    />
+    <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
+      <OverviewCard
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        type="earned"
+        totalDEV="2,562,138"
+        totalETH="5.844"
+        totalUSD="1,578"
+        count="13"
+      />
+      <OverviewCard
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        type="awarded"
+        totalDEV="11,342,527"
+        totalETH="25.214"
+        totalUSD="6,808"
+        count="36"
+      />
+      <OverviewCard
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        type="balance"
+        totalDEV="2,650,000"
+        totalETH="5.891"
+        totalUSD="1,590"
+        address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+      />
+    </div>
     <!-- Activity Main Card -->
     <div
       :class="[$store.state.theme.dt
         ? 'bg-dtBackgroundSecondary'
         : 'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mx-2 my-2"
+      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
     >
       <!-- Header -->
       <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>

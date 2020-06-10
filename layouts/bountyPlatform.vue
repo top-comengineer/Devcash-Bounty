@@ -3,7 +3,7 @@
     <div class="w-full flex flex-col md:flex-row justify-center relative py-20 md:py-24 z-20">
       <!-- Sidebar container -->
       <div
-        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end mr-2 md:mr-4 transition-all ease-out duration-200 z-10"
+        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end transition-all ease-out duration-200 z-10"
       >
         <!-- Sidebar -->
         <div
@@ -17,7 +17,7 @@
         <nuxt />
       </div>
       <!-- Right spacer -->
-      <div class="mr-2 md:mr-4 sidebar-spacer-right"></div>
+      <div class="sidebar-spacer-right"></div>
     </div>
   </DefaultLayout>
 </template>
