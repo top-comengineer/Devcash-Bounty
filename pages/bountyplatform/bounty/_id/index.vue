@@ -469,7 +469,8 @@ export default {
   },
   head() {
     return {
-      title: "Devcash | Bounty Platform | " + this.bounty.title,
+      title:
+        this.$t("meta.bountyPlatform.pageTitle") + " | " + this.bounty.title,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work
         {
@@ -480,7 +481,8 @@ export default {
         // Google / Search Engine Tags
         {
           itemprop: "name",
-          content: "Devcash | Bounty Platform | " + this.bounty.title
+          content:
+            this.$t("meta.bountyPlatform.pageTitle") + " | " + this.bounty.title
         },
         {
           itemprop: "description",
@@ -493,8 +495,7 @@ export default {
         // Facebook Meta Tags
         {
           property: "og:url",
-          content:
-            process.env.CANONICAL_URL
+          content: process.env.CANONICAL_URL
         },
         {
           property: "og:type",
@@ -502,7 +503,8 @@ export default {
         },
         {
           property: "og:title",
-          content: "Devcash | Bounty Platform | " + this.bounty.title
+          content:
+            this.$t("meta.bountyPlatform.pageTitle") + " | " + this.bounty.title
         },
         {
           property: "og:description",
@@ -519,7 +521,8 @@ export default {
         },
         {
           name: "twitter:title",
-          content: "Devcash | Bounty Platform | " + this.bounty.title
+          content:
+            this.$t("meta.bountyPlatform.pageTitle") + " | " + this.bounty.title
         },
         {
           name: "twitter:description",
@@ -549,8 +552,7 @@ export default {
         // Canonical
         {
           rel: "canonical",
-          href:
-            process.env.CANONICAL_URL
+          href: process.env.CANONICAL_URL
         },
         // Generic Icons
         {

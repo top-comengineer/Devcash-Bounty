@@ -169,9 +169,8 @@ export default {
   data() {
     return {
       // For meta tags
-      pageDescription:
-        "An overview of your activity on the Devcash Bounty Platform.",
-      pageTitle: "Devcash | Bounty Platform | Overview",
+      pageTitle: this.$t("meta.bountyPlatform.overview.pageTitle"),
+      pageDescription: this.$t("meta.bountyPlatform.overview.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL

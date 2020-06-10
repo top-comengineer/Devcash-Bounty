@@ -203,9 +203,8 @@ export default {
     return {
       activeTab: "public",
       // For meta tags
-      pageDescription:
-        "Crowdsource developer talent by posting a bounty on the Devcash Bounty Platform.",
-      pageTitle: "Devcash | Bounty Platform | Post",
+      pageTitle: this.$t("meta.bountyPlatform.post.pageTitle"),
+      pageDescription: this.$t("meta.bountyPlatform.post.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL
