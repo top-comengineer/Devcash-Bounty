@@ -40,9 +40,9 @@ export default {
       pageDescription:
         "Devcash Bounty Platform is a decentralized bounty platform where users utilize DEV to crowdsource developer talent or perform developer tasks and earn DEV.",
       pageTitle: "Devcash | Bounty Platform",
-      pagePreview: "https://devcash.netlify.app/previews/bountyplatform.png",
+      pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: "https://devcash.netlify.app/bountyplatform/post"
+      canonicalURL: process.env.CANONICAL_URL
     };
   },
   computed: {

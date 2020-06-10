@@ -34,9 +34,9 @@ export default {
       pageDescription:
         "Devcash (DEV) is cash for the developer economy. It is the official currency of Blockchain Developers United. Devcash offers various services such as a bounty platform and a decentralize exchange to make developers’ jobs easier.",
       pageTitle: "Devcash | Cash for the Developer Economy",
-      pagePreview: "https://devcash.netlify.app/previews/home.png",
+      pagePreview: `${process.env.BASE_URL}/previews/home.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: "https://devcash.netlify.app"
+      canonicalURL: process.env.CANONICAL_URL
     };
   },
   head() {

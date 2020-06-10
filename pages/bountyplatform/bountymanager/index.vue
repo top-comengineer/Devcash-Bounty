@@ -232,9 +232,9 @@ export default {
       pageDescription:
         "Manage the bounties you posted on the Devcash Bounty Platform.",
       pageTitle: "Devcash | Bounty Platform | Bounty Manager",
-      pagePreview: "https://devcash.netlify.app/previews/bountyplatform.png",
+      pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: "https://devcash.netlify.app/bountyplatform/bountymanager"
+      canonicalURL: process.env.CANONICAL_URL
     };
   },
   head() {

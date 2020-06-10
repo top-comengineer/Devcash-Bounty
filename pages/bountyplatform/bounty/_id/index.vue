@@ -451,7 +451,7 @@ export default {
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
       // For meta tags
-      pagePreview: "https://devcash.netlify.app/previews/bounty-single.png",
+      pagePreview: `${process.env.BASE_URL}/previews/bounty-single.png`,
       pageThemeColor: "#675CFF"
     };
   },
@@ -494,7 +494,7 @@ export default {
         {
           property: "og:url",
           content:
-            "https://devcash.netlify.app/bountyplatform/bounty" + this.bounty.id
+            process.env.CANONICAL_URL
         },
         {
           property: "og:type",
@@ -550,8 +550,7 @@ export default {
         {
           rel: "canonical",
           href:
-            "https://devcash.netlify.app/bountyplatform/bounty/" +
-            this.bounty.id
+            process.env.CANONICAL_URL
         },
         // Generic Icons
         {

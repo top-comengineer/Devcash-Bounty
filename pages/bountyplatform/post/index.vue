@@ -206,9 +206,9 @@ export default {
       pageDescription:
         "Crowdsource developer talent by posting a bounty on the Devcash Bounty Platform.",
       pageTitle: "Devcash | Bounty Platform | Post",
-      pagePreview: "https://devcash.netlify.app/previews/bountyplatform.png",
+      pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: "https://devcash.netlify.app/bountyplatform/post"
+      canonicalURL: process.env.CANONICAL_URL
     };
   },
   beforeMount() {

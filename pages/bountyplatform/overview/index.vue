@@ -172,9 +172,9 @@ export default {
       pageDescription:
         "An overview of your activity on the Devcash Bounty Platform.",
       pageTitle: "Devcash | Bounty Platform | Overview",
-      pagePreview: "https://devcash.netlify.app/previews/bountyplatform.png",
+      pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: "https://devcash.netlify.app/bountyplatform/overview"
+      canonicalURL: process.env.CANONICAL_URL
     };
   },
   head() {
