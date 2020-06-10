@@ -11,7 +11,7 @@
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start px-4">
-      <h4 class="font-extrabold text-xl text-left">{{ bounty.name }}</h4>
+      <h4 class="font-extrabold text-xl text-left">{{ bounty.title }}</h4>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon class="flex" :diameter="20" :address="bounty.bountyChest" />
         <h5 class="font-mono-jet text-md text-left ml-2 opacity-75">
@@ -46,7 +46,9 @@
           type="award"
         />
         <h6 class="text-right text-sm">
-          <span class="font-bold">{{ `${bounty.submissions.filter(sub => sub.approved).length} of ${bounty.numLeft}` }}</span>
+          <span
+            class="font-bold"
+          >{{ `${bounty.submissions.filter(sub => sub.approved).length} of ${bounty.numLeft}` }}</span>
           <span class="opacity-75">
             {{
             $t("bountyPlatform.bountyCard.bountiesLeft")
