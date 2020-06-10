@@ -92,7 +92,11 @@
         <!-- Language Modal -->
         <transition name="langModalTransition">
           <!-- Modal Wrapper -->
-          <div class="origin-top-right absolute right-0 pt-2" v-if="isLangModalOpen">
+          <div
+            v-on-clickaway="hideLangModal"
+            class="origin-top-right absolute right-0 pt-2"
+            v-if="isLangModalOpen"
+          >
             <div
               :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
               class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
@@ -100,7 +104,6 @@
               <button
                 v-for="(locale, index) in availableLocales"
                 :key="locale.code"
-                v-on-clickaway="hideLangModal"
                 @click="changeLang(locale); hideLangModal()"
                 @keydown.tab.exact="index+1 == availableLocales.length?hideLangModal():null"
                 @keydown.esc.exact="hideLangModal"

@@ -133,7 +133,73 @@
             />
           </div>
           <!-- Sort Text and Sort Options -->
-          <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.sortHeader")}}</h4>
+          <div class="relative">
+            <!-- Sort Button -->
+            <button
+              @click="toggleSortModal"
+              @keydown.esc.exact="hideSortModal"
+              class="text-lg font-bold mt-8 w-full flex flex-row items-center px-1 -mx-1 hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 transition-colors duration-200 rounded-md"
+            >
+              {{$t("bountyPlatform.explore.sidebar.sortHeader")}}
+              <Icon
+                class="hidden lg:block w-4 h-4 mx-1 transition-all ease-out duration-200"
+                :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+                type="arrow-down"
+              />
+            </button>
+            <!-- Sort Modal -->
+            <transition name="sortModalTransition">
+              <!-- Modal Wrapper -->
+              <div
+                v-on-clickaway="hideSortModal"
+                class="origin-top-left absolute left-0 pt-2 z-50"
+                v-if="isSortModalOpen"
+              >
+                <div
+                  :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
+                  class="w-48 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+                >
+                  <!-- Descending Button -->
+                  <button
+                    @click="isSortDescending=true; hideSortModalWithDelay()"
+                    @keydown.esc.exact="hideSortModal"
+                    :class="isSortDescending ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
+                  >
+                    <div class="ml-3 mr-2">
+                      <Icon
+                        :colorClass="isSortDescending?'text-dtText':'text-transparent'"
+                        type="done"
+                        class="w-5 h-5"
+                      />
+                    </div>
+                    <h6
+                      class="whitespace-no-wrap font-bold"
+                    >{{$t("bountyPlatform.explore.sidebar.sortDescending")}}</h6>
+                  </button>
+                  <!-- Ascending Button -->
+                  <button
+                    @click="isSortDescending=false; hideSortModalWithDelay()"
+                    @keydown.tab.exact="hideSortModal"
+                    @keydown.esc.exact="hideSortModal"
+                    :class="!isSortDescending ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
+                  >
+                    <div class="ml-3 mr-2">
+                      <Icon
+                        :colorClass="!isSortDescending?'text-dtText':'text-transparent'"
+                        type="done"
+                        class="w-5 h-5"
+                      />
+                    </div>
+                    <h6
+                      class="whitespace-no-wrap font-bold"
+                    >{{$t("bountyPlatform.explore.sidebar.sortAscending")}}</h6>
+                  </button>
+                </div>
+              </div>
+            </transition>
+          </div>
           <RadioButton
             checked="checked"
             class="mt-3 -ml-1"
@@ -226,7 +292,9 @@ import { SIDEBAR_CONTEXTS } from "~/config";
 import Icon from "~/components/Icon.vue";
 import RadioButton from "~/components/RadioButton.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
+  mixins: [clickaway],
   components: {
     Icon,
     RadioButton,
@@ -238,8 +306,23 @@ export default {
   data: function() {
     return {
       sidebarContexts: SIDEBAR_CONTEXTS,
-      isSearchFocused: false
+      isSearchFocused: false,
+      isSortDescending: true,
+      isSortModalOpen: false
     };
+  },
+  methods: {
+    toggleSortModal() {
+      this.isSortModalOpen = !this.isSortModalOpen;
+    },
+    hideSortModal() {
+      this.isSortModalOpen = false;
+    },
+    hideSortModalWithDelay() {
+      setTimeout(() => {
+        this.isSortModalOpen = false;
+      }, 50);
+    }
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -254,5 +337,19 @@ export default {
 .searchIcon {
   top: 50%;
   transform: translateY(-50%);
+}
+.sortModalTransition-enter-active {
+  transition: all 0.2s ease-out;
+}
+.sortModalTransition-leave-active {
+  transition: all 0.2s ease-out;
+}
+.sortModalTransition-enter {
+  opacity: 0.25;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+.sortModalTransition-leave-to {
+  opacity: 0;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }
 </style>
