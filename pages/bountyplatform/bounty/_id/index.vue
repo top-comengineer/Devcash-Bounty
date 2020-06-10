@@ -476,7 +476,7 @@ export default {
         {
           hid: "description",
           name: "description",
-          content: this.bounty.description
+          content: this.bounty.descriptionMeta
         },
         // Google / Search Engine Tags
         {
@@ -486,7 +486,7 @@ export default {
         },
         {
           itemprop: "description",
-          content: this.bounty.description
+          content: this.bounty.descriptionMeta
         },
         {
           itemprop: "image",
@@ -508,7 +508,7 @@ export default {
         },
         {
           property: "og:description",
-          content: this.bounty.description
+          content: this.bounty.descriptionMeta
         },
         {
           property: "og:image",
@@ -526,7 +526,7 @@ export default {
         },
         {
           name: "twitter:description",
-          content: this.bounty.description
+          content: this.bounty.descriptionMeta
         },
         {
           name: "twitter:image",
