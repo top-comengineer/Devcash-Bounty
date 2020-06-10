@@ -4,6 +4,7 @@ const Redis = require('ioredis')
 const redislock = require('ioredis-lock')
 const JSONCache = require('redis-json')
 const { BigNumber } = require('ethers/utils/bignumber')
+const { Op, sequelize, Submission } = require("../models")
 
 // Prefix all DB calls with this
 const prefix = 'devcash'
@@ -89,10 +90,58 @@ class RedisDB {
                 }
                 // Update submissions and revisions
                 let allUBounties = await this.getUBounties()
+                let submissionIDApprovedList = []
+                let submissionIDRejectedList = []
                 for (const bounty of allUBounties) {
                     bounty.submissions = await etherClient.getBountySubmissions(bounty)
+                    if (bounty.numLeft > 0) {
+                        for (const sub of bounty.submissions) {
+                            try {
+                                let subDb = await Submission.findOne({
+                                    where: {
+                                        ubounty_id: {[Op.eq]: bounty.index},
+                                        submission_id: {[Op.eq]: sub.index}
+                                    },
+                                })                                
+                                if (sub.approved && subDb != null) {
+                                    submissionIDApprovedList.push(subDb.id)
+                                } else if (subDb != null) {
+                                    submissionIDRejectedList.push(subDb.id)
+                                }
+                            } catch (e) {
+                                console.log(`Couldn't update submission ${e}`)
+                            }
+                        }
+                    }
                 }
                 await this.setUBounties(allUBounties, true)
+                // Update submission status
+                if (submissionIDApprovedList.length > 0 || submissionIDRejectedList.length > 0) {
+                    await sequelize.transaction(async (t) => {
+                        if (submissionIDApprovedList.length > 0) {
+                            Submission.update(
+                                { approved: true },
+                                {
+                                    where: {
+                                        id: { [Op.in]: submissionIDApprovedList },
+                                    }
+                                },
+                                { transaction: t }
+                            )
+                        }
+                        if (submissionIDRejectedList.length > 0) {
+                            Submission.update(
+                                { approved: false },
+                                {
+                                    where: {
+                                        id: { [Op.in]: submissionIDRejectedList }
+                                    }
+                                },
+                                { transaction: t }
+                            )                        
+                        }
+                    });
+                }
             } catch (e) {
                 console.log(`Error updating bounty cache ${e}`)
             }
