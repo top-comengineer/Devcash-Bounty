@@ -43,7 +43,7 @@ export default {
     const i18nSeo = this.$nuxtI18nSeo()
     return {
       htmlAttrs: {
-        lang: this.$i18n.locale
+        ...i18nSeo.htmlAttrs
       },
       meta: [
         ...i18nSeo.meta

@@ -1,5 +1,11 @@
 <template>
   <div class="w-full flex flex-row flex-wrap justify-center">
+    <h1 v-if="!isLoggedIn">
+        Not logged in
+    </h1>
+    <h1 v-else-if="bountiesLoading">
+        Bounties are loading
+    </h1>
     <!-- Submissions Sent Card -->
     <div
       :class="[$store.state.theme.dt
@@ -155,7 +161,7 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { utils } from "ethers";
-import Axios from "axios";
+import { mapGetters } from "vuex";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
@@ -170,50 +176,20 @@ export default {
     BountyCard,
     CheckmarkButton
   },
-  asyncData({ error, params, $axios }) {
-    return $axios
-      .get(
-        `/bounty/listpersonal?page=1&limit=${defaultBountyLimit}&hunter=${params.hunter}`
-      )
-      .then(res => {
-        let totalBountyAmount = utils.bigNumberify(0);
-        for (let bounty of res.data.items) {
-          totalBountyAmount = totalBountyAmount.add(
-            utils.bigNumberify(bounty.bountyAmount)
-          );
-        }
-        let totalBountyAmountDisplay = utils.commify(
-          utils.formatUnits(totalBountyAmount, 8)
-        );
-        return {
-          page: 1,
-          perPage: defaultBountyLimit,
-          bounties: res.data.items,
-          totalBountyCount: res.data.count,
-          totalBountyAmount: totalBountyAmount,
-          totalBountyAmountDisplay: totalBountyAmountDisplay,
-          hunter: params.hunter,
-          bountiesLoading: false,
-          hasMoreBounties: Math.floor(res.data.count / defaultBountyLimit) > 1
-        };
-      })
-      .catch(e => {
-        return error({
-          statusCode: e.response != undefined ? r.response.status : 500,
-          message:
-            e.response != undefined && e.response.status == 422
-              ? `Address "${params.hunter}" is invalid`
-              : "Unknown error occured"
-        });
-      });
-  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    })
+  },  
   methods: {
     async loadMoreBounties() {
       this.page++;
       this.bountiesLoading = true;
       try {
-        let res = await Axios.get(
-          `/bounty/listpersonal?page=${this.page}&limit=${defaultBountyLimit}&hunter=${this.hunter}`
+        let res = await this.$axios.get(
+          `/bounty/listpersonal?page=${this.page}&limit=${defaultBountyLimit}&hunter=${this.loggedInAccount}`
         );
         for (let bounty of res.data.items) {
           this.totalBountyAmount = this.totalBountyAmount.add(
@@ -223,18 +199,23 @@ export default {
         this.totalBountyAmountDisplay = utils.commify(
           utils.formatUnits(this.totalBountyAmount, 8)
         );
-        this.bounties.push(res.data.items);
+        this.bounties = this.bounties.concat(res.data.items);
         this.totalBountyCount = res.data.count;
-        this.totalBountyAmount;
         this.hasMoreBounties =
           Math.floor(res.data.count / defaultBountyLimit) > 1;
       } catch (e) {
         this.page--;
       } finally {
+        this.initialBountiesLoading = false;
         this.bountiesLoading = false;
       }
     }
   },
+  mounted() {
+      if (this.isLoggedIn) {
+          this.loadMoreBounties()
+      }
+  },  
   beforeMount() {
     // Set sidebar context
     this.$store.commit(
@@ -247,6 +228,14 @@ export default {
   },
   data() {
     return {
+      initialBountiesLoading: true,
+      bountiesLoading: true,
+      page: 0,
+      totalBountyAmount: 0,
+      totalBountyAmountDisplay: "0.0",
+      totalBountyCount: 0,
+      hasMoreBounties: false,
+      bounties: [],
       // For meta tags
       pageDescription:
         "Manage the bounties you posted on the Devcash Bounty Platform.",

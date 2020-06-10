@@ -69,14 +69,14 @@
           <nuxt-link
             v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="localePath({name:'bountyplatform-bountyhunter-hunter', params: {hunter: loggedInAccount}})"
+            :to="localePath('bountyplatform-bountyhunter')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.bountyHunter.header") }}</nuxt-link>
           <!-- Bounty Platform / Bounty Manager -->
           <nuxt-link
             v-if="isLoggedIn"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-            :to="localePath({name:'bountyplatform-bountymanager-creator', params: {creator: loggedInAccount}})"
+            :to="localePath('bountyplatform-bountymanager')"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
         </div>
