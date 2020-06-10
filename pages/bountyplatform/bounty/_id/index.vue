@@ -449,7 +449,10 @@ export default {
       isSubmissionModalContentVisible: false,
       isContributeModalContentVisible: false,
       isSubmissionModalOpen: false,
-      isContributeModalOpen: false
+      isContributeModalOpen: false,
+      // For meta tags
+      pagePreview: "https://devcash.netlify.app/previews/bounty-single.png",
+      pageThemeColor: "#675CFF"
     };
   },
   beforeMount() {
@@ -463,6 +466,112 @@ export default {
     this.$store.commit("general/setSidebarContext", null);
     this.isSubmissionModalOpen = false;
     this.isContributeModalOpen = false;
+  },
+  head() {
+    return {
+      title: "Devcash | Bounty Platform | " + this.bounty.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: "description",
+          name: "description",
+          content: this.bounty.description
+        },
+        // Google / Search Engine Tags
+        {
+          itemprop: "name",
+          content: "Devcash | Bounty Platform | " + this.bounty.title
+        },
+        {
+          itemprop: "description",
+          content: this.bounty.description
+        },
+        {
+          itemprop: "image",
+          content: this.pagePreview
+        },
+        // Facebook Meta Tags
+        {
+          property: "og:url",
+          content:
+            "https://devcash.netlify.app/bountyplatform/bounty" + this.bounty.id
+        },
+        {
+          property: "og:type",
+          content: "website"
+        },
+        {
+          property: "og:title",
+          content: "Devcash | Bounty Platform | " + this.bounty.title
+        },
+        {
+          property: "og:description",
+          content: this.bounty.description
+        },
+        {
+          property: "og:image",
+          content: this.pagePreview
+        },
+        // Twitter Meta Tags
+        {
+          name: "twitter:card",
+          content: "summary_large_image"
+        },
+        {
+          name: "twitter:title",
+          content: "Devcash | Bounty Platform | " + this.bounty.title
+        },
+        {
+          name: "twitter:description",
+          content: this.bounty.description
+        },
+        {
+          name: "twitter:image",
+          content: this.pagePreview
+        },
+        // Theme
+        {
+          name: "theme-color",
+          content: this.pageThemeColor
+        },
+        // Windows 8 IE 10
+        {
+          name: "msapplication-TileColor",
+          content: this.pageThemeColor
+        },
+        // Windows 8.1 + IE11 and above
+        {
+          name: "apple-mobile-web-app-status-bar-style",
+          content: this.pageThemeColor
+        }
+      ],
+      link: [
+        // Canonical
+        {
+          rel: "canonical",
+          href:
+            "https://devcash.netlify.app/bountyplatform/bounty/" +
+            this.bounty.id
+        },
+        // Generic Icons
+        {
+          rel: "icon",
+          sizes: "180x180",
+          href: "/apple-touch-icon.png"
+        },
+        {
+          rel: "icon",
+          sizes: "32x32",
+          href: "/favicon-32x32.png"
+        },
+        {
+          rel: "icon",
+          sizes: "16x16",
+          href: "/favicon-16x16.png"
+        },
+        { rel: "manifest", href: "/site.webmanifest" }
+      ]
+    };
   }
 };
 </script>

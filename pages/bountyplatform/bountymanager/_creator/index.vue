@@ -154,7 +154,7 @@ import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
 
-const defaultBountyLimit = 10
+const defaultBountyLimit = 10;
 
 export default {
   layout: "bountyPlatform",
@@ -165,13 +165,19 @@ export default {
   },
   asyncData({ error, params, $axios }) {
     return $axios
-      .get(`/bounty/listcreated?page=1&limit=${defaultBountyLimit}&creator=${params.creator}`)
+      .get(
+        `/bounty/listcreated?page=1&limit=${defaultBountyLimit}&creator=${params.creator}`
+      )
       .then(res => {
-        let totalBountyAmount = utils.bigNumberify("0")
+        let totalBountyAmount = utils.bigNumberify("0");
         for (let bounty of res.data.items) {
-            totalBountyAmount = totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
+          totalBountyAmount = totalBountyAmount.add(
+            utils.bigNumberify(bounty.bountyAmount)
+          );
         }
-        let totalBountyAmountDisplay = utils.commify(utils.formatUnits(totalBountyAmount, 8))
+        let totalBountyAmountDisplay = utils.commify(
+          utils.formatUnits(totalBountyAmount, 8)
+        );
         return {
           page: 1,
           perPage: defaultBountyLimit,
@@ -185,32 +191,42 @@ export default {
         };
       })
       .catch(e => {
-        throw e
+        throw e;
         return error({
           statusCode: e.response != undefined ? r.response.status : 500,
-          message: e.response != undefined && e.response.status == 422 ? `Address "${params.creator}" is invalid` : "Unknown error occured"
+          message:
+            e.response != undefined && e.response.status == 422
+              ? `Address "${params.creator}" is invalid`
+              : "Unknown error occured"
         });
       });
-    },
-    methods: {
-      async loadMoreBounties() {
-        this.page++
-        this.bountiesLoading = true;
-        try {
-            let res = await Axios.get(`/bounty/listcreated?page=${this.page}&limit=${defaultBountyLimit}&creator=${this.creator}`)
-            for (let bounty of res.data.items) {
-                this.totalBountyAmount = this.totalBountyAmount.add(utils.bigNumberify(bounty.bountyAmount))
-            }
-            this.totalBountyAmountDisplay = utils.commify(utils.formatUnits(this.totalBountyAmount, 8))
-            this.bounties.push(res.data.items)
-            this.totalBountyCount = res.data.count
-            this.totalBountyAmount
-            this.hasMoreBounties = Math.floor(res.data.count / defaultBountyLimit) > 1
-        } catch (e) {
-            this.page--
-        } finally {
-            this.bountiesLoading = false
+  },
+  methods: {
+    async loadMoreBounties() {
+      this.page++;
+      this.bountiesLoading = true;
+      try {
+        let res = await Axios.get(
+          `/bounty/listcreated?page=${this.page}&limit=${defaultBountyLimit}&creator=${this.creator}`
+        );
+        for (let bounty of res.data.items) {
+          this.totalBountyAmount = this.totalBountyAmount.add(
+            utils.bigNumberify(bounty.bountyAmount)
+          );
         }
+        this.totalBountyAmountDisplay = utils.commify(
+          utils.formatUnits(this.totalBountyAmount, 8)
+        );
+        this.bounties.push(res.data.items);
+        this.totalBountyCount = res.data.count;
+        this.totalBountyAmount;
+        this.hasMoreBounties =
+          Math.floor(res.data.count / defaultBountyLimit) > 1;
+      } catch (e) {
+        this.page--;
+      } finally {
+        this.bountiesLoading = false;
+      }
     }
   },
   beforeMount() {
@@ -222,6 +238,120 @@ export default {
   },
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
+  },
+  data() {
+    return {
+      // For meta tags
+      pageDescription:
+        "Manage the bounties you posted on the Devcash Bounty Platform.",
+      pageTitle: "Devcash | Bounty Platform | Bounty Manager",
+      pagePreview: "https://devcash.netlify.app/previews/bountyplatform.png",
+      pageThemeColor: "#675CFF",
+      canonicalURL: "https://devcash.netlify.app/bountyplatform/bountymanager"
+    };
+  },
+  head() {
+    return {
+      title: this.pageTitle,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        {
+          hid: "description",
+          name: "description",
+          content: this.pageDescription
+        },
+        // Google / Search Engine Tags
+        {
+          itemprop: "name",
+          content: this.pageTitle
+        },
+        {
+          itemprop: "description",
+          content: this.pageDescription
+        },
+        {
+          itemprop: "image",
+          content: this.pagePreview
+        },
+        // Facebook Meta Tags
+        {
+          property: "og:url",
+          content: this.canonicalURL
+        },
+        {
+          property: "og:type",
+          content: "website"
+        },
+        {
+          property: "og:title",
+          content: this.pageTitle
+        },
+        {
+          property: "og:description",
+          content: this.pageDescription
+        },
+        {
+          property: "og:image",
+          content: this.pagePreview
+        },
+        // Twitter Meta Tags
+        {
+          name: "twitter:card",
+          content: "summary_large_image"
+        },
+        {
+          name: "twitter:title",
+          content: this.pageTitle
+        },
+        {
+          name: "twitter:description",
+          content: this.pageDescription
+        },
+        {
+          name: "twitter:image",
+          content: this.pagePreview
+        },
+        // Theme
+        {
+          name: "theme-color",
+          content: this.pageThemeColor
+        },
+        // Windows 8 IE 10
+        {
+          name: "msapplication-TileColor",
+          content: this.pageThemeColor
+        },
+        // Windows 8.1 + IE11 and above
+        {
+          name: "apple-mobile-web-app-status-bar-style",
+          content: this.pageThemeColor
+        }
+      ],
+      link: [
+        // Canonical
+        {
+          rel: "canonical",
+          href: this.canonicalURL
+        },
+        // Generic Icons
+        {
+          rel: "icon",
+          sizes: "180x180",
+          href: "/apple-touch-icon.png"
+        },
+        {
+          rel: "icon",
+          sizes: "32x32",
+          href: "/favicon-32x32.png"
+        },
+        {
+          rel: "icon",
+          sizes: "16x16",
+          href: "/favicon-16x16.png"
+        },
+        { rel: "manifest", href: "/site.webmanifest" }
+      ]
+    };
   }
 };
 </script>
