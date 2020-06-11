@@ -13,4 +13,14 @@ router.get(
   submissionController.getSubmissions,
 )
 
+router.get(
+  '/listcreator',
+  submissionController.getSubmissionsForBountyCreator
+)
+
+router.get(
+  '/listhunter',
+  submissionController.getSubmissionsForBountyHunter
+)
+
 module.exports = router;

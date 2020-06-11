@@ -186,7 +186,7 @@
               class="w-1/3 text-sm font-bold md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >
               Submissions
-              <span class="text-sm font-light">(2)</span>
+              <span class="text-sm font-light">({{ bounty.submissions.length }})</span>
             </button>
             <button
               :class="[activeTab=='comments'?'text-dtText':'', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='comments', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='comments' }]"
@@ -208,31 +208,14 @@
           <SubmissionCard
             class="my-2"
             perspective="hunter"
-            context="singleBounty"
-            status="pending"
-            amountDEV="57,500"
-            amountETH="0.127"
-            amountUSD="34.5"
-            address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
-            message="Here is the link to my submission:<br><u>https://github.com/guy/submission</u>"
-            date="03.16.2020, 14:40"
+            v-for="(item, i) in submissions"
+            :key="i"
+            :submission="item"
+            :ubounty="bounty"
           />
-          <SubmissionCard
-            class="my-2"
-            perspective="hunter"
-            context="singleBounty"
-            status="rejected"
-            amountDEV="57,500"
-            amountETH="0.127"
-            amountUSD="34.5"
-            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
-            message="Files are is attached to this submission."
-            date="03.15.2020, 16:45"
-          />
-          <!-- Load More Button -->
-          <!-- 
-          <div class="flex flex-row justify-center mt-2">
+          <div v-if="hasMoreSubmissions && !submissionsLoading" class="flex flex-row justify-center mt-2">
           <button
+            @click="loadMoreSubmissions()"
             :class="[
           $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
@@ -240,7 +223,6 @@
             class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
           >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
-          -->
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
@@ -371,6 +353,8 @@ import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
 
+const defaultSubmissionsLimit = 10;
+
 export default {
   layout: "bountyPlatform",
   components: {
@@ -385,7 +369,7 @@ export default {
     BountyCardStatusTag,
     SubmissionModal,
     ContributeModal
-  },
+  }, 
   methods: {
     async initEthConnector() {
       if (this.$store.state.devcash.connector == null) {
@@ -426,9 +410,44 @@ export default {
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);
+    },
+    async loadMoreSubmissions() {
+      this.page++;
+      this.submissionsLoading = true;
+      try {
+        let res = await this.$axios.get(
+          `/submission/list?page=${this.page}&limit=${defaultSubmissionsLimit}&bounty=${this.bounty.id}`
+        );
+        this.submissions = this.submissions.concat(res.data.items);
+        this.totalSubmissionCount = res.data.count;
+        this.hasMoreSubmissions =
+          Math.floor(res.data.count / this.totalSubmissionCount) > 1;
+      } catch (e) {
+        this.submissionsPage--;
+      } finally {
+        this.submissionsLoading = false;
+      }
     }
   },
-  asyncData({ error, params, $axios }) {
+  async asyncData({ error, params, $axios }) {
+    try {
+      let res = await $axios.get(`/bounty/one?id=${params.id}`)
+      let submissions = await $axios.get(`/submission/list?bounty=${params.id}&page=1&limit=${defaultSubmissionsLimit}`)
+      return {
+        bounty: res.data,
+        submissionsLoading: false,
+        page: 1,
+        totalSubmissionCount: submissions.data.items.length,
+        hasMoreSubmissions: Math.floor(res.data.count / defaultSubmissionsLimit) > 1,
+        submissions: submissions.data.items,
+      }
+    } catch (e) {
+      throw e
+      return error({
+        statusCode: 404,
+        message: `Bounty "${params.id}" not found`
+      });      
+    }
     return $axios
       .get(`/bounty/one?id=${params.id}`)
       .then(res => {

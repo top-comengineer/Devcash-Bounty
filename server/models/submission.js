@@ -42,17 +42,14 @@ module.exports = (sequelize, DataTypes) => {
      }      
   });
 
-  // Associate 1 to many relationship with uBounties
-  Submission.associate = function (models) {
+  // Set associations with bounty and revisions
+  Submission.associate = function(models) {
     models.Submission.belongsTo(models.UBounty, {
       onDelete: "CASCADE",
       foreignKeyConstraint: true,
-      foreignKey: 'ubounty_id'
-    });
-  };
-
-  // Set revisions one-to-many relationship
-  Submission.associate = function(models) {
+      foreignKey: 'ubounty_id',
+      as: 'ubounty'
+    });    
     models.Submission.hasMany(models.Revision, {as: 'revisions', foreignKey: 'submission_id'})
     models.Submission.hasMany(models.RevisionStaged, {as: 'revisions_staging', foreignKey: 'submission_id'})
   };

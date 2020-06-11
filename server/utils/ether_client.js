@@ -156,6 +156,12 @@ class EtherClient {
     let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
     let toBlock = await this.provider.getBlockNumber()
 
+    if (lastHadBlock >= toBlock) {
+      // Don't need to retrieve any logs
+      this.event_logs = event_logs_cache
+      return
+    }
+
     let createdTopic = utils.id("created(uint256,uint256,uint256,uint256)");
     let submittedTopic = utils.id("submitted(uint256,uint256)");
     let revisedTopic = utils.id("revised(uint256,uint256,uint256)");
@@ -227,16 +233,14 @@ class EtherClient {
     event_logs.completed = completedInfo;
     event_logs.feeChanged = feeChangedInfo;
     event_logs.waiverChanged = waiverChangedInfo;
+    event_logs.orderedFeedback = orderedFeedback;
 
     // Cache
-    console.log(event_logs)
     if (event_logs_cache != null) {
       event_logs = merge(event_logs, event_logs_cache)
     }
     await this.redis.setEventLogCache(event_logs, toBlock)
     console.log(event_logs)
-
-    event_logs.orderedFeedback = orderedFeedback;
 
     console.log("Finished gathering event logs")
     this.event_logs = event_logs;
@@ -725,15 +729,18 @@ class EtherClient {
   }
 
   getSubmissionStatus(uI, sI) {
+    let ret
     if (this.overriddenStatus[uI] && this.overriddenStatus[uI][sI]) {
-      return this.overriddenStatus[uI][sI]
+      ret = this.overriddenStatus[uI][sI]
+    } else {
+      try {
+        let events = this.event_logs.orderedFeedback[uI][sI];
+        ret = events[events.length - 1].event;
+      } catch(e) {
+        ret = "awaiting feedback";
+      }
     }
-    try {
-      let events = this.event_logs.orderedFeedback[uI][sI];
-      return events[events.length - 1].event;
-    } catch(e) {
-      return "awaiting feedback";
-    }
+    return ret.toLowerCase()
   }
 
   overrideStatus(uI, sI, status) {

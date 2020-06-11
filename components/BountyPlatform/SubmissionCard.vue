@@ -17,17 +17,17 @@
       >
         <!-- Senders Address and Project Name -->
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
-          <Jazzicon class="flex m-1" :diameter="20" :address="address" />
+          <Jazzicon class="flex m-1" :diameter="20" :address="submission.creator" />
           <h5 class="text-left ml-2 mr-3">
             <span
               class="font-mono-jet font-bold"
-            >{{address.substring(0, 6) + "..." + address.substring(address.length - 4)}}</span>
+            >{{submission.creator.substring(0, 6) + "..." + submission.creator.substring(submission.creator.length - 4)}}</span>
             <span
-              v-if="perspective=='hunter' && address==selfAddress"
+              v-if="perspective=='hunter' && address==loggedInAccount"
               class="font-mono-jet text-sm opacity-75"
             >({{$t('bountyPlatform.bountyHunter.you')}})</span>
             <span v-if="bountyName">-></span>
-            <span v-if="bountyName" class="font-extrabold">{{bountyName}}</span>
+            <span v-if="bountyName" class="font-extrabold">{{ubounty.title}}</span>
           </h5>
         </div>
         <!-- Bounty Amount and Status Tag or Approve Decline Options -->
@@ -36,21 +36,21 @@
           <div class="flex flex-col my-2">
             <h5
               :class="{
-              'text-dtPending': status=='pending' && $store.state.theme.dt,
-              'text-ltPending': status=='pending' && !$store.state.theme.dt,
-              'text-dtSuccess': status=='approved' && $store.state.theme.dt,
-              'text-ltSuccess': status=='approved' && !$store.state.theme.dt,
-              'text-dtDanger': status=='rejected' && $store.state.theme.dt,
-              'text-ltDanger': status=='rejected' && !$store.state.theme.dt}"
+              'text-dtPending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback') && $store.state.theme.dt,
+              'text-ltPending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback') && !$store.state.theme.dt,
+              'text-dtSuccess': submission.status == 'approved' && $store.state.theme.dt,
+              'text-ltSuccess': submission.status == 'approved' && !$store.state.theme.dt,
+              'text-dtDanger': submission.status == 'rejected' && $store.state.theme.dt,
+              'text-ltDanger': submission.status == 'rejected' && !$store.state.theme.dt}"
               class="font-bold text-left"
-            >{D}{{amountDEV}}</h5>
-            <h6 class="text-sm text-left">(Ξ{{amountETH}} / ${{amountUSD}})</h6>
+            >{D}{{formatAmount()}}</h5>
+            <h6 class="text-sm text-left">(Ξ{{'1'}} / ${{'1'}})</h6>
           </div>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
             <!-- If Perspective is Manager -->
             <div
-              v-if="perspective=='manager' && status=='pending'"
+              v-if="perspective=='manager' && (submission.status == 'revision requested' || submission.status == 'awaiting feedback')"
               class="flex flex-row flex-wrap items-center"
             >
               <!-- Approve Button -->
@@ -85,23 +85,25 @@
               </button>
             </div>
             <!-- If Perspective is Hunter -->
-            <StatusTag :perspective="perspective" :status="status" v-if="perspective=='hunter'" />
+            <StatusTag :perspective="perspective" :status="getSimpleStatus()" v-if="perspective=='hunter'" />
           </div>
         </div>
       </div>
       <!-- Thin Status Bar -->
-      <StatusDivider :status="status" />
+      <StatusDivider :status="getSimpleStatus()" />
       <!-- Bottom Part -->
       <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
-        <p class="break-all" v-html="message"></p>
+        <p class="break-all" v-html="submission.submission_data"></p>
         <!-- Date -->
-        <p class="text-sm opacity-75 mt-6">{{date}}</p>
+        <p class="text-sm opacity-75 mt-6">{{ formatDateStr(currentLocale.iso) }}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import StatusTag from "~/components/BountyPlatform/StatusTag.vue";
@@ -114,22 +116,41 @@ export default {
     StatusDivider
   },
   props: {
-    bountyName: null,
-    status: null,
-    perspective: null,
-    context: null,
-    message: null,
-    address: null,
-    amountDEV: null,
-    amountETH: null,
-    amountUSD: null,
-    date: null
+    ubounty: Object,
+    submission: Object,
+    perspective: String,
   },
-  data() {
-    return {
-      // Address of the signed in account
-      selfAddress: "0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-    };
-  }
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    }),
+    currentLocale() {
+      for (let locale of this.$i18n.locales) {
+        if (locale.code == this.$i18n.locale) {
+          return locale;
+        }
+      }
+    }    
+  },
+  methods: {
+    formatDateStr(locale) {
+      return DevcashBounty.formatDateStr(locale, this.submission.createdAt)
+    },
+    formatAmount() {
+      let tokenDecimals = 8
+      if (this.$store.state.devcash.connector) {
+          tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+      }   
+      return DevcashBounty.formatAmountSingleSubmission(this.ubounty, tokenDecimals)
+    },
+    getSimpleStatus() {
+      if (this.submission.status == 'revision requested' || this.submission.status == 'awaiting feedback') {
+        return 'pending'
+      }
+      return this.submission.status
+    }
+  }  
 };
 </script>

@@ -39,50 +39,10 @@
         <SubmissionCard
           class="my-2"
           perspective="hunter"
-          bountyName="ETH Hackathon Project"
-          status="pending"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Resending the submission, added the instructions in README.md"
-          date="03.16.2020, 14:40"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="hunter"
-          bountyName="ETH Hackathon Project"
-          status="rejected"
-          amountDEV="575,000"
-          amountETH="1.278"
-          amountUSD="345"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="My hackathon project is attached to this submission."
-          date="03.15.2020, 16:45"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="hunter"
-          bountyName="Ethereum NPM Package"
-          status="approved"
-          amountDEV="1,500,000"
-          amountETH="3.333"
-          amountUSD="900"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Link to the finished package we’ve created:<br><u>https://github.com/antoine/ethnpmpackage</u>"
-          date="02.28.2020, 15:03"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="hunter"
-          bountyName="ETH Library Written in Dart"
-          status="approved"
-          amountDEV="3,500,000"
-          amountETH="7.78"
-          amountUSD="2100"
-          address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
-          message="Here is the repo for the completed library:<br><u>https://github.com/antoine/ethlibrary</u>"
-          date="02.15.2020, 14:35"
+          v-for="(item, i) in submissions"
+          :key="i"
+          :submission="item"
+          :ubounty="item.ubounty"
         />
       </div>
       <!-- Load More Button -->
@@ -205,11 +165,30 @@ export default {
         this.initialBountiesLoading = false;
         this.bountiesLoading = false;
       }
-    }
+    },
+    async loadMoreSubmissions() {
+      this.submissionsPage++;
+      this.submissionsLoading = true;
+      try {
+        let res = await this.$axios.get(
+          `/submission/listhunter?page=${this.submissionsPage}&limit=${defaultBountyLimit}&hunter=${this.loggedInAccount}`
+        );
+        this.submissions = this.submissions.concat(res.data.items);
+        this.totalSubmissionCount = res.data.count;
+        this.hasMoreSubmissions =
+          Math.floor(res.data.count / defaultBountyLimit) > 1;
+      } catch (e) {
+        this.submissionsPage--;
+      } finally {
+        this.initialSubmissionsLoading = false;
+        this.submissionsLoading = false;
+      }
+    }    
   },
   mounted() {
     if (this.isLoggedIn) {
       this.loadMoreBounties();
+      this.loadMoreSubmissions();
     }
   },
   beforeMount() {
@@ -225,13 +204,19 @@ export default {
   data() {
     return {
       initialBountiesLoading: true,
+      initialSubmissionsLoading: true,
       bountiesLoading: true,
+      submissionsLoading: true,
       page: 0,
+      submissionsPage: 0,
       totalBountyAmount: 0,
       totalBountyAmountDisplay: "0.0",
       totalBountyCount: 0,
+      totalSubmissionCount: 0,
       hasMoreBounties: false,
+      hasMoreSubmissions: false,
       bounties: [],
+      submissions: [],
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.bountyHunter.pageTitle"),
       pageDescription: this.$t(

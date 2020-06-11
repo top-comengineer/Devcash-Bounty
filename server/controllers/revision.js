@@ -1,6 +1,6 @@
 const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
-const models  = require('../models');
+const { RevisionStaged, Submission, UBounty }  = require('../models');
 const crypto = require('crypto');
 
 // POST new revision
@@ -8,12 +8,11 @@ const crypto = require('crypto');
 /*
 {
   "creator": "0x...",
-  "data": "Hello my revision",
+  "revisionData": "Hello my revision",
   "ubounty_id": 1,
   "submission_id": 1,
 }
 */
-
 
 module.exports.createRevision = async (req, res, next) => {
    try {
@@ -22,27 +21,27 @@ module.exports.createRevision = async (req, res, next) => {
         return res.status(422).json({ errors: errors.array() });
       }
 
-      const { creator, data, ubounty_id, submission_id } = req.body
+      const { creator, revisionData, ubounty_id, submission_id } = req.body
       // Hash data for on-chain verification
-      const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).update(submission_id).digest("hex")
+      const hash = crypto.createHash("sha256").update(creator).update(revisionData).update(ubounty_id.toString()).update(submission_id.toString()).digest("hex")
 
-      let count = await model.UBounty.count({ where: { id: ubounty_id } })
+      let count = await UBounty.count({ where: { id: ubounty_id } })
       if (count == 0) {
           return res.status(422).json({ error: `Bounty ${ubounty_id} doesn't exist` });
       }
-      count = await model.Submission.count({ where: { submission_id: submission_id } })
+      count = await Submission.count({ where: { submission_id: submission_id } })
       if (count == 0) {
           return res.status(422).json({ error: `Submission ${submission_id} doesn't exist` });
       }
 
-      let revision = await models.RevisionStaged.create({
+      let revision = await RevisionStaged.create({
         creator: creator,
-        submission_data: data,
+        revision_data: revisionData,
         ubounty_id: ubounty_id,
         submission_id: submission_id,
         hash: hash
       })
-      return res.json(bounty)
+      return res.json(revision)
    } catch(err) {
     res.status(500).send({
         message: "Failed to create revision"
@@ -63,7 +62,7 @@ module.exports.validate = (method) => {
             return true;
           }
         ),
-        check('data', "Data must be between 50 and 1000 characters").exists().isString().isLength({
+        check('revisionData', "Data must be between 50 and 1000 characters").exists().isString().isLength({
           min: 50,
           max: 1000
         }),

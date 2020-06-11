@@ -27,59 +27,20 @@
         </div>
       </div>
       <!-- Submissions -->
-      <div class="w-full flex flex-col flex-wrap my-4">
+      <div class="w-full flex flex-col flex-wrap my-4">     
         <SubmissionCard
           class="my-2"
           perspective="manager"
-          bountyName="Devcash Event Feedback"
-          status="pending"
-          amountDEV="833"
-          amountETH="0.00185"
-          amountUSD="0.5"
-          address="0x691B5b5ebcf2667Dad625b1483F428Aa98067ED6"
-          message="The venue was cool: <b>8/10</b>.<br>The presentations were quite informative: <b>8.5/10</b>.<br>The food could be better: <b>6/10</b>."
-          date="03.17.2020 - 13:33"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="manager"
-          bountyName="Devcash Memes"
-          status="pending"
-          amountDEV="12,500"
-          amountETH="0.0277"
-          amountUSD="7.5"
-          address="0xD69BB46Ace0C47a0d14Cf73e70B0c02328cc5b3f"
-          message="Here is my submission:<br><u>https://imgur.com/gallery/fPPN3bl</u>"
-          date="03.16.2020 - 16:45"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="manager"
-          bountyName="Devcash Event Feedback"
-          status="pending"
-          amountDEV="833"
-          amountETH="0.00185"
-          amountUSD="0.5"
-          address="0x0A00079D01e1d0eaFD2b2CA8D74ff030C2f7e726"
-          message="Venue was quite nice and spacious: <b>8/10</b>.<br>Presentations were a little advanced for me: <b>8.5/10</b>.<br>Food was okay: <b>6/10</b>."
-          date="03.14.2020 - 11:55"
-        />
-        <SubmissionCard
-          class="my-2"
-          perspective="manager"
-          bountyName="Devcash Memes"
-          status="pending"
-          amountDEV="12,500"
-          amountETH="0.0277"
-          amountUSD="7.5"
-          address="0x3a958Fb94D8B185D4D333A52CDd1e52D52224562"
-          message="<u>https://imgur.com/gallery/ffOzC14</u>"
-          date="03.12.2020 - 12:04"
+          v-for="(item, i) in submissions"
+          :key="i"
+          :submission="item"
+          :ubounty="item.ubounty"
         />
       </div>
       <!-- Load More Button -->
-      <div class="flex flex-row justify-center mt-2">
+      <div v-if="hasMoreSubmissions && !submissionsLoading"  class="flex flex-row justify-center mt-2">
         <button
+          @click="loadMoreSubmissions()"
           :class="[
           $store.state.theme.dt
             ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
@@ -198,11 +159,30 @@ export default {
         this.initialBountiesLoading = false;
         this.bountiesLoading = false;
       }
+    },
+    async loadMoreSubmissions() {
+      this.submissionsPage++;
+      this.submissionsLoading = true;
+      try {
+        let res = await this.$axios.get(
+          `/submission/listcreator?page=${this.submissionsPage}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
+        );
+        this.submissions = this.submissions.concat(res.data.items);
+        this.totalSubmissionCount = res.data.count;
+        this.hasMoreSubmissions =
+          Math.floor(res.data.count / defaultBountyLimit) > 1;
+      } catch (e) {
+        this.submissionsPage--;
+      } finally {
+        this.initialSubmissionsLoading = false;
+        this.submissionsLoading = false;
+      }
     }
   },
   mounted() {
     if (this.isLoggedIn) {
       this.loadMoreBounties();
+      this.loadMoreSubmissions();
     }
   },
   beforeMount() {
@@ -218,13 +198,19 @@ export default {
   data() {
     return {
       initialBountiesLoading: true,
+      initialSubmissionsLoading: true,
       bountiesLoading: true,
+      submissionsLoading: true,
       page: 0,
+      submissionsPage: 0,
       totalBountyAmount: utils.bigNumberify("0"),
       totalBountyAmountDisplay: "0.0",
       totalBountyCount: 0,
+      totalSubmissionCount: 0,
       hasMoreBounties: false,
+      hasMoreSubmissions: false,
       bounties: [],
+      submissions: [],
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.bountyManager.pageTitle"),
       pageDescription: this.$t(

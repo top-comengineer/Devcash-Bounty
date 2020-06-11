@@ -53,6 +53,18 @@ export class DevcashBounty {
         return totalAmount  
     }
 
+    static formatAmountSingleSubmission(bounty, tokenDecimals) {
+        let totalAmount = utils.bigNumberify(bounty.bountyAmount)
+        totalAmount = totalAmount.div(bounty.numLeft)
+        totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals))
+        return totalAmount  
+    }
+
+    static formatDateStr(locale, dateStr) {
+        let dt = new Date(dateStr)
+        return `${dt.toLocaleString(locale)}`
+    }
+
     static formatTimeLeft(bounty) {
         if (
             bounty.deadline >= 281474976710655 ||
@@ -253,13 +265,13 @@ export class DevcashBounty {
 
     async hashSubmission(submission) {
         const creator = submission.creator, data = submission.data, ubounty_id = submission.ubounty_id
-        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).digest("hex")
+        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id.toString()).digest("hex")
         return hash
     }
 
     async hashRevision(revision) {
         const creator = revision.creator, data = revision.data, ubounty_id = revision.ubounty_id, submission_id = revision.submission_id
-        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id).update(submission_id).digest("hex")
+        const hash = crypto.createHash("sha256").update(creator).update(data).update(ubounty_id.toString()).update(submission_id.toString()).digest("hex")
         return hash
     }
 
