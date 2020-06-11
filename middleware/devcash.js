@@ -10,5 +10,11 @@ export default function ({ req, store }) {
       if (req.cookies.devcash_ethereum === "true") {
         store.dispatch('devcashData/setEthereum')
       }
+      if (req.cookies.devcash_balance) {
+        let parsed = JSON.parse(req.cookies.devcash_balance)
+        if (parsed.account == req.cookies.devcash_lia) {
+          store.commit('devcashData/setBalance', parsed.balances)
+        }
+      }
     }
   } 

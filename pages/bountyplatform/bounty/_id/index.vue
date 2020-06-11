@@ -371,29 +371,6 @@ export default {
     ContributeModal
   }, 
   methods: {
-    async initEthConnector() {
-      if (this.$store.state.devcash.connector == null) {
-        try {
-          let connector = await DevcashBounty.init(
-            this.$store.state.devcashData.loggedInAccount,
-            this.$store.state.devcashData.provider
-          );
-          this.$store.commit("devcash/setConnector", connector);
-        } catch (e) {
-          // TODO - handle these correctly
-          if (e instanceof AccountNotFoundError) {
-            // TODO - re-use this sign out logic, maybe add an alert to tell them they're signed out?
-            this.$store.commit("devcashData/setProvider", null);
-            this.$store.commit("devcashData/setLoggedInAccount", null);
-            this.$store.commit("devcash/setConnector", null);
-            this.initEthConnector();
-          } else {
-            alert(`Unknown error ${e}`);
-            throw e;
-          }
-        }
-      }
-    },
     autoGrow() {
       this.$refs.commentArea.style.height = "5px";
       this.$refs.commentArea.style.height =
@@ -402,7 +379,7 @@ export default {
     formatAmount() {
       let tokenDecimals = 8;
       if (!this.$store.state.devcash.connector) {
-        this.initEthConnector();
+        DevcashBounty.initEthConnector(this);
       } else {
         tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
       }
@@ -420,8 +397,7 @@ export default {
         );
         this.submissions = this.submissions.concat(res.data.items);
         this.totalSubmissionCount = res.data.count;
-        this.hasMoreSubmissions =
-          Math.floor(res.data.count / this.totalSubmissionCount) > 1;
+        this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
       } catch (e) {
         this.submissionsPage--;
       } finally {
@@ -437,8 +413,8 @@ export default {
         bounty: res.data,
         submissionsLoading: false,
         page: 1,
-        totalSubmissionCount: submissions.data.items.length,
-        hasMoreSubmissions: Math.floor(res.data.count / defaultSubmissionsLimit) > 1,
+        totalSubmissionCount: submissions.data.count,
+        hasMoreSubmissions: submissions.data.count > submissions.data.items.length,
         submissions: submissions.data.items,
       }
     } catch (e) {

@@ -153,6 +153,7 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import OverviewCard from "~/components/BountyPlatform/OverviewCard.vue";
 import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
 export default {
@@ -177,6 +178,9 @@ export default {
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL
     };
+  },
+  mounted() {
+    DevcashBounty.updateBalances(this)
   },
   head() {
     return {
