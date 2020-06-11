@@ -2,11 +2,9 @@
   <div class="w-full flex flex-row justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6">
     <nuxt-link
       :to="localePath('index')"
-      class="focus:scale-110 hover:scale-110 transform transition-transform duration-200"
-      @keydown.esc.exact="hideSignOutModal"
-      v-on:click.native="hideSignOutModal"
+      class="focus:scale-110 hover:scale-110 transform transition-transform duration-300"
     >
-      <Logo class="w-36 md:w-40 h-auto" :type="$store.state.theme.dt ? 'light' : 'dark'" />
+      <Logo class="w-36 md:w-40 h-8" :type="$store.state.theme.dt ? 'light' : 'dark'" />
     </nuxt-link>
     <!-- Navbar items -->
     <div class="flex flex-row justify-end items-center">
@@ -289,7 +287,7 @@
               <nuxt-link
                 :to="localePath('bountyplatform-overview')"
                 @keydown.esc.exact="hideSignOutModal"
-                @click="hideSignOutModal"
+                @click.native="hideSignOutModal"
                 class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
