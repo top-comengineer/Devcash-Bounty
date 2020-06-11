@@ -13,18 +13,17 @@ const {
 const eventLogDefaultFromBlock = 7990783;
 
 class EtherClient {
-  constructor(async_param) {
-    if (typeof async_param === "undefined") {
-      throw new Error("Cannot be called directly");
-    }
-    this.provider = async_param.provider;
-    this.tokenContract = async_param.tokenContract;
-    this.tokenName = async_param.tokenName;
-    this.tokenSymbol = async_param.tokenSymbol;
-    this.tokenDecimals = async_param.tokenDecimals;
-    this.uBCContract = async_param.uBCContract;
+  constructor() {
+    this.initialized = false
+    this.provider = null
+    this.tokenContract = null
+    this.tokenName = null
+    this.tokenSymbol = null;
+    this.tokenDecimals = null;
+    this.uBCContract = null;
     this.event_logs = {};
-    this.redis = async_param.redis;
+    this.redis = null;
+    this.overriddenStatus = {};
   }
 
   /**
@@ -32,11 +31,12 @@ class EtherClient {
    *
    * @returns EtherClient instance
    */
-  static async init(redis) {
+  async init(redis) {
     let provider;
     let tokenContract;
     let uBCContract;
 
+    
     // Etherscan provider (no signer)
     provider = new ethers.getDefaultProvider(
       process.env.NODE_ENV !== "production" ? "ropsten" : undefined
@@ -48,15 +48,16 @@ class EtherClient {
     let tokenSymbol = await tokenContract.symbol();
     let tokenDecimals = await tokenContract.decimals();
 
-    return new EtherClient({
-      provider: provider,
-      tokenContract: tokenContract,
-      tokenName: tokenName,
-      tokenSymbol: tokenSymbol,
-      tokenDecimals: tokenDecimals,
-      uBCContract: uBCContract,
-      redis: redis
-    });
+    this.provider = provider;
+    this.tokenContract = tokenContract;
+    this.tokenName = tokenName;
+    this.tokenSymbol = tokenSymbol;
+    this.tokenDecimals = tokenDecimals;
+    this.uBCContract = uBCContract;
+    this.event_logs = {};
+    this.redis = redis;
+    this.overriddenStatus = {};
+    this.initialized = true;
   }
 
   async getNUbounties() {
@@ -724,6 +725,9 @@ class EtherClient {
   }
 
   getSubmissionStatus(uI, sI) {
+    if (this.overriddenStatus[uI] && this.overriddenStatus[uI][sI]) {
+      return this.overriddenStatus[uI][sI]
+    }
     try {
       let events = this.event_logs.orderedFeedback[uI][sI];
       return events[events.length - 1].event;
@@ -731,9 +735,18 @@ class EtherClient {
       return "awaiting feedback";
     }
   }
+
+  overrideStatus(uI, sI, status) {
+    if (!this.overriddenStatus[uI]) {
+      this.overriddenStatus[uI] = {}
+    }
+    this.overriddenStatus[uI][sI] = status
+  }
 }
 
 // exports
+const etherClient = new EtherClient();
+
 module.exports = {
-  EtherClient,
+  etherClient,
 };

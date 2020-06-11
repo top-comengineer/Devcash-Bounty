@@ -2,7 +2,7 @@ const express = require('express');
 const cron = require("node-cron");
 const cookieParser = require('cookie-parser')
 const { Nuxt, Builder } = require('nuxt')
-const { EtherClient } = require("./utils/ether_client")
+const { etherClient } = require("./utils/ether_client")
 const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
@@ -62,7 +62,7 @@ function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
   // Setup cron for verifying data
-  EtherClient.init(redis).then(async etherClient => {
+  etherClient.init(redis).then(async _ => {
     // Fetch event logs
     etherClient.gatherEventLogs()
     // Every 5 minutes update on-chain bounty cache 
@@ -139,6 +139,14 @@ function setupEthersJobs() {
         })    
       }
     })
+    // Approved
+    etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
+      etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved")
+    })
+    // Rejected
+    etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
+      etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected")
+    })    
     // Fallback for missed events
     // TODO - change to more reasonable schedule, 1 minute is for testing
     cron.schedule("* * * * *", async function() {
@@ -154,7 +162,7 @@ function setupEthersJobs() {
           })
         }
       })
-    })    
+    })
   })
 }
 

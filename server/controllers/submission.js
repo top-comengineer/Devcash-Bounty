@@ -1,5 +1,6 @@
 const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
+const { etherClient } = require("../utils/ether_client")
 const models  = require('../models');
 const crypto = require('crypto');
 
@@ -32,6 +33,10 @@ module.exports.getSubmissions = async (req, res, next) => {
           ['createdAt', 'DESC']
       ]
     })
+    let resultJson = result.toJSON()
+    Object.keys(resultJson).forEach(key => {
+      resultJson.status = etherClient.getSubmissionStatus(resultJson.ubounty_id, resultJson.submission_id)
+    });
     return res.status(200).json({
         status: true,
         innerData: result
