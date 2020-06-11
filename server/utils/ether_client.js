@@ -1,5 +1,6 @@
 "use strict";
 
+const merge = require('lodash.merge');
 const { ethers, utils } = require("ethers");
 const web3 = require("web3");
 const {
@@ -9,8 +10,7 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const eventLogFromBlock = 7990783;
-const eventLogToBlock = 8100783;
+const eventLogDefaultFromBlock = 7990783;
 
 class EtherClient {
   constructor(async_param) {
@@ -24,6 +24,7 @@ class EtherClient {
     this.tokenDecimals = async_param.tokenDecimals;
     this.uBCContract = async_param.uBCContract;
     this.event_logs = {};
+    this.redis = async_param.redis;
   }
 
   /**
@@ -31,7 +32,7 @@ class EtherClient {
    *
    * @returns EtherClient instance
    */
-  static async init() {
+  static async init(redis) {
     let provider;
     let tokenContract;
     let uBCContract;
@@ -54,6 +55,7 @@ class EtherClient {
       tokenSymbol: tokenSymbol,
       tokenDecimals: tokenDecimals,
       uBCContract: uBCContract,
+      redis: redis
     });
   }
 
@@ -148,6 +150,11 @@ class EtherClient {
     console.log("gathering event logs");
     let event_logs = new Object();
 
+    let event_logs_cache = await this.redis.getEventLogCache()    
+    let lastHadBlock = await this.redis.getLastBlockCount()
+    let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
+    let toBlock = await this.provider.getBlockNumber()
+
     let createdTopic = utils.id("created(uint256,uint256,uint256,uint256)");
     let submittedTopic = utils.id("submitted(uint256,uint256)");
     let revisedTopic = utils.id("revised(uint256,uint256,uint256)");
@@ -162,17 +169,17 @@ class EtherClient {
     let feeChangeTopic = utils.id("feeChange(uint256,uint256)");
     let waiverChangeTopic = utils.id("waiverChange(uint256,uint256)");
 
-    let createdFilter = this.createFilter(createdTopic);
-    let submittedFilter = this.createFilter(submittedTopic);
-    let revisedFilter = this.createFilter(revisedTopic);
-    let approvedFilter = this.createFilter(approvedTopic);
-    let rejectedFilter = this.createFilter(rejectedTopic);
-    let revisionRequestedFilter = this.createFilter(revisionRequestedTopic);
-    let rewardedFilter = this.createFilter(rewardedTopic);
-    let reclaimedFilter = this.createFilter(reclaimedTopic);
-    let completedFilter = this.createFilter(completedTopic);
-    let feeChangedFilter = this.createFilter(feeChangeTopic);
-    let waiverChangedFilter = this.createFilter(waiverChangeTopic);
+    let createdFilter = this.createFilter(createdTopic, fromBlock, toBlock);
+    let submittedFilter = this.createFilter(submittedTopic, fromBlock, toBlock);
+    let revisedFilter = this.createFilter(revisedTopic, fromBlock, toBlock);
+    let approvedFilter = this.createFilter(approvedTopic, fromBlock, toBlock);
+    let rejectedFilter = this.createFilter(rejectedTopic, fromBlock, toBlock);
+    let revisionRequestedFilter = this.createFilter(revisionRequestedTopic, fromBlock, toBlock);
+    let rewardedFilter = this.createFilter(rewardedTopic, fromBlock, toBlock);
+    let reclaimedFilter = this.createFilter(reclaimedTopic, fromBlock, toBlock);
+    let completedFilter = this.createFilter(completedTopic, fromBlock, toBlock);
+    let feeChangedFilter = this.createFilter(feeChangeTopic, fromBlock, toBlock);
+    let waiverChangedFilter = this.createFilter(waiverChangeTopic, fromBlock, toBlock);
 
     let createdLogs = await this.provider.getLogs(createdFilter);
     let submittedLogs = await this.provider.getLogs(submittedFilter);
@@ -219,17 +226,26 @@ class EtherClient {
     event_logs.completed = completedInfo;
     event_logs.feeChanged = feeChangedInfo;
     event_logs.waiverChanged = waiverChangedInfo;
+
+    // Cache
+    console.log(event_logs)
+    if (event_logs_cache != null) {
+      event_logs = merge(event_logs, event_logs_cache)
+    }
+    await this.redis.setEventLogCache(event_logs, toBlock)
+    console.log(event_logs)
+
     event_logs.orderedFeedback = orderedFeedback;
 
     console.log("Finished gathering event logs")
     this.event_logs = event_logs;
   }
 
-  createFilter(topic) {
+  createFilter(topic, fromBlock, toBlock) {
     let filter = {
       address: uBCAddress,
-      fromBlock: eventLogFromBlock,
-      toBlock: eventLogToBlock,
+      fromBlock: fromBlock,
+      toBlock: toBlock,
       topics: [topic],
     };
     return filter;

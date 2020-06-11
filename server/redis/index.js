@@ -56,6 +56,23 @@ class RedisDB {
         return toAdd
     }
 
+    async setEventLogCache(event_log, block_number) {
+        await this.jsonCache.set(`${prefix}:event_log`, event_log)
+        await this.redis.set(`${prefix}:last_block_count`, block_number.toString())
+    }
+
+    async getEventLogCache() {
+        return await this.jsonCache.get(`${prefix}:event_log`)
+    }
+
+    async getLastBlockCount() {
+        let asStr = await this.redis.get(`${prefix}:last_block_count`)
+        if (asStr == null) {
+            return -1
+        }
+        return parseInt(asStr)
+    }
+
     async setUBountiesLock(uBounties, clobber = false) {
         try {
             try {

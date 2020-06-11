@@ -62,7 +62,7 @@ function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
   // Setup cron for verifying data
-  EtherClient.init().then(async etherClient => {
+  EtherClient.init(redis).then(async etherClient => {
     // Fetch event logs
     etherClient.gatherEventLogs()
     // Every 5 minutes update on-chain bounty cache 
