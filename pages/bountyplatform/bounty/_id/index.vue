@@ -397,8 +397,7 @@ export default {
         );
         this.submissions = this.submissions.concat(res.data.items);
         this.totalSubmissionCount = res.data.count;
-        this.hasMoreSubmissions =
-          Math.floor(res.data.count / this.totalSubmissionCount) > 1;
+        this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
       } catch (e) {
         this.submissionsPage--;
       } finally {
@@ -414,8 +413,8 @@ export default {
         bounty: res.data,
         submissionsLoading: false,
         page: 1,
-        totalSubmissionCount: submissions.data.items.length,
-        hasMoreSubmissions: Math.floor(res.data.count / defaultSubmissionsLimit) > 1,
+        totalSubmissionCount: submissions.data.count,
+        hasMoreSubmissions: submissions.data.count > submissions.data.items.length,
         submissions: submissions.data.items,
       }
     } catch (e) {

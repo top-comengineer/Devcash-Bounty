@@ -157,8 +157,7 @@ export default {
         );
         this.bounties = this.bounties.concat(res.data.items);
         this.totalBountyCount = res.data.count;
-        this.hasMoreBounties =
-          Math.floor(res.data.count / defaultBountyLimit) > 1;
+        this.hasMoreBounties = this.totalBountyCount > this.bounties.length
       } catch (e) {
         this.page--;
       } finally {
@@ -175,8 +174,7 @@ export default {
         );
         this.submissions = this.submissions.concat(res.data.items);
         this.totalSubmissionCount = res.data.count;
-        this.hasMoreSubmissions =
-          Math.floor(res.data.count / defaultBountyLimit) > 1;
+        this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
       } catch (e) {
         this.submissionsPage--;
       } finally {
