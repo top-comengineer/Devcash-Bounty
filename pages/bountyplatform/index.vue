@@ -52,31 +52,8 @@ export default {
     })
   },
   methods: {
-    async initEthConnector() {
-      if (this.$store.state.devcash.connector == null) {
-        try {
-          let connector = await DevcashBounty.init(
-            this.$store.state.devcashData.loggedInAccount,
-            this.$store.state.devcashData.provider
-          );
-          this.$store.commit("devcash/setConnector", connector);
-        } catch (e) {
-          // TODO - handle these correctly
-          if (e instanceof AccountNotFoundError) {
-            // TODO - re-use this sign out logic, maybe add an alert to tell them they're signed out?
-            this.$store.commit("devcashData/setProvider", null);
-            this.$store.commit("devcashData/setLoggedInAccount", null);
-            this.$store.commit("devcash/setConnector", null);
-            this.initEthConnector();
-          } else {
-            alert(`Unknown error ${e}`);
-            throw e;
-          }
-        }
-      }
-    },
     async getBounties() {
-      await this.initEthConnector();
+      await DevcashBounty.initEthConnector(this);
       let key = `${this.page}:${this.perPage}:${
         this.isLoggedIn ? this.loggedInAccount : ""
       }`;
