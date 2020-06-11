@@ -2,7 +2,11 @@
   <div class="w-full flex flex-row flex-wrap justify-center items-center pt-4 pb-8 md:py-12">
     <div class="w-full flex flex-col items-center">
       <!-- Illustration -->
-      <IllustrationDMark class="w-64" />
+      <img
+        class="w-64 h-auto"
+        :src="require('~/assets/images/illustrations/foreground/d-mark.svg')"
+        alt="D Mark Illustration"
+      />
       <!-- Header -->
       <div class="w-full flex flex-row justify-center items-center mt-6">
         <!-- Line Left -->
@@ -25,11 +29,3 @@
     </div>
   </div>
 </template>
-<script>
-import IllustrationDMark from "~/components/Illustrations/IllustrationDMark.vue";
-export default {
-  components: {
-    IllustrationDMark
-  }
-};
-</script>

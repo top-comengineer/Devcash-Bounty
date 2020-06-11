@@ -5,12 +5,16 @@
         class="w-full flex flex-row flex-wrap justify-center lg:justify-around items-center pt-16 pb-16 md:pt-24 md:pb-24 lg:pt-32 lg:pb-48"
       >
         <!-- Background Illustration Single D -->
-        <IllustrationSingleD
-          class="w-32 md:w-56 lg:w-64 h-auto absolute right-0 top-0 -mr-8 md:-mr-10 lg:-mr-32"
+        <img
+          class="w-32 md:w-56 lg:w-64 h-auto absolute right-0 top-0 -mr-8 md:-mr-10 lg:-mr-32 opacity-15"
+          :src="require('~/assets/images/illustrations/background/d-mark-single.svg')"
+          alt="D Mark Single Illustration"
         />
         <!-- Background Illustration Cube -->
-        <IllustrationCube
-          class="w-48 md:w-64 lg:w-72 h-auto absolute bottom-0 left-0 -ml-16 md:-ml-10 lg:-ml-24"
+        <img
+          class="w-48 md:w-64 lg:w-72 h-auto absolute bottom-0 left-0 -ml-16 md:-ml-10 lg:-ml-24 opacity-15"
+          :src="require('~/assets/images/illustrations/background/cube.svg')"
+          alt="Cube Illustration"
         />
         <div class="w-full md:w-4/5 lg:w-2/5 flex flex-col py-8 px-6 relative">
           <!-- Header Text -->
@@ -21,21 +25,12 @@
           <p class="text-lg text-center lg:text-left mt-2">{{ $t("home.IBOSection.paragraph") }}</p>
         </div>
         <!-- Illustration -->
-        <IllustrationIBO class="w-10/12 md:w-2/4 lg:w-1/3 order-first lg:order-last relative" />
+        <img
+          class="w-10/12 md:w-2/4 lg:w-1/3 order-first lg:order-last relative h-auto"
+          :src="require('~/assets/images/illustrations/foreground/ibo.svg')"
+          alt="IBO Illustration"
+        />
       </div>
     </div>
   </div>
 </template>
-<script>
-import IllustrationIBO from "~/components/Illustrations/IllustrationIBO.vue";
-import IllustrationCube from "~/components/Illustrations/Background/IllustrationCube.vue";
-import IllustrationSingleD from "~/components/Illustrations/Background/IllustrationSingleD.vue";
-export default {
-  components: {
-    IllustrationIBO,
-    IllustrationCube,
-    IllustrationSingleD
-  }
-};
-</script>
-<style lang=""></style>

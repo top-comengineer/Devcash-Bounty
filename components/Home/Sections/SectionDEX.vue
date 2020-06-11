@@ -4,16 +4,24 @@
       <div class="w-full flex flex-row flex-wrap justify-center items-center">
         <div class="w-11/12 md:w-3/4 flex flex-col items-center">
           <div class="w-full relative">
-            <!-- Background Illustration Right Window -->
-            <IllustrationWindowRight
-              class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 right-0 -mr-48 -mt-8 md:-mr-48 md:-mt-12 lg:-mr-36 lg:-mt-8"
-            />
             <!-- Background Illustration Left Window -->
-            <IllustrationWindowLeft
-              class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 md:bottom-0 left-0 -mt-8 -ml-48 md:-ml-48 md:-mb-24 lg:-ml-36 lg:-mb-20"
+            <img
+              class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 md:bottom-0 left-0 -mt-8 -ml-48 md:-ml-48 md:-mb-24 lg:-ml-36 lg:-mb-20 opacity-15"
+              :src="require('~/assets/images/illustrations/background/window-left.svg')"
+              alt="Window Left Illustration"
             />
-            <!-- Illustration -->
-            <IllustrationDEX class="w-full relative" />
+            <!-- Background Illustration Right Window -->
+            <img
+              class="w-64 md:w-56 lg:w-64 h-auto absolute top-0 right-0 -mr-48 -mt-8 md:-mr-48 md:-mt-12 lg:-mr-36 lg:-mt-8 opacity-15"
+              :src="require('~/assets/images/illustrations/background/window-right.svg')"
+              alt="Window Right Illustration"
+            />
+            <!-- DEX Illustration -->
+            <img
+              class="w-full h-auto relative"
+              :src="require('~/assets/images/illustrations/foreground/dex.svg')"
+              alt="DEX Illustration"
+            />
           </div>
           <!-- Header Text -->
           <h2
@@ -37,15 +45,3 @@
     </div>
   </div>
 </template>
-<script>
-import IllustrationDEX from "~/components/Illustrations/IllustrationDEX.vue";
-import IllustrationWindowLeft from "~/components/Illustrations/Background/IllustrationWindowLeft.vue";
-import IllustrationWindowRight from "~/components/Illustrations/Background/IllustrationWindowRight.vue";
-export default {
-  components: {
-    IllustrationDEX,
-    IllustrationWindowLeft,
-    IllustrationWindowRight
-  }
-};
-</script>

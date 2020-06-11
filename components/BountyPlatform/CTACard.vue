@@ -8,7 +8,7 @@
     <!-- Left Background Illustration -->
     <img
       class="hidden md:block h-full w-auto absolute left-0"
-      :src="require('~/assets/images/illustration-background/arrows-left.svg')"
+      :src="require('~/assets/images/illustrations/background/arrows-left.svg')"
       alt="Arrows Left Illustration"
     />
     <!-- Header and Paragraph -->
@@ -19,7 +19,7 @@
     <!-- Right Background Illustration -->
     <img
       class="h-full w-auto absolute right-0"
-      :src="require('~/assets/images/illustration-background/arrows-right.svg')"
+      :src="require('~/assets/images/illustrations/background/arrows-right.svg')"
       alt="Arrows Right Illustration"
     />
   </div>

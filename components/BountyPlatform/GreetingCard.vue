@@ -9,25 +9,25 @@
     <img
       v-if="type=='post'"
       class="hidden md:block h-full w-auto absolute left-0"
-      :src="require('~/assets/images/illustration-background/plus-left.svg')"
+      :src="require('~/assets/images/illustrations/background/plus-left.svg')"
       alt="Post Left Illustration"
     />
     <img
       v-else-if="type=='submission'"
       class="hidden md:block h-full w-auto absolute left-0"
-      :src="require('~/assets/images/illustration-background/submission-left.svg')"
+      :src="require('~/assets/images/illustrations/background/submission-left.svg')"
       alt="Submission Left Illustration"
     />
     <img
       v-else-if="type=='contribute'"
       class="hidden md:block h-full w-auto absolute left-0"
-      :src="require('~/assets/images/illustration-background/contribute-left.svg')"
+      :src="require('~/assets/images/illustrations/background/contribute-left.svg')"
       alt="Contribute Left Illustration"
     />
     <img
       v-else
       class="hidden md:block h-full w-auto absolute left-0 ml-4 md:ml-8"
-      :src="require('~/assets/images/illustration-background/explore-left.svg')"
+      :src="require('~/assets/images/illustrations/background/explore-left.svg')"
       alt="Explore Left Illustration"
     />
     <!-- Header and Paragraph -->
@@ -45,25 +45,25 @@
     <img
       v-if="type == 'post'"
       class="h-full w-auto absolute right-0"
-      :src="require('~/assets/images/illustration-background/plus-right.svg')"
+      :src="require('~/assets/images/illustrations/background/plus-right.svg')"
       alt="Post Right Illustration"
     />
     <img
       v-else-if="type=='submission'"
       class="h-full w-auto absolute right-0"
-      :src="require('~/assets/images/illustration-background/submission-right.svg')"
+      :src="require('~/assets/images/illustrations/background/submission-right.svg')"
       alt="Submission Right Illustration"
     />
     <img
       v-else-if="type=='contribute'"
       class="h-full w-auto absolute right-0"
-      :src="require('~/assets/images/illustration-background/contribute-right.svg')"
+      :src="require('~/assets/images/illustrations/background/contribute-right.svg')"
       alt="Contribute Right Illustration"
     />
     <img
       v-else
       class="h-full w-auto absolute right-0 mr-4 md:mr-8"
-      :src="require('~/assets/images/illustration-background/explore-right.svg')"
+      :src="require('~/assets/images/illustrations/background/explore-right.svg')"
       alt="Explore Right Illustration"
     />
   </div>

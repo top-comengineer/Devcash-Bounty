@@ -46,7 +46,10 @@
         />
       </div>
       <!-- Load More Button -->
-      <div class="flex flex-row justify-center mt-2">
+      <div
+        v-if="hasMoreSubmissions && !submissionsLoading"
+        class="flex flex-row justify-center mt-2"
+      >
         <button
           :class="[
           $store.state.theme.dt

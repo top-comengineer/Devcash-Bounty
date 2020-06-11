@@ -18,13 +18,19 @@
         <div class="w-full flex flex-row flex-wrap justify-center">
           <!-- Indicator -->
           <div class="w-full hidden md:flex flex-col items-center mt-2 px-6">
-            <IllustrationIndicator class="md:w-1/2 lg:w-2/5" />
+            <img
+              class="md:w-1/2 lg:w-2/5"
+              :src="require('~/assets/images/illustrations/foreground/indicator.svg')"
+              alt="Indicator Illustration"
+            />
           </div>
           <!-- Post Bounties Card Container -->
           <div class="w-full md:w-1/2 lg:w-2/5 px-4 py-2 md:pl-6 md:pr-3 mt-3 relative">
             <!-- Background Illustration Brackets -->
-            <IllustrationBrackets
-              class="hidden md:block md:w-64 lg:w-72 h-auto absolute left-0 bottom-0 md:-ml-24 lg:-ml-32 md:-mb-20 lg:-mb-20"
+            <img
+              class="hidden md:block md:w-64 lg:w-72 h-auto absolute left-0 bottom-0 md:-ml-24 lg:-ml-32 md:-mb-20 lg:-mb-20 opacity-15"
+              :src="require('~/assets/images/illustrations/background/brackets.svg')"
+              alt="Brackets Illustration"
             />
             <!-- Post Bounties Card -->
             <div
@@ -42,7 +48,11 @@
                 class="text-lg text-center mt-2 px-4"
               >{{ $t("home.bountyPlatformSection.postBountyParagraph") }}</p>
               <!-- Post Bounties Illustration -->
-              <IllustrationPostBounty class="w-3/4 h-auto mt-4" />
+              <img
+                class="w-3/4 h-auto mt-8 mb-5"
+                :src="require('~/assets/images/illustrations/foreground/post-bounties.svg')"
+                alt="Post Bounties Illustration"
+              />
               <!-- Post Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <nuxt-link
@@ -56,8 +66,10 @@
           <!-- Hunt Bounties Card Container -->
           <div class="w-full md:w-1/2 lg:w-2/5 px-4 py-2 md:pr-6 md:pl-3 mt-3 relative">
             <!-- Background Illustration Code -->
-            <IllustrationCode
-              class="hidden md:block md:w-56 lg:w-64 h-auto absolute top-0 right-0 md:-mr-32 lg:-mr-40 md:-mt-24 lg:-mt-36"
+            <img
+              class="hidden md:block md:w-56 lg:w-64 h-auto absolute top-0 right-0 md:-mr-32 lg:-mr-40 md:-mt-24 lg:-mt-36 opacity-15"
+              :src="require('~/assets/images/illustrations/background/code.svg')"
+              alt="Code Illustration"
             />
             <!-- Hunt Bounties Card -->
             <div
@@ -75,7 +87,11 @@
                 class="text-lg text-center mt-2 px-4"
               >{{ $t("home.bountyPlatformSection.huntBountyParagraph") }}</p>
               <!-- Hunt Bounties Illustration -->
-              <IllustrationHuntBounty class="w-3/4 h-auto mt-4" />
+              <img
+                class="w-3/4 h-auto mt-8 mb-5"
+                :src="require('~/assets/images/illustrations/foreground/hunt-bounties.svg')"
+                alt="Hunt Bounties Illustration"
+              />
               <!-- Hunt Bounties Call to Action -->
               <div class="flex flex-row justify-center">
                 <nuxt-link
@@ -91,19 +107,3 @@
     </div>
   </div>
 </template>
-<script>
-import IllustrationPostBounty from "~/components/Illustrations/IllustrationPostBounty.vue";
-import IllustrationHuntBounty from "~/components/Illustrations/IllustrationHuntBounty.vue";
-import IllustrationIndicator from "~/components/Illustrations/IllustrationIndicator.vue";
-import IllustrationBrackets from "~/components/Illustrations/Background/IllustrationBrackets.vue";
-import IllustrationCode from "~/components/Illustrations/Background/IllustrationCode.vue";
-export default {
-  components: {
-    IllustrationPostBounty,
-    IllustrationHuntBounty,
-    IllustrationIndicator,
-    IllustrationBrackets,
-    IllustrationCode
-  }
-};
-</script>

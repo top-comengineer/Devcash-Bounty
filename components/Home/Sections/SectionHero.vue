@@ -4,7 +4,13 @@
   >
     <!-- Illustration -->
     <div class="w-full lg:w-1/2 flex flex-col order-first lg:order-last">
-      <IllustrationHero />
+      <div class="hero-illustration">
+        <img
+          class="w-full h-auto"
+          :src="require('~/assets/images/illustrations/foreground/hero.svg')"
+          alt="Hero Illustration"
+        />
+      </div>
     </div>
     <!-- Header, Paragraph and CTA Button -->
     <div class="w-full md:w-3/4 lg:w-1/2 flex flex-col py-4">
@@ -32,16 +38,27 @@
     </div>
   </div>
 </template>
-<script>
-import IllustrationHero from "~/components/Illustrations/IllustrationHero.vue";
-export default {
-  components: {
-    IllustrationHero
-  }
-};
-</script>
 <style scoped>
 .spacer {
   width: calc((100vw - 1280px) / 2);
+}
+.hero-illustration {
+  margin-right: -95%;
+  margin-top: -53%;
+  margin-left: 5%;
+}
+@media only screen and (min-width: 640px) {
+  .hero-illustration {
+    margin-right: -70%;
+    margin-top: -40%;
+    margin-left: 10%;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .hero-illustration {
+    margin-right: -60%;
+    margin-left: 3%;
+    margin-top: -40%;
+  }
 }
 </style>
