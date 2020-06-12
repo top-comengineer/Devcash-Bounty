@@ -30,20 +30,25 @@
     <slot />
     <Footer />
     <!-- Optional IBO bar below -->
-    <!-- <IBOBar :devDistributed="231231" :devTotalToDistribute="1231231" /> -->
+    <IBOBar
+      v-if="!isIBOBarClosed"
+      :devDistributed="231231"
+      :devTotalToDistribute="1231231"
+      :closeCallback="closeCallback"
+    />
   </div>
 </template>
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
 // Optional IBO bar below
-// import IBOBar from "~/components/IBOBar.vue";
+import IBOBar from "~/components/IBOBar.vue";
 export default {
   components: {
     Navbar,
     Footer,
     // Optional IBO bar below
-    // IBOBar
+    IBOBar
   },
   head() {
     const i18nSeo = this.$nuxtI18nSeo()
@@ -68,7 +73,8 @@ export default {
     return {
       scrollPos: 0,
       showNavbarBg: false,
-      hideNavbar: false
+      hideNavbar: false,
+      isIBOBarClosed: false,
     };
   },
   methods: {
@@ -94,6 +100,9 @@ export default {
       } else if (window.pageYOffset < 15 && this.showNavbarBg) {
         this.showNavbarBg = false;
       }
+    },
+    closeCallback(){
+      this.isIBOBarClosed = true
     }
   },
   beforeMount() {
