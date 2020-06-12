@@ -1,5 +1,6 @@
 <template>
   <div
+    v-if="!$store.state.isIBOBarClosed && !isBarClosed"
     class="ibo-bar w-full flex flex-row flex-wrap justify-center items-center bg-dtSecondary py-3 fixed bottom-0 z-999 px-10 md:px-16 lg:px-20"
   >
     <!-- IBO Live Text -->
@@ -7,7 +8,7 @@
     <!-- Join IBO Button -->
     <nuxt-link
       :to="localePath('bountyplatform')"
-      @click.native="closeCallback"
+      @click.native="closeIBOBar"
       class="max-w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 mx-5 my-3"
     >{{ "Join IBO" }}</nuxt-link>
     <!-- Progress Bar & Distributed Text -->
@@ -34,7 +35,7 @@
         @mouseleave="isCloseHovered=false"
         @focus="isCloseFocused=true"
         @blur="isCloseFocused=false"
-        @click="closeCallback()"
+        @click="closeIBOBar"
       >
         <Icon
           :class="isCloseHovered || isCloseFocused? 'scale-120':'scale-100'"
@@ -55,19 +56,23 @@ export default {
     data: function() {
       return {
         distributionRatio: null,
+        isBarClosed: false,
         isCloseHovered: false,
         isCloseFocused: false,
       };
     },
     props: {
       devTotalToDistribute: Number,
-      devDistributed: Number,
-      closeCallback: Function
+      devDistributed: Number
     },
     methods: {
       calculateDistributionRatio(){
         this.distributionRatio = this.devDistributed/this.devTotalToDistribute
         return this.distributionRatio;
+      },
+      closeIBOBar(){
+        this.$store.state.isIBOBarClosed = true;
+        this.isBarClosed = true;
       }
     }
 }

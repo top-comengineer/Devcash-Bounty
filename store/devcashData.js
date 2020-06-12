@@ -15,7 +15,8 @@ export const state = () => ({
   provider: null,
   bounties: {},
   currency: devcashCurrency,
-  balance: null
+  balance: null,
+  isIBOBarClosed: false
 });
 
 export const mutations = {
@@ -43,6 +44,9 @@ export const mutations = {
     state.currency = devcashCurrency
     Cookies.set("devcash_ethereum", "false", { expires: 365, secure: process.env.NODE_ENV === 'production' })
   },
+  closeIBOBar(state) {
+    state.isIBOBarClosed = true
+  },
   setBalance(state, balance) {
     state.balance = balance
     if (balance == null) {
@@ -65,6 +69,9 @@ export const actions = {
   },
   setDevcash(context) {
     context.commit("setEthereum")
+  },
+  closeIBOBar(context) {
+    context.commit("closeIBOBar")
   },
   async updateBalance(context, client) {
     context.commit("setBalance", await client.getBalances())
