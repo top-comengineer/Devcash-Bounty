@@ -373,6 +373,7 @@ export default {
     changeLang(locale) {
       this.$i18n.setLocaleCookie(locale);
       this.$router.replace(this.switchLocalePath(locale.code));
+      this.$root.$emit('changeLanguage')
     },
     async signIn(provider) {
       if (provider == this.walletProviders.metamask && !this.hasMetamask) {

@@ -33,12 +33,13 @@
         <!-- Bounty Description -->
         <div class="w-full flex flex-col my-3">
           <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
-          <textarea
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
-          />
+          <no-ssr>
+            <editor-content
+              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
+              class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
+              :editor="editor"
+            />
+          </no-ssr>
         </div>
       </div>
       <!-- Card for Bounty Type -->
@@ -192,12 +193,26 @@ import { SIDEBAR_CONTEXTS } from "~/config";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
+import { Editor, EditorContent, Doc } from 'tiptap'
+import { Placeholder } from 'tiptap-extensions'
+
+class DescriptionDoc extends Doc {
+
+  get schema() {
+    return {
+      content: 'block+',
+    }
+  }
+
+}
+
 export default {
   layout: "bountyPlatform",
   components: {
     GreetingCard,
     CTACard,
-    Icon
+    Icon,
+    EditorContent
   },
   data() {
     return {
@@ -207,13 +222,32 @@ export default {
       pageDescription: this.$t("meta.bountyPlatform.post.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: process.env.CANONICAL_URL
+      canonicalURL: process.env.CANONICAL_URL,
+      editor: null
     };
+  },
+  mounted() {
+    this.editor = new Editor({
+      extensions: [
+        new DescriptionDoc(),
+        new Placeholder({
+          emptyNodeText: this.$t('bountyPlatform.post.bountyDescriptionPlaceholder')
+        }),
+      ]
+    });
+    this.$root.$on('changeLanguage', () => {
+      this.editor.extensions.options.placeholder.emptyNodeText = this.$t('bountyPlatform.post.bountyDescriptionPlaceholder')
+    })    
   },
   beforeMount() {
     // Set sidebar context
     this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.post);
   },
+  beforeDestroy() {
+    if (this.editor) {
+      this.editor.destroy()
+    }
+  },  
   destroyed() {
     this.$store.commit("general/setSidebarContext", null);
   },
@@ -327,5 +361,15 @@ export default {
   min-height: 27rem;
   height: 27rem;
   transform-origin: center top;
+}
+</style>
+
+<style>
+p.is-empty:first-child::before {
+  content: attr(data-empty-text);
+  float: left;
+  color: black;
+  pointer-events: none;
+  height: 0;
 }
 </style>
