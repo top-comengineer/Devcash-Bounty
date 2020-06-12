@@ -255,6 +255,11 @@
   "footer": {
     "credits": "© %1 Devcash."
   },
+  "iboBar": {
+    "iboLive": "Our IBO is live!",
+    "buttonJoinIBO": "Join IBO",
+    "devDistributed": "1% DEV distributed"
+  },
   "theme": {
     "dark": "Dark",
     "light": "Light"

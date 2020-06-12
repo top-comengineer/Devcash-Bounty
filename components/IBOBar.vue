@@ -4,15 +4,15 @@
     class="ibo-bar w-full flex flex-row flex-wrap justify-center items-center bg-dtSecondary py-3 fixed bottom-0 z-999 px-10 md:px-16 lg:px-20"
   >
     <!-- IBO Live Text -->
-    <h3 class="text-2xl font-bold text-dtText mx-5 my-3 text-center">Our IBO is live!</h3>
+    <h3 class="text-2xl font-bold text-dtText mx-5 my-3 text-center">{{$t('iboBar.iboLive')}}</h3>
     <!-- Join IBO Button -->
     <nuxt-link
       :to="localePath('bountyplatform')"
       @click.native="closeIBOBar"
       class="max-w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 mx-5 my-3"
-    >{{ "Join IBO" }}</nuxt-link>
+    >{{$t('iboBar.buttonJoinIBO')}}</nuxt-link>
     <!-- Progress Bar & Distributed Text -->
-    <div class="flex flex-col mx-5 my-3">
+    <div class="flex flex-col mx-5 mt-4 mb-3">
       <!-- Progress Bar -->
       <div class="h-8 w-full max-w-56 md:w-56 bg-dtText-35 rounded-md overflow-hidden">
         <div
@@ -21,12 +21,9 @@
         ></div>
       </div>
       <!-- Distributed Text -->
-      <h4 class="font-bold mt-2 text-dtText">
-        {{(this.devDistributed).toLocaleString('en-US', { minimumFractionDigits:0, maximumFractionDigits:2 })}} DEV
-        <span
-          class="font-normal"
-        >distributed</span>
-      </h4>
+      <h4
+        class="font-bold mt-2 text-dtText"
+      >{{$t('iboBar.devDistributed').replace('1%', (this.devDistributed).toLocaleString('en-US', { minimumFractionDigits:0, maximumFractionDigits:2 }))}}</h4>
     </div>
     <!-- Close Button -->
     <div class="absolute top-0 right-0 mt-2 mr-2">
