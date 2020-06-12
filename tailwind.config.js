@@ -144,6 +144,10 @@ module.exports = {
         "5/7": "71.4285714%",
         "6/7": "85.7142857%"
       },
+      maxWidth: {
+        xxs: "16rem",
+        xxxs: "12rem",
+      },
       margin: {
         "1_5": "0.375rem"
       },

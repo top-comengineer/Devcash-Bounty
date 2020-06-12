@@ -161,7 +161,9 @@
     "bountyHunter": {
       "header": "Bounty Hunter",
       "submissionsSent": "Submissions Sent",
+      "noSubmissionsSent": "You didn't send any submissions yet.",
       "personalBounties": "Personal Bounties",
+      "noPersonalBounties": "You don't have any personal bounties yet.",
       "showFeedback": "Show Feedback",
       "hideFeedback": "Hide Feedback",
       "you": "You",
@@ -171,7 +173,9 @@
     "bountyManager": {
       "header": "Bounty Manager",
       "submissionsReceived": "Submissions Received",
+      "noSubmissionsReceived": "You didn't receive any submissions yet.",
       "yourBounties": "Your Bounties",
+      "noYourBounties": "You didn't post any bounties yet.",
       "approve": "Approve",
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"

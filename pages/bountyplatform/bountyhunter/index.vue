@@ -16,7 +16,7 @@
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
         <!-- Checkboxes -->
-        <div class="flex flex-row flex-wrap justify end">
+        <div v-if="submissions.length>0" class="flex flex-row flex-wrap justify end">
           <CheckmarkButton
             checked="checked"
             class="my-3 mx-3"
@@ -34,8 +34,8 @@
           />
         </div>
       </div>
-      <!-- Submissions -->
-      <div class="w-full flex flex-col flex-wrap my-4">
+      <!-- If there are submissions -->
+      <div v-if="submissions.length>0" class="w-full flex flex-col flex-wrap my-4">
         <SubmissionCard
           class="my-2"
           perspective="hunter"
@@ -44,6 +44,25 @@
           :submission="item"
           :ubounty="item.ubounty"
         />
+      </div>
+      <!-- If there are no submissions -->
+      <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
+        <img
+          class="max-w-xxxs h-auto relative"
+          :src="require('~/assets/images/illustrations/foreground/submission-sent.svg')"
+          alt="No Submissions Illustration"
+        />
+        <h6
+          class="opacity-75 text-center mt-4 md:max-w-xs"
+        >{{$t('bountyPlatform.bountyHunter.noSubmissionsSent')}}</h6>
+        <!-- Hunt Bounties Call to Action -->
+        <div class="flex flex-row justify-center">
+          <nuxt-link
+            :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
+            :to="localePath('bountyplatform')"
+            class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+          >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+        </div>
       </div>
       <!-- Load More Button -->
       <div
@@ -74,7 +93,7 @@
           class="text-2xl font-extrabold mx-4 my-2"
         >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
         <!-- Count, Amount & Checkboxes -->
-        <div class="flex flex-row flex-wrap items-center">
+        <div v-if="submissions.length>0" class="flex flex-row flex-wrap items-center">
           <div class="flex flex-row flex-wrap my-2 mr-10">
             <div class="flex flex-col items-center mx-4">
               <h6 class="opacity-75 text-sm">Count</h6>
@@ -92,8 +111,8 @@
           </div>
         </div>
       </div>
-      <!-- Personal Bounties -->
-      <div class="w-full flex flex-col flex-wrap my-4">
+      <!-- If there are personal bounties -->
+      <div v-if="bounties.length>0" class="w-full flex flex-col flex-wrap my-4">
         <BountyCard
           type="secondary"
           v-for="(item, i) in bounties"
@@ -101,6 +120,25 @@
           class="my-2"
           :bounty="item"
         />
+      </div>
+      <!-- If there are no personal bounties -->
+      <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
+        <img
+          class="max-w-xxxs h-auto relative"
+          :src="require('~/assets/images/illustrations/foreground/bounty-personal.svg')"
+          alt="No Personal Bounty Illustration"
+        />
+        <h6
+          class="opacity-75 text-center mt-4 md:max-w-xs"
+        >{{$t('bountyPlatform.bountyHunter.noPersonalBounties')}}</h6>
+        <!-- Hunt Bounties Call to Action -->
+        <div class="flex flex-row justify-center">
+          <nuxt-link
+            :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
+            :to="localePath('bountyplatform')"
+            class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+          >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+        </div>
       </div>
       <div v-if="hasMoreBounties && !bountiesLoading" class="flex flex-row justify-center mt-2">
         <button
