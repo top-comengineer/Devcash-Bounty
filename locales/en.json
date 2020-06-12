@@ -222,6 +222,19 @@
         "customAmountPlaceholder": "Enter the amount",
         "buttonContribute": "Contribute",
         "bountyAddress": "Bounty Address"
+      },
+      "submissions": {
+        "noSubmissions": "There are no submissions yet.",
+        "headerSubmissions": "Submissions"
+      },
+      "comments": {
+        "headerComments": "Comments",
+        "buttonComment": "Comment",
+        "inputCommentPlaceholder": "Start writing a new comment...",
+        "noComments": "There are no comments yet."
+      },
+      "activity": {
+        "headerActivity": "Activity"
       }
     },
     "buttonLoadMore": "Load More"
