@@ -1,0 +1,87 @@
+<template>
+  <div
+    v-if="!$store.state.isIBOBarClosed && !isBarClosed"
+    class="ibo-bar w-full flex flex-row flex-wrap justify-center items-center bg-dtSecondary py-3 fixed bottom-0 z-999 px-10 md:px-16 lg:px-20"
+  >
+    <!-- IBO Live Text -->
+    <h3 class="text-2xl font-bold text-dtText mx-5 my-3 text-center">Our IBO is live!</h3>
+    <!-- Join IBO Button -->
+    <nuxt-link
+      :to="localePath('bountyplatform')"
+      @click.native="closeIBOBar"
+      class="max-w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 mx-5 my-3"
+    >{{ "Join IBO" }}</nuxt-link>
+    <!-- Progress Bar & Distributed Text -->
+    <div class="flex flex-col mx-5 my-3">
+      <!-- Progress Bar -->
+      <div class="h-8 w-full max-w-56 md:w-56 bg-dtText-35 rounded-md overflow-hidden">
+        <div
+          :style="'width:'+(calculateDistributionRatio()*100).toFixed(2)+'%'"
+          class="h-full bg-dtText"
+        ></div>
+      </div>
+      <!-- Distributed Text -->
+      <h4 class="font-bold mt-2 text-dtText">
+        {{(this.devDistributed).toLocaleString('en-US', { minimumFractionDigits:0, maximumFractionDigits:2 })}} DEV
+        <span
+          class="font-normal"
+        >distributed</span>
+      </h4>
+    </div>
+    <!-- Close Button -->
+    <div class="absolute top-0 right-0 mt-2 mr-2">
+      <button
+        @mouseover="isCloseHovered=true"
+        @mouseleave="isCloseHovered=false"
+        @focus="isCloseFocused=true"
+        @blur="isCloseFocused=false"
+        @click="closeIBOBar"
+      >
+        <Icon
+          :class="isCloseHovered || isCloseFocused? 'scale-120':'scale-100'"
+          colorClass="text-dtText"
+          class="w-8 h-8 transition-all duration-200 ease-out transform"
+          type="cancel"
+        />
+      </button>
+    </div>
+  </div>
+</template>
+<script>
+import Icon from "~/components/Icon.vue";
+export default {
+  components: {
+    Icon
+  },
+    data: function() {
+      return {
+        distributionRatio: null,
+        isBarClosed: false,
+        isCloseHovered: false,
+        isCloseFocused: false,
+      };
+    },
+    props: {
+      devTotalToDistribute: Number,
+      devDistributed: Number
+    },
+    methods: {
+      calculateDistributionRatio(){
+        this.distributionRatio = this.devDistributed/this.devTotalToDistribute
+        return this.distributionRatio;
+      },
+      closeIBOBar(){
+        this.$store.state.isIBOBarClosed = true;
+        this.isBarClosed = true;
+      }
+    }
+}
+</script>
+<style scoped>
+.z-999 {
+  z-index: 999;
+}
+.ibo-bar {
+  box-shadow: 0 1rem 2rem 1rem rgba(136, 80, 248, 0.5);
+}
+</style>

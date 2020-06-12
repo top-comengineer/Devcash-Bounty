@@ -29,15 +29,21 @@
     <nuxt v-if="!$slots.default" />
     <slot />
     <Footer />
+    <!-- Optional IBO bar below -->
+    <!-- <IBOBar :devDistributed="231231" :devTotalToDistribute="1231231" /> -->
   </div>
 </template>
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
+// Optional IBO bar below
+// import IBOBar from "~/components/IBOBar.vue";
 export default {
   components: {
     Navbar,
-    Footer
+    Footer,
+    // Optional IBO bar below
+    // IBOBar
   },
   head() {
     const i18nSeo = this.$nuxtI18nSeo()
