@@ -460,6 +460,26 @@ export class DevcashBounty {
       approved: approvedBalance,
     };
   }
+
+  // Methods for writing to the smart contract
+  async postBounty(bounty,available,amount,ethAmount,deadline){
+    if (!amount) {
+      amount = 0
+    }
+    if (!ethAmount) {
+      ethAmount = 0
+    }
+    amount = utils.parseUnits(amount.toString(), this.tokenDecimals)
+    ethAmount = utils.parseEther(ethAmount)
+    let overrides = {
+      value:ethAmount
+    }
+    if (!bounty.hunter) {
+      // Open Bounty
+      return await this.uBCContract.postOpenBounty("", bounty.hash, available, amount, deadline, overrides)
+    }
+    return await this.uBCContract.postPersonalBounty("", bounty.hash, bounty.hunter, available, amount, deadline, overrides)
+  }
 }
 
 // Other exports

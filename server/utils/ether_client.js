@@ -552,7 +552,7 @@ class EtherClient {
       eventInfo.feedback = feedback;
       eventInfo.nonce = await this.getNonce(approvedLogs[n].transactionHash);
       eventInfo.timestamp = await this.getTimeStamp(
-        revisionRequestedLogs[n].blockNumber
+        approvedLogs[n].blockNumber
       );
       feedbackInfo[uI][sI].push(eventInfo);
     }
@@ -577,7 +577,7 @@ class EtherClient {
       eventInfo.feedback = feedback;
       eventInfo.nonce = await this.getNonce(rejectedLogs[n].transactionHash);
       eventInfo.timestamp = await this.getTimeStamp(
-        revisionRequestedLogs[n].blockNumber
+        rejectedLogs[n].blockNumber
       );
       feedbackInfo[uI][sI].push(eventInfo);
     }

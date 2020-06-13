@@ -316,53 +316,8 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = "0x29Da2bC318976DFE97e892E104d99694a114E28f"
+module.exports.uBCAddress = "0x4572cd41D0ea7c69bD8A3A7C213F04eD83BB4976"
 module.exports.uBCABI = [
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "submissionIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "feedback",
-				"type": "string"
-			}
-		],
-		"name": "approve",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "address",
-				"name": "hunter",
-				"type": "address"
-			}
-		],
-		"name": "award",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
 	{
 		"inputs": [],
 		"payable": false,
@@ -408,15 +363,6 @@ module.exports.uBCABI = [
 		"type": "event"
 	},
 	{
-		"constant": false,
-		"inputs": [],
-		"name": "createBountyChest",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -428,13 +374,19 @@ module.exports.uBCABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "bountyAmount",
+				"name": "bountiesAvailable",
 				"type": "uint256"
 			},
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "bountiesAvailable",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "weiAmount",
 				"type": "uint256"
 			}
 		],
@@ -461,96 +413,6 @@ module.exports.uBCABI = [
 		"type": "event"
 	},
 	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "uint8",
-				"name": "available",
-				"type": "uint8"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint48",
-				"name": "deadline",
-				"type": "uint48"
-			}
-		],
-		"name": "postOpenBounty",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "string",
-				"name": "name",
-				"type": "string"
-			},
-			{
-				"internalType": "string",
-				"name": "description",
-				"type": "string"
-			},
-			{
-				"internalType": "address",
-				"name": "hunter",
-				"type": "address"
-			},
-			{
-				"internalType": "uint256",
-				"name": "available",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "amount",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint48",
-				"name": "deadline",
-				"type": "uint48"
-			}
-		],
-		"name": "postPersonalBounty",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			}
-		],
-		"name": "reclaim",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
 		"anonymous": false,
 		"inputs": [
 			{
@@ -562,37 +424,18 @@ module.exports.uBCABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "reclaimedAmount",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "weiAmount",
 				"type": "uint256"
 			}
 		],
 		"name": "reclaimed",
 		"type": "event"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "submissionIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "feedback",
-				"type": "string"
-			}
-		],
-		"name": "reject",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -618,56 +461,6 @@ module.exports.uBCABI = [
 		],
 		"name": "rejected",
 		"type": "event"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint256",
-				"name": "submissionIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "feedback",
-				"type": "string"
-			}
-		],
-		"name": "requestRevision",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "uint32",
-				"name": "submissionIndex",
-				"type": "uint32"
-			},
-			{
-				"internalType": "string",
-				"name": "revisionString",
-				"type": "string"
-			}
-		],
-		"name": "revise",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -737,47 +530,18 @@ module.exports.uBCABI = [
 			{
 				"indexed": false,
 				"internalType": "uint256",
-				"name": "rewardAmount",
+				"name": "tokenAmount",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "weiAmount",
 				"type": "uint256"
 			}
 		],
 		"name": "rewarded",
 		"type": "event"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "_fee",
-				"type": "uint256"
-			}
-		],
-		"name": "setFee",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"internalType": "uint256",
-				"name": "ubountyIndex",
-				"type": "uint256"
-			},
-			{
-				"internalType": "string",
-				"name": "submissionString",
-				"type": "string"
-			}
-		],
-		"name": "submit",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
 	},
 	{
 		"anonymous": false,
@@ -799,6 +563,25 @@ module.exports.uBCABI = [
 		"type": "event"
 	},
 	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "oldWaiver",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "newWaiver",
+				"type": "uint256"
+			}
+		],
+		"name": "waiverChange",
+		"type": "event"
+	},
+	{
 		"constant": true,
 		"inputs": [],
 		"name": "admin",
@@ -811,6 +594,81 @@ module.exports.uBCABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "submissionIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "feedback",
+				"type": "string"
+			}
+		],
+		"name": "approve",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address payable",
+				"name": "hunter",
+				"type": "address"
+			}
+		],
+		"name": "awardOpenBounty",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "hunter",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "tokenAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "awardPersonalBounty",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
 		"type": "function"
 	},
 	{
@@ -853,6 +711,30 @@ module.exports.uBCABI = [
 		],
 		"payable": false,
 		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "collector",
+		"outputs": [
+			{
+				"internalType": "address payable",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "createBountyChest",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -1024,6 +906,263 @@ module.exports.uBCABI = [
 		"type": "function"
 	},
 	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "uint8",
+				"name": "available",
+				"type": "uint8"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint48",
+				"name": "deadline",
+				"type": "uint48"
+			}
+		],
+		"name": "postOpenBounty",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "description",
+				"type": "string"
+			},
+			{
+				"internalType": "address payable",
+				"name": "hunter",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "available",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint48",
+				"name": "deadline",
+				"type": "uint48"
+			}
+		],
+		"name": "postPersonalBounty",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "reclaim",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "reclaimable",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "submissionIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "feedback",
+				"type": "string"
+			}
+		],
+		"name": "reject",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "submissionIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "feedback",
+				"type": "string"
+			}
+		],
+		"name": "requestRevision",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint32",
+				"name": "submissionIndex",
+				"type": "uint32"
+			},
+			{
+				"internalType": "string",
+				"name": "revisionString",
+				"type": "string"
+			}
+		],
+		"name": "revise",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "poster",
+				"type": "address"
+			}
+		],
+		"name": "satisfiesWaiver",
+		"outputs": [
+			{
+				"internalType": "bool",
+				"name": "",
+				"type": "bool"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_fee",
+				"type": "uint256"
+			}
+		],
+		"name": "setFee",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_waiver",
+				"type": "uint256"
+			}
+		],
+		"name": "setWaiver",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "submissionString",
+				"type": "string"
+			}
+		],
+		"name": "submit",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
 		"constant": true,
 		"inputs": [
 			{
@@ -1065,6 +1204,11 @@ module.exports.uBCABI = [
 				"type": "uint48"
 			},
 			{
+				"internalType": "uint256",
+				"name": "weiAmount",
+				"type": "uint256"
+			},
+			{
 				"internalType": "string",
 				"name": "name",
 				"type": "string"
@@ -1091,7 +1235,7 @@ module.exports.uBCABI = [
 		"name": "userList",
 		"outputs": [
 			{
-				"internalType": "address",
+				"internalType": "address payable",
 				"name": "",
 				"type": "address"
 			}
@@ -1115,6 +1259,57 @@ module.exports.uBCABI = [
 				"internalType": "uint32",
 				"name": "",
 				"type": "uint32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "version",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "waiver",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			}
+		],
+		"name": "weiBountyAmount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
 			}
 		],
 		"payable": false,

@@ -217,7 +217,7 @@
         </div>
         <!-- Submissions -->
         <div v-if="activeTab=='submissions'" class="w-full">
-          <div v-if="submissions>0" class="w-full flex flex-col">
+          <div v-if="submissions.length>0" class="w-full flex flex-col">
             <!-- If there are submissions -->
             <SubmissionCard
               class="my-2"

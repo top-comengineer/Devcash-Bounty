@@ -7,7 +7,7 @@ const { BigNumber } = require('ethers/utils/bignumber')
 const { Op, sequelize, Submission } = require("../models")
 
 // Prefix all DB calls with this
-const prefix = 'devcash'
+const prefix = process.env.NODE_ENV=='production' ? 'devcash' : 'devcash:dev'
 
 class RedisDB {
     constructor() {
