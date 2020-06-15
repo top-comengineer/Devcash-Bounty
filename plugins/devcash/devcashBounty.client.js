@@ -69,7 +69,7 @@ export class DevcashBounty {
 
   static formatDateStr(locale, dateStr) {
     let dt = new Date(dateStr);
-    return `${dt.toLocaleString(locale)}`;
+    return `${dt.toLocaleString(locale == 'en' ? undefined : locale)}`;
   }
 
   static formatTimeLeft(bounty) {

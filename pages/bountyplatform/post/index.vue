@@ -353,7 +353,7 @@ export default {
        day: 'numeric'
      }
      this.datePickerValue = utcDate
-     this.datePickerValueStr = utcDate.toLocaleString(this.currentLocale.locale, dtOptions)
+     this.datePickerValueStr = utcDate.toLocaleString(this.currentLocale.iso == 'en' ? undefined : this.currentLocale.iso, dtOptions)
      this.showDatePicker = false
    },
    validateForm() {
