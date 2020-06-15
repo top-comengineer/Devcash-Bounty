@@ -163,20 +163,18 @@
       >
         <!-- Deadline -->
         <div class="w-full md:w-1/2 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyDeadline')}}</h3>
+          <h3 class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.bountyDeadline')}}
+            <span
+              class="font-normal text-base opacity-75"
+            >{{$t('bountyPlatform.post.optional')}}</span>
+          </h3>
           <div class="w-full flex flex-row items-center relative mt-2">
-            <div class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2">
-              <Icon
-                class="w-full h-full"
-                :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
-                type="calender"
-              />
-            </div>
             <div v-on-clickaway="closePicker" class="w-full flex flex-col">
               <input
                 v-model="datePickerValueStr"
                 :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-                class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out pl-12 py-2"
+                class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2"
                 type="text"
                 @focus="showDatePicker=true"
                 @keydown.esc.exact="closePicker"
