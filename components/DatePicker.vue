@@ -77,9 +77,8 @@
 export default {
   data() {
     return {
-      today: new Date(),
+      today: null,
       showDatepicker: false,
-      datepickerValue: '',
       month: '',
       year: '',
       no_of_days: [],
@@ -96,12 +95,17 @@ export default {
   },
   methods: {
     initDate() {
-      this.today = new Date()
-      let cur = this.value == null || this.value == "" ? this.today : this.value;
-      this.month = cur.getMonth();
-      this.year = cur.getFullYear();
-      this.date = cur.getDate()
-      this.datepickerValue = new Date(this.year, this.month, cur.getDate()).toDateString();
+      this.today = new Date();
+      // User-picked dates are UTC
+      if (this.value) {
+        this.month = this.value.getUTCMonth();
+        this.year = this.value.getUTCFullYear();
+        this.date = this.value.getUTCDate()        
+      } else {
+        this.month = this.today.getMonth();
+        this.year = this.today.getFullYear();
+        this.date = this.today.getDate()
+      }
       this.getNoOfDays()
     },
     isEqual(dt1, dt2, utc = false) {
@@ -170,7 +174,7 @@ export default {
       this.getNoOfDays()
     }
   },
-  mounted() {
+  beforeMount() {
     this.initDate()
   }
 }
