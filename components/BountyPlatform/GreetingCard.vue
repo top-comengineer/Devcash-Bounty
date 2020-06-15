@@ -3,7 +3,7 @@
     :class="
       [!$store.state.theme.dt?'shadow-lgS':'']
     "
-    class="w-full flex flex-col relative overflow-hidden flex-wrap justify-center items-center bg-dtPrimary py-6 md:py-10 px-6 md:px-6 lg:px-8 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-col relative overflow-hidden flex-wrap justify-center items-center bg-dtPrimary py-4 md:py-10 px-6 md:px-6 lg:px-8 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Left Background Illustration -->
     <img
@@ -38,6 +38,7 @@
         class="text-3xl font-extrabold text-center text-dtText"
       >{{header != null ? header : $t("bountyPlatform.explore.cardHeader")}}</h1>
       <h2
+        :class="type=='explore'?'hidden md:block':'' "
         class="text-md md:text-xl text-center mt-1 text-dtText"
       >{{paragraph != null ? paragraph : $t("bountyPlatform.explore.cardParagraph")}}</h2>
     </div>
@@ -69,7 +70,11 @@
   </div>
 </template>
 <script>
+import Icon from "~/components/Icon.vue";
 export default {
+  components:{
+    Icon
+  },
   props: {
     type: null,
     header: null,

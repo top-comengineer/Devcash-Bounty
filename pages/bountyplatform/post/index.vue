@@ -164,7 +164,7 @@
           <div class="w-full flex flex-row items-center relative mt-2">
             <button
               class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2"
-              @click="showDatePicker = !showDatePicker"
+              @click.prevent="showDatePicker = !showDatePicker"
             >
               <Icon
                 class="w-full h-full"
