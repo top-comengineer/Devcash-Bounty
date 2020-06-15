@@ -86,6 +86,7 @@
       },
       "categories": {
         "header": "Categories",
+        "category": "Category:",
         "createTag": "Create",
         "enhanceTag": "Enhance",
         "bugTag": "Bug",

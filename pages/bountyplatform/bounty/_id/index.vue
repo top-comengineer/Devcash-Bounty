@@ -160,6 +160,16 @@
             :address="bounty.creator"
           />
         </div>
+        <!-- Category of the Bounty -->
+        <div class="w-full flex flex-row px-6 pb-6">
+          <h5>
+            <span class="opacity-75">{{$t("bountyPlatform.explore.categories.category") + ' '}}</span>
+            <span
+              :class="[$store.state.theme.dt?'shadow-lgDSS':'shadow-lgD'] "
+              class="font-bold opacity-100 px-3 py-1 rounded-full"
+            >{{$t("bountyPlatform.explore.categories.createTag")}}</span>
+          </h5>
+        </div>
       </div>
     </div>
     <!-- Submissions, Comments and Activity -->
