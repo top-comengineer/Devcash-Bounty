@@ -108,15 +108,20 @@ export default {
       this.datepickerValue = new Date(this.year, this.month, cur.getDate()).toDateString();
       this.getNoOfDays()
     },
+    isEqual(dt1, dt2) {
+      return dt1.getFullYear() == dt2.getFullYear() && dt1.getMonth() == dt2.getMonth() && dt1.getDate() == dt2.getDate()
+    },
     isToday(date) {
         const d = new Date(this.year, this.month, date);
 
-        return this.today.toDateString() === d.toDateString() ? true : false;
+        return this.isEqual(d, this.today)
     },
     isPicked(date) {
         const d = new Date(this.year, this.month, date);
-
-        return this.datepickerValue === d.toDateString() ? true : false;
+        if (this.value) {
+          return this.isEqual(d, this.value)
+        }
+        return false
     },
     isPast(date) {
         const d = new Date(this.year, this.month, date);
