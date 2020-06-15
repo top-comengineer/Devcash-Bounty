@@ -120,9 +120,12 @@
       "buttonPostBounty": "Post Bounty",
       "invalidAddress": "Invalid Address",
       "titleLengthError": "Title Must be Between %1 and %2 Characters",
+      "contactNameLengthError": "Contact Name Must be Between %1 and %2 Characters",
       "numBountiesError": "At Least 1 Bounty is Required",
       "invalidAmount": "Invalid Bounty Amount",
-      "insufficientBalance": "Insufficient Balance"
+      "insufficientBalance": "Insufficient Balance",
+      "invalidEmail": "Invalid Email Address",
+      "deadlineError": "Deadline Cannot be a Past Date"
     },
     "overview": {
       "header": "Overview",
