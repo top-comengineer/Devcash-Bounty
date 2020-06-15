@@ -83,6 +83,15 @@
         "statusActive": "Active",
         "statusCompleted": "Completed",
         "statusExpired": "Expired"
+      },
+      "categories": {
+        "header": "Categories",
+        "createTag": "Create",
+        "enhanceTag": "Enhance",
+        "bugTag": "Bug",
+        "supportTag": "Support",
+        "prototypeTag": "Prototype",
+        "otherTag": "Other"
       }
     },
     "bountyCard": {
