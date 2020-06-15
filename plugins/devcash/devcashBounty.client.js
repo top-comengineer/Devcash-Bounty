@@ -380,6 +380,7 @@ export class DevcashBounty {
     description,
     contactName,
     contactEmail,
+    category,
     hunter = undefined
   ) {
     let hasHunter = hunter != null && hunter != undefined;
@@ -404,6 +405,7 @@ export class DevcashBounty {
       description: description,
       contactName: contactName,
       contactEmail: contactEmail,
+      category: category
     };
     if (hasHunter) {
       ubounty.hunter = hunter;
@@ -470,20 +472,24 @@ export class DevcashBounty {
   }
 
   // Methods for writing to the smart contract
-  async postBounty(bounty,available,amount,ethAmount,deadline){
+  async postBounty(bounty,available,amount,deadline, ethAmount = null){
     if (!amount) {
-      amount = 0
+      amount = utils.bigNumberify(0)
+    } else {
+      amount = utils.parseUnits(amount.toString(), this.tokenDecimals)
     }
     if (!ethAmount) {
-      ethAmount = 0
+      ethAmount = utils.bigNumberify(0)
+    } else {
+      ethAmount = utils.parseEther(ethAmount)
     }
-    amount = utils.parseUnits(amount.toString(), this.tokenDecimals)
-    ethAmount = utils.parseEther(ethAmount)
     let overrides = {
-      value:ethAmount
+      value:ethAmount,
+      gasLimit:3000000
     }
     if (!bounty.hunter) {
       // Open Bounty
+      console.log(`Posting ${bounty.hash}, ${available}, ${amount}, ${deadline}, ${overrides}`)
       return await this.uBCContract.postOpenBounty("", bounty.hash, available, amount, deadline, overrides)
     }
     return await this.uBCContract.postPersonalBounty("", bounty.hash, bounty.hunter, available, amount, deadline, overrides)

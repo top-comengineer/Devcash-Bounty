@@ -261,6 +261,7 @@
     <!-- Call to Action Card -->
     <CTACard
       class="my-1 md:my-2"
+      :disabled="submitLoading"
       :buttonAction="submitBounty"
       :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
     />
@@ -311,6 +312,7 @@ export default {
       showDatePicker: false,
       datePickerValue: null,
       datePickerValueStr: "",
+      submitLoading: false,
       // Form validation
       minTitleLength: 10,
       maxTitleLength: 50,
@@ -455,20 +457,49 @@ export default {
       e.preventDefault();
      }
    },
-   submitBounty() {
-     console.log("SUBMITTING")
-     // TODO - remove always true condition
-     if (this.validateForm() || true) {
-       // Post bounty
-       let bounty = DevcashBounty.createUBounty(
-        this.loggedInAccount,
-        this.title,
-        this.description,
-        "jeff@replaceme.com",
-        "jeff@replaceme.com",
-        this.openBounty ? null : hunter
-      )
-      console.log(bounty)
+   getDeadlineS() {
+     if (this.datePickerValue) {
+       return this.datePickerValue.getTime()
+     }
+     return 0
+   },
+   async submitBounty() {
+     // TODO - add category
+     let category = 'other'
+     if (this.validateForm() && !this.submitLoading) {
+       try {
+         this.submitLoading = true
+          // Post bounty
+          let bounty = DevcashBounty.createUBounty(
+            this.loggedInAccount,
+            this.title,
+            this.description,
+            this.contactName,
+            this.contactEmail,
+            category,
+            this.openBounty ? null : this.hunter
+          )
+          try {
+            // Post to backend
+            let res = await this.$axios.post('/bounty/post', bounty)
+            if (res.status == 200) {
+              await DevcashBounty.initEthConnector(this)
+              // TODO - eth amount
+              await this.$store.state.devcash.connector.postBounty(
+                bounty,
+                this.numBounties,
+                this.amount,
+                this.getDeadlineS()
+              )
+            }
+          } catch (e) {
+            // TODO - better error handling
+            alert('failed to create bounty')
+            console.log(e)
+          }
+       } finally {
+         this.submitLoading = false;
+       }
      }
    }
   },
