@@ -113,7 +113,7 @@ export default {
         return this.isEqual(d, this.today)
     },
     isPicked(date) {
-        const d = new Date(Date.UTC(this.year, this.month, date));
+        const d = new Date(this.year, this.month, date);
         if (this.value) {
           return this.isEqual(d, this.value)
         }
