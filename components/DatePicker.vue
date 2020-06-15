@@ -64,7 +64,7 @@
           <div
             @click="getDateValue(date)"
             class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition-colors ease-in-out duration-200"
-            :class="{'bg-dtPrimary text-dtText': isToday(date), 'hover_bg-dtPrimary-50': !isToday(date)}"
+            :class="[isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : 'hover_bg-dtPrimary-50']"
           >{{ date }}</div>
         </div>
       </div>
@@ -108,6 +108,11 @@ export default {
 
         return today.toDateString() === d.toDateString() ? true : false;
     },
+    isPicked(date) {
+        const d = new Date(this.year, this.month, date);
+
+        return this.datepickerValue === d.toDateString() ? true : false;
+    },    
     getDateValue(date) {
         let selectedDate = new Date(this.year, this.month, date);
         this.datePicked(selectedDate)
