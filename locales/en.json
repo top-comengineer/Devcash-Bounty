@@ -194,7 +194,9 @@
       "amountToApprove": "Amount to Approve",
       "amountToApprovePlaceholder": "Enter an amount",
       "buttonApprove": "Approve",
-      "buttonGoBack": "Go Back"
+      "buttonGoBack": "Go Back",
+      "approveAmountRequired": "Amount is Required",
+      "approveAmountLow": "Balance too Low"
     },
     "statusTag": {
       "pending": "Pending",

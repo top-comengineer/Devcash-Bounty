@@ -249,16 +249,21 @@
           <h5 class="font-bold mt-6">{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
           <!-- Amount Input -->
           <input
+            v-model="toApprove"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
+            type="number"
+            min="1"
             :placeholder="$t('bountyPlatform.sidebarContextual.amountToApprovePlaceholder')"
           />
           <!-- Approve Button -->
           <button
             :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
             class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
+            @click="approveBalance"
+            :disabled="approvalLoading"
           >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
+          <p v-if="approvalError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ approvalError }}</p>
         </div>
         <!-- If context is Single Bounty -->
         <div
@@ -289,6 +294,8 @@
 <script>
 import { mapGetters } from "vuex";
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
+import { utils } from "ethers";
 import Icon from "~/components/Icon.vue";
 import RadioButton from "~/components/RadioButton.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
@@ -308,10 +315,35 @@ export default {
       sidebarContexts: SIDEBAR_CONTEXTS,
       isSearchFocused: false,
       isSortDescending: true,
-      isSortModalOpen: false
+      isSortModalOpen: false,
+      toApprove: null,
+      approvalLoading: false,
+      approvalError: ""
     };
   },
   methods: {
+    async approveBalance() {
+      if (this.toApprove == null || this.toApprove < 0) {
+        this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
+        return
+      }
+      try {
+        this.approvalLoading = true
+        await DevcashBounty.updateBalances(this)
+        let amt = utils.parseUnits(this.toApprove.toString(), 8)
+        let avail = utils.bigNumberify(this.$store.state.devcashData.balance.devcashRaw)
+        if (amt.gt(avail)) {
+          this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
+          return
+        }
+        this.approvalError = ""
+        await this.$store.state.devcash.connector.approveBalance(this.toApprove)
+      } catch (e) {
+        
+      } finally {
+        this.approvalLoading = false
+      }
+    },
     toggleSortModal() {
       this.isSortModalOpen = !this.isSortModalOpen;
     },
@@ -322,7 +354,21 @@ export default {
       setTimeout(() => {
         this.isSortModalOpen = false;
       }, 50);
+    },
+    async updateBalance() {
+      if (this.isLoggedIn && (this.$store.state.general.sidebarContext == this.sidebarContexts.post || this.$store.state.general.sidebarContext == this.sidebarContexts.overview || this.$store.state.general.sidebarContext == this.sidebarContexts.bountyHunter ||  this.$store.state.general.sidebarContext == this.sidebarContexts.bountyManager)) {
+        await DevcashBounty.updateBalances(this)
+      }
     }
+  },
+  mounted() {
+    let result = this.$crontab.addJob({
+      name: 'balanceUpdate',
+      interval: {
+        minutes: '/1',
+      },
+      job: this.updateBalance
+    })    
   },
   computed: {
     // mix the getters into computed with object spread operator
