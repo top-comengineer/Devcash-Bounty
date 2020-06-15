@@ -170,11 +170,11 @@
             >{{$t('bountyPlatform.post.optional')}}</span>
           </h3>
           <div class="w-full flex flex-row items-center relative mt-2">
-            <div v-on-clickaway="closePicker" class="w-full flex flex-col">
+            <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
               <input
                 v-model="datePickerValueStr"
                 :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-                class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+                class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2"
                 type="text"
                 @focus="showDatePicker=true"
                 @keydown.esc.exact="closePicker"
@@ -195,9 +195,19 @@
                 </transition>
               </div>
             </div>
+            <!-- Clear button -->
+            <button
+              v-if="datePickerValue!=null || datePickerValueStr != ''"
+              :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
+              class="hover_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
+              @click.prevent="datePickerValueStr=''; datePickerValue=null"
+            >
+              <Icon class="w-6 h-6" colorClass="text-dtText" type="cancel" />
+            </button>
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
+
           <p
             v-if="deadlineError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
