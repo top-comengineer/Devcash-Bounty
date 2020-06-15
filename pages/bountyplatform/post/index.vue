@@ -181,6 +181,7 @@
                 type="text"
                 @click="showDatePicker = !showDatePicker"
                 @keydown.escape="showDatepicker = false"
+                readonly="true"
                 :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
               />
               <div class="relative">
@@ -191,6 +192,7 @@
                     :closePicker="closePicker"
                     :value="datePickerValue"
                     :datePicked="datePickerSet"
+                    :futureOnly="true"
                   />
                 </transition>
               </div>
@@ -333,8 +335,28 @@ export default {
      this.showDatePicker = false
    },
    datePickerSet(date) {
-     this.datePickerValue = date
-     this.datePickerValueStr = date.toLocaleString(this.currentLocale.locale)
+     console.log(date.getFullYear())
+     console.log(date.getMonth())
+     console.log(date.getDate())
+     const utcDate = new Date(Date.UTC(
+       date.getFullYear(),
+       date.getMonth(),
+       date.getDate(),
+       23,
+       59,
+       59
+     ))
+     let dtOptions = {
+       timeZone: 'UTC',
+       timeZoneName: 'short',
+       timeStyle: 'short',
+       dateStyle: 'short',
+       year: 'numeric',
+       month: 'numeric',
+       day: 'numeric'
+     }
+     this.datePickerValue = utcDate
+     this.datePickerValueStr = utcDate.toLocaleString(this.currentLocale.locale, dtOptions)
      this.showDatePicker = false
    },
    validateForm() {

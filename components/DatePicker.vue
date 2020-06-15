@@ -15,7 +15,9 @@
         <div>
           <button
             type="button"
-            class="transition-colors ease-in-out duration-200 inline-flex cursor-pointer p-1 rounded-full hover_bg-dtPrimary-50"
+            :disabled="futureOnly && today.getFullYear() == year && today.getMonth() == month"
+            class="transition-colors ease-in-out duration-200 inline-flex cursor-pointer p-1 rounded-full"
+            :class="[futureOnly && today.getFullYear() == year && today.getMonth() == month ? 'opacity-50' : 'hover_bg-dtPrimary-50']"
             @click="previousClick"
           >
             <svg class="h-6 w-6 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +66,7 @@
           <div
             @click="getDateValue(date)"
             class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition-colors ease-in-out duration-200"
-            :class="[isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : 'hover_bg-dtPrimary-50']"
+            :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : !isPast(date) && !futureOnly ? 'hover_bg-dtPrimary-50' : '']"
           >{{ date }}</div>
         </div>
       </div>
@@ -79,6 +81,7 @@ export default {
   mixins: [clickaway],
   data() {
     return {
+      today: new Date(),
       showDatepicker: false,
       datepickerValue: '',
       month: '',
@@ -92,28 +95,37 @@ export default {
   props: {
     closePicker: Function,
     datePicked: Function,
-    value: Date
+    value: Date,
+    futureOnly: Boolean
   },
   methods: {
     initDate() {
-      let today = this.value == null || this.value == "" ? new Date() : this.value;
-      this.month = today.getMonth();
-      this.year = today.getFullYear();
-      this.datepickerValue = new Date(this.year, this.month, today.getDate()).toDateString();
+      this.today = new Date()
+      let cur = this.value == null || this.value == "" ? this.today : this.value;
+      this.month = cur.getMonth();
+      this.year = cur.getFullYear();
+      this.date = cur.getDate()
+      this.datepickerValue = new Date(this.year, this.month, cur.getDate()).toDateString();
       this.getNoOfDays()
     },
     isToday(date) {
-        const today = new Date();
         const d = new Date(this.year, this.month, date);
 
-        return today.toDateString() === d.toDateString() ? true : false;
+        return this.today.toDateString() === d.toDateString() ? true : false;
     },
     isPicked(date) {
         const d = new Date(this.year, this.month, date);
 
         return this.datepickerValue === d.toDateString() ? true : false;
-    },    
+    },
+    isPast(date) {
+        const d = new Date(this.year, this.month, date);
+        return d.getTime() < this.today.getTime()
+    },
     getDateValue(date) {
+        if (this.futureOnly && this.isPast(date)) {
+          return
+        }
         let selectedDate = new Date(this.year, this.month, date);
         this.datePicked(selectedDate)
     },
