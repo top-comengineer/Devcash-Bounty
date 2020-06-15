@@ -1,11 +1,16 @@
 <template>
   <div>
     <label
-      class="checkbox-container flex flex-row items-center p-1 hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 transition-colors duration-200 rounded-md"
+      :class="type=='white'?'text-dtText hover_bg-dtText-15 focus_bg-dtText-15 checkbox-container checkbox-container-white':'hover_bg-dtPrimary-15 focus_bg-dtPrimary-15 checkbox-container'"
+      class="flex flex-row items-center p-1 transition-colors duration-200 rounded-md"
     >
       <input :checked="checked" type="checkbox" :name="name" />
       <span
-        v-if="$store.state.theme.dt"
+        v-if="type=='white'"
+        class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-dtText normal-checkmark-white"
+      ></span>
+      <span
+        v-else-if="$store.state.theme.dt"
         class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-dtText normal-checkmark-dt"
       ></span>
       <span
@@ -25,7 +30,8 @@ export default {
   props: {
     name: null,
     text: null,
-    checked: null
+    checked: null,
+    type: null
   }
 };
 </script>
@@ -52,7 +58,8 @@ export default {
 
 /* Create a custom checkbox */
 .normal-checkmark-dt,
-.normal-checkmark-lt {
+.normal-checkmark-lt,
+.normal-checkmark-white {
   position: absolute;
   top: 0.25rem;
   left: 0.25rem;
@@ -72,9 +79,15 @@ export default {
   border-color: #675cff;
 }
 
+.checkbox-container input:checked ~ .normal-checkmark-white {
+  background-color: #f2f1ff;
+  border-color: #f2f1ff;
+}
+
 /* Create the checkmark/indicator (hidden when not checked) */
 .normal-checkmark-dt:after,
-.normal-checkmark-lt:after {
+.normal-checkmark-lt:after,
+.normal-checkmark-white:after {
   content: "";
   position: absolute;
   display: none;
@@ -83,10 +96,14 @@ export default {
 .checkbox-container input:checked ~ h5 {
   color: #675cff;
 }
+.checkbox-container-white input:checked ~ h5 {
+  color: #f2f1ff;
+}
 
 /* Show the checkmark when checked */
 .checkbox-container input:checked ~ .normal-checkmark-dt:after,
-.checkbox-container input:checked ~ .normal-checkmark-lt:after {
+.checkbox-container input:checked ~ .normal-checkmark-lt:after,
+.checkbox-container input:checked ~ .normal-checkmark-white:after {
   display: block;
 }
 
@@ -108,7 +125,18 @@ export default {
   left: 0.35rem;
   width: 0.4rem;
   height: 0.8rem;
-  border: solid #ffffff;
+  border: solid #f2f1ff;
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.checkbox-container .normal-checkmark-white:after {
+  top: 0.05rem;
+  left: 0.35rem;
+  width: 0.4rem;
+  height: 0.8rem;
+  border: solid #675cff;
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);

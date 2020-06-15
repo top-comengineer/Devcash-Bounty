@@ -1,6 +1,7 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
     <GreetingCard class="my-2" />
+    <CategoriesBar class="my-2" />
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
@@ -17,6 +18,7 @@ import Axios from "axios";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
+import CategoriesBar from "~/components/BountyPlatform/CategoriesBar.vue";
 import {
   DevcashBounty,
   AccountNotFoundError
@@ -26,7 +28,8 @@ export default {
   components: {
     BountyCard,
     BountyCardPlaceholder,
-    GreetingCard
+    GreetingCard,
+    CategoriesBar
   },
   data() {
     return {
