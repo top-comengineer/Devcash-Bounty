@@ -4,8 +4,6 @@
       class="rounded-lg shadow-2xlS p-4"
       :class="{'bg-dtText text-dtBackground':$store.state.theme.dt, 'bg-ltText text-ltBackground': !$store.state.theme.dt}"
       style="width: 17rem"
-      v-on-clickaway="closePicker"
-      @keydown.esc.exact="closePicker"
     >
       <div class="flex justify-between items-center mb-2">
         <div>
@@ -75,10 +73,8 @@
 </template>
 
 <script>
-import { mixin as clickaway } from "vue-clickaway";
 
 export default {
-  mixins: [clickaway],
   data() {
     return {
       today: new Date(),
