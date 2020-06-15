@@ -104,8 +104,11 @@ export default {
       this.datepickerValue = new Date(this.year, this.month, cur.getDate()).toDateString();
       this.getNoOfDays()
     },
-    isEqual(dt1, dt2) {
-      return dt1.getFullYear() == dt2.getFullYear() && dt1.getMonth() == dt2.getMonth() && dt1.getDate() == dt2.getDate()
+    isEqual(dt1, dt2, utc = false) {
+      if (!utc) {
+        return dt1.getFullYear() == dt2.getFullYear() && dt1.getMonth() == dt2.getMonth() && dt1.getDate() == dt2.getDate()
+      }
+      return dt1.getUTCFullYear() == dt2.getUTCFullYear() && dt1.getUTCMonth() == dt2.getUTCMonth() && dt1.getUTCDate() == dt2.getUTCDate()
     },
     isToday(date) {
         const d = new Date(this.year, this.month, date);
@@ -115,7 +118,7 @@ export default {
     isPicked(date) {
         const d = new Date(Date.UTC(this.year, this.month, date));
         if (this.value) {
-          return this.isEqual(d, this.value)
+          return this.isEqual(d, this.value, true)
         }
         return false
     },
