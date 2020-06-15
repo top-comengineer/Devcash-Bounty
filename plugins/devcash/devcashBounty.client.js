@@ -247,6 +247,11 @@ export class DevcashBounty {
     });
   }
 
+  async approveBalance(amount) {
+    let amtFormat = utils.parseUnits(amount.toString(), this.tokenDecimals)
+    return await this.tokenContract.approve(uBCAddress, amtFormat)
+  }
+
   async getNUbounties() {
     return (await this.uBCContract.numUbounties()).toNumber();
   }
