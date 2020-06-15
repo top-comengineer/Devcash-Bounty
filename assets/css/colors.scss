@@ -126,6 +126,11 @@ $ltDanger: #990040;
   outline: none !important;
 }
 
+.hover_bg-dtPrimary-50:hover,
+.focus_bg-dtPrimary-50:focus {
+  background-color: rgba($dtPrimary, 0.5);
+}
+
 // Dark Theme Text Hover & Focus
 .hover_bg-dtText-15:hover,
 .focus_bg-dtText-15:focus {

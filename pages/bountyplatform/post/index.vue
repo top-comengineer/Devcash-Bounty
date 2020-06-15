@@ -172,23 +172,28 @@
                 type="calender"
               />
             </button>
-            <input
-              v-model="datePickerValueStr"
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-              class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out pl-12 py-2"
-              type="text"
-              @click="showDatePicker = !showDatePicker"
-              @keydown.escape="showDatepicker = false"
-              :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
-            />
-            <client-only>
-              <DatePicker
-                v-if="showDatePicker"
-                :closePicker="closePicker"
-                :value="datePickerValue"
-                :datePicked="datePickerSet"
+            <div class="w-full flex flex-col">
+              <input
+                v-model="datePickerValueStr"
+                :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
+                class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out pl-12 py-2"
+                type="text"
+                @click="showDatePicker = !showDatePicker"
+                @keydown.escape="showDatepicker = false"
+                :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
               />
-            </client-only>
+              <div class="relative">
+                <transition name="datePickerTransition">
+                  <DatePicker
+                    class="absolute z-50 top-0 mt-2 origin-top-left"
+                    v-if="showDatePicker"
+                    :closePicker="closePicker"
+                    :value="datePickerValue"
+                    :datePicked="datePickerSet"
+                  />
+                </transition>
+              </div>
+            </div>
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
@@ -572,5 +577,19 @@ p.is-empty:first-child::before {
   color: black;
   pointer-events: none;
   height: 0;
+}
+.datePickerTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.datePickerTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.datePickerTransition-enter {
+  opacity: 0;
+  transform: scaleX(0.5) scaleY(0.5) rotate(2.5deg);
+}
+.datePickerTransition-leave-to {
+  opacity: 0;
+  transform: scaleX(0.5) scaleY(0.5) rotate(2.5deg);
 }
 </style>
