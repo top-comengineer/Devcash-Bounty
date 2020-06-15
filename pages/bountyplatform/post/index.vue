@@ -21,6 +21,7 @@
           <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyTitle')}}</h3>
           <div class="w-full flex flex-row">
             <input
+              v-model="title"
               :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
               class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
@@ -29,18 +30,22 @@
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
+          <p v-if="titleError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength) }}</p>
         </div>
         <!-- Bounty Description -->
         <div class="w-full flex flex-col my-3">
           <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
-          <no-ssr>
-            <editor-content
+            <textarea
+              v-model="description"
               :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
               class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-              :editor="editor"
+              type="text"
+              :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
             />
-          </no-ssr>
         </div>
+        <div class="w-full flex flex-col">
+          <p :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']" class="text-xs px-3">{{ `${description.length}/${maxDescriptionCount}` }}</p>
+        </div>        
       </div>
       <!-- Card for Bounty Type -->
       <div
@@ -57,17 +62,17 @@
           >
             <div class="w-full flex flex-row relative">
               <div
-                :class="{'left-0':activeTab=='public', 'left-full -translate-x-full': activeTab=='private', 'shadow-lgSS': $store.state.theme.dt, 'shadow-lgS': !$store.state.theme.dt}"
+                :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty, 'shadow-lgSS': $store.state.theme.dt, 'shadow-lgS': !$store.state.theme.dt}"
                 class="absolute w-1/2 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
               ></div>
               <button
-                :class="[activeTab=='public'?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='public', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='public' }]"
-                @click.prevent="activeTab='public'"
+                :class="[openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && !openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && !openBounty }]"
+                @click.prevent="openBounty=true"
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
               <button
-                :class="[activeTab=='private'?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='private', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='private' }]"
-                @click.prevent="activeTab='private'"
+                :class="[!openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='private' }]"
+                @click.prevent="openBounty=false"
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
             </div>
@@ -76,14 +81,16 @@
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
         <!-- Hunter's Address -->
-        <div v-if="activeTab=='private'" class="w-full md:flex-1 flex flex-col my-3">
+        <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
           <input
+            v-model="hunter"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
           />
+          <p v-if="invalidHunterAddress" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.invalidAddress') }}</p>
         </div>
       </div>
       <!-- Card for Number of Bounties and Bounty Amount -->
@@ -95,11 +102,14 @@
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCount')}}</h3>
           <input
+            v-model="numBounties"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
+            type="number"
+            min="1"
             :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
           />
+          <p v-if="numBountiesError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.numBountiesError') }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
@@ -112,11 +122,14 @@
             >{{$t('bountyPlatform.post.bountyForEach')}}</span>
           </h3>
           <input
+            v-model="amount"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
+            type="number"
+            @keypress="onlyForCurrency"
             :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
           />
+          <p v-if="amountError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ amountError }}</p>
         </div>
       </div>
       <!-- Card for Deadline -->
@@ -182,7 +195,7 @@
     <!-- Call to Action Card -->
     <CTACard
       class="my-1 md:my-2"
-      :buttonAction="null"
+      :buttonAction="submitBounty"
       :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
     />
   </div>
@@ -190,54 +203,141 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
-import { Editor, EditorContent, Doc } from 'tiptap'
-import { Placeholder } from 'tiptap-extensions'
+import { utils } from "ethers"
+import { mapGetters } from "vuex";
 
-class DescriptionDoc extends Doc {
-
-  get schema() {
-    return {
-      content: 'block+',
-    }
-  }
-
-}
+const minDescriptionCount = 50;
+const maxDescriptionCount = 1000;
 
 export default {
   layout: "bountyPlatform",
   components: {
     GreetingCard,
     CTACard,
-    Icon,
-    EditorContent
+    Icon
   },
   data() {
     return {
-      activeTab: "public",
+      openBounty: true,
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.post.pageTitle"),
       pageDescription: this.$t("meta.bountyPlatform.post.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL,
-      editor: null
+      minDescriptionCount: minDescriptionCount,
+      maxDescriptionCount: maxDescriptionCount,
+      title: "",
+      description: "",
+      hunter: "",
+      numBounties: null,
+      amount: null,
+      contactName: "",
+      contactEmail: "",
+      // Form validation
+      minTitleLength: 10,
+      maxTitleLength: 50,
+      titleError: false,
+      numBountiesError: false,
+      invalidHunterAddress: false,
+      amountError: ""
     };
   },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    })
+  },  
+  methods: {
+   validateForm() {
+     let isValid = true
+     // Check title length
+     if (this.title.length < this.minTitleLength || this.title.length > this.maxTitleLength) {
+       isValid = false
+       this.titleError = true 
+     } else {
+       this.titleError = false
+     }
+     // Check description
+     if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
+       isValid = false
+     }
+     // Check hunter address
+     if (!this.openBounty) {
+      try {
+        utils.getAddress(this.hunter)
+        this.invalidHunterAddress = false
+      } catch (e) {
+        isValid = false
+        this.invalidHunterAddress = true
+      }
+     } else {
+       this.invalidHunterAddress = false
+     }
+     // Check num bounties
+     if (this.numBounties < 1) {
+       this.numBountiesError = true
+       isValid = false
+     } else {
+       this.numBountiesError = false
+       isValid = true
+     }
+     // Check amount
+     try {
+       let amountBigNum = utils.bigNumberify(this.amount)
+       let balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.approvedRaw)
+       if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
+         this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
+         isValid = false
+       } else {
+         this.amountError = ""
+       }
+     } catch (e) {
+       this.amountError = this.$t('bountyPlatform.post.invalidAmount')
+       isValid = false
+     }
+     // TODO - validate deadline, name, email
+
+     return isValid
+   },
+   onlyForCurrency(e) {
+     let keyCode = (e.keyCode ? e.keyCode : e.which);
+
+     // only allow number and one dot
+     if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.amount.indexOf('.') != -1)) { // 46 is dot
+      e.preventDefault();
+     }
+
+     // restrict to 8 decimal places
+     if(this.amount!=null && this.amount.indexOf(".")>-1 && (this.amount.split('.')[1].length > 7)){
+      e.preventDefault();
+     }
+   },
+   submitBounty() {
+     console.log("SUBMITTING")
+     // TODO - remove always true condition
+     if (this.validateForm() || true) {
+       // Post bounty
+       let bounty = DevcashBounty.createUBounty(
+        this.loggedInAccount,
+        this.title,
+        this.description,
+        "jeff@replaceme.com",
+        "jeff@replaceme.com",
+        this.openBounty ? null : hunter
+      )
+      console.log(bounty)
+     }
+   }
+  },
   mounted() {
-    this.editor = new Editor({
-      extensions: [
-        new DescriptionDoc(),
-        new Placeholder({
-          emptyNodeText: this.$t('bountyPlatform.post.bountyDescriptionPlaceholder')
-        }),
-      ]
-    });
-    this.$root.$on('changeLanguage', () => {
-      this.editor.extensions.options.placeholder.emptyNodeText = this.$t('bountyPlatform.post.bountyDescriptionPlaceholder')
-    })    
+    DevcashBounty.updateBalances(this)
   },
   beforeMount() {
     // Set sidebar context

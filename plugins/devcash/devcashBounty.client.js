@@ -1,5 +1,5 @@
 import { ethers, utils } from "ethers";
-import { crypto } from "crypto";
+import CryptoJS from "crypto-js";
 import { Authereum, AuthereumSigner } from "authereum";
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from "./config.js";
 import {
@@ -325,51 +325,51 @@ export class DevcashBounty {
     return revisions;
   }
 
-  async hashUbounty(uBounty) {
+  static hashUbounty(uBounty) {
     const creator = uBounty.creator,
       title = uBounty.title,
       description = uBounty.description,
       hunter = uBounty.hunter;
-    const hash = crypto
-      .createHash("sha256")
+    
+    let hash = CryptoJS.algo.SHA256.create()
       .update(creator)
       .update(title)
       .update(description);
-    return hunter != undefined && hunter != null
-      ? hash.update(hunter).digest("hex")
-      : hash.digest("hex");
+    if (hunter) {
+      hash.update(hunter)
+    }
+    const final = hash.finalize()
+    return CryptoJS.enc.Hex.stringify(final)
   }
 
-  async hashSubmission(submission) {
+  static hashSubmission(submission) {
     const creator = submission.creator,
       data = submission.data,
       ubounty_id = submission.ubounty_id;
-    const hash = crypto
-      .createHash("sha256")
+    const hash = CryptoJS.algo.SHA256.create()
       .update(creator)
       .update(data)
       .update(ubounty_id.toString())
-      .digest("hex");
-    return hash;
+      .finalize();
+    return CryptoJS.enc.Hex.stringify(hash);
   }
 
-  async hashRevision(revision) {
+  static hashRevision(revision) {
     const creator = revision.creator,
       data = revision.data,
       ubounty_id = revision.ubounty_id,
       submission_id = revision.submission_id;
-    const hash = crypto
-      .createHash("sha256")
+    const hash = CryptoJS.algo.SHA256.create()
       .update(creator)
       .update(data)
       .update(ubounty_id.toString())
       .update(submission_id.toString())
-      .digest("hex");
-    return hash;
+      .finalize();
+    return CryptoJS.enc.Hex.stringify(hash);
   }
 
   // Create uBounty object and add hash
-  async createUBounty(
+  static createUBounty(
     creator,
     title,
     description,
@@ -401,14 +401,14 @@ export class DevcashBounty {
       contactEmail: contactEmail,
     };
     if (hasHunter) {
-      uBounty.hunter = hunter;
+      ubounty.hunter = hunter;
     }
-    uBounty.hash = this.hashUbounty(ubounty);
-    return uBounty;
+    ubounty.hash = DevcashBounty.hashUbounty(ubounty);
+    return ubounty;
   }
 
   // Create submission object and add hash
-  async createSubmission(creator, data, ubounty_id) {
+  static createSubmission(creator, data, ubounty_id) {
     try {
       utils.getAddress(creator);
     } catch (e) {
@@ -419,12 +419,12 @@ export class DevcashBounty {
       data: data,
       ubounty_id: ubounty_id,
     };
-    submission.hash = this.hashSubmission(submission);
+    submission.hash = DevcashBounty.hashSubmission(submission);
     return submission;
   }
 
   // Create revision object and add hash
-  async createRevision(creator, data, ubounty_id, submission_id) {
+  static createRevision(creator, data, ubounty_id, submission_id) {
     try {
       utils.getAddress(creator);
     } catch (e) {
@@ -436,28 +436,31 @@ export class DevcashBounty {
       ubounty_id: ubounty_id,
       submission_id: submission_id,
     };
-    revision.hash = this.hashRevision(revision);
+    revision.hash = DevcashBounty.hashRevision(revision);
     return revision;
   }
 
   // Get balances
   async getBalances() {
-    let ethBalance = await this.signer.getBalance();
-    ethBalance = utils.formatEther(ethBalance);
+    let ethBalanceRaw = await this.signer.getBalance();
+    let ethBalance = utils.formatEther(ethBalanceRaw);
     ethBalance = utils.commify(ethBalance);
-    let devcashBalance = await this.tokenContract.balanceOf(await this.signer.getAddress());
-    devcashBalance = utils.formatUnits(devcashBalance, this.tokenDecimals);
+    let devcashBalanceRaw = await this.tokenContract.balanceOf(await this.signer.getAddress());
+    let devcashBalance = utils.formatUnits(devcashBalanceRaw, this.tokenDecimals);
     devcashBalance = utils.commify(devcashBalance);
-    let approvedBalance = await this.tokenContract.allowance(
+    let approvedBalanceRaw = await this.tokenContract.allowance(
       await this.signer.getAddress(),
       uBCAddress
     );
-    approvedBalance = utils.formatUnits(approvedBalance, this.tokenDecimals);
+    let approvedBalance = utils.formatUnits(approvedBalanceRaw, this.tokenDecimals);
     approvedBalance = utils.commify(approvedBalance);
     return {
       eth: ethBalance,
+      ethRaw: ethBalanceRaw,
       devcash: devcashBalance,
+      devcashRaw: devcashBalanceRaw,
       approved: approvedBalance,
+      approvedRaw: approvedBalanceRaw
     };
   }
 

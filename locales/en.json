@@ -117,7 +117,12 @@
       "contactNamePlaceholder": "Enter the name of the contact",
       "contactEmail": "Contact Email",
       "contactEmailPlaceholder": "Enter the email of the contact",
-      "buttonPostBounty": "Post Bounty"
+      "buttonPostBounty": "Post Bounty",
+      "invalidAddress": "Invalid Address",
+      "titleLengthError": "Title Must be Between %1 and %2 Characters",
+      "numBountiesError": "At Least 1 Bounty is Required",
+      "invalidAmount": "Invalid Bounty Amount",
+      "insufficientBalance": "Insufficient Balance"
     },
     "overview": {
       "header": "Overview",
