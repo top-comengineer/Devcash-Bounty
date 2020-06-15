@@ -335,9 +335,6 @@ export default {
      this.showDatePicker = false
    },
    datePickerSet(date) {
-     console.log(date.getFullYear())
-     console.log(date.getMonth())
-     console.log(date.getDate())
      const utcDate = new Date(Date.UTC(
        date.getFullYear(),
        date.getMonth(),

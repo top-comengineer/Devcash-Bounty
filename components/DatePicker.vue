@@ -66,7 +66,7 @@
           <div
             @click="getDateValue(date)"
             class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition-colors ease-in-out duration-200"
-            :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : !isPast(date) && !futureOnly ? 'hover_bg-dtPrimary-50' : '']"
+            :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : isPast(date) && futureOnly ? '' : 'hover_bg-dtPrimary-50']"
           >{{ date }}</div>
         </div>
       </div>

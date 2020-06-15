@@ -167,7 +167,7 @@
             <span
               :class="[$store.state.theme.dt?'shadow-lgDSS':'shadow-lgD'] "
               class="font-bold opacity-100 px-3 py-1 rounded-full"
-            >{{$t("bountyPlatform.explore.categories.createTag")}}</span>
+            >{{$t(`bountyPlatform.explore.categories.${bounty.category}Tag`)}}</span>
           </h5>
         </div>
       </div>
