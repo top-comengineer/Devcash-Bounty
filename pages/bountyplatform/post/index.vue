@@ -71,7 +71,7 @@
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
               <button
-                :class="[!openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='private' }]"
+                :class="[!openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && openBounty }]"
                 @click.prevent="openBounty=false"
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
@@ -143,7 +143,8 @@
         <div class="w-full md:w-1/2 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyDeadline')}}</h3>
           <div class="w-full flex flex-row items-center relative mt-2">
-            <button class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2">
+            <button class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2"
+              @click="showDatePicker = !showDatePicker">
               <Icon
                 class="w-full h-full"
                 :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
@@ -151,14 +152,21 @@
               />
             </button>
             <input
+              v-model="datePickerValueStr"
               :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
               class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out pl-12 py-2"
               type="text"
+              @click="showDatePicker = !showDatePicker"
+              @keydown.escape="showDatepicker = false"
               :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
             />
+            <client-only>
+              <DatePicker v-if="showDatePicker" :closePicker="closePicker" :value="datePickerValue" :datePicked="datePickerSet" />
+            </client-only>
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
+          <p v-if="deadlineError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.deadlineError') }}</p>
         </div>
       </div>
       <!-- Card for Contact Name and Email -->
@@ -172,11 +180,13 @@
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
           <input
+            v-model="contactName"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
           />
+          <p v-if="contactNameError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength) }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
@@ -184,11 +194,13 @@
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
           <input
+            v-model="contactEmail"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
           />
+          <p v-if="emailError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.invalidEmail') }}</p>
         </div>
       </div>
     </form>
@@ -207,6 +219,7 @@ import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
+import DatePicker from "~/components/DatePicker";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 
@@ -218,7 +231,8 @@ export default {
   components: {
     GreetingCard,
     CTACard,
-    Icon
+    Icon,
+    DatePicker
   },
   data() {
     return {
@@ -238,13 +252,22 @@ export default {
       amount: null,
       contactName: "",
       contactEmail: "",
+      showDatePicker: false,
+      datePickerValue: null,
+      datePickerValueStr: "",
       // Form validation
       minTitleLength: 10,
       maxTitleLength: 50,
+      minContactNameLength: 2,
+      maxContactNameLength: 25,
       titleError: false,
+      contactNameError: false,
+      emailError: false,
       numBountiesError: false,
       invalidHunterAddress: false,
-      amountError: ""
+      deadlineError: false,
+      amountError: "",
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
   },
   computed: {
@@ -252,9 +275,24 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount"
-    })
+    }),
+    currentLocale() {
+      for (let locale of this.$i18n.locales) {
+        if (locale.code == this.$i18n.locale) {
+          return locale;
+        }
+      }
+    }    
   },  
   methods: {
+   closePicker() {
+     this.showDatePicker = false
+   },
+   datePickerSet(date) {
+     this.datePickerValue = date
+     this.datePickerValueStr = date.toLocaleString(this.currentLocale.locale)
+     this.showDatePicker = false
+   },
    validateForm() {
      let isValid = true
      // Check title length
@@ -302,7 +340,32 @@ export default {
        this.amountError = this.$t('bountyPlatform.post.invalidAmount')
        isValid = false
      }
-     // TODO - validate deadline, name, email
+     // Check contact name length
+     if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
+       isValid = false
+       this.contactNameError = true 
+     } else {
+       this.contactNameError = false
+     }
+     // Check email
+     if (!this.emailRegex.test(this.contactEmail)) {
+       isValid = false
+       this.emailError = true
+     } else {
+       this.emailError = false
+     }
+     // Check deadline
+     if (this.datePickerValue != null) {
+       let curDate = new Date()
+       if (curDate > this.datePickerValue) {
+         this.deadlineError = true
+         isValid = false
+       } else {
+         this.deadlineError = false
+       }
+     } else {
+       this.deadlineError = false
+     }
 
      return isValid
    },
