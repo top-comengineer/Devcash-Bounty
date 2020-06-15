@@ -35,6 +35,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
         allowNull: false
     },
+    category: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     numLeft: {
         type: DataTypes.BIGINT,
         allowNull: false,

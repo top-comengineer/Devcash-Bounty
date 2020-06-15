@@ -48,7 +48,8 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
             numLeft: hashIdMap[stagedBounty.hash].numLeft,
             bountyChest: hashIdMap[stagedBounty.hash].bc,
             bountyAmount: hashIdMap[stagedBounty.hash].amount,
-            hash: stagedBounty.hash           
+            hash: stagedBounty.hash,
+            category: stagedBounty.category
           }, { transaction: t })
           // Delete
           let destroyed = await stagedBounty.destroy({ transaction: t })

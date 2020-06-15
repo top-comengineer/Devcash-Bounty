@@ -181,7 +181,7 @@ module.exports.createUBounty = async (req, res, next) => {
         return res.status(422).json({ errors: errors.array() });
       }
 
-      const { creator, title, description, hunter, contactName, contactEmail } = req.body
+      const { creator, title, description, hunter, contactName, contactEmail, category } = req.body
       // Hash data for on-chain verification
       const hash = crypto.createHash("sha256").update(creator).update(title).update(description)
       let hashHex = hunter != undefined ? hash.update(hunter).digest("hex") : hash.digest("hex")
@@ -193,7 +193,8 @@ module.exports.createUBounty = async (req, res, next) => {
         hunter: hunter == null || hunter.length < 1 ? null : hunter,
         contactName: contactName,
         contactEmail: contactEmail,
-        hash: hashHex
+        hash: hashHex,
+        category: category
       })
       return res.json(bounty)
    } catch(err) {
@@ -224,6 +225,26 @@ module.exports.validate = (method) => {
           min: 50,
           max: 1000
         }),
+        check('category', "Invalid categoriy").exists().isString().custom(
+          value => {
+            switch (value) {
+              case 'create':
+                return true
+              case 'enhance':
+                return true
+              case 'bug':
+                return true
+              case 'support':
+                return true
+              case 'prototype':
+                return true
+              case 'other':
+                return true
+              default:
+                return false
+            }
+          }
+        ),
         check('hunter', "Hunter address is invalid").custom(
           value => {
             if (value == null || value == "") {
