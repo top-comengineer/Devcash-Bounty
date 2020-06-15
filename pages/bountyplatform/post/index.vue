@@ -89,21 +89,23 @@
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
         <!-- Hunter's Address -->
-        <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
-          <input
-            v-model="hunter"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
-          />
-          <p
-            v-if="invalidHunterAddress"
-            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3 mt-2"
-          >{{ $t('bountyPlatform.post.invalidAddress') }}</p>
-        </div>
+        <transition name="hunterAddressTransition">
+          <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
+            <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
+            <input
+              v-model="hunter"
+              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
+              class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+              type="text"
+              :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
+            />
+            <p
+              v-if="invalidHunterAddress"
+              :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+              class="text-xs px-3 mt-2"
+            >{{ $t('bountyPlatform.post.invalidAddress') }}</p>
+          </div>
+        </transition>
       </div>
       <!-- Card for Number of Bounties and Bounty Amount -->
       <div
@@ -611,5 +613,19 @@ p.is-empty:first-child::before {
 .datePickerTransition-leave-to {
   opacity: 0;
   transform: scaleX(0.5) scaleY(0.5) rotate(2.5deg);
+}
+.hunterAddressTransition-enter-active {
+  transition: all 0.2s ease-out;
+}
+.hunterAddressTransition-leave-active {
+  transition: all 0.2s;
+}
+.hunterAddressTransition-enter {
+  opacity: 0;
+  transform: translateX(-1rem);
+}
+.hunterAddressTransition-leave-to {
+  opacity: 0;
+  transform: translateX(-1rem);
 }
 </style>
