@@ -88,8 +88,8 @@ export default {
       year: '',
       no_of_days: [],
       blankdays: [],
-      days: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],      
-      monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+      days: [this.$t('date.shortDays.sunday'), this.$t('date.shortDays.monday'), this.$t('date.shortDays.tuesday'), this.$t('date.shortDays.wednesday'), this.$t('date.shortDays.thursday'), this.$t('date.shortDays.friday'), this.$t('date.shortDays.saturday')],      
+      monthNames: [this.$t('date.months.january'), this.$t('date.months.february'), this.$t('date.months.march'), this.$t('date.months.april'), this.$t('date.months.may'), this.$t('date.months.june'), this.$t('date.months.july'), this.$t('date.months.august'), this.$t('date.months.september'), this.$t('date.months.october'), this.$t('date.months.november'), this.$t('date.months.december')]
     }
   },
   props: {
