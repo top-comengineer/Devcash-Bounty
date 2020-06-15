@@ -30,11 +30,11 @@
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
-          <a
-            href="/"
+          <nuxt-link
+            :to="localePath({name: 'index', hash: '#DEX'})"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.dex") }}</a>
+          >{{ $t("navigation.dex") }}</nuxt-link>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Bounty Platform Header -->
@@ -80,28 +80,25 @@
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
         </div>
-        <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
-          <!-- DEX Header -->
+        <!-- DEX -->
+        <!-- <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <div class="flex flex-row my-3 px-3 py-1 rounded-full">
             <div class="flex flex-col">
               <h4 class="text-xl font-bold my-1">{{ $t("dex.header") }}</h4>
               <div class="h-px2 bg-dtPrimary rounded-bl-full rounded-tr-full"></div>
             </div>
           </div>
-          <!-- DEX Items -->
-          <!-- Buy Devcash -->
           <a
             href="/"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("dex.buyDevcash") }}</a>
-          <!-- Sell Devcash -->
           <a
             href="/"
             :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
             class="my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
           >{{ $t("dex.sellDevcash") }}</a>
-        </div>
+        </div>-->
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Social Header -->
           <div class="flex flex-row my-3 px-3 py-1 rounded-full">

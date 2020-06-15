@@ -55,14 +55,14 @@
         </a>
       </nuxt-link>
       <!-- DEX -->
-      <a
+      <!-- <a
         :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         href="/"
         class="hidden md:flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
       >
         <div>{{ $t("navigation.dex") }}</div>
         <div class="h-px2 w-full"></div>
-      </a>
+      </a>-->
       <!-- Language -->
       <div class="relative">
         <!-- Language Button -->
