@@ -30,22 +30,29 @@
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
-          <p v-if="titleError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength) }}</p>
+          <p
+            v-if="titleError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength) }}</p>
         </div>
         <!-- Bounty Description -->
         <div class="w-full flex flex-col my-3">
           <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
-            <textarea
-              v-model="description"
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-              class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-              type="text"
-              :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
-            />
+          <textarea
+            v-model="description"
+            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
+            class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
+            type="text"
+            :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
+          />
         </div>
         <div class="w-full flex flex-col">
-          <p :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']" class="text-xs px-3">{{ `${description.length}/${maxDescriptionCount}` }}</p>
-        </div>        
+          <p
+            :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
+            class="text-xs px-3"
+          >{{ `${description.length}/${maxDescriptionCount}` }}</p>
+        </div>
       </div>
       <!-- Card for Bounty Type -->
       <div
@@ -90,7 +97,11 @@
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
           />
-          <p v-if="invalidHunterAddress" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.invalidAddress') }}</p>
+          <p
+            v-if="invalidHunterAddress"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.invalidAddress') }}</p>
         </div>
       </div>
       <!-- Card for Number of Bounties and Bounty Amount -->
@@ -109,7 +120,11 @@
             min="1"
             :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
           />
-          <p v-if="numBountiesError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.numBountiesError') }}</p>
+          <p
+            v-if="numBountiesError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.numBountiesError') }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
@@ -129,7 +144,11 @@
             @keypress="onlyForCurrency"
             :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
           />
-          <p v-if="amountError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ amountError }}</p>
+          <p
+            v-if="amountError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ amountError }}</p>
         </div>
       </div>
       <!-- Card for Deadline -->
@@ -143,8 +162,10 @@
         <div class="w-full md:w-1/2 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyDeadline')}}</h3>
           <div class="w-full flex flex-row items-center relative mt-2">
-            <button class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2"
-              @click="showDatePicker = !showDatePicker">
+            <button
+              class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2"
+              @click="showDatePicker = !showDatePicker"
+            >
               <Icon
                 class="w-full h-full"
                 :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
@@ -161,12 +182,21 @@
               :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
             />
             <client-only>
-              <DatePicker v-if="showDatePicker" :closePicker="closePicker" :value="datePickerValue" :datePicked="datePickerSet" />
+              <DatePicker
+                v-if="showDatePicker"
+                :closePicker="closePicker"
+                :value="datePickerValue"
+                :datePicked="datePickerSet"
+              />
             </client-only>
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
           </div>
-          <p v-if="deadlineError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.deadlineError') }}</p>
+          <p
+            v-if="deadlineError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.deadlineError') }}</p>
         </div>
       </div>
       <!-- Card for Contact Name and Email -->
@@ -186,7 +216,11 @@
             type="text"
             :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
           />
-          <p v-if="contactNameError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength) }}</p>
+          <p
+            v-if="contactNameError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength) }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-16"></div>
@@ -200,7 +234,11 @@
             type="text"
             :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
           />
-          <p v-if="emailError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ $t('bountyPlatform.post.invalidEmail') }}</p>
+          <p
+            v-if="emailError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ $t('bountyPlatform.post.invalidEmail') }}</p>
         </div>
       </div>
     </form>

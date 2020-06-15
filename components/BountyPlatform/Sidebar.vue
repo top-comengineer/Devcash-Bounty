@@ -239,12 +239,16 @@
         >
           <!-- Balance Text -->
           <h5 class="text-sm opacity-75">{{$t('bountyPlatform.sidebarContextual.balance') }}</h5>
-          <h4 class="font-extrabold text-lg mt-1 break-all">{D}{{ balance == null ? "N/A" : balance.devcash }}</h4>
+          <h4
+            class="font-extrabold text-lg mt-1 break-all"
+          >{D}{{ balance == null ? "N/A" : balance.devcash }}</h4>
           <!-- Balance in Devcash -->
           <h5
             class="text-sm mt-6 opacity-75"
           >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</h5>
-          <h4 class="font-extrabold text-dtPrimary text-xl mt-1 break-all">{D}{{ balance == null ? "N/A" : balance.approved }}</h4>
+          <h4
+            class="font-extrabold text-dtPrimary text-xl mt-1 break-all"
+          >{D}{{ balance == null ? "N/A" : balance.approved }}</h4>
           <!-- Amount to Approve  -->
           <h5 class="font-bold mt-6">{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
           <!-- Amount Input -->
@@ -263,7 +267,11 @@
             @click="approveBalance"
             :disabled="approvalLoading"
           >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
-          <p v-if="approvalError" :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']" class="text-xs px-3">{{ approvalError }}</p>
+          <p
+            v-if="approvalError"
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3"
+          >{{ approvalError }}</p>
         </div>
         <!-- If context is Single Bounty -->
         <div
@@ -398,5 +406,8 @@ export default {
 .sortModalTransition-leave-to {
   opacity: 0;
   transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+.z-999 {
+  z-index: 999;
 }
 </style>
