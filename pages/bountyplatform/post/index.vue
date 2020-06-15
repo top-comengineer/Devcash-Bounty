@@ -33,7 +33,7 @@
           <p
             v-if="titleError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ $t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength) }}</p>
         </div>
         <!-- Bounty Description -->
@@ -101,7 +101,7 @@
           <p
             v-if="invalidHunterAddress"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ $t('bountyPlatform.post.invalidAddress') }}</p>
         </div>
       </div>
@@ -124,7 +124,7 @@
           <p
             v-if="numBountiesError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ $t('bountyPlatform.post.numBountiesError') }}</p>
         </div>
         <!-- Divider -->
@@ -148,7 +148,7 @@
           <p
             v-if="amountError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ amountError }}</p>
         </div>
       </div>
@@ -163,24 +163,22 @@
         <div class="w-full md:w-1/2 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyDeadline')}}</h3>
           <div class="w-full flex flex-row items-center relative mt-2">
-            <button
-              class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2"
-              @click.prevent="showDatePicker = !showDatePicker"
-            >
+            <div class="w-8 h-8 absolute top-1/2 bottom-1/2 transform -translate-y-1/2 mx-2">
               <Icon
                 class="w-full h-full"
                 :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
                 type="calender"
               />
-            </button>
-            <div class="w-full flex flex-col">
+            </div>
+            <div v-on-clickaway="closePicker" class="w-full flex flex-col">
               <input
                 v-model="datePickerValueStr"
                 :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
                 class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out pl-12 py-2"
                 type="text"
-                @click="showDatePicker = !showDatePicker"
-                @keydown.escape="showDatepicker = false"
+                @focus="showDatePicker=true"
+                @keydown.esc.exact="closePicker"
+                @keydown.tab.exact="closePicker"
                 readonly="true"
                 :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
               />
@@ -227,7 +225,7 @@
           <p
             v-if="contactNameError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength) }}</p>
         </div>
         <!-- Divider -->
@@ -245,7 +243,7 @@
           <p
             v-if="emailError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-xs px-3 mt-2"
           >{{ $t('bountyPlatform.post.invalidEmail') }}</p>
         </div>
       </div>
@@ -268,11 +266,13 @@ import Icon from "~/components/Icon.vue";
 import DatePicker from "~/components/DatePicker";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
+import { mixin as clickaway } from "vue-clickaway";
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
 
 export default {
+  mixins: [clickaway],
   layout: "bountyPlatform",
   components: {
     GreetingCard,
