@@ -49,8 +49,9 @@
         </div>
         <div class="w-full flex flex-col">
           <p
+            v-if="description.length>0"
             :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
-            class="text-xs px-3"
+            class="text-sm px-3 opacity-75"
           >{{ `${description.length}/${maxDescriptionCount}` }}</p>
         </div>
       </div>
@@ -200,7 +201,7 @@
           <p
             v-if="deadlineError"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3"
+            class="text-sm px-3"
           >{{ $t('bountyPlatform.post.deadlineError') }}</p>
         </div>
       </div>
