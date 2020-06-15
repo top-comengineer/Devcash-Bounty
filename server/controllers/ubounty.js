@@ -222,7 +222,7 @@ module.exports.validate = (method) => {
         }),
         check('description', "Description must be between 50 and 500 characters").exists().isString().isLength({
           min: 50,
-          max: 500
+          max: 1000
         }),
         check('hunter', "Hunter address is invalid").custom(
           value => {
