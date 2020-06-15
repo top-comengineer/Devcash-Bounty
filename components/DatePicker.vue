@@ -59,7 +59,7 @@
           v-for="(date, dateIndex) in no_of_days"
           :key="dateIndex"
           style="width: 14.28%"
-          class="px-1 mb-1"
+          class="px-1 mb-2"
         >
           <div
             @click="getDateValue(date)"
