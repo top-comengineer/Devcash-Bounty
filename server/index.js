@@ -73,7 +73,7 @@ function setupEthersJobs() {
     // Retrieve bounty from chain
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    exists = false
+    let exists = false
     for (const bounty of await redis.getUBounties()) {
       if (bounty.index == uBountyIndex) {
         exists = true
@@ -92,7 +92,7 @@ function setupEthersJobs() {
     // Retrieve bounty and submission with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    exists = false
+    let exists = false
     for (const bounty of await redis.getUBounties()) {
       if (bounty.index == uBountyIndex) {
         exists = true
@@ -115,7 +115,7 @@ function setupEthersJobs() {
     // Retrieve bounty and revisions with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    exists = false
+    let exists = false
     for (const bounty of await redis.getUBounties()) {
       if (bounty.index == uBountyIndex) {
         exists = true
@@ -152,8 +152,6 @@ function setupEthersJobs() {
     await verifyAndReleaseBounties(uBounties)
     uBounties.forEach(async uBounty => {
       if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
-        console.log(`RELEASING SUBMISSIONS FOR ${uBounty.index}`)
-        console.log(uBounty.submissions)
         await verifyAndReleaseSubmissions(uBounty.submissions)
         uBounty.submissions.forEach(async submission => {
           if (submission.revisions != undefined && submission.revisions.length > 0) {
