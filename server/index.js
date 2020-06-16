@@ -61,107 +61,104 @@ const redis = new RedisDB()
 function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
-  // Setup cron for verifying data
-  etherClient.init(redis).then(async _ => {
-    // Fetch event logs
-    etherClient.gatherEventLogs()
-    // Every 5 minutes update on-chain bounty cache 
-    cron.schedule("* * * * *", async function() {
-      await redis.updateBountyCache(etherClient)
-    });
-    // Listen to bounty event to confirm it
-    etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
-      console.log(`!!!!! Bounty ${uBountyIndex} created !!!!!!!`)
-      // Retrieve bounty from chain
-      let uBounty = await etherClient.getUBounty(uBountyIndex)
-      // Update in cache
-      exists = false
-      for (const bounty of await redis.getUBounties()) {
-        if (bounty.index == uBountyIndex) {
-          exists = true
-          break
-        }
+  // Fetch event logs
+  etherClient.gatherEventLogs()
+  // Every 5 minutes update on-chain bounty cache 
+  cron.schedule("* * * * *", async function() {
+    await redis.updateBountyCache(etherClient)
+  });
+  // Listen to bounty event to confirm it
+  etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
+    console.log(`!!!!! Bounty ${uBountyIndex} created !!!!!!!`)
+    // Retrieve bounty from chain
+    let uBounty = await etherClient.getUBounty(uBountyIndex)
+    // Update in cache
+    let exists = false
+    for (const bounty of await redis.getUBounties()) {
+      if (bounty.index == uBountyIndex) {
+        exists = true
+        break
       }
-      if (!exists) {
-        await redis.setUBountiesLock([uBounty], false)
+    }
+    if (!exists) {
+      await redis.setUBountiesLock([uBounty], false)
+    }
+    // Verify and release from staging tables
+    await verifyAndReleaseBounties([uBounty])
+  })
+  // Listen to submitted event
+  etherClient.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
+    console.log(`Submission ${submissionIndex} created`)
+    // Retrieve bounty and submission with hashes
+    let uBounty = await etherClient.getUBounty(uBountyIndex)
+    // Update in cache
+    let exists = false
+    for (const bounty of await redis.getUBounties()) {
+      if (bounty.index == uBountyIndex) {
+        exists = true
+        break
       }
-      // Verify and release from staging tables
-      await verifyAndReleaseBounties([uBounty])
+    }
+    if (!exists) {
+      await redis.setUBountiesLock([uBounty], false)
+    }      
+    uBounty.submissions.forEach(async submission => {
+      if (submission.index == submissionIndex) {
+        await verifyAndReleaseSubmissions([submission])
+      }
     })
-    // Listen to submitted event
-    etherClient.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
-      console.log(`Submission ${submissionIndex} created`)
-      // Retrieve bounty and submission with hashes
-      let uBounty = await etherClient.getUBounty(uBountyIndex)
-      // Update in cache
-      exists = false
-      for (const bounty of await redis.getUBounties()) {
-        if (bounty.index == uBountyIndex) {
-          exists = true
-          break
-        }
+  })
+  // Listen to revision event
+  etherClient.uBCContract.on("revised", async (uBountyIndex, submissionIndex, revisionIndex, event) => {
+    // Retrieve bounty
+    console.log(`Revision ${revisionIndex} created`)
+    // Retrieve bounty and revisions with hashes
+    let uBounty = await etherClient.getUBounty(uBountyIndex)
+    // Update in cache
+    let exists = false
+    for (const bounty of await redis.getUBounties()) {
+      if (bounty.index == uBountyIndex) {
+        exists = true
+        break
       }
-      if (!exists) {
-        await redis.setUBountiesLock([uBounty], false)
-      }      
+    }
+    if (!exists) {
+      await redis.setUBountiesLock([uBounty], false)
+    }      
+    if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
       uBounty.submissions.forEach(async submission => {
-        if (submission.index == submissionIndex) {
-          await verifyAndReleaseSubmissions([submission])
-        }
-      })
-    })
-    // Listen to revision event
-    etherClient.uBCContract.on("revised", async (uBountyIndex, submissionIndex, revisionIndex, event) => {
-      // Retrieve bounty
-      console.log(`Revision ${revisionIndex} created`)
-      // Retrieve bounty and revisions with hashes
-      let uBounty = await etherClient.getUBounty(uBountyIndex)
-      // Update in cache
-      exists = false
-      for (const bounty of await redis.getUBounties()) {
-        if (bounty.index == uBountyIndex) {
-          exists = true
-          break
-        }
-      }
-      if (!exists) {
-        await redis.setUBountiesLock([uBounty], false)
-      }      
-      if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
-        uBounty.submissions.forEach(async submission => {
-          if (submission.revisions != undefined && submission.revisions.length > 0) {
-            submission.revisions.forEach(async revision => {
-              if (revision.index == revisionIndex) {
-                await verifyAndReleaseRevisions([revision])
-              }
-            })
-          }
-        })    
-      }
-    })
-    // Approved
-    etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
-      etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved")
-    })
-    // Rejected
-    etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
-      etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected")
-    })    
-    // Fallback for missed events
-    // TODO - change to more reasonable schedule, 1 minute is for testing
-    cron.schedule("* * * * *", async function() {
-      let uBounties = await redis.getUBounties()
-      await verifyAndReleaseBounties(uBounties)
-      uBounties.forEach(async uBounty => {
-        if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
-          await verifyAndReleaseSubmissions(uBounty.submissions)
-          uBounty.submissions.forEach(async submission => {
-            if (submission.revisions != undefined && submission.revisions.length > 0) {
-              await verifyAndReleaseRevisions(submission.revisions)
+        if (submission.revisions != undefined && submission.revisions.length > 0) {
+          submission.revisions.forEach(async revision => {
+            if (revision.index == revisionIndex) {
+              await verifyAndReleaseRevisions([revision])
             }
           })
         }
-      })
+      })    
+    }
+  })
+  // Approved
+  etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
+    etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved")
+  })
+  // Rejected
+  etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
+    etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected")
+  })    
+  // Fallback for missed events
+  // TODO - change to more reasonable schedule, 1 minute is for testing
+  cron.schedule("* * * * *", async function() {
+    let uBounties = await redis.getUBounties()
+    await verifyAndReleaseBounties(uBounties)
+    uBounties.forEach(async uBounty => {
+      if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
+        await verifyAndReleaseSubmissions(uBounty.submissions)
+        uBounty.submissions.forEach(async submission => {
+          if (submission.revisions != undefined && submission.revisions.length > 0) {
+            await verifyAndReleaseRevisions(submission.revisions)
+          }
+        })
+      }
     })
   })
   // Update bounty statuses and amounts
@@ -186,7 +183,9 @@ function setupEthersJobs() {
 }
 
 // Create all tables if they don't exist then start server
-sequelize.sync().then(function() {
-  setupEthersJobs()
+sequelize.sync().then(_ => {
+  etherClient.init(redis).then(_ => {
+    setupEthersJobs()
+  })
   start()
 });

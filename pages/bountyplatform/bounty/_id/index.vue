@@ -17,6 +17,7 @@
           <transition name="modalTransition">
             <SubmissionModal
               v-if="isSubmissionModalContentVisible"
+              :bounty="bounty"
               :closeModal="() => this.isSubmissionModalOpen = false"
             />
           </transition>

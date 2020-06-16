@@ -153,7 +153,6 @@
           :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
           @focus="amountError?amountError=false:null"
           @blur="validateAmount"
-          @input="feeUpdate"
         />
         <p
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
@@ -299,7 +298,7 @@
         >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
       </div>
     </div>
-    <h1 class="text-center">{{ `Fee: Ξ${fee}` }}</h1>
+    <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
     <!-- Call to Action Card -->
     <CTACard
       class="my-1 md:my-2"
@@ -344,6 +343,7 @@ export default {
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL,
+      // Form fields
       minDescriptionCount: minDescriptionCount,
       maxDescriptionCount: maxDescriptionCount,
       title: "",
@@ -360,7 +360,6 @@ export default {
       categoryValueStr:"",
       categoryValue: null,
       submitLoading: false,
-      fee: 'N/A',
       // Form validation
       minTitleLength: 10,
       maxTitleLength: 50,
@@ -382,7 +381,7 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
-      feeWaiver: "devcashData/getFees"
+      curFee: "devcashData/getCurFee"
     }),
     currentLocale() {
       for (let locale of this.$i18n.locales) {
@@ -393,21 +392,6 @@ export default {
     }     
   },  
   methods: {
-   feeUpdate(value) {
-     try {
-      if (this.feeWaiver) {
-        let rawDevcash = utils.parseUnits(this.amount.toString(), 8)
-        let rawWaiver = utils.parseUnits(this.feeWaiver.waiver.toString(), 8)
-        if (rawDevcash.gte(rawWaiver)) {
-          this.fee = "0"
-        } else {
-          this.fee = this.feeWaiver.fee
-        }
-      }
-     } catch (e) {
-
-     }
-   },
    closePicker() {
      this.showDatePicker = false
    },
@@ -582,7 +566,7 @@ export default {
                 this.numBounties,
                 this.amount,
                 this.getDeadlineS(),
-                this.feeWaiver.fee
+                this.curFee
               )
             }
           } catch (e) {
@@ -597,18 +581,11 @@ export default {
    }
   },
   mounted() {
-    DevcashBounty.updateBalances(this)
-    if (this.feeWaiver) {
-      this.fee = this.feeWaiver.fee
-      DevcashBounty.updateFees(this)
-    } else {
-      let ref = this
-      DevcashBounty.updateFees(this).then(_ => {
-        if (ref.feeWaiver) {
-          ref.fee = ref.feeWaiver.fee
-        }
-      })
+    for (const [_, category] of Object.entries(this.$t('bountyPlatform.explore.categories'))) {
+      console.log(category)
     }
+    DevcashBounty.updateBalances(this)
+    DevcashBounty.updateFees(this)
   },
   beforeMount() {
     // Set sidebar context
