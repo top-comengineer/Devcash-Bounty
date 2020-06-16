@@ -533,6 +533,9 @@ export default {
    }
   },
   mounted() {
+    for (const [_, category] of Object.entries(this.$t('bountyPlatform.explore.categories'))) {
+      console.log(category)
+    }
     DevcashBounty.updateBalances(this)
     DevcashBounty.updateFees(this)
   },

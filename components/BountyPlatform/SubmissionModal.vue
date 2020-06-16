@@ -245,6 +245,7 @@ export default {
                 sub.hash
               )
               this.clearCache()
+              this.closeModal()
             }
           } catch (e) {
             // TODO - better error handling
