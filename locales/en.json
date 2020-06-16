@@ -122,6 +122,8 @@
       "bountyAmount": "Bounty Amount",
       "bountyAmountPlaceholder": "Enter the amount for each bounty",
       "bountyForEach": "(For Each Bounty)",
+      "bountyCategory": "Bounty Category",
+      "bountyCategoryPlaceholder": "Choose a category",
       "bountyDeadline": "Bounty Deadline",
       "bountyDeadlinePlaceholder": "Choose a date",
       "optional": "(Optional)",
@@ -137,7 +139,8 @@
       "invalidAmount": "Invalid bounty amount.",
       "insufficientBalance": "Insufficient balance.",
       "invalidEmail": "Invalid email address.",
-      "deadlineError": "Deadline cannot be a past date."
+      "deadlineError": "Deadline cannot be a past date.",
+      "needCategoryError": "You need to pick a category."
     },
     "overview": {
       "header": "Overview",

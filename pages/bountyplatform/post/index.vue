@@ -161,15 +161,51 @@
         >{{ amountError?amountError:'&nbsp;' }}</p>
       </div>
     </div>
-    <!-- Card for Deadline -->
+    <!-- Card for Category and Deadline -->
     <div
       :class="
       [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
     "
       class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
+      <!-- Bounty Category -->
+      <div class="w-full md:flex-1 flex flex-col my-3">
+        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCategory')}}</h3>
+        <div v-on-clickaway="closeCategoryPicker" class="flex-1 flex flex-col">
+          <!-- Category Input -->
+          <input
+            v-model="categoryValueStr"
+            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
+            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            type="text"
+            :placeholder="$t('bountyPlatform.post.bountyCategoryPlaceholder')"
+            @focus="showCategoryPicker=true"
+            @keydown.esc.exact="closeCategoryPicker"
+            readonly="true"
+          />
+          <!-- Category Picker -->
+          <div class="relative">
+            <transition name="datePickerTransition">
+              <CategoryPicker
+                class="absolute z-40 top-0 mt-2 origin-top-left"
+                v-if="showCategoryPicker"
+                :closePicker="closeCategoryPicker"
+                :categories="['Test 1', 'Test 2', 'Test 3', 'Test 4']"
+                :categoryPicked="categoryPicked"
+                :currentCategory="categoryValueStr"
+              />
+            </transition>
+          </div>
+        </div>
+        <p
+          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+          class="text-xs px-3 mt-2"
+        >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
+      </div>
+      <!-- Divider -->
+      <div class="hidden md:block w-16"></div>
       <!-- Deadline -->
-      <div class="w-full md:w-1/2 flex flex-col my-3">
+      <div class="w-full md:flex-1 flex flex-col my-3">
         <h3 class="text-xl font-bold px-3">
           {{$t('bountyPlatform.post.bountyDeadline')}}
           <span
@@ -212,8 +248,6 @@
           >
             <Icon class="w-6 h-6" colorClass="text-dtText" type="cancel" />
           </button>
-          <!-- Divider -->
-          <div class="hidden md:block w-8"></div>
         </div>
         <p
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
@@ -283,6 +317,7 @@ import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
 import DatePicker from "~/components/DatePicker";
+import CategoryPicker from "~/components/BountyPlatform/CategoryPicker";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
@@ -297,7 +332,8 @@ export default {
     GreetingCard,
     CTACard,
     Icon,
-    DatePicker
+    DatePicker,
+    CategoryPicker
   },
   data() {
     return {
@@ -318,8 +354,11 @@ export default {
       contactName: "",
       contactEmail: "",
       showDatePicker: false,
+      showCategoryPicker: false,
       datePickerValue: null,
       datePickerValueStr: "",
+      categoryValueStr:"",
+      categoryValue: null,
       submitLoading: false,
       fee: 'N/A',
       // Form validation
@@ -333,6 +372,7 @@ export default {
       numBountiesError: false,
       invalidHunterAddress: false,
       deadlineError: false,
+      categoryError: false,
       amountError: "",
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
@@ -350,7 +390,7 @@ export default {
           return locale;
         }
       }
-    }    
+    }     
   },  
   methods: {
    feeUpdate(value) {
@@ -370,6 +410,14 @@ export default {
    },
    closePicker() {
      this.showDatePicker = false
+   },
+   closeCategoryPicker(){
+     this.showCategoryPicker = false
+   },
+   categoryPicked(category){
+     this.categoryValue = category
+     this.categoryValueStr = category
+     this.showCategoryPicker = false
    },
    datePickerSet(date) {
      const utcDate = new Date(Date.UTC(
