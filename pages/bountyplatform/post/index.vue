@@ -379,8 +379,8 @@ export default {
   validateTitle(){
     let isValid = true
     if (this.title.length < this.minTitleLength || this.title.length > this.maxTitleLength) {
-       isValid = false
        this.titleError = true 
+       return false
      } else {
        this.titleError = false
      }
@@ -388,10 +388,10 @@ export default {
   },
   validateDescription(){
     let isValid = true
-if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
+    if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
        isValid = false
-     }
-     return isValid
+    }
+    return isValid
   },
   validateHunterAddress(){
     let isValid = true
@@ -410,7 +410,7 @@ if (this.description.length < minDescriptionCount || this.description.length > m
   },
   validateNumBounties(){
     let isValid = true
-if (this.numBounties < 1) {
+      if (this.numBounties < 1) {
        this.numBountiesError = true
        isValid = false
      } else {
@@ -438,7 +438,7 @@ if (this.numBounties < 1) {
   },
   validateContactName(){
     let isValid = true
-if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
+    if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
        isValid = false
        this.contactNameError = true 
      } else {
@@ -472,35 +472,33 @@ if (this.contactName.length < this.minContactNameLength || this.contactName.leng
      return isValid
   },
    validateForm() {
-     return
-    ( this.validateTitle() && 
-     // Check description
-     this.validateDescription() &&
-     // Check hunter address
-     this.validateHunterAddress() &&
-     // Check num bounties
-     this.validateNumBounties() &&
-     // Check amount
-     this.validateAmount() &&
-     // Check contact name length
-     this.validateContactName() &&
-     // Check email
-     this.validateEmail() &&
-     // Check deadline
-     this.validateDeadline())
+     let isValid = true
+     isValid = this.validateTitle() && isValid
+     isValid = this.validateDescription() && isValid
+     isValid = this.validateHunterAddress() && isValid
+     isValid = this.validateNumBounties() && isValid
+     isValid = this.validateAmount() && isValid
+     isValid = this.validateContactName() && isValid
+     isValid = this.validateEmail() && isValid
+     isValid = this.validateDeadline() && isValid
+     return isValid
    },
    onlyForCurrency(e) {
      let keyCode = (e.keyCode ? e.keyCode : e.which);
 
-     // only allow number and one dot
-     if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.amount.indexOf('.') != -1)) { // 46 is dot
-      e.preventDefault();
-     }
+      if (this.amount == null) {
+        return
+      }
 
-     // restrict to 8 decimal places
-     if(this.amount!=null && this.amount.indexOf(".")>-1 && (this.amount.split('.')[1].length > 7)){
-      e.preventDefault();
-     }
+      // only allow number and one dot
+      if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.amount.indexOf('.') != -1)) { // 46 is dot
+        e.preventDefault();
+      }
+
+      // restrict to 8 decimal places
+      if(this.amount!=null && this.amount.indexOf(".")>-1 && (this.amount.split('.')[1].length > 7)){
+        e.preventDefault();
+      }
    },
    getDeadlineS() {
      if (this.datePickerValue) {
@@ -511,6 +509,7 @@ if (this.contactName.length < this.minContactNameLength || this.contactName.leng
    async submitBounty() {
      // TODO - add category
      let category = 'other'
+     console.log(this.validateForm())
      if (this.validateForm() && !this.submitLoading) {
        try {
          this.submitLoading = true
