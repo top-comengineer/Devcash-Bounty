@@ -80,7 +80,7 @@
       >{D}{{ formatAmount() }}</h4>
       <h5
         class="text-lg text-left md:text-right mt-1"
-      >Ξ{{bounty.ethAmount?bounty.ethAmount:'1'}} / ${{bounty.usdAmount?bounty.devAmount:'1' }}</h5>
+      >Ξ{{ formatEthAmount() }}</h5>
     </div>
     <!-- Divider -->
     <div
@@ -118,6 +118,9 @@ export default {
           tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
       }   
       return DevcashBounty.formatAmount(this.bounty, tokenDecimals)
+    },
+    formatEthAmount() {
+      return utils.formatEther(this.bounty.weiAmount)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty)
