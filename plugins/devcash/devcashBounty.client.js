@@ -269,9 +269,10 @@ export class DevcashBounty {
     uBounty.creatorIndex = rawUBounty[3];
     uBounty.bountyChestIndex = rawUBounty[4];
     uBounty.deadline = rawUBounty[5];
-    uBounty.name = rawUBounty[6];
-    uBounty.description = rawUBounty[7];
-    uBounty.infoHash = rawUBounty[8];
+    uBounty.weiAmount = rawUBounty[6];
+    uBounty.name = rawUBounty[7];
+    uBounty.description = rawUBounty[8];
+    uBounty.infoHash = rawUBounty[9];
     uBounty.index = id;
     // Get submissions
     uBounty.submissions = await this.getBountySubmissions(uBounty);
@@ -489,7 +490,6 @@ export class DevcashBounty {
     }
     if (!bounty.hunter) {
       // Open Bounty
-      console.log(`Posting ${bounty.hash}, ${available}, ${amount}, ${deadline}, ${overrides}`)
       return await this.uBCContract.postOpenBounty("", bounty.hash, available, amount, deadline, overrides)
     }
     return await this.uBCContract.postPersonalBounty("", bounty.hash, bounty.hunter, available, amount, deadline, overrides)

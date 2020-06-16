@@ -8,8 +8,8 @@ const crypto = require('crypto');
 module.exports.getSubmissions = async (req, res, next) => {
   try {
     // Get bounty parameter
-    let bounty = parseInt(req.query.bounty) || undefined
-    if (!bounty) {
+    let bounty = parseInt(req.query.bounty)
+    if (isNaN(bounty)) {
         return res.status(422).json({ error: "Bounty ID is required" });
     } else {
         let count = await UBounty.count({ where: { id: bounty } })

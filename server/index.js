@@ -71,7 +71,7 @@ function setupEthersJobs() {
     });
     // Listen to bounty event to confirm it
     etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
-      console.log(`Bounty ${uBountyIndex} created`)
+      console.log(`!!!!! Bounty ${uBountyIndex} created !!!!!!!`)
       // Retrieve bounty from chain
       let uBounty = await etherClient.getUBounty(uBountyIndex)
       // Update in cache

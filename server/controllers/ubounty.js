@@ -142,8 +142,8 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
 
 module.exports.getUBounty = async (req, res, next) => {
   try {
-    let id = parseInt(req.query.id) || null;
-    if (id == null) {
+    let id = parseInt(req.query.id)
+    if (isNaN(id)) {
       return res.status(422).json({ error: "id parameter is required" });
     }
     // Get uBounties

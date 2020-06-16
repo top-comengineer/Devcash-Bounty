@@ -103,7 +103,7 @@ class RedisDB {
                     let uBounties = await etherClient.getUbounties(onChainUBounties-curNUbounties)
                     await this.setUBounties(uBounties)
                 } else {
-                console.log("No new bounties to add")
+                    console.log("No new bounties to add")
                 }
                 // Update submissions and revisions
                 let allUBounties = await this.getUBounties()
