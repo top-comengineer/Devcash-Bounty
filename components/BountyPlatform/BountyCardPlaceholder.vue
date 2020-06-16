@@ -1,10 +1,11 @@
 <template>
   <div
-    :class="[
-      $store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lgD'
-    ]"
+    :class="{
+      'bg-dtBackgroundSecondary border-dtBackgroundSecondary border-dtBackgroundSecondary': $store.state.theme.dt && !type,
+      'bg-ltBackgroundSecondary shadow-lg border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && !type,
+      'bg-dtBackgroundTertiary border-dtBackgroundTertiary border-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
+      'bg-ltBackgroundSecondary shadow-lgD border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && type == 'secondary'
+    } "
     class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >
     <!-- Bounty Name and Address -->
@@ -98,7 +99,10 @@ export default {
   components: {
     Icon,
     Jazzicon
-  }
+  },
+  props: {
+    type: null
+  },
 };
 </script>
 <style >

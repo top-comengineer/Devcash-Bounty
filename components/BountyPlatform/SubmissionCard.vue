@@ -44,7 +44,7 @@
               'text-ltDanger': submission.status == 'rejected' && !$store.state.theme.dt}"
               class="font-bold text-left"
             >{D}{{formatAmount()}}</h5>
-            <h6 class="text-sm text-left">(Ξ{{'1'}} / ${{'1'}})</h6>
+            <h6 class="text-sm text-left mt-1">(Ξ{{'1'}} / ${{'1'}})</h6>
           </div>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
@@ -85,7 +85,11 @@
               </button>
             </div>
             <!-- If Perspective is Hunter -->
-            <StatusTag :perspective="perspective" :status="getSimpleStatus()" v-if="perspective=='hunter'" />
+            <StatusTag
+              :perspective="perspective"
+              :status="getSimpleStatus()"
+              v-if="perspective=='hunter'"
+            />
           </div>
         </div>
       </div>
