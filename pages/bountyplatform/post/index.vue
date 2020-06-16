@@ -502,14 +502,13 @@ export default {
    },
    getDeadlineS() {
      if (this.datePickerValue) {
-       return this.datePickerValue.getTime()
+       return parseInt(this.datePickerValue.getTime() / 1000)
      }
      return 0
    },
    async submitBounty() {
      // TODO - add category
      let category = 'other'
-     console.log(this.validateForm())
      if (this.validateForm() && !this.submitLoading) {
        try {
          this.submitLoading = true

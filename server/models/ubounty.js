@@ -55,6 +55,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    complete: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        defaultValue: false
+    },
     // The hash of this uBounty data
     hash: {
         type: DataTypes.STRING,

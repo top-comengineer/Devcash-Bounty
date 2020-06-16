@@ -38,9 +38,7 @@ class RedisDB {
             toAdd = new Array()
             let curUbounties = await this.getUBounties()
             uBounties.forEach(newUBounty => {
-                console.log(newUBounty)
                 curUbounties.forEach(uBounty => {
-                    console.log(uBounty)
                     if (newUBounty.index != uBounty.index) {
                         toAdd.unshift(newUBounty)
                         return
@@ -48,7 +46,6 @@ class RedisDB {
                 })
             })
             toAdd = toAdd.concat(curUbounties)
-            console.log(toAdd)
         } else {
             toAdd = uBounties
         }

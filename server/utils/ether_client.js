@@ -85,7 +85,7 @@ class EtherClient {
     uBounty.description = rawUBounty[8];
     uBounty.infoHash = rawUBounty[9];
     uBounty.index = id;
-    uBounty.bc = await this.getBountyChest(id);
+    uBounty.bc = await this.getBountyChest(uBounty.bountyChestIndex);
     uBounty.amount = (
       await this.tokenContract.balanceOf(uBounty.bc)
     ).toString();
@@ -702,7 +702,6 @@ class EtherClient {
     };
 
     let result = await this.provider.getLogs(filter); //get event logs of all instances of bounties awarded
-    console.log(result);
     for (let n = 0; n < result.length; n++) {
       let log = new Object();
       let data = result[n].data;

@@ -7,7 +7,7 @@ const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
 // DB Models
-const { sequelize } = require("./models");
+const { sequelize, UBounty, Op } = require("./models");
 
 // Routes
 const ubountyRouter = require('./routes/bounty');
@@ -162,6 +162,25 @@ function setupEthersJobs() {
           })
         }
       })
+    })
+  })
+  // Update bounty statuses and amounts
+  cron.schedule("*/10 * * * *", async function() {
+    console.log("RUNNING UPDATE BALANCES")
+    let bounties = await UBounty.findAll({
+      where: {
+        complete: {[Op.eq]: false}
+      },
+      include: ['submissions']
+    })
+    bounties.every(async bounty => {
+      let onChain = await etherClient.getUBounty(bounty.id)
+      if (onChain) {
+        bounty.bountyAmount = onChain.amount
+        bounty.weiAmount = onChain.weiAmount
+        bounty.complete = bounty.submissions.filter(sub => sub.approved).length == bounty.numLeft
+        await bounty.save()
+      }
     })
   })
 }

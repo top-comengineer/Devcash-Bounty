@@ -10,7 +10,6 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
     let hashIdMap = {}
     // Get uBounties from blockchain
     uBounties.forEach(async uBounty => {
-      console.log(uBounty)
       hashes.push(uBounty.description)
       hashIdMap[uBounty.description] = {index: uBounty.index, deadline: uBounty.deadline, numLeft: uBounty.numLeft, bc: uBounty.bc, amount: uBounty.amount, weiAmount: uBounty.weiAmount}
     })
@@ -51,7 +50,7 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
             bountyAmount: hashIdMap[stagedBounty.hash].amount,
             weiAmount: hashIdMap[stagedBounty.hash].weiAmount,
             hash: stagedBounty.hash,
-            category: stagedBounty.category
+            category: stagedBounty.category,
           }, { transaction: t })
           // Delete
           let destroyed = await stagedBounty.destroy({ transaction: t })
