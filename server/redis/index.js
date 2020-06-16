@@ -89,14 +89,15 @@ class RedisDB {
           }
         }
         if (toAdd.length > 0) {
-          await this.setUBounties(uBounties, false);
+          await this.setUBounties(toAdd, false);
         }
       } catch (e) {
         console.log(`Error updating bounty cache ${e}`);
       }
-      await this.locker.release();
+      await this.retryingLocker.release();
     } catch (e) {
       // Squish lock-related errors
+      console.log(`Exception setting bounty ${e}`)
     }
   }
 
@@ -111,6 +112,9 @@ class RedisDB {
         console.log("Updating Bounty Cache");
         let curNUbounties = await this.getNUbounties();
         let onChainUBounties = await etherClient.getNUbounties();
+        console.log("\n\n")
+        console.log(`HAVE ${curNUbounties} - There's ${onChainUBounties} on chain!`)
+        console.log("\n\n")
         if (onChainUBounties > curNUbounties) {
           console.log(
             `Adding ${onChainUBounties - curNUbounties} new bounties`

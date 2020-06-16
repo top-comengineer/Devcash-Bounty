@@ -189,7 +189,7 @@
                 class="absolute z-40 top-0 mt-2 origin-top-left"
                 v-if="showCategoryPicker"
                 :closePicker="closeCategoryPicker"
-                :categories="['Test 1', 'Test 2', 'Test 3', 'Test 4']"
+                :categories="Object.values(categories)"
                 :categoryPicked="categoryPicked"
                 :currentCategory="categoryValueStr"
               />
@@ -360,6 +360,7 @@ export default {
       categoryValueStr:"",
       categoryValue: null,
       submitLoading: false,
+      categories: {},
       // Form validation
       minTitleLength: 10,
       maxTitleLength: 50,
@@ -399,9 +400,10 @@ export default {
      this.showCategoryPicker = false
    },
    categoryPicked(category){
-     this.categoryValue = category
+     this.categoryValue = Object.keys(this.categories).find(key => this.categories[key] === category)
      this.categoryValueStr = category
      this.showCategoryPicker = false
+     this.categoryError = false
    },
    datePickerSet(date) {
      const utcDate = new Date(Date.UTC(
@@ -425,7 +427,15 @@ export default {
      this.datePickerValueStr = utcDate.toLocaleString(this.currentLocale.iso == 'en' ? undefined : this.currentLocale.iso, dtOptions)
      this.showDatePicker = false
    },
-  
+  validateCategory() {
+    let isValid = Object.keys(this.categories).indexOf(this.categoryValue) > -1
+    if (!isValid) {
+      this.categoryError = true
+    } else {
+      this.categoryError = false
+    }
+    return isValid
+  },
   validateTitle(){
     let isValid = true
     if (this.title.length < this.minTitleLength || this.title.length > this.maxTitleLength) {
@@ -531,6 +541,7 @@ export default {
      isValid = this.validateContactName() && isValid
      isValid = this.validateEmail() && isValid
      isValid = this.validateDeadline() && isValid
+     isValid = this.validateCategory() && isValid
      return isValid
    },
    getDeadlineS() {
@@ -540,8 +551,6 @@ export default {
      return 0
    },
    async submitBounty() {
-     // TODO - add category
-     let category = 'other'
      if (this.validateForm() && !this.submitLoading) {
        try {
          this.submitLoading = true
@@ -552,7 +561,7 @@ export default {
             this.description,
             this.contactName,
             this.contactEmail,
-            category,
+            this.categoryValue,
             this.openBounty ? null : this.hunter
           )
           try {
@@ -581,15 +590,18 @@ export default {
    }
   },
   mounted() {
-    for (const [_, category] of Object.entries(this.$t('bountyPlatform.explore.categories'))) {
-      console.log(category)
-    }
     DevcashBounty.updateBalances(this)
     DevcashBounty.updateFees(this)
   },
   beforeMount() {
     // Set sidebar context
     this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.post);
+    // Set categories based on locale
+    for (const [key, category] of Object.entries(this.$t('bountyPlatform.explore.categories'))) {
+      if (key != "header" && key != 'category') {
+        this.categories[key.replace("Tag", "")] = category
+      }
+    }    
   },
   beforeDestroy() {
     if (this.editor) {
