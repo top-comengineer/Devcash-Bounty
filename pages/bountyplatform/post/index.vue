@@ -13,10 +13,10 @@
       :class="
       [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
     "
-      class="w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Bounty Title -->
-      <div class="w-full md:w-1/2 flex flex-col my-3">
+      <div class="w-full md:w-1/2 flex flex-col mt-3">
         <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyTitle')}}</h3>
         <div class="w-full flex flex-row">
           <input
@@ -33,10 +33,9 @@
           <div class="hidden md:block w-8"></div>
         </div>
         <p
-          v-if="titleError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-xs px-3 mt-2"
-        >{{ $t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength) }}</p>
+        >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
       </div>
       <!-- Bounty Description -->
       <div class="w-full flex flex-col my-3">
@@ -52,16 +51,15 @@
       </div>
       <div class="w-full flex flex-col">
         <p
-          v-if="description.length>0"
           :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
           class="text-sm px-3 opacity-75"
-        >{{ `${description.length}/${maxDescriptionCount}` }}</p>
+        >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Bounty Type -->
     <div
       :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Bounty Type -->
       <div class="w-full md:flex-1 flex flex-col my-3">
@@ -88,7 +86,10 @@
             >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
           </div>
         </div>
+        <!-- Spacer -->
+        <p class="text-xs px-3 mt-2">{{'&nbsp;'}}</p>
       </div>
+
       <!-- Divider -->
       <div class="hidden md:block w-16"></div>
       <!-- Hunter's Address -->
@@ -105,17 +106,16 @@
             @blur="validateHunterAddress"
           />
           <p
-            v-if="invalidHunterAddress"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
             class="text-xs px-3 mt-2"
-          >{{ $t('bountyPlatform.post.invalidAddress') }}</p>
+          >{{ invalidHunterAddress?$t('bountyPlatform.post.invalidAddress'):'&nbsp;' }}</p>
         </div>
       </transition>
     </div>
     <!-- Card for Number of Bounties and Bounty Amount -->
     <div
       :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Number of Bounties -->
       <div class="w-full md:flex-1 flex flex-col my-3">
@@ -131,10 +131,9 @@
           @blur="validateNumBounties"
         />
         <p
-          v-if="numBountiesError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-xs px-3 mt-2"
-        >{{ $t('bountyPlatform.post.numBountiesError') }}</p>
+        >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
       <div class="hidden md:block w-16"></div>
@@ -157,10 +156,9 @@
           @blur="validateAmount"
         />
         <p
-          v-if="amountError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-xs px-3 mt-2"
-        >{{ amountError }}</p>
+        >{{ amountError?amountError:'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Deadline -->
@@ -168,7 +166,7 @@
       :class="
       [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
     "
-      class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Deadline -->
       <div class="w-full md:w-1/2 flex flex-col my-3">
@@ -217,12 +215,10 @@
           <!-- Divider -->
           <div class="hidden md:block w-8"></div>
         </div>
-
         <p
-          v-if="deadlineError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-sm px-3"
-        >{{ $t('bountyPlatform.post.deadlineError') }}</p>
+        >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Contact Name and Email -->
@@ -230,7 +226,7 @@
       :class="
       [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
     "
-      class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Contact Name -->
       <div class="w-full md:flex-1 flex flex-col my-3">
@@ -245,10 +241,9 @@
           @blur="validateContactName"
         />
         <p
-          v-if="contactNameError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-xs px-3 mt-2"
-        >{{ $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength) }}</p>
+        >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
       <div class="hidden md:block w-16"></div>
@@ -265,10 +260,9 @@
           @blur="validateEmail"
         />
         <p
-          v-if="emailError"
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
           class="text-xs px-3 mt-2"
-        >{{ $t('bountyPlatform.post.invalidEmail') }}</p>
+        >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Call to Action Card -->
