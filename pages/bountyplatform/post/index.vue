@@ -26,6 +26,7 @@
               class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
               :placeholder="$t('bountyPlatform.post.bountyTitlePlaceholder')"
+              @focus="titleError?titleError=false:null"
             />
             <!-- Divider -->
             <div class="hidden md:block w-8"></div>
@@ -98,6 +99,7 @@
               class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
               :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
+              @focus="invalidHunterAddress?invalidHunterAddress=false:null"
             />
             <p
               v-if="invalidHunterAddress"
@@ -122,6 +124,7 @@
             type="number"
             min="1"
             :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
+            @focus="numBountiesError?numBountiesError=false:null"
           />
           <p
             v-if="numBountiesError"
@@ -146,6 +149,7 @@
             type="number"
             @keypress="onlyForCurrency"
             :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
+            @focus="amountError?amountError=false:null"
           />
           <p
             v-if="amountError"
@@ -231,6 +235,7 @@
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
+            @focus="contactNameError?contactNameError=false:null"
           />
           <p
             v-if="contactNameError"
@@ -249,6 +254,7 @@
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
+            @focus="emailError?emailError=false:null"
           />
           <p
             v-if="emailError"
