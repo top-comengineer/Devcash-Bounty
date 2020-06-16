@@ -421,8 +421,8 @@ if (this.numBounties < 1) {
   },
   validateAmount(){
     let isValid = true
-try {
-       let amountBigNum = utils.bigNumberify(this.amount)
+    try {
+       let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
        let balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.approvedRaw)
        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
          this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
