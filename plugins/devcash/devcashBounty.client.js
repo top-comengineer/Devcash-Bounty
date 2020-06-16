@@ -73,17 +73,22 @@ export class DevcashBounty {
   }
 
   static formatTimeLeft(bounty) {
-    if (bounty.deadline >= 281474976710655 || bounty.deadline <= 0) {
+    if (bounty.deadline >= 281474976710655) {
       return "∞";
     }
 
-    const currentDate = new Date();
-    const deadlineDate = new Date(bounty.deadline * 1000);
+    const now = Date.now()
+    const deadlineDate = (new Date(bounty.deadline * 1000)).getTime();
 
-    const delta = deadlineDate.getTime() - currentDate.getTime();
+    const delta = parseInt((deadlineDate - now) / 1000)
 
-    if (delta >= 2629746) {
-      let monthsLeft = Math.floor(delta / 2629746);
+    if (delta < 0) {
+      // TODO - localize me
+      return "expired"
+    }
+
+    if (delta >= 2592000) {
+      let monthsLeft = Math.floor(delta / 2592000);
       return `${monthsLeft} months`;
     } else if (delta >= 86400) {
       let daysLeft = Math.floor(delta / 86400);
