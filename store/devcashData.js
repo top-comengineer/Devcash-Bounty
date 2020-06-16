@@ -17,7 +17,8 @@ export const state = () => ({
   currency: devcashCurrency,
   balance: null,
   fee: null,
-  isIBOBarClosed: false
+  isIBOBarClosed: false,
+  submissionFormData: {}
 });
 
 export const mutations = {

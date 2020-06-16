@@ -365,7 +365,7 @@ export class DevcashBounty {
 
   static hashSubmission(submission) {
     const creator = submission.creator,
-      data = submission.data,
+      data = submission.submissionData,
       ubounty_id = submission.ubounty_id;
     const hash = CryptoJS.algo.SHA256.create()
       .update(creator)
@@ -377,7 +377,7 @@ export class DevcashBounty {
 
   static hashRevision(revision) {
     const creator = revision.creator,
-      data = revision.data,
+      data = revision.revisionData,
       ubounty_id = revision.ubounty_id,
       submission_id = revision.submission_id;
     const hash = CryptoJS.algo.SHA256.create()
@@ -439,7 +439,7 @@ export class DevcashBounty {
     }
     let submission = {
       creator: creator,
-      data: data,
+      submissionData: data,
       ubounty_id: ubounty_id,
     };
     submission.hash = DevcashBounty.hashSubmission(submission);
@@ -455,7 +455,7 @@ export class DevcashBounty {
     }
     let revision = {
       creator: creator,
-      data: data,
+      revisionData: data,
       ubounty_id: ubounty_id,
       submission_id: submission_id,
     };
@@ -521,6 +521,11 @@ export class DevcashBounty {
       return await this.uBCContract.postOpenBounty("", bounty.hash, available, amount, deadline, overrides)
     }
     return await this.uBCContract.postPersonalBounty("", bounty.hash, bounty.hunter, available, amount, deadline, overrides)
+  }
+
+  // Submission
+  async postSubmission(bounty, hash) {
+    return await this.uBCContract.submit(bounty.id, hash)
   }
 }
 

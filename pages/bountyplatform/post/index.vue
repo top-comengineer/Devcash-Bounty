@@ -308,6 +308,7 @@ export default {
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
       canonicalURL: process.env.CANONICAL_URL,
+      // Form fields
       minDescriptionCount: minDescriptionCount,
       maxDescriptionCount: maxDescriptionCount,
       title: "",

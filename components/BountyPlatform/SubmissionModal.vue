@@ -10,7 +10,7 @@
         @mouseleave="isCloseHovered=false"
         @focus="isCloseFocused=true"
         @blur="isCloseFocused=false"
-        @click="closeModal()"
+        @click="cacheAndClose()"
         :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary'"
         class="fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
       >
@@ -30,7 +30,7 @@
       class="my-1 md:my-2"
     />
     <!-- Submit Form -->
-    <form class="w-full" action>
+    <div class="w-full" action>
       <!-- Card for Description -->
       <div
         :class="
@@ -44,19 +44,27 @@
             class="text-2xl font-bold px-3"
           >{{$t('bountyPlatform.singleBounty.submission.descriptionHeader')}}</h3>
           <textarea
+            v-model="description"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="submissionDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.singleBounty.submission.descriptionPlaceholder')"
+            @blur="validateDescription"
           />
         </div>
+        <div class="w-full flex flex-col">
+          <p
+            :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
+            class="text-sm px-3 opacity-75"
+          >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+        </div>
       </div>
-      <!-- Card for Attachments -->
+      <!-- Card for Attachments 
       <div
         :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']"
         class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
       >
-        <!-- Attachments -->
+        // Attachments
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">
             {{$t('bountyPlatform.singleBounty.submission.attachments')}}
@@ -65,12 +73,12 @@
             >{{$t('bountyPlatform.singleBounty.submission.optional')}}</span>
           </h3>
           <div class="flex flex-row flex-wrap items-center">
-            <!-- Choose a File Button -->
+            // Choose a File Button
             <button
               :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-1_5 mt-3 mr-6"
             >{{ $t("bountyPlatform.singleBounty.submission.buttonChooseFile") }}</button>
-            <!-- Choosen File Display -->
+            // Choosen File Display 
             <div
               :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary']"
               class="w-auto text-lg rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
@@ -80,6 +88,7 @@
           </div>
         </div>
       </div>
+      -->
       <!-- Card for Contact Name and Email -->
       <div
         :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']"
@@ -89,11 +98,18 @@
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
           <input
+            v-model="contactName"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
+            @focus="contactNameError?contactNameError=false:null"
+            @blur="validateContactName"
           />
+          <p
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3 mt-2"
+          >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-12"></div>
@@ -101,27 +117,41 @@
         <div class="w-full md:flex-1 flex flex-col my-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
           <input
+            v-model="contactEmail"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
+            @focus="emailError?emailError=false:null"
+            @blur="validateEmail"
           />
+          <p
+            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
+            class="text-xs px-3 mt-2"
+          >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
         </div>
       </div>
-    </form>
+    </div>
     <!-- Call to Action Card -->
     <CTACard
       class="my-1 md:my-2"
-      :buttonAction="null"
+      :buttonAction="submitSubmission"
       :buttonText="$t('bountyPlatform.singleBounty.submission.buttonSubmit')"
+      :disabled="submissionLoading"
     />
   </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
+
+const minDescriptionCount = 50;
+const maxDescriptionCount = 1000;
+
 export default {
   layout: "bountyPlatform",
   components: {
@@ -130,12 +160,118 @@ export default {
     Icon
   },
   props: {
-    closeModal: Function
+    closeModal: Function,
+    bounty: Object
+  },
+  beforeMount() {
+    // Restore cached date
+    if (this.bounty.id in this.$store.state.devcashData.submissionFormData) {
+      this.description = this.$store.state.devcashData.submissionFormData[this.bounty.id].description
+      this.contactName = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactName
+      this.contactEmail = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactEmail
+    }
+  },
+  mounted() {
+    DevcashBounty.updateBalances(this)
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    }),  
+  },
+  methods: {
+    cacheAndClose() {
+      // Cache form data so it auto fills in when modal is re-opened
+      this.$store.state.devcashData.submissionFormData[this.bounty.id] = {
+        description: this.description,
+        contactName: this.contactName,
+        contactEmail: this.contactEmail
+      }
+      this.closeModal()
+    },
+    clearCache() {
+      delete this.$store.state.devcashData.submissionFormData[this.bounty.id]
+    },
+    validateDescription(){
+      let isValid = true
+      if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
+        isValid = false
+      }
+      return isValid
+    },
+    validateContactName(){
+      let isValid = true
+      if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
+        isValid = false
+        this.contactNameError = true 
+      } else {
+        this.contactNameError = false
+      }
+      return isValid
+    },
+    validateEmail(){
+      let isValid = true
+      if (!this.emailRegex.test(this.contactEmail)) {
+        isValid = false
+        this.emailError = true
+      } else {
+        this.emailError = false
+      }
+      return isValid
+    },
+    validateForm() {
+      let isValid = true
+      isValid = this.validateDescription() && isValid
+      isValid = this.validateContactName() && isValid
+      isValid = this.validateEmail() && isValid
+      return isValid
+    },
+    async submitSubmission() {
+      if (this.validateForm() && !this.submissionLoading) {
+        try {
+          this.submissionLoading = true
+          // Create submission with hash
+          let sub = DevcashBounty.createSubmission(this.loggedInAccount, this.description, this.bounty.id)
+          // Save off chain
+          try {
+            // Post to backend
+            let res = await this.$axios.post('/submission/post', sub)
+            if (res.status == 200) {
+              await DevcashBounty.initEthConnector(this)
+              await this.$store.state.devcash.connector.postSubmission(
+                this.bounty,
+                sub.hash
+              )
+              this.clearCache()
+            }
+          } catch (e) {
+            // TODO - better error handling
+            alert('failed to create submission')
+            console.log(e)
+          }          
+        } finally {
+          this.submissionLoading = false
+        }
+      }
+    }
   },
   data() {
     return {
+      submissionLoading: false,
       isCloseHovered: false,
-      isCloseFocused: false
+      isCloseFocused: false,
+      minDescriptionCount: minDescriptionCount,
+      maxDescriptionCount: maxDescriptionCount,
+      description: "",
+      contactName: "",
+      contactEmail: "", 
+      minContactNameLength: 2,
+      maxContactNameLength: 50,
+      contactNameError: false,
+      emailError: false,
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
   }
 };
