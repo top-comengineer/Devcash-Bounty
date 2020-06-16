@@ -81,7 +81,6 @@ class EtherClient {
     uBounty.creatorIndex = rawUBounty[3];
     uBounty.bountyChestIndex = rawUBounty[4];
     uBounty.deadline = rawUBounty[5];
-    uBounty.weiAmount = rawUBounty[6];
     uBounty.name = rawUBounty[7];
     uBounty.description = rawUBounty[8];
     uBounty.infoHash = rawUBounty[9];
@@ -90,6 +89,7 @@ class EtherClient {
     uBounty.amount = (
       await this.tokenContract.balanceOf(uBounty.bc)
     ).toString();
+    uBounty.weiAmount = (await this.provider.getBalance(uBounty.bc)).toString()
     // Get submissions
     uBounty.submissions = await this.getBountySubmissions(uBounty);
     return uBounty;

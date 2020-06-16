@@ -78,7 +78,7 @@
         <!-- Bounty Amount in ETH & USD -->
         <h3
           class="text-lg md:text-xl text-left md:text-right mt-1"
-        >{{ "Ξ" + '33.33' + " / " + "$" + '9000' }}</h3>
+        >{{ "Ξ" + formatEthAmount() }}</h3>
       </div>
     </div>
     <!-- Bounty Description and Hunt & Contribue Cards -->
@@ -402,6 +402,7 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
+import { utils } from "ethers";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
@@ -445,6 +446,9 @@ export default {
         tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
       }
       return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
+    },
+    formatEthAmount() {
+      return utils.formatEther(this.bounty.weiAmount)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);
