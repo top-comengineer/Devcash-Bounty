@@ -281,8 +281,24 @@
           >
             <div
               :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-              class="flex flex-col relative origin-top-right shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              class="max-w-full min-w-xxxs flex flex-col relative origin-top-right shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
+              <!-- Balance Text -->
+              <div class="flex flex-col px-6 mt-4">
+                <p
+                  class="text-xs opacity-75 whitespace-no-wrap"
+                >{{$t('bountyPlatform.sidebarContextual.balance')}}</p>
+                <h6 class="text-lg font-bold">{{balance.devcash}}</h6>
+                <p
+                  class="text-xs opacity-75 mt-3 whitespace-no-wrap"
+                >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</p>
+                <h5 class="text-dtPrimary font-bold text-xl">{{balance.approved}}</h5>
+              </div>
+              <!-- Divider -->
+              <div
+                :class="$store.state.theme.dt?'bg-dtBackground':'bg-ltBackground'"
+                class="w-full h-px2 rounded-full mt-3 mb-1 opacity-10"
+              ></div>
               <!-- Overview Button -->
               <nuxt-link
                 :to="localePath('bountyplatform-overview')"
@@ -423,7 +439,8 @@ export default {
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
-      isLoggedIn: "devcashData/isLoggedIn"
+      isLoggedIn: "devcashData/isLoggedIn",
+      balance: "devcashData/getBalance"
     }),
     availableLocales() {
       return this.$i18n.locales;
