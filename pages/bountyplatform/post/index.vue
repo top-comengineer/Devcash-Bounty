@@ -324,7 +324,7 @@ export default {
       minTitleLength: 10,
       maxTitleLength: 50,
       minContactNameLength: 2,
-      maxContactNameLength: 25,
+      maxContactNameLength: 50,
       titleError: false,
       contactNameError: false,
       emailError: false,

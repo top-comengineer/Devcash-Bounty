@@ -260,7 +260,7 @@ module.exports.validate = (method) => {
         ),
         check('contactName', 'Contact name must be between 2 and 25 characters').exists().isString().isLength({
           min: 2,
-          max: 25
+          max: 50
         }),
         check('contactEmail', "Invalid contact email").exists().isEmail()
        ]   
