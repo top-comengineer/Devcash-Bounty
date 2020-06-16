@@ -1,5 +1,6 @@
 
 import * as Cookies from "js-cookie"
+import { utils } from "ethers"
 
 const ethCurrency = {
   symbol: "ETH"
@@ -17,6 +18,7 @@ export const state = () => ({
   currency: devcashCurrency,
   balance: null,
   fee: null,
+  curFee: null,
   isIBOBarClosed: false,
   submissionFormData: {}
 });
@@ -55,6 +57,16 @@ export const mutations = {
       Cookies.remove("devcash_balance")
     } else {
       Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, balances: balance }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+      // Update fee
+      if (state.fee) {
+        let rawBal = utils.bigNumberify(state.balance.devcashRaw)
+        let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)
+        if (rawBal.gte(rawWaiver)) {
+          state.curFee = "0"
+        } else {
+          state.curFee = state.fee.fee
+        }
+      }
     }
   },
   setFees(state, fee) {
@@ -63,6 +75,16 @@ export const mutations = {
       Cookies.remove("devcash_fee")
     } else {
       Cookies.set("devcash_fee", JSON.stringify(fee), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+      // Update fee
+      if (state.balance) {
+        let rawBal = utils.bigNumberify(state.balance.devcashRaw)
+        let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)
+        if (rawBal.gte(rawWaiver)) {
+          state.curFee = "0"
+        } else {
+          state.curFee = state.fee.fee
+        }
+      }      
     }
   }  
 };
@@ -121,5 +143,8 @@ export const getters = {
       }
     }
     return null
-  }  
+  },
+  getCurFee(state) {
+    return state.curFee || "N/A"
+  }
 }
