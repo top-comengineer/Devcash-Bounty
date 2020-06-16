@@ -73,16 +73,7 @@ function setupEthersJobs() {
     // Retrieve bounty from chain
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    let exists = false
-    for (const bounty of await redis.getUBounties()) {
-      if (bounty.index == uBountyIndex) {
-        exists = true
-        break
-      }
-    }
-    if (!exists) {
-      await redis.setUBountiesLock([uBounty], false)
-    }
+    await redis.setUBountiesIfNotExistsWithLock([uBounty])
     // Verify and release from staging tables
     await verifyAndReleaseBounties([uBounty])
   })
@@ -92,16 +83,7 @@ function setupEthersJobs() {
     // Retrieve bounty and submission with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    let exists = false
-    for (const bounty of await redis.getUBounties()) {
-      if (bounty.index == uBountyIndex) {
-        exists = true
-        break
-      }
-    }
-    if (!exists) {
-      await redis.setUBountiesLock([uBounty], false)
-    }      
+    await redis.setUBountiesIfNotExistsWithLock([uBounty])      
     uBounty.submissions.forEach(async submission => {
       if (submission.index == submissionIndex) {
         await verifyAndReleaseSubmissions([submission])
@@ -115,16 +97,7 @@ function setupEthersJobs() {
     // Retrieve bounty and revisions with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    let exists = false
-    for (const bounty of await redis.getUBounties()) {
-      if (bounty.index == uBountyIndex) {
-        exists = true
-        break
-      }
-    }
-    if (!exists) {
-      await redis.setUBountiesLock([uBounty], false)
-    }      
+    await redis.setUBountiesIfNotExistsWithLock([uBounty])
     if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
       uBounty.submissions.forEach(async submission => {
         if (submission.revisions != undefined && submission.revisions.length > 0) {
