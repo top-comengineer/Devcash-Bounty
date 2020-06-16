@@ -366,17 +366,16 @@ export default {
     async updateBalance() {
       if (this.isLoggedIn && (this.$store.state.general.sidebarContext == this.sidebarContexts.post || this.$store.state.general.sidebarContext == this.sidebarContexts.overview || this.$store.state.general.sidebarContext == this.sidebarContexts.bountyHunter ||  this.$store.state.general.sidebarContext == this.sidebarContexts.bountyManager)) {
         await DevcashBounty.updateBalances(this)
+        await DevcashBounty.updateFees(this)
       }
     }
   },
+  cron: {
+    time: 60000,
+    method: 'updateBalance'
+  },
   mounted() {
-    let result = this.$crontab.addJob({
-      name: 'balanceUpdate',
-      interval: {
-        minutes: '/1',
-      },
-      job: this.updateBalance
-    })    
+    this.updateBalance()
   },
   computed: {
     // mix the getters into computed with object spread operator

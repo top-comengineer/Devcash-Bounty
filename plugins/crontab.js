@@ -1,4 +1,4 @@
 import Vue from 'vue'
-import VueCrontab from 'vue-crontab'
- 
-Vue.use(VueCrontab)
+import crono from 'vue-crono';
+
+Vue.use(crono);

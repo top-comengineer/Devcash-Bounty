@@ -150,10 +150,10 @@
           :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
           class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
           type="number"
-          @keypress="onlyForCurrency"
           :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
           @focus="amountError?amountError=false:null"
           @blur="validateAmount"
+          @input="feeUpdate"
         />
         <p
           :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
@@ -265,6 +265,7 @@
         >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
       </div>
     </div>
+    <h1 class="text-center">{{ `Fee: Ξ${fee}` }}</h1>
     <!-- Call to Action Card -->
     <CTACard
       class="my-1 md:my-2"
@@ -320,6 +321,7 @@ export default {
       datePickerValue: null,
       datePickerValueStr: "",
       submitLoading: false,
+      fee: 'N/A',
       // Form validation
       minTitleLength: 10,
       maxTitleLength: 50,
@@ -339,7 +341,8 @@ export default {
     // mix the getters into computed with object spread operator
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
-      loggedInAccount: "devcashData/loggedInAccount"
+      loggedInAccount: "devcashData/loggedInAccount",
+      feeWaiver: "devcashData/getFees"
     }),
     currentLocale() {
       for (let locale of this.$i18n.locales) {
@@ -350,6 +353,21 @@ export default {
     }    
   },  
   methods: {
+   feeUpdate(value) {
+     try {
+      if (this.feeWaiver) {
+        let rawDevcash = utils.parseUnits(this.amount.toString(), 8)
+        let rawWaiver = utils.parseUnits(this.feeWaiver.waiver.toString(), 8)
+        if (rawDevcash.gte(rawWaiver)) {
+          this.fee = "0"
+        } else {
+          this.fee = this.feeWaiver.fee
+        }
+      }
+     } catch (e) {
+
+     }
+   },
    closePicker() {
      this.showDatePicker = false
    },
@@ -483,23 +501,6 @@ export default {
      isValid = this.validateDeadline() && isValid
      return isValid
    },
-   onlyForCurrency(e) {
-     let keyCode = (e.keyCode ? e.keyCode : e.which);
-
-      if (this.amount == null) {
-        return
-      }
-
-      // only allow number and one dot
-      if ((keyCode < 48 || keyCode > 57) && (keyCode !== 46 || this.amount.indexOf('.') != -1)) { // 46 is dot
-        e.preventDefault();
-      }
-
-      // restrict to 8 decimal places
-      if(this.amount!=null && this.amount.indexOf(".")>-1 && (this.amount.split('.')[1].length > 7)){
-        e.preventDefault();
-      }
-   },
    getDeadlineS() {
      if (this.datePickerValue) {
        return parseInt(this.datePickerValue.getTime() / 1000)
@@ -532,7 +533,8 @@ export default {
                 bounty,
                 this.numBounties,
                 this.amount,
-                this.getDeadlineS()
+                this.getDeadlineS(),
+                this.feeWaiver.fee
               )
             }
           } catch (e) {
@@ -548,6 +550,17 @@ export default {
   },
   mounted() {
     DevcashBounty.updateBalances(this)
+    if (this.feeWaiver) {
+      this.fee = this.feeWaiver.fee
+      DevcashBounty.updateFees(this)
+    } else {
+      let ref = this
+      DevcashBounty.updateFees(this).then(_ => {
+        if (ref.feeWaiver) {
+          ref.fee = ref.feeWaiver.fee
+        }
+      })
+    }
   },
   beforeMount() {
     // Set sidebar context

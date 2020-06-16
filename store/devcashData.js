@@ -16,6 +16,7 @@ export const state = () => ({
   bounties: {},
   currency: devcashCurrency,
   balance: null,
+  fee: null,
   isIBOBarClosed: false
 });
 
@@ -54,7 +55,15 @@ export const mutations = {
     } else {
       Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, balances: balance }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
-  }
+  },
+  setFees(state, fee) {
+    state.fee = fee
+    if (fee == null) {
+      Cookies.remove("devcash_fee")
+    } else {
+      Cookies.set("devcash_fee", JSON.stringify(fee), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
+  }  
 };
 
 export const actions = {
@@ -75,7 +84,10 @@ export const actions = {
   },
   async updateBalance(context, client) {
     context.commit("setBalance", await client.getBalances())
-  }
+  },
+  async updateFees(context, client) {
+    context.commit("setFees", {fee: await client.getFee(), waiver: await client.getWaiver() })
+  }  
 };
 
 export const getters = {
@@ -92,10 +104,21 @@ export const getters = {
       }
       let cacheBalance = Cookies.get("devcash_balance")
       if (cacheBalance) {
-        dispatch("devcashData/updateBalance")
         return JSON.parse(cacheBalance).balances
       }
     }
     return null
-  }
+  },
+  getFees(state) {
+    if (state.loggedInAccount != null) {
+      if (state.fee) {
+        return state.fee
+      }
+      let cacheFee = Cookies.get("devcash_fee")
+      if (cacheFee) {
+        return JSON.parse(cacheFee)
+      }
+    }
+    return null
+  }  
 }

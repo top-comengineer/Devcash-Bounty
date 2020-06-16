@@ -16,5 +16,9 @@ export default function ({ req, store }) {
           store.commit('devcashData/setBalance', parsed.balances)
         }
       }
+      if (req.cookies.devcash_fee) {
+        let parsed = JSON.parse(req.cookies.devcash_fee)
+        store.commit('devcashData/setFees', parsed)
+      }
     }
   } 

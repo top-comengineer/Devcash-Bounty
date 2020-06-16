@@ -141,6 +141,16 @@ export class DevcashBounty {
   }
 
   /**
+   * updateFees() - Update fees in global state
+   * 
+   * @param {Component} Vue component
+   */
+  static async updateFees(vueComponent) {
+    await this.initEthConnector(vueComponent)
+    vueComponent.$store.dispatch("devcashData/updateFees", vueComponent.$store.state.devcash.connector)
+}
+
+  /**
    * init() - connect to ethereum and initialize devcash contracts
    * @params account - logged in account
    * @params walletProvider - WalletProvider to use, if missing then default is used
@@ -477,8 +487,21 @@ export class DevcashBounty {
     };
   }
 
+  // Fee+Waiver
+  async getFee(){
+    let fee = await this.uBCContract.fee()
+    fee = utils.formatEther(fee)
+    return fee
+  }
+  
+  async getWaiver(){
+    let waiver = await this.uBCContract.waiver()
+    waiver = utils.formatUnits(waiver, this.tokenDecimals)
+    return waiver
+  }
+
   // Methods for writing to the smart contract
-  async postBounty(bounty,available,amount,deadline, ethAmount = null){
+  async postBounty(bounty,available,amount,deadline,ethAmount){
     if (!amount) {
       amount = utils.bigNumberify(0)
     } else {
