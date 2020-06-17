@@ -13,6 +13,7 @@ const { sequelize, UBounty, Op } = require("./models");
 const ubountyRouter = require('./routes/bounty');
 const submissionRouter = require('./routes/submission');
 const revisionRouter = require('./routes/revision');
+const statsRouter = require('./routes/stats');
 
 // App
 const app = express();
@@ -42,6 +43,7 @@ async function start() {
   app.use('/bounty', ubountyRouter);
   app.use('/submission', submissionRouter);
   app.use('/revision', revisionRouter);
+  app.use('/stats', statsRouter)
 
   // Cookie parser
   app.use(cookieParser())

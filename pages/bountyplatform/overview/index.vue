@@ -1,29 +1,43 @@
 <template>
-  <div class="w-full flex flex-row flex-wrap justify-center">
+  <div v-if="!isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
+    <h1>
+      NOT LOGGED IN
+    </h1>
+  </div>
+  <div v-else class="w-full flex flex-row flex-wrap justify-center">
     <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
-      <OverviewCard
+      <OverviewCardPlaceholder
+        v-if="overviewLoading"
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
         type="earned"
-        totalDEV="2,562,138"
-        totalETH="5.844"
-        totalUSD="1,578"
-        count="13"
       />
       <OverviewCard
+        v-else
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        type="earned"
+        :totalDEV="totalEarnedDC"
+        :totalETH="totalEarnedEth"
+        :count="totalSubmissions"
+      />
+      <OverviewCardPlaceholder
+        v-if="overviewLoading"
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
         type="awarded"
-        totalDEV="11,342,527"
-        totalETH="25.214"
-        totalUSD="6,808"
-        count="36"
+      />
+      <OverviewCard
+        v-else
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        type="awarded"
+        :totalDEV="totalAwardedDC"
+        :totalETH="totalAwardedEth"
+        :count="totalBounties"
       />
       <OverviewCard
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
         type="balance"
-        totalDEV="2,650,000"
-        totalETH="5.891"
-        totalUSD="1,590"
-        address="0xFD611e521fcB29fc364037D56B74C49C01f14F2d"
+        :totalDEV="balance.approved"
+        :totalETH="balance.eth"
+        :address="loggedInAccount"
       />
     </div>
     <!-- Activity Main Card -->
@@ -154,13 +168,44 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+import { mapGetters } from "vuex";
+import { utils } from "ethers";
 import OverviewCard from "~/components/BountyPlatform/OverviewCard.vue";
+import OverviewCardPlaceholder from "~/components/BountyPlatform/OverviewCardPlaceholder.vue";
 import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
 export default {
   layout: "bountyPlatform",
   components: {
     OverviewCard,
+    OverviewCardPlaceholder,
     ActivityCard
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount",
+      balance: "devcashData/getBalance"
+    })
+  },
+  methods: {
+    async loadOverview() {
+      try {
+        let res = await this.$axios.get(
+          `/stats/overview?address=${this.loggedInAccount}`
+        );
+        this.totalEarnedDC = utils.commify(utils.formatUnits(res.data.totalEarnedDC, 8));
+        this.totalAwardedDC = utils.commify(utils.formatUnits(res.data.totalAwardedDC, 8));
+        this.totalEarnedEth = utils.formatEther(res.data.totalEarnedWei)
+        this.totalAwardedEth = utils.formatEther(res.data.totalAwardedWei)
+        this.totalSubmissions = res.data.totalSubmissions
+        this.totalBounties = res.data.totalBounties
+      } catch (e) {
+        console.log(`Error loading overview ${e}`)
+      } finally {
+        this.overviewLoading = false;
+      }      
+    }
   },
   beforeMount() {
     // Set sidebar context
@@ -176,11 +221,19 @@ export default {
       pageDescription: this.$t("meta.bountyPlatform.overview.pageDescription"),
       pagePreview: `${process.env.BASE_URL}/previews/bountyplatform.png`,
       pageThemeColor: "#675CFF",
-      canonicalURL: process.env.CANONICAL_URL
+      canonicalURL: process.env.CANONICAL_URL,
+      overviewLoading: true,
+      totalSubmissions: -1,
+      totalBounties: -1,
+      totalEarnedDC: "-1",
+      totalEarnedEth: "-1",
+      totalAwardedDC: "-1",
+      totalAwardedEth: "-1"
     };
   },
   mounted() {
     DevcashBounty.updateBalances(this)
+    this.loadOverview()
   },
   head() {
     return {

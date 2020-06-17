@@ -13,7 +13,7 @@
         class="text-sm opacity-75"
       >{{type=="earned"?$t("bountyPlatform.overview.totalEarned"):type=='awarded'?$t("bountyPlatform.overview.totalAwarded"):$t("bountyPlatform.overview.approvedBalance")}}</h6>
       <h2 class="text-dtPrimary text-3xl font-extrabold break-all">{D}{{totalDEV}}</h2>
-      <h3 class="font-semibold mt-1 break-all">(Ξ{{totalETH}} / ${{totalUSD}})</h3>
+      <h3 class="font-semibold mt-1 break-all">(Ξ{{totalETH}})</h3>
       <!-- Bounties Hunted or Bounties Posted -->
       <div class="flex flex-col items-center mt-6" v-if="type == 'earned' || type == 'awarded'">
         <h6
@@ -41,7 +41,6 @@ export default {
     type: null,
     totalDEV: null,
     totalETH: null,
-    totalUSD: null,
     count: null,
     address: null
   },
