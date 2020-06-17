@@ -1,4 +1,4 @@
-module.exports.tokenAddress = "0x0f54093364b396461AAdf85C015Db597AAb56203"//"0xD021315678991ee801655C75101986200f0a011D"////;
+module.exports.tokenAddress = process.env.NODE_ENV == 'production' ? "0x0fca8Fdb0FB115A33BAadEc6e7A141FFC1bC7d5a" : "0x0f54093364b396461AAdf85C015Db597AAb56203"
 module.exports.tokenABI = [
 	{
 		"inputs": [],
@@ -316,7 +316,7 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = "0xcf4d3b217FF1f8f03B92E5402d85F854A3C2313d" //"0x4572cd41D0ea7c69bD8A3A7C213F04eD83BB4976"
+module.exports.uBCAddress = process.env.NODE_ENV === 'production' ? "0x73aa31Cd548AC14713F778f454348d90564e2dE1" : "0xcf4d3b217FF1f8f03B92E5402d85F854A3C2313d"
 module.exports.uBCABI = [
 	{
 		"inputs": [],
