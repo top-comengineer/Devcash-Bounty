@@ -3,7 +3,7 @@ import * as Cookies from "js-cookie"
 import { utils } from "ethers"
 
 const ethCurrency = {
-  symbol: "ETH"
+  symbol: "Ξ"
 }
 
 const devcashCurrency = {
@@ -84,9 +84,9 @@ export const mutations = {
         } else {
           state.curFee = state.fee.fee
         }
-      }      
+      }
     }
-  }  
+  }
 };
 
 export const actions = {
@@ -109,8 +109,8 @@ export const actions = {
     context.commit("setBalance", await client.getBalances())
   },
   async updateFees(context, client) {
-    context.commit("setFees", {fee: await client.getFee(), waiver: await client.getWaiver() })
-  }  
+    context.commit("setFees", { fee: await client.getFee(), waiver: await client.getWaiver() })
+  }
 };
 
 export const getters = {
