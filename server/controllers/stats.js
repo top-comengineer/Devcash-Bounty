@@ -16,14 +16,14 @@ const submission = require("../models/submission");
       
   static formatAmountSingleSubmission(bounty, tokenDecimals) {
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
-    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
   }
 
   static formatAmountSingleSubmissionEth(bounty) {
     let totalAmount = utils.bigNumberify(bounty.weiAmount);
-    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.formatEther(totalAmount);
     return totalAmount;
   }
@@ -51,8 +51,8 @@ module.exports.getOverviewStats = async (req, res, next) => {
       if (sub.approved) {
         let bountyAmount = utils.bigNumberify(sub.ubounty.bountyAmount)
         let bountyAmountWei = utils.bigNumberify(sub.ubounty.weiAmount)
-        totalEarnedDC.add(bountyAmount.div(sub.ubounty.numLeft))
-        totalEarnedWei.add(bountyAmountWei.div(sub.ubounty.numLeft))
+        totalEarnedDC.add(bountyAmount.div(sub.ubounty.available))
+        totalEarnedWei.add(bountyAmountWei.div(sub.ubounty.available))
       }
     }
     // Get creator stats
@@ -70,8 +70,8 @@ module.exports.getOverviewStats = async (req, res, next) => {
       let bountyAmountWei = utils.bigNumberify(bounty.weiAmount)      
       for (const sub of bounty.submissions) {
         if (sub.approved) {
-          totalAwardedDC.add(bountyAmount.div(bounty.numLeft))
-          totalAwardedWei.add(bountyAmountWei.div(bounty.numLeft))
+          totalAwardedDC.add(bountyAmount.div(bounty.available))
+          totalAwardedWei.add(bountyAmountWei.div(bounty.available))
         }
       }
     }

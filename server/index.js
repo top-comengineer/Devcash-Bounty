@@ -150,7 +150,7 @@ function setupEthersJobs() {
       if (onChain) {
         bounty.bountyAmount = onChain.amount
         bounty.weiAmount = onChain.weiAmount
-        bounty.complete = bounty.submissions.filter(sub => sub.approved).length == bounty.numLeft
+        bounty.complete = bounty.submissions.filter(sub => sub.approved).length == bounty.available
         await bounty.save()
       }
     })

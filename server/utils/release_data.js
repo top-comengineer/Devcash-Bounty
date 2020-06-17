@@ -11,7 +11,7 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
     // Get uBounties from blockchain
     uBounties.forEach(async uBounty => {
       hashes.push(uBounty.description)
-      hashIdMap[uBounty.description] = {index: uBounty.index, deadline: uBounty.deadline, numLeft: uBounty.numLeft, bc: uBounty.bc, amount: uBounty.amount, weiAmount: uBounty.weiAmount}
+      hashIdMap[uBounty.description] = {index: uBounty.index, deadline: uBounty.deadline, available: uBounty.available, bc: uBounty.bc, amount: uBounty.amount, weiAmount: uBounty.weiAmount}
     })
     // Get staged bounties from database
     let stagedBounties = await UBountyStaged.findAll({
@@ -45,7 +45,7 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
             contactName: stagedBounty.contactName,
             contactEmail: stagedBounty.contactEmail,
             deadline: hashIdMap[stagedBounty.hash].deadline,
-            numLeft: hashIdMap[stagedBounty.hash].numLeft,
+            available: hashIdMap[stagedBounty.hash].available,
             bountyChest: hashIdMap[stagedBounty.hash].bc,
             bountyAmount: hashIdMap[stagedBounty.hash].amount,
             weiAmount: hashIdMap[stagedBounty.hash].weiAmount,

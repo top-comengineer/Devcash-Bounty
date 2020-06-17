@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
     },
-    numLeft: {
+    available: {
         type: DataTypes.BIGINT,
         allowNull: false,
     },

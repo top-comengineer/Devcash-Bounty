@@ -75,7 +75,7 @@ class EtherClient {
     }
     // Convert smart contract data into a plain object
     let uBounty = {};
-    uBounty.numLeft = rawUBounty[0];
+    uBounty.available = rawUBounty[0];
     uBounty.numSubmissions = rawUBounty[1];
     uBounty.hunterIndex = rawUBounty[2];
     uBounty.creatorIndex = rawUBounty[3];

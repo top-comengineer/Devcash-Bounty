@@ -115,7 +115,7 @@ class RedisDB {
         let submissionIDRejectedList = [];
         for (const bounty of allUBounties) {
           bounty.submissions = await etherClient.getBountySubmissions(bounty);
-          if (bounty.numLeft > 0) {
+          if (bounty.available > 0) {
             for (const sub of bounty.submissions) {
               try {
                 let subDb = await Submission.findOne({

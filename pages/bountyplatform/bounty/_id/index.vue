@@ -126,7 +126,7 @@
             <h6 class="text-sm">
               <span
                 class="font-bold"
-              >{{ bounty.submissions.filter(sub => sub.approved).length + ' of ' + this.bounty.numLeft }}</span>
+              >{{ bounty.submissions.filter(sub => sub.approved).length + ' of ' + this.bounty.available }}</span>
               <span class="opacity-75">
                 {{
                 $t("bountyPlatform.bountyCard.bountiesLeft")

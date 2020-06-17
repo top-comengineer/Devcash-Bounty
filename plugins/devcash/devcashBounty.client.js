@@ -50,26 +50,26 @@ export class DevcashBounty {
 
   static formatAmount(bounty, tokenDecimals) {
     let delta =
-      bounty.numLeft - bounty.submissions.filter((sub) => sub.approved).length;
+      bounty.available - bounty.submissions.filter((sub) => sub.approved).length;
     if (delta <= 0) {
       return "0";
     }
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
-    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
   }
 
   static formatAmountSingleSubmission(bounty, tokenDecimals) {
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
-    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
   }
 
   static formatAmountSingleSubmissionEth(bounty) {
     let totalAmount = utils.bigNumberify(bounty.weiAmount);
-    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.formatEther(totalAmount);
     return totalAmount;
   }
@@ -285,7 +285,7 @@ export class DevcashBounty {
     }
     // Convert smart contract data into a plain object
     let uBounty = {};
-    uBounty.numLeft = rawUBounty[0];
+    uBounty.available = rawUBounty[0];
     uBounty.numSubmissions = rawUBounty[1];
     uBounty.hunterIndex = rawUBounty[2];
     uBounty.creatorIndex = rawUBounty[3];
