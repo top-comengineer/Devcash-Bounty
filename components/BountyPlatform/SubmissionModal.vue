@@ -92,10 +92,10 @@
       <!-- Card for Contact Name and Email -->
       <div
         :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
+        class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
       >
         <!-- Contact Name -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col mt-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
           <input
             v-model="contactName"
@@ -114,7 +114,7 @@
         <!-- Divider -->
         <div class="hidden md:block w-12"></div>
         <!-- Contact Email -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col mt-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
           <input
             v-model="contactEmail"

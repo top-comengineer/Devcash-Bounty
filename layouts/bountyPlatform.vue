@@ -59,7 +59,7 @@ export default {
 .sidebar-spacer-left {
   width: 100%;
   min-width: 3rem;
-  z-index: 9999;
+  z-index: 150;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-spacer-left {
