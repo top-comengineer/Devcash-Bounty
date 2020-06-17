@@ -9,7 +9,7 @@
       <div
         v-if="isSubmissionModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-50"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal"
       >
         <div
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12"
@@ -33,7 +33,7 @@
       <div
         v-if="isContributeModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal"
       >
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
@@ -104,7 +104,7 @@
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
           <button
-            @click="isSubmissionModalOpen = true"
+            @click="isSubmissionModalOpen = true; bodyNoScroll"
             class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
@@ -467,7 +467,7 @@ export default {
       } finally {
         this.submissionsLoading = false;
       }
-    }
+    },
   },
   async asyncData({ error, params, $axios }) {
     try {
@@ -630,7 +630,8 @@ export default {
           href: "/favicon-16x16.png"
         },
         { rel: "manifest", href: "/site.webmanifest" }
-      ]
+      ],
+      bodyAttrs: {class: this.isSubmissionModalOpen || this.isContributeModalOpen? 'overflow-hidden':''}
     };
   }
 };
@@ -667,5 +668,8 @@ export default {
 .modalTransition-leave-to {
   opacity: 0;
   transform: scale(0.85);
+}
+.modal {
+  z-index: 200;
 }
 </style>
