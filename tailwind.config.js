@@ -179,6 +179,7 @@ module.exports = {
         xxxs: "12rem",
       },
       margin: {
+        "0_5": "0.125rem",
         "1_5": "0.375rem",
         "14": "3.5rem",
       },

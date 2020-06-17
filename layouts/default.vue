@@ -7,9 +7,10 @@
         : 'bg-ltBackground text-ltText'
     ]"
   >
+    <button @click="showNotification">Show Notification</button>
     <div class="w-full flex flex-row justify-center relative">
       <div class="fixed w-full z-50">
-        <div class="d-container">
+        <div class="d-container relative">
           <Navbar
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
@@ -23,6 +24,35 @@
               }
             ]"
           />
+          <!-- Notification -->
+          <div class="absolute right-0 px-4 md:px-6 lg:px-10 mt-2">
+            <notifications
+              group="main"
+              position="top right"
+              :duration="4000"
+              animation-type="css"
+              :max="6"
+            >
+              <template slot="body" slot-scope="props">
+                <div
+                  class="flex flex-row justify-between items-start bg-dtText text-dtBackground mb-2 shadow-xlS border-l-8 border-dtSecondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
+                >
+                  <div class="flex flex-col justify-center mx-3 my-2">
+                    <p class="text-sm font-bold">{{props.item.title}}</p>
+                    <p class="text-xs" v-html="props.item.text"></p>
+                  </div>
+                  <div class="flex flex-row justify-end">
+                    <button
+                      class="hover_bg-dtBackground-15 focus_bg-dtBackground-15 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
+                      @click="props.close"
+                    >
+                      <Icon class="w-4 h-4" type="cancel" colorClass="text-dtBackground" />
+                    </button>
+                  </div>
+                </div>
+              </template>
+            </notifications>
+          </div>
         </div>
       </div>
     </div>
@@ -36,12 +66,17 @@
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
+import Icon from "~/components/Icon.vue";
+import Vue from 'vue'
+import Notifications from 'vue-notification/dist/ssr.js'
+Vue.use(Notifications)
 // Optional IBO bar below
 // import IBOBar from "~/components/IBOBar.vue";
 export default {
   components: {
     Navbar,
     Footer,
+    Icon
     // Optional IBO bar below
     // IBOBar
   },
@@ -68,7 +103,7 @@ export default {
     return {
       scrollPos: 0,
       showNavbarBg: false,
-      hideNavbar: false
+      hideNavbar: false,
     };
   },
   methods: {
@@ -94,6 +129,13 @@ export default {
       } else if (window.pageYOffset < 15 && this.showNavbarBg) {
         this.showNavbarBg = false;
       }
+    },
+    showNotification(){
+      this.$notify({
+        group: 'main',
+        title: 'You’ve received a new submission!',
+        text: 'Click this notification to see the details.'
+      });
     }
   },
   beforeMount() {
