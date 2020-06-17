@@ -7,3 +7,4 @@ del jc:devcash:dev:uBounties
 del jc:devcash:dev:uBounties_t
 del jc:devcash:dev:event_log
 del jc:devcash:dev:event_log_t
+del devcash:dev:bountycachelock

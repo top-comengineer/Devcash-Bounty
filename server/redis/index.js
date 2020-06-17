@@ -41,17 +41,13 @@ class RedisDB {
     // Don't add ones we already have
     let toAdd;
     if ((await this.getNUbounties()) > 0 && !clobber) {
-      toAdd = new Array();
       let curUbounties = await this.getUBounties();
-      uBounties.forEach((newUBounty) => {
-        curUbounties.forEach((uBounty) => {
-          if (newUBounty.index != uBounty.index) {
-            toAdd.unshift(newUBounty);
-            return;
-          }
-        });
-      });
-      toAdd = toAdd.concat(curUbounties);
+      let newBounties = uBounties.concat(curUbounties);
+      // Remove duplicates
+      toAdd = Array.from(new Set(newBounties.map(bounty => bounty.index)))
+      .map(index => {
+        return newBounties.find(bounty => bounty.index === index)
+      })
     } else {
       toAdd = uBounties;
     }
@@ -80,24 +76,14 @@ class RedisDB {
     try {
       try {
         await this.retryingLocker.acquire(`${prefix}:bountycachelock`);
-        let toAdd = [];
-        for (const bounty of await this.getUBounties()) {
-          for (const inBounty of uBounties) {
-            if (inBounty.index != bounty.index) {
-              toAdd.push(inBounty);
-            }
-          }
-        }
-        if (toAdd.length > 0) {
-          await this.setUBounties(toAdd, false);
-        }
+        await this.setUBounties(uBounties, false);
       } catch (e) {
         console.log(`Error updating bounty cache ${e}`);
       }
       await this.retryingLocker.release();
     } catch (e) {
       // Squish lock-related errors
-      console.log(`Exception setting bounty ${e}`)
+      console.log(`Exception setting bounty ${e}`);
     }
   }
 
@@ -112,9 +98,11 @@ class RedisDB {
         console.log("Updating Bounty Cache");
         let curNUbounties = await this.getNUbounties();
         let onChainUBounties = await etherClient.getNUbounties();
-        console.log("\n\n")
-        console.log(`HAVE ${curNUbounties} - There's ${onChainUBounties} on chain!`)
-        console.log("\n\n")
+        console.log("\n\n");
+        console.log(
+          `HAVE ${curNUbounties} - There's ${onChainUBounties} on chain!`
+        );
+        console.log("\n\n");
         if (onChainUBounties > curNUbounties) {
           console.log(
             `Adding ${onChainUBounties - curNUbounties} new bounties`
