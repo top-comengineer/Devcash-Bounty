@@ -67,6 +67,13 @@ export class DevcashBounty {
     return totalAmount;
   }
 
+  static formatAmountSingleSubmissionEth(bounty) {
+    let totalAmount = utils.bigNumberify(bounty.weiAmount);
+    totalAmount = totalAmount.div(bounty.numLeft);
+    totalAmount = utils.formatEther(totalAmount);
+    return totalAmount;
+  }
+
   static formatDateStr(locale, dateStr) {
     let dt = new Date(dateStr);
     return `${dt.toLocaleString(locale == 'en' ? undefined : locale)}`;

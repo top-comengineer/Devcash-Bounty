@@ -44,7 +44,7 @@
               'text-ltDanger': submission.status == 'rejected' && !$store.state.theme.dt}"
               class="font-bold text-left"
             >{D}{{formatAmount()}}</h5>
-            <h6 class="text-sm text-left mt-1">(Ξ{{'1'}} / ${{'1'}})</h6>
+            <h6 class="text-sm text-left mt-1">(Ξ{{ formatEthAmount() }})</h6>
           </div>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
@@ -148,6 +148,9 @@ export default {
           tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
       }   
       return DevcashBounty.formatAmountSingleSubmission(this.ubounty, tokenDecimals)
+    },
+    formatEthAmount() {
+      return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
     },
     getSimpleStatus() {
       if (this.submission.status == 'revision requested' || this.submission.status == 'awaiting feedback') {
