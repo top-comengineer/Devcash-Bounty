@@ -410,6 +410,8 @@ export default {
           "devcashData/setLoggedInAccount",
           await connector.signer.getAddress()
         );
+        // Emit sign in event
+        this.$root.$emit('signedIn')
       } catch (e) {
         if (e instanceof NoAccountsFoundError) {
           // NO accounts found in provider

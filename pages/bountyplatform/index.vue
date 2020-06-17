@@ -84,6 +84,12 @@ export default {
   },
   mounted() {
     this.getBounties();
+    this.$root.$on('signedIn', () => {
+      this.hasPageMap = {}
+      this.bounties = []
+      this.loading = true
+      this.getBounties()
+    })
   },
   beforeMount() {
     // Set sidebar context
