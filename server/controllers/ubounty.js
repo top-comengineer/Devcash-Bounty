@@ -45,7 +45,7 @@ module.exports.getUBounties = async (req, res, next) => {
       where: {
         hunter: hunterQuery
       },
-      include: ['submissions', 'revisions']
+      include: ['submissions']//, 'revisions']
     })
     return res.status(200).json(
       {
@@ -85,7 +85,7 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
       where: {
         hunter: {[Op.eq]: hunter}
       },
-      include: ['submissions', 'revisions']
+      include: ['submissions']//, 'revisions']
     })
     return res.status(200).json(
       {
@@ -125,7 +125,7 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
       where: {
         creator: {[Op.eq]: creator}
       },
-      include: ['submissions', 'revisions']
+      include: ['submissions']//, 'revisions']
     })
     return res.status(200).json(
       {
@@ -151,7 +151,7 @@ module.exports.getUBounty = async (req, res, next) => {
       where: {
         id: {[Op.eq]: id}
       },
-      include: ['submissions', 'revisions']
+      include: ['submissions']//, 'revisions']
     })
     if (result == null) {
       return res.status(404).json(
