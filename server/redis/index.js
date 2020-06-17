@@ -98,11 +98,6 @@ class RedisDB {
         console.log("Updating Bounty Cache");
         let curNUbounties = await this.getNUbounties();
         let onChainUBounties = await etherClient.getNUbounties();
-        console.log("\n\n");
-        console.log(
-          `HAVE ${curNUbounties} - There's ${onChainUBounties} on chain!`
-        );
-        console.log("\n\n");
         if (onChainUBounties > curNUbounties) {
           console.log(
             `Adding ${onChainUBounties - curNUbounties} new bounties`
