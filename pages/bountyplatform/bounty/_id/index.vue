@@ -9,7 +9,7 @@
       <div
         v-if="isSubmissionModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-30"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 z-50"
       >
         <div
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
@@ -77,9 +77,7 @@
           class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
         >{{ '{D}' + formatAmount() }}</h2>
         <!-- Bounty Amount in ETH & USD -->
-        <h3
-          class="text-lg md:text-xl text-left md:text-right mt-1"
-        >{{ "Ξ" + formatEthAmount() }}</h3>
+        <h3 class="text-lg md:text-xl text-left md:text-right mt-1">{{ "Ξ" + formatEthAmount() }}</h3>
       </div>
     </div>
     <!-- Bounty Description and Hunt & Contribue Cards -->

@@ -7,7 +7,6 @@
         : 'bg-ltBackground text-ltText'
     ]"
   >
-    <button @click="showNotification">Show Notification</button>
     <div class="w-full flex flex-row justify-center relative">
       <div class="fixed w-full z-50">
         <div class="d-container relative">

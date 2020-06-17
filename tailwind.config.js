@@ -113,6 +113,7 @@ module.exports = {
       full: "9999px"
     },
     maxHeight: {
+      "full": '100%',
       "xs": '20rem',
       "sm": '24rem',
       "md": '28rem',
