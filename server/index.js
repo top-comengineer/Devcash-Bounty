@@ -42,7 +42,7 @@ async function start() {
   // Setup API routes
   app.use('/bounty', ubountyRouter);
   app.use('/submission', submissionRouter);
-  app.use('/revision', revisionRouter);
+  //app.use('/revision', revisionRouter);
   app.use('/stats', statsRouter)
 
   // Cookie parser
@@ -93,6 +93,7 @@ function setupEthersJobs() {
     })
   })
   // Listen to revision event
+  /*
   etherClient.uBCContract.on("revised", async (uBountyIndex, submissionIndex, revisionIndex, event) => {
     // Retrieve bounty
     console.log(`Revision ${revisionIndex} created`)
@@ -111,7 +112,7 @@ function setupEthersJobs() {
         }
       })    
     }
-  })
+  })*/
   // Approved
   etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved")
@@ -128,11 +129,12 @@ function setupEthersJobs() {
     uBounties.forEach(async uBounty => {
       if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
         await verifyAndReleaseSubmissions(uBounty.submissions)
+        /*
         uBounty.submissions.forEach(async submission => {
           if (submission.revisions != undefined && submission.revisions.length > 0) {
             await verifyAndReleaseRevisions(submission.revisions)
           }
-        })
+        })*/
       }
     })
   })

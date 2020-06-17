@@ -118,6 +118,7 @@ class EtherClient {
       submission.submissionString = subRaw[0];
       submission.submitterIndex = subRaw[1];
       submission.approved = subRaw[2];
+      /*
       submission.numRevisions = subRaw[3];
       if (submission.numRevisions > 0) {
         submission.revisions = await this.getSubmissionRevisions(
@@ -126,7 +127,7 @@ class EtherClient {
         );
       } else {
         submission.revisions = [];
-      }
+      }*/
       submissions.push(submission);
     }
     return submissions;
