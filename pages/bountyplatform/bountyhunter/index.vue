@@ -100,7 +100,7 @@
           >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
           <!-- Count, Amount & Checkboxes -->
           <div
-            v-if="submissions.length>0 && !bountiesLoading"
+            v-if="bounties.length>0 && !bountiesLoading"
             class="flex flex-row flex-wrap items-center"
           >
             <div class="flex flex-row flex-wrap my-2 mr-10">
@@ -266,7 +266,7 @@ export default {
       submissionsLoading: true,
       page: 0,
       submissionsPage: 0,
-      totalBountyAmount: 0,
+      totalBountyAmount: utils.bigNumberify(0),
       totalBountyAmountDisplay: "0.0",
       totalBountyCount: 0,
       totalSubmissionCount: 0,
