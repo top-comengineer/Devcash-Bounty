@@ -412,6 +412,7 @@ export default {
         );
         // Emit sign in event
         this.$root.$emit('signedIn')
+        DevcashBounty.updateBalances(this)
       } catch (e) {
         if (e instanceof NoAccountsFoundError) {
           // NO accounts found in provider

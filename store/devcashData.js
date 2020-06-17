@@ -16,7 +16,7 @@ export const state = () => ({
   provider: null,
   bounties: {},
   currency: devcashCurrency,
-  balance: null,
+  balance: {},
   fee: null,
   curFee: null,
   isIBOBarClosed: false,
