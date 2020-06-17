@@ -90,7 +90,9 @@
         class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
       >
         <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
-        <p class="mt-2 leading-loose">{{ bounty.description }}</p>
+        <p
+          class="mt-2 leading-loose"
+        >{{ bounty.description + "asdasasdlfasdlfhlkasdhfkjsadhflkjasdlkfjalskdjflkasdjflkjsdalkfjaldskjflksajdflkasjdflkajsdklsdfjlasdjfkladsjklfsadfasdfasdfhjasdkjhfkajshdfkjhasdkjf" }}</p>
       </div>
       <!-- Divider -->
       <div class="w-4 hidden md:block"></div>

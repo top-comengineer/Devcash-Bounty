@@ -1,6 +1,6 @@
 <template>
   <div
-    class="transition-colors ease-out duration-200 relative"
+    class="transition-colors ease-out duration-200 relative overflow-anywhere"
     :class="[
       $store.state.theme.dt
         ? 'bg-dtBackground text-dtText'
@@ -155,7 +155,7 @@ body {
   font-weight: 400;
   background-color: #010014;
 }
-.keep-all {
-  word-break: keep-all;
+.overflow-anywhere {
+  overflow-wrap: anywhere;
 }
 </style>
