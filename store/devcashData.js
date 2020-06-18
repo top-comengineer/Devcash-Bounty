@@ -2,21 +2,17 @@
 import * as Cookies from "js-cookie"
 import { utils } from "ethers"
 
-const ethCurrency = {
-  symbol: "Ξ"
-}
-
-const devcashCurrency = {
-  symbol: "{D}"
-}
+const ethSymbol = "Ξ"
+const devcashSymbol = "{D}"
 
 // Devcash-related data
 export const state = () => ({
   loggedInAccount: null,
   provider: null,
   bounties: {},
-  currency: devcashCurrency,
-  balance: {},
+  ethIsPrimary: false,
+  balancePrimary: {},
+  balanceSecondary: {},
   fee: null,
   curFee: null,
   isIBOBarClosed: false,
@@ -41,25 +37,74 @@ export const mutations = {
     }
   },
   setEthereum(state) {
-    state.currency = ethCurrency
-    Cookies.set("devcash_ethereum", "true", { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    if (!state.ethIsPrimary) {
+      state.ethIsPrimary = true
+      let primary = state.balancePrimary
+      let secondary = state.balanceSecondary
+      state.balancePrimary = secondary
+      state.balanceSecondary = primary
+      Cookies.set("devcash_ethereum", "true", { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
   },
   setDevcash(state) {
-    state.currency = devcashCurrency
-    Cookies.set("devcash_ethereum", "false", { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    if (state.ethIsPrimary) {
+      state.ethIsPrimary = false
+      let primary = state.balancePrimary
+      let secondary = state.balanceSecondary
+      state.balancePrimary = secondary
+      state.balanceSecondary = primary    
+      Cookies.set("devcash_ethereum", "false", { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
   },
   closeIBOBar(state) {
     state.isIBOBarClosed = true
   },
   setBalance(state, balance) {
-    state.balance = balance
     if (balance == null) {
       Cookies.remove("devcash_balance")
     } else {
-      Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, balances: balance }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+      if (state.ethIsPrimary) {
+        state.balancePrimary = {
+          hasApproved: false,
+          symbol: ethSymbol,
+          amount: balance.eth,
+          raw: balance.ethRaw
+        }
+        state.balanceSecondary = {
+          hasApproved: true,
+          symbol: devcashSymbol,
+          amount: balance.devcash,
+          raw: balance.devcashRaw,
+          approved: balance.approved,
+          approvedRaw: balance.approvedRaw
+        }
+      } else {
+        state.balanceSecondary = {
+          hasApproved: false,
+          symbol: ethSymbol,
+          amount: balance.eth,
+          raw: balance.ethRaw
+        }
+        state.balancePrimary = {
+          hasApproved: true,
+          symbol: devcashSymbol,
+          amount: balance.devcash,
+          raw: balance.devcashRaw,
+          approved: balance.approved,
+          approvedRaw: balance.approvedRaw
+        }
+      }
+      console.log(state.balancePrimary)
+      console.log(state.balanceSecondary)
+      Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, primary: state.balancePrimary, secondary: state.balanceSecondary }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
       // Update fee
       if (state.fee) {
-        let rawBal = utils.bigNumberify(state.balance.devcashRaw)
+        let rawBal
+        if (state.ethIsPrimary) {
+          rawBal = utils.bigNumberify(state.balanceSecondary.raw)
+        } else {
+          rawBal = utils.bigNumberify(state.balancePrimary.raw)
+        }
         let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)
         if (rawBal.gte(rawWaiver)) {
           state.curFee = "0"
@@ -76,8 +121,13 @@ export const mutations = {
     } else {
       Cookies.set("devcash_fee", JSON.stringify(fee), { expires: 365, secure: process.env.NODE_ENV === 'production' })
       // Update fee
-      if (state.balance) {
-        let rawBal = utils.bigNumberify(state.balance.devcashRaw)
+      let rawBal
+      if (state.ethIsPrimary && state.balanceSecondary.raw) {
+        rawBal = utils.bigNumberify(state.balanceSecondary.raw)
+      } else if (!state.ethIsPrimary && state.balancePrimary.raw) {
+        rawBal = utils.bigNumberify(state.balancePrimary.raw)
+      }
+      if (rawBal) {
         let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)
         if (rawBal.gte(rawWaiver)) {
           state.curFee = "0"
@@ -121,16 +171,32 @@ export const getters = {
     return state.loggedInAccount
   },
   getBalance(state) {
+    console.log(`GETTING BALANCE`)
     if (state.loggedInAccount != null) {
-      if (state.balance) {
-        return state.balance
+      if (state.balancePrimary && state.balanceSecondary) {
+        console.log("RETURNING CORRECTLY")
+        return {
+          primary: state.balancePrimary,
+          secondary: state.balanceSecondary
+        }
       }
       let cacheBalance = Cookies.get("devcash_balance")
       if (cacheBalance) {
-        return JSON.parse(cacheBalance).balances
+        let parsed = JSON.parse(cacheBalance)
+        if ("primary" in parsed && "secondary" in parsed) {
+          console.log("RETURNING CACHE")
+          return {
+            primary: parsed.primary,
+            secondary: parsed.secondary
+          }
+        }
       }
     }
-    return null
+    console.log("RETURNING EMPTY")
+    return {
+      primary: {},
+      secondary: {}
+    }
   },
   getFees(state) {
     if (state.loggedInAccount != null) {

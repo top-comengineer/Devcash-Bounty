@@ -241,18 +241,20 @@
           <h5 class="text-sm opacity-75">{{$t('bountyPlatform.sidebarContextual.balance') }}</h5>
           <h4
             class="font-extrabold text-lg mt-1 break-all"
-          >{D}{{ balance == null ? "N/A" : balance.devcash }}</h4>
+          >{{ `${balance.primary.symbol}${balance.primary.amount ? balance.primary.amount: "N/A"}` }}</h4>
           <!-- Balance in Devcash -->
           <h5
             class="text-sm mt-6 opacity-75"
           >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</h5>
           <h4
+            v-if="balance.primary.hasApproved"
             class="font-extrabold text-dtPrimary text-xl mt-1 break-all"
-          >{D}{{ balance == null ? "N/A" : balance.approved }}</h4>
+          >{{ `${balance.primary.symbol}${balance.primary.approved ? balance.primary.approved: "N/A"}` }}</h4>
           <!-- Amount to Approve  -->
-          <h5 class="font-bold mt-6">{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
+          <h5 v-if="balance.primary.hasApproved" class="font-bold mt-6">{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
           <!-- Amount Input -->
           <input
+            v-if="balance.primary.hasApproved"
             v-model="toApprove"
             :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
             class="w-full font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
@@ -262,13 +264,14 @@
           />
           <!-- Approve Button -->
           <button
+            v-if="balance.primary.hasApproved"
             :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
             class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
             @click="approveBalance"
             :disabled="approvalLoading"
           >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
           <p
-            v-if="approvalError"
+            v-if="approvalError && balance.primary.hasApproved"
             :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
             class="text-xs px-3"
           >{{ approvalError }}</p>
@@ -339,7 +342,7 @@ export default {
         this.approvalLoading = true
         await DevcashBounty.updateBalances(this)
         let amt = utils.parseUnits(this.toApprove.toString(), 8)
-        let avail = utils.bigNumberify(this.$store.state.devcashData.balance.devcashRaw)
+        let avail = utils.bigNumberify(this.$store.state.devcashData.balance.primary.raw)
         if (amt.gt(avail)) {
           this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
           return

@@ -482,8 +482,13 @@ export default {
   validateAmount(){
     let isValid = true
     try {
-       let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-       let balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.approvedRaw)
+       if (this.$store.state.devcashData.ethPrimary) {
+         amountBigNum = utils.parseEther(this.amount.toString())
+         balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.primary.raw)
+       } else {
+         amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+         balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.primary.approvedRaw)       
+       }
        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
          this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
          isValid = false

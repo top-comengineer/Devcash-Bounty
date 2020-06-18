@@ -288,11 +288,12 @@
                 <p
                   class="text-xs opacity-75 whitespace-no-wrap"
                 >{{$t('bountyPlatform.sidebarContextual.balance')}}</p>
-                <h6 class="text-lg font-bold">{{balance.devcash}}</h6>
+                <h6 class="text-lg font-bold">{{balance.primary.amount}}</h6>
                 <p
+                  v-if="balance.primary.hasApproved"
                   class="text-xs opacity-75 mt-3 whitespace-no-wrap"
                 >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</p>
-                <h5 class="text-dtPrimary font-bold text-xl">{{balance.approved}}</h5>
+                <h5 class="text-dtPrimary font-bold text-xl">{{balance.primary.approved}}</h5>
               </div>
               <!-- Divider -->
               <div
