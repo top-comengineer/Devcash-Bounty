@@ -1,85 +1,85 @@
 :root{
-    // Primary
-    --c-primary: rgba(103,92,255, 1);
-    --c-primary-15: rgba(103,92,255, 0.15);
-    --c-primary-25: rgba(103,92,255, 0.25);
-    --c-primary-35: rgba(103,92,255, 0.35);
-    --c-primary-50: rgba(103,92,255, 0.5);
-    --c-primary-less-sat: rgba(112,102,255, 1);
-    // Secondary
-    --c-secondary: rgba(136,80,248, 1);
-    // Background
-    --c-background: rgba(1,0,20, 1);
-    --c-background-15: rgba(1,0,20, 15);
-    --c-background-75: rgba(1,0,20, 0.75);
-    --c-background-sec: rgba(24,23,38, 1);
-    --c-background-ter: rgba(34,33,51, 1);
-    --c-background-qua: rgba(44,43,61, 1);
-    // Text
-    --c-text: rgba(242,241,255, 1);
-    --c-text-05: rgba(242,241,255, 0.05);
-    --c-text-10: rgba(242,241,255, 0.1);
-    --c-text-15: rgba(242,241,255, 0.15);
-    --c-text-40: rgba(242,241,255, 0.4);
-    // Success
-    --c-success: rgba(177,255,170, 1);
-    --c-success-10: rgba(177,255,170, 0.1);
-    --c-success-15: rgba(177,255,170, 0.15);
-    --c-success-40: rgba(177,255,170, 0.4);
-    // Danger
-    --c-danger: rgba(255,128,128, 1);
-    --c-danger-10: rgba(255,128,128, 0.1);
-    --c-danger-15: rgba(255,128,128, 0.15);
-    --c-danger-40: rgba(255,128,128, 0.4);
-    // Pending
-    --c-pending: rgba(255,223,123, 1);
-    --c-pending-10: rgba(255,223,123, 0.1);
-    --c-pending-40: rgba(255,223,123, 0.4);
-    // Other
-    --c-metamask: rgba(245,132,31, 1);
-    --c-portis: rgba(255,76,47, 1);
-    --c-authereum: rgba(109,178,216, 1);
-  }
+   // Primary
+   --c-primary: rgba(103,92,255, 1);
+   --c-primary-15: rgba(103,92,255, 0.15);
+   --c-primary-25: rgba(103,92,255, 0.25);
+   --c-primary-35: rgba(103,92,255, 0.35);
+   --c-primary-50: rgba(103,92,255, 0.5);
+   --c-primary-less-sat: rgba(112,102,255, 1);
+   // Secondary
+   --c-secondary: rgba(136,80,248, 1);
+   // Background
+   --c-background: rgba(1,0,20, 1);
+   --c-background-15: rgba(1,0,20, 15);
+   --c-background-75: rgba(1,0,20, 0.75);
+   --c-background-sec: rgba(24,23,38, 1);
+   --c-background-ter: rgba(34,33,51, 1);
+   --c-background-qua: rgba(44,43,61, 1);
+   // Text
+   --c-text: rgba(242,241,255, 1);
+   --c-text-05: rgba(242,241,255, 0.05);
+   --c-text-10: rgba(242,241,255, 0.1);
+   --c-text-15: rgba(242,241,255, 0.15);
+   --c-text-40: rgba(242,241,255, 0.4);
+   // Success
+   --c-success: rgba(177,255,170, 1);
+   --c-success-10: rgba(177,255,170, 0.1);
+   --c-success-15: rgba(177,255,170, 0.15);
+   --c-success-40: rgba(177,255,170, 0.4);
+   // Danger
+   --c-danger: rgba(255,128,128, 1);
+   --c-danger-10: rgba(255,128,128, 0.1);
+   --c-danger-15: rgba(255,128,128, 0.15);
+   --c-danger-40: rgba(255,128,128, 0.4);
+   // Pending
+   --c-pending: rgba(255,223,123, 1);
+   --c-pending-10: rgba(255,223,123, 0.1);
+   --c-pending-40: rgba(255,223,123, 0.4);
+   // Other
+   --c-metamask: rgba(245,132,31, 1);
+   --c-portis: rgba(255,76,47, 1);
+   --c-authereum: rgba(109,178,216, 1);
+}
 
-  .theme-light{
-     // Primary
-     --c-primary: rgba(103,92,255, 1);
-     --c-primary-15: rgba(103,92,255, 0.15);
-     --c-primary-25: rgba(103,92,255, 0.25);
-     --c-primary-35: rgba(103,92,255, 0.35);
-     --c-primary-50: rgba(103,92,255, 0.5);
-     --c-primary-less-sat: rgba(112,102,255, 1);
-     // Secondary
-     --c-secondary: rgba(136,80,248, 1);
-     // Background
-     --c-background: rgba(248,247,252, 1);
-     --c-background-15: rgba(248,247,252, 15);
-     --c-background-75: rgba(248,247,252, 0.75);
-     --c-background-sec: rgba(255,255,255, 1);
-     --c-background-ter: rgba(242,241,255, 1);
-     --c-background-qua: rgba(44,43,61, 1);
-     // Text
-     --c-text: rgba(1,0,20, 1);
-     --c-text-05: rgba(1,0,20, 0.05);
-     --c-text-10: rgba(1,0,20, 0.1);
-     --c-text-15: rgba(1,0,20, 0.15);
-     --c-text-40: rgba(1,0,20, 0.4);
-     // Success
-     --c-success: rgba(0,153,102, 1);
-     --c-success-10: rgba(0,153,102, 0.1);
-     --c-success-15: rgba(0,153,102, 0.15);
-     --c-success-40: rgba(0,153,102, 0.4);
-     // Danger
-     --c-danger: rgba(153,0,64, 1);
-     --c-danger-10: rgba(153,0,64, 0.1);
-     --c-danger-15: rgba(153,0,64, 0.15);
-     --c-danger-40: rgba(153,0,64, 0.4);
-     // Pending
-     --c-pending: rgba(205,137,0, 1);
-     --c-pending-10: rgba(205,137,0, 0.1);
-     --c-pending-40: rgba(205,137,0, 0.4);
-     // Other
-     --c-metamask: rgba(245,132,31, 1);
-     --c-portis: rgba(255,76,47, 1);
-     --c-authereum: rgba(109,178,216, 1);
-  }
+.theme-light{
+   // Primary
+   --c-primary: rgba(103,92,255, 1);
+   --c-primary-15: rgba(103,92,255, 0.15);
+   --c-primary-25: rgba(103,92,255, 0.25);
+   --c-primary-35: rgba(103,92,255, 0.35);
+   --c-primary-50: rgba(103,92,255, 0.5);
+   --c-primary-less-sat: rgba(112,102,255, 1);
+   // Secondary
+   --c-secondary: rgba(136,80,248, 1);
+   // Background
+   --c-background: rgba(248,247,252, 1);
+   --c-background-15: rgba(248,247,252, 15);
+   --c-background-75: rgba(248,247,252, 0.75);
+   --c-background-sec: rgba(255,255,255, 1);
+   --c-background-ter: rgba(242,241,255, 1);
+   --c-background-qua: rgba(44,43,61, 1);
+   // Text
+   --c-text: rgba(1,0,20, 1);
+   --c-text-05: rgba(1,0,20, 0.05);
+   --c-text-10: rgba(1,0,20, 0.1);
+   --c-text-15: rgba(1,0,20, 0.15);
+   --c-text-40: rgba(1,0,20, 0.4);
+   // Success
+   --c-success: rgba(0,153,102, 1);
+   --c-success-10: rgba(0,153,102, 0.1);
+   --c-success-15: rgba(0,153,102, 0.15);
+   --c-success-40: rgba(0,153,102, 0.4);
+   // Danger
+   --c-danger: rgba(153,0,64, 1);
+   --c-danger-10: rgba(153,0,64, 0.1);
+   --c-danger-15: rgba(153,0,64, 0.15);
+   --c-danger-40: rgba(153,0,64, 0.4);
+   // Pending
+   --c-pending: rgba(205,137,0, 1);
+   --c-pending-10: rgba(205,137,0, 0.1);
+   --c-pending-40: rgba(205,137,0, 0.4);
+   // Other
+   --c-metamask: rgba(245,132,31, 1);
+   --c-portis: rgba(255,76,47, 1);
+   --c-authereum: rgba(109,178,216, 1);
+}
