@@ -94,8 +94,6 @@ export const mutations = {
           approvedRaw: balance.approvedRaw
         }
       }
-      console.log(state.balancePrimary)
-      console.log(state.balanceSecondary)
       Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, primary: state.balancePrimary, secondary: state.balanceSecondary }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
       // Update fee
       if (state.fee) {
@@ -171,10 +169,8 @@ export const getters = {
     return state.loggedInAccount
   },
   getBalance(state) {
-    console.log(`GETTING BALANCE`)
     if (state.loggedInAccount != null) {
       if (state.balancePrimary && state.balanceSecondary) {
-        console.log("RETURNING CORRECTLY")
         return {
           primary: state.balancePrimary,
           secondary: state.balanceSecondary
@@ -184,7 +180,6 @@ export const getters = {
       if (cacheBalance) {
         let parsed = JSON.parse(cacheBalance)
         if ("primary" in parsed && "secondary" in parsed) {
-          console.log("RETURNING CACHE")
           return {
             primary: parsed.primary,
             secondary: parsed.secondary
@@ -192,7 +187,6 @@ export const getters = {
         }
       }
     }
-    console.log("RETURNING EMPTY")
     return {
       primary: {},
       secondary: {}

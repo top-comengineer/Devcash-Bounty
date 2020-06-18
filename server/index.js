@@ -71,7 +71,7 @@ function setupEthersJobs() {
   });
   // Listen to bounty event to confirm it
   etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
-    console.log(`!!!!! Bounty ${uBountyIndex} created !!!!!!!`)
+    console.log(`event: Bounty ${uBountyIndex} created`)
     // Retrieve bounty from chain
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
@@ -81,7 +81,7 @@ function setupEthersJobs() {
   })
   // Listen to submitted event
   etherClient.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
-    console.log(`Submission ${submissionIndex} created`)
+    console.log(`event: Submission ${submissionIndex} created`)
     // Retrieve bounty and submission with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
@@ -140,7 +140,6 @@ function setupEthersJobs() {
   })
   // Update bounty statuses and amounts
   cron.schedule("*/10 * * * *", async function() {
-    console.log("RUNNING UPDATE BALANCES")
     let bounties = await UBounty.findAll({
       where: {
         complete: {[Op.eq]: false}

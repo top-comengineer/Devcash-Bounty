@@ -342,15 +342,16 @@ export default {
         this.approvalLoading = true
         await DevcashBounty.updateBalances(this)
         let amt = utils.parseUnits(this.toApprove.toString(), 8)
-        let avail = utils.bigNumberify(this.$store.state.devcashData.balance.primary.raw)
+        let avail = utils.bigNumberify(this.balance.primary.raw)
         if (amt.gt(avail)) {
           this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
           return
         }
         this.approvalError = ""
         await this.$store.state.devcash.connector.approveBalance(this.toApprove)
+        this.toApprove = ""
       } catch (e) {
-        
+        console.log(e)
       } finally {
         this.approvalLoading = false
       }
