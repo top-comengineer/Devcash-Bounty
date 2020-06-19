@@ -292,7 +292,7 @@
             >{{ $t('bountyPlatform.singleBounty.comments.buttonComment') }}</button>
           </div>
           <!-- If there are comments -->
-          <div v-if="0>1" class="w-full flex flex-col">
+          <div v-if="true" class="w-full flex flex-col">
             <CommentCard
               class="my-2"
               perspective="hunter"
@@ -633,7 +633,9 @@ export default {
         },
         { rel: "manifest", href: "/site.webmanifest" }
       ],
-      bodyAttrs: {class: this.isSubmissionModalOpen || this.isContributeModalOpen? 'overflow-hidden':''}
+      bodyAttrs: {
+        class: [ this.isSubmissionModalOpen || this.isContributeModalOpen? 'overflow-hidden':'']
+      }
     };
   }
 };

@@ -1,8 +1,7 @@
 <template>
   <!-- Modal Wrapper -->
   <div
-    :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-    class="max-w-full max-h-xs flex flex-col shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-x-hidden overflow-y-scroll"
+    class="bg-c-text text-c-background max-w-full max-h-xs flex flex-col shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-x-hidden overflow-y-scroll"
   >
     <button
       v-for="(category, index) in categories"
@@ -10,13 +9,13 @@
       @click="categoryPicked(category)"
       @keydown.tab.exact="index+1 == categories.length?closePicker():null"
       @keydown.esc.exact="closePicker"
-      :class="category == currentCategory ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+      :class="category == currentCategory ? 'bg-c-primary text-c-text': 'hover:bg-c-primary-35 focus:bg-c-primary-35'"
       class="flex flex-row items-center py-3 transition-colors duration-200 ease-out pl-3 pr-8"
     >
       <div class="mr-2">
         <Icon
           v-if="category == currentCategory"
-          colorClass="text-dtText"
+          colorClass="text-c-text"
           type="done"
           class="w-6 h-6"
         />

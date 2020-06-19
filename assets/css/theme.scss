@@ -1,4 +1,7 @@
 :root{
+   //// COLORS ////
+   ///////////////
+
    // Primary
    --c-primary: rgba(103,92,255, 1);
    --c-primary-15: rgba(103,92,255, 0.15);
@@ -39,6 +42,14 @@
    --c-metamask: rgba(245,132,31, 1);
    --c-portis: rgba(255,76,47, 1);
    --c-authereum: rgba(109,178,216, 1);
+
+   // Shadow colors
+   --c-shdw-1: rgba(0,0,0,0.04);
+   --c-shdw-2: rgba(0,0,0,0.08);
+   --c-shdw-3: rgba(0,0,0,0.16);
+   --c-shdw-4: rgba(0,0,0,0.24);
+   --c-shdw-5: rgba(0,0,0,0.36);
+   --c-shdw-6: rgba(0,0,0,0.48);
 }
 
 .theme-light{
@@ -57,7 +68,7 @@
    --c-background-75: rgba(248,247,252, 0.75);
    --c-background-sec: rgba(255,255,255, 1);
    --c-background-ter: rgba(242,241,255, 1);
-   --c-background-qua: rgba(44,43,61, 1);
+   --c-background-qua: rgba(255,255,255, 1);
    // Text
    --c-text: rgba(1,0,20, 1);
    --c-text-05: rgba(1,0,20, 0.05);
@@ -82,4 +93,11 @@
    --c-metamask: rgba(245,132,31, 1);
    --c-portis: rgba(255,76,47, 1);
    --c-authereum: rgba(109,178,216, 1);
+   // Shadow colors
+   --c-shdw-1: rgba(0,0,0,0.02);
+   --c-shdw-2: rgba(0,0,0,0.04);
+   --c-shdw-3: rgba(0,0,0,0.08);
+   --c-shdw-4: rgba(0,0,0,0.16);
+   --c-shdw-5: rgba(0,0,0,0.24);
+   --c-shdw-6: rgba(0,0,0,0.36);
 }

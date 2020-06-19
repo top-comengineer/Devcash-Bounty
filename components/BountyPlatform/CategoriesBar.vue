@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="
-      [!$store.state.theme.dt?'shadow-lgS':'']
-    "
-    class="w-full flex flex-row flex-wrap items-center bg-dtPrimary px-4 md:px-6 pt-1 pb-2 md:pb-1 rounded-tl-2xl rounded-br-2xl rounded-tr-lg rounded-bl-lg"
+    class="w-full flex flex-row flex-wrap items-center bg-c-primary shadow-lg px-4 md:px-6 pt-1 pb-2 md:pb-1 rounded-tl-2xl rounded-br-2xl rounded-tr-lg rounded-bl-lg"
   >
     <h5
       class="w-full md:w-auto mx-2 md:mx-3 my-2 text-lg font-bold text-dtText p-1"

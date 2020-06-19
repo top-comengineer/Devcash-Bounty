@@ -38,6 +38,7 @@ module.exports = {
       transparent: "transparent",
       // Css variables
       'c-primary': "var(--c-primary)",
+      'c-primary-35': "var(--c-primary-35)",
       'c-primary-less-sat': "var(--c-primary-less-sat)",
       'c-secondary': "var(--c-secondary)",
       'c-background': "var(--c-background)",
@@ -51,18 +52,18 @@ module.exports = {
       'c-metamask': "var(--c-metamask)",
       'c-authereum': "var(--c-authereum)",
       'c-portis': "var(--c-portis)",
+      'c-shdw-1': "var(--c-shdw-1)",
+      'c-shdw-2': "var(--c-shdw-2)",
+      'c-shdw-3': "var(--c-shdw-3)",
+      'c-shdw-4': "var(--c-shdw-4)",
+      'c-shdw-5': "var(--c-shdw-5)",
+      'c-shdw-6': "var(--c-shdw-6)",
     },
     boxShadow: {
       none: "none",
       md: "0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)",
-      mdS: "0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .12)",
-      mdSS: "0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .4)",
-      lgL:
-        "0 10px 15px -3px rgba(0, 0, 0, .05), 0 4px 6px -2px rgba(0, 0, 0, .025)",
       lg:
-        "0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -2px rgba(0, 0, 0, .05)",
-      lgD:
-        "0 5px 15px 0px rgba(0, 0, 0, .08), 0 2px 6px 0px rgba(0, 0, 0, .04)",
+        "0 5px 15px 0px var(--c-shdw-3), 0 2px 6px 0px var(--c-shdw-2)",
       lgDL:
         "0 5px 15px 0px rgba(0, 0, 0, .05), 0 2px 6px 0px rgba(0, 0, 0, .025)",
       lgS:
@@ -85,10 +86,8 @@ module.exports = {
         "0 20px 25px -5px rgba(0, 0, 0, .4), 0 10px 10px -5px rgba(0, 0, 0, .16)",
       xlDSS:
         "0 12px 35px -4px rgba(0, 0, 0, .4), 0 6px 15px -2px rgba(0, 0, 0, .16)",
-      "2xl": "0 25px 50px -12px rgba(0, 0, 0, .25)",
-      "2xlS": "0 25px 50px -12px rgba(0, 0, 0, .4)",
-      "4xl": "0 15px 100px -5px rgba(0, 0, 0, .35)",
-      "4xlS": "0 15px 100px -5px rgba(0, 0, 0, .9)"
+      "2xl": "0 25px 50px -12px var(--c-shdw-5)",
+      "4xl": "0 15px 100px -5px var(--c-shdw-6)",
     },
     opacity: {
       "0": "0",

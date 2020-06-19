@@ -1,51 +1,35 @@
 <template>
   <div
     :class="{
-      'bg-dtBackgroundSecondary border-dtBackgroundSecondary border-dtBackgroundSecondary': $store.state.theme.dt && !type,
-      'bg-ltBackgroundSecondary shadow-lg border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && !type,
-      'bg-dtBackgroundTertiary border-dtBackgroundTertiary border-dtBackgroundTertiary': $store.state.theme.dt && type == 'secondary',
-      'bg-ltBackgroundSecondary shadow-lgD border-ltBackgroundSecondary border-ltBackgroundSecondary': !$store.state.theme.dt && type == 'secondary'
+      'bg-c-background-sec border-c-background-sec': !type,
+      'bg-c-background-ter border-c-background-ter border-c-background-ter': type == 'secondary',
     } "
-    class="w-full flex flex-row flex-wrap justify-between items-center relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
+    class="w-full flex flex-row flex-wrap justify-between items-center relative shadow-lg rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >
     <!-- Bounty Name and Address -->
     <div
       class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start opacity-animation"
     >
       <h4
-        :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-        class="text-transparent font-extrabold text-xl text-left rounded-full px-4 opacity-75"
+        class="bg-c-text text-transparent font-extrabold text-xl text-left rounded-full px-4 opacity-75"
       >Awesome Bounty</h4>
       <div class="flex flex-row items-center mt-1">
-        <div
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="jazziconPlaceholder rounded-full opacity-50 flex"
-        ></div>
+        <div class="bg-c-text jazziconPlaceholder rounded-full opacity-50 flex"></div>
         <h5
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-transparent font-mono-jet font-medium text-md text-left ml-2 opacity-50 rounded-full px-4"
+          class="bg-c-text text-transparent font-mono-jet font-medium text-md text-left ml-2 opacity-50 rounded-full px-4"
         >0xFFFF...FFFF</h5>
       </div>
     </div>
     <!-- Divider -->
-    <div
-      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
-      class="md:hidden w-full h-px rounded-full opacity-5 my-3"
-    ></div>
+    <div class="bg-c-text md:hidden w-full h-px rounded-full opacity-5 my-3"></div>
     <!-- Submissions Left and Remaining Time -->
     <div
       class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end opacity-animation"
     >
       <!-- Submissions Left -->
       <div class="flex flex-row justify-end items-center">
-        <div
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="w-4 h-4 mr-1 rounded-full opacity-50"
-        ></div>
-        <h6
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-left text-sm text-transparent rounded-full opacity-50"
-        >
+        <div class="bg-c-text w-4 h-4 mr-1 rounded-full opacity-50"></div>
+        <h6 class="bg-c-text text-left text-sm text-transparent rounded-full opacity-50">
           <span class="font-bold">1 of 1</span>
           <span>
             {{
@@ -56,14 +40,8 @@
       </div>
       <!-- Remaining Time -->
       <div class="flex flex-row justify-end items-center mt-1">
-        <div
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="w-4 h-4 mr-1 rounded-full opacity-50"
-        ></div>
-        <h6
-          :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-          class="text-left text-sm text-transparent rounded-full opacity-50"
-        >
+        <div class="bg-c-text w-4 h-4 mr-1 rounded-full opacity-50"></div>
+        <h6 class="bg-c-text text-left text-sm text-transparent rounded-full opacity-50">
           <span class="font-bold">11 months</span>
           <span>
             {{
@@ -78,18 +56,14 @@
       class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end opacity-animation"
     >
       <h4
-        class="bg-dtPrimary font-extrabold text-xl text-left md:text-right text-transparent rounded-full px-2"
+        class="bg-c-primary font-extrabold text-xl text-left md:text-right text-transparent rounded-full px-2"
       >{D}10,000,000</h4>
       <h5
-        :class="[$store.state.theme.dt? 'bg-dtText': 'bg-ltText']"
-        class="text-lg text-left md:text-right mt-1 text-transparent rounded-full px-2 opacity-50"
+        class="bg-c-text text-lg text-left md:text-right mt-1 text-transparent rounded-full px-2 opacity-50"
       >Ξ10.10 / $1,000</h5>
     </div>
     <!-- Divider -->
-    <div
-      :class="[$store.state.theme.dt ? 'bg-dtText' : 'bg-ltText']"
-      class="md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"
-    ></div>
+    <div class="bg-c-text md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"></div>
   </div>
 </template>
 <script>

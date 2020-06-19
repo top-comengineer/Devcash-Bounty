@@ -1,18 +1,11 @@
 <template>
-  <div
-    :class="[$store.state.theme.dt ? 'shadow-lgDSS' : 'shadow-lgD']"
-    class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 py-2"
-  >
+  <div class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 py-2 shadow-lg">
     <div class="flex flex-col justify-center items-center mx-3 mt-3 mb-4">
       <!-- Bounty Address Text and Copy Button  -->
       <div class="flex flex-row flex-wrap items-center">
         <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
         <button class="w-6 h-6">
-          <Icon
-            :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-            class="w-full h-full"
-            type="copy"
-          />
+          <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
         </button>
       </div>
       <!-- Avatar and Address -->
@@ -23,7 +16,7 @@
     </div>
     <!-- QR Code -->
     <div
-      class="flex flex-row justify-center h-32 w-32 rounded-lg overflow-hidden border-3 border-dtPrimary my-4 mx-1"
+      class="flex flex-row justify-center h-32 w-32 rounded-lg overflow-hidden border-3 border-c-primary my-4 mx-1"
     >
       <vue-qr
         :text="bountyAddress"
