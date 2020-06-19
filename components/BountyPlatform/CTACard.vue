@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="
-      [!$store.state.theme.dt?'shadow-lgS':'']
-    "
-    class="w-full flex flex-row relative overflow-hidden flex-wrap justify-center items-center bg-dtSecondary py-6 md:py-10 px-6 md:px-8 rounded-br-3xl rounded-bl-lg"
+    class="w-full flex flex-row relative shadow-lg overflow-hidden flex-wrap justify-center items-center bg-c-secondary py-6 md:py-10 px-6 md:px-8 rounded-br-3xl rounded-bl-lg"
   >
     <!-- Left Background Illustration -->
     <img
@@ -15,7 +12,7 @@
     <button
       :disabled="disabled"
       @click="buttonAction"
-      class="max-w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2"
+      class="btn-text-sec bg-c-light text-c-secondary max-w-full transform hover:scale-md focus:scale-md origin-bottom-left transition-all duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2"
     >{{ buttonText!=null?buttonText:"Button" }}</button>
     <!-- Right Background Illustration -->
     <img

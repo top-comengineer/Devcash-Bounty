@@ -38,6 +38,8 @@ module.exports = {
       transparent: "transparent",
       // Css variables
       'c-primary': "var(--c-primary)",
+      'c-primary-15': "var(--c-primary-15)",
+      'c-primary-25': "var(--c-primary-25)",
       'c-primary-35': "var(--c-primary-35)",
       'c-primary-less-sat': "var(--c-primary-less-sat)",
       'c-secondary': "var(--c-secondary)",
@@ -46,11 +48,25 @@ module.exports = {
       'c-background-ter': "var(--c-background-ter)",
       'c-background-qua': "var(--c-background-qua)",
       'c-text': "var(--c-text)",
+      'c-text-05': "var(--c-text-05)",
+      'c-text-10': "var(--c-text-10)",
+      'c-text-15': "var(--c-text-15)",
       'c-success': "var(--c-success)",
+      'c-success-10': "var(--c-success-10)",
+      'c-success-15': "var(--c-success-15)",
+      'c-success-40': "var(--c-success-40)",
       'c-danger': "var(--c-danger)",
+      'c-danger-10': "var(--c-danger-10)",
+      'c-danger-15': "var(--c-danger-15)",
+      'c-danger-40': "var(--c-danger-40)",
       'c-pending': "var(--c-pending)",
+      'c-pending-10': "var(--c-pending-10)",
+      'c-pending-15': "var(--c-pending-15)",
+      'c-pending-40': "var(--c-pending-40)",
       'c-metamask': "var(--c-metamask)",
       'c-authereum': "var(--c-authereum)",
+      'c-dark': "var(--c-dark)",
+      'c-light': "var(--c-light)",
       'c-portis': "var(--c-portis)",
       'c-shdw-1': "var(--c-shdw-1)",
       'c-shdw-2': "var(--c-shdw-2)",
@@ -79,7 +95,7 @@ module.exports = {
       nlgSS:
         "0 -10px 15px -3px rgba(0, 0, 0, .3), 0 -4px 6px -2px rgba(0, 0, 0, .15)",
       xl:
-        "0 20px 25px -5px rgba(0, 0, 0, .1), 0 10px 10px -5px rgba(0, 0, 0, .04)",
+        "0 10px 25px -3px var(--c-shdw-3), 0 2px 10px 0px var(--c-shdw-3)",
       xlS:
         "0 20px 25px -5px rgba(0, 0, 0, .2), 0 10px 10px -5px rgba(0, 0, 0, .08)",
       xlSS:
@@ -152,9 +168,11 @@ module.exports = {
         168: "42rem"
       },
       scale: {
+        md: "1.035",
+        lg: "1.065",
         107: "1.07",
         115: "1.15",
-        120: "1.2"
+        120: "1.2",
       },
       transitionDuration: {
         "0": "0ms"

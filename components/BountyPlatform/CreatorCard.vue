@@ -1,8 +1,5 @@
 <template>
-  <div
-    :class="[$store.state.theme.dt?'shadow-lgSS':'shadow-lg'] "
-    class="w-full flex flex-col rounded-lg px-4 py-4 mt-2"
-  >
+  <div class="w-full flex flex-col shadow-xl rounded-lg px-4 py-4 mt-2 border border-c-text-10">
     <div class="flex flex-row md:justify-center items-center">
       <Jazzicon class="flex" :diameter="48" :address="address" />
       <h6 v-html="threeLineAddress(address)" class="font-mono-jet text-sm ml-3"></h6>

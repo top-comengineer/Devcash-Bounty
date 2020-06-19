@@ -1,20 +1,10 @@
 <template>
   <div class="flex">
     <div
-      :class="[
-      $store.state.theme.dt
-        ? 'bg-dtBackgroundTertiary border-dtText-10'
-        : 'bg-ltBackgroundSecondary border-ltText-10 shadow-lgDL']"
-      class="w-full flex flex-col flex-wrap justify-between items-center border rounded-lg overflow-hidden"
+      class="bg-c-background-sec border-c-text-10 shadow-lg w-full flex flex-col flex-wrap justify-between items-center border rounded-lg overflow-hidden"
     >
       <!-- Top Part -->
-      <div
-        :class="[
-      $store.state.theme.dt
-        ? 'bg-dtText-5'
-        : 'bg-ltText-5']"
-        class="w-full flex flex-row flex-wrap justify-between items-center py-2"
-      >
+      <div class="bg-c-text-05 w-full flex flex-row flex-wrap justify-between items-center py-2">
         <!-- Senders Address and Project Name -->
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
           <Jazzicon class="flex m-1" :diameter="20" :address="submission.creator" />
@@ -36,12 +26,9 @@
           <div class="flex flex-col my-2">
             <h5
               :class="{
-              'text-dtPending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback') && $store.state.theme.dt,
-              'text-ltPending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback') && !$store.state.theme.dt,
-              'text-dtSuccess': submission.status == 'approved' && $store.state.theme.dt,
-              'text-ltSuccess': submission.status == 'approved' && !$store.state.theme.dt,
-              'text-dtDanger': submission.status == 'rejected' && $store.state.theme.dt,
-              'text-ltDanger': submission.status == 'rejected' && !$store.state.theme.dt}"
+              'text-c-pending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback'),
+              'text-c-success': submission.status == 'approved',
+              'text-c-danger': submission.status == 'rejected'}"
               class="font-bold text-left"
             >{D}{{formatAmount()}}</h5>
             <h6 class="text-sm text-left mt-1">(Ξ{{ formatEthAmount() }})</h6>
@@ -55,32 +42,20 @@
             >
               <!-- Approve Button -->
               <button
-                :class="[$store.state.theme.dt?'hover_bg-dtSuccess-15 focus_bg-dtSuccess-15': 'hover_bg-ltSuccess-15 focus_bg-ltSuccess-15']"
-                class="flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
+                class="hover:bg-c-success-15 focus:bg-c-success-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
               >
-                <Icon
-                  class="w-5 h-5"
-                  type="done"
-                  :colorClass="$store.state.theme.dt?'text-dtSuccess':'text-ltSuccess'"
-                />
+                <Icon class="w-5 h-5" type="done" colorClass="text-c-success" />
                 <h5
-                  :class="$store.state.theme.dt?'text-dtSuccess':'text-ltSuccess'"
-                  class="font-extrabold mx-1"
+                  class="text-c-success font-extrabold mx-1"
                 >{{$t('bountyPlatform.bountyManager.approve')}}</h5>
               </button>
               <!-- Reject Button -->
               <button
-                :class="[$store.state.theme.dt?'hover_bg-dtDanger-15 focus_bg-dtDanger-15': 'hover_bg-ltDanger-15 focus_bg-ltDanger-15']"
-                class="flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
+                class="hover:bg-c-danger-15 focus:bg-c-danger-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
               >
-                <Icon
-                  class="w-5 h-5"
-                  type="cancel"
-                  :colorClass="$store.state.theme.dt?'text-dtDanger':'text-ltDanger'"
-                />
+                <Icon class="w-5 h-5" type="cancel" colorClass="text-c-danger" />
                 <h5
-                  :class="$store.state.theme.dt?'text-dtDanger':'text-ltDanger'"
-                  class="font-extrabold mx-1"
+                  class="text-c-danger font-extrabold mx-1"
                 >{{$t('bountyPlatform.bountyManager.reject')}}</h5>
               </button>
             </div>

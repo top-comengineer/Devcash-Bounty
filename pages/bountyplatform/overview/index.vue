@@ -1,15 +1,12 @@
 <template>
   <div v-if="!isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
-    <h1>
-      NOT LOGGED IN
-    </h1>
+    <h1>NOT LOGGED IN</h1>
   </div>
   <div v-else class="w-full flex flex-row flex-wrap justify-center">
     <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
       <OverviewCardPlaceholder
         v-if="overviewLoading"
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-        type="earned"
       />
       <OverviewCard
         v-else
@@ -22,7 +19,6 @@
       <OverviewCardPlaceholder
         v-if="overviewLoading"
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-        type="awarded"
       />
       <OverviewCard
         v-else
@@ -32,7 +28,12 @@
         :totalETH="totalAwardedEth"
         :count="totalBounties"
       />
+      <OverviewCardPlaceholder
+        v-if="overviewLoading"
+        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+      />
       <OverviewCard
+        v-else
         class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
         type="balance"
         :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"

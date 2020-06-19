@@ -1,7 +1,6 @@
 <template>
   <div
-    :class="$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-4xlS':'bg-ltBackgroundSecondary shadow-4xl'"
-    class="overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
+    class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
   >
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
@@ -11,12 +10,11 @@
         @focus="isCloseFocused=true"
         @blur="isCloseFocused=false"
         @click="cacheAndClose()"
-        :class="$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary'"
-        class="fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
+        class="bg-c-background-sec fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
       >
         <Icon
           :class="isCloseHovered || isCloseFocused? 'scale-120':'scale-100'"
-          :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
+          colorClass="text-c-text"
           class="w-6 h-6 md:w-8 md:h-8 transition-all duration-200 ease-out transform"
           type="cancel"
         />
@@ -33,10 +31,7 @@
     <div class="w-full" action>
       <!-- Card for Description -->
       <div
-        :class="
-      [$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']
-    "
-        class="w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
       >
         <!-- Submission Description -->
         <div class="w-full flex flex-col my-3">
@@ -45,8 +40,7 @@
           >{{$t('bountyPlatform.singleBounty.submission.descriptionHeader')}}</h3>
           <textarea
             v-model="description"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="submissionDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
+            class="bg-c-background-ter border-c-background-ter submissionDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.singleBounty.submission.descriptionPlaceholder')"
             @blur="validateDescription"
@@ -54,61 +48,28 @@
         </div>
         <div class="w-full flex flex-col">
           <p
-            :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
+            :class="{'text-c-danger':(description.length > maxDescriptionCount || description.length < minDescriptionCount)} "
             class="text-sm px-3 opacity-75"
           >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
         </div>
       </div>
-      <!-- Card for Attachments 
-      <div
-        :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full flex flex-row flex-wrap relative pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
-      >
-        // Attachments
-        <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">
-            {{$t('bountyPlatform.singleBounty.submission.attachments')}}
-            <span
-              class="text-sm font-normal opacity-75"
-            >{{$t('bountyPlatform.singleBounty.submission.optional')}}</span>
-          </h3>
-          <div class="flex flex-row flex-wrap items-center">
-            // Choose a File Button
-            <button
-              :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
-              class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-1_5 mt-3 mr-6"
-            >{{ $t("bountyPlatform.singleBounty.submission.buttonChooseFile") }}</button>
-            // Choosen File Display 
-            <div
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundTertiary']"
-              class="w-auto text-lg rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
-            >
-              <p class="opacity-50">{{$t('bountyPlatform.singleBounty.submission.noFile')}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      -->
       <!-- Card for Contact Name and Email -->
       <div
-        :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary shadow-xlDSS':'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
           <input
             v-model="contactName"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
             @focus="contactNameError?contactNameError=false:null"
             @blur="validateContactName"
           />
           <p
-            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3 mt-2"
+            class="text-c-danger text-xs px-3 mt-2"
           >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
         </div>
         <!-- Divider -->
@@ -118,16 +79,14 @@
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
           <input
             v-model="contactEmail"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
             @focus="emailError?emailError=false:null"
             @blur="validateEmail"
           />
           <p
-            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3 mt-2"
+            class="text-c-danger text-xs px-3 mt-2"
           >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
         </div>
       </div>

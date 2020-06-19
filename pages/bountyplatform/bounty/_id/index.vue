@@ -33,10 +33,10 @@
       <div
         v-if="isContributeModalOpen"
         :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal"
+        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal overflow-visible"
       >
         <div
-          class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12"
+          class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
           <transition name="modalTransition">
             <ContributeModal

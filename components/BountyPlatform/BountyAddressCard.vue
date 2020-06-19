@@ -1,10 +1,14 @@
 <template>
-  <div class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 py-2 shadow-lg">
+  <div
+    class="w-full flex flex-row flex-wrap justify-center rounded-xl px-4 py-2 shadow-xl border border-c-text-10"
+  >
     <div class="flex flex-col justify-center items-center mx-3 mt-3 mb-4">
       <!-- Bounty Address Text and Copy Button  -->
       <div class="flex flex-row flex-wrap items-center">
         <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
-        <button class="w-6 h-6">
+        <button
+          class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
+        >
           <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
         </button>
       </div>

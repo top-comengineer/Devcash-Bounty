@@ -1,12 +1,9 @@
 <template>
   <div
     :class="{
-        'bg-dtPending': status=='pending' && $store.state.theme.dt,
-        'bg-ltPending': status=='pending' && !$store.state.theme.dt,
-        'bg-dtSuccess': status=='approved' && $store.state.theme.dt,
-        'bg-ltSuccess': status=='approved' && !$store.state.theme.dt,
-        'bg-dtDanger': status=='rejected' && $store.state.theme.dt,
-        'bg-ltDanger': status=='rejected' && !$store.state.theme.dt}"
+        'bg-c-pending': status=='pending',
+        'bg-c-success': status=='approved',
+        'bg-c-danger': status=='rejected'}"
     class="w-full h-px opacity-50"
   ></div>
 </template>

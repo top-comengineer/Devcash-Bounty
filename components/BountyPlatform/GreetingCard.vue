@@ -1,9 +1,6 @@
 <template>
   <div
-    :class="
-      [!$store.state.theme.dt?'shadow-lgS':'']
-    "
-    class="w-full flex flex-col relative overflow-hidden flex-wrap justify-center items-center bg-dtPrimary py-4 md:py-10 px-6 md:px-6 lg:px-8 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    class="shadow-lg w-full flex flex-col relative overflow-hidden flex-wrap justify-center items-center bg-c-primary py-4 md:py-10 px-6 md:px-6 lg:px-8 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
   >
     <!-- Left Background Illustration -->
     <img
@@ -35,11 +32,11 @@
       class="w-full md:w-3/4 xl:w-7/12 flex flex-col flex-wrap justify-center items-center mb-2 md:mb-4"
     >
       <h1
-        class="text-3xl font-extrabold text-center text-dtText"
+        class="text-3xl font-extrabold text-center text-c-light"
       >{{header != null ? header : $t("bountyPlatform.explore.cardHeader")}}</h1>
       <h2
         :class="type=='explore'?'hidden md:block':'' "
-        class="text-md md:text-xl text-center mt-1 text-dtText"
+        class="text-md md:text-xl text-center mt-1 text-c-light"
       >{{paragraph != null ? paragraph : $t("bountyPlatform.explore.cardParagraph")}}</h2>
     </div>
     <!-- Right Background Illustration -->
