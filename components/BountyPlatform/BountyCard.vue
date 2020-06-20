@@ -63,7 +63,7 @@
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
       <h4
-        class="text-dtPrimary font-extrabold text-xl text-left md:text-right"
+        class="text-c-primary font-extrabold text-xl text-left md:text-right"
       >{D}{{ formatAmount() }}</h4>
       <h5 class="text-lg text-left md:text-right mt-1">Ξ{{ formatEthAmount() }}</h5>
     </div>

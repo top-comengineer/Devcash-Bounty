@@ -6,11 +6,7 @@
     </div>
     <h5 v-if="name!=null" class="font-bold mt-3">{{name}}</h5>
     <div v-if="email!=null" class="flex flex-row items-center">
-      <Icon
-        :colorClass="$store.state.theme.dt?'text-dtText':'text-ltText'"
-        class="w-5 h-5"
-        type="email"
-      />
+      <Icon colorClass="text-c-text" class="w-5 h-5" type="email" />
       <h6 class="ml-2 text-sm break-all">{{email}}</h6>
     </div>
   </div>
