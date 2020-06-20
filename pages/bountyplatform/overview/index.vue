@@ -54,104 +54,16 @@
       <div class="w-full flex flex-col flex-wrap my-4">
         <ActivityCard
           class="my-2"
-          messageType="bountyCreated"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="submissionReceived"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="submissionSent"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="bountyPersonalCreated"
-          perspective="manager"
-          bountyName="Devcash Meme"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="bountyPersonalCreated"
-          perspective="hunter"
-          bountyName="ETH Library"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="manager"
-          messageType="submissionApproved"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="hunter"
-          messageType="submissionApproved"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="manager"
-          messageType="submissionRejected"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="hunter"
-          messageType="submissionRejected"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="manager"
-          messageType="bountyAwarded"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-          address="0x65f2CDE79F96C82ef86Eb9cD6B9210075518a901"
-        />
-        <ActivityCard
-          class="my-2"
-          perspective="hunter"
-          messageType="bountyAwarded"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="feeChanged"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="bountyCompleted"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
-        <ActivityCard
-          class="my-2"
-          messageType="bountyReclaimed"
-          bountyName="Devcash Event Feedback"
-          date="03.12.2020 - 12:04"
-        />
+          v-for="(item, i) in activity"
+          :key="i"
+          :perspective="item.perspective"
+          :messageType="item.type"
+          :address="item.address"
+          :bountyName="item.name"
+          :date="formatDate(item.createdAt)"
+        /> 
       </div>
-      <!-- Load More Button -->
+      <!-- Load More Button 
       <div class="flex flex-row justify-center mt-2">
         <button
           :class="[
@@ -161,7 +73,7 @@
         ]"
           class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>
@@ -187,9 +99,19 @@ export default {
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
       balance: "devcashData/getBalance"
-    })
+    }),
+    currentLocale() {
+      for (let locale of this.$i18n.locales) {
+        if (locale.code == this.$i18n.locale) {
+          return locale;
+        }
+      }
+    }     
   },
   methods: {
+    formatDate(dtStr) {
+      return DevcashBounty.formatDateStr(this.currentLocale.iso, dtStr)
+    },    
     async loadOverview() {
       try {
         let res = await this.$axios.get(
@@ -201,6 +123,7 @@ export default {
         this.totalAwardedEth = utils.formatEther(res.data.totalAwardedWei)
         this.totalSubmissions = res.data.totalSubmissions
         this.totalBounties = res.data.totalBounties
+        this.activity = res.data.activity
       } catch (e) {
         console.log(`Error loading overview ${e}`)
       } finally {
@@ -229,7 +152,8 @@ export default {
       totalEarnedDC: "-1",
       totalEarnedEth: "-1",
       totalAwardedDC: "-1",
-      totalAwardedEth: "-1"
+      totalAwardedEth: "-1",
+      activity: []
     };
   },
   mounted() {

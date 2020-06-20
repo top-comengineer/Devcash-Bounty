@@ -1,5 +1,6 @@
 const { utils } = require("ethers")
 const { UBounty, Submission, Op } = require('../models');
+const { etherClient } = require('../utils/ether_client')
 const submission = require("../models/submission");
 
 /*
@@ -40,7 +41,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
     // Get hunter stats
     let submissions = await Submission.findAndCountAll({
       where: {
-        creator: {[Op.eq]: address},
+        [Op.or]: [{creator: address}, {'$ubounty.creator$':address}],
       },
       include: { model: UBounty, as: 'ubounty' }
     })
@@ -48,7 +49,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
     let totalEarnedDC = utils.bigNumberify(0)
     let totalEarnedWei = utils.bigNumberify(0)
     for (const sub of submissions.rows) {
-      if (sub.approved) {
+      if (sub.approved && sub.creator == address) {
         let bountyAmount = utils.bigNumberify(sub.ubounty.bountyAmount)
         let bountyAmountWei = utils.bigNumberify(sub.ubounty.weiAmount)
         totalEarnedDC.add(bountyAmount.div(sub.ubounty.available))
@@ -58,7 +59,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
     // Get creator stats
     let bounties = await UBounty.findAndCountAll({
       where: {
-        creator: {[Op.eq]: address}
+        [Op.or]: [{creator: address}, {hunter: address}]
       },
       include: { model: Submission, as: 'submissions' }
     })
@@ -66,6 +67,9 @@ module.exports.getOverviewStats = async (req, res, next) => {
     let totalAwardedDC = utils.bigNumberify(0)
     let totalAwardedWei = utils.bigNumberify(0)
     for (const bounty of bounties.rows) {
+      if (bounty.creator != address) {
+        continue
+      }
       let bountyAmount = utils.bigNumberify(bounty.bountyAmount)
       let bountyAmountWei = utils.bigNumberify(bounty.weiAmount)      
       for (const sub of bounty.submissions) {
@@ -76,6 +80,75 @@ module.exports.getOverviewStats = async (req, res, next) => {
       }
     }
 
+    let activity = []
+    activity = activity.concat(bounties.rows)
+    activity = activity.concat(submissions.rows)
+
+    activity = activity.map((a) => {
+      a = a.toJSON()
+      a.type = ""
+      a.name = ""
+      // Is a submission
+      if (a.submission_data) {
+        a.status = etherClient.getSubmissionStatus(a.ubounty_id, a.submission_id)
+        a.name = a.ubounty.title
+        if (a.ubounty.creator == address) {
+          a.address = a.ubounty.creator
+          a.perspective = "manager"
+          // Submission for their bounty
+          a.type = "submissionReceived"
+        } else if (a.creator == address) {
+          a.address = a.creator
+          a.perspective = "hunter"
+        } else {
+          a.disregard = true
+        }
+        if (a.approved) {
+          a.type = "submissionApproved"
+        } else if (a.status == "rejected") {
+          a.type = "submissionRejected"
+        } else {
+          a.type = a.perspective == "hunter" ? "submissionSent" : "submissionReceived"
+        }        
+      } else {
+        // Bounties
+        a.name = a.title
+        if (a.creator = address) {
+          a.address = a.creator
+          a.perspective = "manager"
+          if (a.hunter) {
+            a.type = "bountyPersonalCreated"
+          } else {
+            a.type = "bountyCreated"
+          }
+        } else if (a.hunter == address) {
+          a.address = a.hunter
+          a.perspective = "hunter"
+          a.type = "bountyPersonalCreated"
+        } else {
+          a.disregard = true
+        }
+      }
+      delete a.ubounty
+      delete a.submissions
+      return a
+    })
+    activity.filter((a) => {
+      if (a.disregard) {
+        return false
+      }
+      return true
+    })
+  
+    activity.sort((a, b) => {
+      let aDt = new Date(a.createdAt)
+      let bDt = new Date(b.createdDt)
+      if (aDt < bDt) {
+        return 1
+      }
+      return -1
+    })
+
     // Aggregate results
     return res.status(200).json({
       totalSubmissions: totalSubmissions,
@@ -83,7 +156,8 @@ module.exports.getOverviewStats = async (req, res, next) => {
       totalEarnedWei: totalEarnedWei.toString(),
       totalBounties: totalBounties,
       totalAwardedDC: totalAwardedDC.toString(),
-      totalAwardedWei: totalAwardedWei.toString()
+      totalAwardedWei: totalAwardedWei.toString(),
+      activity: activity
     })
   } catch (e) {
     res.status(500).send({
