@@ -7,33 +7,6 @@
 module.exports = {
   theme: {
     colors: {
-      // Dark theme colors
-      dtPrimary: "#675CFF",
-      dtPrimaryLessSat: "#7066FF",
-      dtSecondary: "#8850F8",
-      dtBackground: "#010014",
-      dtBackgroundSecondary: "#181726",
-      dtBackgroundTertiary: "#222133",
-      dtBackgroundQuaternary: "#2C2B3D",
-      dtText: "#F2F1FF",
-      dtSuccess: "#B1FFAA",
-      dtDanger: "#FF8080",
-      dtPending: "#FFDF80",
-      dtOrange: "#F5841F",
-      dtRed: "#FF4C2F",
-      dtBlue: "#6DB2D8",
-      // Light theme colors
-      ltPrimary: "#675CFF",
-      dtPrimaryLessSat: "#7066FF",
-      ltSecondary: "#8850F8",
-      ltBackground: "#F8F7FC",
-      ltBackgroundSecondary: "#FFFFFF",
-      ltBackgroundTertiary: "#F2F1FF",
-      ltText: "#010014",
-      ltTextLight: "#EEEEEE",
-      ltSuccess: "#009966",
-      ltDanger: "#990040",
-      ltPending: "#CD8900",
       // Transparent
       transparent: "transparent",
       // Css variables
