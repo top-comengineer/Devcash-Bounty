@@ -4,13 +4,13 @@
     <div class="w-full flex flex-col items-center">
       <div class="w-full flex flex-row justify-center items-center mt-6">
         <!-- Line Left -->
-        <div class="flex-1 h-px2 bg-dtPrimary rounded-br-full"></div>
+        <div class="flex-1 h-px2 bg-c-primary rounded-br-full"></div>
         <!-- Header Text -->
         <h2
-          class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
+          class="font-bold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6"
         >{{ $t("home.tokenDetailsSection.header") }}</h2>
         <!-- Line Left -->
-        <div class="flex-1 h-px2 bg-dtPrimary rounded-bl-full"></div>
+        <div class="flex-1 h-px2 bg-c-primary rounded-bl-full"></div>
       </div>
     </div>
     <!-- Illustrations -->
@@ -28,7 +28,7 @@
             </div>
             <p class="text-base text-center">{{ $t("home.tokenDetailsSection.tokenSupplyHeader") }}</p>
             <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
+              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
             >{{ $t("home.tokenDetailsSection.tokenSupplyText") }}</h3>
           </div>
           <!-- Token Type -->
@@ -42,7 +42,7 @@
             </div>
             <p class="text-base text-center">{{ $t("home.tokenDetailsSection.tokenTypeHeader") }}</p>
             <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
+              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
             >{{ $t("home.tokenDetailsSection.tokenTypeText") }}</h3>
           </div>
           <!-- Token Allocation -->
@@ -58,13 +58,13 @@
               class="text-base text-center"
             >{{ $t("home.tokenDetailsSection.tokenAllocationHeader") }}</p>
             <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
+              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
             >{{ $t("home.tokenDetailsSection.tokenAllocationText") }}</h3>
           </div>
         </div>
       </div>
     </div>
     <!-- Bottom Divider -->
-    <div class="w-full h-px2 bg-dtPrimary"></div>
+    <div class="w-full h-px2 bg-c-primary"></div>
   </div>
 </template>

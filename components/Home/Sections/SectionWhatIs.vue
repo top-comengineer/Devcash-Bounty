@@ -10,13 +10,13 @@
       <!-- Header -->
       <div class="w-full flex flex-row justify-center items-center mt-6">
         <!-- Line Left -->
-        <div class="flex-1 h-px2 bg-dtPrimary rounded-br-full"></div>
+        <div class="flex-1 h-px2 bg-c-primary rounded-br-full"></div>
         <!-- Header Text -->
         <h2
-          class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6"
+          class="font-bold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6"
         >{{ $t("home.whatIsSection.header") }}</h2>
         <!-- Line Right -->
-        <div class="flex-1 h-px2 bg-dtPrimary rounded-bl-full"></div>
+        <div class="flex-1 h-px2 bg-c-primary rounded-bl-full"></div>
       </div>
       <!-- Paragraph -->
       <div class="d-container flex flex-row justify-center">
@@ -25,7 +25,7 @@
         </div>
       </div>
       <!-- Bottom Divider -->
-      <div class="w-full h-px2 bg-dtPrimary"></div>
+      <div class="w-full h-px2 bg-c-primary"></div>
     </div>
   </div>
 </template>

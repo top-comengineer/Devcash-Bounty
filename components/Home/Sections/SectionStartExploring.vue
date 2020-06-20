@@ -18,14 +18,11 @@
           />
           <!-- Start Exploring Card -->
           <div
-            :class="[
-              $store.state.theme.dt ? 'bg-dtBackground' : 'bg-ltBackground'
-            ]"
-            class="w-full flex flex-col items-center rounded-tl-4xl rounded-br-4xl rounded-tr-xl rounded-bl-xl border-2 border-dtPrimary px-2 md:px-4 py-10 relative"
+            class="bg-c-background w-full flex flex-col items-center rounded-tl-4xl rounded-br-4xl rounded-tr-xl rounded-bl-xl border-2 border-c-primary px-2 md:px-4 py-10 relative"
           >
             <!-- Header Text -->
             <h2
-              class="font-bold text-2xl md:text-3xl text-center leading-tight text-dtPrimary px-6 mt-2"
+              class="text-c-primary font-bold text-2xl md:text-3xl text-center leading-tight px-6 mt-2"
             >{{ $t("home.startExploringSection.header") }}</h2>
             <!-- Paragraph Text -->
             <div class="w-full flex flex-row justify-center px-4 mt-4 mb-2">
@@ -34,9 +31,8 @@
             <!-- Call to Action -->
             <div class="flex flex-row justify-center">
               <nuxt-link
-                :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
                 :to="localePath('bountyplatform')"
-                class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
+                class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 md:px-12 py-2 my-4"
               >{{ $t("home.startExploringSection.ctaButton") }}</nuxt-link>
             </div>
           </div>

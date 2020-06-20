@@ -19,7 +19,7 @@
         <div class="w-full md:w-4/5 lg:w-2/5 flex flex-col py-8 px-6 relative">
           <!-- Header Text -->
           <h2
-            class="font-bold text-2xl md:text-3xl text-center lg:text-left leading-tight text-dtPrimary"
+            class="text-c-primary font-bold text-2xl md:text-3xl text-center lg:text-left leading-tight"
           >{{ $t("home.IBOSection.header") }}</h2>
           <!-- Paragraph Text -->
           <p class="text-lg text-center lg:text-left mt-2">{{ $t("home.IBOSection.paragraph") }}</p>
