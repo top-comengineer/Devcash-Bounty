@@ -358,29 +358,18 @@
           <ActivityCard
             class="my-2"
             perspective="general"
-            messageType="submissionRejected"
-            date="03.18.2020, 13:12"
-            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
-          />
-          <ActivityCard
-            class="my-2"
-            perspective="general"
-            messageType="submissionMade"
-            date="03.16.2020, 14:40"
-            address="0x0474f388b2910a30cb0b0fbb21f930a2c19248a8"
-          />
-          <ActivityCard
-            class="my-2"
-            perspective="general"
-            messageType="submissionMade"
-            date="03.15.2020, 16:45"
-            address="0xa090e606e30bd747d4e6245a1517ebe430f0057e"
-          />
+            v-for="(item, i) in bounty.submissions"
+            :key="i"
+            :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : 'submissionMade'"
+            :submission="item"
+            :address="item.creator"
+            :date="formatDate(item.createdAt)"
+          />          
           <ActivityCard
             class="my-2"
             perspective="general"
             messageType="bountyCreated"
-            date="03.14.2020, 12:30"
+            :date="formatDate(bounty.createdAt)"
           />
           <!-- Load More Button -->
           <!-- 
@@ -432,8 +421,20 @@ export default {
     BountyCardStatusTag,
     SubmissionModal,
     ContributeModal
-  }, 
+  },
+  computed: {
+    currentLocale() {
+      for (let locale of this.$i18n.locales) {
+        if (locale.code == this.$i18n.locale) {
+          return locale;
+        }
+      }
+    }   
+  },
   methods: {
+    formatDate(dtStr) {
+      return DevcashBounty.formatDateStr(this.currentLocale.iso, dtStr)
+    },
     autoGrow() {
       this.$refs.commentArea.style.height = "5px";
       this.$refs.commentArea.style.height =
@@ -475,6 +476,14 @@ export default {
     try {
       let res = await $axios.get(`/bounty/one?id=${params.id}`)
       let submissions = await $axios.get(`/submission/list?bounty=${params.id}&page=1&limit=${defaultSubmissionsLimit}`)
+      res.data.submissions.sort((a, b) => {
+        let aDt = new Date(a.createdAt)
+        let bDt = new Date(b.createdAt)
+        if (aDt < bDt) {
+          return 1
+        }
+        return -1
+      })
       return {
         bounty: res.data,
         submissionsLoading: false,
