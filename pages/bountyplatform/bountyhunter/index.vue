@@ -3,10 +3,7 @@
     <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
       <!-- Submissions Sent Card -->
       <div
-        :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
       >
         <!-- Header Row -->
         <div class="flex flex-row flex-wrap justify-between items-center">
@@ -64,9 +61,8 @@
           <!-- Hunt Bounties Call to Action -->
           <div class="flex flex-row justify-center">
             <nuxt-link
-              :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               :to="localePath('bountyplatform')"
-              class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
             >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
           </div>
         </div>
@@ -76,21 +72,13 @@
           class="flex flex-row justify-center mt-2"
         >
           <button
-            :class="[
-          $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
-        ]"
-            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
           >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
       </div>
       <!-- Personal Bounties Card -->
       <div
-        :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lgD']"
-        class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
       >
         <!-- Header Row -->
         <div class="flex flex-row flex-wrap justify-between items-center">
@@ -146,21 +134,15 @@
           <!-- Hunt Bounties Call to Action -->
           <div class="flex flex-row justify-center">
             <nuxt-link
-              :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
               :to="localePath('bountyplatform')"
-              class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
             >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
           </div>
         </div>
         <div v-if="hasMoreBounties && !bountiesLoading" class="flex flex-row justify-center mt-2">
           <button
             @click="loadMoreBounties()"
-            :class="[
-            $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
-        ]"
-            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
           >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
       </div>

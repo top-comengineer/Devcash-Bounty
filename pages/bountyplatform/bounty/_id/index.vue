@@ -8,8 +8,7 @@
     >
       <div
         v-if="isSubmissionModalOpen"
-        :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
       >
         <div
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12"
@@ -32,8 +31,7 @@
     >
       <div
         v-if="isContributeModalOpen"
-        :class="$store.state.theme.dt?'bg-dtBackground-75':'bg-ltBackground-75'"
-        class="w-full h-screen fixed flex flex-row justify-center items-center bg-ltText left-0 top-0 modal overflow-visible"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal overflow-visible"
       >
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
@@ -49,8 +47,7 @@
     </transition>
     <!-- Header Card -->
     <div
-      :class="[!$store.state.theme.dt?'shadow-lgS':'']"
-      class="w-full flex flex-row flex-wrap justify-between items-center bg-dtPrimary text-dtText relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 my-1 md:my-2"
+      class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 my-1 md:my-2"
     >
       <!-- Status Tag -->
       <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" type="active" />
@@ -84,10 +81,7 @@
     <div class="w-full flex flex-row flex-wrap">
       <!-- Bounty Description -->
       <div
-        :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
+        class="bg-c-background-sec shadow-lg w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
       >
         <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
         <p
@@ -98,31 +92,24 @@
       <div class="w-4 hidden md:block"></div>
       <!-- Hunt & Contribute Card -->
       <div
-        :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full md:w-auto md:max-w-xs flex flex-col flex-wrap relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg my-1 md:my-2"
+        class="bg-c-background-sec shadow-lg w-full md:w-auto md:max-w-xs flex flex-col flex-wrap relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg my-1 md:my-2"
       >
         <!-- Hunt and Contribute Button -->
-        <div class="w-full flex flex-col items-center bg-dtSecondary px-6 py-4">
+        <div class="w-full flex flex-col items-center bg-c-secondary px-6 py-4">
           <button
             @click="isSubmissionModalOpen = true; bodyNoScroll"
-            class="w-full hover_scale-md focus_scale-md bg-dtText text-dtSecondary btn-textSecondary font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
             @click="isContributeModalOpen = true"
-            class="w-full hover_scale-md focus_scale-md bg-dtSecondary text-dtText btn-textSecondary border-2 border-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
         </div>
         <!-- Submissions Left and Remaining Time -->
         <div class="w-full flex flex-col px-6 py-6">
           <!-- Submissions Left -->
           <div class="flex flex-row items-center">
-            <Icon
-              class="w-4 h-4 mr-1"
-              :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-              type="award"
-            />
+            <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="award" />
             <h6 class="text-sm">
               <span
                 class="font-bold"
@@ -136,11 +123,7 @@
           </div>
           <!-- Remaining Time -->
           <div class="flex flex-row items-center mt-1">
-            <Icon
-              class="w-4 h-4 mr-1"
-              :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-              type="clock"
-            />
+            <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="clock" />
             <h6 class="text-sm">
               <span class="font-bold">{{ formatTimeLeft() }}</span>
               <span class="opacity-75">
@@ -166,8 +149,7 @@
           <h5>
             <span class="opacity-75">{{$t("bountyPlatform.explore.categories.category") + ' '}}</span>
             <span
-              :class="[$store.state.theme.dt?'shadow-lgDSS':'shadow-lgD'] "
-              class="font-bold opacity-100 px-3 py-1 rounded-full"
+              class="border border-c-text-10 shadow-lg font-bold opacity-100 px-3 py-1 rounded-full"
             >{{$t(`bountyPlatform.explore.categories.${bounty.category}Tag`)}}</span>
           </h5>
         </div>
@@ -176,23 +158,19 @@
     <!-- Submissions, Comments and Activity -->
     <div class="w-full flex flex-row flex-wrap">
       <div
-        :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
-        class="w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-4 md:px-12 my-1 md:my-2"
+        class="bg-c-background-sec shadow-lg w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-4 md:px-12 my-1 md:my-2"
       >
         <!-- Submission, Comments and Activity Switch -->
         <div
-          :class="$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtText-10':'bg-ltBackground border-ltText-10'"
-          class="max-w-full lg:w-168 flex flex-row mt-2 mb-6 p-1 rounded-full border"
+          class="bg-c-background-ter border-c-text-10 max-w-full lg:w-168 flex flex-row mt-2 mb-6 p-1 rounded-full border"
         >
           <div class="w-full flex flex-row relative">
             <div
-              :class="{'left-0':activeTab=='submissions', 'left-1/2 -translate-x-1/2':activeTab=='comments', 'left-full -translate-x-full':activeTab=='activity', 'shadow-lgSS': $store.state.theme.dt, 'shadow-lgS': !$store.state.theme.dt}"
-              class="absolute w-1/3 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
+              :class="{'left-0':activeTab=='submissions', 'left-1/2 -translate-x-1/2':activeTab=='comments', 'left-full -translate-x-full':activeTab=='activity'}"
+              class="shadow-lg absolute w-1/3 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
             ></div>
             <button
-              :class="[activeTab=='submissions'?'text-dtText':'', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='submissions', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='submissions' }]"
+              :class="[activeTab=='submissions'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
               @click="activeTab='submissions'"
               class="w-1/3 text-sm font-bold md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >
@@ -204,7 +182,7 @@
               >({{ bounty.submissions.length }})</span>
             </button>
             <button
-              :class="[activeTab=='comments'?'text-dtText':'', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='comments', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='comments' }]"
+              :class="[activeTab=='comments'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
               @click="activeTab='comments'"
               class="w-1/3 text-sm font-bold md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >
@@ -216,7 +194,7 @@
               >(4)</span>
             </button>
             <button
-              :class="[activeTab=='activity'?'text-dtText':'', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && activeTab !='activity', 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && activeTab !='activity' }]"
+              :class="[activeTab=='activity'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
               @click="activeTab='activity'"
               class="w-1/3 text-sm font-bold md:text-xl leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >
@@ -244,11 +222,7 @@
             >
               <button
                 @click="loadMoreSubmissions()"
-                :class="[
-          $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
-                class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+                class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
               >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
             </div>
           </div>
@@ -266,8 +240,7 @@
             <div class="flex flex-row justify-center">
               <button
                 @click="isSubmissionModalOpen = true"
-                :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
-                class="hover_scale-md focus_scale-md bg-dtPrimary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+                class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md font-extrabold transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
               >{{$t("bountyPlatform.singleBounty.buttonHunt")}}</button>
             </div>
           </div>
@@ -280,15 +253,13 @@
             <textarea
               @input="autoGrow()"
               ref="commentArea"
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary hover:border-dtText focus:border-dtText active:border-dtText':'bg-ltBackgroundTertiary hover:border-ltText focus:border-ltText active:border-ltText']"
-              class="commentArea w-full md:flex-1 text-lg font-bold border border-dtSecondary rounded-lg px-4 py-2 transition-colors duration-200"
+              class="bg-c-background-ter hover:border-c-text focus:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg px-4 py-2 transition-colors duration-200"
               type="text"
               :placeholder="$t('bountyPlatform.singleBounty.comments.inputCommentPlaceholder')"
             />
             <!-- Comment Button -->
             <button
-              :class="$store.state.theme.dt?'btn-dtSecondary':'btn-ltSecondary'"
-              class="w-full md:w-auto hover_scale-md focus_scale-md bg-dtSecondary text-dtText font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
+              class="btn-secondary bg-c-secondary text-c-light transform hover:scale-md focus:scale-md font-extrabold transition-all ease-out duration-200 origin-bottom-left w-full md:w-auto font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
             >{{ $t('bountyPlatform.singleBounty.comments.buttonComment') }}</button>
           </div>
           <!-- If there are comments -->
@@ -332,11 +303,8 @@
             <!-- 
           <div class="flex flex-row justify-center mt-2">
           <button
-            :class="[
-          $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
-            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+      
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
           >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
             -->
@@ -363,7 +331,7 @@
             :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : 'submissionMade'"
             :address="item.creator"
             :date="formatDate(item.createdAt)"
-          />          
+          />
           <ActivityCard
             class="my-2"
             perspective="general"
@@ -374,11 +342,8 @@
           <!-- 
           <div class="flex flex-row justify-center mt-2">
           <button
-            :class="[
-          $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText']"
-            class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+      
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
           >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
           -->

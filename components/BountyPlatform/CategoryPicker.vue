@@ -9,13 +9,13 @@
       @click="categoryPicked(category)"
       @keydown.tab.exact="index+1 == categories.length?closePicker():null"
       @keydown.esc.exact="closePicker"
-      :class="category == currentCategory ? 'bg-c-primary text-c-text': 'hover:bg-c-primary-35 focus:bg-c-primary-35'"
+      :class="category == currentCategory ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-35 focus:bg-c-primary-35'"
       class="flex flex-row items-center py-3 transition-colors duration-200 ease-out pl-3 pr-8"
     >
       <div class="mr-2">
         <Icon
           v-if="category == currentCategory"
-          colorClass="text-c-text"
+          colorClass="text-c-light"
           type="done"
           class="w-6 h-6"
         />

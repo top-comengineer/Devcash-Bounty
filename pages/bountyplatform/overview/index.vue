@@ -43,10 +43,7 @@
     </div>
     <!-- Activity Main Card -->
     <div
-      :class="[$store.state.theme.dt
-        ? 'bg-dtBackgroundSecondary'
-        : 'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
+      class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
     >
       <!-- Header -->
       <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
@@ -61,17 +58,12 @@
           :address="item.address"
           :bountyName="item.name"
           :date="formatDate(item.createdAt)"
-        /> 
+        />
       </div>
       <!-- Load More Button 
       <div class="flex flex-row justify-center mt-2">
         <button
-          :class="[
-          $store.state.theme.dt
-            ? 'bg-dtBackgroundSecondary text-dtText border-2 border-dtText btn-dtText'
-            : ' bg-ltBackgroundSecondary text-ltText border-2 border-ltText btn-ltText'
-        ]"
-          class="text-lg hover_scale-lg focus_scale-lg font-extrabold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+          class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
       </div>-->
     </div>

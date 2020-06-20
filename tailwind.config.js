@@ -46,6 +46,7 @@ module.exports = {
       'c-secondary': "var(--c-secondary)",
       'c-background': "var(--c-background)",
       'c-background-15': "var(--c-background-15)",
+      'c-background-75': "var(--c-background-75)",
       'c-background-sec': "var(--c-background-sec)",
       'c-background-ter': "var(--c-background-ter)",
       'c-background-qua': "var(--c-background-qua)",

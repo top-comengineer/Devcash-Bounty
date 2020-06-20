@@ -1,11 +1,6 @@
 <template>
   <div
-    class="transition-colors ease-out duration-200 relative overflow-anywhere"
-    :class="[
-      $store.state.theme.dt
-        ? 'bg-dtBackground text-dtText'
-        : 'bg-ltBackground text-ltText'
-    ]"
+    class="bg-c-background text-c-text transition-colors ease-out duration-200 relative overflow-anywhere"
   >
     <div class="w-full flex flex-row justify-center relative">
       <div class="fixed w-full z-50">
@@ -14,13 +9,7 @@
             id="defaultNavbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
             :class="[
-              hideNavbar ? '-mt-24' : 'mt-0',
-              {
-                'bg-dtBackgroundSecondary': $store.state.theme.dt && showNavbarBg,
-                'bg-ltBackgroundSecondary': !$store.state.theme.dt && showNavbarBg,
-                'shadow-xlS': $store.state.theme.dt && showNavbarBg,
-                'shadow-xl': !$store.state.theme.dt && showNavbarBg
-              }
+              hideNavbar ? '-mt-24' : 'mt-0', {'bg-c-background-sec shadow-xl': showNavbarBg}
             ]"
           />
           <!-- Notification -->
@@ -34,7 +23,7 @@
             >
               <template slot="body" slot-scope="props">
                 <div
-                  class="flex flex-row justify-between items-start bg-dtText text-dtBackground mb-2 shadow-xlS border-l-8 border-dtSecondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
+                  class="flex flex-row justify-between items-start bg-c-light text-c-dark mb-2 shadow-xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
                 >
                   <div class="flex flex-col justify-center mx-3 my-2">
                     <p class="text-sm font-bold">{{props.item.title}}</p>
@@ -42,10 +31,10 @@
                   </div>
                   <div class="flex flex-row justify-end">
                     <button
-                      class="hover_bg-dtBackground-15 focus_bg-dtBackground-15 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
+                      class="hover:bg-c-background-15 focus:bg-c-background-15 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
                       @click="props.close"
                     >
-                      <Icon class="w-4 h-4" type="cancel" colorClass="text-dtBackground" />
+                      <Icon class="w-4 h-4" type="cancel" colorClass="text-c-dark" />
                     </button>
                   </div>
                 </div>
@@ -151,7 +140,6 @@ export default {
 body {
   font-family: "Manrope", sans-serif;
   font-weight: 400;
-  background-color: #010014;
 }
 .overflow-anywhere {
   overflow-wrap: anywhere;

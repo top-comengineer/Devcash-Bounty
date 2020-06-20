@@ -10,10 +10,7 @@
     <!-- Post Form -->
     <!-- Card for Bounty Title and Description -->
     <div
-      :class="
-      [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
-    "
-      class="w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Bounty Title -->
       <div class="w-full md:w-1/2 flex flex-col mt-3">
@@ -21,8 +18,7 @@
         <div class="w-full flex flex-row">
           <input
             v-model="title"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="flex-1 text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter text-c-text flex-1 text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyTitlePlaceholder')"
             @focus="titleError?titleError=false:null"
@@ -33,8 +29,7 @@
           <div class="hidden md:block w-8"></div>
         </div>
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
+          class="text-c-danger text-xs px-3 mt-2"
         >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
       </div>
       <!-- Bounty Description -->
@@ -42,8 +37,7 @@
         <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
         <textarea
           v-model="description"
-          :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-          class="bountyDescArea w-full leading-loose text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
+          class="bg-c-background-ter border-c-background-ter text-c-text bountyDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
           type="text"
           :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
           @blur="validateDescription"
@@ -51,36 +45,34 @@
       </div>
       <div class="w-full flex flex-col">
         <p
-          :class="[$store.state.theme.dt && (description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-dtDanger':description.length > maxDescriptionCount || description.length < minDescriptionCount ?'text-ltDanger':'']"
+          :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
           class="text-sm px-3 opacity-75"
         >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Bounty Type -->
     <div
-      :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Bounty Type -->
       <div class="w-full md:flex-1 flex flex-col my-3">
         <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h3>
         <!-- Public and Private Switch -->
         <div
-          :class="$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtText-10':'bg-ltBackground border-ltText-10'"
-          class="max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
+          class="bg-c-background-ter border-c-text-10 max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
         >
           <div class="w-full flex flex-row relative">
             <div
-              :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty, 'shadow-lgSS': $store.state.theme.dt, 'shadow-lgS': !$store.state.theme.dt}"
-              class="absolute w-1/2 h-full w-24 bg-dtPrimary left-0 rounded-full transform transition-all duration-200 ease-out"
+              :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty}"
+              class="shadow-lg absolute w-1/2 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
             ></div>
             <button
-              :class="[openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && !openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && !openBounty }]"
+              :class="[openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
               @click.prevent="openBounty=true"
               class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
             <button
-              :class="[!openBounty?'text-dtText':'font-medium', {'hover_bg-dtText-15 focus_bg-dtText-15': $store.state.theme.dt && openBounty, 'hover_bg-ltText-15 focus_bg-ltText-15': !$store.state.theme.dt && openBounty }]"
+              :class="[!openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
               @click.prevent="openBounty=false"
               class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
             >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
@@ -98,32 +90,28 @@
           <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
           <input
             v-model="hunter"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
             @focus="invalidHunterAddress?invalidHunterAddress=false:null"
             @blur="validateHunterAddress"
           />
           <p
-            :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-            class="text-xs px-3 mt-2"
+            class="text-c-danger text-xs px-3 mt-2"
           >{{ invalidHunterAddress?$t('bountyPlatform.post.invalidAddress'):'&nbsp;' }}</p>
         </div>
       </transition>
     </div>
     <!-- Card for Number of Bounties and Bounty Amount -->
     <div
-      :class="[$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']"
-      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Number of Bounties -->
       <div class="w-full md:flex-1 flex flex-col my-3">
         <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCount')}}</h3>
         <input
           v-model="numBounties"
-          :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-          class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
           type="number"
           min="1"
           :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
@@ -131,8 +119,7 @@
           @blur="validateNumBounties"
         />
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
+          class="text-c-danger text-xs px-3 mt-2"
         >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
@@ -147,25 +134,18 @@
         </h3>
         <input
           v-model="amount"
-          :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-          class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
           type="number"
           :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
           @focus="amountError?amountError=false:null"
           @blur="validateAmount"
         />
-        <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
-        >{{ amountError?amountError:'&nbsp;' }}</p>
+        <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Category and Deadline -->
     <div
-      :class="
-      [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
-    "
-      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Bounty Category -->
       <div class="w-full md:flex-1 flex flex-col my-3">
@@ -174,8 +154,7 @@
           <!-- Category Input -->
           <input
             v-model="categoryValueStr"
-            :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-            class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
             :placeholder="$t('bountyPlatform.post.bountyCategoryPlaceholder')"
             @focus="showCategoryPicker=true"
@@ -197,8 +176,7 @@
           </div>
         </div>
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
+          class="text-c-danger text-xs px-3 mt-2"
         >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
@@ -215,8 +193,7 @@
           <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
             <input
               v-model="datePickerValueStr"
-              :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-              class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
               type="text"
               @focus="showDatePicker=true"
               @keydown.esc.exact="closePicker"
@@ -241,41 +218,34 @@
           <!-- Clear button -->
           <button
             v-if="datePickerValue!=null || datePickerValueStr != ''"
-            :class="$store.state.theme.dt?'btn-dtPrimary':'btn-ltPrimary'"
-            class="hover_scale-md bg-dtPrimary text-dtText font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
+            class="btn-primary transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-primary text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
             @click.prevent="datePickerValueStr=''; datePickerValue=null"
           >
-            <Icon class="w-6 h-6" colorClass="text-dtText" type="cancel" />
+            <Icon class="w-6 h-6" colorClass="text-c-light" type="cancel" />
           </button>
         </div>
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-sm px-3"
+          class="text-c-danger text-sm px-3"
         >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
       </div>
     </div>
     <!-- Card for Contact Name and Email -->
     <div
-      :class="
-      [$store.state.theme.dt?'bg-dtBackgroundSecondary':'bg-ltBackgroundSecondary shadow-lg']
-    "
-      class="w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
     >
       <!-- Contact Name -->
       <div class="w-full md:flex-1 flex flex-col my-3">
         <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
         <input
           v-model="contactName"
-          :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-          class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
           type="text"
           :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
           @focus="contactNameError?contactNameError=false:null"
           @blur="validateContactName"
         />
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
+          class="text-c-danger text-xs px-3 mt-2"
         >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
@@ -285,16 +255,14 @@
         <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
         <input
           v-model="contactEmail"
-          :class="[$store.state.theme.dt?'bg-dtBackgroundTertiary border-dtBackgroundTertiary':'bg-ltBackgroundTertiary border-ltBackgroundTertiary']"
-          class="w-full text-lg font-bold border focus:border-dtPrimary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
           type="text"
           :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
           @focus="emailError?emailError=false:null"
           @blur="validateEmail"
         />
         <p
-          :class="[$store.state.theme.dt?'text-dtDanger':'text-ltDanger']"
-          class="text-xs px-3 mt-2"
+          class="text-c-danger text-xs px-3 mt-2"
         >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
       </div>
     </div>
