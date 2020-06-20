@@ -492,12 +492,12 @@ export default {
   beforeMount() {
     // Set sidebar context
     this.$store.commit(
-      "general/setSidebarContext",
+      "setSidebarContext",
       SIDEBAR_CONTEXTS.singleBounty
     );
   },
   destroyed() {
-    this.$store.commit("general/setSidebarContext", null);
+    this.$store.commit("setSidebarContext", null);
     this.isSubmissionModalOpen = false;
     this.isContributeModalOpen = false;
   },

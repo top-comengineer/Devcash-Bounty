@@ -132,13 +132,13 @@
       -->
       <!-- Theme Switcher Button -->
       <button
-        @click="$store.commit('theme/change')"
+        @click="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark')"
         class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
           colorClass="text-c-text"
-          :type="$store.state.theme.dt ? 'light' : 'dark'"
+          :type="$store.state.theme == 'dark' ? 'light' : 'dark'"
         />
       </button>
       <!-- Sign In/Out Button -->

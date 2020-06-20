@@ -78,7 +78,7 @@ export default {
         ...i18nSeo.meta
       ],
       bodyAttrs: {
-        class: ['bg-c-background', !this.$store.state.theme.dt?'theme-light':'']
+        class: ['bg-c-background', this.$store.state.theme == 'light' ?'theme-light':'']
       },
       link: [
         ...i18nSeo.link

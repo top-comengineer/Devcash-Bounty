@@ -568,7 +568,7 @@ export default {
   },
   beforeMount() {
     // Set sidebar context
-    this.$store.commit("general/setSidebarContext", SIDEBAR_CONTEXTS.post);
+    this.$store.commit("setSidebarContext", SIDEBAR_CONTEXTS.post);
     // Set categories based on locale
     for (const [key, category] of Object.entries(this.$t('bountyPlatform.explore.categories'))) {
       if (key != "header" && key != 'category') {
@@ -582,7 +582,7 @@ export default {
     }
   },  
   destroyed() {
-    this.$store.commit("general/setSidebarContext", null);
+    this.$store.commit("setSidebarContext", null);
   },
   head() {
     return {
