@@ -64,7 +64,7 @@
             <Icon
               class="w-6 h-6 mr-1"
               colorClass="text-c-background"
-              :type="$store.state.theme"
+              :type="$store.state.theme == 'dark' ? 'light' : 'dark'"
             />
             <div
               class="text-xl font-bold"
