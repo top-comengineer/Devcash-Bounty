@@ -218,7 +218,9 @@
             :text="$t('bountyPlatform.explore.sidebar.sortExpiry')"
           />
           <!-- Status Text and Status Options -->
-          <h4 class="text-lg font-bold mt-8">{{$t("bountyPlatform.explore.sidebar.statusHeader")}}</h4>
+          <h4
+            class="text-c-text text-lg font-bold mt-8"
+          >{{$t("bountyPlatform.explore.sidebar.statusHeader")}}</h4>
           <CheckmarkButton
             checked="checked"
             class="mt-3 -ml-1"

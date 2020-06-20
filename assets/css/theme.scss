@@ -4,6 +4,7 @@
 
    // Primary
    --c-primary: rgba(103,92,255, 1);
+   --c-primary-05: rgba(103,92,255, 0.05);
    --c-primary-15: rgba(103,92,255, 0.15);
    --c-primary-25: rgba(103,92,255, 0.25);
    --c-primary-35: rgba(103,92,255, 0.35);
@@ -14,7 +15,7 @@
    --c-secondary-50: rgba(136,80,248, 0.5);
    // Background
    --c-background: rgba(1,0,20, 1);
-   --c-background-15: rgba(1,0,20, 15);
+   --c-background-15: rgba(1,0,20, 0.15);
    --c-background-75: rgba(1,0,20, 0.75);
    --c-background-sec: rgba(24,23,38, 1);
    --c-background-ter: rgba(34,33,51, 1);
@@ -41,16 +42,18 @@
    --c-pending-40: rgba(255,223,123, 0.4);
    // Other
    --c-metamask: rgba(245,132,31, 1);
-   --c-portis: rgba(255,76,47, 1);
-   --c-authereum: rgba(109,178,216, 1);
+   --c-portis: rgba(109,178,216, 1);
+   --c-authereum: rgba(255,76,47, 1);
    // Dark color
    --c-dark: rgba(24,23,38, 1);
    --c-dark-00: rgba(24,23,38, 0);
    --c-dark-15: rgba(24,23,38, 0.15);
    --c-dark-25: rgba(24,23,38, 0.25);
    --c-dark-50: rgba(24,23,38, 0.5);
-    // Light color
-    --c-light: rgba(255,255,255, 1);
+   // Light color
+   --c-light: rgba(255,255,255, 1);
+   --c-light-15: rgba(255,255,255,0.15);
+   --c-light-35: rgba(255,255,255, 0.35);
 
    // Shadow colors
    --c-shdw-1: rgba(0,0,0,0.05);
@@ -66,6 +69,7 @@
 .theme-light{
    // Primary
    --c-primary: rgba(103,92,255, 1);
+   --c-primary-15: rgba(103,92,255, 0.05);
    --c-primary-15: rgba(103,92,255, 0.15);
    --c-primary-25: rgba(103,92,255, 0.25);
    --c-primary-35: rgba(103,92,255, 0.35);
@@ -76,7 +80,7 @@
    --c-secondary-50: rgba(136,80,248, 0.5);
    // Background
    --c-background: rgba(248,247,252, 1);
-   --c-background-15: rgba(248,247,252, 15);
+   --c-background-15: rgba(248,247,252, 0.15);
    --c-background-75: rgba(248,247,252, 0.75);
    --c-background-sec: rgba(255,255,255, 1);
    --c-background-ter: rgba(242,241,255, 1);
@@ -103,8 +107,8 @@
    --c-pending-40: rgba(205,137,0, 0.4);
    // Other
    --c-metamask: rgba(245,132,31, 1);
-   --c-portis: rgba(255,76,47, 1);
-   --c-authereum: rgba(109,178,216, 1);
+   --c-portis: rgba(109,178,216, 1);
+   --c-authereum: rgba(255,76,47, 1);
    // Dark color
    --c-dark: rgba(24,23,38, 1);
    --c-dark-00: rgba(24,23,38, 0);
@@ -113,6 +117,8 @@
    --c-dark-50: rgba(24,23,38, 0.5);
    // Light color
    --c-light: rgba(255,255,255, 1);
+   --c-light-15: rgba(255,255,255,0.15);
+   --c-light-35: rgba(255,255,255, 0.35);
    // Shadow colors
    --c-shdw-1: rgba(0,0,0,0.02);
    --c-shdw-2: rgba(0,0,0,0.04);

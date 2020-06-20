@@ -52,7 +52,7 @@ export const mutations = {
       let primary = state.balancePrimary
       let secondary = state.balanceSecondary
       state.balancePrimary = secondary
-      state.balanceSecondary = primary    
+      state.balanceSecondary = primary
       Cookies.set("devcash_ethereum", "false", { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
   },

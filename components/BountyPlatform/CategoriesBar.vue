@@ -8,37 +8,37 @@
     <div class="w-full h-px2 md:h-8 md:w-px2 rounded-full bg-dtText mx-3 my-2"></div>
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.createTag')"
     />
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.enhanceTag')"
     />
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.bugTag')"
     />
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.supportTag')"
     />
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-1"
       :text="$t('bountyPlatform.explore.categories.prototypeTag')"
     />
     <checkmark-button
       checked="checked"
-      type="white"
+      type="light"
       class="mx-2 md:mx-3 my-1"
       :text="$t('bountyPlatform.explore.categories.otherTag')"
     />

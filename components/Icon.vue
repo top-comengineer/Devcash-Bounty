@@ -700,8 +700,8 @@ export default {
   },
   data: function() {
     return {
-      defaultColorClass: "text-dtText",
-      defaultSecondaryColorClass: "text-dtDanger"
+      defaultColorClass: "text-c-text",
+      defaultSecondaryColorClass: "text-c-danger"
     };
   }
 };

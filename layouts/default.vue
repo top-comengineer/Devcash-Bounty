@@ -75,9 +75,9 @@ export default {
   components: {
     Navbar,
     Footer,
-    Icon
+    Icon,
     // Optional IBO bar below
-    // IBOBar
+    //IBOBar
   },
   head() {
     const i18nSeo = this.$nuxtI18nSeo()

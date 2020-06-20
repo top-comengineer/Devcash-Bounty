@@ -4,7 +4,7 @@
       :to="localePath('index')"
       class="focus:scale-110 hover:scale-110 transform transition-transform duration-300"
     >
-      <Logo class="w-36 md:w-40 h-8" :type="$store.state.theme.dt ? 'light' : 'dark'" />
+      <Logo class="w-36 md:w-40 h-8" />
     </nuxt-link>
     <!-- Navbar items -->
     <div class="flex flex-row justify-end items-center">
@@ -15,19 +15,16 @@
         v-slot="{  navigate, href, isExactActive  }"
       >
         <a
-          :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           @click="navigate"
           :href="href"
-          class="flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
+          class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
         >
-          <div>
-            {{
-            $t("navigation.home")
-            }}
-          </div>
+          {{
+          $t("navigation.home")
+          }}
           <div
-            :class="[isExactActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
-            class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+            :class="[isExactActive?'transform scale-x-100':'transform scale-x-0']"
+            class="bg-c-text h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
           ></div>
         </a>
       </nuxt-link>
@@ -38,27 +35,23 @@
         v-slot="{  navigate, href, isActive  }"
       >
         <a
-          :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
           @click="navigate"
           :href="href"
-          class="flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
+          class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
         >
-          <div>
-            {{
-            $t("navigation.bountyPlatform")
-            }}
-          </div>
+          {{
+          $t("navigation.bountyPlatform")
+          }}
           <div
-            :class="[isActive?'transform scale-x-100':'transform scale-x-0', $store.state.theme.dt?'bg-dtText':'bg-ltText']"
-            class="h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
+            :class="[isActive?'transform scale-x-100':'transform scale-x-0']"
+            class="bg-c-text h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
           ></div>
         </a>
       </nuxt-link>
       <!-- DEX -->
       <!-- <a
-        :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         href="/"
-        class="hidden md:flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
+        class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:flex flex-col font-bold transition-all ease-out duration-200 pt-1 px-4 lg:ml-2 rounded-full"
       >
         <div>{{ $t("navigation.dex") }}</div>
         <div class="h-px2 w-full"></div>
@@ -69,19 +62,18 @@
         <button
           @click="toggleLangModal"
           @keydown.esc.exact="hideLangModal"
-          :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-          class="flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
+          class="hover:bg-c-text-15 focus:bg-c-text-15 flex flex-col font-bold lg:pt-1 lg:px-4 lg:ml-2 md:mr-1 lg:mr-0 rounded-full transition-all ease-out duration-200"
         >
           <div class="flex flex-row items-center p-1">
             <Icon
               class="w-8 h-8 lg:w-6 lg:h-6 transition-all ease-out duration-200"
-              :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+              colorClass="text-c-text"
               type="language"
             />
-            <div class="mx-1 hidden lg:block">{{ currentLocale.name }}</div>
+            <div class="mx-1 hidden lg:block text-c-text">{{ currentLocale.name }}</div>
             <Icon
               class="hidden lg:block w-4 h-4 transition-all ease-out duration-200"
-              :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+              colorClass="text-c-text"
               type="arrow-down"
             />
           </div>
@@ -96,8 +88,7 @@
             v-if="isLangModalOpen"
           >
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-              class="w-56 flex flex-col relative shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              class="bg-c-text text-c-background w-56 flex flex-col relative shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <button
                 v-for="(locale, index) in availableLocales"
@@ -105,13 +96,13 @@
                 @click="changeLang(locale); hideLangModal()"
                 @keydown.tab.exact="index+1 == availableLocales.length?hideLangModal():null"
                 @keydown.esc.exact="hideLangModal"
-                :class="locale.code == currentLocale.code ? 'bg-dtPrimary text-dtText': 'hover_bg-dtPrimary-35 focus_bg-dtPrimary-35'"
+                :class="locale.code == currentLocale.code ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-35 focus:bg-c-primary-35'"
                 class="flex flex-row items-center py-3 transition-colors duration-200 ease-out"
               >
                 <div class="mx-4">
                   <Icon
                     v-if="locale.code == currentLocale.code"
-                    colorClass="text-dtText"
+                    colorClass="text-c-light"
                     type="done"
                     class="w-6 h-6"
                   />
@@ -129,26 +120,24 @@
       <!-- Notifications New -->
       <!-- 
         <button
-        :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
-        class="hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
+        class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
-          :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
-          :secondaryColorClass="$store.state.theme.dt ? 'text-dtDanger' : 'text-ltDanger'"
+          colorClass="text-c-text"
+          :secondaryColorClass="text-c-danger"
           type="notification-new"
         />
       </button>
       -->
       <!-- Theme Switcher Button -->
       <button
-        :class="[$store.state.theme.dt?'hover_bg-dtText-15 focus_bg-dtText-15': 'hover_bg-ltText-15 focus_bg-ltText-15']"
         @click="$store.commit('theme/change')"
-        class="hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
+        class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
           class="w-8 h-8"
-          :colorClass="$store.state.theme.dt ? 'text-dtText' : 'text-ltText'"
+          colorClass="text-c-text"
           :type="$store.state.theme.dt ? 'light' : 'dark'"
         />
       </button>
@@ -158,12 +147,7 @@
         <button
           @click="toggleSignInModal"
           @keydown.esc.exact="hideSignInModal"
-          :class="[
-          $store.state.theme.dt
-            ? 'bg-dtText text-dtBackground btn-dtText'
-            : ' bg-ltText text-ltBackground btn-ltText'
-        ]"
-          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+          class="btn-text bg-c-text text-c-background flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
         >
           <Spinner v-if="loggingInLoading" class="mr-1" />
           <h4>{{ loggingInLoading ? $t("navigation.signingIn") : $t("navigation.signIn") }}</h4>
@@ -177,20 +161,15 @@
             v-if="isSignInModalOpen && !loggingInLoading"
           >
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-              class="flex flex-col relative origin-top-right shadow-2xlS rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg overflow-hidden px-6 py-5"
+              class="bg-c-text text-c-background flex flex-col relative origin-top-right shadow-2xl rounded-tl-3xl rounded-br-3xl rounded-bl-lg rounded-tr-lg overflow-hidden px-6 py-5"
             >
               <!-- MetaMask Button -->
               <button
-                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
-                class="flex flex-row items-center bg-dtOrange border-2 border-dtOrange hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+                class="btn-text-ter flex flex-row items-center bg-c-metamask border-2 border-c-metamask transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.metamask)"
                 @keydown.esc.exact="hideSignInModal"
               >
-                <div
-                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
-                  class="h-12 w-12 p-2"
-                >
+                <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
                     :src="require('~/assets/images/wallet-logos/MetaMask.svg')"
@@ -199,21 +178,17 @@
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
-                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                    class="whitespace-no-wrap text-c-dark text-lg font-extrabold ml-8 mr-10"
                   >{{ hasMetamask ? $t("wallet.metamask") : $t("wallet.getMetamask") }}</h4>
                 </div>
               </button>
               <!-- Portis Button -->
               <button
-                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
-                class="flex flex-row items-center bg-dtBlue border-2 border-dtBlue hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+                class="btn-text-ter flex flex-row items-center bg-c-portis border-2 border-c-portis transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.portis)"
                 @keydown.esc.exact="hideSignInModal"
               >
-                <div
-                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
-                  class="h-12 w-12 p-2"
-                >
+                <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
                     :src="require('~/assets/images/wallet-logos/Portis.svg')"
@@ -222,22 +197,18 @@
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
-                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                    class="whitespace-no-wrap text-c-dark text-lg font-extrabold ml-8 mr-10"
                   >{{ $t("wallet.portis") }}</h4>
                 </div>
               </button>
               <!-- Authereum Button -->
               <button
-                :class="$store.state.theme.dt?'btn-dtTextTertiary':'btn-ltTextTertiary'"
-                class="flex flex-row items-center bg-dtRed border-2 border-dtRed hover_scale-md focus_scale-md rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+                class="btn-text-ter flex flex-row items-center bg-c-authereum border-2 border-c-authereum transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
                 @click="signIn(walletProviders.authereum)"
                 @keydown.esc.exact="hideSignInModal"
                 @keydown.tab.exact="hideSignInModal"
               >
-                <div
-                  :class="$store.state.theme.dt?'bg-dtBackgroundTertiary':'bg-ltBackgroundSecondary'"
-                  class="h-12 w-12 p-2"
-                >
+                <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
                     :src="require('~/assets/images/wallet-logos/Authereum.svg')"
@@ -246,7 +217,7 @@
                 </div>
                 <div class="flex flex-row flex-1 justify-center">
                   <h4
-                    class="whitespace-no-wrap text-dtBackground text-lg font-extrabold ml-8 mr-10"
+                    class="whitespace-no-wrap text-c-dark text-lg font-extrabold ml-8 mr-10"
                   >{{ $t("wallet.authereum") }}</h4>
                 </div>
               </button>
@@ -259,11 +230,7 @@
         <button
           @click="toggleSignOutModal"
           @keydown.esc.exact="hideSignOutModal"
-          :class="[
-          $store.state.theme.dt
-            ? 'bg-dtText text-dtBackground btn-dtText'
-            : ' bg-ltText text-ltBackground btn-ltText']"
-          class="flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
+          class="btn-text bg-c-text text-c-background flex flex-row items-center transform hover:scale-lg focus:scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
         >
           <Jazzicon
             class="flex"
@@ -280,8 +247,7 @@
             v-if="isSignOutModalOpen && !loggingInLoading"
           >
             <div
-              :class="$store.state.theme.dt ? 'bg-dtText text-dtBackground' : 'bg-ltText text-ltBackground'"
-              class="max-w-full min-w-xxxs flex flex-col relative origin-top-right shadow-2xlS rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+              class="bg-c-text text-c-background max-w-full min-w-xxxs flex flex-col relative origin-top-right shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <!-- Balance Text -->
               <div class="flex flex-col px-6 mt-4">
@@ -293,26 +259,19 @@
                   v-if="balance.primary.hasApproved"
                   class="text-xs opacity-75 mt-3 whitespace-no-wrap"
                 >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</p>
-                <h5 class="text-dtPrimary font-bold text-xl">{{balance.primary.approved}}</h5>
+                <h5 class="text-c-primary font-bold text-xl">{{balance.primary.approved}}</h5>
               </div>
               <!-- Divider -->
-              <div
-                :class="$store.state.theme.dt?'bg-dtBackground':'bg-ltBackground'"
-                class="w-full h-px2 rounded-full mt-3 mb-1 opacity-10"
-              ></div>
+              <div class="bg-c-background w-full h-px2 rounded-full mt-3 mb-1 opacity-10"></div>
               <!-- Overview Button -->
               <nuxt-link
                 :to="localePath('bountyplatform-overview')"
                 @keydown.esc.exact="hideSignOutModal"
                 @click.native="hideSignOutModal"
-                class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
+                class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
-                  <Icon
-                    :colorClass="$store.state.theme.dt?'text-dtBackground':'text-ltBackground'"
-                    type="overview"
-                    class="w-6 h-6"
-                  />
+                  <Icon colorClass="text-c-background" type="overview" class="w-6 h-6" />
                 </div>
                 <div class="flex flex-row pr-6 pl-1">
                   <h3 class="whitespace-no-wrap font-bold">{{$t("bountyPlatform.overview.header")}}</h3>
@@ -323,14 +282,10 @@
                 @click="signOut()"
                 @keydown.esc.exact="hideSignOutModal"
                 @keydown.tab.exact="hideSignOutModal"
-                class="flex flex-row items-center hover_bg-dtPrimary-35 focus_bg-dtPrimary-35 transition-colors duration-200 ease-out py-3"
+                class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
-                  <Icon
-                    :colorClass="$store.state.theme.dt?'text-dtBackground':'text-ltBackground'"
-                    type="sign-out"
-                    class="w-6 h-6"
-                  />
+                  <Icon colorClass="text-c-background" type="sign-out" class="w-6 h-6" />
                 </div>
                 <div class="flex flex-row pr-6 pl-1">
                   <h3 class="whitespace-no-wrap font-bold">{{$t("navigation.signOut")}}</h3>

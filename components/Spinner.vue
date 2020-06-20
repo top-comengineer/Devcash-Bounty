@@ -1,20 +1,15 @@
 <template>
   <div class="lds-ring">
-    <div :class="$store.state.theme.dt?'dt-ring':'lt-ring'"></div>
-    <div :class="$store.state.theme.dt?'dt-ring':'lt-ring'"></div>
-    <div :class="$store.state.theme.dt?'dt-ring':'lt-ring'"></div>
-    <div :class="$store.state.theme.dt?'dt-ring':'lt-ring'"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
+    <div class="ring"></div>
   </div>
 </template>
 <style>
-.dt-ring {
+.ring {
   border: 0.125rem solid;
-  border-color: #010014 transparent transparent transparent;
-  border-radius: 50%;
-}
-.lt-ring {
-  border: 0.125rem solid;
-  border-color: #f8f7fc transparent transparent transparent;
+  border-color: var(--c-background) transparent transparent transparent;
   border-radius: 50%;
 }
 .lds-ring {

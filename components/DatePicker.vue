@@ -1,10 +1,6 @@
 <template>
   <div ref="datepicker">
-    <div
-      class="rounded-lg shadow-2xlS p-4"
-      :class="{'bg-dtText text-dtBackground':$store.state.theme.dt, 'bg-ltText text-ltBackground': !$store.state.theme.dt}"
-      style="width: 17rem"
-    >
+    <div class="bg-c-text text-c-background rounded-lg shadow-2xlS p-4" style="width: 17rem">
       <div class="flex justify-between items-center mb-2">
         <div>
           <span class="text-lg font-bold">{{ monthNames[month] }}</span>
@@ -15,7 +11,7 @@
             type="button"
             :disabled="futureOnly && today.getFullYear() == year && today.getMonth() == month"
             class="transition-colors ease-in-out duration-200 inline-flex cursor-pointer p-1 rounded-full"
-            :class="[futureOnly && today.getFullYear() == year && today.getMonth() == month ? 'opacity-50' : 'hover_bg-dtPrimary-50']"
+            :class="[futureOnly && today.getFullYear() == year && today.getMonth() == month ? 'opacity-50' : 'hover:bg-c-primary-50']"
             @click="previousClick"
           >
             <svg class="h-6 w-6 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -29,7 +25,7 @@
           </button>
           <button
             type="button"
-            class="transition-colors ease-in-out duration-200 inline-flex cursor-pointer p-1 rounded-full hover_bg-dtPrimary-50"
+            class="transition-colors ease-in-out duration-200 inline-flex cursor-pointer p-1 rounded-full hover:bg-c-primary-50"
             @click="nextClick"
           >
             <svg class="h-6 w-6 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -64,7 +60,7 @@
           <div
             @click="getDateValue(date)"
             class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition-colors ease-in-out duration-200"
-            :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) && $store.state.theme.dt ? 'bg-dtBackground text-dtText' : isToday(date) && !$store.state.theme.dt ? 'bg-ltBackground text-ltText' : isPicked(date) ? 'bg-dtPrimary text-dtText' : isPast(date) && futureOnly ? '' : 'hover_bg-dtPrimary-50']"
+            :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) ? 'bg-c-background text-c-text' : isPicked(date) ? 'bg-c-primary text-c-light' : isPast(date) && futureOnly ? '' : 'hover:bg-c-primary-50']"
           >{{ date }}</div>
         </div>
       </div>
