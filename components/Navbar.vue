@@ -348,52 +348,26 @@ export default {
       this.$root.$emit('changeLanguage')
     },
     async signIn(provider) {
-      if (provider == this.walletProviders.metamask && !this.hasMetamask) {
-        window.open("https://metamask.io/download.html", "_blank");
-        return;
-      }
       // Sign in flow
       this.isSignInModalOpen = false;
       this.loggingInLoading = true;
       try {
-        // Initialize connector to ethereum
-        let connector = await DevcashBounty.init(null, provider);
-        // Set state
-        this.$store.commit("devcash/setConnector", connector);
-        // Set persistent state for logged in account
-        this.$store.commit("devcashData/setProvider", provider);
-        this.$store.commit(
-          "devcashData/setLoggedInAccount",
-          await connector.signer.getAddress()
-        );
-        // Emit sign in event
-        this.$root.$emit('signedIn')
-        DevcashBounty.updateBalances(this)
+        await DevcashBounty.signIn(this, provider)
       } catch (e) {
-        if (e instanceof NoAccountsFoundError) {
-          // NO accounts found in provider
-          if (provider == this.walletProviders.metamask) {
-            window.open("https://metamask.io/download.html", "_blank");
-          } else if (provider == this.walletProviders.authereum) {
-            window.open("https://authereum.com/welcome", "_blank");
-          } else if (provider == this.walletProviders.portis) {
-            window.open("https://wallet.portis.io/", "_blank");
-          }
-        } else {
-          // TODO - handle this correctly
-          alert(`Unknown error ${e}`);
-        }
+        console.log(e)
       } finally {
         this.loggingInLoading = false;
       }
     },
     signOut() {
-      this.$store.commit("devcashData/setProvider", null);
-      this.$store.commit("devcashData/setLoggedInAccount", null);
-      this.$store.commit("devcashData/setBalance", null);
-      this.$store.commit("devcash/setConnector", null);
-      this.$router.replace(this.localePath("/"));
-    }
+      DevcashBounty.signOut(this)
+    },
+    async updateBalance() {
+      if (this.isLoggedIn) {
+        await DevcashBounty.updateBalances(this)
+        await DevcashBounty.updateFees(this)
+      }
+    }    
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -422,9 +396,14 @@ export default {
       loggingInLoading: false
     };
   },
+  cron: {
+    time: 60000,
+    method: 'updateBalance'
+  },
   mounted() {
     // Initialize these here since it's client side
     this.hasMetamask = DevcashBounty.hasMetamask();
+    this.updateBalance()
   }
 };
 </script>

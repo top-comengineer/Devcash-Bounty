@@ -94,7 +94,7 @@ export const mutations = {
           approvedRaw: balance.approvedRaw
         }
       }
-      Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, primary: state.balancePrimary, secondary: state.balanceSecondary }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+      Cookies.set("devcash_balance", JSON.stringify({ account: state.loggedInAccount, balances: balance }), { expires: 365, secure: process.env.NODE_ENV === 'production' })
       // Update fee
       if (state.fee) {
         let rawBal

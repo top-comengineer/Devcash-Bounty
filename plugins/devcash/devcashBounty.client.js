@@ -50,7 +50,8 @@ export class DevcashBounty {
 
   static formatAmount(bounty, tokenDecimals) {
     let delta =
-      bounty.available - bounty.submissions.filter((sub) => sub.approved).length;
+      bounty.available -
+      bounty.submissions.filter((sub) => sub.approved).length;
     if (delta <= 0) {
       return "0";
     }
@@ -76,7 +77,7 @@ export class DevcashBounty {
 
   static formatDateStr(locale, dateStr) {
     let dt = new Date(dateStr);
-    return `${dt.toLocaleString(locale == 'en' ? undefined : locale)}`;
+    return `${dt.toLocaleString(locale == "en" ? undefined : locale)}`;
   }
 
   static formatTimeLeft(bounty) {
@@ -84,14 +85,14 @@ export class DevcashBounty {
       return "∞";
     }
 
-    const now = Date.now()
-    const deadlineDate = (new Date(bounty.deadline * 1000)).getTime();
+    const now = Date.now();
+    const deadlineDate = new Date(bounty.deadline * 1000).getTime();
 
-    const delta = parseInt((deadlineDate - now) / 1000)
+    const delta = parseInt((deadlineDate - now) / 1000);
 
     if (delta < 0) {
       // TODO - localize me
-      return "expired"
+      return "expired";
     }
 
     if (delta >= 2592000) {
@@ -139,23 +140,82 @@ export class DevcashBounty {
 
   /**
    * updateBalances() - Update balances for a given vue component
-   * 
+   *
    * @param {Component} Vue component
    */
   static async updateBalances(vueComponent) {
-      await this.initEthConnector(vueComponent)
-      vueComponent.$store.dispatch("devcashData/updateBalance", vueComponent.$store.state.devcash.connector)
+    await this.initEthConnector(vueComponent);
+    vueComponent.$store.dispatch(
+      "devcashData/updateBalance",
+      vueComponent.$store.state.devcash.connector
+    );
   }
 
   /**
    * updateFees() - Update fees in global state
-   * 
+   *
    * @param {Component} Vue component
    */
   static async updateFees(vueComponent) {
-    await this.initEthConnector(vueComponent)
-    vueComponent.$store.dispatch("devcashData/updateFees", vueComponent.$store.state.devcash.connector)
-}
+    await this.initEthConnector(vueComponent);
+    vueComponent.$store.dispatch(
+      "devcashData/updateFees",
+      vueComponent.$store.state.devcash.connector
+    );
+  }
+
+  /**
+   * signIn() - Sign in to specified provider
+   * 
+   * @param {Component} Vue component
+   * @param {*} provider 
+   */
+  static async signIn(vueComponent, provider) {
+    if (provider == WalletProviders.metamask && !this.hasMetamask()) {
+      window.open("https://metamask.io/download.html", "_blank");
+      return;
+    }
+    try {
+      // Initialize connector to ethereum
+      let connector = await DevcashBounty.init(null, provider);
+      // Set state
+      vueComponent.$store.commit("devcash/setConnector", connector);
+      // Set persistent state for logged in account
+      vueComponent.$store.commit("devcashData/setProvider", provider);
+      vueComponent.$store.commit(
+        "devcashData/setLoggedInAccount",
+        await connector.signer.getAddress()
+      );
+      // Emit sign in event
+      vueComponent.$root.$emit('signedIn')
+      this.updateBalances(vueComponent)
+    } catch (e) {
+      if (e instanceof NoAccountsFoundError) {
+        // NO accounts found in provider
+        if (provider == this.walletProviders.metamask) {
+          window.open("https://metamask.io/download.html", "_blank");
+        } else if (provider == this.walletProviders.authereum) {
+          window.open("https://authereum.com/welcome", "_blank");
+        } else if (provider == this.walletProviders.portis) {
+          window.open("https://wallet.portis.io/", "_blank");
+        }
+      }
+      throw e
+    }
+  }
+
+  /**
+   * signOut() - trigger sign out
+   * 
+   * @param {Component} Vue component
+   */
+  static signOut(vueComponent) {
+    vueComponent.$store.commit("devcashData/setProvider", null);
+    vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
+    vueComponent.$store.commit("devcashData/setBalance", null);
+    vueComponent.$store.commit("devcash/setConnector", null);
+    vueComponent.$router.replace(vueComponent.localePath("/"));
+  }
 
   /**
    * init() - connect to ethereum and initialize devcash contracts
@@ -270,8 +330,8 @@ export class DevcashBounty {
   }
 
   async approveBalance(amount) {
-    let amtFormat = utils.parseUnits(amount.toString(), this.tokenDecimals)
-    return await this.tokenContract.approve(uBCAddress, amtFormat)
+    let amtFormat = utils.parseUnits(amount.toString(), this.tokenDecimals);
+    return await this.tokenContract.approve(uBCAddress, amtFormat);
   }
 
   static hashUbounty(uBounty) {
@@ -279,16 +339,16 @@ export class DevcashBounty {
       title = uBounty.title,
       description = uBounty.description,
       hunter = uBounty.hunter;
-    
+
     let hash = CryptoJS.algo.SHA256.create()
       .update(creator)
       .update(title)
       .update(description);
     if (hunter) {
-      hash.update(hunter)
+      hash.update(hunter);
     }
-    const final = hash.finalize()
-    return CryptoJS.enc.Hex.stringify(final)
+    const final = hash.finalize();
+    return CryptoJS.enc.Hex.stringify(final);
   }
 
   static hashSubmission(submission) {
@@ -349,7 +409,7 @@ export class DevcashBounty {
       description: description,
       contactName: contactName,
       contactEmail: contactEmail,
-      category: category
+      category: category,
     };
     if (hasHunter) {
       ubounty.hunter = hunter;
@@ -396,14 +456,22 @@ export class DevcashBounty {
     let ethBalanceRaw = await this.signer.getBalance();
     let ethBalance = utils.formatEther(ethBalanceRaw);
     ethBalance = utils.commify(ethBalance);
-    let devcashBalanceRaw = await this.tokenContract.balanceOf(await this.signer.getAddress());
-    let devcashBalance = utils.formatUnits(devcashBalanceRaw, this.tokenDecimals);
+    let devcashBalanceRaw = await this.tokenContract.balanceOf(
+      await this.signer.getAddress()
+    );
+    let devcashBalance = utils.formatUnits(
+      devcashBalanceRaw,
+      this.tokenDecimals
+    );
     devcashBalance = utils.commify(devcashBalance);
     let approvedBalanceRaw = await this.tokenContract.allowance(
       await this.signer.getAddress(),
       uBCAddress
     );
-    let approvedBalance = utils.formatUnits(approvedBalanceRaw, this.tokenDecimals);
+    let approvedBalance = utils.formatUnits(
+      approvedBalanceRaw,
+      this.tokenDecimals
+    );
     approvedBalance = utils.commify(approvedBalance);
     return {
       eth: ethBalance,
@@ -411,49 +479,64 @@ export class DevcashBounty {
       devcash: devcashBalance,
       devcashRaw: devcashBalanceRaw,
       approved: approvedBalance,
-      approvedRaw: approvedBalanceRaw
+      approvedRaw: approvedBalanceRaw,
     };
   }
 
   // Fee+Waiver
-  async getFee(){
-    let fee = await this.uBCContract.fee()
-    fee = utils.formatEther(fee)
-    return fee
+  async getFee() {
+    let fee = await this.uBCContract.fee();
+    fee = utils.formatEther(fee);
+    return fee;
   }
-  
-  async getWaiver(){
-    let waiver = await this.uBCContract.waiver()
-    waiver = utils.formatUnits(waiver, this.tokenDecimals)
-    return waiver
+
+  async getWaiver() {
+    let waiver = await this.uBCContract.waiver();
+    waiver = utils.formatUnits(waiver, this.tokenDecimals);
+    return waiver;
   }
 
   // Methods for writing to the smart contract
-  async postBounty(bounty,available,amount,deadline,ethAmount){
+  async postBounty(bounty, available, amount, deadline, ethAmount) {
     if (!amount) {
-      amount = utils.bigNumberify(0)
+      amount = utils.bigNumberify(0);
     } else {
-      amount = utils.parseUnits(amount.toString(), this.tokenDecimals)
+      amount = utils.parseUnits(amount.toString(), this.tokenDecimals);
     }
     if (!ethAmount) {
-      ethAmount = utils.bigNumberify(0)
+      ethAmount = utils.bigNumberify(0);
     } else {
-      ethAmount = utils.parseEther(ethAmount)
+      ethAmount = utils.parseEther(ethAmount);
     }
     let overrides = {
-      value:ethAmount,
-      gasLimit:3000000
-    }
+      value: ethAmount,
+      gasLimit: 3000000,
+    };
     if (!bounty.hunter) {
       // Open Bounty
-      return await this.uBCContract.postOpenBounty("", bounty.hash, available, amount, deadline, overrides)
+      return await this.uBCContract.postOpenBounty(
+        "",
+        bounty.hash,
+        available,
+        amount,
+        deadline,
+        overrides
+      );
     }
-    return await this.uBCContract.postPersonalBounty("", bounty.hash, bounty.hunter, available, amount, deadline, overrides)
+    return await this.uBCContract.postPersonalBounty(
+      "",
+      bounty.hash,
+      bounty.hunter,
+      available,
+      amount,
+      deadline,
+      overrides
+    );
   }
 
   // Submission
   async postSubmission(bounty, hash) {
-    return await this.uBCContract.submit(bounty.id, hash)
+    return await this.uBCContract.submit(bounty.id, hash);
   }
 }
 

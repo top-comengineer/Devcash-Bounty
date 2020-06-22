@@ -151,8 +151,10 @@ export default {
     };
   },
   mounted() {
-    DevcashBounty.updateBalances(this)
-    this.loadOverview()
+    if (this.isLoggedIn) {
+      DevcashBounty.updateBalances(this)
+      this.loadOverview()
+    }
   },
   head() {
     return {
