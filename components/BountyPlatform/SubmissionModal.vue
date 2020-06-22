@@ -131,7 +131,9 @@ export default {
     }
   },
   mounted() {
-    DevcashBounty.updateBalances(this)
+    if (this.isLoggedIn) {
+      DevcashBounty.updateBalances(this)
+    }
   },
   computed: {
     // mix the getters into computed with object spread operator

@@ -568,8 +568,10 @@ export default {
    }
   },
   mounted() {
-    DevcashBounty.updateBalances(this)
-    DevcashBounty.updateFees(this)
+    if (this.isLoggedIn) {
+      DevcashBounty.updateBalances(this)
+      DevcashBounty.updateFees(this)
+    }
   },
   beforeMount() {
     // Set sidebar context

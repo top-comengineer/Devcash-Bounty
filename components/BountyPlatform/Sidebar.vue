@@ -356,19 +356,6 @@ export default {
         this.isSortModalOpen = false;
       }, 50);
     },
-    async updateBalance() {
-      if (this.isLoggedIn && (this.$store.state.sidebarContext == this.sidebarContexts.post || this.$store.state.sidebarContext == this.sidebarContexts.overview || this.$store.state.sidebarContext == this.sidebarContexts.bountyHunter ||  this.$store.state.sidebarContext == this.sidebarContexts.bountyManager)) {
-        await DevcashBounty.updateBalances(this)
-        await DevcashBounty.updateFees(this)
-      }
-    }
-  },
-  cron: {
-    time: 60000,
-    method: 'updateBalance'
-  },
-  mounted() {
-    this.updateBalance()
   },
   computed: {
     // mix the getters into computed with object spread operator
