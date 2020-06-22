@@ -58,28 +58,8 @@ module.exports = {
       md: "0 4px 6px -1px rgba(0, 0, 0, .1), 0 2px 4px -1px rgba(0, 0, 0, .06)",
       lg:
         "0 5px 15px 0px var(--c-shdw-3), 0 2px 6px 0px var(--c-shdw-2)",
-      lgDL:
-        "0 5px 15px 0px rgba(0, 0, 0, .05), 0 2px 6px 0px rgba(0, 0, 0, .025)",
-      lgS:
-        "0 10px 15px -3px rgba(0, 0, 0, .2), 0 4px 6px -2px rgba(0, 0, 0, .1)",
-      lgSS:
-        "0 10px 15px -3px rgba(0, 0, 0, .4), 0 4px 6px -2px rgba(0, 0, 0, .2)",
-      lgDSS:
-        "0 5px 15px 0px rgba(0, 0, 0, .4), 0 2px 6px 0px rgba(0, 0, 0, .2)",
-      nlg:
-        "0 -10px 15px -3px rgba(0, 0, 0, .1), 0 -4px 6px -2px rgba(0, 0, 0, .05)",
-      nlgS:
-        "0 -10px 15px -3px rgba(0, 0, 0, .2), 0 -4px 6px -2px rgba(0, 0, 0, .1)",
-      nlgSS:
-        "0 -10px 15px -3px rgba(0, 0, 0, .3), 0 -4px 6px -2px rgba(0, 0, 0, .15)",
       xl:
         "0 10px 25px -3px var(--c-shdw-3), 0 2px 10px 0px var(--c-shdw-3)",
-      xlS:
-        "0 20px 25px -5px rgba(0, 0, 0, .2), 0 10px 10px -5px rgba(0, 0, 0, .08)",
-      xlSS:
-        "0 20px 25px -5px rgba(0, 0, 0, .4), 0 10px 10px -5px rgba(0, 0, 0, .16)",
-      xlDSS:
-        "0 12px 35px -4px rgba(0, 0, 0, .4), 0 6px 15px -2px rgba(0, 0, 0, .16)",
       "2xl": "0 25px 50px -12px var(--c-shdw-5)",
       "4xl": "0 15px 100px -5px var(--c-shdw-6)",
     },
