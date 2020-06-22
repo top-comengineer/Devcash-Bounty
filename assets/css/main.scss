@@ -19,9 +19,7 @@
   font-family: "JetBrainsMono";
 }
 .h-sidebar{
-  height: calc(100vh - 7.5rem);
-  max-height: calc(100vh - 7.5rem);
-  min-height: 32rem;
+  min-height: calc(100vh - 7.5rem);
 }
 
 //// BUTTONS ////

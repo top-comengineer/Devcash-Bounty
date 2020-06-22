@@ -1,15 +1,20 @@
 <template>
   <div
-    class="w-full flex flex-col justify-center items-center bg-c-background-sec border-2 border-c-text-05 shadow-2xl rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-4 md:px-12 md:py-8"
+    class="w-full flex flex-col justify-center items-center bg-c-background-sec border-2 border-c-text-05 shadow-2xl-sec rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-4 md:px-12 md:py-8"
   >
+    <img
+      class="w-32 h-auto relative -mt-4"
+      :src="require('~/assets/images/illustrations/foreground/lock.svg')"
+      alt="Lock"
+    />
     <h4
-      class="text-c-primary text-2xl text-center font-bold"
+      class="text-c-primary text-2xl text-center font-bold mt-2"
     >{{ $t("bountyPlatform.signInToContinue.header") }}</h4>
     <p class="text-c-text text-center mt-2">{{ $t("bountyPlatform.signInToContinue.paragraph") }}</p>
-    <div class="w-full max-w-xxs flex flex-col mt-6">
+    <div class="w-full max-w-xxs flex flex-col mt-4">
       <!-- MetaMask Button -->
       <button
-        class="w-full btn-text-qua flex flex-row items-center bg-c-metamask border-2 border-c-metamask transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+        class="w-full btn-text-qua flex flex-row items-center bg-c-metamask border-2 border-c-metamask transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-2"
       >
         <div class="bg-c-background-ter h-12 w-12 p-2">
           <img
@@ -26,7 +31,7 @@
       </button>
       <!-- Portis Button -->
       <button
-        class="w-full btn-text-qua flex flex-row items-center bg-c-portis border-2 border-c-portis transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+        class="w-full btn-text-qua flex flex-row items-center bg-c-portis border-2 border-c-portis transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-2"
       >
         <div class="bg-c-background-ter h-12 w-12 p-2">
           <img
@@ -43,7 +48,7 @@
       </button>
       <!-- Authereum Button -->
       <button
-        class="w-full btn-text-qua flex flex-row items-center bg-c-authereum border-2 border-c-authereum transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-1_5"
+        class="w-full btn-text-qua flex flex-row items-center bg-c-authereum border-2 border-c-authereum transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden my-2"
       >
         <div class="bg-c-background-ter h-12 w-12 p-2">
           <img

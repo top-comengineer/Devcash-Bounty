@@ -61,6 +61,7 @@ module.exports = {
       xl:
         "0 10px 25px -3px var(--c-shdw-3), 0 2px 10px 0px var(--c-shdw-3)",
       "2xl": "0 25px 50px -12px var(--c-shdw-5)",
+      "2xl-sec": "0 25px 50px -12px var(--c-shdw-4)",
       "4xl": "0 15px 100px -5px var(--c-shdw-6)",
     },
     opacity: {
