@@ -276,7 +276,7 @@
         :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
       />
     </div>
-    <sign-in-to-continue-card v-else />
+    <sign-in-to-continue-wrapper v-else />
   </div>
 </template>
 
@@ -288,7 +288,7 @@ import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
 import DatePicker from "~/components/DatePicker.vue";
 import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
-import SignInToContinueCard from "~/components/BountyPlatform/SignInToContinueCard.vue";
+import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
@@ -305,7 +305,7 @@ export default {
     Icon,
     DatePicker,
     CategoryPicker,
-    SignInToContinueCard
+    SignInToContinueWrapper
   },
   data() {
     return {

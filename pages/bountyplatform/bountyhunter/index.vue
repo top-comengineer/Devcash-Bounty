@@ -147,7 +147,7 @@
         </div>
       </div>
     </div>
-    <sign-in-to-continue-card v-else />
+    <sign-in-to-continue-wrapper v-else />
   </div>
 </template>
 
@@ -161,7 +161,7 @@ import SubmissionCardPlaceholder from "~/components/BountyPlatform/SubmissionCar
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
-import SignInToContinueCard from "~/components/BountyPlatform/SignInToContinueCard.vue";
+import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
 const defaultBountyLimit = 10;
 
 export default {
@@ -172,7 +172,7 @@ export default {
     BountyCard,
     BountyCardPlaceholder,
     CheckmarkButton,
-    SignInToContinueCard
+    SignInToContinueWrapper
   },
   computed: {
     // mix the getters into computed with object spread operator
