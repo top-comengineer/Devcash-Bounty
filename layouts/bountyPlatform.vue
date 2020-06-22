@@ -50,7 +50,7 @@ export default {
   .sidebar-container {
     width: calc((100vw - 1280px) / 2);
     max-width: 20rem;
-    min-width: 15rem;
+    min-width: 16rem;
   }
 }
 .sidebar-spacer-right {

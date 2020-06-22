@@ -14,7 +14,7 @@ module.exports = {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],   
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
   },
   /*
    ** Customize the progress-bar color
@@ -55,7 +55,7 @@ module.exports = {
             return req.protocol + '://' + req.get('host')
           }
           return window.location.protocol + "//" + window.location.host;
-        },        
+        },
         seo: false,
         locales: [
           {
@@ -82,7 +82,7 @@ module.exports = {
         langDir: 'locales/',
         vueI18n: { fallbackLocale: 'en' }
       }
-    ]   
+    ]
   ],
   /*
    ** Axios module configuration
@@ -96,7 +96,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend(config, ctx) { },
     filenames: {
       app: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
       chunk: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
@@ -111,5 +111,5 @@ module.exports = {
   },
   router: {
     middleware: ['theme', 'devcash', 'baseurl']
-  }  
+  }
 };

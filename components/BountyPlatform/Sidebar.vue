@@ -7,7 +7,7 @@
       <!-- Explore -->
       <nuxt-link
         :to="localePath('bountyplatform')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty)
@@ -26,7 +26,7 @@
       <!-- Post -->
       <nuxt-link
         :to="localePath('bountyplatform-post')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.post,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.post)
@@ -45,7 +45,7 @@
       <!-- Overview -->
       <nuxt-link
         :to="localePath('bountyplatform-overview')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.overview,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.overview)
@@ -64,7 +64,7 @@
       <!-- Bounty Hunter-->
       <nuxt-link
         :to="localePath('bountyplatform-bountyhunter')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyHunter,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
@@ -83,7 +83,7 @@
       <!-- Bounty Manager -->
       <nuxt-link
         :to="localePath('bountyplatform-bountymanager')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyManager,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
@@ -100,11 +100,11 @@
         >{{ $t("bountyPlatform.bountyManager.header") }}</h3>
       </nuxt-link>
       <!-- Divider -->
-      <div class="px-4 lg:px-6 mt-4 mb-5 hidden lg:block">
-        <div class="text-c-text w-full h-px2 rounded-full opacity-10"></div>
+      <div class="px-4 lg:pl-10 lg:pr-8 mt-4 mb-5 hidden lg:block">
+        <div class="bg-c-text w-full h-px2 rounded-full opacity-10"></div>
       </div>
       <!-- Context aware options -->
-      <div class="px-4 lg:px-6 xl:pl-8 hidden lg:block">
+      <div class="px-4 lg:pl-10 lg:pr-8 hidden lg:block">
         <!-- If context is Null -->
         <div v-if="$store.state.sidebarContext == null" class="flex flex-col"></div>
         <!-- If context is Explore -->
