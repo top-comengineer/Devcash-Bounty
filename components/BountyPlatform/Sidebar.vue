@@ -25,7 +25,6 @@
       </nuxt-link>
       <!-- Post -->
       <nuxt-link
-        v-if="isLoggedIn"
         :to="localePath('bountyplatform-post')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -45,7 +44,6 @@
       </nuxt-link>
       <!-- Overview -->
       <nuxt-link
-        v-if="isLoggedIn"
         :to="localePath('bountyplatform-overview')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -65,7 +63,6 @@
       </nuxt-link>
       <!-- Bounty Hunter-->
       <nuxt-link
-        v-if="isLoggedIn"
         :to="localePath('bountyplatform-bountyhunter')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -85,7 +82,6 @@
       </nuxt-link>
       <!-- Bounty Manager -->
       <nuxt-link
-        v-if="isLoggedIn"
         :to="localePath('bountyplatform-bountymanager')"
         class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:px-6 xl:pl-8 transition-colors ease-out duration-200"
         :class="[{
@@ -112,10 +108,7 @@
         <!-- If context is Null -->
         <div v-if="$store.state.sidebarContext == null" class="flex flex-col"></div>
         <!-- If context is Explore -->
-        <div
-          v-if="$store.state.sidebarContext == sidebarContexts.explore"
-          class="flex flex-col"
-        >
+        <div v-if="$store.state.sidebarContext == sidebarContexts.explore" class="flex flex-col">
           <!-- Search Text and Search Bar -->
           <h4
             class="text-c-text text-lg font-bold"

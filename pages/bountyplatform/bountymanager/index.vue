@@ -140,7 +140,7 @@
         </div>
       </div>
     </div>
-    <h1 v-else>Not logged in</h1>
+    <sign-in-to-continue-card v-else />
   </div>
 </template>
 
@@ -153,6 +153,7 @@ import SubmissionCardPlaceholder from "~/components/BountyPlatform/SubmissionCar
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
+import SignInToContinueCard from "~/components/BountyPlatform/SignInToContinueCard.vue";
 
 const defaultBountyLimit = 10;
 
@@ -163,7 +164,8 @@ export default {
     SubmissionCardPlaceholder,
     BountyCard,
     BountyCardPlaceholder,
-    CheckmarkButton
+    CheckmarkButton,
+    SignInToContinueCard
   },
   computed: {
     // mix the getters into computed with object spread operator

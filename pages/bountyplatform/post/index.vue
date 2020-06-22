@@ -1,279 +1,282 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
-    <!-- Greeting Card -->
-    <GreetingCard
-      :header="$t('bountyPlatform.post.cardHeader')"
-      :paragraph="$t('bountyPlatform.post.cardParagraph')"
-      type="post"
-      class="my-1 md:my-2"
-    />
-    <!-- Post Form -->
-    <!-- Card for Bounty Title and Description -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-    >
-      <!-- Bounty Title -->
-      <div class="w-full md:w-1/2 flex flex-col mt-3">
-        <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyTitle')}}</h3>
-        <div class="w-full flex flex-row">
-          <input
-            v-model="title"
-            class="bg-c-background-ter border-c-background-ter text-c-text flex-1 text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.bountyTitlePlaceholder')"
-            @focus="titleError?titleError=false:null"
-            @keyup.enter="$event.target.nextElementSibling.focus()"
-            @blur="validateTitle"
-          />
-          <!-- Divider -->
-          <div class="hidden md:block w-8"></div>
-        </div>
-        <p
-          class="text-c-danger text-xs px-3 mt-2"
-        >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
-      </div>
-      <!-- Bounty Description -->
-      <div class="w-full flex flex-col my-3">
-        <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
-        <textarea
-          v-model="description"
-          class="bg-c-background-ter border-c-background-ter text-c-text bountyDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-          type="text"
-          :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
-          @blur="validateDescription"
-        />
-      </div>
-      <div class="w-full flex flex-col">
-        <p
-          :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
-          class="text-sm px-3 opacity-75"
-        >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
-      </div>
-    </div>
-    <!-- Card for Bounty Type -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-    >
-      <!-- Bounty Type -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h3>
-        <!-- Public and Private Switch -->
-        <div
-          class="bg-c-background-ter border-c-text-10 max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
-        >
-          <div class="w-full flex flex-row relative">
-            <div
-              :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty}"
-              class="shadow-lg absolute w-1/2 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
-            ></div>
-            <button
-              :class="[openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
-              @click.prevent="openBounty=true"
-              class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
-            >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
-            <button
-              :class="[!openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
-              @click.prevent="openBounty=false"
-              class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
-            >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
+    <div v-if="isLoggedIn" class="w-full flex-col justify-center items-center">
+      <!-- Greeting Card -->
+      <GreetingCard
+        :header="$t('bountyPlatform.post.cardHeader')"
+        :paragraph="$t('bountyPlatform.post.cardParagraph')"
+        type="post"
+        class="my-1 md:my-2"
+      />
+      <!-- Post Form -->
+      <!-- Card for Bounty Title and Description -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <!-- Bounty Title -->
+        <div class="w-full md:w-1/2 flex flex-col mt-3">
+          <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyTitle')}}</h3>
+          <div class="w-full flex flex-row">
+            <input
+              v-model="title"
+              class="bg-c-background-ter border-c-background-ter text-c-text flex-1 text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+              type="text"
+              :placeholder="$t('bountyPlatform.post.bountyTitlePlaceholder')"
+              @focus="titleError?titleError=false:null"
+              @keyup.enter="$event.target.nextElementSibling.focus()"
+              @blur="validateTitle"
+            />
+            <!-- Divider -->
+            <div class="hidden md:block w-8"></div>
           </div>
+          <p
+            class="text-c-danger text-xs px-3 mt-2"
+          >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
         </div>
-        <!-- Spacer -->
-        <p class="text-xs px-3 mt-2">{{'&nbsp;'}}</p>
-      </div>
-
-      <!-- Divider -->
-      <div class="hidden md:block w-16"></div>
-      <!-- Hunter's Address -->
-      <transition name="hunterAddressTransition">
-        <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
-          <input
-            v-model="hunter"
-            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+        <!-- Bounty Description -->
+        <div class="w-full flex flex-col my-3">
+          <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
+          <textarea
+            v-model="description"
+            class="bg-c-background-ter border-c-background-ter text-c-text bountyDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
             type="text"
-            :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
-            @focus="invalidHunterAddress?invalidHunterAddress=false:null"
-            @blur="validateHunterAddress"
+            :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
+            @blur="validateDescription"
+          />
+        </div>
+        <div class="w-full flex flex-col">
+          <p
+            :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
+            class="text-sm px-3 opacity-75"
+          >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+        </div>
+      </div>
+      <!-- Card for Bounty Type -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <!-- Bounty Type -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h3>
+          <!-- Public and Private Switch -->
+          <div
+            class="bg-c-background-ter border-c-text-10 max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
+          >
+            <div class="w-full flex flex-row relative">
+              <div
+                :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty}"
+                class="shadow-lg absolute w-1/2 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+              ></div>
+              <button
+                :class="[openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                @click.prevent="openBounty=true"
+                class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+              >{{$t('bountyPlatform.post.bountyTypePublic')}}</button>
+              <button
+                :class="[!openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                @click.prevent="openBounty=false"
+                class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+              >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
+            </div>
+          </div>
+          <!-- Spacer -->
+          <p class="text-xs px-3 mt-2">{{'&nbsp;'}}</p>
+        </div>
+
+        <!-- Divider -->
+        <div class="hidden md:block w-16"></div>
+        <!-- Hunter's Address -->
+        <transition name="hunterAddressTransition">
+          <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
+            <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
+            <input
+              v-model="hunter"
+              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+              type="text"
+              :placeholder="$t('bountyPlatform.post.bountyTypeHunterAddressPlaceholder')"
+              @focus="invalidHunterAddress?invalidHunterAddress=false:null"
+              @blur="validateHunterAddress"
+            />
+            <p
+              class="text-c-danger text-xs px-3 mt-2"
+            >{{ invalidHunterAddress?$t('bountyPlatform.post.invalidAddress'):'&nbsp;' }}</p>
+          </div>
+        </transition>
+      </div>
+      <!-- Card for Number of Bounties and Bounty Amount -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <!-- Number of Bounties -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCount')}}</h3>
+          <input
+            v-model="numBounties"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            type="number"
+            min="1"
+            :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
+            @focus="numBountiesError?numBountiesError=false:null"
+            @blur="validateNumBounties"
           />
           <p
             class="text-c-danger text-xs px-3 mt-2"
-          >{{ invalidHunterAddress?$t('bountyPlatform.post.invalidAddress'):'&nbsp;' }}</p>
+          >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
         </div>
-      </transition>
-    </div>
-    <!-- Card for Number of Bounties and Bounty Amount -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-    >
-      <!-- Number of Bounties -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCount')}}</h3>
-        <input
-          v-model="numBounties"
-          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-          type="number"
-          min="1"
-          :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
-          @focus="numBountiesError?numBountiesError=false:null"
-          @blur="validateNumBounties"
-        />
-        <p
-          class="text-c-danger text-xs px-3 mt-2"
-        >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
-      </div>
-      <!-- Divider -->
-      <div class="hidden md:block w-16"></div>
-      <!-- Bounty Amount -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">
-          {{$t('bountyPlatform.post.bountyAmount')}}
-          <span
-            class="text-sm font-normal opacity-75"
-          >{{$t('bountyPlatform.post.bountyForEach')}}</span>
-        </h3>
-        <input
-          v-model="amount"
-          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-          type="number"
-          :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
-          @focus="amountError?amountError=false:null"
-          @blur="validateAmount"
-        />
-        <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
-      </div>
-    </div>
-    <!-- Card for Category and Deadline -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-    >
-      <!-- Bounty Category -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCategory')}}</h3>
-        <div v-on-clickaway="closeCategoryPicker" class="flex-1 flex flex-col">
-          <!-- Category Input -->
+        <!-- Divider -->
+        <div class="hidden md:block w-16"></div>
+        <!-- Bounty Amount -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.bountyAmount')}}
+            <span
+              class="text-sm font-normal opacity-75"
+            >{{$t('bountyPlatform.post.bountyForEach')}}</span>
+          </h3>
           <input
-            v-model="categoryValueStr"
+            v-model="amount"
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.bountyCategoryPlaceholder')"
-            @focus="showCategoryPicker=true"
-            @keydown.esc.exact="closeCategoryPicker"
-            readonly="true"
+            type="number"
+            :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
+            @focus="amountError?amountError=false:null"
+            @blur="validateAmount"
           />
-          <!-- Category Picker -->
-          <div class="relative">
-            <transition name="datePickerTransition">
-              <CategoryPicker
-                class="absolute z-40 top-0 mt-2 origin-top-left"
-                v-if="showCategoryPicker"
-                :closePicker="closeCategoryPicker"
-                :categories="Object.values(categories)"
-                :categoryPicked="categoryPicked"
-                :currentCategory="categoryValueStr"
-              />
-            </transition>
-          </div>
+          <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
         </div>
-        <p
-          class="text-c-danger text-xs px-3 mt-2"
-        >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
       </div>
-      <!-- Divider -->
-      <div class="hidden md:block w-16"></div>
-      <!-- Deadline -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">
-          {{$t('bountyPlatform.post.bountyDeadline')}}
-          <span
-            class="font-normal text-base opacity-75"
-          >{{$t('bountyPlatform.post.optional')}}</span>
-        </h3>
-        <div class="w-full flex flex-row items-center relative mt-2">
-          <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
+      <!-- Card for Category and Deadline -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <!-- Bounty Category -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCategory')}}</h3>
+          <div v-on-clickaway="closeCategoryPicker" class="flex-1 flex flex-col">
+            <!-- Category Input -->
             <input
-              v-model="datePickerValueStr"
-              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+              v-model="categoryValueStr"
+              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
-              @focus="showDatePicker=true"
-              @keydown.esc.exact="closePicker"
-              @keydown.tab.exact="closePicker"
+              :placeholder="$t('bountyPlatform.post.bountyCategoryPlaceholder')"
+              @focus="showCategoryPicker=true"
+              @keydown.esc.exact="closeCategoryPicker"
               readonly="true"
-              :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
-              @blur="validateDeadline"
             />
+            <!-- Category Picker -->
             <div class="relative">
               <transition name="datePickerTransition">
-                <DatePicker
-                  class="absolute z-50 top-0 mt-2 origin-top-left"
-                  v-if="showDatePicker"
-                  :closePicker="closePicker"
-                  :value="datePickerValue"
-                  :datePicked="datePickerSet"
-                  :futureOnly="true"
+                <CategoryPicker
+                  class="absolute z-40 top-0 mt-2 origin-top-left"
+                  v-if="showCategoryPicker"
+                  :closePicker="closeCategoryPicker"
+                  :categories="Object.values(categories)"
+                  :categoryPicked="categoryPicked"
+                  :currentCategory="categoryValueStr"
                 />
               </transition>
             </div>
           </div>
-          <!-- Clear button -->
-          <button
-            v-if="datePickerValue!=null || datePickerValueStr != ''"
-            class="btn-primary transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-primary text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
-            @click.prevent="datePickerValueStr=''; datePickerValue=null"
-          >
-            <Icon class="w-6 h-6" colorClass="text-c-light" type="cancel" />
-          </button>
+          <p
+            class="text-c-danger text-xs px-3 mt-2"
+          >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
         </div>
-        <p
-          class="text-c-danger text-sm px-3"
-        >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
+        <!-- Divider -->
+        <div class="hidden md:block w-16"></div>
+        <!-- Deadline -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.bountyDeadline')}}
+            <span
+              class="font-normal text-base opacity-75"
+            >{{$t('bountyPlatform.post.optional')}}</span>
+          </h3>
+          <div class="w-full flex flex-row items-center relative mt-2">
+            <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
+              <input
+                v-model="datePickerValueStr"
+                class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+                type="text"
+                @focus="showDatePicker=true"
+                @keydown.esc.exact="closePicker"
+                @keydown.tab.exact="closePicker"
+                readonly="true"
+                :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
+                @blur="validateDeadline"
+              />
+              <div class="relative">
+                <transition name="datePickerTransition">
+                  <DatePicker
+                    class="absolute z-50 top-0 mt-2 origin-top-left"
+                    v-if="showDatePicker"
+                    :closePicker="closePicker"
+                    :value="datePickerValue"
+                    :datePicked="datePickerSet"
+                    :futureOnly="true"
+                  />
+                </transition>
+              </div>
+            </div>
+            <!-- Clear button -->
+            <button
+              v-if="datePickerValue!=null || datePickerValueStr != ''"
+              class="btn-primary transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-primary text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
+              @click.prevent="datePickerValueStr=''; datePickerValue=null"
+            >
+              <Icon class="w-6 h-6" colorClass="text-c-light" type="cancel" />
+            </button>
+          </div>
+          <p
+            class="text-c-danger text-sm px-3"
+          >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
+        </div>
       </div>
+      <!-- Card for Contact Name and Email -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <!-- Contact Name -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
+          <input
+            v-model="contactName"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            type="text"
+            :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
+            @focus="contactNameError?contactNameError=false:null"
+            @blur="validateContactName"
+          />
+          <p
+            class="text-c-danger text-xs px-3 mt-2"
+          >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
+        </div>
+        <!-- Divider -->
+        <div class="hidden md:block w-16"></div>
+        <!-- Contact Email -->
+        <div class="w-full md:flex-1 flex flex-col my-3">
+          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
+          <input
+            v-model="contactEmail"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            type="text"
+            :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
+            @focus="emailError?emailError=false:null"
+            @blur="validateEmail"
+          />
+          <p
+            class="text-c-danger text-xs px-3 mt-2"
+          >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
+        </div>
+      </div>
+      <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
+      <!-- Call to Action Card -->
+      <CTACard
+        class="my-1 md:my-2"
+        :disabled="submitLoading"
+        :buttonAction="submitBounty"
+        :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
+      />
     </div>
-    <!-- Card for Contact Name and Email -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-    >
-      <!-- Contact Name -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
-        <input
-          v-model="contactName"
-          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-          type="text"
-          :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
-          @focus="contactNameError?contactNameError=false:null"
-          @blur="validateContactName"
-        />
-        <p
-          class="text-c-danger text-xs px-3 mt-2"
-        >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
-      </div>
-      <!-- Divider -->
-      <div class="hidden md:block w-16"></div>
-      <!-- Contact Email -->
-      <div class="w-full md:flex-1 flex flex-col my-3">
-        <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
-        <input
-          v-model="contactEmail"
-          class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-          type="text"
-          :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
-          @focus="emailError?emailError=false:null"
-          @blur="validateEmail"
-        />
-        <p
-          class="text-c-danger text-xs px-3 mt-2"
-        >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
-      </div>
-    </div>
-    <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
-    <!-- Call to Action Card -->
-    <CTACard
-      class="my-1 md:my-2"
-      :disabled="submitLoading"
-      :buttonAction="submitBounty"
-      :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
-    />
+    <sign-in-to-continue-card v-else />
   </div>
 </template>
 
@@ -283,8 +286,9 @@ import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
-import DatePicker from "~/components/DatePicker";
-import CategoryPicker from "~/components/BountyPlatform/CategoryPicker";
+import DatePicker from "~/components/DatePicker.vue";
+import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
+import SignInToContinueCard from "~/components/BountyPlatform/SignInToContinueCard.vue";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
@@ -300,7 +304,8 @@ export default {
     CTACard,
     Icon,
     DatePicker,
-    CategoryPicker
+    CategoryPicker,
+    SignInToContinueCard
   },
   data() {
     return {

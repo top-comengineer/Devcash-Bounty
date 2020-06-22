@@ -18,21 +18,10 @@
 .font-mono-jet {
   font-family: "JetBrainsMono";
 }
-.bg-dtPrimary-25 {
-  background-color: rgba(#675cff, 0.25);
-}
-// Hover Scale
-.hover_scale-md:hover {
-  transform: scale(1.035);
-}
-.focus_scale-md:focus {
-  transform: scale(1.035);
-}
-.hover_scale-lg:hover {
-  transform: scale(1.065);
-}
-.focus_scale-lg:focus {
-  transform: scale(1.065);
+.h-sidebar{
+  height: calc(100vh - 7.5rem);
+  max-height: calc(100vh - 7.5rem);
+  min-height: 32rem;
 }
 
 //// BUTTONS ////
@@ -84,6 +73,14 @@
 .btn-text-ter:hover,
 .btn-text-ter:focus {
   box-shadow: -0.35rem 0.35rem 0 0 var(--c-background);
+  outline: none !important;
+}
+.btn-text-qua {
+  box-shadow: 0 0 0 0 var(--c-text);
+}
+.btn-text-qua:hover,
+.btn-text-qua:focus {
+  box-shadow: -0.35rem 0.35rem 0 0 var(--c-text);
   outline: none !important;
 }
 /////////////////

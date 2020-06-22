@@ -1,72 +1,72 @@
 <template>
-  <div v-if="!isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
-    <h1>NOT LOGGED IN</h1>
-  </div>
-  <div v-else class="w-full flex flex-row flex-wrap justify-center">
-    <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
-      <OverviewCardPlaceholder
-        v-if="overviewLoading"
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-      />
-      <OverviewCard
-        v-else
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-        type="earned"
-        :totalDEV="totalEarnedDC"
-        :totalETH="totalEarnedEth"
-        :count="totalSubmissions"
-      />
-      <OverviewCardPlaceholder
-        v-if="overviewLoading"
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-      />
-      <OverviewCard
-        v-else
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-        type="awarded"
-        :totalDEV="totalAwardedDC"
-        :totalETH="totalAwardedEth"
-        :count="totalBounties"
-      />
-      <OverviewCardPlaceholder
-        v-if="overviewLoading"
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-      />
-      <OverviewCard
-        v-else
-        class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
-        type="balance"
-        :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"
-        :totalETH="$store.state.devcashData.ethPrimary ? balance.primary.amount : balance.secondary.amount"
-        :address="loggedInAccount"
-      />
-    </div>
-    <!-- Activity Main Card -->
-    <div
-      class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
-    >
-      <!-- Header -->
-      <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
-      <!-- ActivityCards -->
-      <div class="w-full flex flex-col flex-wrap my-4">
-        <ActivityCard
-          class="my-2"
-          v-for="(item, i) in activity"
-          :key="i"
-          :perspective="item.perspective"
-          :messageType="item.type"
-          :address="item.address"
-          :bountyName="item.name"
-          :date="formatDate(item.createdAt)"
+  <div class="w-full flex flex-row flex-wrap justify-center">
+    <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
+      <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
+        <OverviewCardPlaceholder
+          v-if="overviewLoading"
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        />
+        <OverviewCard
+          v-else
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          type="earned"
+          :totalDEV="totalEarnedDC"
+          :totalETH="totalEarnedEth"
+          :count="totalSubmissions"
+        />
+        <OverviewCardPlaceholder
+          v-if="overviewLoading"
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        />
+        <OverviewCard
+          v-else
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          type="awarded"
+          :totalDEV="totalAwardedDC"
+          :totalETH="totalAwardedEth"
+          :count="totalBounties"
+        />
+        <OverviewCardPlaceholder
+          v-if="overviewLoading"
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+        />
+        <OverviewCard
+          v-else
+          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          type="balance"
+          :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"
+          :totalETH="$store.state.devcashData.ethPrimary ? balance.primary.amount : balance.secondary.amount"
+          :address="loggedInAccount"
         />
       </div>
-      <!-- Load More Button 
+      <!-- Activity Main Card -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
+      >
+        <!-- Header -->
+        <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
+        <!-- ActivityCards -->
+        <div class="w-full flex flex-col flex-wrap my-4">
+          <ActivityCard
+            class="my-2"
+            v-for="(item, i) in activity"
+            :key="i"
+            :perspective="item.perspective"
+            :messageType="item.type"
+            :address="item.address"
+            :bountyName="item.name"
+            :date="formatDate(item.createdAt)"
+          />
+        </div>
+        <!-- Load More Button 
       <div class="flex flex-row justify-center mt-2">
         <button
           class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
-      </div>-->
+        </div>-->
+      </div>
     </div>
+    <sign-in-to-continue-card v-else class="mx-1 md:mx-4" />
   </div>
 </template>
 
@@ -78,12 +78,14 @@ import { utils } from "ethers";
 import OverviewCard from "~/components/BountyPlatform/OverviewCard.vue";
 import OverviewCardPlaceholder from "~/components/BountyPlatform/OverviewCardPlaceholder.vue";
 import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
+import SignInToContinueCard from "~/components/BountyPlatform/SignInToContinueCard.vue";
 export default {
   layout: "bountyPlatform",
   components: {
     OverviewCard,
     OverviewCardPlaceholder,
-    ActivityCard
+    ActivityCard,
+    SignInToContinueCard
   },
   computed: {
     // mix the getters into computed with object spread operator
