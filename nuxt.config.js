@@ -30,7 +30,8 @@ module.exports = {
   plugins: [
     { src: '~/plugins/vue-qr.js', ssr: false },
     { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
-    { src: '~/plugins/crontab.js', ssr: false }
+    { src: '~/plugins/crontab.js', ssr: false },
+    { src: '~/plugins/notifications.js', ssr: false}
   ],
   /*
    ** Nuxt.js dev-modules

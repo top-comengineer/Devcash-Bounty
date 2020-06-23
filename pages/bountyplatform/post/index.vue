@@ -355,7 +355,8 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
-      curFee: "devcashData/getCurFee"
+      curFee: "devcashData/getCurFee",
+      balance: "devcashData/getBalance"
     }),
     currentLocale() {
       for (let locale of this.$i18n.locales) {
@@ -455,12 +456,13 @@ export default {
   validateAmount(){
     let isValid = true
     try {
+      let amountBigNum, balanceBigNum
        if (this.$store.state.devcashData.ethPrimary) {
          amountBigNum = utils.parseEther(this.amount.toString())
-         balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.primary.raw)
+         balanceBigNum = utils.bigNumberify(this.balance.primary.raw)
        } else {
          amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         balanceBigNum = utils.bigNumberify(this.$store.state.devcashData.balance.primary.approvedRaw)       
+         balanceBigNum = utils.bigNumberify(this.balance.primary.approvedRaw)       
        }
        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
          this.amountError = this.$t('bountyPlatform.post.insufficientBalance')

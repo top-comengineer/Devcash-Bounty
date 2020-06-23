@@ -56,8 +56,7 @@ import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
 import Icon from "~/components/Icon.vue";
 import Vue from 'vue'
-import Notifications from 'vue-notification/dist/ssr.js'
-Vue.use(Notifications)
+
 // Optional IBO bar below
 // import IBOBar from "~/components/IBOBar.vue";
 export default {

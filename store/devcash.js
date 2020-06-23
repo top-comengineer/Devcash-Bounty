@@ -5,6 +5,9 @@ export const state = () => ({
 
   export const mutations = {
     setConnector(state, connector) {
+      try {
+        state.connector.uBCContract.removeAllListeners("created")
+      } catch (e) { }
       state.connector = connector;
     }
   };

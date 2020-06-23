@@ -122,6 +122,7 @@ export class DevcashBounty {
           vueComponent.$store.state.devcashData.provider
         );
         vueComponent.$store.commit("devcash/setConnector", connector);
+        vueComponent.$root.$emit('connectorSet', connector)
       } catch (e) {
         // TODO - handle these correctly
         if (e instanceof AccountNotFoundError) {
@@ -129,6 +130,7 @@ export class DevcashBounty {
           vueComponent.$store.commit("devcashData/setProvider", null);
           vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
           vueComponent.$store.commit("devcash/setConnector", null);
+          vueComponent.$root.$emit('connectorSet', null)
           await this.initEthConnector(vueComponent);
         } else {
           alert(`Unknown error ${e}`);
@@ -180,6 +182,7 @@ export class DevcashBounty {
       let connector = await DevcashBounty.init(null, provider);
       // Set state
       vueComponent.$store.commit("devcash/setConnector", connector);
+      vueComponent.$root.$emit('connectorSet', connector)
       // Set persistent state for logged in account
       vueComponent.$store.commit("devcashData/setProvider", provider);
       vueComponent.$store.commit(
@@ -214,6 +217,7 @@ export class DevcashBounty {
     vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
     vueComponent.$store.commit("devcashData/setBalance", null);
     vueComponent.$store.commit("devcash/setConnector", null);
+    vueComponent.$root.$emit('connectorSet', null)
     vueComponent.$router.replace(vueComponent.localePath("/"));
   }
 

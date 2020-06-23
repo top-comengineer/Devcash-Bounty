@@ -393,7 +393,9 @@ export default {
       isSignOutModalOpen: false,
       hasMetamask: false,
       walletProviders: WalletProviders,
-      loggingInLoading: false
+      loggingInLoading: false,
+      ethersListeners: {},
+      historicalCreated: []
     };
   },
   cron: {
@@ -403,7 +405,25 @@ export default {
   mounted() {
     // Initialize these here since it's client side
     this.hasMetamask = DevcashBounty.hasMetamask();
-    this.updateBalance()
+    this.updateBalance();
+    let ref = this
+    this.$root.$on('connectorSet', (connector) => {
+      if (connector) {
+        connector.uBCContract.on("created", async (uBountyIndex, event) => {
+          if (!ref.historicalCreated.includes(uBountyIndex)) {
+            ref.historicalCreated.push(uBountyIndex)
+            ref.$notify({
+              group: 'main',
+              title: 'A new bounty has been created',
+              text: 'Click this notification to see the details.',
+              href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
+            });            
+          }
+        });
+      } else {
+        this.ethersListeners = {}
+      }
+    })     
   }
 };
 </script>
