@@ -79,6 +79,7 @@
           <p class="text-sm opacity-75 mt-6">{{ formatDateStr(currentLocale.iso) }}</p>
           <!-- Show Feedback -->
           <button
+            v-if="isThereFeedback"
             @click.prevent="isFeedbackVisible=!isFeedbackVisible"
             class="hover:bg-c-text-15 focus:bg-c-text-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mt-4"
           >
