@@ -20,7 +20,7 @@
             <span v-if="ubounty.title" class="font-extrabold">{{ubounty.title}}</span>
           </h5>
         </div>
-        <!-- Bounty Amount and Status Tag or Approve Decline Options -->
+        <!-- Bounty Amount and Status Tag or Approve Reject Options -->
         <div class="w-full md:w-auto flex flex-row flex-wrap items-center px-4 md:pr-0">
           <!-- Bounty Amount in DEV, ETH and USD -->
           <div class="flex flex-col my-2">
@@ -177,7 +177,7 @@ export default {
   transform-origin: top center;
 }
 .feedbackTransition-leave-active {
-  transition: all 0.3s ease-out;
+  transition: all 0.2s ease-out;
   transform-origin: top center;
 }
 .feedbackTransition-enter {

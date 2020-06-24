@@ -399,3 +399,17 @@ export default {
   }
 };
 </script>
+<style>
+.confirmModalTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.confirmModalTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.confirmModalTransition-enter {
+  opacity: 0;
+}
+.confirmModalTransition-leave-to {
+  opacity: 0;
+}
+</style>
