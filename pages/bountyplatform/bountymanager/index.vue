@@ -165,7 +165,8 @@ export default {
     BountyCard,
     BountyCardPlaceholder,
     CheckmarkButton,
-    SignInToContinueWrapper
+    SignInToContinueWrapper,
+    ConfirmModal
   },
   computed: {
     // mix the getters into computed with object spread operator

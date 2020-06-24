@@ -3,7 +3,7 @@
     :to="localePath({name:'bountyplatform-bounty-id', params: {id: bounty.id}})"
     :class="{
       'bg-c-background-sec border-c-background-sec': !type,
-      'bg-c-background-ter border-c-background-ter border-c-background-ter': type == 'secondary',
+      'bg-c-background-qua border-c-background-qua border-c-background-qua': type == 'secondary',
     } "
     class="w-full flex flex-row flex-wrap justify-between items-center shadow-lg border-2 hover:border-c-primary focus:border-c-primary relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-2 md:px-4 transition-colors duration-300 ease-out"
   >

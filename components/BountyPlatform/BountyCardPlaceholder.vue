@@ -2,7 +2,7 @@
   <div
     :class="{
       'bg-c-background-sec border-c-background-sec': !type,
-      'bg-c-background-ter border-c-background-ter border-c-background-ter': type == 'secondary',
+      'bg-c-background-qua border-c-background-qua border-c-background-qua': type == 'secondary',
     } "
     class="w-full flex flex-row flex-wrap justify-between items-center relative shadow-lg rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >

@@ -203,6 +203,25 @@
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
     },
+    "confirmModal": {
+      "confirmToApprove": {
+        "header": "Confirm to Approve",
+        "paragraph": "Please confirm that you would like to send the bounty prize to the hunter.",
+        "buttonConfirm": "CONFIRM",
+        "buttonCancel": "CANCEL"
+      },
+      "confirmToDecline": {
+        "header": "Confirm to Decline",
+        "paragraph": "Please confirm that you would like to decline the submission.",
+        "buttonConfirm": "CONFIRM",
+        "buttonCancel": "CANCEL"
+      },
+      "inputFeedback": {
+        "header": "Feedback",
+        "optional": "(Optional)",
+        "placeholder": "Write your feedback for the submission here..."
+      }
+    },
     "sidebarContextual": {
       "balance": "Balance",
       "approvedBalance": "Approved Balance",
