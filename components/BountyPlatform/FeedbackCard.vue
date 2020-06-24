@@ -50,6 +50,6 @@ export default {
   props: {
     address: String,
     feedbackMessage: null
-  } 
+  }
 };
 </script>
