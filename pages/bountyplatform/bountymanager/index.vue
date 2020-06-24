@@ -1,6 +1,27 @@
 <template>
   <div class="w-full flex flex-row flex-wrap justify-center px-1 md:px-4">
     <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
+      <!-- Confirm Modal -->
+      <transition name="confirmModalTransition">
+        <div
+          v-if="isConfirmModalOpen"
+          class="bg-c-background-75 w-full h-screen fixed flex flex-row left-0 top-0 modal"
+        >
+          <div
+            class="d-container flex flex-col items-center justify-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12 overflow-y-scroll"
+          >
+            <ConfirmModal
+              address="0x569DE003A10dB0E057f009AA516673C418e7Fdf1"
+              type="approve"
+              amountDev="12332"
+              amountEth="0.123"
+              amountUsd="112"
+              :cancelCallback="closeConfirmModal"
+              :confirmCallback="confirmConfirmModal"
+            />
+          </div>
+        </div>
+      </transition>
       <!-- Submissions Received Card -->
       <div
         class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
@@ -154,6 +175,7 @@ import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
 import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import ConfirmModal from "~/components/BountyPlatform/ConfirmModal.vue";
 
 const defaultBountyLimit = 10;
 
@@ -176,6 +198,13 @@ export default {
     })
   },
   methods: {
+    closeConfirmModal(){
+      this.isConfirmModalOpen = false;
+    },
+    confirmConfirmModal(){
+      // Do the confirm thingies first
+      this.isConfirmModalOpen = false;
+    },
     async loadMoreBounties() {
       this.page++;
       this.bountiesLoading = true;
@@ -249,6 +278,7 @@ export default {
       totalSubmissionCount: 0,
       hasMoreBounties: false,
       hasMoreSubmissions: false,
+      isConfirmModalOpen: true,
       bounties: [],
       submissions: [],
       // For meta tags
@@ -263,6 +293,9 @@ export default {
   },
   head() {
     return {
+      bodyAttrs: {
+        class: [ this.isConfirmModalOpen? 'overflow-hidden':'']
+      },
       title: this.pageTitle,
       meta: [
         // hid is used as unique identifier. Do not use `vmid` for it as it will not work

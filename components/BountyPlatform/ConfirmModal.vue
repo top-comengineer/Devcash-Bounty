@@ -1,6 +1,6 @@
 <template>
   <div
-    class="max-w-full md:max-w-md flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-4xl rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg overflow-hidden"
+    class="max-w-full md:max-w-md h-auto flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-4xl rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg overflow-y-scroll"
   >
     <!-- Header -->
     <div
@@ -21,7 +21,10 @@
         class="flex flex-col flex-wrap justify-center rounded-xl px-4 py-2 shadow-xl border border-c-text-10"
       >
         <!-- DEV Amount -->
-        <p class="text-xl font-bold text-center">{D}{{amountDev}}</p>
+        <p
+          :class="{'text-c-danger': type == 'decline', 'text-c-success': type == 'approve' }"
+          class="text-xl font-bold text-center"
+        >{D}{{amountDev}}</p>
         <!-- ETH & USD Amount -->
         <p class="text-center opacity-75 mt-1">{{`(Ξ${amountEth} / ${amountUsd}`}}</p>
       </div>

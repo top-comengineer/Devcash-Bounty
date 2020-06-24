@@ -82,7 +82,9 @@
   outline: none !important;
 }
 /////////////////
-
+.modal {
+  z-index: 200;
+}
 // Dark Theme Primary Color Button
 .btn-dtPrimary {
   box-shadow: 0 0 0 0 rgba(#675cff, 0.5), 0 0 0 0 rgba(#f2f1ff, 1);
