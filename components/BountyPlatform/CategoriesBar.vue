@@ -5,7 +5,7 @@
     <h5
       class="w-full md:w-auto mx-2 md:mx-3 my-2 text-lg font-bold text-c-light p-1"
     >{{$t('bountyPlatform.explore.categories.header')}}</h5>
-    <div class="w-full h-px2 md:h-8 md:w-px2 rounded-full bg-dtText mx-3 my-2"></div>
+    <div class="w-full h-px2 md:h-8 md:w-px2 rounded-full bg-c-light mx-3 my-2"></div>
     <checkmark-button
       checked="checked"
       type="light"
@@ -33,13 +33,13 @@
     <checkmark-button
       checked="checked"
       type="light"
-      class="mx-2 md:mx-3 my-1"
+      class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.prototypeTag')"
     />
     <checkmark-button
       checked="checked"
       type="light"
-      class="mx-2 md:mx-3 my-1"
+      class="mx-2 md:mx-3 my-2"
       :text="$t('bountyPlatform.explore.categories.otherTag')"
     />
   </div>

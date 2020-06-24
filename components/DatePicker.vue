@@ -59,7 +59,7 @@
         >
           <div
             @click="getDateValue(date)"
-            class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition-colors ease-in-out duration-200"
+            class="cursor-pointer text-center text-sm rounded-full leading-loose transition-colors ease-in-out duration-200"
             :class="[futureOnly && isPast(date) && !isToday(date) ? 'opacity-50' : '', isToday(date) ? 'bg-c-background text-c-text' : isPicked(date) ? 'bg-c-primary text-c-light' : isPast(date) && futureOnly ? '' : 'hover:bg-c-primary-50']"
           >{{ date }}</div>
         </div>

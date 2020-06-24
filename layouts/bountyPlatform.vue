@@ -7,7 +7,7 @@
       >
         <!-- Sidebar -->
         <div
-          class="sidebar-container overflow-visible sticky md:pt-2 md:pb-2 transition-all ease-out duration-200 overflow-hidden"
+          class="sidebar-container overflow-visible sticky md:pt-2 md:pb-2 transition-all ease-out duration-200"
         >
           <Sidebar class="overflow-y-auto overflow-x-hidden" />
         </div>

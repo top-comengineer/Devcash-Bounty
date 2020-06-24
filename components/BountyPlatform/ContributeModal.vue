@@ -49,21 +49,21 @@
           <!-- {D}10,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
-              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out text-c-text font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
+              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}10,000" }}</button>
             <p>{{ "(Ξ0.0378 / $5)" }}</p>
           </div>
           <!-- {D}20,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
-              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out text-c-text font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
+              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}20,000" }}</button>
             <p>{{ "(Ξ0.0757 / $10)" }}</p>
           </div>
           <!-- {D}40,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
-              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out text-c-text font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
+              class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}40,000" }}</button>
             <p>{{ "(Ξ0.1551 / $20)" }}</p>
           </div>
@@ -98,7 +98,7 @@
           />
           <!-- Contribute Button -->
           <button
-            class="text-c-light btn-secondary w-full md:w-auto transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out text-c-text font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
+            class="text-c-light btn-secondary w-full md:w-auto transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
           >{{ $t("bountyPlatform.singleBounty.contribute.buttonContribute") }}</button>
         </div>
       </div>

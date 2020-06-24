@@ -59,7 +59,7 @@
           <!-- Theme Switch -->
           <button
             @click="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark'); isOpen=false"
-            class="hover:bg-c-background-15 focus:bg-c-background-15 w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg rounded-lg"
+            class="hover:bg-c-background-15 focus:bg-c-background-15 w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg"
           >
             <Icon
               class="w-6 h-6 mr-1"

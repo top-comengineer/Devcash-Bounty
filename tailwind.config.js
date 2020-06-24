@@ -15,6 +15,7 @@ module.exports = {
       'c-primary-15': "var(--c-primary-15)",
       'c-primary-25': "var(--c-primary-25)",
       'c-primary-35': "var(--c-primary-35)",
+      'c-primary-50': "var(--c-primary-50)",
       'c-primary-less-sat': "var(--c-primary-less-sat)",
       'c-secondary': "var(--c-secondary)",
       'c-background': "var(--c-background)",

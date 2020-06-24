@@ -2,7 +2,7 @@
   <div
     :class="{
       'bg-c-background-sec border-c-background-sec': !type,
-      'bg-c-background-qua border-c-background-qua border-c-background-qua': type == 'secondary',
+      'bg-c-background-qua border-c-background-qua': type == 'secondary',
     } "
     class="w-full flex flex-row flex-wrap justify-between items-center relative shadow-lg rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-5 px-6 md:px-8"
   >
@@ -63,7 +63,7 @@
       >Ξ10.10 / $1,000</h5>
     </div>
     <!-- Divider -->
-    <div class="bg-c-text md:hidden w-full h-px rounded-full bg-dtText opacity-5 my-3"></div>
+    <div class="bg-c-text md:hidden w-full h-px rounded-full opacity-5 my-3"></div>
   </div>
 </template>
 <script>
