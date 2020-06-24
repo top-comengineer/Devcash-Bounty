@@ -22,6 +22,7 @@ export const WalletProviders = {
 };
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
+const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
 export class DevcashBounty {
   constructor(async_param) {
@@ -246,38 +247,38 @@ export class DevcashBounty {
       await window.ethereum.enable();
       provider = new ethers.providers.Web3Provider(
         web3.currentProvider,
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       needsSigner = true;
     } else if (walletProvider == WalletProviders.authereum) {
       // Authereum
       const authereum = new Authereum(
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       const authereumProvider = authereum.getProvider();
       await authereumProvider.enable();
       provider = new ethers.providers.Web3Provider(
         authereumProvider,
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       needsSigner = true;
     } else if (walletProvider == WalletProviders.portis) {
       // Portis
       const portis = new Portis(
         "5395216c-1124-49de-bfbe-7893409825be",
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       const portisProvider = portis.provider;
       await portisProvider.enable();
       provider = new ethers.providers.Web3Provider(
         portis.provider,
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       needsSigner = true;
     } else {
       // Etherscan provider (no signer)
       provider = new ethers.getDefaultProvider(
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       needsSigner = false;
     }
@@ -311,7 +312,7 @@ export class DevcashBounty {
     } else {
       // Use default/etherscan provider
       provider = new ethers.getDefaultProvider(
-        process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+        ethNetwork
       );
       tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
