@@ -542,6 +542,15 @@ export class DevcashBounty {
   async postSubmission(bounty, hash) {
     return await this.uBCContract.submit(bounty.id, hash);
   }
+
+  // Approve+Reject
+  async approve(bountyIndex, submissionIndex, feedback) {
+    await this.uBCContract.approve(bountyIndex,submissionIndex,feedback)
+  }
+
+  async reject(bountyIndex, submissionIndex, feedback) {
+    await this.uBCContract.reject(bountyIndex,submissionIndex,feedback)
+  }
 }
 
 // Other exports

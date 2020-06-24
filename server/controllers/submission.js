@@ -39,7 +39,9 @@ module.exports.getSubmissions = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      rObj.status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      rObj.status = status.status
+      rObj.feedback = status.feedback
       ret.push(rObj)
     }
     return res.status(200).json({
@@ -85,7 +87,9 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      rObj.status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      rObj.status = status.status
+      rObj.feedback = status.feedback
       ret.push(rObj)
     }
     return res.status(200).json(
@@ -132,7 +136,9 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      rObj.status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      rObj.status = status.status
+      rObj.feedback = status.feedback
       ret.push(rObj)
     }
     return res.status(200).json(

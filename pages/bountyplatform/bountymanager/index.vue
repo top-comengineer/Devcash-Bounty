@@ -12,10 +12,8 @@
           >
             <ConfirmModal
               address="0x569DE003A10dB0E057f009AA516673C418e7Fdf1"
-              type="approve"
-              amountDev="12332"
-              amountEth="0.123"
-              amountUsd="112"
+              :type="confirmModalType"
+              :item="confirmModalItem"
               :cancelCallback="closeConfirmModal"
               :confirmCallback="confirmConfirmModal"
             />
@@ -56,6 +54,8 @@
             :key="i"
             :submission="item"
             :ubounty="item.ubounty"
+            :approveClicked="() => showConfirmModal(item, 'approve')"
+            :rejectClicked="() => showConfirmModal(item, 'decline')"
           />
         </div>
         <!-- If there are no submissions -->
@@ -176,6 +176,7 @@ import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceho
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
 import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
 import ConfirmModal from "~/components/BountyPlatform/ConfirmModal.vue";
+import { DevcashBounty } from '../../../plugins/devcash/devcashBounty.client';
 
 const defaultBountyLimit = 10;
 
@@ -201,9 +202,20 @@ export default {
     closeConfirmModal(){
       this.isConfirmModalOpen = false;
     },
-    confirmConfirmModal(){
-      // Do the confirm thingies first
-      this.isConfirmModalOpen = false;
+    async confirmConfirmModal(feedback, submission, type){
+      await DevcashBounty.initEthConnector(this)
+      try {
+      if (type == 'decline') {
+        await this.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
+      } else {
+        await this.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
+      }
+      } catch (e) {
+        console.log(e)
+        // TODO - error handling
+      } finally {
+        this.isConfirmModalOpen = false;
+      }
     },
     async loadMoreBounties() {
       this.page++;
@@ -246,6 +258,11 @@ export default {
         this.initialSubmissionsLoading = false;
         this.submissionsLoading = false;
       }
+    },
+    showConfirmModal(submission, type) {
+      this.confirmModalType = type
+      this.confirmModalItem = submission
+      this.isConfirmModalOpen = true
     }
   },
   mounted() {
@@ -278,7 +295,9 @@ export default {
       totalSubmissionCount: 0,
       hasMoreBounties: false,
       hasMoreSubmissions: false,
-      isConfirmModalOpen: true,
+      isConfirmModalOpen: false,
+      confirmModalType: '',
+      confirmModalItem: {},
       bounties: [],
       submissions: [],
       // For meta tags

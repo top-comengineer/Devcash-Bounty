@@ -1,6 +1,6 @@
 "use strict";
 
-const merge = require('lodash.merge');
+const _ = require('lodash')
 const { ethers, utils } = require("ethers");
 const web3 = require("web3");
 const {
@@ -150,13 +150,14 @@ class EtherClient {
 
   // Event logs
   async gatherEventLogs() {
-    console.log("gathering event logs");
     let event_logs = new Object();
 
     let event_logs_cache = await this.redis.getEventLogCache()    
     let lastHadBlock = await this.redis.getLastBlockCount()
     let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
     let toBlock = await this.provider.getBlockNumber()
+
+    console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)    
 
     if (lastHadBlock >= toBlock) {
       // Don't need to retrieve any logs
@@ -218,12 +219,9 @@ class EtherClient {
     let feeChangedInfo = await this.getFeeChangedInfo(feeChangedLogs);
     let waiverChangedInfo = await this.getWaiverChangedInfo(waiverChangedLogs);
 
-    let orderedFeedback = await this.getOrderedFeedback(
-      approvedLogs,
-      rejectedLogs,
-      revisionRequestedLogs
-    );
 
+    event_logs.approvedLogs = approvedLogs
+    event_logs.rejectedLogs = rejectedLogs
     event_logs.created = createdInfo;
     event_logs.submitted = submittedInfo;
     event_logs.revised = revisedInfo;
@@ -235,15 +233,20 @@ class EtherClient {
     event_logs.completed = completedInfo;
     event_logs.feeChanged = feeChangedInfo;
     event_logs.waiverChanged = waiverChangedInfo;
-    event_logs.orderedFeedback = orderedFeedback;
 
     // Cache
     if (event_logs_cache != null) {
-      event_logs = merge(event_logs, event_logs_cache)
+      _.mergeWith(event_logs, event_logs_cache, function(objValue, srcValue) { if (_.isArray(objValue)) { return _.union(objValue, srcValue); }})
     }
     await this.redis.setEventLogCache(event_logs, toBlock)
-    console.log(event_logs)
 
+    let orderedFeedback = await this.getOrderedFeedback(
+      event_logs.approvedLogs,
+      event_logs.rejectedLogs
+    );
+    event_logs.orderedFeedback = orderedFeedback
+
+    console.log(event_logs)
     console.log("Finished gathering event logs")
     this.event_logs = event_logs;
   }
@@ -527,10 +530,10 @@ class EtherClient {
     return waiverChangedInfo;
   }
 
-  async getOrderedFeedback(approvedLogs, rejectedLogs, revisionRequestedLogs) {
+  async getOrderedFeedback(approvedLogs, rejectedLogs) {
     let approvedHexArray = this.ArrayifyLogData(approvedLogs);
     let rejectedHexArray = this.ArrayifyLogData(rejectedLogs);
-    let revisionRequestedHexArray = this.ArrayifyLogData(revisionRequestedLogs);
+    //let revisionRequestedHexArray = this.ArrayifyLogData(revisionRequestedLogs);
 
     let feedbackInfo = new Array();
 
@@ -584,6 +587,7 @@ class EtherClient {
       feedbackInfo[uI][sI].push(eventInfo);
     }
 
+    /*
     for (let n = 0; n < revisionRequestedHexArray.length; n++) {
       let log = revisionRequestedHexArray[n];
       let uI = parseInt(this.HexToInt(log[0], 0));
@@ -609,7 +613,7 @@ class EtherClient {
         revisionRequestedLogs[n].blockNumber
       );
       feedbackInfo[uI][sI].push(eventInfo);
-    }
+    }*/
 
     for (let p = 0; p < feedbackInfo.length; p++) {
       if (feedbackInfo[p] != undefined) {
@@ -731,24 +735,37 @@ class EtherClient {
 
   getSubmissionStatus(uI, sI) {
     let ret
+    let feedback
     if (this.overriddenStatus[uI] && this.overriddenStatus[uI][sI]) {
-      ret = this.overriddenStatus[uI][sI]
+      ret = this.overriddenStatus[uI][sI].event
+      feedback = this.overriddenStatus[uI][sI].feedback
     } else {
       try {
+        console.log(JSON.stringify(this.event_logs.orderedFeedback))
         let events = this.event_logs.orderedFeedback[uI][sI];
         ret = events[events.length - 1].event;
+        feedback = events[events.length - 1].feedback;
       } catch(e) {
-        ret = "awaiting feedback";
+        ret = "pending";
+        feedback = undefined
       }
     }
-    return ret.toLowerCase()
+    if (!ret || ret == 'revision requested' || ret == 'awaiting feedback') {
+      ret = "pending"
+    }
+    return {
+      status: ret.toLowerCase(),
+      feedback: feedback
+    }
   }
 
-  overrideStatus(uI, sI, status) {
+  overrideStatus(uI, sI, status, feedback) {
     if (!this.overriddenStatus[uI]) {
       this.overriddenStatus[uI] = {}
+      this.overriddenStatus[uI][sI] = {}
     }
-    this.overriddenStatus[uI][sI] = status
+    this.overriddenStatus[uI][sI].event = status
+    this.overriddenStatus[uI][sI].feedback = feedback
   }
 }
 

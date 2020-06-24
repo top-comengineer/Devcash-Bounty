@@ -7,7 +7,7 @@ const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
 // DB Models
-const { sequelize, UBounty, Op } = require("./models");
+const { sequelize, UBounty, Op, Submission } = require("./models");
 
 // Routes
 const ubountyRouter = require('./routes/bounty');
@@ -115,11 +115,19 @@ function setupEthersJobs() {
   })*/
   // Approved
   etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
-    etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved")
+    etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved", feedback)
+    await Submission.update(
+      { approved: true },
+      {
+        where: {
+          [Op.and]: [{submission_id: submissionIndex}, {ubounty_id:uBountyIndex}],
+        },
+      },
+    );    
   })
   // Rejected
   etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
-    etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected")
+    etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected", feedback)
   })    
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing

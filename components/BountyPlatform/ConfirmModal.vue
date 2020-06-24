@@ -24,9 +24,9 @@
         <p
           :class="{'text-c-danger': type == 'decline', 'text-c-success': type == 'approve' }"
           class="text-xl font-bold text-center"
-        >{D}{{amountDev}}</p>
+        >{D}{{formatAmount()}}</p>
         <!-- ETH & USD Amount -->
-        <p class="text-center opacity-75 mt-1">{{`(Ξ${amountEth} / ${amountUsd}`}}</p>
+        <p class="text-center opacity-75 mt-1">{{`(Ξ${formatEthAmount()}`}}</p>
       </div>
       <!-- Indicator Icon -->
       <Icon
@@ -38,12 +38,12 @@
       <div
         class="flex flex-row flex-wrap justify-center rounded-xl px-4 py-2 shadow-xl border border-c-text-10"
       >
-        <Jazzicon class="flex" :diameter="20" :address="address" />
+        <Jazzicon class="flex" :diameter="20" :address="item.creator" />
         <p class="font-mono-jet text-left ml-2">
           {{
-          address.substring(0, 6) +
+          item.creator.substring(0, 6) +
           "..." +
-          address.substring(address.length - 4)
+          item.creator.substring(item.creator.length - 4)
           }}
         </p>
       </div>
@@ -63,7 +63,6 @@
         class="bg-c-text-10 border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
         type="text"
         :placeholder="$t('bountyPlatform.confirmModal.inputFeedback.placeholder')"
-        @focus="feedbackError?feedbackError=false:null"
         @blur="validateFeedback"
       />
     </div>
@@ -79,7 +78,8 @@
       <!-- Confirm Button -->
       <div class="w-full md:w-1/2 flex flex-row p-2 order-first md:order-last">
         <button
-          @click="confirmCallback"
+          :disabled="loading"
+          @click="confirmClicked"
           :class="{'bg-c-danger border-c-danger': type == 'decline', 'bg-c-success border-c-success': type == 'approve' }"
           class="w-full text-lg font-bold btn-text-qua text-c-background border-2 px-4 py-1_5 transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden"
         >{{ type == 'decline'?$t("bountyPlatform.confirmModal.confirmToDecline.buttonConfirm"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonConfirm")}}</button>
@@ -90,26 +90,42 @@
 <script>
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 export default {
     props: {
-        type: null,
-        amountDev: null,
-        amountEth: null,
-        amountUsd: null,
-        address: null,
-        feedbackError: false,
-        inputFeedback: null,
+        type: String,
+        item: Object,
         confirmCallback: Function,
         cancelCallback: Function
+    },
+    data() {
+      return {
+        inputFeedback: null,
+        loading: false
+      }
     },
     components: {
         Jazzicon,
         Icon
     },
     methods: {
+        confirmClicked() {
+          this.loading = true
+          this.confirmCallback(this.inputFeedback, this.item, this.type)
+        },
         validateFeedback(){
             return null
-        }
+        },
+        formatAmount() {
+          let tokenDecimals = 8
+          if (this.$store.state.devcash.connector) {
+              tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+          }   
+          return DevcashBounty.formatAmountSingleSubmission(this.item.ubounty, tokenDecimals)
+        },
+        formatEthAmount() {
+          return DevcashBounty.formatAmountSingleSubmissionEth(this.item.ubounty)
+        },        
     }
 }
 </script>

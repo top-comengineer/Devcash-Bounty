@@ -90,7 +90,9 @@ module.exports.getOverviewStats = async (req, res, next) => {
       a.name = ""
       // Is a submission
       if (a.submission_data) {
-        a.status = etherClient.getSubmissionStatus(a.ubounty_id, a.submission_id)
+        let status = etherClient.getSubmissionStatus(a.ubounty_id, a.submission_id)
+        a.status = status.status
+        feedback = status.feedback
         a.name = a.ubounty.title
         if (a.ubounty.creator == address) {
           a.address = a.ubounty.creator

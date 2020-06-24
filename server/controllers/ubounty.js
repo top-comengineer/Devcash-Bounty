@@ -3,6 +3,7 @@ const { check, validationResult } = require('express-validator');
 const { UBounty, UBountyStaged, Op }  = require('../models');
 const crypto = require('crypto');
 const removeMd = require('remove-markdown');
+const { etherClient } = require('../utils/ether_client')
 
 // POST new bounty
 // Sample body
@@ -47,10 +48,20 @@ module.exports.getUBounties = async (req, res, next) => {
       },
       include: ['submissions']//, 'revisions']
     })
+    let ret = []
+    for (let rObj of result.rows) {
+      let jObj = rObj.toJSON()
+      for (let rSub of jObj.submissions) {
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        rSub.status = status.status
+        rSub.feedback = status.feedback        
+      }
+      ret.push(jObj)
+    }    
     return res.status(200).json(
       {
         count: result.count,
-        items: result.rows
+        items: ret
       }
     )
   } catch(err) {
@@ -87,10 +98,20 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
       },
       include: ['submissions']//, 'revisions']
     })
+    let ret = []
+    for (let rObj of result.rows) {
+      let jObj = rObj.toJSON()
+      for (let rSub of jObj.submissions) {
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        rSub.status = status.status
+        rSub.feedback = status.feedback        
+      }
+      ret.push(jObj)
+    }        
     return res.status(200).json(
       {
         count: result.count,
-        items: result.rows
+        items: ret
       }
     )
   } catch(err) {
@@ -127,10 +148,20 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
       },
       include: ['submissions']//, 'revisions']
     })
+    let ret = []
+    for (let rObj of result.rows) {
+      let jObj = rObj.toJSON()
+      for (let rSub of jObj.submissions) {
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        rSub.status = status.status
+        rSub.feedback = status.feedback        
+      }
+      ret.push(jObj)
+    }        
     return res.status(200).json(
       {
         count: result.count,
-        items: result.rows
+        items: ret
       }
     )
   } catch(err) {
@@ -164,6 +195,11 @@ module.exports.getUBounty = async (req, res, next) => {
     }
     result = result.toJSON()
     result.descriptionMeta = descriptionMeta
+    for (let rSub of result.submissions) {
+      let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+      rSub.status = status.status
+      rSub.feedback = status.feedback        
+    }
     return res.status(200).json(
       result
     )

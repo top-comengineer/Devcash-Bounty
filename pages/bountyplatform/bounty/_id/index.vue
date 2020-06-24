@@ -97,7 +97,7 @@
         <!-- Hunt and Contribute Button -->
         <div class="w-full flex flex-col items-center bg-c-secondary px-6 py-4">
           <button
-            @click="isSubmissionModalOpen = true; bodyNoScroll"
+            @click="isSubmissionModalOpen = true"
             class="w-full transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
@@ -113,7 +113,7 @@
             <h6 class="text-sm">
               <span
                 class="font-bold"
-              >{{ bounty.submissions.filter(sub => sub.approved).length + ' of ' + this.bounty.available }}</span>
+              >{{ `${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
               <span class="opacity-75">
                 {{
                 $t("bountyPlatform.bountyCard.bountiesLeft")

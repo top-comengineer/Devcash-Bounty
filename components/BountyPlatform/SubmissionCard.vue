@@ -26,7 +26,7 @@
           <div class="flex flex-col my-2">
             <h5
               :class="{
-              'text-c-pending': (submission.status == 'revision requested' || submission.status == 'awaiting feedback'),
+              'text-c-pending': (submission.status == 'pending'),
               'text-c-success': submission.status == 'approved',
               'text-c-danger': submission.status == 'rejected'}"
               class="font-bold text-left"
@@ -37,11 +37,12 @@
           <div class="flex flex-col md:mx-4 my-2">
             <!-- If Perspective is Manager -->
             <div
-              v-if="perspective=='manager' && (submission.status == 'revision requested' || submission.status == 'awaiting feedback')"
+              v-if="perspective=='manager' && (submission.status == 'pending')"
               class="flex flex-row flex-wrap items-center"
             >
               <!-- Approve Button -->
               <button
+                @click="approveClicked"
                 class="hover:bg-c-success-15 focus:bg-c-success-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
               >
                 <Icon class="w-5 h-5" type="done" colorClass="text-c-success" />
@@ -51,6 +52,7 @@
               </button>
               <!-- Reject Button -->
               <button
+                @click="rejectClicked"
                 class="hover:bg-c-danger-15 focus:bg-c-danger-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mx-1 my-1"
               >
                 <Icon class="w-5 h-5" type="cancel" colorClass="text-c-danger" />
@@ -98,6 +100,8 @@ export default {
     ubounty: Object,
     submission: Object,
     perspective: String,
+    approveClicked: Function,
+    rejectClicked: Function
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -128,9 +132,6 @@ export default {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
     },
     getSimpleStatus() {
-      if (this.submission.status == 'revision requested' || this.submission.status == 'awaiting feedback') {
-        return 'pending'
-      }
       return this.submission.status
     }
   }  
