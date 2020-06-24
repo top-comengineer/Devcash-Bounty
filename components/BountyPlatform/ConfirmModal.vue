@@ -5,7 +5,7 @@
     <!-- Header -->
     <div
       :class="{'bg-c-danger': type == 'reject', 'bg-c-success': type == 'approve' }"
-      class="w-full flex flex-row justify-center px-4 py-2"
+      class="w-full flex flex-row justify-center px-4 py-3"
     >
       <h5
         class="text-center text-c-background text-2xl font-bold"
@@ -49,7 +49,7 @@
       </div>
     </div>
     <!-- Feedback Area -->
-    <div class="w-full flex flex-col bg-c-text-05 px-2 md:px-4 pt-4 pb-8 my-4">
+    <div class="w-full flex flex-col bg-c-text-05 px-2 md:px-4 pt-6 pb-8 my-5">
       <label for="inputFeedback" class="text-center text-xl font-bold px-3">
         {{$t("bountyPlatform.confirmModal.inputFeedback.header")}}
         <span
@@ -60,7 +60,7 @@
         v-model="inputFeedback"
         rows="4"
         id="inputFeedback"
-        class="bg-c-text-10 border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+        class="bg-c-background-qua border-c-text-10 shadow-lg text-c-text w-full text-lg font-bold border-2 focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
         type="text"
         :placeholder="$t('bountyPlatform.confirmModal.inputFeedback.placeholder')"
         @blur="validateFeedback"
