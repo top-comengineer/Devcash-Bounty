@@ -1,5 +1,5 @@
 <template>
-  <div class="flex">
+  <div class="flex flex-col transition-all duration-300 ease-out">
     <div
       class="bg-c-background-sec border-c-text-10 shadow-lg w-full flex flex-col flex-wrap justify-between items-center border rounded-lg overflow-hidden"
     >
@@ -74,10 +74,36 @@
       <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
         <p class="break-all" v-html="submission.submission_data"></p>
-        <!-- Date -->
-        <p class="text-sm opacity-75 mt-6">{{ formatDateStr(currentLocale.iso) }}</p>
+        <div class="flex flex-row justify-between">
+          <!-- Date -->
+          <p class="text-sm opacity-75 mt-6">{{ formatDateStr(currentLocale.iso) }}</p>
+          <!-- Show Feedback -->
+          <button
+            @click.prevent="isFeedbackVisible=!isFeedbackVisible"
+            class="hover:bg-c-text-15 focus:bg-c-text-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mt-4"
+          >
+            <Icon
+              :class="isFeedbackVisible?'-rotate-180':''"
+              class="w-5 h-5 transform transition-all duration-300 ease-out"
+              type="arrow-down"
+              colorClass="text-c-text"
+            />
+            <h5
+              class="text-c-text font-extrabold mx-1"
+            >{{isFeedbackVisible?$t('bountyPlatform.bountyHunter.hideFeedback'):$t('bountyPlatform.bountyHunter.showFeedback')}}</h5>
+          </button>
+        </div>
       </div>
     </div>
+    <!-- If there is feedback -->
+    <transition name="feedbackTransition">
+      <feedback-card
+        v-if="isFeedbackVisible && isThereFeedback"
+        class="mt-4"
+        feedbackMessage="Testing feedback"
+        address="0x569DE003A10dB0E057f009AA516673C418e7Fdf1"
+      />
+    </transition>
   </div>
 </template>
 <script>
@@ -87,17 +113,25 @@ import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import StatusTag from "~/components/BountyPlatform/StatusTag.vue";
 import StatusDivider from "~/components/BountyPlatform/StatusDivider.vue";
+import FeedbackCard from "~/components/BountyPlatform/FeedbackCard.vue";
 export default {
   components: {
     Icon,
     Jazzicon,
     StatusTag,
-    StatusDivider
+    StatusDivider,
+    FeedbackCard
   },
   props: {
     ubounty: Object,
     submission: Object,
     perspective: String,
+  },
+  data(){
+    return {
+      isFeedbackVisible: true,
+      isThereFeedback: true
+    }
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -136,3 +170,21 @@ export default {
   }  
 };
 </script>
+<style>
+.feedbackTransition-enter-active {
+  transition: all 0.3s ease-out;
+  transform-origin: top center;
+}
+.feedbackTransition-leave-active {
+  transition: all 0.3s ease-out;
+  transform-origin: top center;
+}
+.feedbackTransition-enter {
+  opacity: 0;
+  transform: scaleY(0.5) translateY(-1.5rem);
+}
+.feedbackTransition-leave-to {
+  opacity: 0;
+  transform: scaleY(0.5) translateY(-1.5rem);
+}
+</style>
