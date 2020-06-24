@@ -750,11 +750,14 @@ class EtherClient {
         feedback = undefined
       }
     }
+    if (ret) {
+      ret = ret.toLowerCase()
+    }
     if (!ret || ret == 'revision requested' || ret == 'awaiting feedback') {
       ret = "pending"
     }
     return {
-      status: ret.toLowerCase(),
+      status: ret,
       feedback: feedback
     }
   }
