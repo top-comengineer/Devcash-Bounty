@@ -150,6 +150,7 @@
       "bountiesPosted": "Bounties Posted",
       "approvedBalance": "Approved Balance",
       "activity": "Activity",
+      "noActivity": "There is no activity yet.",
       "activityCard": {
         "manager": {
           "bountyCreated": "You've created a bounty called 1%.",

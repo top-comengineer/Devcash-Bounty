@@ -46,7 +46,7 @@
         <!-- Header -->
         <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
         <!-- ActivityCards -->
-        <div class="w-full flex flex-col flex-wrap my-4">
+        <div v-if="activity.length>0" class="w-full flex flex-col flex-wrap my-4">
           <ActivityCard
             class="my-2"
             v-for="(item, i) in activity"
@@ -64,6 +64,28 @@
           class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
         >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>-->
+        <!-- If is no activity -->
+        <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
+          <img
+            class="max-w-xxxs h-auto relative"
+            :src="require('~/assets/images/illustrations/foreground/activity.svg')"
+            alt="No Activity Illustration"
+          />
+          <h6
+            class="opacity-75 text-center mt-4 md:max-w-xs"
+          >{{$t('bountyPlatform.overview.noActivity')}}</h6>
+          <!-- Hunt & Post Bounties Call to Action -->
+          <div class="flex flex-row flex-wrap justify-center mt-6 mb-4">
+            <nuxt-link
+              :to="localePath('bountyplatform')"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-2 mx-3"
+            >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+            <nuxt-link
+              :to="localePath('bountyplatform')"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-2 mx-3"
+            >{{ $t("home.bountyPlatformSection.postBountyButton") }}</nuxt-link>
+          </div>
+        </div>
       </div>
     </div>
     <sign-in-to-continue-wrapper v-else class="mx-1 md:mx-4" />
