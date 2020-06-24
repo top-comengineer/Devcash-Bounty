@@ -4,17 +4,17 @@
   >
     <!-- Header -->
     <div
-      :class="{'bg-c-danger': type == 'decline', 'bg-c-success': type == 'approve' }"
+      :class="{'bg-c-danger': type == 'reject', 'bg-c-success': type == 'approve' }"
       class="w-full flex flex-row justify-center px-4 py-2"
     >
       <h5
         class="text-center text-c-background text-2xl font-bold"
-      >{{ type == 'decline' ? $t("bountyPlatform.confirmModal.confirmToDecline.header") : $t("bountyPlatform.confirmModal.confirmToApprove.header") }}</h5>
+      >{{ type == 'reject' ? $t("bountyPlatform.confirmModal.confirmToReject.header") : $t("bountyPlatform.confirmModal.confirmToApprove.header") }}</h5>
     </div>
     <!-- Paragraph -->
     <p
       class="text-center px-3 md:px-8 mt-4 mb-2"
-    >{{ type == 'decline' ? $t("bountyPlatform.confirmModal.confirmToDecline.paragraph") : $t("bountyPlatform.confirmModal.confirmToApprove.paragraph") }}</p>
+    >{{ type == 'reject' ? $t("bountyPlatform.confirmModal.confirmToReject.paragraph") : $t("bountyPlatform.confirmModal.confirmToApprove.paragraph") }}</p>
     <!-- Amount & Address Part -->
     <div class="w-full flex flex-col items-center my-4 px-2">
       <div
@@ -22,7 +22,7 @@
       >
         <!-- DEV Amount -->
         <p
-          :class="{'text-c-danger': type == 'decline', 'text-c-success': type == 'approve' }"
+          :class="{'text-c-danger': type == 'reject', 'text-c-success': type == 'approve' }"
           class="text-xl font-bold text-center"
         >{D}{{formatAmount()}}</p>
         <!-- ETH & USD Amount -->
@@ -31,8 +31,8 @@
       <!-- Indicator Icon -->
       <Icon
         class="my-3 w-8 h-8"
-        :colorClass="type == 'decline'?'text-c-danger':'text-c-success'"
-        :type="type == 'decline'? 'cancel':'arrow-down'"
+        :colorClass="type == 'reject'?'text-c-danger':'text-c-success'"
+        :type="type == 'reject'? 'cancel':'arrow-down'"
       />
       <!-- Avatar & Address -->
       <div
@@ -73,16 +73,16 @@
         <button
           @click="cancelCallback"
           class="w-full text-lg font-bold bg-c-background-sec text-c-text border-2 border-c-text btn-text-qua px-4 py-1_5 transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden"
-        >{{ type == 'decline'?$t("bountyPlatform.confirmModal.confirmToDecline.buttonCancel"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonCancel")}}</button>
+        >{{ type == 'reject'?$t("bountyPlatform.confirmModal.confirmToReject.buttonCancel"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonCancel")}}</button>
       </div>
       <!-- Confirm Button -->
       <div class="w-full md:w-1/2 flex flex-row p-2 order-first md:order-last">
         <button
           :disabled="loading"
           @click="confirmClicked"
-          :class="{'bg-c-danger border-c-danger': type == 'decline', 'bg-c-success border-c-success': type == 'approve' }"
+          :class="{'bg-c-danger border-c-danger': type == 'reject', 'bg-c-success border-c-success': type == 'approve' }"
           class="w-full text-lg font-bold btn-text-qua text-c-background border-2 px-4 py-1_5 transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden"
-        >{{ type == 'decline'?$t("bountyPlatform.confirmModal.confirmToDecline.buttonConfirm"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonConfirm")}}</button>
+        >{{ type == 'reject'?$t("bountyPlatform.confirmModal.confirmToReject.buttonConfirm"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonConfirm")}}</button>
       </div>
     </div>
   </div>

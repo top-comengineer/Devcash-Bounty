@@ -210,9 +210,9 @@
         "buttonConfirm": "CONFIRM",
         "buttonCancel": "CANCEL"
       },
-      "confirmToDecline": {
-        "header": "Confirm to Decline",
-        "paragraph": "Please confirm that you would like to decline the submission.",
+      "confirmToReject": {
+        "header": "Confirm to Reject",
+        "paragraph": "Please confirm that you would like to reject the submission.",
         "buttonConfirm": "CONFIRM",
         "buttonCancel": "CANCEL"
       },

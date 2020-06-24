@@ -1,11 +1,7 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
     <!-- Submission Modal -->
-    <transition
-      name="modalBgTransition"
-      @after-enter="isSubmissionModalContentVisible=true"
-      @after-leave="isSubmissionModalContentVisible=false"
-    >
+    <transition name="modalBgTransition">
       <div
         v-if="isSubmissionModalOpen"
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
@@ -13,22 +9,12 @@
         <div
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12"
         >
-          <transition name="modalTransition">
-            <SubmissionModal
-              v-if="isSubmissionModalContentVisible"
-              :bounty="bounty"
-              :closeModal="() => this.isSubmissionModalOpen = false"
-            />
-          </transition>
+          <SubmissionModal :bounty="bounty" :closeModal="() => this.isSubmissionModalOpen = false" />
         </div>
       </div>
     </transition>
     <!-- Contribute Modal -->
-    <transition
-      name="modalBgTransition"
-      @after-enter="isContributeModalContentVisible=true"
-      @after-leave="isContributeModalContentVisible=false"
-    >
+    <transition name="modalBgTransition">
       <div
         v-if="isContributeModalOpen"
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal overflow-visible"
@@ -36,12 +22,7 @@
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
-          <transition name="modalTransition">
-            <ContributeModal
-              v-if="isContributeModalContentVisible"
-              :closeModal="() => this.isContributeModalOpen = false"
-            />
-          </transition>
+          <ContributeModal :closeModal="() => this.isContributeModalOpen = false" />
         </div>
       </div>
     </transition>
@@ -480,8 +461,6 @@ export default {
   data() {
     return {
       activeTab: "submissions",
-      isSubmissionModalContentVisible: false,
-      isContributeModalContentVisible: false,
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
       // For meta tags
@@ -621,32 +600,15 @@ export default {
   transform-origin: center top;
 }
 .modalBgTransition-enter-active {
-  transition: all 0.075s ease-out;
+  transition: all 0.25s ease-out;
 }
 .modalBgTransition-leave-active {
-  transition: all 0.075s ease-out;
+  transition: all 0.25s ease-out;
 }
 .modalBgTransition-enter {
   opacity: 0;
 }
 .modalBgTransition-leave-to {
   opacity: 0;
-}
-.modalTransition-enter-active {
-  transition: all 0.15s ease-out;
-}
-.modalTransition-leave-active {
-  transition: all 0.15s ease-out;
-}
-.modalTransition-enter {
-  opacity: 0;
-  transform: scale(0.85);
-}
-.modalTransition-leave-to {
-  opacity: 0;
-  transform: scale(0.85);
-}
-.modal {
-  z-index: 200;
 }
 </style>

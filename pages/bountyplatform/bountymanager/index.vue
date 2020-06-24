@@ -55,7 +55,7 @@
             :submission="item"
             :ubounty="item.ubounty"
             :approveClicked="() => showConfirmModal(item, 'approve')"
-            :rejectClicked="() => showConfirmModal(item, 'decline')"
+            :rejectClicked="() => showConfirmModal(item, 'reject')"
           />
         </div>
         <!-- If there are no submissions -->
@@ -205,7 +205,7 @@ export default {
     async confirmConfirmModal(feedback, submission, type){
       await DevcashBounty.initEthConnector(this)
       try {
-      if (type == 'decline') {
+      if (type == 'reject') {
         await this.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
       } else {
         await this.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
@@ -418,3 +418,17 @@ export default {
   }
 };
 </script>
+<style>
+.confirmModalTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.confirmModalTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.confirmModalTransition-enter {
+  opacity: 0;
+}
+.confirmModalTransition-leave-to {
+  opacity: 0;
+}
+</style>
