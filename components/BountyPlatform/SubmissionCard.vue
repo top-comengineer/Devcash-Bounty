@@ -104,7 +104,7 @@
         v-if="isFeedbackVisible && submission.feedback"
         class="mt-4"
         :feedbackMessage="submission.feedback"
-        :address="submission.ubounty.creator"
+        :address="ubounty.creator"
       />
     </transition>
   </div>
