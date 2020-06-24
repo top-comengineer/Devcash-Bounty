@@ -31,7 +31,7 @@
       class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 my-1 md:my-2"
     >
       <!-- Status Tag -->
-      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" type="open" />
+      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" type="active" />
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
         <!-- Header -->
@@ -148,7 +148,7 @@
           <div class="w-full flex flex-row relative">
             <div
               :class="{'left-0':activeTab=='submissions', 'left-1/2 -translate-x-1/2':activeTab=='comments', 'left-full -translate-x-full':activeTab=='activity'}"
-              class="shadow-lg absolute w-1/3 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+              class="shadow-lg absolute w-1/3 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
             ></div>
             <button
               :class="[activeTab=='submissions'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
@@ -221,7 +221,7 @@
             <div class="flex flex-row justify-center">
               <button
                 @click="isSubmissionModalOpen = true"
-                class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md font-extrabold transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+                class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
               >{{$t("bountyPlatform.singleBounty.buttonHunt")}}</button>
             </div>
           </div>
@@ -240,7 +240,7 @@
             />
             <!-- Comment Button -->
             <button
-              class="btn-secondary bg-c-secondary text-c-light transform hover:scale-md focus:scale-md font-extrabold transition-all ease-out duration-200 origin-bottom-left w-full md:w-auto font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
+              class="btn-secondary bg-c-secondary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left w-full md:w-auto font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
             >{{ $t('bountyPlatform.singleBounty.comments.buttonComment') }}</button>
           </div>
           <!-- If there are comments -->
