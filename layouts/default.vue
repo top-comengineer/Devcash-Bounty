@@ -1,6 +1,7 @@
 <template>
   <div
     class="bg-c-background text-c-text transition-colors ease-out duration-200 relative overflow-anywhere"
+    :class="['bg-c-background', `theme-${this.$store.state.theme}`]"
   >
     <div class="w-full flex flex-row justify-center relative">
       <div class="fixed w-full z-50">
@@ -76,9 +77,6 @@ export default {
       meta: [
         ...i18nSeo.meta
       ],
-      bodyAttrs: {
-        class: ['bg-c-background', this.$store.state.theme == 'light' ?'theme-light':'']
-      },
       link: [
         ...i18nSeo.link
       ]
