@@ -31,7 +31,7 @@
       class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 mb-1 md:mb-2"
     >
       <!-- Status Tag -->
-      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" type="active" />
+      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" :type="getBountyStatus()" />
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
         <!-- Header -->
@@ -377,6 +377,14 @@ export default {
     }   
   },
   methods: {
+    getBountyStatus() {
+      if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
+        return "completed"
+      } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
+        return "expired"
+      }
+      return "active"
+    },
     formatDate(dtStr) {
       return DevcashBounty.formatDateStr(this.currentLocale.iso, dtStr)
     },
