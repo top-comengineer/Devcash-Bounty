@@ -132,7 +132,7 @@
       -->
       <!-- Theme Switcher Button -->
       <button
-        @click="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark')"
+        @click="changeTheme"
         class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
         <Icon
@@ -324,6 +324,10 @@ export default {
     MobileDropdown
   },
   methods: {
+    changeTheme() {
+      this.$store.commit('changeTheme', this.$store.state.theme == 'dark' ? 'light' : 'dark');
+      this.$root.$emit('themeChanged')
+    },
     toggleLangModal() {
       this.isLangModalOpen = !this.isLangModalOpen;
     },

@@ -170,9 +170,7 @@
               {{
               $t("bountyPlatform.singleBounty.comments.headerComments")
               }}
-              <span
-                class="text-sm font-light"
-              >(4)</span>
+             <DisqusCount tag="span" class="text-sm font-light" :identifier="disqusID()" />
             </button>
             <button
               :class="[activeTab=='activity'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
@@ -228,79 +226,7 @@
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
-          <!-- New Comment -->
-          <div class="w-full flex flex-row items-start flex-wrap mt-2 mb-6 lg:px-4">
-            <!-- New Comment Input -->
-            <textarea
-              @input="autoGrow()"
-              ref="commentArea"
-              class="bg-c-background-ter hover:border-c-text focus:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg px-4 py-2 transition-colors duration-200"
-              type="text"
-              :placeholder="$t('bountyPlatform.singleBounty.comments.inputCommentPlaceholder')"
-            />
-            <!-- Comment Button -->
-            <button
-              class="btn-secondary bg-c-secondary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left w-full md:w-auto font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
-            >{{ $t('bountyPlatform.singleBounty.comments.buttonComment') }}</button>
-          </div>
-          <!-- If there are comments -->
-          <div v-if="true" class="w-full flex flex-col">
-            <CommentCard
-              class="my-2"
-              perspective="hunter"
-              context="singleBounty"
-              address="0x903d7b2c8c4e18128a22da150f82f16f8b9d5d30"
-              message="This is cool!"
-              date="03.19.2020, 13:58"
-            />
-            <CommentCard
-              class="my-2"
-              perspective="hunter"
-              context="singleBounty"
-              status="rejected"
-              address="0x8a91c9a16cd62693649d80afa85a09dbbdcb8508"
-              message="Can’t wait for it to be live 🙂"
-              date="03.19.2020, 13:39"
-            />
-            <CommentCard
-              class="my-2"
-              perspective="hunter"
-              context="singleBounty"
-              status="rejected"
-              address="0xe224152ebb6e6bd44de79a0c194a367cd59c8d78"
-              message="Did someone start working on it already?"
-              date="03.18.2020, 12:22"
-            />
-            <CommentCard
-              class="my-2"
-              perspective="hunter"
-              context="singleBounty"
-              status="rejected"
-              address="0x1fa9c39d07688308006a5fd976983bcc60eadb41"
-              message="Wow, this is awesome!"
-              date="03.18.2020, 12:15"
-            />
-            <!-- Load More Button -->
-            <!-- 
-          <div class="flex flex-row justify-center mt-2">
-          <button
-      
-            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
-          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
-        </div>
-            -->
-            <!-- If there are no comments -->
-          </div>
-          <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
-            <img
-              class="max-w-xxs h-auto relative -mt-5"
-              :src="require('~/assets/images/illustrations/foreground/comment.svg')"
-              alt="Comment Illustration"
-            />
-            <h6
-              class="opacity-75 text-center -mt-5 mb-5 md:max-w-xs"
-            >{{$t('bountyPlatform.singleBounty.comments.noComments')}}</h6>
-          </div>
+            <Disqus :identifier="disqusID()" />
         </div>
         <!-- Activity -->
         <div v-if="activeTab=='activity'" class="w-full flex flex-col">
@@ -377,6 +303,9 @@ export default {
     }   
   },
   methods: {
+    disqusID() {
+      return (this.$route.path || window.location.pathname)
+    },
     getBountyStatus() {
       if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
         return "completed"
