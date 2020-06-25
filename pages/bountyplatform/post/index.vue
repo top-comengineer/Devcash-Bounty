@@ -38,6 +38,35 @@
           >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
         </div>
         <!-- Bounty Description -->
+        <client-only>
+          <div class="w-full my-3">
+            <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
+              <div>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.bold()}"
+                  class="text-xl font-extrabold p-2 my-2 mx-1"
+                  @click="commands.bold"
+                >B</button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.heading({ level: 1 }) }"
+                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  @click="commands.heading({ level: 1 })"
+                >H1</button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.heading({ level: 2 }) }"
+                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  @click="commands.heading({ level: 2 })"
+                >H2</button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
+                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  @click="commands.heading({ level: 3 })"
+                >H3</button>
+              </div>
+            </editor-menu-bar>
+            <editor-content class="editor-content" :editor="editor" />
+          </div>
+        </client-only>
         <div class="w-full flex flex-col my-3">
           <label
             for="bountyDescription"
@@ -297,7 +326,12 @@
           >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
         </div>
       </div>
-      <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
+      <!-- Fee Card -->
+      <div
+        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+      >
+        <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
+      </div>
       <!-- Call to Action Card -->
       <CTACard
         class="my-1 md:my-2"
@@ -322,6 +356,26 @@ import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinu
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
+// Import the editor
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import {
+  Blockquote,
+  CodeBlock,
+  HardBreak,
+  Heading,
+  OrderedList,
+  BulletList,
+  ListItem,
+  TodoItem,
+  TodoList,
+  Bold,
+  Code,
+  Italic,
+  Link,
+  Strike,
+  Underline,
+  History,
+} from 'tiptap-extensions'
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -335,10 +389,13 @@ export default {
     Icon,
     DatePicker,
     CategoryPicker,
-    SignInToContinueWrapper
+    SignInToContinueWrapper,
+    EditorContent,
+    EditorMenuBar,
   },
   data() {
     return {
+      editor: null,
       openBounty: true,
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.post.pageTitle"),
@@ -604,6 +661,27 @@ export default {
       DevcashBounty.updateBalances(this)
       DevcashBounty.updateFees(this)
     }
+    this.editor =  new Editor({
+        extensions: [
+          new CodeBlock(),
+          new HardBreak(),
+          new Heading({ levels: [1, 2, 3] }),
+          new BulletList(),
+          new OrderedList(),
+          new ListItem(),
+          new Bold(),
+          new Code(),
+          new Italic(),
+          new Link(),
+          new Strike(),
+          new Underline(),
+          new History(),
+        ],
+        content: `
+          <h1>Yay Headlines!</h1>
+          <p>All these <strong>cool tags</strong> are working now.</p>
+        `,
+      });
   },
   beforeMount() {
     // Set sidebar context
@@ -619,6 +697,7 @@ export default {
     if (this.editor) {
       this.editor.destroy()
     }
+    this.editor.destroy()
   },  
   destroyed() {
     this.$store.commit("setSidebarContext", null);
@@ -771,5 +850,43 @@ p.is-empty:first-child::before {
 .hunterAddressTransition-leave-to {
   opacity: 0;
   transform: translateX(-1rem);
+}
+.editor-content h1 {
+  font-size: 1.6rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.4rem;
+  font-weight: 800;
+}
+.editor-content h2 {
+  font-size: 1.45rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.3rem;
+  font-weight: 700;
+}
+.editor-content h3 {
+  font-size: 1.3rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0.2rem;
+  font-weight: 700;
+}
+.editor-content p {
+  margin-top: 0.75rem;
+  line-height: 1.9;
+}
+.ProseMirror {
+  padding: 0.25rem 1rem 1rem 1rem;
+  border: 1px solid var(--c-background-ter);
+  transition: color 200ms ease-out;
+  border-radius: 0.5rem;
+  background-color: var(--c-background-ter);
+}
+@media only screen and (min-width: 768px) {
+  .ProseMirror {
+    padding: 0.25rem 1.5rem 1rem 1.5rem;
+  }
+}
+.ProseMirror-focused {
+  outline: none;
+  border: 1px solid var(--c-primary);
 }
 </style>
