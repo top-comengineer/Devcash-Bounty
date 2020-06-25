@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
-    <GreetingCard class="my-2" type="explore" />
+    <GreetingCard class="mb-2" type="explore" />
     <CategoriesBar class="my-2" />
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />

@@ -3,13 +3,15 @@
     <div class="w-full flex flex-col md:flex-row justify-center relative py-20 md:py-24 z-20">
       <!-- Sidebar container -->
       <div
-        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:relative flex flex-row justify-end transition-all ease-out duration-200"
+        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:top-0 md:relative flex flex-row justify-end transition-all ease-out duration-200 md:mb-2"
       >
         <!-- Sidebar -->
-        <div
-          class="sidebar-container overflow-visible sticky md:pt-2 md:pb-2 transition-all ease-out duration-200"
-        >
-          <Sidebar class="overflow-y-auto overflow-x-hidden" />
+        <div class="sidebar-container overflow-visible sticky transition-all ease-out duration-200">
+          <div class="sidebar-container-inner md:absolute md:left-0">
+            <Sidebar
+              class="overflow-y-auto overflow-x-hidden md:absolute md:left-0 shadow-4xl md:shadow-xl md:hover:shadow-2xl lg:hover:shadow-lg transition-shadow ease-out duration-300"
+            />
+          </div>
         </div>
       </div>
       <!-- Centered, Page Content -->
@@ -32,18 +34,35 @@ export default {
 };
 </script>
 <style>
+.sidebar-container-inner {
+  width: 100%;
+  height: 100%;
+  transition: all 150ms ease-out;
+}
+@media only screen and (min-width: 768px) {
+  .sidebar-container-inner:hover {
+    width: 16rem;
+  }
+  .sidebar-container-inner:hover .sidebar-item {
+    display: block;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .sidebar-container-inner:hover {
+    width: 100%;
+  }
+}
 .sidebar-container {
   width: 100%;
   height: auto;
-  top: 5rem;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container {
     width: 4rem;
-    height: calc(100vh - 6.5rem);
     min-width: 4rem;
     max-width: 4rem;
-    top: 6rem;
+    height: calc(100vh - 7.5rem);
+    top: 5.5rem;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -51,6 +70,7 @@ export default {
     width: calc((100vw - 1280px) / 2);
     max-width: 20rem;
     min-width: 16rem;
+    top: 6rem;
   }
 }
 .sidebar-spacer-right {
@@ -65,11 +85,12 @@ export default {
   .sidebar-spacer-left {
     width: calc((100vw - 1280px) / 2);
     min-width: 4rem;
+    bottom: 0.5rem;
   }
 }
 @media only screen and (min-width: 1024px) {
   .sidebar-spacer-left {
-    min-width: 15rem;
+    min-width: 16rem;
   }
 }
 .sidebarTransition-enter-active {

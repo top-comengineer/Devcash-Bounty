@@ -14,17 +14,17 @@
             ]"
           />
           <!-- Notification -->
-          <div class="absolute right-0 px-4 md:px-6 lg:px-10 mt-2">
+          <div class="absolute right-0 px-4 md:px-6 lg:px-10 mt-4">
             <notifications
               group="main"
               position="top right"
-              :duration="4000"
+              :duration="6000"
               animation-type="css"
               :max="6"
             >
               <template slot="body" slot-scope="props">
                 <div
-                  class="flex flex-row justify-between items-start bg-c-light text-c-dark mb-2 shadow-xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
+                  class="flex flex-row justify-between items-start bg-c-light text-c-dark mb-2 shadow-2xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
                 >
                   <div class="flex flex-col justify-center mx-3 my-2">
                     <p class="text-sm font-bold">{{props.item.title}}</p>
@@ -79,7 +79,10 @@ export default {
       ],
       link: [
         ...i18nSeo.link
-      ]
+      ],
+      bodyAttrs: {
+        class: ['bg-c-background', this.$store.state.theme == 'light' ?'theme-light':'theme-dark']
+      },
     };
   },
   data: function() {
@@ -140,5 +143,11 @@ body {
 }
 .overflow-anywhere {
   overflow-wrap: anywhere;
+}
+.vue-notification-group {
+  position: relative !important;
+}
+.vue-notification-wrapper {
+  overflow: visible !important;
 }
 </style>

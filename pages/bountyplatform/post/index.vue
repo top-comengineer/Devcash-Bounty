@@ -6,7 +6,7 @@
         :header="$t('bountyPlatform.post.cardHeader')"
         :paragraph="$t('bountyPlatform.post.cardParagraph')"
         type="post"
-        class="my-1 md:my-2"
+        class="mb-1 md:mb-2"
       />
       <!-- Post Form -->
       <!-- Card for Bounty Title and Description -->
@@ -65,7 +65,7 @@
             <div class="w-full flex flex-row relative">
               <div
                 :class="{'left-0':openBounty, 'left-full -translate-x-full': !openBounty}"
-                class="shadow-lg absolute w-1/2 h-full w-24 bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+                class="shadow-lg absolute w-1/2 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
               ></div>
               <button
                 :class="[openBounty?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"

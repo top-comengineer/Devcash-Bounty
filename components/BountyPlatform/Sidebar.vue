@@ -1,13 +1,13 @@
 <template>
   <div
-    class="bg-c-background-sec shadow-lg w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl transition-all ease-out duration-200"
+    class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl"
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
       <!-- Explore -->
       <nuxt-link
         :to="localePath('bountyplatform')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 lg:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty)
@@ -16,17 +16,19 @@
         <Icon
           :colorClass="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
           type="explore"
-          class="w-8 h-8 lg:w-7 lg:h-7"
+          class="w-7 h-7"
         />
-        <h3
-          :class="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block ml-2"
-        >{{ $t("bountyPlatform.explore.header") }}</h3>
+        <transition name="sidebarItemTransition">
+          <h3
+            :class="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
+            class="text-lg font-bold hidden sidebar-item lg:block ml-2"
+          >{{ $t("bountyPlatform.explore.header") }}</h3>
+        </transition>
       </nuxt-link>
       <!-- Post -->
       <nuxt-link
         :to="localePath('bountyplatform-post')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 lg:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.post,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.post)
@@ -35,17 +37,17 @@
         <Icon
           type="post"
           :colorClass="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
-          class="w-8 h-8 lg:w-7 lg:h-7"
+          class="w-7 h-7"
         />
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden sidebar-item lg:block ml-2"
         >{{ $t("bountyPlatform.post.header") }}</h3>
       </nuxt-link>
       <!-- Overview -->
       <nuxt-link
         :to="localePath('bountyplatform-overview')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 lg:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.overview,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.overview)
@@ -54,17 +56,17 @@
         <Icon
           type="overview"
           :colorClass="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
-          class="w-8 h-8 lg:w-7 lg:h-7"
+          class="w-7 h-7"
         />
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Hunter-->
       <nuxt-link
         :to="localePath('bountyplatform-bountyhunter')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 lg:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyHunter,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
@@ -73,17 +75,17 @@
         <Icon
           type="bounty-hunter"
           :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
-          class="w-8 h-8 lg:w-7 lg:h-7"
+          class="w-7 h-7"
         />
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
         >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Manager -->
       <nuxt-link
         :to="localePath('bountyplatform-bountymanager')"
-        class="flex flex-row justify-center lg:justify-start items-center px-4 py-3 lg:pl-10 lg:pr-8 transition-colors ease-out duration-200"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 lg:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyManager,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
@@ -92,19 +94,19 @@
         <Icon
           type="bounty-manager"
           :colorClass="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
-          class="w-8 h-8 lg:w-7 lg:h-7"
+          class="w-7 h-7"
         />
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block ml-2"
-        >{{ $t("bountyPlatform.bountyManager.header") }}</h3>
+          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
+        >{{ $t("bountyPlatform.bountyManager.header")}}</h3>
       </nuxt-link>
       <!-- Divider -->
-      <div class="px-4 lg:pl-10 lg:pr-8 mt-4 mb-5 hidden lg:block">
+      <div class="px-4 lg:px-6 mt-4 mb-5 hidden lg:block sidebar-item">
         <div class="bg-c-text w-full h-px2 rounded-full opacity-10"></div>
       </div>
       <!-- Context aware options -->
-      <div class="px-4 lg:pl-10 lg:pr-8 hidden lg:block">
+      <div class="px-4 lg:px-6 hidden lg:block sidebar-item">
         <!-- If context is Null -->
         <div v-if="$store.state.sidebarContext == null" class="flex flex-col"></div>
         <!-- If context is Explore -->
@@ -137,7 +139,7 @@
             >
               {{$t("bountyPlatform.explore.sidebar.sortHeader")}}
               <Icon
-                class="hidden lg:block w-4 h-4 mx-1 transition-all ease-out duration-200"
+                class="w-4 h-4 mx-1 transition-all ease-out duration-200"
                 colorClass="text-c-text"
                 type="arrow-down"
               />
