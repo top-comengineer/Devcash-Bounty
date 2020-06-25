@@ -12,7 +12,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
+    "@nuxtjs/axios": "^5.11.0",
     "@portis/web3": "^2.0.0-beta.54",
     "authereum": "0.0.4-beta.130",
     "cookie-parser": "^1.4.5",
@@ -29,7 +29,7 @@
     "lodash.merge": "^4.6.2",
     "node-cron": "^2.0.3",
     "nodemon": "^2.0.4",
-    "nuxt": "^2.12.2",
+    "nuxt": "^2.13.1",
     "nuxt-i18n": "^6.12.2",
     "pg": "^8.2.1",
     "pg-hstore": "^2.3.3",
@@ -47,7 +47,7 @@
     "web3": "^1.2.6"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^1.0.0",
+    "@nuxtjs/tailwindcss": "^2.0.0",
     "ethers": "^4.0.45",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
