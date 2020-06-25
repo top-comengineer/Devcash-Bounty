@@ -4,11 +4,11 @@
       <div class="w-full flex flex-row flex-wrap justify-center md:px-2">
         <OverviewCardPlaceholder
           v-if="overviewLoading"
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
         />
         <OverviewCard
           v-else
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="earned"
           :totalDEV="totalEarnedDC"
           :totalETH="totalEarnedEth"
@@ -16,11 +16,11 @@
         />
         <OverviewCardPlaceholder
           v-if="overviewLoading"
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
         />
         <OverviewCard
           v-else
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="awarded"
           :totalDEV="totalAwardedDC"
           :totalETH="totalAwardedEth"
@@ -28,11 +28,11 @@
         />
         <OverviewCardPlaceholder
           v-if="overviewLoading"
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
         />
         <OverviewCard
           v-else
-          class="w-full md:w-1/2 xl:w-1/3 my-2 px-1 md:px-2"
+          class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="balance"
           :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"
           :totalETH="$store.state.devcashData.ethPrimary ? balance.primary.amount : balance.secondary.amount"
@@ -41,14 +41,14 @@
       </div>
       <!-- Activity Main Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2 mx-1 md:mx-4"
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mb-4 mx-1 md:mx-4"
       >
         <!-- Header -->
         <h2 class="text-2xl font-extrabold ml-4">{{$t('bountyPlatform.overview.activity')}}</h2>
         <!-- ActivityCards -->
         <div v-if="activity.length>0" class="w-full flex flex-col flex-wrap my-4">
           <ActivityCard
-            class="my-2"
+            class="mb-4"
             v-for="(item, i) in activity"
             :key="i"
             :perspective="item.perspective"

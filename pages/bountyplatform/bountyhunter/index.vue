@@ -3,7 +3,7 @@
     <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
       <!-- Submissions Sent Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mb-2"
       >
         <!-- Header Row -->
         <div class="flex flex-row flex-wrap justify-between items-center">
