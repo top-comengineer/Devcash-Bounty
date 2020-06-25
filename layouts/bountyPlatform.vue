@@ -3,13 +3,13 @@
     <div class="w-full flex flex-col md:flex-row justify-center relative py-20 md:py-24 z-20">
       <!-- Sidebar container -->
       <div
-        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:top-0 md:relative flex flex-row justify-end transition-all ease-out duration-200 mb-2"
+        class="sidebar-spacer-left fixed bottom-0 md:bottom-auto md:top-0 md:relative flex flex-row justify-end transition-all ease-out duration-200 md:mb-2"
       >
         <!-- Sidebar -->
         <div class="sidebar-container overflow-visible sticky transition-all ease-out duration-200">
-          <div class="sidebar-container-inner absolute left-0">
+          <div class="sidebar-container-inner md:absolute md:left-0">
             <Sidebar
-              class="overflow-y-auto overflow-x-hidden absolute left-0 shadow-lg md:hover:shadow-2xl lg:hover:shadow-lg transition-shadow ease-out duration-300"
+              class="overflow-y-auto overflow-x-hidden md:absolute md:left-0 shadow-4xl md:shadow-xl md:hover:shadow-2xl lg:hover:shadow-lg transition-shadow ease-out duration-300"
             />
           </div>
         </div>
@@ -37,7 +37,7 @@ export default {
 .sidebar-container-inner {
   width: 100%;
   height: 100%;
-  transition: all 200ms ease-out;
+  transition: all 150ms ease-out;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container-inner:hover {
