@@ -15,9 +15,13 @@
       >
         <!-- Bounty Title -->
         <div class="w-full md:w-1/2 flex flex-col mt-3">
-          <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyTitle')}}</h3>
+          <label
+            for="bountyTitle"
+            class="text-2xl font-bold px-3"
+          >{{$t('bountyPlatform.post.bountyTitle')}}</label>
           <div class="w-full flex flex-row">
             <input
+              id="bountyTitle"
               v-model="title"
               class="bg-c-background-ter border-c-background-ter text-c-text flex-1 text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
@@ -35,8 +39,12 @@
         </div>
         <!-- Bounty Description -->
         <div class="w-full flex flex-col my-3">
-          <h3 class="text-2xl font-bold px-3">{{$t('bountyPlatform.post.bountyDescription')}}</h3>
+          <label
+            for="bountyDescription"
+            class="text-2xl font-bold px-3"
+          >{{$t('bountyPlatform.post.bountyDescription')}}</label>
           <textarea
+            id="bountyDescription"
             v-model="description"
             class="bg-c-background-ter border-c-background-ter text-c-text bountyDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
             type="text"
@@ -57,7 +65,7 @@
       >
         <!-- Bounty Type -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h3>
+          <h4 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h4>
           <!-- Public and Private Switch -->
           <div
             class="bg-c-background-ter border-c-text-10 max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
@@ -88,8 +96,12 @@
         <!-- Hunter's Address -->
         <transition name="hunterAddressTransition">
           <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
-            <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</h3>
+            <label
+              for="hunterAddress"
+              class="text-xl font-bold px-3"
+            >{{$t('bountyPlatform.post.bountyTypeHunterAddress')}}</label>
             <input
+              id="hunterAddress"
               v-model="hunter"
               class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
@@ -109,8 +121,12 @@
       >
         <!-- Number of Bounties -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCount')}}</h3>
+          <label
+            for="numberOfBounties"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.bountyCount')}}</label>
           <input
+            id="numberOfBounties"
             v-model="numBounties"
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="number"
@@ -127,13 +143,14 @@
         <div class="hidden md:block w-16"></div>
         <!-- Bounty Amount -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">
+          <label for="bountyAmount" class="text-xl font-bold px-3">
             {{$t('bountyPlatform.post.bountyAmount')}}
             <span
               class="text-sm font-normal opacity-75"
             >{{$t('bountyPlatform.post.bountyForEach')}}</span>
-          </h3>
+          </label>
           <input
+            id="bountyAmount"
             v-model="amount"
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="number"
@@ -150,10 +167,14 @@
       >
         <!-- Bounty Category -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyCategory')}}</h3>
+          <label
+            for="bountyCategory"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.bountyCategory')}}</label>
           <div v-on-clickaway="closeCategoryPicker" class="flex-1 flex flex-col">
             <!-- Category Input -->
             <input
+              id="bountyCategory"
               v-model="categoryValueStr"
               class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
               type="text"
@@ -184,15 +205,16 @@
         <div class="hidden md:block w-16"></div>
         <!-- Deadline -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">
+          <label for="bountyDeadline" class="text-xl font-bold px-3">
             {{$t('bountyPlatform.post.bountyDeadline')}}
             <span
               class="font-normal text-base opacity-75"
             >{{$t('bountyPlatform.post.optional')}}</span>
-          </h3>
+          </label>
           <div class="w-full flex flex-row items-center relative mt-2">
             <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
               <input
+                id="bountyDeadline"
                 v-model="datePickerValueStr"
                 class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
                 type="text"
@@ -236,8 +258,12 @@
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
+          <label
+            for="contactName"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.contactName')}}</label>
           <input
+            id="contactName"
             v-model="contactName"
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
@@ -253,8 +279,12 @@
         <div class="hidden md:block w-16"></div>
         <!-- Contact Email -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
+          <label
+            for="contactEmail"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.contactEmail')}}</label>
           <input
+            id="contactEmail"
             v-model="contactEmail"
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"

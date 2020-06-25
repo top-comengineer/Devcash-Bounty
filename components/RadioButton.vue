@@ -1,9 +1,10 @@
 <template>
   <div>
     <label
+      :for="name"
       class="radio-container flex flex-row items-center p-1 hover:bg-c-primary-15 focus:bg-c-primary-15 transition-colors ease-out duration-200 rounded-md"
     >
-      <input :checked="checked" type="radio" :name="name" />
+      <input id="name" :checked="checked" type="radio" :name="name" />
       <span class="border-c-text radio-checkmark"></span>
       <h5 class="text-c-text leading-tight font-bold">{{text}}</h5>
     </label>

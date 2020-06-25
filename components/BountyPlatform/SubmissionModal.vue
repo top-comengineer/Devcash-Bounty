@@ -59,8 +59,12 @@
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactName')}}</h3>
+          <label
+            for="submissionContactName"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.contactName')}}</label>
           <input
+            id="submissionContactName"
             v-model="contactName"
             class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"
@@ -76,8 +80,12 @@
         <div class="hidden md:block w-12"></div>
         <!-- Contact Email -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
-          <h3 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.contactEmail')}}</h3>
+          <label
+            for="submissionContactEmail"
+            class="text-xl font-bold px-3"
+          >{{$t('bountyPlatform.post.contactEmail')}}</label>
           <input
+            id="submissionContactEmail"
             v-model="contactEmail"
             class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text"

@@ -112,9 +112,10 @@
         <!-- If context is Explore -->
         <div v-if="$store.state.sidebarContext == sidebarContexts.explore" class="flex flex-col">
           <!-- Search Text and Search Bar -->
-          <h4
+          <label
+            for="searchBar"
             class="text-c-text text-lg font-bold"
-          >{{$t("bountyPlatform.explore.sidebar.searchHeader")}}</h4>
+          >{{$t("bountyPlatform.explore.sidebar.searchHeader")}}</label>
           <div class="flex flex-row relative mt-2">
             <Icon
               :colorClass="isSearchFocused?'text-c-primary':'text-c-text'"
@@ -122,6 +123,7 @@
               type="search"
             />
             <input
+              id="searchBar"
               @focus="isSearchFocused=true"
               @blur="isSearchFocused=false"
               class="bg-c-background-sec border-c-text w-full font-bold border-2 focus:border-c-primary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1_5"

@@ -76,11 +76,11 @@
           <!-- Line Left -->
           <div class="bg-c-text flex-1 h-px2 opacity-10 rounded-tl-full rounded-br-full"></div>
           <!-- Header Text -->
-          <h5 class="font-bold text-xl text-center leading-tight px-6">
+          <label for="customAmount" class="font-bold text-xl text-center leading-tight px-6">
             {{
             $t("bountyPlatform.singleBounty.contribute.orEnterCustomAmount")
             }}
-          </h5>
+          </label>
           <!-- Line Right -->
           <div class="bg-c-text flex-1 h-px2 opacity-10 rounded-bl-full"></div>
         </div>
@@ -88,6 +88,7 @@
         <div class="w-full lg:w-2/3 flex flex-row justify-center items-start flex-wrap my-8">
           <!-- Enter Amount -->
           <input
+            id="customAmount"
             class="bg-c-background-ter hover:border-c-text focus:border-c-text active:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg px-4 py-2 transition-colors duration-200"
             type="text"
             :placeholder="

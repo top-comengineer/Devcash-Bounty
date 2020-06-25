@@ -1,10 +1,11 @@
 <template>
   <div>
     <label
+      :for="name"
       :class="type=='light'?'text-c-light hover:bg-c-light-15 focus:bg-c-light-15 checkbox-container checkbox-container-light':'hover:bg-c-primary-15 focus:bg-c-primary-15 checkbox-container'"
       class="flex flex-row items-center p-1 transition-colors duration-200 rounded-md"
     >
-      <input :checked="checked" type="checkbox" :name="name" />
+      <input :id="name" :checked="checked" type="checkbox" :name="name" />
       <span
         v-if="type=='light'"
         class="rounded-tl-md rounded-br-md rounded-tr-sm rounded-bl-sm border-c-light normal-checkmark-light"
