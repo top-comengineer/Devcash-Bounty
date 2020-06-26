@@ -47,6 +47,7 @@
             <text-editor :editor="editor" />
           </client-only>
         </div>
+        <!-- Error Field -->
         <div class="w-full flex flex-col">
           <p
             :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
@@ -326,19 +327,18 @@ import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
-  Blockquote,
-  CodeBlock,
-  HardBreak,
-  Heading,
-  HorizontalRule,
-  OrderedList,
-  BulletList,
-  ListItem,
   Bold,
-  Code,
   Italic,
+  Heading,
+  BulletList,
+  OrderedList,
+  ListItem,
   Link,
+  Code,
   History,
+  CodeBlock,
+  HardBreak, 
+  HorizontalRule, 
   TrailingNode
 } from 'tiptap-extensions'
 
@@ -355,8 +355,6 @@ export default {
     DatePicker,
     CategoryPicker,
     SignInToContinueWrapper,
-    EditorContent,
-    EditorMenuBar,
     TextEditor
   },
   data() {
@@ -629,19 +627,18 @@ export default {
     }
     this.editor =  new Editor({
         extensions: [
-          new Blockquote(),
-          new BulletList(),
-          new CodeBlock(),
-          new HardBreak(),
-          new Heading({ levels: [1, 2, 3] }),
-          new HorizontalRule(),
-          new ListItem(),
-          new OrderedList(),
-          new Link(),
           new Bold(),
-          new Code(),
           new Italic(),
+          new Heading({ levels: [1, 2, 3] }),
+          new BulletList(),
+          new OrderedList(),
+          new ListItem(),
+          new Link(),
+          new Code(),
           new History(),
+          new CodeBlock(),
+          new HardBreak(),        
+          new HorizontalRule(),   
           new TrailingNode({
             node: 'paragraph',
             notAfter: ['paragraph'],

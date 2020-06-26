@@ -1,93 +1,95 @@
 <template>
-  <div class="w-full relative">
+  <div class="w-full relative mt-3 rounded-lg bg-c-background-ter">
     <client-only>
-      <editor-menu-bar
-        class="bg-c-primary rounded-tl-lg rounded-tr-lg px-2 mt-3 sticky top-0 z-20"
-        :editor="editor"
-        v-slot="{ commands, isActive }"
-      >
-        <div class="w-full flex flex-row flex-wrap items-center">
-          <button
-            :class="{ 'bg-c-text-15': isActive.bold()}"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.bold()"
-          >
-            <icon class="w-7 h-7" type="bold" colorClass="text-c-text" />
-          </button>
-          <button
-            :class="{ 'bg-c-text-15': isActive.italic()}"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.italic()"
-          >
-            <icon class="w-7 h-7" type="italic" colorClass="text-c-text" />
-          </button>
-          <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-          <button
-            :class="{ 'bg-c-text-15': isActive.heading({ level: 1 }) }"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.heading({ level: 1 })"
-          >
-            <icon class="w-7 h-7" type="h1" colorClass="text-c-text" />
-          </button>
-          <button
-            :class="{ 'bg-c-text-15': isActive.heading({ level: 2 }) }"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.heading({ level: 2 })"
-          >
-            <icon class="w-7 h-7" type="h2" colorClass="text-c-text" />
-          </button>
-          <button
-            :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.heading({ level: 3 })"
-          >
-            <icon class="w-7 h-7" type="h3" colorClass="text-c-text" />
-          </button>
-          <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-          <button
-            :class="{ 'bg-c-text-15': isActive.bullet_list()}"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.bullet_list()"
-          >
-            <icon class="w-7 h-7" type="u-list" colorClass="text-c-text" />
-          </button>
-          <button
-            :class="{ 'bg-c-text-15': isActive.ordered_list()}"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.ordered_list()"
-          >
-            <icon class="w-7 h-7" type="o-list" colorClass="text-c-text" />
-          </button>
-          <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-          <button
-            :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.heading({ level: 3 })"
-          >
-            <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
-          </button>
-          <button
-            :class="{ 'bg-c-text-15': isActive.code() }"
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.code()"
-          >
-            <icon class="w-7 h-7" type="code" colorClass="text-c-text" />
-          </button>
-          <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-          <button
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.undo()"
-          >
-            <icon class="w-7 h-7" type="undo" colorClass="text-c-text" />
-          </button>
-          <button
-            class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-            @click="commands.redo()"
-          >
-            <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
-          </button>
-        </div>
-      </editor-menu-bar>
+      <div class="bg-c-background-ter sticky top-0 z-20 rounded-tl-lg rounded-tr-lg">
+        <editor-menu-bar
+          class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2"
+          :editor="editor"
+          v-slot="{ commands, isActive }"
+        >
+          <div class="w-full flex flex-row flex-wrap items-center">
+            <button
+              :class="{ 'bg-c-text-15': isActive.bold()}"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.bold()"
+            >
+              <icon class="w-7 h-7" type="bold" colorClass="text-c-text" />
+            </button>
+            <button
+              :class="{ 'bg-c-text-15': isActive.italic()}"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.italic()"
+            >
+              <icon class="w-7 h-7" type="italic" colorClass="text-c-text" />
+            </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              :class="{ 'bg-c-text-15': isActive.heading({ level: 1 }) }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.heading({ level: 1 })"
+            >
+              <icon class="w-7 h-7" type="h1" colorClass="text-c-text" />
+            </button>
+            <button
+              :class="{ 'bg-c-text-15': isActive.heading({ level: 2 }) }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.heading({ level: 2 })"
+            >
+              <icon class="w-7 h-7" type="h2" colorClass="text-c-text" />
+            </button>
+            <button
+              :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.heading({ level: 3 })"
+            >
+              <icon class="w-7 h-7" type="h3" colorClass="text-c-text" />
+            </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              :class="{ 'bg-c-text-15': isActive.bullet_list()}"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.bullet_list()"
+            >
+              <icon class="w-7 h-7" type="u-list" colorClass="text-c-text" />
+            </button>
+            <button
+              :class="{ 'bg-c-text-15': isActive.ordered_list()}"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.ordered_list()"
+            >
+              <icon class="w-7 h-7" type="o-list" colorClass="text-c-text" />
+            </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.heading({ level: 3 })"
+            >
+              <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
+            </button>
+            <button
+              :class="{ 'bg-c-text-15': isActive.code() }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.code()"
+            >
+              <icon class="w-7 h-7" type="code" colorClass="text-c-text" />
+            </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.undo()"
+            >
+              <icon class="w-7 h-7" type="undo" colorClass="text-c-text" />
+            </button>
+            <button
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="commands.redo()"
+            >
+              <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
+            </button>
+          </div>
+        </editor-menu-bar>
+      </div>
       <editor-content class="editor-content" :editor="editor" />
     </client-only>
   </div>
@@ -183,7 +185,7 @@ export default {
   transition: border 0.2s ease-out;
   border-radius: 0rem 0rem 0.5rem 0.5rem;
   background-color: var(--c-background-ter);
-  min-height: 20rem;
+  min-height: 24rem;
 }
 @media only screen and (min-width: 768px) {
   .ProseMirror {
