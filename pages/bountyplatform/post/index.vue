@@ -327,9 +327,9 @@ import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
   Blockquote,
-  CodeBlock,
   HardBreak,
   Heading,
+  CodeBlock,
   HorizontalRule,
   OrderedList,
   BulletList,
@@ -341,6 +341,7 @@ import {
   History,
   TrailingNode
 } from 'tiptap-extensions'
+import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -632,7 +633,7 @@ export default {
           new Blockquote(),
           new BulletList(),
           new CodeBlock(),
-          new HardBreak(),
+          new CustomHardBreak(),
           new Heading({ levels: [1, 2, 3] }),
           new HorizontalRule(),
           new ListItem(),
