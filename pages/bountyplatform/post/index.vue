@@ -343,6 +343,7 @@ import {
 } from 'tiptap-extensions'
 import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
 import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
+import * as Cookies from "js-cookie"
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -361,6 +362,7 @@ export default {
   },
   data() {
     return {
+      waitingConfirmation: false,
       editor: null,
       openBounty: true,
       // For meta tags
@@ -406,7 +408,8 @@ export default {
       turnDownSvc: new TurndownService({
         headingStyle: 'atx',
         codeBlockStyle: 'fenced'
-      })
+      }),
+      backupInterval: null
     };
   },
   computed: {
@@ -626,6 +629,9 @@ export default {
                 this.getDeadlineS(),
                 this.curFee
               )
+              this.waitingConfirmation = true
+              clearInterval(this.backupInterval)
+              Cookies.remove('devcash_postcache')
             }
           } catch (e) {
             // TODO - better error handling
@@ -653,7 +659,7 @@ export default {
       this.hideLinkMenu()
     },
   },
-  mounted() {
+  mounted() {  
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
       DevcashBounty.updateFees(this)
@@ -698,7 +704,55 @@ export default {
       if (key != "header" && key != 'category') {
         this.categories[key.replace("Tag", "")] = category
       }
-    }    
+    }
+    // Interval
+    this.backupInterval = setInterval(() => {
+      if (this.editor) {
+        if (this.isLoggedIn) {
+          // Backup object
+          let cookie = {
+            loggedInAccount: this.loggedInAccount,
+            description: this.editor.getHTML(),
+            title: this.title,
+            openBounty: this.openBounty,
+            hunter: this.hunter,
+            numBounties: this.numBounties,
+            amount: this.amount,
+            category: this.categoryValueStr,
+            deadline: this.datePickerValue ? this.datePickerValue.getTime() : null,
+            name: this.contactName,
+            email: this.contactEmail
+          }
+          let serialized = JSON.stringify(cookie)
+          Cookies.set(`devcash_postcache`, serialized, { secure: process.env.NODE_ENV === 'production' })
+        }      
+      }
+    }, 5000)
+    // Restore data
+    if (this.waitingConfirmation) {
+      this.waitingConfirmation = false
+    } else {
+      let cached = Cookies.get('devcash_postcache')
+      if (cached) {
+        cached = JSON.parse(cached)
+        if (cached.loggedInAccount == this.loggedInAccount) {
+          this.editor.setContent(cached.description)
+          this.title = cached.title
+          this.openBounty = cached.openBounty
+          this.hunter = cached.hunter,
+          this.numBounties = cached.numBounties
+          this.amount = cached.amount
+          this.categoryValueStr = cached.category
+          if (cached.deadline) {
+            this.datePickerSet(new Date(cached.deadline))
+          }
+          this.contactName = cached.name
+          this.contactEmail = cached.email
+        } else {
+          Cookies.remove('devcash_postcache')
+        }
+      }
+    }
   },
   beforeDestroy() {
     if (this.editor) {
@@ -706,6 +760,9 @@ export default {
     }
   },  
   deactivated() {
+    if (this.backupInterval) {
+      clearInterval(this.backupInterval)
+    }
     this.$store.commit("setSidebarContext", null);
   },
   head() {
