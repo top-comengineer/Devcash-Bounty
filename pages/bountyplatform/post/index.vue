@@ -599,10 +599,6 @@ export default {
      return 0
    },
    async submitBounty() {
-     console.log(this.editor.getHTML())
-     let markdown = this.turnDownSvc.turndown(this.editor.getHTML())
-     console.log(this.$sanitize(marked(markdown)))
-     return
      if (this.validateForm() && !this.submitLoading) {
        try {
          this.submitLoading = true
@@ -610,7 +606,7 @@ export default {
           let bounty = DevcashBounty.createUBounty(
             this.loggedInAccount,
             this.title,
-            this.description,
+            this.turnDownSvc.turndown(this.editor.getHTML()),
             this.contactName,
             this.contactEmail,
             this.categoryValue,
@@ -718,6 +714,7 @@ export default {
             hunter: this.hunter,
             numBounties: this.numBounties,
             amount: this.amount,
+            categoryValue: this.categoryValue,
             category: this.categoryValueStr,
             deadline: this.datePickerValue ? this.datePickerValue.getTime() : null,
             name: this.contactName,
@@ -742,6 +739,7 @@ export default {
           this.hunter = cached.hunter,
           this.numBounties = cached.numBounties
           this.amount = cached.amount
+          this.categoryValue = cached.categoryValue
           this.categoryValueStr = cached.category
           if (cached.deadline) {
             this.datePickerSet(new Date(cached.deadline))
