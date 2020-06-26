@@ -65,12 +65,9 @@
     <div class="w-full flex flex-row flex-wrap">
       <!-- Bounty Description -->
       <div
-        class="bg-c-background-sec shadow-lg w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-8 md:pb-12 px-6 md:px-12 my-1 md:my-2"
+        class="bg-c-background-sec shadow-lg w-full md:w-auto flex-1 flex flex-col flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-6 pb-8 md:pt-10 md:pb-12 px-6 md:px-12 my-1 md:my-2"
       >
-        <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
-        <p
-          class="mt-2 leading-loose"
-          v-html="sanitizedDescription" />
+        <div class="editor-content" v-html="sanitizedDescription" />
       </div>
       <!-- Divider -->
       <div class="w-4 hidden md:block"></div>
@@ -311,7 +308,7 @@ export default {
         return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
       }
       return this.$sanitize(marked(this.bounty.description, {renderer: renderer}))
-    }  
+    }
   },
   methods: {
     disqusID() {
@@ -413,7 +410,7 @@ export default {
       isContributeModalOpen: false,
       // For meta tags
       pagePreview: `${process.env.BASE_URL}/previews/bounty-single.png`,
-      pageThemeColor: "#675CFF"
+      pageThemeColor: "#675CFF",
     };
   },
   activated() {

@@ -881,14 +881,6 @@ export default {
 };
 </script>
 <style>
-.bountyDescArea {
-  min-height: 27rem;
-  height: 27rem;
-  transform-origin: center top;
-}
-</style>
-
-<style>
 p.is-empty:first-child::before {
   content: attr(data-empty-text);
   float: left;
