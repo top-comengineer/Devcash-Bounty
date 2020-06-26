@@ -36,7 +36,7 @@ export default {
       loading: true,
       bountiesCurPage: [],
       page: 1,
-      perPage: 10,
+      perPage: 50,
       hasPageMap: {},
       totalPages: 1,
       // For meta tags
@@ -51,7 +51,8 @@ export default {
     // mix the getters into computed with object spread operator
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
-      loggedInAccount: "devcashData/loggedInAccount"
+      loggedInAccount: "devcashData/loggedInAccount",
+      sortType: "devcashData/exploreSortType"
     })
   },
   methods: {
@@ -66,8 +67,14 @@ export default {
       let hunterParam = this.isLoggedIn
         ? `&hunter=${this.loggedInAccount}`
         : "";
+      let sortType = this.sortType
+      if (sortType == 'value' && this.$store.state.devcashData.ethIsPrimary) {
+        sortType = 'valueEth'
+      } else if (sortType == 'value') {
+        sortType = 'valueDC'
+      }
       let res = await Axios.get(
-        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}`
+        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}`
       );
       if (res.status != 200) {
         // TODO error handling
@@ -88,6 +95,12 @@ export default {
       this.hasPageMap = {}
       this.bounties = []
       this.loading = true
+      this.getBounties()
+    })
+    this.$root.$on('sortChanged', () => {
+      this.loading = true
+      this.hasPageMap = {}
+      this.bounties = []
       this.getBounties()
     })
   },

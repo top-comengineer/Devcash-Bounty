@@ -1,6 +1,6 @@
 const { utils } = require('ethers')
 const { check, validationResult } = require('express-validator');
-const { UBounty, UBountyStaged, Op }  = require('../models');
+const { UBounty, UBountyStaged, Op, sequelize }  = require('../models');
 const crypto = require('crypto');
 const removeMd = require('remove-markdown');
 const { etherClient } = require('../utils/ether_client')
@@ -36,12 +36,23 @@ module.exports.getUBounties = async (req, res, next) => {
     } catch (e) {
       hunterQuery = {[Op.eq]: null}
     }
+    // Get sort type
+    let orderClause = ['createdAt', 'DESC']
+    let sortType = req.query.sort
+    if (sortType == 'valueDC') {
+      orderClause = [sequelize.cast(sequelize.col('bountyAmount'), 'BIGINT'), 'DESC']
+    } else if (sortType == 'valueEth') {
+      orderClause = [sequelize.cast(sequelize.col('weiAmount'), 'BIGINT'), 'DESC']
+    } else if (sortType == 'expiry') {
+      orderClause = ['deadline', 'DESC']
+    }
+    console.log("\n\n\n" + sortType + "\n\n\n")
     // Get uBounties
     let result = await UBounty.findAndCountAll({
       offset: offset,
       limit: limit,
       order: [
-          ['createdAt', 'DESC']
+          orderClause
       ],
       where: {
         hunter: hunterQuery

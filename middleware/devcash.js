@@ -20,5 +20,8 @@ export default function ({ req, store }) {
         let parsed = JSON.parse(req.cookies.devcash_fee)
         store.commit('devcashData/setFees', parsed)
       }
+      if (req.cookies.devcash_estype) {
+        store.commit('devcashData/setSortType', req.cookies.devcash_estype)
+      }
     }
   } 

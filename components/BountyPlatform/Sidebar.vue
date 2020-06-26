@@ -134,85 +134,32 @@
           <!-- Sort Text and Sort Options -->
           <div class="relative">
             <!-- Sort Button -->
-            <button
-              @click="toggleSortModal"
-              @keydown.esc.exact="hideSortModal"
+            <div
               class="text-c-text text-lg font-bold mt-8 w-full flex flex-row items-center px-1 -mx-1 hover:bg-c-primary-15 focus:bg-c-primary-15 transition-colors duration-200 rounded-md"
             >
               {{$t("bountyPlatform.explore.sidebar.sortHeader")}}
-              <Icon
-                class="w-4 h-4 mx-1 transition-all ease-out duration-200"
-                colorClass="text-c-text"
-                type="arrow-down"
-              />
-            </button>
-            <!-- Sort Modal -->
-            <transition name="sortModalTransition">
-              <!-- Modal Wrapper -->
-              <div
-                v-on-clickaway="hideSortModal"
-                class="origin-top-left absolute left-0 pt-2 z-50"
-                v-if="isSortModalOpen"
-              >
-                <div
-                  class="bg-c-text text-c-background w-48 flex flex-col relative shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
-                >
-                  <!-- Descending Button -->
-                  <button
-                    @click="isSortDescending=true; hideSortModalWithDelay()"
-                    @keydown.esc.exact="hideSortModal"
-                    :class="isSortDescending ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-25 focus:bg-c-primary-25'"
-                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
-                  >
-                    <div class="ml-3 mr-2">
-                      <Icon
-                        :colorClass="isSortDescending?'text-c-light':'text-transparent'"
-                        type="done"
-                        class="w-5 h-5"
-                      />
-                    </div>
-                    <h6
-                      class="whitespace-no-wrap font-bold"
-                    >{{$t("bountyPlatform.explore.sidebar.sortDescending")}}</h6>
-                  </button>
-                  <!-- Ascending Button -->
-                  <button
-                    @click="isSortDescending=false; hideSortModalWithDelay()"
-                    @keydown.tab.exact="hideSortModal"
-                    @keydown.esc.exact="hideSortModal"
-                    :class="!isSortDescending ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-25 focus:bg-c-primary-25'"
-                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
-                  >
-                    <div class="ml-3 mr-2">
-                      <Icon
-                        :colorClass="!isSortDescending?'text-c-light':'text-transparent'"
-                        type="done"
-                        class="w-5 h-5"
-                      />
-                    </div>
-                    <h6
-                      class="whitespace-no-wrap font-bold"
-                    >{{$t("bountyPlatform.explore.sidebar.sortAscending")}}</h6>
-                  </button>
-                </div>
-              </div>
-            </transition>
+            </div>
           </div>
           <RadioButton
-            checked="checked"
+            :checked="this.sortType == 'recency'"
             class="mt-3 -ml-1"
-            name="exploreRadioGroup"
+            name="recency"
             :text="$t('bountyPlatform.explore.sidebar.sortRecency')"
+            :changeCallback="sortChanged"
           />
           <RadioButton
+            :checked="this.sortType == 'value'"
             class="mt-3 -ml-1"
-            name="exploreRadioGroup"
+            name="value"
             :text="$t('bountyPlatform.explore.sidebar.sortValue')"
+            :changeCallback="sortChanged"
           />
           <RadioButton
+            :checked="this.sortType == 'expiry'"
             class="mt-3 -ml-1"
-            name="exploreRadioGroup"
+            name="expiry"
             :text="$t('bountyPlatform.explore.sidebar.sortExpiry')"
+            :changeCallback="sortChanged"
           />
           <!-- Status Text and Status Options -->
           <h4
@@ -318,14 +265,16 @@ export default {
     return {
       sidebarContexts: SIDEBAR_CONTEXTS,
       isSearchFocused: false,
-      isSortDescending: true,
-      isSortModalOpen: false,
       toApprove: null,
       approvalLoading: false,
       approvalError: ""
     };
   },
   methods: {
+    sortChanged(type) {
+      this.$store.commit("devcashData/setSortType", type)
+      this.$root.$emit('sortChanged')
+    },
     async approveBalance() {
       if (this.toApprove == null || this.toApprove < 0) {
         this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
@@ -355,24 +304,14 @@ export default {
         this.approvalLoading = false
       }
     },
-    toggleSortModal() {
-      this.isSortModalOpen = !this.isSortModalOpen;
-    },
-    hideSortModal() {
-      this.isSortModalOpen = false;
-    },
-    hideSortModalWithDelay() {
-      setTimeout(() => {
-        this.isSortModalOpen = false;
-      }, 50);
-    },
   },
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
-      balance: "devcashData/getBalance"
+      balance: "devcashData/getBalance",
+      sortType: "devcashData/exploreSortType"
     })
   }
 };
@@ -381,20 +320,6 @@ export default {
 .searchIcon {
   top: 50%;
   transform: translateY(-50%);
-}
-.sortModalTransition-enter-active {
-  transition: all 0.2s ease-out;
-}
-.sortModalTransition-leave-active {
-  transition: all 0.2s ease-out;
-}
-.sortModalTransition-enter {
-  opacity: 0.25;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
-}
-.sortModalTransition-leave-to {
-  opacity: 0;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
 }
 .z-999 {
   z-index: 999;

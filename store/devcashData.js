@@ -17,7 +17,8 @@ export const state = () => ({
   curFee: null,
   isIBOBarClosed: false,
   submissionFormData: {},
-  pendingSubStatus: []
+  pendingSubStatus: [],
+  currentSortType: 'recency'
 });
 
 export const mutations = {
@@ -37,6 +38,14 @@ export const mutations = {
       Cookies.set("devcash_provider", state.provider, { expires: 14, secure: process.env.NODE_ENV === 'production' })
     }
   },
+  setSortType(state, type) {
+    state.currentSortType = type
+    if (state.type == null) {
+      Cookies.remove("devcash_estype")
+    } else {
+      Cookies.set("devcash_estype", state.currentSortType, { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
+  },  
   setEthereum(state) {
     if (!state.ethIsPrimary) {
       state.ethIsPrimary = true
@@ -168,6 +177,9 @@ export const getters = {
   },
   loggedInAccount(state) {
     return state.loggedInAccount
+  },
+  exploreSortType(state) {
+    return state.currentSortType
   },
   getBalance(state) {
     if (state.loggedInAccount != null) {
