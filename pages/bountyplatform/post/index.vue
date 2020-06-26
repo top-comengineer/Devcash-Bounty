@@ -8,7 +8,6 @@
         type="post"
         class="mb-1 md:mb-2"
       />
-      <!-- Post Form -->
       <!-- Card for Bounty Title and Description -->
       <div
         class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
@@ -38,49 +37,103 @@
           >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
         </div>
         <!-- Bounty Description -->
+
         <client-only>
-          <div class="w-full my-3">
-            <editor-menu-bar :editor="editor" v-slot="{ commands, isActive }">
-              <div>
+          <div class="w-full flex flex-col my-3">
+            <h4
+              for="bountyDescription"
+              class="text-2xl font-bold px-3"
+            >{{$t('bountyPlatform.post.bountyDescription')}}</h4>
+            <editor-menu-bar
+              class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2 mt-3"
+              :editor="editor"
+              v-slot="{ commands, isActive }"
+            >
+              <div class="w-full flex flex-row flex-wrap items-center">
                 <button
                   :class="{ 'bg-c-text-15': isActive.bold()}"
-                  class="text-xl font-extrabold p-2 my-2 mx-1"
-                  @click="commands.bold"
-                >B</button>
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.bold()"
+                >
+                  <icon class="w-7 h-7" type="bold" colorClass="text-c-text" />
+                </button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.italic()}"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.italic()"
+                >
+                  <icon class="w-7 h-7" type="italic" colorClass="text-c-text" />
+                </button>
+                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
                 <button
                   :class="{ 'bg-c-text-15': isActive.heading({ level: 1 }) }"
-                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
                   @click="commands.heading({ level: 1 })"
-                >H1</button>
+                >
+                  <icon class="w-7 h-7" type="h1" colorClass="text-c-text" />
+                </button>
                 <button
                   :class="{ 'bg-c-text-15': isActive.heading({ level: 2 }) }"
-                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
                   @click="commands.heading({ level: 2 })"
-                >H2</button>
+                >
+                  <icon class="w-7 h-7" type="h2" colorClass="text-c-text" />
+                </button>
                 <button
                   :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-                  class="text-xl p-2 my-2 mx-1 rounded-lg"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
                   @click="commands.heading({ level: 3 })"
-                >H3</button>
+                >
+                  <icon class="w-7 h-7" type="h3" colorClass="text-c-text" />
+                </button>
+                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.bullet_list()}"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.bullet_list()"
+                >
+                  <icon class="w-7 h-7" type="u-list" colorClass="text-c-text" />
+                </button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.ordered_list()}"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.ordered_list()"
+                >
+                  <icon class="w-7 h-7" type="o-list" colorClass="text-c-text" />
+                </button>
+                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.heading({ level: 3 })"
+                >
+                  <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
+                </button>
+                <button
+                  :class="{ 'bg-c-text-15': isActive.code() }"
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.code()"
+                >
+                  <icon class="w-7 h-7" type="code" colorClass="text-c-text" />
+                </button>
+                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+                <button
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.undo()"
+                >
+                  <icon class="w-7 h-7" type="undo" colorClass="text-c-text" />
+                </button>
+                <button
+                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+                  @click="commands.redo()"
+                >
+                  <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
+                </button>
               </div>
             </editor-menu-bar>
             <editor-content class="editor-content" :editor="editor" />
           </div>
         </client-only>
-        <div class="w-full flex flex-col my-3">
-          <label
-            for="bountyDescription"
-            class="text-2xl font-bold px-3"
-          >{{$t('bountyPlatform.post.bountyDescription')}}</label>
-          <textarea
-            id="bountyDescription"
-            v-model="description"
-            class="bg-c-background-ter border-c-background-ter text-c-text bountyDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.bountyDescriptionPlaceholder')"
-            @blur="validateDescription"
-          />
-        </div>
         <div class="w-full flex flex-col">
           <p
             :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
@@ -673,8 +726,6 @@ export default {
           new Code(),
           new Italic(),
           new Link(),
-          new Strike(),
-          new Underline(),
           new History(),
         ],
         content: `
@@ -873,12 +924,43 @@ p.is-empty:first-child::before {
   margin-top: 0.75rem;
   line-height: 1.9;
 }
+
+.editor-content ul,
+.editor-content ol {
+  padding-left: 1rem;
+  margin-left: 0.5rem;
+}
+
+.editor-content li > p,
+.editor-content li > ol,
+.editor-content li > ul {
+  margin: 0;
+}
+
+.editor-content ul {
+  list-style: disc;
+}
+
+.editor-content ol {
+  list-style: decimal;
+}
+
+.editor-content code {
+  font-family: "JetBrainsMono", monospace;
+  padding: 0.25rem 0.5rem;
+  line-height: 2.25;
+  border-radius: 0.25rem;
+  background-color: var(--c-text-10);
+  border: 1px solid var(--c-text-10);
+}
+
 .ProseMirror {
   padding: 0.25rem 1rem 1rem 1rem;
   border: 1px solid var(--c-background-ter);
-  transition: color 200ms ease-out;
-  border-radius: 0.5rem;
+  transition: all 200ms ease-out;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
   background-color: var(--c-background-ter);
+  min-height: 20rem;
 }
 @media only screen and (min-width: 768px) {
   .ProseMirror {
