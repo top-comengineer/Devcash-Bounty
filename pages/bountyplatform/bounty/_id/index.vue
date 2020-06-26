@@ -31,7 +31,10 @@
       class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 mb-1 md:mb-2"
     >
       <!-- Status Tag -->
-      <BountyCardStatusTag class="absolute top-0 transform -translate-y-1/2" :type="getBountyStatus()" />
+      <BountyCardStatusTag
+        class="absolute top-0 transform -translate-y-1/2"
+        :type="getBountyStatus()"
+      />
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
         <!-- Header -->
@@ -79,11 +82,11 @@
         <div class="w-full flex flex-col items-center bg-c-secondary px-6 py-4">
           <button
             @click="isSubmissionModalOpen = true"
-            class="w-full transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
           <button
             @click="isContributeModalOpen = true"
-            class="w-full transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
           >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
         </div>
         <!-- Submissions Left and Remaining Time -->
@@ -170,7 +173,7 @@
               {{
               $t("bountyPlatform.singleBounty.comments.headerComments")
               }}
-             <DisqusCount tag="span" class="text-sm font-light" :identifier="disqusID()" />
+              <DisqusCount tag="span" class="text-sm font-light" :identifier="disqusID()" />
             </button>
             <button
               :class="[activeTab=='activity'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
@@ -226,7 +229,7 @@
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
-            <Disqus :identifier="disqusID()" />
+          <Disqus :identifier="disqusID()" />
         </div>
         <!-- Activity -->
         <div v-if="activeTab=='activity'" class="w-full flex flex-col">

@@ -10,7 +10,7 @@
       />
       <!-- Card for Bounty Title and Description -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Bounty Title -->
         <div class="w-full md:w-1/2 flex flex-col mt-3">
@@ -37,103 +37,16 @@
           >{{ titleError?$t('bountyPlatform.post.titleLengthError').replace("%1", minTitleLength).replace("%2", maxTitleLength):'&nbsp;' }}</p>
         </div>
         <!-- Bounty Description -->
-
-        <client-only>
-          <div class="w-full flex flex-col my-3">
-            <h4
-              for="bountyDescription"
-              class="text-2xl font-bold px-3"
-            >{{$t('bountyPlatform.post.bountyDescription')}}</h4>
-            <editor-menu-bar
-              class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2 mt-3"
-              :editor="editor"
-              v-slot="{ commands, isActive }"
-            >
-              <div class="w-full flex flex-row flex-wrap items-center">
-                <button
-                  :class="{ 'bg-c-text-15': isActive.bold()}"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.bold()"
-                >
-                  <icon class="w-7 h-7" type="bold" colorClass="text-c-text" />
-                </button>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.italic()}"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.italic()"
-                >
-                  <icon class="w-7 h-7" type="italic" colorClass="text-c-text" />
-                </button>
-                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.heading({ level: 1 }) }"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.heading({ level: 1 })"
-                >
-                  <icon class="w-7 h-7" type="h1" colorClass="text-c-text" />
-                </button>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.heading({ level: 2 }) }"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.heading({ level: 2 })"
-                >
-                  <icon class="w-7 h-7" type="h2" colorClass="text-c-text" />
-                </button>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.heading({ level: 3 })"
-                >
-                  <icon class="w-7 h-7" type="h3" colorClass="text-c-text" />
-                </button>
-                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.bullet_list()}"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.bullet_list()"
-                >
-                  <icon class="w-7 h-7" type="u-list" colorClass="text-c-text" />
-                </button>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.ordered_list()}"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.ordered_list()"
-                >
-                  <icon class="w-7 h-7" type="o-list" colorClass="text-c-text" />
-                </button>
-                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.heading({ level: 3 })"
-                >
-                  <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
-                </button>
-                <button
-                  :class="{ 'bg-c-text-15': isActive.code() }"
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.code()"
-                >
-                  <icon class="w-7 h-7" type="code" colorClass="text-c-text" />
-                </button>
-                <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-                <button
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.undo()"
-                >
-                  <icon class="w-7 h-7" type="undo" colorClass="text-c-text" />
-                </button>
-                <button
-                  class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-                  @click="commands.redo()"
-                >
-                  <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
-                </button>
-              </div>
-            </editor-menu-bar>
-            <editor-content class="editor-content" :editor="editor" />
-          </div>
-        </client-only>
+        <div class="w-full flex flex-col my-3">
+          <h4
+            for="bountyDescription"
+            class="text-2xl font-bold px-3"
+          >{{$t('bountyPlatform.post.bountyDescription')}}</h4>
+          <!-- Text editor for the description -->
+          <client-only>
+            <text-editor :editor="editor" />
+          </client-only>
+        </div>
         <div class="w-full flex flex-col">
           <p
             :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
@@ -143,7 +56,7 @@
       </div>
       <!-- Card for Bounty Type -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Bounty Type -->
         <div class="w-full md:flex-1 flex flex-col my-3">
@@ -199,7 +112,7 @@
       </div>
       <!-- Card for Number of Bounties and Bounty Amount -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Number of Bounties -->
         <div class="w-full md:flex-1 flex flex-col my-3">
@@ -245,7 +158,7 @@
       </div>
       <!-- Card for Category and Deadline -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Bounty Category -->
         <div class="w-full md:flex-1 flex flex-col my-3">
@@ -336,7 +249,7 @@
       </div>
       <!-- Card for Contact Name and Email -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col my-3">
@@ -381,7 +294,7 @@
       </div>
       <!-- Fee Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
       </div>
@@ -409,6 +322,7 @@ import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinu
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
+import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
@@ -416,18 +330,16 @@ import {
   CodeBlock,
   HardBreak,
   Heading,
+  HorizontalRule,
   OrderedList,
   BulletList,
   ListItem,
-  TodoItem,
-  TodoList,
   Bold,
   Code,
   Italic,
   Link,
-  Strike,
-  Underline,
   History,
+  TrailingNode
 } from 'tiptap-extensions'
 
 const minDescriptionCount = 50;
@@ -445,6 +357,7 @@ export default {
     SignInToContinueWrapper,
     EditorContent,
     EditorMenuBar,
+    TextEditor
   },
   data() {
     return {
@@ -716,21 +629,32 @@ export default {
     }
     this.editor =  new Editor({
         extensions: [
+          new Blockquote(),
+          new BulletList(),
           new CodeBlock(),
           new HardBreak(),
           new Heading({ levels: [1, 2, 3] }),
-          new BulletList(),
-          new OrderedList(),
+          new HorizontalRule(),
           new ListItem(),
+          new OrderedList(),
+          new Link(),
           new Bold(),
           new Code(),
           new Italic(),
-          new Link(),
           new History(),
+          new TrailingNode({
+            node: 'paragraph',
+            notAfter: ['paragraph'],
+          }),
         ],
         content: `
-          <h1>Yay Headlines!</h1>
-          <p>All these <strong>cool tags</strong> are working now.</p>
+          <h2>
+            Trailing Paragraph
+          </h2>
+          <p>
+            In this demo we force to render a paragraph at the end of the document. This can be useful in some situations, for example after adding images.
+          </p>
+          <pre><code>Also, sometimes it's hard to remember to type \`cmd/ctrl + enter\` to leave a code block.</code></pre>
         `,
       });
   },
@@ -748,7 +672,6 @@ export default {
     if (this.editor) {
       this.editor.destroy()
     }
-    this.editor.destroy()
   },  
   destroyed() {
     this.$store.commit("setSidebarContext", null);
@@ -901,74 +824,5 @@ p.is-empty:first-child::before {
 .hunterAddressTransition-leave-to {
   opacity: 0;
   transform: translateX(-1rem);
-}
-.editor-content h1 {
-  font-size: 1.6rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.4rem;
-  font-weight: 800;
-}
-.editor-content h2 {
-  font-size: 1.45rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.3rem;
-  font-weight: 700;
-}
-.editor-content h3 {
-  font-size: 1.3rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.2rem;
-  font-weight: 700;
-}
-.editor-content p {
-  margin-top: 0.75rem;
-  line-height: 1.9;
-}
-
-.editor-content ul,
-.editor-content ol {
-  padding-left: 1rem;
-  margin-left: 0.5rem;
-}
-
-.editor-content li > p,
-.editor-content li > ol,
-.editor-content li > ul {
-  margin: 0;
-}
-
-.editor-content ul {
-  list-style: disc;
-}
-
-.editor-content ol {
-  list-style: decimal;
-}
-
-.editor-content code {
-  font-family: "JetBrainsMono", monospace;
-  padding: 0.25rem 0.5rem;
-  line-height: 2.25;
-  border-radius: 0.25rem;
-  background-color: var(--c-text-10);
-  border: 1px solid var(--c-text-10);
-}
-
-.ProseMirror {
-  padding: 0.25rem 1rem 1rem 1rem;
-  border: 1px solid var(--c-background-ter);
-  transition: all 200ms ease-out;
-  border-radius: 0rem 0rem 0.5rem 0.5rem;
-  background-color: var(--c-background-ter);
-  min-height: 20rem;
-}
-@media only screen and (min-width: 768px) {
-  .ProseMirror {
-    padding: 0.25rem 1.5rem 1rem 1.5rem;
-  }
-}
-.ProseMirror-focused {
-  outline: none;
-  border: 1px solid var(--c-primary);
 }
 </style>
