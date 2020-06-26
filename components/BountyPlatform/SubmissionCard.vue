@@ -37,7 +37,7 @@
           <div class="flex flex-col md:mx-4 my-2">
             <!-- If Perspective is Manager -->
             <div
-              v-if="perspective=='manager' && (submission.status == 'pending')"
+              v-if="perspective=='manager' && submission.status == 'pending' && !isPendingApproved() && !isPendingRejection()"
               class="flex flex-row flex-wrap items-center"
             >
               <!-- Approve Button -->
@@ -152,6 +152,22 @@ export default {
     }    
   },
   methods: {
+    isPendingRejection() {
+      for (const pendingSub of this.$store.state.devcashData.pendingSubStatus) {
+        if (pendingSub.type == 'reject' && pendingSub.bounty == this.ubounty.id && pendingSub.submission == this.submission.submission_id) {
+          return true
+        }
+      }
+      return false 
+    },
+    isPendingApproved() {
+      for (const pendingSub of this.$store.state.devcashData.pendingSubStatus) {
+        if (pendingSub.type == 'approve' && pendingSub.bounty == this.ubounty.id && pendingSub.submission == this.submission.submission_id) {
+          return true
+        }
+      }
+      return false 
+    },
     formatDateStr(locale) {
       return DevcashBounty.formatDateStr(locale, this.submission.createdAt)
     },

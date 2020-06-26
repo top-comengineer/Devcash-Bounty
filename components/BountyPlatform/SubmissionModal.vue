@@ -215,6 +215,12 @@ export default {
               )
               this.clearCache()
               this.closeModal()
+              this.$notify({
+                group: 'main',
+                title: this.$t('notification.submissionCreatedTitle'),
+                text: this.$t('notification.submissionCreatedDescription'),
+                data: {}
+              });              
             }
           } catch (e) {
             // TODO - better error handling

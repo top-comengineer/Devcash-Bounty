@@ -343,6 +343,12 @@ export default {
         this.approvalError = ""
         await this.$store.state.devcash.connector.approveBalance(this.toApprove)
         this.toApprove = ""
+        this.$notify({
+          group: 'main',
+          title: this.$t('notification.approvalPending'),
+          text: this.$t('notification.approvalDescription'),
+          data: {}
+        });
       } catch (e) {
         console.log(e)
       } finally {

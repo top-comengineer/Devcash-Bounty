@@ -23,7 +23,9 @@
               :max="6"
             >
               <template slot="body" slot-scope="props">
-                <div
+                <nuxt-link
+                  :event="props.item.data.href ? 'click' : ''"
+                  :to="props.item.data.href ? props.item.data.href : '/'"
                   class="flex flex-row justify-between items-start bg-c-light text-c-dark mb-2 shadow-2xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl"
                 >
                   <div class="flex flex-col justify-center mx-3 my-2">
@@ -38,7 +40,7 @@
                       <Icon class="w-4 h-4" type="cancel" colorClass="text-c-dark" />
                     </button>
                   </div>
-                </div>
+                </nuxt-link>
               </template>
             </notifications>
           </div>
@@ -116,13 +118,6 @@ export default {
         this.showNavbarBg = false;
       }
     },
-    showNotification(){
-      this.$notify({
-        group: 'main',
-        title: 'You’ve received a new submission!',
-        text: 'Click this notification to see the details.'
-      });
-    }
   },
   beforeMount() {
     this.navbarScroll();

@@ -207,8 +207,30 @@ export default {
       try {
       if (type == 'reject') {
         await this.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
+        this.$store.state.devcashData.pendingSubStatus.push({
+          bounty: submission.ubounty.id,
+          submission: submission.submission_id,
+          type: 'reject'
+        })
+        this.$notify({
+          group: 'main',
+          title: this.$t('notification.submissionRejectedTitle'),
+          text: this.$t('notification.submissionRejectedApprovedDescription'),
+          data: {}
+        });            
       } else {
         await this.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
+        this.$store.state.devcashData.pendingSubStatus.push({
+          bounty: submission.ubounty.id,
+          submission: submission.submission_id,
+          type: 'approve'
+        })
+        this.$notify({
+          group: 'main',
+          title: this.$t('notification.submissionApprovedTitle'),
+          text: this.$t('notification.submissionRejectedApprovedDescription'),
+          data: {}
+        });        
       }
       } catch (e) {
         console.log(e)

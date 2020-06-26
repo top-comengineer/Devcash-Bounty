@@ -338,6 +338,17 @@
       "december": "December"
     }
   },
+  "notification": {
+    "approvalPending": "Balance Approval Pending",
+    "approvalDescription": "Your approved balance will update once its confirmed on the network.",
+    "bountyTitle": "A new bounty has been created",
+    "bountyDescription": "Click to view the details.",
+    "submissionCreatedTitle": "Your submission has been created.",
+    "submissionCreatedDescription": "It will be visible to the bounty creator after its confirmed on the network.",
+    "submissionRejectedTitle": "This submission has been rejected.",
+    "submissionApprovedTitle": "This submission has been approved.",
+    "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network."        
+  },
   "meta": {
     "home": {
       "pageTitle": "Devcash | Cash for the Developer Economy",

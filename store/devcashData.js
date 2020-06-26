@@ -16,7 +16,8 @@ export const state = () => ({
   fee: null,
   curFee: null,
   isIBOBarClosed: false,
-  submissionFormData: {}
+  submissionFormData: {},
+  pendingSubStatus: []
 });
 
 export const mutations = {

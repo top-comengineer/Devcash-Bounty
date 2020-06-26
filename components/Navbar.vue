@@ -418,10 +418,12 @@ export default {
             ref.historicalCreated.push(uBountyIndex)
             ref.$notify({
               group: 'main',
-              title: 'A new bounty has been created',
-              text: 'Click this notification to see the details.',
-              href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
-            });            
+              title: this.$t('notification.bountyTitle'),
+              text: this.$t('notification.bountyDescription'),
+              data: {
+                href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
+              }
+            });
           }
         });
       } else {
