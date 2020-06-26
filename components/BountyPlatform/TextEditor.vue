@@ -94,32 +94,16 @@
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
-import {
-  Blockquote,
-  CodeBlock,
-  HardBreak,
-  Heading,
-  HorizontalRule,
-  OrderedList,
-  BulletList,
-  ListItem,
-  Bold,
-  Code,
-  Italic,
-  Link,
-  History,
-  TrailingNode
-} from 'tiptap-extensions'
+import { EditorContent, EditorMenuBar } from 'tiptap'
 export default {
   props: {
     editor: null
   },
-    components: {
-        EditorContent,
-        EditorMenuBar,
-        Icon,
-    }
+  components: {
+    EditorContent,
+    EditorMenuBar,
+    Icon,
+  }
 }
 </script>
 <style>
