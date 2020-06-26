@@ -177,11 +177,6 @@ return {
   color: var(--c-secondary);
   text-decoration: underline var(--c-secondary);
 }
-.editor-content a:hover {
-  color: var(--c-primary);
-  text-decoration: underline var(--c-primary);
-  cursor: pointer;
-}
 .editor-content h1 {
   font-size: 1.6rem;
   margin-top: 0.75rem;
