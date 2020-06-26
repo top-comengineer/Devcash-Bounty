@@ -25,7 +25,15 @@ export const state = () => ({
     completed: true,
     expired: true
   },
-  exploreSearchText: ''
+  exploreSearchText: '',
+  exploreCategories: {
+    create: true,
+    enhance: true,
+    bug: true,
+    support: true,
+    prototype: true,
+    other: true
+  }
 });
 
 export const mutations = {
@@ -74,6 +82,23 @@ export const mutations = {
       }
     } else {
       Cookies.set("devcash_explorestatus", JSON.stringify(state.exploreStatus), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
+  },
+  setCategories(state, categories) {
+    state.exploreCategories = categories
+    if (!'create' in state.exploreCategories && !'enhance' in state.exploreCategories && !'bug' in state.exploreCategories &&
+    !'support' in state.exploreCategories && !'prototype' in state.exploreCategories && !'other' in state.exploreCategories) {
+      Cookies.remove("devcash_explore_category")
+      state.exploreCategories = {
+        create: true,
+        enhance: true,
+        bug: true,
+        support: true,
+        prototype: true,
+        other: true
+      }
+    } else {
+      Cookies.set("devcash_explore_category", JSON.stringify(state.exploreCategories), { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
   },   
   setEthereum(state) {
@@ -216,6 +241,9 @@ export const getters = {
   },
   exploreStatus(state) {
     return state.exploreStatus
+  },
+  exploreCategories(state) {
+    return state.exploreCategories
   },
   getBalance(state) {
     if (state.loggedInAccount != null) {

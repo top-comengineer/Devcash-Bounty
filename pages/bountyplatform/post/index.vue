@@ -655,7 +655,7 @@ export default {
         `,
       });
   },
-  beforeMount() {
+  activated() {
     // Set sidebar context
     this.$store.commit("setSidebarContext", SIDEBAR_CONTEXTS.post);
     // Set categories based on locale
@@ -670,7 +670,7 @@ export default {
       this.editor.destroy()
     }
   },  
-  destroyed() {
+  deactivated() {
     this.$store.commit("setSidebarContext", null);
   },
   head() {
