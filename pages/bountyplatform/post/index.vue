@@ -628,6 +628,17 @@ export default {
               this.waitingConfirmation = true
               clearInterval(this.backupInterval)
               Cookies.remove('devcash_postcache')
+              this.title = ""
+              this.editor.setContent("")
+              this.hutner = ""
+              this.numBounties = null
+              this.amount = null
+              this.contactName = ""
+              this.contactEmail = ""
+              this.datePickerValue = null
+              this.datePickerValueStr = ""
+              this.categoryValueStr = ""
+              this.categoryValue = null              
             }
           } catch (e) {
             // TODO - better error handling
@@ -703,6 +714,7 @@ export default {
     }
     // Interval
     this.backupInterval = setInterval(() => {
+      console.log('running interval')
       if (this.editor) {
         if (this.isLoggedIn) {
           // Backup object
