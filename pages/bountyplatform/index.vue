@@ -69,7 +69,8 @@ export default {
       loggedInAccount: "devcashData/loggedInAccount",
       sortType: "devcashData/exploreSortType",
       sortDirection: "devcashData/exploreOrderDirection",
-      status: "devcashData/exploreStatus"
+      status: "devcashData/exploreStatus",
+      categories: "devcashData/exploreCategories"
     })
   },
   methods: {
@@ -83,10 +84,31 @@ export default {
     },    
     applyFilters() {
       this.filteredBounties = this.bounties.filter((bounty) => (this.getBountyStatus(bounty) == 'completed' && this.status.completed) || (this.getBountyStatus(bounty) == 'expired' && this.status.expired) || (this.getBountyStatus(bounty) == 'active' && this.status.active))
-      if (this.searchText != '') {
-        console.log(this.searchText)
+      if (this.$store.state.devcashData.exploreSearchText && this.$store.state.devcashData.exploreSearchText != '') {
         this.filteredBounties = this.bounties.filter((bounty) => bounty.title.toLowerCase().includes(this.$store.state.devcashData.exploreSearchText))
       }
+      let categoriesToExclude = []
+      if (!this.categories.create) {
+        categoriesToExclude.push('create')
+      }
+      if (!this.categories.enhance) {
+        categoriesToExclude.push('enhance')
+      }     
+      if (!this.categories.bug) {
+        categoriesToExclude.push('bug')
+      }
+      if (!this.categories.support) {
+        categoriesToExclude.push('support')
+      }
+      if (!this.categories.prototype) {
+        categoriesToExclude.push('prototype')
+      }
+      if (!this.categories.other) {
+        categoriesToExclude.push('other')
+      }
+      if (categoriesToExclude.length > 0) {
+        this.filteredBounties = this.bounties.filter((bounty) => !categoriesToExclude.includes(bounty.category))
+      }       
     },
     async getBounties() {
       this.page++

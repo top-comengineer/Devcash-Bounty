@@ -30,5 +30,9 @@ export default function ({ req, store }) {
         let parsed = JSON.parse(req.cookies.devcash_explorestatus)
         store.commit('devcashData/setStatus', parsed)
       }
+      if (req.cookies.devcash_explore_category) {
+        let parsed = JSON.parse(req.cookies.devcash_explore_category)
+        store.commit('devcashData/setCategories', parsed)        
+      }
     }
   } 
