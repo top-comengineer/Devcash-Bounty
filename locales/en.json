@@ -204,6 +204,10 @@
       "reject": "Reject",
       "leaveFeedback": "Leave Feedback"
     },
+    "editor": {
+      "addLink": "Add Link",
+      "updateLink": "Update Link"
+    },
     "confirmModal": {
       "confirmToApprove": {
         "header": "Confirm to Approve",
@@ -348,7 +352,7 @@
     "submissionCreatedDescription": "It will be visible to the bounty creator after its confirmed on the network.",
     "submissionRejectedTitle": "This submission has been rejected.",
     "submissionApprovedTitle": "This submission has been approved.",
-    "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network."        
+    "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network."
   },
   "meta": {
     "home": {

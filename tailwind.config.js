@@ -193,5 +193,5 @@ module.exports = {
       'plugins/**/*.js',
       'nuxt.config.js'
     ]
-  }  
+  }
 };

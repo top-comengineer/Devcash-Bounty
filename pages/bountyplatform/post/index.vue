@@ -10,7 +10,7 @@
       />
       <!-- Card for Bounty Title and Description -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-6 px-3 md:pt-6 md:pb-8 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Bounty Title -->
         <div class="w-full md:w-1/2 flex flex-col mt-3">

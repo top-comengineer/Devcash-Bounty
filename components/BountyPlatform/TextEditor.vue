@@ -84,7 +84,8 @@
         </editor-menu-bar>
       </div>
       <editor-menu-bubble
-        class="menububble shadow-xl"
+        class="menububble shadow-xl transform"
+        :class="linkMenuIsActive?'-translate-x-1-5':'-translate-x-1/2'"
         :editor="editor"
         @hide="hideLinkMenu"
         v-slot="{ commands, isActive, getMarkAttrs, menu }"
@@ -121,7 +122,7 @@
               @click="showLinkMenu(getMarkAttrs('link'))"
               :class="{ 'is-active': isActive.link() }"
             >
-              <span>{{ isActive.link() ? 'Update Link' : 'Add Link'}}</span>
+              <span>{{ isActive.link() ? $t('bountyPlatform.editor.updateLink') : $t('bountyPlatform.editor.addLink')}}</span>
               <icon type="link" class="w-5 h-5 ml-1" colorClass="text-c-light" />
             </button>
           </template>
@@ -274,7 +275,6 @@ return {
   border-radius: 5px;
   padding: 0.3rem;
   margin-bottom: 0.5rem;
-  transform: translateX(-50%);
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.2s, visibility 0.2s;
@@ -327,5 +327,8 @@ return {
     opacity: 0.5;
     color: var(--c-light);
   }
+}
+.-translate-x-1-5 {
+  --transform-translate-x: -20%;
 }
 </style>
