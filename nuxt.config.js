@@ -99,9 +99,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {
-      config.resolve.alias['vue'] = 'vue/dist/vue.common'
-    },
+    extend(config, ctx) {},
     filenames: {
       app: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
       chunk: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),

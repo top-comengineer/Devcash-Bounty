@@ -47,6 +47,7 @@
             <text-editor :editor="editor" />
           </client-only>
         </div>
+        <!-- Error Field -->
         <div class="w-full flex flex-col">
           <p
             :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
@@ -326,22 +327,20 @@ import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
-  Blockquote,
-  HardBreak,
-  Heading,
-  CodeBlock,
-  HorizontalRule,
-  OrderedList,
-  BulletList,
-  ListItem,
   Bold,
-  Code,
   Italic,
+  Heading,
+  BulletList,
+  OrderedList,
+  ListItem,
   Link,
+  Code,
   History,
+  HorizontalRule, 
   TrailingNode
 } from 'tiptap-extensions'
 import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
+import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -356,8 +355,6 @@ export default {
     DatePicker,
     CategoryPicker,
     SignInToContinueWrapper,
-    EditorContent,
-    EditorMenuBar,
     TextEditor
   },
   data() {
@@ -401,7 +398,9 @@ export default {
       deadlineError: false,
       categoryError: false,
       amountError: "",
-      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+      linkUrl: null,
+      linkMenuIsActive: false,  
     };
   },
   computed: {
@@ -621,7 +620,22 @@ export default {
          this.submitLoading = false;
        }
      }
-   }
+   },
+   showLinkMenu(attrs) {
+      this.linkUrl = attrs.href
+      this.linkMenuIsActive = true
+      this.$nextTick(() => {
+        this.$refs.linkInput.focus()
+      })
+    },
+    hideLinkMenu() {
+      this.linkUrl = null
+      this.linkMenuIsActive = false
+    },
+    setLinkUrl(command, url) {
+      command({ href: url })
+      this.hideLinkMenu()
+    },
   },
   mounted() {
     if (this.isLoggedIn) {
@@ -630,19 +644,18 @@ export default {
     }
     this.editor =  new Editor({
         extensions: [
-          new Blockquote(),
-          new BulletList(),
-          new CodeBlock(),
-          new CustomHardBreak(),
-          new Heading({ levels: [1, 2, 3] }),
-          new HorizontalRule(),
-          new ListItem(),
-          new OrderedList(),
-          new Link(),
           new Bold(),
-          new Code(),
           new Italic(),
+          new Heading({ levels: [1, 2, 3] }),
+          new BulletList(),
+          new OrderedList(),
+          new ListItem(),
+          new Link(),
+          new Code(),
           new History(),
+          new CustomCodeBlock(),
+          new CustomHardBreak(),        
+          new HorizontalRule(),   
           new TrailingNode({
             node: 'paragraph',
             notAfter: ['paragraph'],
