@@ -61,13 +61,6 @@
             </button>
             <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
             <button
-              :class="{ 'bg-c-text-15': isActive.heading({ level: 3 }) }"
-              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-              @click="commands.heading({ level: 3 })"
-            >
-              <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
-            </button>
-            <button
               :class="{ 'bg-c-text-15': isActive.code() }"
               class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
               @click="commands.code()"
@@ -119,10 +112,9 @@
               @click="setLinkUrl(commands.link, null)"
               type="button"
             >
-              <icon type="link" class="w-5 h-5 ml-1" colorClass="text-c-light" />
+              <icon type="cancel" class="w-5 h-5 ml-1" colorClass="text-c-light" />
             </button>
           </form>
-
           <template v-else>
             <button
               class="menububble__button"
