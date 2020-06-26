@@ -3,33 +3,6 @@ const { UBounty, Submission, Op } = require('../models');
 const { etherClient } = require('../utils/ether_client')
 const submission = require("../models/submission");
 
-/*
-      offset: offset,
-      limit: limit,
-      where: {
-        '$ubounty.creator$': {[Op.eq]:creator}
-      },
-      order: [
-          ['createdAt', 'DESC']
-      ],
-      include: { model: UBounty, as: 'ubounty' }
-
-      
-  static formatAmountSingleSubmission(bounty, tokenDecimals) {
-    let totalAmount = utils.bigNumberify(bounty.bountyAmount);
-    totalAmount = totalAmount.div(bounty.available);
-    totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
-    return totalAmount;
-  }
-
-  static formatAmountSingleSubmissionEth(bounty) {
-    let totalAmount = utils.bigNumberify(bounty.weiAmount);
-    totalAmount = totalAmount.div(bounty.available);
-    totalAmount = utils.formatEther(totalAmount);
-    return totalAmount;
-  }
-
-*/
 module.exports.getOverviewStats = async (req, res, next) => {
   try {
     let address = req.query.address
@@ -49,7 +22,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
     let totalEarnedDC = utils.bigNumberify(0)
     let totalEarnedWei = utils.bigNumberify(0)
 
-    let hunterRewards = etherClient.event_logs.rewarded.filter((reward) => reward.hunter.toLowerCase() == address.toLowerCase())
+    let hunterRewards = etherClient.event_logs.rewarded.filter((reward) => reward.hunter ? reward.hunter.toLowerCase() == address.toLowerCase() : false)
     for (const reward of hunterRewards) {
       totalEarnedDC = totalEarnedDC.add(utils.parseUnits(reward.rewardAmount, 8))
       totalEarnedWei = totalEarnedWei.add(utils.parseEther(reward.ethRewardAmount))
