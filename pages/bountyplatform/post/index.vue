@@ -324,6 +324,8 @@ import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+import TurndownService from 'turndown'
+import marked from 'marked'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
@@ -333,7 +335,6 @@ import {
   BulletList,
   OrderedList,
   ListItem,
-  Link,
   Code,
   History,
   HorizontalRule, 
@@ -341,6 +342,7 @@ import {
 } from 'tiptap-extensions'
 import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
 import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
+import { CustomLink } from '~/plugins/tiptap/CustomLink'
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -400,7 +402,11 @@ export default {
       amountError: "",
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       linkUrl: null,
-      linkMenuIsActive: false,  
+      linkMenuIsActive: false,
+      turnDownSvc: new TurndownService({
+        headingStyle: 'atx',
+        codeBlockStyle: 'fenced'
+      })
     };
   },
   computed: {
@@ -584,6 +590,10 @@ export default {
      return 0
    },
    async submitBounty() {
+     console.log(this.editor.getHTML())
+     let markdown = this.turnDownSvc.turndown(this.editor.getHTML())
+     console.log(this.$sanitize(marked(markdown)))
+     return
      if (this.validateForm() && !this.submitLoading) {
        try {
          this.submitLoading = true
@@ -650,7 +660,7 @@ export default {
           new BulletList(),
           new OrderedList(),
           new ListItem(),
-          new Link(),
+          new CustomLink(),
           new Code(),
           new History(),
           new CustomCodeBlock(),

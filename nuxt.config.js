@@ -33,7 +33,8 @@ module.exports = {
     { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
     { src: '~/plugins/crontab.js', ssr: false },
     { src: '~/plugins/notifications.js', ssr: false},
-    '~/plugins/disqus'
+    '~/plugins/disqus',
+    '~/plugins/sanitizeHtml'
   ],
   /*
    ** Nuxt.js dev-modules
