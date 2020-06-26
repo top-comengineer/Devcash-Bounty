@@ -180,20 +180,20 @@ return {
 }
 .editor-content h1 {
   font-size: 1.6rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.4rem;
+  line-height: 1;
+  margin-top: 2rem;
   font-weight: 800;
 }
 .editor-content h2 {
   font-size: 1.45rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.3rem;
+  line-height: 1;
+  margin-top: 2rem;
   font-weight: 700;
 }
 .editor-content h3 {
   font-size: 1.3rem;
-  margin-top: 0.75rem;
-  margin-bottom: 0.2rem;
+  line-height: 1;
+  margin-top: 2rem;
   font-weight: 700;
 }
 .editor-content p {
@@ -248,6 +248,14 @@ return {
   margin-top: 0.75rem;
 }
 
+.editor-content a {
+  font-weight: 700;
+}
+
+.editor-content strong {
+  font-weight: 800;
+}
+
 .ProseMirror {
   padding: 0.25rem 1rem 1rem 1rem;
   border: 1px solid var(--c-background-ter);
@@ -258,7 +266,7 @@ return {
 }
 @media only screen and (min-width: 768px) {
   .ProseMirror {
-    padding: 0.25rem 1.5rem 1rem 1.5rem;
+    padding: 0.25rem 2.25rem 1rem 2.25rem;
   }
 }
 .ProseMirror-focused {
