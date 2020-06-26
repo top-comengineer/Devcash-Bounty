@@ -19,7 +19,13 @@ export const state = () => ({
   submissionFormData: {},
   pendingSubStatus: [],
   currentSortType: 'recency',
-  orderDirection: 'desc'
+  orderDirection: 'desc',
+  exploreStatus: {
+    active: true,
+    completed: true,
+    expired: true
+  },
+  exploreSearchText: ''
 });
 
 export const mutations = {
@@ -56,7 +62,20 @@ export const mutations = {
     } else {
       Cookies.set("devcash_esdirection", state.orderDirection, { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
-  },  
+  },
+  setStatus(state, status) {
+    state.exploreStatus = status
+    if (!'active' in state.exploreStatus && !'completed' in state.exploreStatus && !'expired' in state.exploreStatus) {
+      Cookies.remove("devcash_explorestatus")
+      state.exploreStatus = {
+        active: true,
+        completed: true,
+        expired: true
+      }
+    } else {
+      Cookies.set("devcash_explorestatus", JSON.stringify(state.exploreStatus), { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
+  },   
   setEthereum(state) {
     if (!state.ethIsPrimary) {
       state.ethIsPrimary = true
@@ -194,7 +213,10 @@ export const getters = {
   },
   exploreOrderDirection(state) {
     return state.orderDirection
-  },  
+  },
+  exploreStatus(state) {
+    return state.exploreStatus
+  },
   getBalance(state) {
     if (state.loggedInAccount != null) {
       if (state.balancePrimary && state.balanceSecondary) {

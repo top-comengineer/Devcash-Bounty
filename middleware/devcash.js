@@ -26,5 +26,9 @@ export default function ({ req, store }) {
       if (req.cookies.devcash_esdirection) {
         store.commit('devcashData/setSortDirection', req.cookies.devcash_esdirection)
       }      
+      if (req.cookies.devcash_explorestatus) {
+        let parsed = JSON.parse(req.cookies.devcash_explorestatus)
+        store.commit('devcashData/setStatus', parsed)
+      }
     }
   } 

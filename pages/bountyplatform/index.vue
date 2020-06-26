@@ -6,8 +6,22 @@
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
     <div v-else class="w-full flex flex-col justify-center items-center">
-      <BountyCard v-for="(item, i) in bounties" :key="i" class="my-2" :bounty="item" />
+      <BountyCard v-for="(item, i) in filteredBounties" :key="i" class="my-2" :bounty="item" />
     </div>
+    <div
+      v-if="hasMore && !loading"
+      class="flex flex-row justify-center mt-2"
+    >
+      <button
+        @click="getBounties()"
+        class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+      >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+    </div>
+    <div v-else-if="loadingMore">
+      <button
+        class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
+      >{{ $t("bountyPlatform.buttonLoading") }}</button>      
+    </div>    
   </div>
 </template>
 
@@ -34,11 +48,12 @@ export default {
   data() {
     return {
       loading: true,
-      bountiesCurPage: [],
-      page: 1,
+      loadingMore: false,
+      hasMore: false,
+      page: 0,
       perPage: 50,
-      hasPageMap: {},
-      totalPages: 1,
+      bounties: [],
+      filteredBounties: [],
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.pageTitle"),
       pageDescription: this.$t("meta.bountyPlatform.pageDescription"),
@@ -53,60 +68,83 @@ export default {
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
       sortType: "devcashData/exploreSortType",
-      sortDirection: "devcashData/exploreOrderDirection"
+      sortDirection: "devcashData/exploreOrderDirection",
+      status: "devcashData/exploreStatus"
     })
   },
   methods: {
+    getBountyStatus(bounty) {
+      if (bounty.submissions.filter(sub => sub.status == 'approved').length >= bounty.available) {
+        return "completed"
+      } else if (new Date().getTime() / 1000 >= bounty.deadline) {
+        return "expired"
+      }
+      return "active"
+    },    
+    applyFilters() {
+      this.filteredBounties = this.bounties.filter((bounty) => (this.getBountyStatus(bounty) == 'completed' && this.status.completed) || (this.getBountyStatus(bounty) == 'expired' && this.status.expired) || (this.getBountyStatus(bounty) == 'active' && this.status.active))
+      if (this.searchText != '') {
+        console.log(this.searchText)
+        this.filteredBounties = this.bounties.filter((bounty) => bounty.title.toLowerCase().includes(this.$store.state.devcashData.exploreSearchText))
+      }
+    },
     async getBounties() {
-      await DevcashBounty.initEthConnector(this);
-      let key = `${this.page}:${this.perPage}:${
-        this.isLoggedIn ? this.loggedInAccount : ""
-      }`;
-      if (key in this.hasPageMap) {
-        return this.hasPageMap[key];
+      this.page++
+      if (this.page == 1) {
+        this.loading = true
+      } else {
+        this.loadingMore = true
       }
-      let hunterParam = this.isLoggedIn
-        ? `&hunter=${this.loggedInAccount}`
-        : "";
-      let sortType = this.sortType
-      if (sortType == 'value' && this.$store.state.devcashData.ethIsPrimary) {
-        sortType = 'valueEth'
-      } else if (sortType == 'value') {
-        sortType = 'valueDC'
+      try {
+        await DevcashBounty.initEthConnector(this);
+        let hunterParam = this.isLoggedIn
+          ? `&hunter=${this.loggedInAccount}`
+          : "";
+        let sortType = this.sortType
+        if (sortType == 'value' && this.$store.state.devcashData.ethIsPrimary) {
+          sortType = 'valueEth'
+        } else if (sortType == 'value') {
+          sortType = 'valueDC'
+        }
+        let direction = this.sortDirection
+        if (direction != 'desc' && direction != 'asc') {
+          direction = 'desc'
+        }
+        let res = await Axios.get(
+          `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}&order=${direction}`
+        );
+
+        this.bounties = this.bounties.concat(res.data.items)
+        this.hasMore = res.data.count > this.bounties.length
+        this.applyFilters()
+      } catch (e) {
+        this.page--
+      } finally {
+        this.loading = false
+        this.loadingMore = false
       }
-      let direction = this.sortDirection
-      if (direction != 'desc' && direction != 'asc') {
-        direction = 'desc'
-      }
-      let res = await Axios.get(
-        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}&order=${direction}`
-      );
-      if (res.status != 200) {
-        // TODO error handling
-        return;
-      }
-      this.hasPageMap[key] = res.data.items;
-      this.bounties = res.data.items;
-      this.totalPages = Math.floor(res.data.count / res.data.perPage);
-      if (this.totalPages <= 0) {
-        this.totalPages = 1;
-      }
-      this.loading = false;
     }
   },
   mounted() {
     this.getBounties();
     this.$root.$on('signedIn', () => {
-      this.hasPageMap = {}
+      this.page = 0
       this.bounties = []
       this.loading = true
+      this.hasMore = false
+      this.loadingMore = false
       this.getBounties()
     })
     this.$root.$on('sortChanged', () => {
-      this.loading = true
-      this.hasPageMap = {}
+      this.page = 0
       this.bounties = []
+      this.loading = true
+      this.hasMore = false
+      this.loadingMore = false
       this.getBounties()
+    })
+    this.$root.$on('filtersChanged', () => {
+      this.applyFilters()
     })
   },
   beforeMount() {

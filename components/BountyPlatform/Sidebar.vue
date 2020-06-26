@@ -124,6 +124,7 @@
             />
             <input
               id="searchBar"
+              v-model="searchText"
               @focus="isSearchFocused=true"
               @blur="isSearchFocused=false"
               class="bg-c-background-sec border-c-text w-full font-bold border-2 focus:border-c-primary rounded-full transition-all duration-200 ease-out pl-10 pr-4 py-1_5"
@@ -224,15 +225,20 @@
             class="text-c-text text-lg font-bold mt-8"
           >{{$t("bountyPlatform.explore.sidebar.statusHeader")}}</h4>
           <CheckmarkButton
-            checked="checked"
+            :checked="status.active"
+            :callback="activeCheckChanged"
             class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusActive')"
           />
           <CheckmarkButton
+            :checked="status.completed"
+            :callback="completedCheckChanged"
             class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
           />
           <CheckmarkButton
+            :checked="status.expired"
+            :callback="expiredCheckChanged"
             class="mt-3 -ml-1"
             :text="$t('bountyPlatform.explore.sidebar.statusExpired')"
           />
@@ -326,10 +332,41 @@ export default {
       toApprove: null,
       approvalLoading: false,
       approvalError: "",
-      isSortModalOpen: false
+      isSortModalOpen: false,
+      searchText: ""
     };
   },
+  watch: {
+    searchText: function() {
+      this.$store.state.devcashData.exploreSearchText = this.searchText
+      this.$root.$emit("filtersChanged")
+    }
+  },
   methods: {
+    activeCheckChanged(checked) {
+      this.$store.commit("devcashData/setStatus", {
+        completed: this.status.completed,
+        active: checked,
+        expired: this.status.expired
+      })
+      this.$root.$emit('filtersChanged')
+    },
+    expiredCheckChanged(checked) {
+      this.$store.commit("devcashData/setStatus", {
+        completed: this.status.completed,
+        active: this.status.active,
+        expired: checked
+      })
+      this.$root.$emit('filtersChanged')
+    },
+    completedCheckChanged(checked) {
+      this.$store.commit("devcashData/setStatus", {
+        completed: checked,
+        active: this.status.active,
+        expired: this.status.expired
+      })
+      this.$root.$emit('filtersChanged')
+    },    
     sortChanged(type) {
       this.$store.commit("devcashData/setSortType", type)
       this.$root.$emit('sortChanged')
@@ -388,7 +425,8 @@ export default {
       loggedInAccount: "devcashData/loggedInAccount",
       balance: "devcashData/getBalance",
       sortType: "devcashData/exploreSortType",
-      sortDirection: "devcashData/exploreOrderDirection"
+      sortDirection: "devcashData/exploreOrderDirection",
+      status: "devcashData/exploreStatus"
     })
   }
 };
