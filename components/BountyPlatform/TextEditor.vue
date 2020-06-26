@@ -90,13 +90,58 @@
           </div>
         </editor-menu-bar>
       </div>
+      <editor-menu-bubble
+        class="menububble shadow-xl"
+        :editor="editor"
+        @hide="hideLinkMenu"
+        v-slot="{ commands, isActive, getMarkAttrs, menu }"
+      >
+        <div
+          class="menububble"
+          :class="{ 'is-active': menu.isActive }"
+          :style="`left: ${menu.left}px; bottom: ${menu.bottom}px;`"
+        >
+          <form
+            class="menububble__form"
+            v-if="linkMenuIsActive"
+            @submit.prevent="setLinkUrl(commands.link, linkUrl)"
+          >
+            <input
+              class="menububble__input"
+              type="text"
+              v-model="linkUrl"
+              placeholder="https://"
+              ref="linkInput"
+              @keydown.esc="hideLinkMenu"
+            />
+            <button
+              class="menububble__button"
+              @click="setLinkUrl(commands.link, null)"
+              type="button"
+            >
+              <icon type="link" class="w-5 h-5 ml-1" colorClass="text-c-light" />
+            </button>
+          </form>
+
+          <template v-else>
+            <button
+              class="menububble__button"
+              @click="showLinkMenu(getMarkAttrs('link'))"
+              :class="{ 'is-active': isActive.link() }"
+            >
+              <span>{{ isActive.link() ? 'Update Link' : 'Add Link'}}</span>
+              <icon type="link" class="w-5 h-5 ml-1" colorClass="text-c-light" />
+            </button>
+          </template>
+        </div>
+      </editor-menu-bubble>
       <editor-content class="editor-content" :editor="editor" />
     </client-only>
   </div>
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
-import { EditorContent, EditorMenuBar } from 'tiptap'
+import { EditorContent, EditorMenuBar, EditorMenuBubble } from 'tiptap'
 export default {
   props: {
     editor: null
@@ -104,11 +149,47 @@ export default {
   components: {
     EditorContent,
     EditorMenuBar,
+    EditorMenuBubble,
     Icon,
+  },
+  data(){
+return {
+  linkUrl: null,
+      linkMenuIsActive: false,
+}
+  },
+  methods: {
+    showLinkMenu(attrs) {
+      this.linkUrl = attrs.href
+      this.linkMenuIsActive = true
+      this.$nextTick(() => {
+      this.$refs.linkInput.focus()
+    })
+    },
+    hideLinkMenu() {
+      this.linkUrl = null
+      this.linkMenuIsActive = false
+    },
+    setLinkUrl(command, url) {
+      command({ href: url })
+      this.hideLinkMenu()
+    },
   }
 }
 </script>
-<style>
+<style lang="scss">
+.editor-content a {
+  margin-top: 0.75rem;
+  line-height: 1.9;
+  font-weight: 600;
+  color: var(--c-secondary);
+  text-decoration: underline var(--c-secondary);
+}
+.editor-content a:hover {
+  color: var(--c-primary);
+  text-decoration: underline var(--c-primary);
+  cursor: pointer;
+}
 .editor-content h1 {
   font-size: 1.6rem;
   margin-top: 0.75rem;
@@ -195,5 +276,69 @@ export default {
 .ProseMirror-focused {
   outline: none;
   border: 1px solid var(--c-primary);
+}
+// Editor related things
+.menububble {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+  background: var(--c-secondary);
+  border-radius: 5px;
+  padding: 0.3rem;
+  margin-bottom: 0.5rem;
+  transform: translateX(-50%);
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s, visibility 0.2s;
+
+  &.is-active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--c-light);
+    padding: 0.2rem 0.5rem;
+    margin-right: 0.2rem;
+    border-radius: 3px;
+    font-weight: 700;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      background-color: var(--c-light-25);
+    }
+
+    &.is-active {
+      background-color: var(--c-light-15);
+    }
+  }
+
+  &__form {
+    display: flex;
+    align-items: center;
+  }
+
+  &__input {
+    font: inherit;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    color: var(--c-light);
+    padding: 0rem 0.35rem;
+  }
+  &__input::placeholder {
+    opacity: 0.5;
+    color: var(--c-light);
+  }
 }
 </style>
