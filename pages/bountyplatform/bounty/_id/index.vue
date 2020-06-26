@@ -408,14 +408,14 @@ export default {
       pageThemeColor: "#675CFF"
     };
   },
-  beforeMount() {
+  activated() {
     // Set sidebar context
     this.$store.commit(
       "setSidebarContext",
       SIDEBAR_CONTEXTS.singleBounty
     );
   },
-  destroyed() {
+  deactivated() {
     this.$store.commit("setSidebarContext", null);
     this.isSubmissionModalOpen = false;
     this.isContributeModalOpen = false;

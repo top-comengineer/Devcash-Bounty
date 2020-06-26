@@ -293,14 +293,14 @@ export default {
       this.loadMoreSubmissions();
     }
   },
-  beforeMount() {
+  activated() {
     // Set sidebar context
     this.$store.commit(
       "setSidebarContext",
       SIDEBAR_CONTEXTS.bountyManager
     );
   },
-  destroyed() {
+  deactivated() {
     this.$store.commit("setSidebarContext", null);
   },
   data() {

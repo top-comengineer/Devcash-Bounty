@@ -16,7 +16,7 @@
       </div>
       <!-- Centered, Page Content -->
       <div class="d-container-2 px-2 md:px-0">
-        <nuxt />
+        <nuxt keep-alive/>
       </div>
       <!-- Right spacer -->
       <div class="sidebar-spacer-right"></div>

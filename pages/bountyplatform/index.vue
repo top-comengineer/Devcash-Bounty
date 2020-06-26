@@ -169,11 +169,11 @@ export default {
       this.applyFilters()
     })
   },
-  beforeMount() {
+  activated() {
     // Set sidebar context
     this.$store.commit("setSidebarContext", SIDEBAR_CONTEXTS.explore);
   },
-  destroyed() {
+  deactivated() {
     this.$store.commit("setSidebarContext", null);
   },
   head() {

@@ -147,11 +147,11 @@ export default {
       }      
     }
   },
-  beforeMount() {
+  activated() {
     // Set sidebar context
     this.$store.commit("setSidebarContext", SIDEBAR_CONTEXTS.overview);
   },
-  destroyed() {
+  deactivated() {
     this.$store.commit("setSidebarContext", null);
   },
   data() {
