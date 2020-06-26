@@ -129,3 +129,13 @@ textarea {
   font-weight: 400;
   opacity: 0.75;
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: var(--c-text);
+  background: var(--c-secondary-50);
+}
+
+::selection {
+  color: var(--c-text);
+  background: var(--c-secondary-50);
+}

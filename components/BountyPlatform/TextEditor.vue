@@ -5,7 +5,7 @@
         <editor-menu-bar
           class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2"
           :editor="editor"
-          v-slot="{ commands, isActive }"
+          v-slot="{ commands, isActive, getMarkAttrs }"
         >
           <div class="w-full flex flex-row flex-wrap items-center">
             <button
@@ -61,6 +61,13 @@
             </button>
             <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
             <button
+              :class="{ 'bg-c-text-15': isActive.link() }"
+              class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="showLinkMenu(getMarkAttrs('link'))"
+            >
+              <icon class="w-7 h-7" type="link" colorClass="text-c-text" />
+            </button>
+            <button
               :class="{ 'bg-c-text-15': isActive.code() }"
               class="p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
               @click="commands.code()"
@@ -85,7 +92,7 @@
       </div>
       <editor-menu-bubble
         class="menububble shadow-xl transform"
-        :class="linkMenuIsActive?'-translate-x-1-5':'-translate-x-1/2'"
+        :class="linkMenuIsActive?'-translate-x-1/2':'-translate-x-1/2'"
         :editor="editor"
         @hide="hideLinkMenu"
         v-slot="{ commands, isActive, getMarkAttrs, menu }"
@@ -100,6 +107,7 @@
             v-if="linkMenuIsActive"
             @submit.prevent="setLinkUrl(commands.link, linkUrl)"
           >
+            <!-- Link Input -->
             <input
               class="menububble__input"
               type="text"
@@ -108,22 +116,55 @@
               ref="linkInput"
               @keydown.esc="hideLinkMenu"
             />
+            <!-- Close Button -->
             <button
               class="menububble__button"
               @click="setLinkUrl(commands.link, null)"
               type="button"
             >
-              <icon type="cancel" class="w-5 h-5 ml-1" colorClass="text-c-light" />
+              <icon type="cancel" class="w-5 h-5" colorClass="text-c-light" />
             </button>
           </form>
           <template v-else>
+            <!-- Bold -->
             <button
-              class="menububble__button"
-              @click="showLinkMenu(getMarkAttrs('link'))"
-              :class="{ 'is-active': isActive.link() }"
+              :class="{ 'bg-c-light-25': isActive.bold()}"
+              class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
+              @click="commands.bold()"
             >
-              <span>{{ isActive.link() ? $t('bountyPlatform.editor.updateLink') : $t('bountyPlatform.editor.addLink')}}</span>
-              <icon type="link" class="w-5 h-5 ml-1" colorClass="text-c-light" />
+              <icon class="w-6 h-6" type="bold" colorClass="text-c-light" />
+            </button>
+            <!-- Italic -->
+            <button
+              :class="{ 'bg-c-light-25': isActive.italic()}"
+              class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
+              @click="commands.italic()"
+            >
+              <icon class="w-6 h-6" type="italic" colorClass="text-c-light" />
+            </button>
+            <!-- Heading 2 -->
+            <button
+              :class="{ 'bg-c-light-25': isActive.heading({ level: 2 }) }"
+              class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
+              @click="commands.heading({ level: 2 })"
+            >
+              <icon class="w-6 h-6" type="h2" colorClass="text-c-light" />
+            </button>
+            <!-- Link -->
+            <button
+              :class="{ 'bg-c-light-25': isActive.link()}"
+              class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
+              @click="showLinkMenu(getMarkAttrs('link'))"
+            >
+              <icon class="w-6 h-6" type="link" colorClass="text-c-light" />
+            </button>
+            <!-- Code -->
+            <button
+              :class="{ 'bg-c-light-25': isActive.code() }"
+              class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
+              @click="commands.code()"
+            >
+              <icon class="w-6 h-6" type="code" colorClass="text-c-light" />
             </button>
           </template>
         </div>
@@ -148,7 +189,7 @@ export default {
   data(){
 return {
   linkUrl: null,
-      linkMenuIsActive: false,
+  linkMenuIsActive: false,
 }
   },
   methods: {
