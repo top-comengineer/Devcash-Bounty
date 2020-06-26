@@ -50,9 +50,9 @@
         <!-- Error Field -->
         <div class="w-full flex flex-col">
           <p
-            :class="[(description.length > maxDescriptionCount || description.length < minDescriptionCount) ?'text-c-danger':'']"
+            :class="[(mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount) ?'text-c-danger':'']"
             class="text-sm px-3 opacity-75"
-          >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+          >{{ mdDescriptionLength>0?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}</p>
         </div>
       </div>
       <!-- Card for Bounty Type -->
@@ -337,12 +337,12 @@ import {
   ListItem,
   Code,
   History,
-  HorizontalRule, 
+  HorizontalRule,
+  Link,
   TrailingNode
 } from 'tiptap-extensions'
 import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
 import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
-import { CustomLink } from '~/plugins/tiptap/CustomLink'
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -423,7 +423,13 @@ export default {
           return locale;
         }
       }
-    }     
+    },
+    mdDescriptionLength() {
+      if (!this.editor) {
+        return 0
+      }
+      return this.turnDownSvc.turndown(this.editor.getHTML()).length
+    }
   },  
   methods: {
    closePicker() {
@@ -481,7 +487,7 @@ export default {
   },
   validateDescription(){
     let isValid = true
-    if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
+    if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
        isValid = false
     }
     return isValid
@@ -660,7 +666,9 @@ export default {
           new BulletList(),
           new OrderedList(),
           new ListItem(),
-          new CustomLink(),
+          new Link({
+            openOnClick: false
+          }),
           new Code(),
           new History(),
           new CustomCodeBlock(),

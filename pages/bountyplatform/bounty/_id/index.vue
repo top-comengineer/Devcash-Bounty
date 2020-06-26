@@ -70,7 +70,7 @@
         <h4 class="font-extrabold text-2xl">{{$t("bountyPlatform.singleBounty.bountyDescription")}}</h4>
         <p
           class="mt-2 leading-loose"
-        >{{ bounty.description + "asdasasdlfasdlfhlkasdhfkjsadhflkjasdlkfjalskdjflkasdjflkjsdalkfjaldskjflksajdflkasjdflkajsdklsdfjlasdjfkladsjklfsadfasdfasdfhjasdkjhfkajshdfkjhasdkjf" }}</p>
+          v-html="sanitizedDescription" />
       </div>
       <!-- Divider -->
       <div class="w-4 hidden md:block"></div>
@@ -278,6 +278,7 @@ import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
 import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
+import marked from 'marked'
 
 const defaultSubmissionsLimit = 10;
 
@@ -303,7 +304,14 @@ export default {
           return locale;
         }
       }
-    }   
+    },
+    sanitizedDescription() {
+      let renderer = new marked.Renderer()
+      renderer.link = function( href, title, text ) {
+        return '<a target="_blank" href="'+ href +'" title="' + title + '">' + text + '</a>';
+      }
+      return this.$sanitize(marked(this.bounty.description, {renderer: renderer}))
+    }  
   },
   methods: {
     disqusID() {
