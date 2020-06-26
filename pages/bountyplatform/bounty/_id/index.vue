@@ -308,7 +308,7 @@ export default {
     sanitizedDescription() {
       let renderer = new marked.Renderer()
       renderer.link = function( href, title, text ) {
-        return '<a target="_blank" href="'+ href +'" title="' + title + '">' + text + '</a>';
+        return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
       }
       return this.$sanitize(marked(this.bounty.description, {renderer: renderer}))
     }  
