@@ -48,13 +48,11 @@ module.exports.getOverviewStats = async (req, res, next) => {
     let totalSubmissions = submissions.count
     let totalEarnedDC = utils.bigNumberify(0)
     let totalEarnedWei = utils.bigNumberify(0)
-    for (const sub of submissions.rows) {
-      if (sub.approved && sub.creator == address) {
-        let bountyAmount = utils.bigNumberify(sub.ubounty.bountyAmount)
-        let bountyAmountWei = utils.bigNumberify(sub.ubounty.weiAmount)
-        totalEarnedDC.add(bountyAmount.div(sub.ubounty.available))
-        totalEarnedWei.add(bountyAmountWei.div(sub.ubounty.available))
-      }
+
+    let hunterRewards = etherClient.event_logs.rewarded.filter((reward) => reward.hunter.toLowerCase() == address.toLowerCase())
+    for (const reward of hunterRewards) {
+      totalEarnedDC = totalEarnedDC.add(utils.parseUnits(reward.rewardAmount, 8))
+      totalEarnedWei = totalEarnedWei.add(utils.parseEther(reward.ethRewardAmount))
     }
     // Get creator stats
     let bounties = await UBounty.findAndCountAll({
@@ -66,20 +64,19 @@ module.exports.getOverviewStats = async (req, res, next) => {
     let totalBounties = bounties.count
     let totalAwardedDC = utils.bigNumberify(0)
     let totalAwardedWei = utils.bigNumberify(0)
+    let bountyIDs = []  
     for (const bounty of bounties.rows) {
       if (bounty.creator != address) {
         continue
       }
-      let bountyAmount = utils.bigNumberify(bounty.bountyAmount)
-      let bountyAmountWei = utils.bigNumberify(bounty.weiAmount)      
-      for (const sub of bounty.submissions) {
-        if (sub.approved) {
-          totalAwardedDC.add(bountyAmount.div(bounty.available))
-          totalAwardedWei.add(bountyAmountWei.div(bounty.available))
-        }
-      }
+      bountyIDs.push(bounty.id)
     }
-
+    let creatorRewards = etherClient.event_logs.rewarded.filter((reward) => bountyIDs.includes(reward.ubountyIndex))  
+    for (const reward of creatorRewards) {
+      totalAwardedDC = totalAwardedDC.add(utils.parseUnits(reward.rewardAmount, 8))
+      totalAwardedWei = totalAwardedWei.add(utils.parseEther(reward.ethRewardAmount))
+    }
+  
     let activity = []
     activity = activity.concat(bounties.rows)
     activity = activity.concat(submissions.rows)

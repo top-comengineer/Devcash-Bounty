@@ -52,7 +52,6 @@ module.exports.getUBounties = async (req, res, next) => {
     } else if (sortType == 'expiry') {
       orderClause = ['deadline', orderDirection]
     }
-    console.log("\n\n\n" + sortType + "\n\n\n")
     // Get uBounties
     let result = await UBounty.findAndCountAll({
       offset: offset,

@@ -3,6 +3,7 @@ const cron = require("node-cron");
 const cookieParser = require('cookie-parser')
 const { Nuxt, Builder } = require('nuxt')
 const { etherClient } = require("./utils/ether_client")
+const { utils } = require("ethers");
 const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
@@ -129,6 +130,19 @@ function setupEthersJobs() {
   etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected", feedback)
   })    
+  // Rewarded
+  etherClient.uBCContract.on("rewarded", async (uBountyIndex, hunter, tokenAmount, weiAmount) => {
+    let timestamp = parseInt(new Date().getTime() / 1000)
+    let devcashAmount = utils.formatUnits(tokenAmount, 8)
+    let ethAmount = utils.formatUnits(weiAmount, 18)
+    etherClient.event_logs.rewarded.unshift({
+      ethRewardAmount: ethAmount,
+      ubountyIndex: uBountyIndex,
+      timestamp: timestamp,
+      hunter: hunter,
+      rewardAmount: devcashAmount
+    })
+  })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing
   cron.schedule("* * * * *", async function() {

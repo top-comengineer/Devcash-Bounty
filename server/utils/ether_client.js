@@ -304,8 +304,8 @@ class EtherClient {
     for (let n = 0; n < createdLogs.length; n++) {
       let log = createdHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.bountiesAvailable = this.HexToInt(log[1], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.bountiesAvailable = parseInt(this.HexToInt(log[1], 0));
       eventInfo.bountyAmount = this.HexToInt(log[2], this.tokenDecimals);
       eventInfo.ethBountyAmount = this.HexToInt(log[3], 18);
       eventInfo.eventInfo = createdLogs[n];
@@ -323,8 +323,8 @@ class EtherClient {
     for (let n = 0; n < submittedHexArray.length; n++) {
       let log = submittedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.submissionIndex = this.HexToInt(log[1], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[1], 0));
       eventInfo.eventInfo = submittedLogs[n];
       eventInfo.timestamp = await this.getTimeStamp(
         submittedLogs[n].blockNumber
@@ -343,9 +343,9 @@ class EtherClient {
     for (let n = 0; n < revisedHexArray.length; n++) {
       let log = revisedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.submissionIndex = this.HexToInt(log[0], 0);
-      eventInfo.revisionIndex = this.HexToInt(log[0], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.revisionIndex = parseInt(this.HexToInt(log[0], 0));
       eventInfo.eventInfo = revisedLogs[n];
       eventInfo.timestamp = await this.getTimeStamp(revisedLogs[n].blockNumber);
       eventInfo.nonce = await this.getNonce(revisedLogs[n].transactionHash);
@@ -361,8 +361,8 @@ class EtherClient {
     for (let n = 0; n < approvedHexArray.length; n++) {
       let log = approvedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.submissionIndex = this.HexToInt(log[1], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[1], 0));
       eventInfo.feedback = "";
       for (let j = 4; j < log.length; j++) {
         eventInfo.feedback += this.HexToString(log[j]);
@@ -385,8 +385,8 @@ class EtherClient {
     for (let n = 0; n < rejectedHexArray.length; n++) {
       let log = rejectedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.submissionIndex = this.HexToInt(log[1], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[1], 0));
       eventInfo.feedback = "";
       for (let j = 4; j < log.length; j++) {
         eventInfo.feedback += this.HexToString(log[j]);
@@ -409,8 +409,8 @@ class EtherClient {
     for (let n = 0; n < revisionRequestedHexArray.length; n++) {
       let log = revisionRequestedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
-      eventInfo.submissionIndex = this.HexToInt(log[1], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[1], 0));
       eventInfo.feedback = "";
       for (let j = 4; j < log.length; j++) {
         eventInfo.feedback += this.HexToString(log[j]);
@@ -435,7 +435,7 @@ class EtherClient {
     for (let n = 0; n < rewardedHexArray.length; n++) {
       let log = rewardedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
       eventInfo.hunter = this.HexToAddress(log[1]);
       eventInfo.rewardAmount = this.HexToInt(log[2], this.tokenDecimals);
       eventInfo.ethRewardAmount = this.HexToInt(log[3], 18);
@@ -455,7 +455,7 @@ class EtherClient {
     for (let n = 0; n < reclaimedHexArray.length; n++) {
       let log = reclaimedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
       eventInfo.reclaimedAmount = this.HexToInt(log[1], 8);
       eventInfo.ethReclaimedAmount = this.HexToInt(log[2], 18);
 
@@ -476,7 +476,7 @@ class EtherClient {
     for (let n = 0; n < completedHexArray.length; n++) {
       let log = completedHexArray[n];
       let eventInfo = new Object();
-      eventInfo.ubountyIndex = this.HexToInt(log[0], 0);
+      eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
 
       eventInfo.eventInfo = completedLogs[n];
       eventInfo.timestamp = await this.getTimeStamp(
@@ -741,7 +741,6 @@ class EtherClient {
       feedback = this.overriddenStatus[uI][sI].feedback
     } else {
       try {
-        console.log(JSON.stringify(this.event_logs.orderedFeedback))
         let events = this.event_logs.orderedFeedback[uI][sI];
         ret = events[events.length - 1].event;
         feedback = events[events.length - 1].feedback;
