@@ -23,5 +23,8 @@ export default function ({ req, store }) {
       if (req.cookies.devcash_estype) {
         store.commit('devcashData/setSortType', req.cookies.devcash_estype)
       }
+      if (req.cookies.devcash_esdirection) {
+        store.commit('devcashData/setSortDirection', req.cookies.devcash_esdirection)
+      }      
     }
   } 

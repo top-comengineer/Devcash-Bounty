@@ -52,7 +52,8 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
-      sortType: "devcashData/exploreSortType"
+      sortType: "devcashData/exploreSortType",
+      sortDirection: "devcashData/exploreOrderDirection"
     })
   },
   methods: {
@@ -73,8 +74,12 @@ export default {
       } else if (sortType == 'value') {
         sortType = 'valueDC'
       }
+      let direction = this.sortDirection
+      if (direction != 'desc' && direction != 'asc') {
+        direction = 'desc'
+      }
       let res = await Axios.get(
-        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}`
+        `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}&order=${direction}`
       );
       if (res.status != 200) {
         // TODO error handling

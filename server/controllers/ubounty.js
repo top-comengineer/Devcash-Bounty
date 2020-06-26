@@ -37,14 +37,20 @@ module.exports.getUBounties = async (req, res, next) => {
       hunterQuery = {[Op.eq]: null}
     }
     // Get sort type
-    let orderClause = ['createdAt', 'DESC']
+    let orderDirection = req.query.order
+    if (orderDirection == 'asc') {
+      orderDirection = 'ASC'
+    } else {
+      orderDirection = 'DESC'
+    }
+    let orderClause = ['createdAt', orderDirection]
     let sortType = req.query.sort
     if (sortType == 'valueDC') {
-      orderClause = [sequelize.cast(sequelize.col('bountyAmount'), 'BIGINT'), 'DESC']
+      orderClause = [sequelize.cast(sequelize.col('bountyAmount'), 'BIGINT'), orderDirection]
     } else if (sortType == 'valueEth') {
-      orderClause = [sequelize.cast(sequelize.col('weiAmount'), 'BIGINT'), 'DESC']
+      orderClause = [sequelize.cast(sequelize.col('weiAmount'), 'BIGINT'), orderDirection]
     } else if (sortType == 'expiry') {
-      orderClause = ['deadline', 'DESC']
+      orderClause = ['deadline', orderDirection]
     }
     console.log("\n\n\n" + sortType + "\n\n\n")
     // Get uBounties

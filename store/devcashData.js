@@ -18,7 +18,8 @@ export const state = () => ({
   isIBOBarClosed: false,
   submissionFormData: {},
   pendingSubStatus: [],
-  currentSortType: 'recency'
+  currentSortType: 'recency',
+  orderDirection: 'desc'
 });
 
 export const mutations = {
@@ -40,10 +41,20 @@ export const mutations = {
   },
   setSortType(state, type) {
     state.currentSortType = type
-    if (state.type == null) {
+    if (state.currentSortType != "value" && state.currentSortType != "expiry" && state.currentSortType != "recency") {
       Cookies.remove("devcash_estype")
+      state.currentSortType = "recency"
     } else {
       Cookies.set("devcash_estype", state.currentSortType, { expires: 365, secure: process.env.NODE_ENV === 'production' })
+    }
+  },  
+  setSortDirection(state, direction) {
+    state.orderDirection = direction
+    if (state.orderDirection != "desc" && state.orderDirection != "asc") {
+      Cookies.remove("devcash_esdirection")
+      state.orderDirection = "desc"
+    } else {
+      Cookies.set("devcash_esdirection", state.orderDirection, { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
   },  
   setEthereum(state) {
@@ -181,6 +192,9 @@ export const getters = {
   exploreSortType(state) {
     return state.currentSortType
   },
+  exploreOrderDirection(state) {
+    return state.orderDirection
+  },  
   getBalance(state) {
     if (state.loggedInAccount != null) {
       if (state.balancePrimary && state.balanceSecondary) {

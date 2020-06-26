@@ -134,11 +134,69 @@
           <!-- Sort Text and Sort Options -->
           <div class="relative">
             <!-- Sort Button -->
-            <div
+            <button
+              @click="toggleSortModal"
+              @keydown.esc.exact="hideSortModal"
               class="text-c-text text-lg font-bold mt-8 w-full flex flex-row items-center px-1 -mx-1 hover:bg-c-primary-15 focus:bg-c-primary-15 transition-colors duration-200 rounded-md"
             >
               {{$t("bountyPlatform.explore.sidebar.sortHeader")}}
-            </div>
+              <Icon
+                class="w-4 h-4 mx-1 transition-all ease-out duration-200"
+                colorClass="text-c-text"
+                type="arrow-down"
+              />
+            </button>
+            <!-- Sort Modal -->
+            <transition name="sortModalTransition">
+              <!-- Modal Wrapper -->
+              <div
+                v-on-clickaway="hideSortModal"
+                class="origin-top-left absolute left-0 pt-2 z-50"
+                v-if="isSortModalOpen"
+              >
+                <div
+                  class="bg-c-text text-c-background w-48 flex flex-col relative shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
+                >
+                  <!-- Descending Button -->
+                  <button
+                    @click="orderChanged('desc'); hideSortModalWithDelay()"
+                    @keydown.esc.exact="hideSortModal"
+                    :class="sortDirection == 'desc' ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-25 focus:bg-c-primary-25'"
+                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
+                  >
+                    <div class="ml-3 mr-2">
+                      <Icon
+                        :colorClass="sortDirection == 'desc' ?'text-c-light':'text-transparent'"
+                        type="done"
+                        class="w-5 h-5"
+                      />
+                    </div>
+                    <h6
+                      class="whitespace-no-wrap font-bold"
+                    >{{$t("bountyPlatform.explore.sidebar.sortDescending")}}</h6>
+                  </button>
+                  <!-- Ascending Button -->
+                  <button
+                    @click="orderChanged('asc'); hideSortModalWithDelay()"
+                    @keydown.tab.exact="hideSortModal"
+                    @keydown.esc.exact="hideSortModal"
+                    :class="sortDirection == 'asc' ? 'bg-c-primary text-c-light': 'hover:bg-c-primary-25 focus:bg-c-primary-25'"
+                    class="flex flex-row items-center py-2 transition-colors duration-200 ease-out"
+                  >
+                    <div class="ml-3 mr-2">
+                      <Icon
+                        :colorClass="sortDirection == 'asc' ?'text-c-light':'text-transparent'"
+                        type="done"
+                        class="w-5 h-5"
+                      />
+                    </div>
+                    <h6
+                      class="whitespace-no-wrap font-bold"
+                    >{{$t("bountyPlatform.explore.sidebar.sortAscending")}}</h6>
+                  </button>
+                </div>
+              </div>
+            </transition>
           </div>
           <RadioButton
             :checked="this.sortType == 'recency'"
@@ -267,7 +325,8 @@ export default {
       isSearchFocused: false,
       toApprove: null,
       approvalLoading: false,
-      approvalError: ""
+      approvalError: "",
+      isSortModalOpen: false
     };
   },
   methods: {
@@ -275,6 +334,23 @@ export default {
       this.$store.commit("devcashData/setSortType", type)
       this.$root.$emit('sortChanged')
     },
+    orderChanged(direction) {
+      if (direction != this.sortDirection) {
+        this.$store.commit("devcashData/setSortDirection", direction)
+        this.$root.$emit('sortChanged')
+      }
+    },
+    toggleSortModal() {
+      this.isSortModalOpen = !this.isSortModalOpen;
+    },
+    hideSortModal() {
+      this.isSortModalOpen = false;
+    },
+    hideSortModalWithDelay() {
+      setTimeout(() => {
+        this.isSortModalOpen = false;
+      }, 50);
+    },    
     async approveBalance() {
       if (this.toApprove == null || this.toApprove < 0) {
         this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
@@ -311,7 +387,8 @@ export default {
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount",
       balance: "devcashData/getBalance",
-      sortType: "devcashData/exploreSortType"
+      sortType: "devcashData/exploreSortType",
+      sortDirection: "devcashData/exploreOrderDirection"
     })
   }
 };
