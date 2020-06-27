@@ -9,13 +9,13 @@
         <div class="sidebar-container overflow-visible sticky transition-all ease-out duration-200">
           <div class="sidebar-container-inner md:absolute md:left-0">
             <Sidebar
-              class="overflow-y-auto overflow-x-hidden md:absolute md:left-0 shadow-4xl md:shadow-xl md:hover:shadow-4xl lg:hover:shadow-lg transition-shadow ease-out duration-300"
+              class="overflow-y-auto overflow-x-hidden md:absolute md:left-0 shadow-4xl md:shadow-lg md:hover:shadow-4xl lg:hover:shadow-lg transition-shadow ease-out duration-300"
             />
           </div>
         </div>
       </div>
       <!-- Centered, Page Content -->
-      <div class="d-container-2 px-2 md:px-0 ">
+      <div class="d-container-2 px-2 md:px-0">
         <nuxt keep-alive />
       </div>
       <!-- Right spacer -->

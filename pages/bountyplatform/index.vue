@@ -8,7 +8,7 @@
     <!-- No matching results for search -->
     <div
       v-else-if="filteredBounties.length <= 0 && bounties.length > 0"
-      class="bg-c-background-sec w-full flex flex-col justify-center items-center flex-wrap py-12 mt-2 mb-4 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+      class="bg-c-background-sec shadow-lg w-full flex flex-col justify-center items-center flex-wrap py-12 mt-2 mb-4 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
     >
       <img
         class="max-w-xxxs h-auto relative"
@@ -16,7 +16,7 @@
         alt="No Resulst Matching"
       />
       <p
-        class="opacity-75 text-xl font-bold text-center mt-4 md:max-w-xs"
+        class="text-xl font-bold text-center mt-4 md:max-w-xs"
       >{{$t('bountyPlatform.explore.search.noMatchingResults')}}</p>
     </div>
     <div v-else class="w-full flex flex-col justify-center items-center">
