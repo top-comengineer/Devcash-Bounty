@@ -360,10 +360,10 @@ export default {
       } else {
         tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
       }
-      return utils.formatUnits(this.bounty.bountyAmount, tokenDecimals)
+      return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
     },
     formatEthAmount() {
-      return utils.formatEther(this.bounty.weiAmount)
+      return DevcashBounty.formatAmountEth(this.bounty)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);

@@ -62,6 +62,19 @@ export class DevcashBounty {
     return totalAmount;
   }
 
+  static formatAmountEth(bounty) {
+    let delta =
+      bounty.available -
+      bounty.submissions.filter((sub) => sub.approved).length;
+    if (delta <= 0) {
+      return "0";
+    }
+    let totalAmount = utils.bigNumberify(bounty.weiAmount);
+    totalAmount = totalAmount.div(bounty.available);
+    totalAmount = utils.commify(utils.formatEther(totalAmount));
+    return totalAmount;
+  }
+
   static formatAmountSingleSubmission(bounty, tokenDecimals) {
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
     totalAmount = totalAmount.div(bounty.available);

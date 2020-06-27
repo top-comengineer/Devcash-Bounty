@@ -471,6 +471,7 @@ export default {
                     }
                   });                  
                 }
+                ref.$root.$emit("subRejected", {bounty: uBountyIndex, submission: submissionIndex})
               } catch (e) {
                 console.log(e)
               }
@@ -497,8 +498,9 @@ export default {
                     data: {
                       href: ref.localePath('bountyplatform-bountyhunter')
                     }
-                  });                  
+                  });                
                 }
+                ref.$root.$emit("subApproved", {bounty: uBountyIndex, submission: submissionIndex})
               } catch (e) {
                 console.log(e)
               }
@@ -523,7 +525,7 @@ export default {
                     data: {
                       href: ref.localePath('bountyplatform-bountymanager')
                     }
-                  });                  
+                  });              
                 }
               } catch (e) {
                 console.log(e)

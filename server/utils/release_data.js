@@ -45,7 +45,7 @@ module.exports.verifyAndReleaseBounties = async function (uBounties) {
             contactName: stagedBounty.contactName,
             contactEmail: stagedBounty.contactEmail,
             deadline: hashIdMap[stagedBounty.hash].deadline,
-            available: hashIdMap[stagedBounty.hash].available,
+            available: Math.max(1, hashIdMap[stagedBounty.hash].available),
             bountyChest: hashIdMap[stagedBounty.hash].bc,
             bountyAmount: hashIdMap[stagedBounty.hash].amount,
             weiAmount: hashIdMap[stagedBounty.hash].weiAmount,

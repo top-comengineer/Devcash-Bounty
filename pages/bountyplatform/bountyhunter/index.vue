@@ -293,6 +293,21 @@ export default {
       this.loadMoreBounties();
       this.loadMoreSubmissions();
     }
+    // Auto update statuses
+    this.$root.$on("subApproved", (objR) => {
+      for (const submission of this.submissions) {
+        if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
+          submission.status = 'approved'
+        }
+      }
+    })
+    this.$root.$on("subRejected", (objR) => {
+      for (const submission of this.submissions) {
+        if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
+          submission.status = 'rejected'
+        }
+      }
+    })    
   },
   activated() {
     // Set sidebar context
