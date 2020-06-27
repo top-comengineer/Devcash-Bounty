@@ -484,7 +484,35 @@ export default {
         return 0
       }
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
-    }
+    },
+    singleAmount() {
+      if (!this.isBountyAmountEach && this.amount && this.numBounties) {
+       if (this.$store.state.devcashData.ethPrimary) {
+         let amountBigNum = utils.parseEther(this.amount.toString())
+         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         return  utils.formatEther(amountBigNum)
+       } else {
+         let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         return utils.formatUnits(amountBigNum, 8)     
+       }        
+      }
+      return this.amount || "0"
+    },
+    totalAmount() {
+      if (this.isBountyAmountEach && this.amount && this.numBounties) {
+        if (this.$store.state.devcashData.ethPrimary) {
+          let amountBigNum = utils.parseEther(this.amount.toString())
+          amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+          return utils.formatEther(amountBigNum)
+        } else {
+          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+          amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+          return utils.formatUnits(amountBigNum, 8)     
+        }
+      }
+      return this.amount || "0"
+    }    
   },  
   methods: {
    closePicker() {
