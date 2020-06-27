@@ -337,7 +337,7 @@ export default {
       } else {
         tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
       }
-      return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
+      return utils.formatUnits(this.bounty.bountyAmount, tokenDecimals)
     },
     formatEthAmount() {
       return utils.formatEther(this.bounty.weiAmount)
