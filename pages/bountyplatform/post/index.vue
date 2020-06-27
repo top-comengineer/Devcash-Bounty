@@ -320,8 +320,11 @@
       </div>
       <!-- Summary Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-4 px-3 md:py-6 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-6 px-3 md:pt-8 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
+        <div class="w-full flex flex-row justify-center mb-2">
+          <p class="text-xl font-bold px-3">{{$t('bountyPlatform.post.summary')}}</p>
+        </div>
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.bountyCount')"

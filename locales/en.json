@@ -123,6 +123,7 @@
       "amountForEach": "Amount for Each",
       "amountTotal": "Total Amount",
       "fee": "Fee",
+      "summary": "Summary",
       "bountyAmountEachPlaceholder": "Enter the amount for each bounty",
       "bountyAmountTotalPlaceholder": "Enter the total bounty amount",
       "bountyForEach": "(For Each Bounty)",
