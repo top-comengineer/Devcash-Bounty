@@ -46,9 +46,9 @@ module.exports.getUBounties = async (req, res, next) => {
     let orderClause = ['createdAt', orderDirection]
     let sortType = req.query.sort
     if (sortType == 'valueDC') {
-      orderClause = [sequelize.cast(sequelize.col('bountyAmount'), 'BIGINT'), orderDirection]
+      orderClause = sequelize.literal('cast("ubounty"."bountyAmount" AS BIGINT) / "ubounty"."available" DESC')
     } else if (sortType == 'valueEth') {
-      orderClause = [sequelize.cast(sequelize.col('weiAmount'), 'BIGINT'), orderDirection]
+      orderClause = sequelize.literal('cast("ubounty"."weiAmount" AS BIGINT) / "ubounty"."available" DESC')
     } else if (sortType == 'expiry') {
       orderClause = ['deadline', orderDirection]
     }
@@ -56,9 +56,7 @@ module.exports.getUBounties = async (req, res, next) => {
     let result = await UBounty.findAndCountAll({
       offset: offset,
       limit: limit,
-      order: [
-          orderClause
-      ],
+      order: orderClause,
       where: {
         hunter: hunterQuery
       },

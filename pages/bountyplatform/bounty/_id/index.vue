@@ -340,7 +340,7 @@ export default {
       return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
     },
     formatEthAmount() {
-      return utils.formatEther(this.bounty.weiAmount)
+      return DevcashBounty.formatAmountEth(this.bounty)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);
