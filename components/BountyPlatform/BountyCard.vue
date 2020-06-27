@@ -87,9 +87,17 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount"
-    })
+    }),
+    status() {
+      if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
+        return "completed"
+      } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
+        return "expired"
+      }
+      return "active"      
+    }
   },
-  methods: {
+  methods: {  
     formatAmount() {
       let tokenDecimals = 8
       if (this.$store.state.devcash.connector) {
