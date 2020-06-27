@@ -318,11 +318,33 @@
           >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
         </div>
       </div>
-      <!-- Fee Card -->
+      <!-- Summary Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row justify-center flex-wrap relative py-6 px-3 md:pt-8 md:pb-10 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
-        <h1 class="text-center">{{ `Fee: Ξ${curFee}` }}</h1>
+        <div class="w-full flex flex-row justify-center mb-2">
+          <p class="text-xl font-bold px-3">{{$t('bountyPlatform.post.summary')}}</p>
+        </div>
+        <mini-summary-card
+          class="mx-2 my-2 w-48"
+          :header="$t('bountyPlatform.post.bountyCount')"
+          :text="numBounties"
+        />
+        <mini-summary-card
+          class="mx-2 my-2 w-48"
+          :header="$t('bountyPlatform.post.amountForEach')"
+          :text="`{D}${amount}`"
+        />
+        <mini-summary-card
+          class="mx-2 my-2 w-48"
+          :header="$t('bountyPlatform.post.amountTotal')"
+          :text="`{D}${amount}`"
+        />
+        <mini-summary-card
+          class="mx-2 my-2 w-48"
+          :header="$t('bountyPlatform.post.fee')"
+          :text="`Ξ${curFee}`"
+        />
       </div>
       <!-- Call to Action Card -->
       <CTACard
@@ -345,6 +367,7 @@ import Icon from "~/components/Icon.vue";
 import DatePicker from "~/components/DatePicker.vue";
 import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
 import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import MiniSummaryCard from "~/components/BountyPlatform/MiniSummaryCard.vue";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
@@ -383,7 +406,8 @@ export default {
     DatePicker,
     CategoryPicker,
     SignInToContinueWrapper,
-    TextEditor
+    TextEditor,
+    MiniSummaryCard
   },
   data() {
     return {
