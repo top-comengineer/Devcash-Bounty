@@ -349,7 +349,8 @@
   "notification": {
     "approvalPending": "Balance Approval Pending",
     "approvalDescription": "Your approved balance will update once its confirmed on the network.",
-    "bountyTitle": "A new bounty has been created",
+    "personalBountyTitle": "A personal bounty \"%1\" has been created for you",
+    "bountyTitle": "Bounty \"%1\" has been created",
     "bountyDescription": "Click to view the details.",
     "submissionCreatedTitle": "Your submission has been created.",
     "submissionCreatedDescription": "It will be visible to the bounty creator after its confirmed on the network.",
@@ -358,8 +359,8 @@
     "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network.",
     "submissionReceivedTitle": "Your bounty \"%1\" has received a new submission",
     "submissionReceivedDescription": "Click to view details",
-    "yourSubmissionApprovedTitle": "Your submission for bounty %1 has been approved!",
-    "yourSubmissionRejectedTitle": "Your submission for bounty %1 has been rejected!"
+    "yourSubmissionApprovedTitle": "Your submission for bounty \"%1\" has been approved!",
+    "yourSubmissionRejectedTitle": "Your submission for bounty \"%1\" has been rejected!"
   },
   "meta": {
     "home": {

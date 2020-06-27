@@ -171,6 +171,9 @@ export default {
     this.$root.$on('filtersChanged', () => {
       this.applyFilters()
     })
+    this.$root.$on('bountyCreated', (bounty) => {
+      this.bounties.unshift(bounty)
+    })
   },
   activated() {
     // Set sidebar context
