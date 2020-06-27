@@ -33,12 +33,23 @@
           <!-- Checkboxes -->
           <div v-if="submissions.length>0 && !submissionsLoading" class="flex flex-row flex-wrap">
             <CheckmarkButton
-              checked="checked"
+              :checked="subPendingChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'pending')"
               class="my-3 mx-3"
               :text="$t('bountyPlatform.statusTag.pending')"
             />
-            <CheckmarkButton class="my-3 mx-3" :text="$t('bountyPlatform.statusTag.approved')" />
-            <CheckmarkButton class="my-3 mx-3" :text="$t('bountyPlatform.statusTag.rejected')" />
+            <CheckmarkButton
+              :checked="subApprovedChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'approved')"
+              class="my-3 mx-3"
+              :text="$t('bountyPlatform.statusTag.approved')"
+            />
+            <CheckmarkButton
+              :checked="subRejectedChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'rejected')"
+              class="my-3 mx-3"
+              :text="$t('bountyPlatform.statusTag.rejected')"
+            />
           </div>
         </div>
         <!-- Submissions loading -->
@@ -50,7 +61,7 @@
           <SubmissionCard
             class="my-2"
             perspective="manager"
-            v-for="(item, i) in submissions"
+            v-for="(item, i) in filteredSubmissions"
             :key="i"
             :submission="item"
             :ubounty="item.ubounty"
@@ -113,9 +124,21 @@
               </div>
             </div>
             <div class="flex flex-row flex-wrap my-3">
-              <CheckmarkButton checked="checked" class="mx-3 my-2" text="Active" />
-              <CheckmarkButton class="mx-3 my-2" text="Completed" />
-              <CheckmarkButton class="mx-3 my-2" text="Expired" />
+              <CheckmarkButton 
+              :checked="bountyActiveChecked"
+              :callback="(checked) => bountyFilterChanged(checked, 'active')"
+              class="mx-3 my-2"
+              :text="$t('bountyPlatform.explore.sidebar.statusActive')" />
+              <CheckmarkButton 
+              :checked="bountyCompletedChecked"
+              :callback="(checked) => bountyFilterChanged(checked, 'completed')"
+              class="mx-3 my-2" 
+              :text="$t('bountyPlatform.explore.sidebar.statusCompleted')" />
+              <CheckmarkButton 
+              :checked="bountyExpiredChecked"
+              :callback="(checked) => bountyFilterChanged(checked, 'expired')"
+              class="mx-3 my-2" 
+              :text="$t('bountyPlatform.explore.sidebar.statusExpired')" />
             </div>
           </div>
         </div>
@@ -127,7 +150,7 @@
         <div v-else-if="bounties.length>0" class="w-full flex flex-col flex-wrap my-4">
           <BountyCard
             type="secondary"
-            v-for="(item, i) in bounties"
+            v-for="(item, i) in filteredBounties"
             :key="i"
             class="my-2"
             perspective="manager"
@@ -178,7 +201,7 @@ import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinu
 import ConfirmModal from "~/components/BountyPlatform/ConfirmModal.vue";
 import { DevcashBounty } from '../../../plugins/devcash/devcashBounty.client';
 
-const defaultBountyLimit = 10;
+const defaultBountyLimit = 50;
 
 export default {
   layout: "bountyPlatform",
@@ -199,6 +222,52 @@ export default {
     })
   },
   methods: {
+    getBountyStatus(bounty) {
+      if (bounty.submissions.filter(sub => sub.status == 'approved').length >= bounty.available) {
+        return "completed"
+      } else if (new Date().getTime() / 1000 >= bounty.deadline) {
+        return "expired"
+      }
+      return "active"
+    },    
+    applyBountyFilters() {
+      this.filteredBounties = this.bounties.filter((bounty) => (this.getBountyStatus(bounty) == 'active' && this.bountyActiveChecked) || (this.getBountyStatus(bounty) == 'expired' && this.bountyExpiredChecked) || (this.getBountyStatus(bounty) == 'completed' && this.bountyCompletedChecked))
+    },
+    bountyFilterChanged(checked, type) {
+      switch (type) {
+        case 'active':
+          this.bountyActiveChecked = checked
+          break;
+        case 'expired':
+          this.bountyExpiredChecked = checked
+          break;
+        case 'completed':
+          this.bountyCompletedChecked = checked
+          break;
+        default:
+          break;
+      }
+      this.applyBountyFilters()
+    },    
+    applySubmissionFilters() {
+      this.filteredSubmissions = this.submissions.filter((sub) => (sub.status == 'approved' && this.subApprovedChecked) || (sub.status == 'pending' && this.subPendingChecked) || (sub.status == 'rejected' && this.subRejectedChecked))
+    },
+    submissionFilterChanged(checked, type) {
+      switch (type) {
+        case 'pending':
+          this.subPendingChecked = checked
+          break;
+        case 'approved':
+          this.subApprovedChecked = checked
+          break;
+        case 'rejected':
+          this.subRejectedChecked = checked
+          break;
+        default:
+          break;
+      }
+      this.applySubmissionFilters()
+    },    
     closeConfirmModal(){
       this.isConfirmModalOpen = false;
     },
@@ -255,6 +324,7 @@ export default {
           utils.formatUnits(this.totalBountyAmount, 8)
         );
         this.bounties = this.bounties.concat(res.data.items);
+        this.applyBountyFilters()
         this.totalBountyCount = res.data.count;
         this.hasMoreBounties = this.totalBountyCount > this.bounties.length
       } catch (e) {
@@ -272,6 +342,7 @@ export default {
           `/submission/listcreator?page=${this.submissionsPage}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
         );
         this.submissions = this.submissions.concat(res.data.items);
+        this.applySubmissionFilters()
         this.totalSubmissionCount = res.data.count;
         this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
       } catch (e) {
@@ -305,6 +376,12 @@ export default {
   },
   data() {
     return {
+      subRejectedChecked: true,
+      subPendingChecked: true,
+      subApprovedChecked: true,
+      bountyActiveChecked: true,
+      bountyCompletedChecked: true,
+      bountyExpiredChecked: true,      
       initialBountiesLoading: true,
       initialSubmissionsLoading: true,
       bountiesLoading: true,
@@ -321,7 +398,9 @@ export default {
       confirmModalType: '',
       confirmModalItem: {},
       bounties: [],
+      filteredBounties: [],
       submissions: [],
+      filteredSubmissions: [],
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.bountyManager.pageTitle"),
       pageDescription: this.$t(

@@ -5,6 +5,9 @@
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
+    <div v-else-if="filteredBounties.length <= 0 && bounties.length > 0" class="w-full flex flex-col justify-center items-center">
+      <h1>NO BOUNITES MATCHING FILTERS</h1>
+    </div>
     <div v-else class="w-full flex flex-col justify-center items-center">
       <BountyCard v-for="(item, i) in filteredBounties" :key="i" class="my-2" :bounty="item" />
     </div>
@@ -85,7 +88,7 @@ export default {
     applyFilters() {
       this.filteredBounties = this.bounties.filter((bounty) => (this.getBountyStatus(bounty) == 'completed' && this.status.completed) || (this.getBountyStatus(bounty) == 'expired' && this.status.expired) || (this.getBountyStatus(bounty) == 'active' && this.status.active))
       if (this.$store.state.devcashData.exploreSearchText && this.$store.state.devcashData.exploreSearchText != '') {
-        this.filteredBounties = this.bounties.filter((bounty) => bounty.title.toLowerCase().includes(this.$store.state.devcashData.exploreSearchText))
+        this.filteredBounties = this.filteredBounties.filter((bounty) => bounty.title.toLowerCase().includes(this.$store.state.devcashData.exploreSearchText))
       }
       let categoriesToExclude = []
       if (!this.categories.create) {
@@ -107,7 +110,7 @@ export default {
         categoriesToExclude.push('other')
       }
       if (categoriesToExclude.length > 0) {
-        this.filteredBounties = this.bounties.filter((bounty) => !categoriesToExclude.includes(bounty.category))
+        this.filteredBounties = this.filteredBounties.filter((bounty) => !categoriesToExclude.includes(bounty.category))
       }       
     },
     async getBounties() {
