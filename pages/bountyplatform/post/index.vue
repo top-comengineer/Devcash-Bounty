@@ -64,7 +64,7 @@
           <h4 class="text-xl font-bold px-3">{{$t('bountyPlatform.post.bountyType')}}</h4>
           <!-- Public and Private Switch -->
           <div
-            class="bg-c-background-ter border-c-text-10 max-w-full w-84 flex flex-row p-1 rounded-full border mt-2"
+            class="bg-c-background-ter border-c-text-10 max-w-full w-64 lg:w-84 flex flex-row p-1 rounded-full border mt-2"
           >
             <div class="w-full flex flex-row relative">
               <div
@@ -113,7 +113,7 @@
       </div>
       <!-- Card for Number of Bounties and Bounty Amount -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Number of Bounties -->
         <div class="w-full md:flex-1 flex flex-col my-3">
@@ -124,7 +124,7 @@
           <input
             id="numberOfBounties"
             v-model="numBounties"
-            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
+            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
             type="number"
             min="1"
             :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
@@ -139,21 +139,46 @@
         <div class="hidden md:block w-16"></div>
         <!-- Bounty Amount -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <label for="bountyAmount" class="text-xl font-bold px-3">
-            {{$t('bountyPlatform.post.bountyAmount')}}
-            <span
-              class="text-sm font-normal opacity-75"
-            >{{$t('bountyPlatform.post.bountyForEach')}}</span>
-          </label>
-          <input
-            id="bountyAmount"
-            v-model="amount"
-            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="number"
-            :placeholder="$t('bountyPlatform.post.bountyAmountPlaceholder')"
-            @focus="amountError?amountError=false:null"
-            @blur="validateAmount"
-          />
+          <div class="flex flex-row flex-wrap">
+            <label
+              for="bountyAmount"
+              class="text-xl font-bold px-3"
+            >{{$t('bountyPlatform.post.bountyAmount')}}</label>
+            <!-- Each & Total Switch -->
+            <div
+              class="bg-c-background-ter border-c-text-10 max-w-full w-48 flex flex-row p-0_5 rounded-full border"
+            >
+              <div class="w-full flex flex-row relative">
+                <div
+                  :class="{'left-0':isBountyAmountEach, 'left-full -translate-x-full': !isBountyAmountEach}"
+                  class="shadow-lg absolute w-1/2 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+                ></div>
+                <button
+                  :class="[isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                  @click.prevent="isBountyAmountEach=true"
+                  class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                >{{$t('bountyPlatform.post.bountyAmountEach')}}</button>
+                <button
+                  :class="[!isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                  @click.prevent="isBountyAmountEach=false"
+                  class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                >{{$t('bountyPlatform.post.bountyAmountTotal')}}</button>
+              </div>
+            </div>
+          </div>
+          <div class="relative mt-3">
+            <!-- Amount Symbol -->
+            <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl">{D}</span>
+            <input
+              id="bountyAmount"
+              v-model="amount"
+              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
+              type="number"
+              :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
+              @focus="amountError?amountError=false:null"
+              @blur="validateAmount"
+            />
+          </div>
           <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
         </div>
       </div>
@@ -409,7 +434,8 @@ export default {
         headingStyle: 'atx',
         codeBlockStyle: 'fenced'
       }),
-      backupInterval: null
+      backupInterval: null,
+      isBountyAmountEach: true,
     };
   },
   computed: {
