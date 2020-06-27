@@ -36,15 +36,13 @@
       <!-- Submissions Left -->
       <div class="text-right text-sm">
         <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
-        <span class="text-right text-sm">
-          <span
-            class="font-bold"
-          >{{ `${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
-          <span class="opacity-75">
-            {{
-            $t("bountyPlatform.bountyCard.bountiesLeft")
-            }}
-          </span>
+        <span
+          class="font-bold"
+        >{{`${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
+        <span class="opacity-75">
+          {{
+          $t("bountyPlatform.bountyCard.bountiesLeft")
+          }}
         </span>
       </div>
       <!-- Remaining Time -->

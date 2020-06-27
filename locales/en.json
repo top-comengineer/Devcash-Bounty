@@ -260,6 +260,8 @@
       "tagActive": "Active",
       "tagCompleted": "Completed",
       "tagExpired": "Expired",
+      "bountyCompleted": "Bounty Completed",
+      "bountyExpired": "Bounty Expired",
       "createdBy": "Created By",
       "submission": {
         "cardHeader": "Send a Submission",

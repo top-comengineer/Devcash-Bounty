@@ -75,44 +75,67 @@
       <div
         class="bg-c-background-sec shadow-lg w-full md:w-auto md:max-w-xs flex flex-col flex-wrap relative overflow-hidden rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg my-1 md:my-2"
       >
-        <!-- Hunt and Contribute Button -->
-        <div class="w-full flex flex-col items-center bg-c-secondary px-6 py-4">
-          <button
-            @click="isSubmissionModalOpen = true"
-            class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
-          >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
-          <button
-            @click="isContributeModalOpen = true"
-            class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
-          >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
+        <!-- Hunt and Contribute Button or Completed or Expired Placeholders -->
+        <div
+          :class="getBountyStatus() == 'completed'?'bg-c-success':getBountyStatus() == 'expired'?'bg-c-pending':'bg-c-secondary'"
+          class="w-full flex flex-col items-center px-6 py-4"
+        >
+          <div v-if="getBountyStatus()=='active'" class="w-full flex flex-col items-center">
+            <button
+              @click="isSubmissionModalOpen = true"
+              class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            >{{ $t("bountyPlatform.singleBounty.buttonHunt") }}</button>
+            <button
+              @click="isContributeModalOpen = true"
+              class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
+          </div>
+          <div
+            v-else-if="getBountyStatus()=='completed'"
+            class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
+          >
+            <icon
+              type="done"
+              colorClass="text-c-background"
+              sizeClasses="w-12 h-12 md:w-16 md:h-16"
+            />
+            <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyCompleted")}}</p>
+          </div>
+          <div
+            v-else-if="getBountyStatus()=='expired'"
+            class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
+          >
+            <icon
+              type="clock"
+              colorClass="text-c-background"
+              sizeClasses="w-12 h-12 md:w-16 md:h-16"
+            />
+            <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyExpired")}}</p>
+          </div>
         </div>
         <!-- Submissions Left and Remaining Time -->
         <div class="w-full flex flex-col px-6 py-6">
           <!-- Submissions Left -->
-          <div class="flex flex-row items-center">
-            <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="award" />
-            <h6 class="text-sm">
-              <span
-                class="font-bold"
-              >{{ `${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
-              <span class="opacity-75">
-                {{
-                $t("bountyPlatform.bountyCard.bountiesLeft")
-                }}
-              </span>
-            </h6>
+          <div class="text-left text-sm">
+            <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
+            <span
+              class="font-bold"
+            >{{`${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
+            <span class="opacity-75">
+              {{
+              $t("bountyPlatform.bountyCard.bountiesLeft")
+              }}
+            </span>
           </div>
           <!-- Remaining Time -->
-          <div class="flex flex-row items-center mt-1">
-            <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="clock" />
-            <h6 class="text-sm">
-              <span class="font-bold">{{ formatTimeLeft() }}</span>
-              <span class="opacity-75">
-                {{
-                $t("bountyPlatform.bountyCard.remaining")
-                }}
-              </span>
-            </h6>
+          <div class="text-left text-sm mt-2">
+            <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
+            <span class="font-bold">{{ formatTimeLeft() }}</span>
+            <span class="opacity-75">
+              {{
+              $t("bountyPlatform.bountyCard.remaining")
+              }}
+            </span>
           </div>
         </div>
         <!-- Created By Text And Creator Card -->

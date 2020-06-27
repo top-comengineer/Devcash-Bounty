@@ -328,7 +328,7 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.bountyCount')"
-          :text="numBounties"
+          :text="numBounties?numBounties:0"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
