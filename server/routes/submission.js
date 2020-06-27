@@ -23,4 +23,9 @@ router.get(
   submissionController.getSubmissionsForBountyHunter
 )
 
+router.get(
+  '/one',
+  submissionController.getSingleSubmission
+)
+
 module.exports = router;

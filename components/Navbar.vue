@@ -235,7 +235,7 @@
           <Jazzicon
             class="flex"
             :diameter="32"
-            :address="$store.state.devcashData.loggedInAccount"
+            :address="loggedInAccount"
           />
         </button>
         <!-- Sign Out Modal -->
@@ -377,6 +377,7 @@ export default {
     // mix the getters into computed with object spread operator
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount",
       balance: "devcashData/getBalance"
     }),
     availableLocales() {
@@ -426,6 +427,88 @@ export default {
             });
           }
         });
+        connector.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
+          let asObj = JSON.stringify({
+            rejected: true,
+            bounty: uBountyIndex,
+            sub: submissionIndex,
+            feedback: feedback
+          })      
+          if (!ref.historicalCreated.includes(asObj)) {
+            ref.historicalCreated.push(asObj)
+            if (ref.isLoggedIn) {
+              try {
+                let onChain = await ref.$axios.get(`/submission/one?bounty_id=${uBountyIndex}&submission_id=${submissionIndex}`)
+                if (onChain.data.creator == ref.loggedInAccount) {
+                  ref.$notify({
+                    group: 'main',
+                    title: this.$t('notification.yourSubmissionRejectedTitle').replace('%1', uBountyIndex),
+                    text: this.$t('notification.submissionReceivedDescription'),
+                    data: {
+                      href: ref.localePath('bountyplatform-bountyhunter')
+                    }
+                  });                  
+                }
+              } catch (e) {
+                console.log(e)
+              }
+            }
+          }    
+        });
+        connector.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
+          let asObj = JSON.stringify({
+            approved: true,
+            bounty: uBountyIndex,
+            sub: submissionIndex,
+            feedback: feedback
+          })      
+          if (!ref.historicalCreated.includes(asObj)) {
+            ref.historicalCreated.push(asObj)
+            if (ref.isLoggedIn) {
+              try {
+                let onChain = await ref.$axios.get(`/submission/one?bounty_id=${uBountyIndex}&submission_id=${submissionIndex}`)
+                if (onChain.data.creator == ref.loggedInAccount) {
+                  ref.$notify({
+                    group: 'main',
+                    title: this.$t('notification.yourSubmissionApprovedTitle').replace('%1', uBountyIndex),
+                    text: this.$t('notification.submissionReceivedDescription'),
+                    data: {
+                      href: ref.localePath('bountyplatform-bountyhunter')
+                    }
+                  });                  
+                }
+              } catch (e) {
+                console.log(e)
+              }
+            }
+          }    
+        });
+        connector.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
+          let asObj = JSON.stringify({
+            bounty: uBountyIndex,
+            sub: submissionIndex
+          })
+          if (!ref.historicalCreated.includes(asObj)) {
+            ref.historicalCreated.push(asObj)
+            if (ref.isLoggedIn) {
+              try {
+                let onChain = await ref.$axios.get(`/bounty/one?id=${uBountyIndex}`)
+                if (onChain.data.creator == ref.loggedInAccount) {
+                  ref.$notify({
+                    group: 'main',
+                    title: this.$t('notification.submissionReceivedTitle').replace('%1', onChain.data.title),
+                    text: this.$t('notification.submissionReceivedDescription'),
+                    data: {
+                      href: ref.localePath('bountyplatform-bountymanager')
+                    }
+                  });                  
+                }
+              } catch (e) {
+                console.log(e)
+              }
+            }
+          }
+        })
       } else {
         this.ethersListeners = {}
       }

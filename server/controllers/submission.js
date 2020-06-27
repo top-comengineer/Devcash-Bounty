@@ -153,6 +153,35 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
   }
 }
 
+module.exports.getSingleSubmission = async (req, res, next) => {
+  try {
+    let bountyId = parseInt(req.query.bounty_id)
+    if (isNaN(bountyId)) {
+      return res.status(422).json({ error: "bounty_id parameter is required" });
+    }
+    let submissionId = parseInt(req.query.submission_id)
+    if (isNaN(submissionId)) {
+      return res.status(422).json({ error: "submission_id parameter is required" });
+    }    
+    let result = await Submission.findOne({
+      where: {
+        [Op.and]: [{submission_id: submissionId}, {ubounty_id:bountyId}],
+      },
+    })
+    if (result == null) {
+      return res.status(404).json(
+        {"error":"submission not found"}
+      )
+    }    
+    return res.status(200).json(
+      result
+    )
+  } catch(err) {
+    res.status(500).json({ error: "Unable to retrieve submissions" });
+    return next(err)
+  }
+}
+
 // POST new submission
 // Sample body
 /*

@@ -334,6 +334,33 @@ export class DevcashBounty {
     });
   }
 
+  async getUBounty(id) {
+    let rawUBounty = await this.uBCContract.ubounties(id);
+    if (rawUBounty == null || rawUBounty == undefined) {
+      return null;
+    }
+    // Convert smart contract data into a plain object
+    let uBounty = {};
+    uBounty.available = rawUBounty[0];
+    uBounty.numSubmissions = rawUBounty[1];
+    uBounty.hunterIndex = rawUBounty[2];
+    uBounty.creatorIndex = rawUBounty[3];
+    uBounty.bountyChestIndex = rawUBounty[4];
+    uBounty.deadline = rawUBounty[5];
+    uBounty.name = rawUBounty[7];
+    uBounty.description = rawUBounty[8];
+    uBounty.infoHash = rawUBounty[9];
+    uBounty.index = id;
+    uBounty.bc = await this.uBCContract.bCList(uBounty.bountyChestIndex);
+    uBounty.amount = (
+      await this.tokenContract.balanceOf(uBounty.bc)
+    ).toString();
+    uBounty.weiAmount = (await this.provider.getBalance(uBounty.bc)).toString()
+    // Get submissions
+    //uBounty.submissions = await this.getBountySubmissions(uBounty);
+    return uBounty;
+  }
+
   async approveBalance(amount) {
     let amtFormat = utils.parseUnits(amount.toString(), this.tokenDecimals);
     return await this.tokenContract.approve(uBCAddress, amtFormat);

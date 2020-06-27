@@ -352,7 +352,11 @@
     "submissionCreatedDescription": "It will be visible to the bounty creator after its confirmed on the network.",
     "submissionRejectedTitle": "This submission has been rejected.",
     "submissionApprovedTitle": "This submission has been approved.",
-    "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network."
+    "submissionRejectedApprovedDescription": "Your feedback will be visible to the bounty hunter after its confirmed on the network.",
+    "submissionReceivedTitle": "Your bounty \"%1\" has received a new submission",
+    "submissionReceivedDescription": "Click to view details",
+    "yourSubmissionApprovedTitle": "Your submission for bounty %1 has been approved!",
+    "yourSubmissionRejectedTitle": "Your submission for bounty %1 has been approved!"
   },
   "meta": {
     "home": {

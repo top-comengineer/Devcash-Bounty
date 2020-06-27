@@ -100,7 +100,7 @@ export default {
     },
     data() {
       return {
-        inputFeedback: null,
+        inputFeedback: "",
         loading: false
       }
     },
