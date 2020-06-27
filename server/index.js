@@ -8,7 +8,7 @@ const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
 
 // DB Models
-const { sequelize, UBounty, Op, Submission } = require("./models");
+const { sequelize, UBounty, Op, Submission, UBountyStaged, SubmissionStaged } = require("./models");
 
 // Routes
 const ubountyRouter = require('./routes/bounty');
@@ -177,6 +177,22 @@ function setupEthersJobs() {
         await bounty.save()
       }
     })
+  })
+  // Delete stale staged records
+  cron.schedule("0 * * * *", async function() {
+    let yesterday = new Date(Date.now() - 86400 * 1000)
+    let destroyedCount = 0
+    destroyedCount += await SubmissionStaged.destroy({
+      where: {
+        createdAt: {[Op.lte]: yesterday}
+      }
+    })
+    destroyedCount += await UBountyStaged.destroy({
+      where: {
+        createdAt: {[Op.lte]: yesterday}
+      }
+    })
+    console.log(`Destroyed ${destroyedCount} unconfirmed records`)
   })
 }
 
