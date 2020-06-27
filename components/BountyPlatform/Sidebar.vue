@@ -437,7 +437,4 @@ export default {
 .z-999 {
   z-index: 999;
 }
-.overflow-wrap-word {
-  overflow-wrap: normal;
-}
 </style>
