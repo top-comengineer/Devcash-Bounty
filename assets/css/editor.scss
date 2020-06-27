@@ -1,24 +1,29 @@
 .editor-content a {
   margin-top: 0.75rem;
   line-height: 1.9;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--c-secondary);
   text-decoration: underline var(--c-secondary);
+  transition: color 0.2s ease-out;
+}
+.editor-content a:hover {
+  color: var(--c-primary);
+  text-decoration: underline var(--c-primary);
 }
 .editor-content h1 {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   line-height: 1;
   margin-top: 2rem;
   font-weight: 800;
 }
 .editor-content h2 {
-  font-size: 1.45rem;
+  font-size: 1.35rem;
   line-height: 1;
   margin-top: 2rem;
   font-weight: 700;
 }
 .editor-content h3 {
-  font-size: 1.3rem;
+  font-size: 1.25rem;
   line-height: 1;
   margin-top: 2rem;
   font-weight: 700;
@@ -75,10 +80,6 @@
   margin-top: 0.75rem;
 }
 
-.editor-content a {
-  font-weight: 700;
-}
-
 .editor-content strong {
   font-weight: 800;
 }
@@ -95,7 +96,7 @@
   background-color: var(--c-background-ter);
   min-height: 24rem;
 }
-.ProseMirror > *:first-child{
+.ProseMirror *:first-child{
     margin-top: 0rem!important;
 }
 @media only screen and (min-width: 768px) {

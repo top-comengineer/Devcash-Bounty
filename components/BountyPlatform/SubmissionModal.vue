@@ -31,7 +31,7 @@
     <div class="w-full" action>
       <!-- Card for Description -->
       <div
-        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:px-10 mt-1 md:mt-2"
       >
         <!-- Submission Description -->
         <div class="w-full flex flex-col my-3">
