@@ -365,6 +365,13 @@
     "yourSubmissionApprovedTitle": "Your submission for bounty \"%1\" has been approved!",
     "yourSubmissionRejectedTitle": "Your submission for bounty \"%1\" has been rejected!"
   },
+  "errors": {
+    "errorTitle": "An error occured",
+    "failedCreateSubmission": "Failed to create submission",
+    "bountyCreateFailed": "Failed to create bounty",
+    "approvalFailed": "Failed to approve submission",
+    "rejectFailed": "Failed to reject submission"
+  },
   "meta": {
     "home": {
       "pageTitle": "Devcash | Cash for the Developer Economy",
