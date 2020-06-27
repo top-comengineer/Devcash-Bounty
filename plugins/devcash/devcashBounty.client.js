@@ -529,16 +529,22 @@ export class DevcashBounty {
   }
 
   // Methods for writing to the smart contract
-  async postBounty(bounty, available, amount, deadline, ethAmount) {
+  async postBounty(bounty, available, amount, deadline, ethAmount, amountEach) {
     if (!amount) {
       amount = utils.bigNumberify(0);
     } else {
       amount = utils.parseUnits(amount.toString(), this.tokenDecimals);
+      if (amountEach) {
+        amount = amount.mul(available)
+      }
     }
     if (!ethAmount) {
       ethAmount = utils.bigNumberify(0);
     } else {
       ethAmount = utils.parseEther(ethAmount);
+      if (amountEach) {
+        amount = amount.mul(available)
+      }
     }
     let overrides = {
       value: ethAmount,

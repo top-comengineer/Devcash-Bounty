@@ -438,6 +438,31 @@ export default {
       isBountyAmountEach: true,
     };
   },
+  watch: {
+    isBountyAmountEach: function() {
+      if (!this.isBountyAmountEach) {
+       if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
+         let amountBigNum = utils.parseEther(this.amount.toString())
+         amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+         this.amount = utils.formatEther(amountBigNum)
+       } else if (this.amount && this.numBounties) {
+         let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+         amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+         this.amount = utils.formatUnits(amountBigNum, 8)     
+       }
+      } else {
+       if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
+         let amountBigNum = utils.parseEther(this.amount.toString())
+         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         this.amount = utils.formatEther(amountBigNum)
+       } else if (this.amount && this.numBounties) {
+         let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         this.amount = utils.formatUnits(amountBigNum, 8)     
+       }        
+      }
+    }
+  },
   computed: {
     // mix the getters into computed with object spread operator
     ...mapGetters({
@@ -553,9 +578,15 @@ export default {
       let amountBigNum, balanceBigNum
        if (this.$store.state.devcashData.ethPrimary) {
          amountBigNum = utils.parseEther(this.amount.toString())
+         if (this.isBountyAmountEach) {
+           amountBigNum = amountBigNum.mul(this.numBounties)
+         }
          balanceBigNum = utils.bigNumberify(this.balance.primary.raw)
        } else {
          amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+         if (this.isBountyAmountEach) {
+           amountBigNum = amountBigNum.mul(this.numBounties)
+         }
          balanceBigNum = utils.bigNumberify(this.balance.primary.approvedRaw)       
        }
        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
@@ -643,13 +674,13 @@ export default {
             let res = await this.$axios.post('/bounty/post', bounty)
             if (res.status == 200) {
               await DevcashBounty.initEthConnector(this)
-              // TODO - eth amount
               await this.$store.state.devcash.connector.postBounty(
                 bounty,
                 this.numBounties,
                 this.amount,
                 this.getDeadlineS(),
-                this.curFee
+                this.curFee,
+                this.isBountyAmountEach
               )
               this.waitingConfirmation = true
               clearInterval(this.backupInterval)
