@@ -209,6 +209,7 @@ export default {
             let res = await this.$axios.post('/submission/post', sub)
             if (res.status == 200) {
               await DevcashBounty.initEthConnector(this)
+              this.confirmWindowOpen = true
               await this.$store.state.devcash.connector.postSubmission(
                 this.bounty,
                 sub.hash
@@ -223,11 +224,20 @@ export default {
               });              
             }
           } catch (e) {
-            // TODO - better error handling
-            alert('failed to create submission')
-            console.log(e)
+            if ('code' in e && e.code == 4001) {
+              console.log(e)
+            } else {
+              this.$notify({
+                group: 'main',
+                title: this.$t('errors.errorTitle'),
+                text: this.$t('errors.failedCreateSubmission'),
+                data: {}
+              })
+              console.log(e)
+            }
           }          
         } finally {
+          this.confirmWindowOpen = false
           this.submissionLoading = false
         }
       }
@@ -247,6 +257,7 @@ export default {
       maxContactNameLength: 50,
       contactNameError: false,
       emailError: false,
+      confirmWindowOpen: false,
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
     };
   }

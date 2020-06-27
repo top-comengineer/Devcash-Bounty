@@ -274,6 +274,7 @@ export default {
     async confirmConfirmModal(feedback, submission, type){
       await DevcashBounty.initEthConnector(this)
       try {
+        this.confirmWindowOpen = true
       if (type == 'reject') {
         await this.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
         this.$store.state.devcashData.pendingSubStatus.push({
@@ -302,10 +303,20 @@ export default {
         });        
       }
       } catch (e) {
-        console.log(e)
-        // TODO - error handling
+        if ('code' in e && e.code == 4001) {
+          console.log(e)
+        } else {
+          this.$notify({
+            group: 'main',
+            title: type == 'reject' ? this.$t('errors.rejectFailed') : this.$t('errors.approvalFailed'),
+            text: this.$t('errors.bountyCreateFailed'),
+            data: {}
+          })
+          console.log(e)
+        }
       } finally {
         this.isConfirmModalOpen = false;
+        this.confirmWindowOpen = false
       }
     },
     async loadMoreBounties() {
@@ -376,6 +387,7 @@ export default {
   },
   data() {
     return {
+      confirmWindowOpen: false,
       subRejectedChecked: true,
       subPendingChecked: true,
       subApprovedChecked: true,

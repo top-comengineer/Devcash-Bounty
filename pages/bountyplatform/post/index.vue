@@ -388,6 +388,7 @@ export default {
   data() {
     return {
       waitingConfirmation: false,
+      confirmWindowOpen: false,
       editor: null,
       openBounty: true,
       // For meta tags
@@ -674,6 +675,7 @@ export default {
             let res = await this.$axios.post('/bounty/post', bounty)
             if (res.status == 200) {
               await DevcashBounty.initEthConnector(this)
+              this.confirmWindowOpen = true
               await this.$store.state.devcash.connector.postBounty(
                 bounty,
                 this.numBounties,
@@ -682,6 +684,7 @@ export default {
                 this.curFee,
                 this.isBountyAmountEach
               )
+              this.confirmWindowOpen = false
               this.waitingConfirmation = true
               clearInterval(this.backupInterval)
               Cookies.remove('devcash_postcache')
@@ -698,11 +701,20 @@ export default {
               this.categoryValue = null              
             }
           } catch (e) {
-            // TODO - better error handling
-            alert('failed to create bounty')
-            console.log(e)
+            if ('code' in e && e.code == 4001) {
+              console.log(e)
+            } else {
+              this.$notify({
+                group: 'main',
+                title: this.$t('errors.errorTitle'),
+                text: this.$t('errors.bountyCreateFailed'),
+                data: {}
+              })
+              console.log(e)
+            }
           }
        } finally {
+         this.confirmWindowOpen = false
          this.submitLoading = false;
        }
      }
