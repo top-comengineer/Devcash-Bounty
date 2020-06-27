@@ -359,7 +359,7 @@
     "submissionReceivedTitle": "Your bounty \"%1\" has received a new submission",
     "submissionReceivedDescription": "Click to view details",
     "yourSubmissionApprovedTitle": "Your submission for bounty %1 has been approved!",
-    "yourSubmissionRejectedTitle": "Your submission for bounty %1 has been approved!"
+    "yourSubmissionRejectedTitle": "Your submission for bounty %1 has been rejected!"
   },
   "meta": {
     "home": {
