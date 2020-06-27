@@ -62,7 +62,7 @@ module.exports.getUBounties = async (req, res, next) => {
       where: {
         hunter: hunterQuery
       },
-      include: ['submissions']//, 'revisions']
+      include: ['submissions'] //, 'revisions'],
     })
     let ret = []
     for (let rObj of result.rows) {
