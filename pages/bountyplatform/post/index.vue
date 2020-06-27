@@ -771,7 +771,6 @@ export default {
     }
     // Interval
     this.backupInterval = setInterval(() => {
-      console.log('running interval')
       if (this.editor) {
         if (this.isLoggedIn) {
           // Backup object

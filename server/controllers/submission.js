@@ -167,6 +167,7 @@ module.exports.getSingleSubmission = async (req, res, next) => {
       where: {
         [Op.and]: [{submission_id: submissionId}, {ubounty_id:bountyId}],
       },
+      include: { model: UBounty, as: 'ubounty' }
     })
     if (result == null) {
       return res.status(404).json(

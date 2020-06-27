@@ -417,14 +417,36 @@ export default {
         connector.uBCContract.on("created", async (uBountyIndex, event) => {
           if (!ref.historicalCreated.includes(uBountyIndex)) {
             ref.historicalCreated.push(uBountyIndex)
-            ref.$notify({
-              group: 'main',
-              title: this.$t('notification.bountyTitle'),
-              text: this.$t('notification.bountyDescription'),
-              data: {
-                href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
+            setTimeout(async () => {
+              try {
+                let onChain = await ref.$axios.get(`/bounty/one?id=${uBountyIndex}`)
+                if (onChain.data.hunter) {
+                  if (onChain.data.hunter.toLowerCase() == this.loggedInAccount.toLowerCase()) {
+                    ref.$notify({
+                      group: 'main',
+                      title: this.$t('notification.personalBountyTitle').replace("%1", onChain.data.title),
+                      text: this.$t('notification.bountyDescription'),
+                      data: {
+                        href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
+                      }
+                    });
+                    ref.$root.$emit('bountyCreated', onChain.data)
+                  }
+                } else {
+                  ref.$notify({
+                    group: 'main',
+                    title: this.$t('notification.bountyTitle').replace("%1", onChain.data.title),
+                    text: this.$t('notification.bountyDescription'),
+                    data: {
+                      href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
+                    }
+                  });
+                  ref.$root.$emit('bountyCreated', onChain.data)
+                }
+              } catch (e) {
+                console.log(e)
               }
-            });
+            }, 10000)
           }
         });
         connector.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
@@ -442,7 +464,7 @@ export default {
                 if (onChain.data.creator == ref.loggedInAccount) {
                   ref.$notify({
                     group: 'main',
-                    title: this.$t('notification.yourSubmissionRejectedTitle').replace('%1', uBountyIndex),
+                    title: this.$t('notification.yourSubmissionRejectedTitle').replace('%1', onChain.data.ubounty.title),
                     text: this.$t('notification.submissionReceivedDescription'),
                     data: {
                       href: ref.localePath('bountyplatform-bountyhunter')
@@ -470,7 +492,7 @@ export default {
                 if (onChain.data.creator == ref.loggedInAccount) {
                   ref.$notify({
                     group: 'main',
-                    title: this.$t('notification.yourSubmissionApprovedTitle').replace('%1', uBountyIndex),
+                    title: this.$t('notification.yourSubmissionApprovedTitle').replace('%1', onChain.data.ubounty.title),
                     text: this.$t('notification.submissionReceivedDescription'),
                     data: {
                       href: ref.localePath('bountyplatform-bountyhunter')
