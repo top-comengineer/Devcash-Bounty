@@ -333,12 +333,12 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountForEach')"
-          :text="`{D}${amount}`"
+          :text="`{D}${singleAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountTotal')"
-          :text="`{D}${amount}`"
+          :text="`{D}${totalAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
