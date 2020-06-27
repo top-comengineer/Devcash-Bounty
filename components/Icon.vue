@@ -5,7 +5,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-if="type == 'undo'"
     >
@@ -18,7 +18,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'bold'"
     >
@@ -31,7 +31,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'code'"
     >
@@ -44,7 +44,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'redo'"
     >
@@ -57,7 +57,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'h1'"
     >
@@ -70,7 +70,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'h2'"
     >
@@ -83,7 +83,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'h3'"
     >
@@ -96,7 +96,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'italic'"
     >
@@ -109,7 +109,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'link'"
     >
@@ -122,7 +122,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'u-list'"
     >
@@ -135,7 +135,7 @@
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 20 20"
       class="fill-current"
-      :class="[colorClass != null ? colorClass : defaultColorClass]"
+      :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
       fill="#f2f1ff"
       v-else-if="type == 'o-list'"
     >
@@ -150,6 +150,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>discord</title>
       <path
@@ -166,6 +167,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>facebook</title>
       <path
@@ -182,6 +184,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>twitter</title>
       <path
@@ -198,6 +201,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>medium</title>
       <path
@@ -214,6 +218,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>github</title>
       <path
@@ -230,6 +235,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>reddit</title>
       <path
@@ -246,6 +252,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>instagram</title>
       <path
@@ -262,6 +269,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>menu</title>
       <path
@@ -290,6 +298,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>light</title>
       <circle
@@ -356,6 +365,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>dark</title>
       <path
@@ -372,6 +382,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>clock</title>
       <path
@@ -388,6 +399,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>award</title>
       <path
@@ -404,6 +416,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>explore</title>
       <path
@@ -420,6 +433,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>Post</title>
       <path
@@ -442,6 +456,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 14 14"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>Email</title>
       <path
@@ -458,6 +473,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>arrow-down</title>
       <path
@@ -474,6 +490,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>language</title>
       <path
@@ -490,6 +507,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>notification-new</title>
       <path
@@ -520,6 +538,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>overview</title>
       <path
@@ -536,6 +555,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>bountyhunter</title>
       <path
@@ -558,6 +578,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>bountymanager</title>
       <path
@@ -574,6 +595,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>bounty-complete</title>
       <path
@@ -596,6 +618,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>cancel</title>
       <path
@@ -612,6 +635,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>done</title>
       <path
@@ -628,6 +652,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>fee</title>
       <path
@@ -662,6 +687,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>new-bounty</title>
       <path
@@ -684,6 +710,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>personal-bounty</title>
       <path
@@ -706,6 +733,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>reclaim</title>
       <path
@@ -722,6 +750,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>Receive</title>
       <path
@@ -738,6 +767,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>Send</title>
       <path
@@ -754,6 +784,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>Sign Out</title>
       <path
@@ -776,6 +807,7 @@
       data-name="Layer 1"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 16 16"
+      :class="[sizeClasses?sizeClasses:'']"
     >
       <title>search</title>
       <path
@@ -790,6 +822,7 @@
       v-else-if="type=='back'"
       id="1cddab02-5c03-2e1a-b6ea-56f60e9d9742"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -805,6 +838,7 @@
       v-else-if="type=='calender'"
       id="1a421579-ccdd-123b-ddae-42f1ad9d9742"
       viewBox="0 0 24 24"
+      :class="[sizeClasses?sizeClasses:'']"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -820,6 +854,7 @@
       v-else-if="type=='copy'"
       id="2aaabd43-aa31-444b-dad1-31f1ad4c5713"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -838,6 +873,7 @@
       id="2aaabd43-aa31-4asdz-1234-zxf1ad4c5713"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 32 32"
+      :class="[sizeClasses?sizeClasses:'']"
       fill="none"
       xmlns:v="https://vecta.io/nano"
     >
@@ -855,7 +891,8 @@ export default {
   props: {
     type: null,
     colorClass: null,
-    secondaryColorClass: null
+    secondaryColorClass: null,
+    sizeClasses: null
   },
   data: function() {
     return {

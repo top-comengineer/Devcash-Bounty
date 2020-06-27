@@ -16,7 +16,7 @@
       </div>
       <!-- Centered, Page Content -->
       <div class="d-container-2 px-2 md:px-0">
-        <nuxt keep-alive/>
+        <nuxt keep-alive />
       </div>
       <!-- Right spacer -->
       <div class="sidebar-spacer-right"></div>
@@ -37,7 +37,7 @@ export default {
 .sidebar-container-inner {
   width: 100%;
   height: 100%;
-  transition: all 150ms ease-out;
+  transition: all 200ms ease-out;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container-inner:hover {
@@ -58,9 +58,9 @@ export default {
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container {
-    width: 4rem;
-    min-width: 4rem;
-    max-width: 4rem;
+    width: 4.75rem;
+    min-width: 4.75rem;
+    max-width: 4.75rem;
     height: calc(100vh - 7.5rem);
     top: 5.5rem;
   }
@@ -84,7 +84,7 @@ export default {
 @media only screen and (min-width: 768px) {
   .sidebar-spacer-left {
     width: calc((100vw - 1280px) / 2);
-    min-width: 4rem;
+    min-width: 4.75rem;
     bottom: 0.5rem;
   }
 }
