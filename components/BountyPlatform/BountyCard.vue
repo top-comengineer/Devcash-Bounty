@@ -34,9 +34,9 @@
       class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end px-4"
     >
       <!-- Submissions Left -->
-      <div class="flex flex-row justify-end items-center">
-        <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="award" />
-        <h6 class="text-right text-sm">
+      <div class="text-right text-sm">
+        <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
+        <span class="text-right text-sm">
           <span
             class="font-bold"
           >{{ `${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
@@ -45,19 +45,17 @@
             $t("bountyPlatform.bountyCard.bountiesLeft")
             }}
           </span>
-        </h6>
+        </span>
       </div>
       <!-- Remaining Time -->
-      <div class="flex flex-row justify-end items-center mt-1">
-        <Icon class="w-4 h-4 mr-1" colorClass="text-c-text" type="clock" />
-        <h6 class="text-right text-sm">
-          <span class="font-bold">{{ formatTimeLeft() }}</span>
-          <span class="opacity-75">
-            {{
-            $t("bountyPlatform.bountyCard.remaining")
-            }}
-          </span>
-        </h6>
+      <div class="text-right text-sm mt-2">
+        <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
+        <span class="font-bold">{{ formatTimeLeft() }}</span>
+        <span class="opacity-75">
+          {{
+          $t("bountyPlatform.bountyCard.remaining")
+          }}
+        </span>
       </div>
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->

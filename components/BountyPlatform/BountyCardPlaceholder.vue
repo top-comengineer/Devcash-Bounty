@@ -27,29 +27,13 @@
       class="w-full md:w-2/7 flex flex-col justify-center order-last md:order-none items-start md:items-end opacity-animation"
     >
       <!-- Submissions Left -->
-      <div class="flex flex-row justify-end items-center">
-        <div class="bg-c-text w-4 h-4 mr-1 rounded-full opacity-50"></div>
-        <h6 class="bg-c-text text-left text-sm text-transparent rounded-full opacity-50">
-          <span class="font-bold">1 of 1</span>
-          <span>
-            {{
-            $t("bountyPlatform.bountyCard.bountiesLeft")
-            }}
-          </span>
-        </h6>
-      </div>
+      <span
+        class="text-transparent text-right text-sm bg-c-text font-bold rounded-full opacity-50"
+      >1 of 1 bounties left</span>
       <!-- Remaining Time -->
-      <div class="flex flex-row justify-end items-center mt-1">
-        <div class="bg-c-text w-4 h-4 mr-1 rounded-full opacity-50"></div>
-        <h6 class="bg-c-text text-left text-sm text-transparent rounded-full opacity-50">
-          <span class="font-bold">11 months</span>
-          <span>
-            {{
-            $t("bountyPlatform.bountyCard.remaining")
-            }}
-          </span>
-        </h6>
-      </div>
+      <span
+        class="text-transparent text-right text-sm mt-2 bg-c-text font-bold rounded-full opacity-50"
+      >11 months Remaining</span>
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div
