@@ -5,16 +5,24 @@
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
-    <div v-else-if="filteredBounties.length <= 0 && bounties.length > 0" class="w-full flex flex-col justify-center items-center">
-      <h1>NO BOUNITES MATCHING FILTERS</h1>
+    <!-- No matching results for search -->
+    <div
+      v-else-if="filteredBounties.length <= 0 && bounties.length > 0"
+      class="bg-c-background-sec w-full flex flex-col justify-center items-center flex-wrap py-12 mt-2 mb-4 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg"
+    >
+      <img
+        class="max-w-xxxs h-auto relative"
+        :src="require('~/assets/images/illustrations/background/search.svg')"
+        alt="No Resulst Matching"
+      />
+      <p
+        class="opacity-75 text-xl font-bold text-center mt-4 md:max-w-xs"
+      >{{$t('bountyPlatform.explore.search.noMatchingResults')}}</p>
     </div>
     <div v-else class="w-full flex flex-col justify-center items-center">
       <BountyCard v-for="(item, i) in filteredBounties" :key="i" class="my-2" :bounty="item" />
     </div>
-    <div
-      v-if="hasMore && !loading"
-      class="flex flex-row justify-center mt-2"
-    >
+    <div v-if="hasMore && !loading" class="flex flex-row justify-center mt-2">
       <button
         @click="getBounties()"
         class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
@@ -23,8 +31,8 @@
     <div v-else-if="loadingMore">
       <button
         class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
-      >{{ $t("bountyPlatform.buttonLoading") }}</button>      
-    </div>    
+      >{{ $t("bountyPlatform.buttonLoading") }}</button>
+    </div>
   </div>
 </template>
 

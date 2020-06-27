@@ -93,6 +93,9 @@
         "supportTag": "Support",
         "prototypeTag": "Prototype",
         "otherTag": "Other"
+      },
+      "search": {
+        "noMatchingResults": "There are no matching results."
       }
     },
     "bountyCard": {
