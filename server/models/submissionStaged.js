@@ -13,6 +13,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
+    contactName: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    contactEmail: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },    
     // The FK reference to the uBounty this submission belongs to
     ubounty_id: {
         type: DataTypes.INTEGER,

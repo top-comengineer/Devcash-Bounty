@@ -45,9 +45,9 @@
         </div>
         <div class="w-full flex flex-col">
           <p
-            :class="{'text-c-danger':(description.length > maxDescriptionCount || description.length < minDescriptionCount)} "
+            :class="{'text-c-danger':(mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount)} "
             class="text-sm px-3 opacity-75"
-          >{{ description.length>0?`${description.length}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+          >{{ mdDescriptionLength>0?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}</p>
         </div>
       </div>
       <!-- Card for Contact Name and Email -->
@@ -113,6 +113,7 @@ import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+import TurndownService from 'turndown'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
@@ -142,24 +143,6 @@ export default {
     CTACard,
     Icon,
     TextEditor
-  },
-  data(){
-    return {
-      editor: null,
-      submissionEditorPlaceholder: `
-          <h1>
-            Submission Description
-          </h1>
-          <p>
-            You can write your submission here. 
-          </p> 
-          <p>
-            You can also use markdown shortcuts such as #, ##, *, ** etc.
-          </p>
-        `,
-      linkUrl: null,
-      linkMenuIsActive: false
-    }
   },
   props: {
     closeModal: Function,
@@ -198,7 +181,7 @@ export default {
             notAfter: ['paragraph'],
           }),
         ],
-        content: this.submissionEditorPlaceholder,
+        content: this.description ? this.description : this.submissionEditorPlaceholder,
       });
   },
   computed: {
@@ -206,13 +189,19 @@ export default {
     ...mapGetters({
       isLoggedIn: "devcashData/isLoggedIn",
       loggedInAccount: "devcashData/loggedInAccount"
-    }),  
+    }),
+    mdDescriptionLength() {
+      if (!this.editor) {
+        return 0
+      }
+      return this.turnDownSvc.turndown(this.editor.getHTML()).length
+    },    
   },
   methods: {
     cacheAndClose() {
       // Cache form data so it auto fills in when modal is re-opened
       this.$store.state.devcashData.submissionFormData[this.bounty.id] = {
-        description: this.description,
+        description: this.editor.getHTML(),
         contactName: this.contactName,
         contactEmail: this.contactEmail
       }
@@ -223,7 +212,7 @@ export default {
     },
     validateDescription(){
       let isValid = true
-      if (this.description.length < minDescriptionCount || this.description.length > maxDescriptionCount) {
+      if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
         isValid = false
       }
       return isValid
@@ -260,7 +249,7 @@ export default {
         try {
           this.submissionLoading = true
           // Create submission with hash
-          let sub = DevcashBounty.createSubmission(this.loggedInAccount, this.description, this.bounty.id)
+          let sub = DevcashBounty.createSubmission(this.loggedInAccount, this.turnDownSvc.turndown(this.editor.getHTML()), this.bounty.id, this.contactName, this.contactEmail)
           // Save off chain
           try {
             // Post to backend
@@ -318,12 +307,15 @@ export default {
   },
   data() {
     return {
+      turnDownSvc: new TurndownService({
+        headingStyle: 'atx',
+        codeBlockStyle: 'fenced'
+      }),      
       submissionLoading: false,
       isCloseHovered: false,
       isCloseFocused: false,
       minDescriptionCount: minDescriptionCount,
       maxDescriptionCount: maxDescriptionCount,
-      description: "",
       contactName: "",
       contactEmail: "", 
       minContactNameLength: 2,
@@ -331,7 +323,21 @@ export default {
       contactNameError: false,
       emailError: false,
       confirmWindowOpen: false,
-      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/
+      emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+      editor: null,
+      submissionEditorPlaceholder: `
+          <h1>
+            Submission Description
+          </h1>
+          <p>
+            You can write your submission here. 
+          </p> 
+          <p>
+            You can also use markdown shortcuts such as #, ##, *, ** etc.
+          </p>
+        `,
+      linkUrl: null,
+      linkMenuIsActive: false      
     };
   }
 };

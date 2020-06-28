@@ -102,7 +102,9 @@ module.exports.verifyAndReleaseSubmissions = async function (submissions) {
             submission_data: stagedSubmission.submission_data,
             approved: stagedSubmission.approved,
             ubounty_id: stagedSubmission.ubounty_id,
-            hash: stagedSubmission.hash          
+            hash: stagedSubmission.hash,
+            contactName: stagedSubmission.contactName,
+            contactEmail: stagedSubmission.contactEmail                 
           }, { transaction: t })
           // Delete
           let destroyed = await stagedSubmission.destroy({ transaction: t })

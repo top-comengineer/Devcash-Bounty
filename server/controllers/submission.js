@@ -201,7 +201,7 @@ module.exports.createSubmission = async (req, res, next) => {
         return res.status(422).json({ errors: errors.array() });
       }
 
-      const { creator, submissionData, ubounty_id } = req.body
+      const { creator, submissionData, ubounty_id, contactName, contactEmail } = req.body
       // Hash data for on-chain verification
       const hash = crypto.createHash("sha256").update(creator).update(submissionData).update(ubounty_id.toString()).digest("hex")
 
@@ -214,7 +214,9 @@ module.exports.createSubmission = async (req, res, next) => {
         creator: creator,
         submission_data: submissionData,
         ubounty_id: ubounty_id,
-        hash: hash
+        hash: hash,
+        contactEmail: contactEmail,
+        contactName: contactName
       })
       return res.json(submission)
    } catch(err) {
@@ -241,7 +243,12 @@ module.exports.validate = (method) => {
           min: 50,
           max: 1000
         }),
-        check('ubounty_id', "ubounty_id must be a number").exists().isNumeric()
+        check('ubounty_id', "ubounty_id must be a number").exists().isNumeric(),
+        check('contactName', 'Contact name must be between 2 and 25 characters').exists().isString().isLength({
+          min: 2,
+          max: 50
+        }),
+        check('contactEmail', "Invalid contact email").exists().isEmail()        
        ]   
     }
   }

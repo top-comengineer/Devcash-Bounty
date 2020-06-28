@@ -464,7 +464,7 @@ export class DevcashBounty {
   }
 
   // Create submission object and add hash
-  static createSubmission(creator, data, ubounty_id) {
+  static createSubmission(creator, data, ubounty_id, contactName, contactEmail) {
     try {
       utils.getAddress(creator);
     } catch (e) {
@@ -474,6 +474,8 @@ export class DevcashBounty {
       creator: creator,
       submissionData: data,
       ubounty_id: ubounty_id,
+      contactName,
+      contactEmail,      
     };
     submission.hash = DevcashBounty.hashSubmission(submission);
     return submission;
