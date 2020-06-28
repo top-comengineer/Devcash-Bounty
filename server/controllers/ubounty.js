@@ -4,6 +4,9 @@ const { UBounty, UBountyStaged, Op, sequelize }  = require('../models');
 const crypto = require('crypto');
 const removeMd = require('remove-markdown');
 const { etherClient } = require('../utils/ether_client')
+const { RedisDB } = require("../redis")
+
+const redis = new RedisDB()
 
 // POST new bounty
 // Sample body
@@ -70,6 +73,11 @@ module.exports.getUBounties = async (req, res, next) => {
         rSub.status = status.status
         rSub.feedback = status.feedback        
       }
+      // Get nAvailable
+      let cached = await redis.getUBounty(jObj.id)
+      if (cached) {
+        jObj.available = cached.available
+      }
       ret.push(jObj)
     }    
     return res.status(200).json(
@@ -120,6 +128,11 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
         rSub.status = status.status
         rSub.feedback = status.feedback        
       }
+      // Get nAvailable
+      let cached = await redis.getUBounty(jObj.id)
+      if (cached) {
+        jObj.available = cached.available
+      }      
       ret.push(jObj)
     }        
     return res.status(200).json(
@@ -170,6 +183,10 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
         rSub.status = status.status
         rSub.feedback = status.feedback        
       }
+      let cached = await redis.getUBounty(jObj.id)
+      if (cached) {
+        jObj.available = cached.available
+      }         
       ret.push(jObj)
     }        
     return res.status(200).json(
@@ -214,6 +231,10 @@ module.exports.getUBounty = async (req, res, next) => {
       rSub.status = status.status
       rSub.feedback = status.feedback        
     }
+    let cached = await redis.getUBounty(result.id)
+    if (cached) {
+      result.available = cached.available
+    }    
     return res.status(200).json(
       result
     )
@@ -308,11 +329,11 @@ module.exports.validate = (method) => {
             return true;            
           }
         ),
-        check('contactName', 'Contact name must be between 2 and 25 characters').exists().isString().isLength({
+        check('contactName', 'Contact name must be between 2 and 25 characters').optional().isString().isLength({
           min: 2,
           max: 50
         }),
-        check('contactEmail', "Invalid contact email").exists().isEmail()
+        check('contactEmail', "Invalid contact email").optional().isEmail()
        ]   
     }
   }

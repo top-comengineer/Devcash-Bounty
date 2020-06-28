@@ -24,9 +24,9 @@
         <p
           :class="{'text-c-danger': type == 'reject', 'text-c-success': type == 'approve' }"
           class="text-xl font-bold text-center"
-        >{D}{{formatAmount()}}</p>
+        >{D}{{ amount }}</p>
         <!-- ETH & USD Amount -->
-        <p class="text-center opacity-75 mt-1">{{`(Ξ${formatEthAmount()}`}}</p>
+        <p class="text-center opacity-75 mt-1">{{`(Ξ${ethAmount}`}}</p>
       </div>
       <!-- Indicator Icon -->
       <Icon
@@ -108,6 +108,18 @@ export default {
         Jazzicon,
         Icon
     },
+    computed: {
+      amount() {
+          let tokenDecimals = 8
+          if (this.$store.state.devcash.connector) {
+              tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+          }   
+          return DevcashBounty.formatAmountSingleSubmission(this.item.ubounty, tokenDecimals)        
+      },
+      ethAmount() {
+        return DevcashBounty.formatAmountSingleSubmissionEth(this.item.ubounty)
+      }
+    },
     methods: {
         confirmClicked() {
           this.loading = true
@@ -115,17 +127,7 @@ export default {
         },
         validateFeedback(){
             return null
-        },
-        formatAmount() {
-          let tokenDecimals = 8
-          if (this.$store.state.devcash.connector) {
-              tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
-          }   
-          return DevcashBounty.formatAmountSingleSubmission(this.item.ubounty, tokenDecimals)
-        },
-        formatEthAmount() {
-          return DevcashBounty.formatAmountSingleSubmissionEth(this.item.ubounty)
-        },        
+        },   
     }
 }
 </script>

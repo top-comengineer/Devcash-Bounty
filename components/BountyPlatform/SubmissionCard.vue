@@ -30,8 +30,8 @@
               'text-c-success': submission.status == 'approved',
               'text-c-danger': submission.status == 'rejected'}"
               class="font-bold text-left"
-            >{D}{{formatAmount()}}</h5>
-            <h6 class="text-sm text-left mt-1">(Ξ{{ formatEthAmount() }})</h6>
+            >{D}{{ amount }}</h5>
+            <h6 class="text-sm text-left mt-1">(Ξ{{ ethAmount }})</h6>
           </div>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
@@ -149,6 +149,16 @@ export default {
           return locale;
         }
       }
+    },
+    amount() {
+      let tokenDecimals = 8
+      if (this.$store.state.devcash.connector) {
+          tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
+      }
+      return DevcashBounty.formatAmountSingleSubmission(this.ubounty, tokenDecimals)      
+    },
+    ethAmount() {
+      return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
     }    
   },
   methods: {
@@ -170,16 +180,6 @@ export default {
     },
     formatDateStr(locale) {
       return DevcashBounty.formatDateStr(locale, this.submission.createdAt)
-    },
-    formatAmount() {
-      let tokenDecimals = 8
-      if (this.$store.state.devcash.connector) {
-          tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
-      }   
-      return DevcashBounty.formatAmountSingleSubmission(this.ubounty, tokenDecimals)
-    },
-    formatEthAmount() {
-      return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
     },
     getSimpleStatus() {
       return this.submission.status

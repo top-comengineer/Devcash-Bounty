@@ -38,7 +38,7 @@
         <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
         <span
           class="font-bold"
-        >{{`${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
+        >{{`${bounty.available}` }}</span>
         <span class="opacity-75">
           {{
           $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -60,8 +60,8 @@
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
       <h4
         class="text-c-primary font-extrabold text-xl text-left md:text-right"
-      >{D}{{ formatAmount() }}</h4>
-      <h5 class="text-lg text-left md:text-right mt-1">Ξ{{ formatEthAmount() }}</h5>
+      >{D}{{ amount }}</h4>
+      <h5 class="text-lg text-left md:text-right mt-1">Ξ{{ ethAmount }}</h5>
     </div>
     <!-- Divider -->
     <div class="bg-c-text md:hidden w-full h-px rounded-full opacity-5 my-3"></div>
@@ -95,19 +95,19 @@ export default {
         return "expired"
       }
       return "active"      
-    }
-  },
-  methods: {  
-    formatAmount() {
+    },
+    amount() {
       let tokenDecimals = 8
       if (this.$store.state.devcash.connector) {
           tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
       }   
-      return DevcashBounty.formatAmount(this.bounty, tokenDecimals)
+      return DevcashBounty.formatAmountSingleSubmission(this.bounty, tokenDecimals)      
     },
-    formatEthAmount() {
-      return DevcashBounty.formatAmountEth(this.bounty)
-    },
+    ethAmount() {
+      return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
+    }
+  },
+  methods: {  
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty)
     } 

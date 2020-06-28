@@ -142,6 +142,8 @@ function setupEthersJobs() {
       hunter: hunter,
       rewardAmount: devcashAmount
     })
+    // Update cache
+    await redis.updateBountyCache(etherClient)
   })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing

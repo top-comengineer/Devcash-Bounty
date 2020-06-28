@@ -676,7 +676,9 @@ export default {
   },
   validateContactName(){
     let isValid = true
-    if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
+    if (this.contactName.length == 0) {
+      return true
+    } else if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
        isValid = false
        this.contactNameError = true 
      } else {
@@ -686,7 +688,9 @@ export default {
   },
   validateEmail(){
     let isValid = true
-    if (!this.emailRegex.test(this.contactEmail)) {
+    if (this.contactEmail.length == 0) {
+      return true
+    } else if (!this.emailRegex.test(this.contactEmail)) {
        isValid = false
        this.emailError = true
      } else {

@@ -181,6 +181,7 @@ export default {
     })
     this.$root.$on('bountyCreated', (bounty) => {
       this.bounties.unshift(bounty)
+      this.applyFilters()
     })
   },
   activated() {

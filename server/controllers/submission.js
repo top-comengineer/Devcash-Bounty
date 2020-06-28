@@ -3,6 +3,9 @@ const { check, validationResult } = require('express-validator');
 const { etherClient } = require("../utils/ether_client")
 const { UBounty, Submission, SubmissionStaged, Op }  = require('../models');
 const crypto = require('crypto');
+const { RedisDB } = require("../redis")
+
+const redis = new RedisDB()
 
 // list?bounty=1&page=1&limit=10
 module.exports.getSubmissions = async (req, res, next) => {
@@ -90,6 +93,11 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      // Get nAvailable
+      let cached = await redis.getUBounty(rObj.ubounty.id)
+      if (cached) {
+        rObj.ubounty.available = cached.available
+      }      
       ret.push(rObj)
     }
     return res.status(200).json(
@@ -139,6 +147,11 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      // Get nAvailable
+      let cached = await redis.getUBounty(rObj.ubounty.id)
+      if (cached) {
+        rObj.ubounty.available = cached.available
+      }         
       ret.push(rObj)
     }
     return res.status(200).json(
@@ -173,7 +186,13 @@ module.exports.getSingleSubmission = async (req, res, next) => {
       return res.status(404).json(
         {"error":"submission not found"}
       )
-    }    
+    }
+    result = result.toJSON()
+    // Get nAvailable
+    let cached = await redis.getUBounty(result.ubounty.id)
+    if (cached) {
+      result.ubounty.available = cached.available
+    }       
     return res.status(200).json(
       result
     )
@@ -244,11 +263,11 @@ module.exports.validate = (method) => {
           max: 1000
         }),
         check('ubounty_id', "ubounty_id must be a number").exists().isNumeric(),
-        check('contactName', 'Contact name must be between 2 and 25 characters').exists().isString().isLength({
+        check('contactName', 'Contact name must be between 2 and 25 characters').optional().isString().isLength({
           min: 2,
           max: 50
         }),
-        check('contactEmail', "Invalid contact email").exists().isEmail()        
+        check('contactEmail', "Invalid contact email").optional().isEmail()        
        ]   
     }
   }

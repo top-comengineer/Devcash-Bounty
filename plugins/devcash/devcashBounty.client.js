@@ -52,12 +52,12 @@ export class DevcashBounty {
   static formatAmount(bounty, tokenDecimals) {
     let delta =
       bounty.available -
-      bounty.submissions.filter((sub) => sub.approved).length;
+      bounty.submissions.filter((sub) => sub.status == 'approved').length;
     if (delta <= 0) {
       return "0";
     }
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
-    totalAmount = totalAmount.div(bounty.available);
+    totalAmount = totalAmount.div(delta);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
   }
@@ -65,17 +65,20 @@ export class DevcashBounty {
   static formatAmountEth(bounty) {
     let delta =
       bounty.available -
-      bounty.submissions.filter((sub) => sub.approved).length;
+      bounty.submissions.filter((sub) => sub.status == 'approved').length;
     if (delta <= 0) {
       return "0";
     }
     let totalAmount = utils.bigNumberify(bounty.weiAmount);
-    totalAmount = totalAmount.div(bounty.available);
+    totalAmount = totalAmount.div(delta);
     totalAmount = utils.commify(utils.formatEther(totalAmount));
     return totalAmount;
   }
 
   static formatAmountSingleSubmission(bounty, tokenDecimals) {
+    if (bounty.available <= 0) {
+      return "0"
+    }
     let totalAmount = utils.bigNumberify(bounty.bountyAmount);
     totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
@@ -83,6 +86,9 @@ export class DevcashBounty {
   }
 
   static formatAmountSingleSubmissionEth(bounty) {
+    if (bounty.available <= 0) {
+      return "0"
+    }
     let totalAmount = utils.bigNumberify(bounty.weiAmount);
     totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.formatEther(totalAmount);
@@ -438,7 +444,7 @@ export class DevcashBounty {
     } catch (e) {
       throw new InvalidAddressError("Creator address is invalid");
     }
-    if (!emailRegexp.test(contactEmail)) {
+    if (contactEmail && contactEmail.length > 0 && !emailRegexp.test(contactEmail)) {
       throw new InvalidEmailError("Contact email is invalid");
     }
     if (hasHunter) {
@@ -452,10 +458,14 @@ export class DevcashBounty {
       creator: creator,
       title: title,
       description: description,
-      contactName: contactName,
-      contactEmail: contactEmail,
       category: category,
     };
+    if (contactName && contactName.length > 0) {
+      ubounty.contactName = contactName
+    }
+    if (contactEmail && contactEmail.length > 0) {
+      ubounty.contactEmail = contactEmail
+    }    
     if (hasHunter) {
       ubounty.hunter = hunter;
     }
@@ -473,10 +483,17 @@ export class DevcashBounty {
     let submission = {
       creator: creator,
       submissionData: data,
-      ubounty_id: ubounty_id,
-      contactName,
-      contactEmail,      
+      ubounty_id: ubounty_id,    
     };
+    if (contactName && contactName.length > 0) {
+      submission.contactName = contactName
+    }
+    if (contactEmail && contactEmail.length > 0 && !emailRegexp.test(contactEmail)) {
+      throw new InvalidEmailError("Contact email is invalid");
+    }    
+    if (contactEmail && contactEmail.length > 0) {
+      submission.contactEmail = contactEmail
+    }
     submission.hash = DevcashBounty.hashSubmission(submission);
     return submission;
   }

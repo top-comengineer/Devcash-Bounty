@@ -56,9 +56,9 @@
         <!-- Bounty Amount in Devcash -->
         <h2
           class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
-        >{{ '{D}' + formatAmount() }}</h2>
+        >{{ '{D}' + amount }}</h2>
         <!-- Bounty Amount in ETH & USD -->
-        <h3 class="text-lg md:text-xl text-left md:text-right mt-1">{{ "Ξ" + formatEthAmount() }}</h3>
+        <h3 class="text-lg md:text-xl text-left md:text-right mt-1">{{ "Ξ" + ethAmount }}</h3>
       </div>
     </div>
     <!-- Bounty Description and Hunt & Contribue Cards -->
@@ -120,7 +120,7 @@
             <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
             <span
               class="font-bold"
-            >{{`${bounty.available - bounty.submissions.filter(sub => sub.status == 'approved').length} of ${bounty.available}` }}</span>
+            >{{`${bounty.available}` }}</span>
             <span class="opacity-75">
               {{
               $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -331,6 +331,18 @@ export default {
         return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
       }
       return this.$sanitize(marked(this.bounty.description, {renderer: renderer}))
+    },
+    amount() {
+      let tokenDecimals = 8;
+      if (!this.$store.state.devcash.connector) {
+        DevcashBounty.initEthConnector(this);
+      } else {
+        tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
+      }
+      return DevcashBounty.formatAmountSingleSubmission(this.bounty, tokenDecimals);      
+    },
+    ethAmount() {
+      return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
     }
   },
   methods: {
@@ -352,18 +364,6 @@ export default {
       this.$refs.commentArea.style.height = "5px";
       this.$refs.commentArea.style.height =
         this.$refs.commentArea.scrollHeight + "px";
-    },
-    formatAmount() {
-      let tokenDecimals = 8;
-      if (!this.$store.state.devcash.connector) {
-        DevcashBounty.initEthConnector(this);
-      } else {
-        tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
-      }
-      return DevcashBounty.formatAmount(this.bounty, tokenDecimals);
-    },
-    formatEthAmount() {
-      return DevcashBounty.formatAmountEth(this.bounty)
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);

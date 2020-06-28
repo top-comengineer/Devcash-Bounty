@@ -15,11 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     contactName: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     contactEmail: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },    
     // The FK reference to the uBounty this submission belongs to
     ubounty_id: {

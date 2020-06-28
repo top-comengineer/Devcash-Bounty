@@ -31,6 +31,16 @@ class RedisDB {
     return uBounties;
   }
 
+  async getUBounty(index) {
+    let uBounties = await this.getUBounties()
+    for (const bounty of uBounties) {
+      if (bounty.index == index) {
+        return bounty
+      }
+    }
+    return null
+  }
+
   async setUBounties(uBounties, clobber = false) {
     if (typeof uBounties != "object") {
       console.log(
@@ -112,7 +122,13 @@ class RedisDB {
         // Update submissions and revisions
         let allUBounties = await this.getUBounties();
         for (const bounty of allUBounties) {
-          bounty.submissions = await etherClient.getBountySubmissions(bounty);
+          if (bounty.available > 0) {
+            bounty.submissions = await etherClient.getBountySubmissions(bounty);
+            for (const sub of bounty.submissions) {
+              sub.status = etherClient.getSubmissionStatus(bounty.index, sub.index)
+            }
+            bounty.available = bounty.available - bounty.submissions.filter((sub) => sub.status == 'approved').length
+          }
         }
         await this.setUBounties(allUBounties, true);
       } catch (e) {

@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     contactName: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     contactEmail: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
     },
     category: {
         type: DataTypes.STRING,
