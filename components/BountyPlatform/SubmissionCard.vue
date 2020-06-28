@@ -73,17 +73,38 @@
       <!-- Thin Status Bar -->
       <StatusDivider :status="getSimpleStatus()" />
       <!-- Bottom Part -->
-      <div class="w-full flex flex-col px-4 md:px-6 py-6">
+      <div class="w-full flex flex-col flex-wrap px-4 md:px-6 py-6">
         <!-- Message -->
         <p class="break-all" v-html="submission.submission_data"></p>
-        <div class="flex flex-row justify-between">
-          <!-- Date -->
-          <p class="text-sm opacity-75 mt-6">{{ formatDateStr(currentLocale.iso) }}</p>
+        <div class="flex flex-row justify-between items-end flex-wrap">
+          <!-- Contact Name & Contact Email & Date -->
+          <div
+            class="bg-c-text-05 border border-c-text-10 rounded-lg flex flex-row flex-wrap items-start mt-8 mr-6"
+          >
+            <div class="flex flex-col px-4 py-2 mr-4">
+              <p
+                class="text-sm opacity-75"
+              >{{$t("bountyPlatform.singleBounty.submissions.submissionDate")}}</p>
+              <p class="font-bold mt-1">{{ formatDateStr(currentLocale.iso) }}</p>
+            </div>
+            <div class="flex flex-col px-4 py-2 mr-4">
+              <p
+                class="text-sm opacity-75"
+              >{{$t("bountyPlatform.singleBounty.submissions.contactName")}}</p>
+              <p class="font-bold mt-1">{{ submission.contactName }}</p>
+            </div>
+            <div class="flex flex-col px-4 py-2 mr-4">
+              <p
+                class="text-sm opacity-75"
+              >{{$t("bountyPlatform.singleBounty.submissions.contactEmail")}}</p>
+              <p class="font-bold mt-1">{{submission.contactEmail}}</p>
+            </div>
+          </div>
           <!-- Show Feedback -->
           <button
             v-if="submission.feedback"
             @click.prevent="isFeedbackVisible=!isFeedbackVisible"
-            class="hover:bg-c-text-15 focus:bg-c-text-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mt-4"
+            class="whitespace-no-wrap hover:bg-c-text-15 focus:bg-c-text-15 flex flex-row items-center transition-all rounded-full duration-200 ease-out px-3 py-1 mt-4"
           >
             <Icon
               :class="isFeedbackVisible?'-rotate-180':''"

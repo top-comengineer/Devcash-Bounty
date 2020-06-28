@@ -286,7 +286,10 @@
       },
       "submissions": {
         "noSubmissions": "There are no submissions yet.",
-        "headerSubmissions": "Submissions"
+        "headerSubmissions": "Submissions",
+        "contactName": "Contact Name",
+        "contactEmail": "Contact Email",
+        "submissionDate": "Submission Date"
       },
       "comments": {
         "headerComments": "Comments",

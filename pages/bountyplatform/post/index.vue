@@ -472,7 +472,7 @@ export default {
             What do you want hunters of this bounty to do?
           </p>
           <p>
-            You can also use markdown shortcuts such as #, ##, *, ** etc.
+            You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.
           </p>
           <h2>Requirements</h2> 
           What do hunters need to do for you to approve their submission?
