@@ -87,13 +87,13 @@
               >{{$t("bountyPlatform.singleBounty.submissions.submissionDate")}}</p>
               <p class="font-bold mt-1">{{ formatDateStr(currentLocale.iso) }}</p>
             </div>
-            <div class="flex flex-col px-4 py-2 mr-4">
+            <div v-if="submission.contactName" class="flex flex-col px-4 py-2 mr-4">
               <p
                 class="text-sm opacity-75"
               >{{$t("bountyPlatform.singleBounty.submissions.contactName")}}</p>
               <p class="font-bold mt-1">{{ submission.contactName }}</p>
             </div>
-            <div class="flex flex-col px-4 py-2 mr-4">
+            <div v-if="submission.contactEmail" class="flex flex-col px-4 py-2 mr-4">
               <p
                 class="text-sm opacity-75"
               >{{$t("bountyPlatform.singleBounty.submissions.contactEmail")}}</p>

@@ -9,7 +9,15 @@
   >
     <!-- Bounty Name and Address -->
     <div class="w-full md:w-3/7 flex flex-col flex-wrap justify-center items-start px-4">
-      <h4 class="font-extrabold text-xl text-left">{{ bounty.title }}</h4>
+      <div class="flex flex-row flex-wrap items-center">
+        <h4 class="font-extrabold text-xl text-left mr-3">{{ bounty.title }}</h4>
+        <!-- Status Badge -->
+        <div
+          v-if="status == 'completed' || status == 'expired'"
+          :class="status == 'expired'?'text-c-pending bg-c-pending-10 border-c-pending-40':'text-c-success bg-c-success-10 border-c-success-40'"
+          class="border text-sm font-bold px-3 py-0_5 rounded-full my-1_5"
+        >{{status=="expired" ?$t("bountyPlatform.bountyCard.tag.expired"):status=="completed"?$t("bountyPlatform.bountyCard.tag.completed"):''}}</div>
+      </div>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon class="flex" :diameter="20" :address="bounty.bountyChest" />
         <h5 class="font-mono-jet text-md text-left ml-2 opacity-75">
@@ -36,9 +44,7 @@
       <!-- Submissions Left -->
       <div class="text-right text-sm">
         <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
-        <span
-          class="font-bold"
-        >{{`${bounty.available}` }}</span>
+        <span class="font-bold">{{`${bounty.available}` }}</span>
         <span class="opacity-75">
           {{
           $t("bountyPlatform.bountyCard.bountiesLeft")
@@ -58,9 +64,7 @@
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
-      <h4
-        class="text-c-primary font-extrabold text-xl text-left md:text-right"
-      >{D}{{ amount }}</h4>
+      <h4 class="text-c-primary font-extrabold text-xl text-left md:text-right">{D}{{ amount }}</h4>
       <h5 class="text-lg text-left md:text-right mt-1">Ξ{{ ethAmount }}</h5>
     </div>
     <!-- Divider -->

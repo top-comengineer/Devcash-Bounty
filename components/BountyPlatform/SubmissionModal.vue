@@ -56,10 +56,12 @@
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
-          <label
-            for="submissionContactName"
-            class="text-xl font-bold px-3"
-          >{{$t('bountyPlatform.post.contactName')}}</label>
+          <label for="submissionContactName" class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.contactName')}}
+            <span
+              class="font-normal text-base opacity-75"
+            >{{$t('bountyPlatform.post.optional')}}</span>
+          </label>
           <input
             id="submissionContactName"
             v-model="contactName"
@@ -77,10 +79,12 @@
         <div class="hidden md:block w-12"></div>
         <!-- Contact Email -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
-          <label
-            for="submissionContactEmail"
-            class="text-xl font-bold px-3"
-          >{{$t('bountyPlatform.post.contactEmail')}}</label>
+          <label for="submissionContactEmail" class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.contactEmail')}}
+            <span
+              class="font-normal text-base opacity-75"
+            >{{$t('bountyPlatform.post.optional')}}</span>
+          </label>
           <input
             id="submissionContactEmail"
             v-model="contactEmail"
