@@ -44,7 +44,7 @@
           >{{$t('bountyPlatform.post.bountyDescription')}}</h4>
           <!-- Text editor for the description -->
           <client-only>
-            <text-editor :editor="editor" />
+            <text-editor :editor="editor" :placeholder="editorPlaceholder" />
           </client-only>
         </div>
         <!-- Error Field -->
@@ -461,6 +461,26 @@ export default {
       }),
       backupInterval: null,
       isBountyAmountEach: true,
+      editorPlaceholder: `
+          <h1>
+            Bounty Description
+          </h1>
+          <p>
+            You can explain your bounty here. 
+          </p>
+          <p>
+            What do you want hunters of this bounty to do?
+          </p>
+          <p>
+            You can also use markdown shortcuts such as #, ##, *, ** etc.
+          </p>
+          <h2>Requirements</h2> 
+          What do hunters need to do for you to approve their submission?
+          <ol>
+          <li>First requirement</li>
+          <li>Second requirement</li>
+          </ol> 
+        `
     };
   },
   watch: {
@@ -741,7 +761,7 @@ export default {
               clearInterval(this.backupInterval)
               Cookies.remove('devcash_postcache')
               this.title = ""
-              this.editor.setContent("")
+              this.editor.setContent(this.editorPlaceholder)
               this.hutner = ""
               this.numBounties = null
               this.amount = null
@@ -813,15 +833,7 @@ export default {
             notAfter: ['paragraph'],
           }),
         ],
-        content: `
-          <h2>
-            Trailing Paragraph
-          </h2>
-          <p>
-            In this demo we force to render a paragraph at the end of the document. This can be useful in some situations, for example after adding images.
-          </p>
-          <pre><code>Also, sometimes it's hard to remember to type \`cmd/ctrl + enter\` to leave a code block.</code></pre>
-        `,
+        content: this.editorPlaceholder,
       });
   },
   activated() {

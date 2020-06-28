@@ -87,6 +87,22 @@
             >
               <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
             </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              class="flex flex-row items-center font-bold p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="editor.setContent(placeholder)"
+            >
+              <icon class="w-6 h-6 inline-block" type="reset" colorClass="text-c-text" />
+              <span class="mx-1">Reset</span>
+            </button>
+            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
+            <button
+              class="flex flex-row items-center font-bold p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
+              @click="editor.setContent('')"
+            >
+              <icon class="w-6 h-6 inline-block" type="cancel" colorClass="text-c-text" />
+              <span class="mx-1">Clear</span>
+            </button>
           </div>
         </editor-menu-bar>
       </div>
@@ -178,7 +194,8 @@ import Icon from "~/components/Icon.vue";
 import { EditorContent, EditorMenuBar, EditorMenuBubble } from 'tiptap'
 export default {
   props: {
-    editor: null
+    editor: null,
+    placeholder: null
   },
   components: {
     EditorContent,

@@ -38,13 +38,10 @@
           <h3
             class="text-2xl font-bold px-3"
           >{{$t('bountyPlatform.singleBounty.submission.descriptionHeader')}}</h3>
-          <textarea
-            v-model="description"
-            class="bg-c-background-ter border-c-background-ter submissionDescArea w-full leading-loose text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 md:py-4 md:px-6 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.singleBounty.submission.descriptionPlaceholder')"
-            @blur="validateDescription"
-          />
+          <!-- Text editor for the description -->
+          <client-only>
+            <text-editor :editor="editor" :placeholder="submissionEditorPlaceholder" />
+          </client-only>
         </div>
         <div class="w-full flex flex-col">
           <p
@@ -115,6 +112,25 @@ import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
+import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+// Import the editor
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import {
+  Bold,
+  Italic,
+  Heading,
+  BulletList,
+  OrderedList,
+  ListItem,
+  Code,
+  History,
+  HorizontalRule,
+  Link,
+  TrailingNode
+} from 'tiptap-extensions'
+import { CustomHardBreak } from '~/plugins/tiptap/CustomHardBreak'
+import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
+import * as Cookies from "js-cookie"
 
 const minDescriptionCount = 50;
 const maxDescriptionCount = 1000;
@@ -124,7 +140,26 @@ export default {
   components: {
     GreetingCard,
     CTACard,
-    Icon
+    Icon,
+    TextEditor
+  },
+  data(){
+    return {
+      editor: null,
+      submissionEditorPlaceholder: `
+          <h1>
+            Submission Description
+          </h1>
+          <p>
+            You can write your submission here. 
+          </p> 
+          <p>
+            You can also use markdown shortcuts such as #, ##, *, ** etc.
+          </p>
+        `,
+      linkUrl: null,
+      linkMenuIsActive: false
+    }
   },
   props: {
     closeModal: Function,
@@ -142,6 +177,29 @@ export default {
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
     }
+    this.editor =  new Editor({
+        extensions: [
+          new Bold(),
+          new Italic(),
+          new Heading({ levels: [1, 2, 3] }),
+          new BulletList(),
+          new OrderedList(),
+          new ListItem(),
+          new Link({
+            openOnClick: false
+          }),
+          new Code(),
+          new History(),
+          new CustomCodeBlock(),
+          new CustomHardBreak(),        
+          new HorizontalRule(),   
+          new TrailingNode({
+            node: 'paragraph',
+            notAfter: ['paragraph'],
+          }),
+        ],
+        content: this.submissionEditorPlaceholder,
+      });
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -241,7 +299,22 @@ export default {
           this.submissionLoading = false
         }
       }
-    }
+    },
+    showLinkMenu(attrs) {
+      this.linkUrl = attrs.href
+      this.linkMenuIsActive = true
+      this.$nextTick(() => {
+        this.$refs.linkInput.focus()
+      })
+    },
+    hideLinkMenu() {
+      this.linkUrl = null
+      this.linkMenuIsActive = false
+    },
+    setLinkUrl(command, url) {
+      command({ href: url })
+      this.hideLinkMenu()
+    },
   },
   data() {
     return {

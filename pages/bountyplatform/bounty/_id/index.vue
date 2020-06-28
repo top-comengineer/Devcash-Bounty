@@ -7,7 +7,7 @@
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
       >
         <div
-          class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12"
+          class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-32 pt-20 md:pt-24 pb-12"
         >
           <SubmissionModal :bounty="bounty" :closeModal="() => this.isSubmissionModalOpen = false" />
         </div>
