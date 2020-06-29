@@ -75,7 +75,7 @@
       <!-- Bottom Part -->
       <div class="w-full flex flex-col flex-wrap px-4 md:px-6 py-6">
         <!-- Message -->
-        <p class="break-all" v-html="submission.submission_data"></p>
+        <p class="break-all" v-html="submissionData"></p>
         <div class="flex flex-row justify-between items-end flex-wrap">
           <!-- Contact Name & Contact Email & Date -->
           <div
@@ -138,6 +138,7 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import StatusTag from "~/components/BountyPlatform/StatusTag.vue";
 import StatusDivider from "~/components/BountyPlatform/StatusDivider.vue";
 import FeedbackCard from "~/components/BountyPlatform/FeedbackCard.vue";
+import marked from 'marked'
 export default {
   components: {
     Icon,
@@ -180,7 +181,14 @@ export default {
     },
     ethAmount() {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
-    }    
+    },
+    submissionData() {
+      let renderer = new marked.Renderer()
+      renderer.link = function( href, title, text ) {
+        return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
+      }
+      return this.$sanitize(marked(this.submission.submission_data, {renderer: renderer}))
+    }
   },
   methods: {
     isPendingRejection() {

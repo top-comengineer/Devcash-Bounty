@@ -367,6 +367,10 @@ export default {
       this.confirmModalType = type
       this.confirmModalItem = submission
       this.isConfirmModalOpen = true
+    },
+    unshiftNewSubmission(submission) {
+      this.submissions.unshift(submission)
+      this.applySubmissionFilters()
     }
   },
   mounted() {
@@ -388,7 +392,12 @@ export default {
           submission.status = 'rejected'
         }
       }
-    })     
+    }) 
+    this.$root.$on("managerSubmitted", (objR) => {
+      if (this.submissions.filter((sub) => sub.id == objR.id).length == 0) {
+        this.unshiftNewSubmission(objR)
+      }
+    })    
   },
   activated() {
     // Set sidebar context

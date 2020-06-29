@@ -518,14 +518,22 @@ export default {
               try {
                 let onChain = await ref.$axios.get(`/bounty/one?id=${uBountyIndex}`)
                 if (onChain.data.creator == ref.loggedInAccount) {
-                  ref.$notify({
-                    group: 'main',
-                    title: this.$t('notification.submissionReceivedTitle').replace('%1', onChain.data.title),
-                    text: this.$t('notification.submissionReceivedDescription'),
-                    data: {
-                      href: ref.localePath('bountyplatform-bountymanager')
-                    }
-                  });              
+                  setTimeout(async () => {
+                    try {
+                      let onChainSub = await ref.$axios.get(`/submission/one?bounty_id=${uBountyIndex}&submission_id=${submissionIndex}`)
+                      ref.$notify({
+                        group: 'main',
+                        title: this.$t('notification.submissionReceivedTitle').replace('%1', onChain.data.title),
+                        text: this.$t('notification.submissionReceivedDescription'),
+                        data: {
+                          href: ref.localePath('bountyplatform-bountymanager')
+                        }
+                      });
+                      this.$root.$emit("managerSubmitted", onChainSub.data)
+                    } catch (e) {
+                      console.log(e)
+                    }    
+                  }, 10000)        
                 }
               } catch (e) {
                 console.log(e)

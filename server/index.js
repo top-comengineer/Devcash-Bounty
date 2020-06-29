@@ -76,7 +76,7 @@ function setupEthersJobs() {
     // Retrieve bounty from chain
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    await redis.setUBountiesIfNotExistsWithLock([uBounty])
+    await redis.addBounty(uBounty)
     // Verify and release from staging tables
     await verifyAndReleaseBounties([uBounty])
   })
@@ -86,7 +86,7 @@ function setupEthersJobs() {
     // Retrieve bounty and submission with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    await redis.setUBountiesIfNotExistsWithLock([uBounty])      
+    await redis.addBounty(uBounty)  
     uBounty.submissions.forEach(async submission => {
       if (submission.index == submissionIndex) {
         await verifyAndReleaseSubmissions([submission])
@@ -143,7 +143,8 @@ function setupEthersJobs() {
       rewardAmount: devcashAmount
     })
     // Update cache
-    await redis.updateBountyCache(etherClient)
+    let onChain = await etherClient.getUBounty(uBountyIndex)
+    await redis.addBounty(onChain)
   })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing

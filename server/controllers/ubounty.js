@@ -75,8 +75,10 @@ module.exports.getUBounties = async (req, res, next) => {
       }
       // Get nAvailable
       let cached = await redis.getUBounty(jObj.id)
-      if (cached) {
+      if (cached) {  
         jObj.available = cached.available
+        jObj.bountyAmount = cached.amount
+        jObj.weiAmount = cached.weiAmount
       }
       ret.push(jObj)
     }    
@@ -132,6 +134,8 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
       let cached = await redis.getUBounty(jObj.id)
       if (cached) {
         jObj.available = cached.available
+        jObj.bountyAmount = cached.amount
+        jObj.weiAmount = cached.weiAmount        
       }      
       ret.push(jObj)
     }        
@@ -186,6 +190,8 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
       let cached = await redis.getUBounty(jObj.id)
       if (cached) {
         jObj.available = cached.available
+        jObj.bountyAmount = cached.amount
+        jObj.weiAmount = cached.weiAmount    
       }         
       ret.push(jObj)
     }        
@@ -234,6 +240,8 @@ module.exports.getUBounty = async (req, res, next) => {
     let cached = await redis.getUBounty(result.id)
     if (cached) {
       result.available = cached.available
+      result.bountyAmount = cached.amount
+      result.weiAmount = cached.weiAmount          
     }    
     return res.status(200).json(
       result
