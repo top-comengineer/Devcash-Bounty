@@ -12,7 +12,7 @@ class RedisDB {
     // TODO allow customizing host/port
     this.redis = new Redis();
     this.jsonCache = new JSONCache(this.redis);
-    this.locker = redislock.createLock(this.redis, { timeout: 500000 });
+    this.locker = redislock.createLock(this.redis, { timeout: 600000 });
     this.retryingLocker = redislock.createLock(this.redis, {
       timeout: 200000,
       retries: 10,

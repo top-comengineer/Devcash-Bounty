@@ -192,8 +192,11 @@ module.exports.getSingleSubmission = async (req, res, next) => {
       )
     }
     result = result.toJSON()
+    let status = etherClient.getSubmissionStatus(result.ubounty_id, result.submission_id)  
+    result.status = status.status
+    result.feedback = status.feedback
     // Get nAvailable
-    let cached = await redis.getUBounty(result.ubounty.id)
+    let cached = await redis.getUBounty(result.ubounty_id)
     if (cached) {
       result.ubounty.available = cached.available
       result.ubounty.bountyAmount = cached.amount
