@@ -391,7 +391,9 @@
     "submissionReceivedTitle": "Your bounty \"%1\" has received a new submission",
     "submissionReceivedDescription": "Click to view details",
     "yourSubmissionApprovedTitle": "Your submission for bounty \"%1\" has been approved!",
-    "yourSubmissionRejectedTitle": "Your submission for bounty \"%1\" has been rejected!"
+    "yourSubmissionRejectedTitle": "Your submission for bounty \"%1\" has been rejected!",
+    "unknownNetworkTitle": "Unknown Network",
+    "unknownNetworkDescription": "Devcash runs on \"mainnet\", ensure your network settings in your wallet are correct."
   },
   "errors": {
     "errorTitle": "An error occured",

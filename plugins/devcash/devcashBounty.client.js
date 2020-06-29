@@ -153,8 +153,21 @@ export class DevcashBounty {
           vueComponent.$root.$emit('connectorSet', null)
           await this.initEthConnector(vueComponent);
         } else {
-          alert(`Unknown error ${e}`);
-          throw e;
+          if (e.toString().toLowerCase().includes("contract not deployed")) {
+            vueComponent.$store.commit("devcashData/setProvider", null);
+            vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
+            vueComponent.$store.commit("devcash/setConnector", null);
+            vueComponent.$root.$emit('connectorSet', null)    
+            vueComponent.$notify({
+              group: 'main',
+              title: vueComponent.$t('notification.unknownNetworkTitle'),
+              text: vueComponent.$t('notification.unknownNetworkDescription'),
+              data: {}
+            })    
+            console.log(e)
+          } else {
+            console.log(e)
+          }
         }
       }
     }
@@ -223,7 +236,21 @@ export class DevcashBounty {
           window.open("https://wallet.portis.io/", "_blank");
         }
       }
-      throw e
+      if (e.toString().toLowerCase().includes("contract not deployed")) {
+        vueComponent.$store.commit("devcashData/setProvider", null);
+        vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
+        vueComponent.$store.commit("devcash/setConnector", null);
+        vueComponent.$root.$emit('connectorSet', null)    
+        vueComponent.$notify({
+          group: 'main',
+          title: vueComponent.$t('notification.unknownNetworkTitle'),
+          text: vueComponent.$t('notification.unknownNetworkDescription'),
+          data: {}
+        })    
+        console.log(e)
+      } else {
+        console.log(e)
+      }
     }
   }
 
