@@ -57,7 +57,11 @@
           >{{$t('bountyPlatform.singleBounty.submission.descriptionHeader')}}</h3>
           <!-- Text editor for the description -->
           <client-only>
-            <text-editor :editor="editor" :placeholder="submissionEditorPlaceholder" />
+            <text-editor
+              :editor="editor"
+              :placeholder="submissionEditorPlaceholder"
+              :isPlaceholderVisible="isPlaceholderVisible"
+            />
           </client-only>
         </div>
         <div class="w-full flex flex-col">
@@ -177,6 +181,7 @@ export default {
       this.description = this.$store.state.devcashData.submissionFormData[this.bounty.id].description
       this.contactName = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactName
       this.contactEmail = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactEmail
+      this.isPlaceholderVisible = false
     }
   },
   mounted() {
@@ -187,11 +192,13 @@ export default {
         onFocus: (e) => {
           if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
             this.editor.clearContent()
+            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.submissionEditorPlaceholder)
+            this.isPlaceholderVisible = true
           }
         },
         extensions: [
@@ -371,7 +378,8 @@ export default {
       editor: null,
       submissionEditorPlaceholder: `<h1>Submission Description</h1><p>You can write your submission here.</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p>`,
       linkUrl: null,
-      linkMenuIsActive: false      
+      linkMenuIsActive: false,
+      isPlaceholderVisible: true  
     };
   }
 };
