@@ -221,7 +221,9 @@
     },
     "editor": {
       "addLink": "Add Link",
-      "updateLink": "Update Link"
+      "updateLink": "Update Link",
+      "clear": "Clear",
+      "reset": "Reset"
     },
     "confirmModal": {
       "confirmToApprove": {
