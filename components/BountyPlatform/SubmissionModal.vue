@@ -370,7 +370,7 @@ export default {
       confirmWindowOpen: false,
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       editor: null,
-      submissionEditorPlaceholder: `<h1>Submission Description</h1><p>You can write your submission here.</p><p>You can also use markdown shortcuts such as #, ##, *, ** etc.</p>`,
+      submissionEditorPlaceholder: `<h1>Submission Description</h1><p>You can write your submission here.</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p>`,
       linkUrl: null,
       linkMenuIsActive: false      
     };
