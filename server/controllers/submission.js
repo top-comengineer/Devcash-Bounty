@@ -97,6 +97,8 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
         rObj.ubounty.available = cached.available
+        rObj.ubounty.bountyAmount = cached.amount
+        rObj.ubounty.weiAmount = cached.weiAmount         
       }      
       ret.push(rObj)
     }
@@ -151,6 +153,8 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
         rObj.ubounty.available = cached.available
+        rObj.ubounty.bountyAmount = cached.amount
+        rObj.ubounty.weiAmount = cached.weiAmount            
       }         
       ret.push(rObj)
     }
@@ -192,6 +196,8 @@ module.exports.getSingleSubmission = async (req, res, next) => {
     let cached = await redis.getUBounty(result.ubounty.id)
     if (cached) {
       result.ubounty.available = cached.available
+      result.ubounty.bountyAmount = cached.amount
+      result.ubounty.weiAmount = cached.weiAmount          
     }       
     return res.status(200).json(
       result
