@@ -669,7 +669,7 @@ export default {
   },
   validateNumBounties(){
     let isValid = true
-      if (this.numBounties < 1) {
+      if (this.numBounties < 1 || this.numBounties > 255) {
        this.numBountiesError = true
        isValid = false
      } else {

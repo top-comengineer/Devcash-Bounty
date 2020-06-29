@@ -614,7 +614,7 @@ export class DevcashBounty {
       return await this.uBCContract.postOpenBounty(
         "",
         bounty.hash,
-        available,
+        parseInt(available),
         amount,
         deadline,
         overrides
@@ -624,7 +624,7 @@ export class DevcashBounty {
       "",
       bounty.hash,
       bounty.hunter,
-      available,
+      parseInt(available),
       amount,
       deadline,
       overrides

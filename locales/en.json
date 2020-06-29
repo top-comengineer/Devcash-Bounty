@@ -145,7 +145,7 @@
       "invalidAddress": "Invalid address.",
       "titleLengthError": "Title must be between %1 and %2 characters.",
       "contactNameLengthError": "Contact name must be between %1 and %2 characters.",
-      "numBountiesError": "At least 1 bounty is required.",
+      "numBountiesError": "You must specify a value between 1 and 255.",
       "invalidAmount": "Invalid bounty amount.",
       "insufficientBalance": "Insufficient balance.",
       "invalidEmail": "Invalid email address.",
