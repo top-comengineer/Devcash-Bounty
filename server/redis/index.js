@@ -39,12 +39,12 @@ class RedisDB {
 
   async addBounty(bounty) {
     if (bounty && bounty.index) {
-      await this.redis.hset("bounties", bounty.index.toString(), JSON.stringify(bounty))
+      await this.redis.hset(`${prefix}:bounties`, bounty.index.toString(), JSON.stringify(bounty))
     }
   }
 
   async getUBounty(index) {
-    let cached = await this.redis.hget("bounties", index.toString())
+    let cached = await this.redis.hget(`${prefix}:bounties`, index.toString())
     if (cached) {
       return JSON.parse(cached)
     }
@@ -52,7 +52,7 @@ class RedisDB {
   }
 
   async getUBounties() {
-    let cached = await this.redis.hgetall("bounties")
+    let cached = await this.redis.hgetall(`${prefix}:bounties`)
     let ret = []
     if (cached) {
       for (const [key, value] of Object.entries(cached)) {
@@ -73,7 +73,7 @@ class RedisDB {
       let nBounties = await etherClient.getNUbounties()
       let uBounties = await etherClient.getUbounties(nBounties)
       for (const bounty of uBounties) {
-        await this.redis.hset("bounties", bounty.index.toString(), JSON.stringify(bounty))
+        await this.redis.hset(`${prefix}:bounties`, bounty.index.toString(), JSON.stringify(bounty))
       }
       console.log("Finished updating cache")
       return lock.release();
