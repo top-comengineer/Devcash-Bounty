@@ -97,7 +97,7 @@
               @click="editor.setContent(placeholder)"
             >
               <icon class="w-6 h-6 inline-block" type="reset" colorClass="text-c-text" />
-              <span class="mx-1">Reset</span>
+              <span class="mx-1">{{$t("bountyPlatform.editor.reset")}}</span>
             </button>
             <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
             <button
@@ -105,7 +105,7 @@
               @click="editor.setContent('')"
             >
               <icon class="w-6 h-6 inline-block" type="cancel" colorClass="text-c-text" />
-              <span class="mx-1">Clear</span>
+              <span class="mx-1">{{$t("bountyPlatform.editor.clear")}}</span>
             </button>
           </div>
         </editor-menu-bar>

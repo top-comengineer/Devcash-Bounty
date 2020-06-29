@@ -170,25 +170,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.ProseMirror {
-  padding: 1rem 1rem 1rem 1rem;
-  border: 1px solid transparent;
-  transition: border 0.2s ease-out;
-  border-radius: 0rem 0rem 0.5rem 0.5rem;
-  background-color: var(--c-background-text-05);
-  min-height: 24rem;
-}
-.ProseMirror *:first-child {
-  margin-top: 0rem !important;
-}
-@media only screen and (min-width: 768px) {
-  .ProseMirror {
-    padding: 1.25rem 1.5rem 1.25rem 1.5rem;
-  }
-}
-.ProseMirror-focused {
-  outline: none;
-  border: 1px solid var(--c-primary);
-}
-</style>

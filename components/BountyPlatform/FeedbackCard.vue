@@ -30,7 +30,7 @@
       <!-- Bottom Part -->
       <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
-        <p class="break-all" v-html="feedback"></p>
+        <div class="editor-content" v-html="feedback"></div>
       </div>
     </div>
   </div>
