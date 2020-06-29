@@ -4,7 +4,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-if="type == 'undo'"
   >
@@ -17,7 +17,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'bold'"
   >
@@ -30,7 +30,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'code'"
   >
@@ -43,7 +43,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'redo'"
   >
@@ -56,7 +56,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'h1'"
   >
@@ -69,7 +69,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'h2'"
   >
@@ -82,7 +82,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'h3'"
   >
@@ -95,7 +95,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'italic'"
   >
@@ -108,7 +108,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'link'"
   >
@@ -121,7 +121,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'u-list'"
   >
@@ -134,7 +134,7 @@
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 20 20"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
     fill="#f2f1ff"
     v-else-if="type == 'o-list'"
   >
@@ -149,7 +149,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>discord</title>
     <path
@@ -166,7 +165,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>facebook</title>
     <path
@@ -183,7 +181,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>twitter</title>
     <path
@@ -200,7 +197,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>medium</title>
     <path
@@ -217,7 +213,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>github</title>
     <path
@@ -234,7 +229,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>reddit</title>
     <path
@@ -251,7 +245,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>instagram</title>
     <path
@@ -268,7 +261,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>menu</title>
     <path
@@ -297,7 +289,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>light</title>
     <circle
@@ -364,7 +355,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>dark</title>
     <path
@@ -381,7 +371,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>clock</title>
     <path
@@ -398,7 +387,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>award</title>
     <path
@@ -415,11 +403,10 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>explore</title>
     <path
-      class="fill-current transition-colors ease-out duration-200"
+      class="fill-current"
       :class="[colorClass != null ? colorClass : defaultColorClass]"
       fill="#f2f1ff"
       d="M12,10.9A1.1,1.1,0,1,0,13.1,12,1.1,1.1,0,0,0,12,10.9ZM12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm2.19,12.19L6.93,17.57a.37.37,0,0,1-.5-.5L9.81,9.81l7.26-3.38a.37.37,0,0,1,.5.5Z"
@@ -432,11 +419,10 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>Post</title>
     <path
-      class="fill-current transition-colors ease-out duration-200"
+      class="fill-current"
       :class="[colorClass != null ? colorClass : defaultColorClass]"
       fill="#f2f1ff"
       d="M14.81,12A5.63,5.63,0,1,0,9.19,6.38,5.63,5.63,0,0,0,14.81,12ZM14,3.84a.84.84,0,1,1,1.69,0V5.53h1.69a.84.84,0,0,1,0,1.69H15.66V8.91a.84.84,0,1,1-1.69,0V7.22H12.28a.84.84,0,0,1,0-1.69H14Z"
@@ -455,7 +441,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 14 14"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>Email</title>
     <path
@@ -472,7 +457,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>arrow-down</title>
     <path
@@ -489,7 +473,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>language</title>
     <path
@@ -506,7 +489,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>notification-new</title>
     <path
@@ -537,7 +519,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>overview</title>
     <path
@@ -554,7 +535,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>bountyhunter</title>
     <path
@@ -577,7 +557,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>bountymanager</title>
     <path
@@ -594,7 +573,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>bounty-complete</title>
     <path
@@ -617,7 +595,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>cancel</title>
     <path
@@ -634,7 +611,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>done</title>
     <path
@@ -651,7 +627,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>fee</title>
     <path
@@ -686,7 +661,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>new-bounty</title>
     <path
@@ -709,7 +683,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>personal-bounty</title>
     <path
@@ -732,7 +705,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>reclaim</title>
     <path
@@ -749,7 +721,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>Receive</title>
     <path
@@ -766,7 +737,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>Send</title>
     <path
@@ -783,7 +753,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>Sign Out</title>
     <path
@@ -806,7 +775,6 @@
     data-name="Layer 1"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 16 16"
-    :class="[sizeClasses?sizeClasses:'']"
   >
     <title>search</title>
     <path
@@ -821,7 +789,6 @@
     v-else-if="type=='back'"
     id="1cddab02-5c03-2e1a-b6ea-56f60e9d9742"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -837,7 +804,6 @@
     v-else-if="type=='calender'"
     id="1a421579-ccdd-123b-ddae-42f1ad9d9742"
     viewBox="0 0 24 24"
-    :class="[sizeClasses?sizeClasses:'']"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -853,7 +819,6 @@
     v-else-if="type=='copy'"
     id="2aaabd43-aa31-444b-dad1-31f1ad4c5713"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
@@ -872,7 +837,6 @@
     id="2aaabd43-aa31-4asdz-1234-zxf1ad4c5713"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 32 32"
-    :class="[sizeClasses?sizeClasses:'']"
     fill="none"
   >
     <path
@@ -889,7 +853,7 @@
     fill="#f2f1ff"
     viewBox="0 0 32 32"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
   >
     <path
       d="M25.4475 6.5536c-.1947-.1947-.5103-.1947-.705 0l-.705.705c-.1946.1947-.1946.5103 0 .705s.5103.1947.705 0l.705-.705c.1947-.1947.1947-.5103 0-.705z"
@@ -909,7 +873,7 @@
     fill="#f2f1ff"
     viewBox="0 0 24 24"
     class="fill-current"
-    :class="[colorClass != null ? colorClass : defaultColorClass, sizeClasses?sizeClasses:'']"
+    :class="[colorClass != null ? colorClass : defaultColorClass]"
   >
     <path
       d="M14 12c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zm-2-9c-4.97 0-9 4.03-9 9H.6036c-.2227 0-.3343.2693-.1768.4268l3.2197 3.2196a.5.5 0 0 0 .7071 0l3.2197-3.2196c.1575-.1575.046-.4268-.1768-.4268H5c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.2017 0-2.3337-.3103-3.3255-.8453-.44-.2368-.9913-.1944-1.3415.1608h0c-.4314.4375-.3822 1.159.1493 1.4672C8.8114 20.5535 10.3547 21 12 21c4.97 0 9-4.03 9-9s-4.03-9-9-9z"
@@ -922,7 +886,6 @@ export default {
     type: null,
     colorClass: null,
     secondaryColorClass: null,
-    sizeClasses: null
   },
   data: function() {
     return {

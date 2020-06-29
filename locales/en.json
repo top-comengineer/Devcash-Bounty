@@ -150,7 +150,12 @@
       "insufficientBalance": "Insufficient balance.",
       "invalidEmail": "Invalid email address.",
       "deadlineError": "Deadline cannot be a past date.",
-      "needCategoryError": "You need to pick a category."
+      "needCategoryError": "You need to pick a category.",
+      "buttonPostAnotherBounty": "Post Another Bounty",
+      "bountyPosted": {
+        "header": "Your bounty has been posted!",
+        "paragraph": "It'll become visible after it is confirmed by the network. This might take 15-30 minutes. In the mean time, you can post another bounty by clicking the button below."
+      }
     },
     "overview": {
       "header": "Overview",
@@ -235,6 +240,20 @@
         "header": "Feedback",
         "optional": "(Optional)",
         "placeholder": "Write your feedback for the submission here..."
+      }
+    },
+    "multiPurposeModal": {
+      "postBounty": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to post this bounty. It might take 15-30 minutes for the bounty to become visible."
+      },
+      "createSubmission": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to create this submission. It might take 15-30 minutes for the submission to become visible."
+      },
+      "generic": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to continue."
       }
     },
     "sidebarContextual": {

@@ -13,11 +13,13 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty)
           }] "
       >
-        <Icon
-          :colorClass="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
-          type="explore"
-          sizeClasses="w-7 h-7"
-        />
+        <div class="w-7 h-7">
+          <Icon
+            :colorClass="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
+            type="explore"
+            class="w-7 h-7"
+          />
+        </div>
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
           class="text-lg font-bold hidden sidebar-item lg:block ml-2"
@@ -32,11 +34,13 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.post)
           }] "
       >
-        <Icon
-          type="post"
-          :colorClass="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
-          sizeClasses="w-7 h-7"
-        />
+        <div class="w-7 h-7">
+          <Icon
+            type="post"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
           class="text-lg font-bold hidden sidebar-item lg:block ml-2"
@@ -51,11 +55,13 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.overview)
           }]"
       >
-        <Icon
-          type="overview"
-          :colorClass="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
-          sizeClasses="w-7 h-7"
-        />
+        <div class="w-7 h-7">
+          <Icon
+            type="overview"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
           class="text-lg font-bold hidden lg:block sidebar-item ml-2"
@@ -70,11 +76,13 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
           }] "
       >
-        <Icon
-          type="bounty-hunter"
-          :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
-          sizeClasses="w-7 h-7"
-        />
+        <div class="w-7 h-7">
+          <Icon
+            type="bounty-hunter"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
           class="text-lg font-bold hidden lg:block sidebar-item ml-2"
@@ -89,11 +97,13 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
           }] "
       >
-        <Icon
-          type="bounty-manager"
-          :colorClass="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
-          sizeClasses="w-7 h-7"
-        />
+        <div class="w-7 h-7">
+          <Icon
+            type="bounty-manager"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
         <h3
           :class="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
           class="text-lg font-bold hidden lg:block sidebar-item ml-2"

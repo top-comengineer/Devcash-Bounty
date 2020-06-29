@@ -32,7 +32,7 @@ module.exports = {
     { src: '~/plugins/vue-qr.js', ssr: false },
     { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
     { src: '~/plugins/crontab.js', ssr: false },
-    { src: '~/plugins/notifications.js', ssr: false},
+    { src: '~/plugins/notifications.js', ssr: false },
     '~/plugins/disqus',
     '~/plugins/sanitizeHtml'
   ],
@@ -100,7 +100,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend(config, ctx) { },
     filenames: {
       app: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
       chunk: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),

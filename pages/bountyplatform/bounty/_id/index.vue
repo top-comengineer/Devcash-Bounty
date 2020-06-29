@@ -54,9 +54,7 @@
       <!-- Bounty Amount in Devcash, ETH & USD -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start md:items-end my-3">
         <!-- Bounty Amount in Devcash -->
-        <h2
-          class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
-        >{{ '{D}' + amount }}</h2>
+        <h2 class="font-extrabold text-2xl md:text-3xl text-left md:text-right">{{ '{D}' + amount }}</h2>
         <!-- Bounty Amount in ETH & USD -->
         <h3 class="text-lg md:text-xl text-left md:text-right mt-1">{{ "Ξ" + ethAmount }}</h3>
       </div>
@@ -94,22 +92,14 @@
             v-else-if="getBountyStatus()=='completed'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
           >
-            <icon
-              type="done"
-              colorClass="text-c-background"
-              sizeClasses="w-12 h-12 md:w-16 md:h-16"
-            />
+            <icon type="done" colorClass="text-c-background" class="w-12 h-12 md:w-16 md:h-16" />
             <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyCompleted")}}</p>
           </div>
           <div
             v-else-if="getBountyStatus()=='expired'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
           >
-            <icon
-              type="clock"
-              colorClass="text-c-background"
-              sizeClasses="w-12 h-12 md:w-16 md:h-16"
-            />
+            <icon type="clock" colorClass="text-c-background" class="w-12 h-12 md:w-16 md:h-16" />
             <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyExpired")}}</p>
           </div>
         </div>
@@ -118,9 +108,7 @@
           <!-- Submissions Left -->
           <div class="text-left text-sm">
             <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="award" />
-            <span
-              class="font-bold"
-            >{{`${bounty.available}` }}</span>
+            <span class="font-bold">{{`${bounty.available}` }}</span>
             <span class="opacity-75">
               {{
               $t("bountyPlatform.bountyCard.bountiesLeft")
