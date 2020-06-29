@@ -232,11 +232,7 @@
           @keydown.esc.exact="hideSignOutModal"
           class="btn-text bg-c-text text-c-background flex flex-row items-center transform hover:scale-lg focus:scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
         >
-          <Jazzicon
-            class="flex"
-            :diameter="32"
-            :address="loggedInAccount"
-          />
+          <Jazzicon class="flex" :diameter="32" :address="loggedInAccount" />
         </button>
         <!-- Sign Out Modal -->
         <transition name="signInModalTransition">
@@ -468,7 +464,8 @@ export default {
                     text: this.$t('notification.submissionReceivedDescription'),
                     data: {
                       href: ref.localePath('bountyplatform-bountyhunter')
-                    }
+                    },
+                    duration: -1
                   });                  
                 }
                 ref.$root.$emit("subRejected", {bounty: uBountyIndex, submission: submissionIndex})
@@ -497,7 +494,8 @@ export default {
                     text: this.$t('notification.submissionReceivedDescription'),
                     data: {
                       href: ref.localePath('bountyplatform-bountyhunter')
-                    }
+                    },
+                    duration: -1
                   });                
                 }
                 ref.$root.$emit("subApproved", {bounty: uBountyIndex, submission: submissionIndex})

@@ -124,21 +124,24 @@
               </div>
             </div>
             <div class="flex flex-row flex-wrap my-3">
-              <CheckmarkButton 
-              :checked="bountyActiveChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'active')"
-              class="mx-3 my-2"
-              :text="$t('bountyPlatform.explore.sidebar.statusActive')" />
-              <CheckmarkButton 
-              :checked="bountyCompletedChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'completed')"
-              class="mx-3 my-2" 
-              :text="$t('bountyPlatform.explore.sidebar.statusCompleted')" />
-              <CheckmarkButton 
-              :checked="bountyExpiredChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'expired')"
-              class="mx-3 my-2" 
-              :text="$t('bountyPlatform.explore.sidebar.statusExpired')" />
+              <CheckmarkButton
+                :checked="bountyActiveChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'active')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusActive')"
+              />
+              <CheckmarkButton
+                :checked="bountyCompletedChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'completed')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
+              />
+              <CheckmarkButton
+                :checked="bountyExpiredChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'expired')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusExpired')"
+              />
             </div>
           </div>
         </div>
@@ -286,7 +289,8 @@ export default {
           group: 'main',
           title: this.$t('notification.submissionRejectedTitle'),
           text: this.$t('notification.submissionRejectedApprovedDescription'),
-          data: {}
+          data: {},
+          duration: -1,
         });            
       } else {
         await this.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
@@ -299,7 +303,8 @@ export default {
           group: 'main',
           title: this.$t('notification.submissionApprovedTitle'),
           text: this.$t('notification.submissionRejectedApprovedDescription'),
-          data: {}
+          data: {},
+          duration: -1
         });        
       }
       } catch (e) {

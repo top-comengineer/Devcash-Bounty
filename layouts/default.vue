@@ -34,7 +34,7 @@
                   </div>
                   <div class="flex flex-row justify-end">
                     <button
-                      class="hover:bg-c-background-15 focus:bg-c-background-15 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
+                      class="hover:bg-c-text-15 focus:bg-c-text-15 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
                       @click="props.close"
                     >
                       <Icon class="w-4 h-4" type="cancel" colorClass="text-c-dark" />
