@@ -86,6 +86,7 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+import TurndownService from 'turndown'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
@@ -103,7 +104,10 @@ export default {
     },
     data() {
       return {
-        inputFeedback: "",
+        turnDownSvc: new TurndownService({
+          headingStyle: 'atx',
+          codeBlockStyle: 'fenced'
+        }),        
         loading: false,
         linkUrl: null,
         linkMenuIsActive: false,
@@ -135,7 +139,7 @@ export default {
     methods: {
         confirmClicked() {
           this.loading = true
-          this.confirmCallback(this.inputFeedback, this.item, this.type)
+          this.confirmCallback(this.turnDownSvc.turndown(this.editor.getHTML()), this.item, this.type)
         },
         validateFeedback(){
             return null
