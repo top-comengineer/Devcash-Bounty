@@ -821,7 +821,8 @@ export default {
               this.datePickerValueStr = ""
               this.categoryValueStr = ""
               this.categoryValue = null    
-              this.submittedBounty = true        
+              this.submittedBounty = true  
+              this.$scrollTo('#bounty-posted-card')
             }
           } catch (e) {
             if ('code' in e && e.code == 4001) {
