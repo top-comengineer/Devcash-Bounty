@@ -7,7 +7,7 @@
       <div class="fixed w-full">
         <div class="d-container relative">
           <Navbar
-            id="defaultNavbar"
+            id="navbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
             :class="[
               hideNavbar ? '-mt-24' : 'mt-0', {'bg-c-background-sec shadow-xl': showNavbarBg}
