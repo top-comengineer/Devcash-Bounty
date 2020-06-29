@@ -2,6 +2,23 @@
   <div
     class="max-w-full md:max-w-md h-auto flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-4xl rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg overflow-y-scroll"
   >
+    <!-- Confirm to Submit Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="loading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="type == 'reject'?$t('bountyPlatform.multiPurposeModal.confirmToReject.header'):type=='approve'?$t('bountyPlatform.multiPurposeModal.confirmToApprove.header'):''"
+            :paragraph="type =='reject'?$t('bountyPlatform.multiPurposeModal.confirmToReject.paragraph'):type=='approve'?$t('bountyPlatform.multiPurposeModal.confirmToApprove.paragraph'):''"
+            :imgSrc="require('~/assets/images/illustrations/foreground/submission-received.svg')"
+          />
+        </div>
+      </div>
+    </transition>
     <!-- Header -->
     <div
       :class="{'bg-c-danger': type == 'reject', 'bg-c-success': type == 'approve' }"
@@ -65,17 +82,17 @@
       <!-- Cancel Button -->
       <div class="w-full md:w-1/2 flex flex-row p-2">
         <button
-          @click="cancelCallback"
-          class="w-full text-lg font-bold bg-c-background-sec text-c-text border-2 border-c-text btn-text-qua px-4 py-1_5 transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden"
+          @click.prevent="cancelCallback"
+          class="w-full text-lg font-bold bg-c-background-sec text-c-text border-2 border-c-text btn-text-qua px-4 py-1_5 transform transition-all hover:scale-md focus:scale-md duration-300 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md"
         >{{ type == 'reject'?$t("bountyPlatform.confirmModal.confirmToReject.buttonCancel"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonCancel")}}</button>
       </div>
       <!-- Confirm Button -->
       <div class="w-full md:w-1/2 flex flex-row p-2 order-first md:order-last">
         <button
           :disabled="loading"
-          @click="confirmClicked"
+          @click.prevent="confirmClicked"
           :class="{'bg-c-danger border-c-danger': type == 'reject', 'bg-c-success border-c-success': type == 'approve' }"
-          class="w-full text-lg font-bold btn-text-qua text-c-background border-2 px-4 py-1_5 transform hover:scale-md focus:scale-md duration-200 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md transition-all duration-200 ease-out overflow-hidden"
+          class="w-full text-lg font-bold text-c-background border-2 btn-text-qua px-4 py-1_5 transform transition-all hover:scale-md focus:scale-md duration-300 ease-out origin-bottom-left rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md"
         >{{ type == 'reject'?$t("bountyPlatform.confirmModal.confirmToReject.buttonConfirm"): $t("bountyPlatform.confirmModal.confirmToApprove.buttonConfirm")}}</button>
       </div>
     </div>
@@ -86,6 +103,7 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import TurndownService from 'turndown'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
@@ -122,7 +140,8 @@ export default {
     components: {
         Jazzicon,
         Icon,
-        TextEditor
+        TextEditor,
+        MultiPurposeModal
     },
     computed: {
       amount() {

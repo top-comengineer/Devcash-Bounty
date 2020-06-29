@@ -2,6 +2,23 @@
   <div
     class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
   >
+    <!-- Confirm to Submit Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="submissionLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="$t('bountyPlatform.multiPurposeModal.createSubmission.header')"
+            :paragraph="$t('bountyPlatform.multiPurposeModal.createSubmission.paragraph')"
+            :imgSrc="require('~/assets/images/illustrations/foreground/submission-sent.svg')"
+          />
+        </div>
+      </div>
+    </transition>
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
       <button
@@ -117,6 +134,7 @@ import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import TurndownService from 'turndown'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
@@ -146,7 +164,8 @@ export default {
     GreetingCard,
     CTACard,
     Icon,
-    TextEditor
+    TextEditor,
+    MultiPurposeModal
   },
   props: {
     closeModal: Function,
@@ -275,7 +294,8 @@ export default {
                 group: 'main',
                 title: this.$t('notification.submissionCreatedTitle'),
                 text: this.$t('notification.submissionCreatedDescription'),
-                data: {}
+                data: {},
+                duration: -1
               });              
             }
           } catch (e) {
