@@ -130,11 +130,7 @@ export default {
         linkUrl: null,
         linkMenuIsActive: false,
         editor:null,
-        editorFeedbackPlaceholder: `
-          <p>
-            Write your feedback here...
-          </p>
-        `,
+        editorFeedbackPlaceholder: `<p>Write your feedback here...</p>`,
       }
     },
     components: {
@@ -158,7 +154,11 @@ export default {
     methods: {
         confirmClicked() {
           this.loading = true
-          this.confirmCallback(this.turnDownSvc.turndown(this.editor.getHTML()), this.item, this.type)
+          let feedback = ""
+          if (this.editor.getHTML().trim() != this.editorFeedbackPlaceholder.trim()) {
+            feedback = this.turnDownSvc.turndown(this.editor.getHTML())
+          }
+          this.confirmCallback(feedback, this.item, this.type)
         },
         validateFeedback(){
             return null
@@ -166,6 +166,16 @@ export default {
     },
     mounted(){
       this.editor =  new Editor({
+        onFocus: (e) => {
+          if (this.editor.getHTML().trim() == this.editorFeedbackPlaceholder.trim()) {
+            this.editor.clearContent()
+          }
+        },
+        onBlur: (e) => {
+          if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
+            this.editor.setContent(this.editorFeedbackPlaceholder)
+          }
+        },
         extensions: [
           new Bold(),
           new Italic(),

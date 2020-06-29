@@ -184,6 +184,16 @@ export default {
       DevcashBounty.updateBalances(this)
     }
     this.editor =  new Editor({
+        onFocus: (e) => {
+          if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+            this.editor.clearContent()
+          }
+        },
+        onBlur: (e) => {
+          if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
+            this.editor.setContent(this.submissionEditorPlaceholder)
+          }
+        },
         extensions: [
           new Bold(),
           new Italic(),
@@ -217,6 +227,9 @@ export default {
       if (!this.editor) {
         return 0
       }
+      if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+        return 0
+      }
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
     },    
   },
@@ -236,6 +249,10 @@ export default {
     validateDescription(){
       let isValid = true
       if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
+        isValid = false
+      }
+      if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+        console.log("NOT VALID")
         isValid = false
       }
       return isValid
@@ -353,17 +370,7 @@ export default {
       confirmWindowOpen: false,
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       editor: null,
-      submissionEditorPlaceholder: `
-          <h1>
-            Submission Description
-          </h1>
-          <p>
-            You can write your submission here. 
-          </p> 
-          <p>
-            You can also use markdown shortcuts such as #, ##, *, ** etc.
-          </p>
-        `,
+      submissionEditorPlaceholder: `<h1>Submission Description</h1><p>You can write your submission here.</p><p>You can also use markdown shortcuts such as #, ##, *, ** etc.</p>`,
       linkUrl: null,
       linkMenuIsActive: false      
     };

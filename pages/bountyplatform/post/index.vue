@@ -506,26 +506,7 @@ export default {
       }),
       backupInterval: null,
       isBountyAmountEach: true,
-      editorPlaceholder: `
-          <h1>
-            Bounty Description
-          </h1>
-          <p>
-            You can explain your bounty here. 
-          </p>
-          <p>
-            What do you want hunters of this bounty to do?
-          </p>
-          <p>
-            You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.
-          </p>
-          <h2>Requirements</h2> 
-          What do hunters need to do for you to approve their submission?
-          <ol>
-          <li>First requirement</li>
-          <li>Second requirement</li>
-          </ol> 
-        `,
+      editorPlaceholder: `<h1>Bounty Description</h1><p>You can explain your bounty here.</p><p>What do you want hunters of this bounty to do?</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p><h2>Requirements</h2><p>What do hunters need to do for you to approve their submission?</p><ol><li><p>First requirement</p></li><li><p>Second requirement</p></li></ol><p></p>`,
         submittedBounty: false
     };
   },
@@ -573,6 +554,9 @@ export default {
       if (!this.editor) {
         return 0
       }
+      if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+        return 0
+      }      
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
     },
     singleAmount() {
@@ -663,6 +647,9 @@ export default {
     if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
        isValid = false
     }
+    if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+      isValid = false
+    }    
     return isValid
   },
   validateHunterAddress(){
@@ -865,6 +852,16 @@ export default {
       DevcashBounty.updateFees(this)
     }
     this.editor =  new Editor({
+        onFocus: (e) => {
+          if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+            this.editor.clearContent()
+          }
+        },
+        onBlur: (e) => {
+          if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
+            this.editor.setContent(this.editorPlaceholder)
+          }
+        },      
         extensions: [
           new Bold(),
           new Italic(),

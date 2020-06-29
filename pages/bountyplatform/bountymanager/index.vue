@@ -373,10 +373,6 @@ export default {
       this.confirmModalItem = submission
       this.isConfirmModalOpen = true
     },
-    unshiftNewSubmission(submission) {
-      this.submissions.unshift(submission)
-      this.applySubmissionFilters()
-    }
   },
   mounted() {
     if (this.isLoggedIn) {
@@ -400,7 +396,8 @@ export default {
     }) 
     this.$root.$on("managerSubmitted", (objR) => {
       if (this.submissions.filter((sub) => sub.id == objR.id).length == 0) {
-        this.unshiftNewSubmission(objR)
+      this.submissions.unshift(objR)
+      this.applySubmissionFilters()
       }
     })    
   },
