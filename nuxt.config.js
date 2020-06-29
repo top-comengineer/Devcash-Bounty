@@ -33,6 +33,7 @@ module.exports = {
     { src: '~/plugins/devcash/devcashBounty.client.js', ssr: false },
     { src: '~/plugins/crontab.js', ssr: false },
     { src: '~/plugins/notifications.js', ssr: false},
+    { src: '~/plugins/scrollTo.js', ssr: false},
     '~/plugins/disqus',
     '~/plugins/sanitizeHtml'
   ],
