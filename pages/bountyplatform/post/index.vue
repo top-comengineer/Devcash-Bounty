@@ -507,7 +507,7 @@ export default {
       backupInterval: null,
       isBountyAmountEach: true,
       editorPlaceholder: `<h1>Bounty Description</h1><p>You can explain your bounty here.</p><p>What do you want hunters of this bounty to do?</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p><h2>Requirements</h2><p>What do hunters need to do for you to approve their submission?</p><ol><li><p>First requirement</p></li><li><p>Second requirement</p></li></ol><p></p>`,
-        submittedBounty: false
+      submittedBounty: false
     };
   },
   watch: {
@@ -809,7 +809,7 @@ export default {
               this.categoryValueStr = ""
               this.categoryValue = null    
               this.submittedBounty = true  
-              this.$scrollTo('#bounty-posted-card')
+              this.$scrollTo('#navbar')
             }
           } catch (e) {
             if ('code' in e && e.code == 4001) {
