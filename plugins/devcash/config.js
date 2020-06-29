@@ -316,7 +316,7 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = process.env.NODE_ENV === 'production' ? "0x73aa31Cd548AC14713F778f454348d90564e2dE1" : "0xb760dd7a52369268571030d8c2d263446cf3a425"
+module.exports.uBCAddress = process.env.NODE_ENV === 'production' ? "0x73aa31Cd548AC14713F778f454348d90564e2dE1" : "0x0ab27d1add579E4C71a341a9579244385066bBC1"
 module.exports.uBCABI = [
 	{
 		"inputs": [],
