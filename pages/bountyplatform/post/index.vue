@@ -1,6 +1,45 @@
 <template>
-  <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
-    <div v-if="isLoggedIn" class="w-full flex-col justify-center items-center">
+  <div id="post-page" class="w-full flex flex-col justify-center items-center px-1 md:px-4">
+    <!-- Submission Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="submitLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="$t('bountyPlatform.multiPurposeModal.postBounty.header')"
+            :paragraph="$t('bountyPlatform.multiPurposeModal.postBounty.paragraph')"
+            :imgSrc="require('~/assets/images/illustrations/foreground/bounty.svg')"
+          />
+        </div>
+      </div>
+    </transition>
+    <!-- Bounty Posted -->
+    <div
+      v-if="submittedBounty"
+      id="bounty-posted-card"
+      class="bg-c-background-sec shadow-lg w-full flex flex-col items-center relative rounded-tl-3xl rounded-tr-lg rounded-br-3xl rounded-bl-lg rounded-pt-4 pb-6 px-3 md:pt-6 md:pb-8 md:px-10 xl:px-24 mt-1 md:mt-0"
+    >
+      <img
+        class="max-w-xxxs h-auto mt-5 md:mt-2"
+        :src="require('~/assets/images/illustrations/foreground/bounty.svg')"
+        alt="Bounty Posted"
+      />
+      <h4
+        class="max-w-sm text-2xl font-bold text-c-primary text-center"
+      >{{ $t("bountyPlatform.post.bountyPosted.header") }}</h4>
+      <p
+        class="mt-2 max-w-md leading-relaxed"
+      >{{ $t("bountyPlatform.post.bountyPosted.paragraph") }}</p>
+      <button
+        @click.prevent="submittedBounty=false"
+        class="btn-primary bg-c-primary text-c-light text-center transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
+      >{{ $t("bountyPlatform.post.buttonPostAnotherBounty") }}</button>
+    </div>
+    <div v-else-if="isLoggedIn" class="w-full flex-col justify-center items-center">
       <!-- Greeting Card -->
       <GreetingCard
         :header="$t('bountyPlatform.post.cardHeader')"
@@ -372,6 +411,7 @@ import DatePicker from "~/components/DatePicker.vue";
 import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
 import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
 import MiniSummaryCard from "~/components/BountyPlatform/MiniSummaryCard.vue";
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import { utils } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
@@ -411,7 +451,8 @@ export default {
     CategoryPicker,
     SignInToContinueWrapper,
     TextEditor,
-    MiniSummaryCard
+    MiniSummaryCard,
+    MultiPurposeModal
   },
   data() {
     return {
@@ -484,7 +525,8 @@ export default {
           <li>First requirement</li>
           <li>Second requirement</li>
           </ol> 
-        `
+        `,
+        submittedBounty: false
     };
   },
   watch: {
@@ -778,7 +820,8 @@ export default {
               this.datePickerValue = null
               this.datePickerValueStr = ""
               this.categoryValueStr = ""
-              this.categoryValue = null              
+              this.categoryValue = null    
+              this.submittedBounty = true        
             }
           } catch (e) {
             if ('code' in e && e.code == 4001) {
@@ -1015,7 +1058,10 @@ export default {
           href: "/favicon-16x16.png"
         },
         { rel: "manifest", href: "/site.webmanifest" }
-      ]
+      ],
+      bodyAttrs: {
+        class: [ this.submitLoading?'overflow-hidden':'']
+      }
     };
   }
 };
@@ -1055,5 +1101,17 @@ p.is-empty:first-child::before {
 .hunterAddressTransition-leave-to {
   opacity: 0;
   transform: translateX(-1rem);
+}
+.modalBgTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-enter {
+  opacity: 0;
+}
+.modalBgTransition-leave-to {
+  opacity: 0;
 }
 </style>

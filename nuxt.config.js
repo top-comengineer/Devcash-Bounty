@@ -101,7 +101,7 @@ module.exports = {
     /*
      ** You can extend webpack config here
      */
-    extend(config, ctx) {},
+    extend(config, ctx) { },
     filenames: {
       app: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
       chunk: ({ isDev }) => (isDev ? "[name].js" : "[name].[chunkhash].js"),
