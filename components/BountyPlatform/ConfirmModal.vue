@@ -50,21 +50,15 @@
     </div>
     <!-- Feedback Area -->
     <div class="w-full flex flex-col bg-c-text-05 px-2 md:px-4 pt-6 pb-8 my-5">
-      <label for="inputFeedback" class="text-center text-xl font-bold px-3">
+      <p class="text-center text-xl font-bold px-3">
         {{$t("bountyPlatform.confirmModal.inputFeedback.header")}}
         <span
-          class="text-normal font-normal"
+          class="text-normal font-normal text-sm opacity-75"
         >{{$t("bountyPlatform.confirmModal.inputFeedback.optional") }}</span>
-      </label>
-      <textarea
-        v-model="inputFeedback"
-        rows="4"
-        id="inputFeedback"
-        class="bg-c-background-qua border-c-text-10 shadow-lg text-c-text w-full text-lg font-bold border-2 focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
-        type="text"
-        :placeholder="$t('bountyPlatform.confirmModal.inputFeedback.placeholder')"
-        @blur="validateFeedback"
-      />
+      </p>
+      <client-only>
+        <text-editor :editor="editor" :placeholder="editorFeedbackPlaceholder" type="feedback" />
+      </client-only>
     </div>
     <!-- Cancel & Confirm Buttons -->
     <div class="w-full flex flex-row flex-wrap pt-2 pb-4 px-4">
@@ -91,6 +85,15 @@
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
+// Import the editor
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
+import {
+  Bold,
+  Italic,
+  History,
+  Link,
+} from 'tiptap-extensions'
 export default {
     props: {
         type: String,
@@ -101,12 +104,21 @@ export default {
     data() {
       return {
         inputFeedback: "",
-        loading: false
+        loading: false,
+        linkUrl: null,
+        linkMenuIsActive: false,
+        editor:null,
+        editorFeedbackPlaceholder: `
+          <p>
+            Write your feedback here...
+          </p>
+        `,
       }
     },
     components: {
         Jazzicon,
-        Icon
+        Icon,
+        TextEditor
     },
     computed: {
       amount() {
@@ -128,6 +140,41 @@ export default {
         validateFeedback(){
             return null
         },   
+    },
+    mounted(){
+      this.editor =  new Editor({
+        extensions: [
+          new Bold(),
+          new Italic(),
+          new Link({
+            openOnClick: false
+          }),
+          new History(),        
+        ],
+        content: this.editorFeedbackPlaceholder,
+      });
     }
 }
 </script>
+<style scoped>
+.ProseMirror {
+  padding: 1rem 1rem 1rem 1rem;
+  border: 1px solid transparent;
+  transition: border 0.2s ease-out;
+  border-radius: 0rem 0rem 0.5rem 0.5rem;
+  background-color: var(--c-background-text-05);
+  min-height: 24rem;
+}
+.ProseMirror *:first-child {
+  margin-top: 0rem !important;
+}
+@media only screen and (min-width: 768px) {
+  .ProseMirror {
+    padding: 1.25rem 1.5rem 1.25rem 1.5rem;
+  }
+}
+.ProseMirror-focused {
+  outline: none;
+  border: 1px solid var(--c-primary);
+}
+</style>

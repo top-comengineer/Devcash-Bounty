@@ -1,8 +1,12 @@
 <template>
-  <div class="w-full relative mt-3 rounded-lg bg-c-background-ter">
+  <div
+    :class="type=='feedback'?'bg-c-text-05':'bg-c-background-ter'"
+    class="w-full relative mt-3 rounded-lg"
+  >
     <client-only>
       <div class="bg-c-background-ter sticky top-0 z-20 rounded-tl-lg rounded-tr-lg">
         <editor-menu-bar
+          v-if="type!='feedback'"
           class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2"
           :editor="editor"
           v-slot="{ commands, isActive, getMarkAttrs }"
@@ -160,6 +164,7 @@
             </button>
             <!-- Heading 2 -->
             <button
+              v-if="type!='feedback'"
               :class="{ 'bg-c-light-25': isActive.heading({ level: 2 }) }"
               class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
               @click="commands.heading({ level: 2 })"
@@ -176,6 +181,7 @@
             </button>
             <!-- Code -->
             <button
+              v-if="type!='feedback'"
               :class="{ 'bg-c-light-25': isActive.code() }"
               class="p-0_5 mx-0_5 rounded-lg hover:bg-c-light-15 transition-colors duration-200 ease-out"
               @click="commands.code()"
@@ -185,17 +191,22 @@
           </template>
         </div>
       </editor-menu-bubble>
-      <editor-content class="editor-content" :editor="editor" />
+      <editor-content
+        :class="type=='feedback'?'editor-content editor-content-feedback':'editor-content'"
+        :editor="editor"
+      />
     </client-only>
   </div>
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
-import { EditorContent, EditorMenuBar, EditorMenuBubble } from 'tiptap'
+import { EditorContent, EditorMenuBubble } from 'tiptap'
+import { EditorMenuBar } from 'tiptap'
 export default {
   props: {
     editor: null,
-    placeholder: null
+    placeholder: null,
+    type: null
   },
   components: {
     EditorContent,

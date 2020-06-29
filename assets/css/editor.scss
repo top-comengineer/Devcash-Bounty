@@ -30,7 +30,7 @@
 }
 .editor-content p {
   margin-top: 0.75rem;
-  line-height: 1.9;
+  line-height: 1.8;
 }
 
 .editor-content ul,
@@ -109,6 +109,28 @@
   outline: none;
   border: 1px solid var(--c-primary);
 }
+
+// For feedback
+.editor-content-feedback > .ProseMirror {
+  padding: 1rem 1rem 1rem 1rem;
+  border: 1px solid var(--c-text-15);
+  transition: border 0.2s ease-out;
+  border-radius: 0.5rem;
+  background-color: var(--c-text-05);
+  min-height: 8rem;
+  max-height: 8rem;
+  overflow-y: scroll;
+}
+@media only screen and (min-width: 768px) {
+  .editor-content-feedback > .ProseMirror {
+    padding: 0.75rem 1.25rem 0.75rem 1.25rem;
+  }
+}
+.editor-content-feedback > .ProseMirror-focused {
+  outline: none;
+  border: 1px solid var(--c-primary);
+}
+
 // Editor related things
 .menububble {
   position: absolute;

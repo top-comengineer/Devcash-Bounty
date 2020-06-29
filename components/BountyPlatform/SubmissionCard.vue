@@ -75,7 +75,7 @@
       <!-- Bottom Part -->
       <div class="w-full flex flex-col flex-wrap px-4 md:px-6 py-6">
         <!-- Message -->
-        <p class="break-all" v-html="submissionData"></p>
+        <div class="editor-content" v-html="submissionData"></div>
         <div class="flex flex-row justify-between items-end flex-wrap">
           <!-- Contact Name & Contact Email & Date -->
           <div
