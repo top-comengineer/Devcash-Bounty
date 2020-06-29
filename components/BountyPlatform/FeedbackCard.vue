@@ -30,7 +30,7 @@
       <!-- Bottom Part -->
       <div class="w-full flex flex-col px-4 md:px-6 py-6">
         <!-- Message -->
-        <p class="break-all" v-html="feedbackMessage"></p>
+        <p class="break-all" v-html="feedback"></p>
       </div>
     </div>
   </div>
@@ -40,6 +40,7 @@ import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import StatusTag from "~/components/BountyPlatform/StatusTag.vue";
 import StatusDivider from "~/components/BountyPlatform/StatusDivider.vue";
+import marked from 'marked'
 export default {
   components: {
     Icon,
@@ -49,7 +50,16 @@ export default {
   },
   props: {
     address: String,
-    feedbackMessage: null
+    feedbackMessage: String
+  },
+  computed: {
+    feedback() {
+      let renderer = new marked.Renderer()
+      renderer.link = function( href, title, text ) {
+        return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
+      }
+      return this.$sanitize(marked(this.feedbackMessage, {renderer: renderer}))
+    }
   }
 };
 </script>
