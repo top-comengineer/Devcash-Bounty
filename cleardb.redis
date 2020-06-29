@@ -9,4 +9,4 @@ del jc:devcash:dev:event_log
 del jc:devcash:dev:event_log_t
 del devcash:dev:bountycachelock
 del bounties
-del devcash:bounties
+del devcash:dev:bounties

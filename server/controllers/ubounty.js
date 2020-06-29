@@ -71,7 +71,10 @@ module.exports.getUBounties = async (req, res, next) => {
       for (let rSub of jObj.submissions) {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
-        rSub.feedback = status.feedback        
+        rSub.feedback = status.feedback       
+        if (rSub.status == "approved") {
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
+        }             
       }
       // Get nAvailable
       let cached = await redis.getUBounty(jObj.id)
@@ -129,6 +132,9 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
         rSub.feedback = status.feedback        
+        if (rSub.status == "approved") {
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
+        }            
       }
       // Get nAvailable
       let cached = await redis.getUBounty(jObj.id)
@@ -186,6 +192,9 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
         rSub.feedback = status.feedback        
+        if (rSub.status == "approved") {
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
+        }           
       }
       let cached = await redis.getUBounty(jObj.id)
       if (cached) {
@@ -236,6 +245,9 @@ module.exports.getUBounty = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
       rSub.status = status.status
       rSub.feedback = status.feedback        
+      if (rSub.status == "approved") {
+        rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
+      }         
     }
     let cached = await redis.getUBounty(result.id)
     if (cached) {

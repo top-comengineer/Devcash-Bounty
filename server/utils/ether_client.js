@@ -10,7 +10,7 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const eventLogDefaultFromBlock = 7990783;
+const eventLogDefaultFromBlock = process.env.NODE_ENV == 'production' ? 10362683 : 8195113;
 
 class EtherClient {
   constructor() {
@@ -173,7 +173,7 @@ class EtherClient {
     let revisionRequestedTopic = utils.id(
       "revisionRequested(uint256,uint256,string)"
     );
-    let rewardedTopic = utils.id("rewarded(uint256,address,uint256,uint256)");
+    let rewardedTopic = utils.id("rewarded(uint256,uint256,address,uint256,uint256)");
     let reclaimedTopic = utils.id("reclaimed(uint256,uint256,uint256)");
     let completedTopic = utils.id("completed(uint256)");
     let feeChangeTopic = utils.id("feeChange(uint256,uint256)");
@@ -436,9 +436,10 @@ class EtherClient {
       let log = rewardedHexArray[n];
       let eventInfo = new Object();
       eventInfo.ubountyIndex = parseInt(this.HexToInt(log[0], 0));
-      eventInfo.hunter = this.HexToAddress(log[1]);
-      eventInfo.rewardAmount = this.HexToInt(log[2], this.tokenDecimals);
-      eventInfo.ethRewardAmount = this.HexToInt(log[3], 18);
+      eventInfo.submissionIndex = parseInt(this.HexToInt(log[1], 0));
+      eventInfo.hunter = this.HexToAddress(log[2]);
+      eventInfo.rewardAmount = this.HexToInt(log[3], this.tokenDecimals);
+      eventInfo.ethRewardAmount = this.HexToInt(log[4], 18);
       eventInfo.eventInfo = rewardedLogs[n];
       eventInfo.timestamp = await this.getTimeStamp(
         rewardedLogs[n].blockNumber
@@ -758,6 +759,20 @@ class EtherClient {
     return {
       status: ret,
       feedback: feedback
+    }
+  }
+
+  getSubmissionAmount(uI, sI) {
+    let allRewarded = this.event_logs.rewarded.filter((reward) => reward.ubountyIndex == uI && reward.submissionIndex == sI)
+    let totalAmount = utils.bigNumberify(0)
+    let totalAmountWei = utils.bigNumberify(0)
+    for (const reward of allRewarded) {
+      totalAmount = totalAmount.add(utils.parseUnits(reward.rewardAmount, 8))
+      totalAmountWei = totalAmountWei.add(utils.parseEther(reward.ethRewardAmount))
+    }
+    return {
+      devcash: totalAmount.toString(),
+      wei: totalAmountWei.toString()
     }
   }
 

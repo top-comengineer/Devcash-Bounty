@@ -133,6 +133,7 @@
 <script>
 import { mapGetters } from "vuex";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
+import { utils } from "ethers";
 import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import StatusTag from "~/components/BountyPlatform/StatusTag.vue";
@@ -177,9 +178,15 @@ export default {
       if (this.$store.state.devcash.connector) {
           tokenDecimals = this.$store.state.devcash.connector.tokenDecimals
       }
+      if (this.submission.overrideAmount) {
+        return utils.formatUnits(this.submission.overrideAmount.devcash, 8)
+      }
       return DevcashBounty.formatAmountSingleSubmission(this.ubounty, tokenDecimals)      
     },
     ethAmount() {
+      if (this.submission.overrideAmount) {
+        return utils.formatEther(this.submission.overrideAmount.wei)
+      }      
       return DevcashBounty.formatAmountSingleSubmissionEth(this.ubounty)
     },
     submissionData() {

@@ -45,6 +45,9 @@ module.exports.getSubmissions = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      if (rObj.status == "approved") {
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
+      }
       ret.push(rObj)
     }
     return res.status(200).json({
@@ -93,6 +96,9 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      if (rObj.status == "approved") {
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
+      }      
       // Get nAvailable
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
@@ -149,6 +155,9 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      if (rObj.status == "approved") {
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
+      }      
       // Get nAvailable
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
@@ -195,6 +204,9 @@ module.exports.getSingleSubmission = async (req, res, next) => {
     let status = etherClient.getSubmissionStatus(result.ubounty_id, result.submission_id)  
     result.status = status.status
     result.feedback = status.feedback
+    if (result.status == "approved") {
+      result.overrideAmount = etherClient.getSubmissionAmount(result.ubounty_id, result.submission_id)  
+    }    
     // Get nAvailable
     let cached = await redis.getUBounty(result.ubounty_id)
     if (cached) {

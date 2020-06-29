@@ -131,13 +131,14 @@ function setupEthersJobs() {
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected", feedback)
   })    
   // Rewarded
-  etherClient.uBCContract.on("rewarded", async (uBountyIndex, hunter, tokenAmount, weiAmount) => {
+  etherClient.uBCContract.on("rewarded", async (uBountyIndex, submissionIndex, hunter, tokenAmount, weiAmount) => {
     let timestamp = parseInt(new Date().getTime() / 1000)
     let devcashAmount = utils.formatUnits(tokenAmount, 8)
     let ethAmount = utils.formatUnits(weiAmount, 18)
     etherClient.event_logs.rewarded.unshift({
       ethRewardAmount: ethAmount,
       ubountyIndex: uBountyIndex,
+      submissionIndex: submissionIndex,
       timestamp: timestamp,
       hunter: hunter,
       rewardAmount: devcashAmount

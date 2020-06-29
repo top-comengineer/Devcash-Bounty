@@ -233,7 +233,6 @@ export default {
         isValid = false
       }
       if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
-        console.log("NOT VALID")
         isValid = false
       }
       return isValid
