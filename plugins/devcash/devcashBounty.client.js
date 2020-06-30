@@ -626,6 +626,11 @@ export class DevcashBounty {
     );
   }
 
+  // Reclaim
+  async reclaim(bounty) {
+    return await this.uBCContract.reclaim(bounty.id)
+  }
+
   // Submission
   async postSubmission(bounty, hash) {
     return await this.uBCContract.submit(bounty.id, hash);

@@ -109,6 +109,9 @@ export default {
     },
     ethAmount() {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
+    },
+    isReclaimable() {
+      return (this.bounty && this.bounty.creator == this.loggedInAccount && this.bounty.available > 0 && this.status == 'expired')
     }
   },
   methods: {  

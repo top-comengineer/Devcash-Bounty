@@ -33,7 +33,7 @@
       <!-- Status Tag -->
       <BountyCardStatusTag
         class="absolute top-0 transform -translate-y-1/2"
-        :type="getBountyStatus()"
+        :type="status"
       />
       <!-- Bounty Name, Creator Avatar & Address -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start my-3">
@@ -75,10 +75,10 @@
       >
         <!-- Hunt and Contribute Button or Completed or Expired Placeholders -->
         <div
-          :class="getBountyStatus() == 'completed'?'bg-c-success':getBountyStatus() == 'expired'?'bg-c-pending':'bg-c-secondary'"
+          :class="status == 'completed'?'bg-c-success':status == 'expired'?'bg-c-pending':'bg-c-secondary'"
           class="w-full flex flex-col items-center px-6 py-4"
         >
-          <div v-if="getBountyStatus()=='active'" class="w-full flex flex-col items-center">
+          <div v-if="status=='active'" class="w-full flex flex-col items-center">
             <button
               @click="isSubmissionModalOpen = true"
               class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
@@ -89,14 +89,14 @@
             >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
           </div>
           <div
-            v-else-if="getBountyStatus()=='completed'"
+            v-else-if="status=='completed'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
           >
             <icon type="done" colorClass="text-c-background" class="w-12 h-12 md:w-16 md:h-16" />
             <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyCompleted")}}</p>
           </div>
           <div
-            v-else-if="getBountyStatus()=='expired'"
+            v-else-if="status=='expired'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
           >
             <icon type="clock" colorClass="text-c-background" class="w-12 h-12 md:w-16 md:h-16" />
@@ -331,19 +331,22 @@ export default {
     },
     ethAmount() {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
-    }
-  },
-  methods: {
-    disqusID() {
-      return (this.$route.path || window.location.pathname)
     },
-    getBountyStatus() {
+    status() {
       if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
         return "completed"
       } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
         return "expired"
       }
       return "active"
+    },
+    isReclaimable() {
+      return (this.bounty && this.bounty.creator == this.loggedInAccount && this.bounty.available > 0 && this.status == 'expired')
+    }    
+  },
+  methods: {
+    disqusID() {
+      return (this.$route.path || window.location.pathname)
     },
     formatDate(dtStr) {
       return DevcashBounty.formatDateStr(this.currentLocale.iso, dtStr)
