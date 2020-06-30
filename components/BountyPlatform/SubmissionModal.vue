@@ -178,7 +178,10 @@ export default {
   beforeMount() {
     // Restore cached date
     if (this.bounty.id in this.$store.state.devcashData.submissionFormData) {
-      this.description = this.$store.state.devcashData.submissionFormData[this.bounty.id].description
+      let desc = this.$store.state.devcashData.submissionFormData[this.bounty.id].description
+      if (desc && desc.trim().length > 0 && desc.trim() != "<p></p>") {
+        this.description = desc
+      }
       this.contactName = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactName
       this.contactEmail = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactEmail
     }
