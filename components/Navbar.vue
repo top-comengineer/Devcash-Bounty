@@ -292,7 +292,7 @@
         </transition>
       </div>
       <!-- Menu icon shown on small screens -->
-      <MobileDropdown class="ml-2" />
+      <MobileDropdown class="ml-2" :isLoggedIn="isLoggedIn" :signOut="signOut" />
     </div>
   </div>
 </template>

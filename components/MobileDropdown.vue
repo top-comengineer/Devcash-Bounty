@@ -3,7 +3,7 @@
     <!-- Confirm to Submit Modal -->
     <transition name="modalBgTransition">
       <div
-        v-if="isModalOpen"
+        v-if="isModalOpen && !isLoggedIn"
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
       >
         <div class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-16 pb-12">
@@ -83,9 +83,15 @@
           </button>
           <!-- Sign In Button -->
           <button
+            v-if="!isLoggedIn"
             @click.prevent="isDropdownOpen=false;isModalOpen=true"
             class="bg-c-background text-c-text w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
           >{{ $t("navigation.signIn") }}</button>
+          <button
+            v-else
+            @click.prevent="signOut(); isDropdownOpen=false"
+            class="bg-c-background text-c-text w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
+          >{{ $t("navigation.signOut") }}</button>
         </div>
       </div>
     </transition>
@@ -100,6 +106,10 @@ export default {
   components: {
     Icon,
     SignInCard
+  },
+  props: {
+    signOut: Function,
+    isLoggedIn: Boolean
   },
   data() {
     return {

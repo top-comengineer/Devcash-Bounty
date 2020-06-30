@@ -11,12 +11,10 @@
       class="text-c-primary text-2xl text-center font-bold mt-2"
     >{{ $t("bountyPlatform.SignInCard.header") }}</h4>
     <p class="text-c-text text-center mt-2">{{ $t("bountyPlatform.SignInCard.paragraph") }}</p>
-    <div v-if="loggingInLoading" class="w-full max-w-xxs flex flex-col mt-4">
-      <div class="w-12 h-12 flex flex-row flex-1 justify-center content-center">
-        <h4
-          class="whitespace-no-wrap text-c-dark text-lg font-extrabold ml-8 mr-10 text-center"
-        >{{ $t("navigation.signingIn") }}</h4>
-      </div>
+    <div v-if="loggingInLoading" class="w-full flex flex-row justify-center mt-4">
+      <h4
+        class="text-c-text text-lg font-extrabold ml-8 mr-10 text-center"
+      >{{ $t("navigation.signingIn") }}</h4>
     </div>
     <div v-else class="w-full max-w-xxs flex flex-col mt-4">
       <!-- MetaMask Button -->
