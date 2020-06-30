@@ -510,7 +510,7 @@ export default {
       }),
       backupInterval: null,
       isBountyAmountEach: true,
-      editorPlaceholder: `<h1>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderTitle')}')}</h1><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph1')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph2')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph3')}</p><h2>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderRequirementsHeader')}</h2><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph4')}</p><ol><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderFirstRequirement')}</p></li><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderSecondRequirement')}</p></li></ol><p></p>`,
+      editorPlaceholder: `<h1>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderTitle')}</h1><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph1')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph2')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph3')}</p><h2>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderRequirementsHeader')}</h2><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph4')}</p><ol><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderFirstRequirement')}</p></li><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderSecondRequirement')}</p></li></ol><p></p>`,
       submittedBounty: false
     };
   },
@@ -913,7 +913,7 @@ export default {
           // Backup object
           let cookie = {
             loggedInAccount: this.loggedInAccount,
-            description: this.editor.getHTML(),
+            description: !this.isPlaceholderVisible ? this.editor.getHTML() : "",
             title: this.title,
             openBounty: this.openBounty,
             hunter: this.hunter,
@@ -938,7 +938,9 @@ export default {
       if (cached) {
         cached = JSON.parse(cached)
         if (cached.loggedInAccount == this.loggedInAccount) {
-          this.editor.setContent(cached.description)
+          if (cached.description.trim().length > 0 && cached.description.trim() != "<p></p>") {
+            this.editor.setContent(cached.description)
+          }
           this.title = cached.title
           this.openBounty = cached.openBounty
           this.hunter = cached.hunter,
