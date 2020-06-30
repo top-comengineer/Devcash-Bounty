@@ -412,7 +412,7 @@ import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
 import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
 import MiniSummaryCard from "~/components/BountyPlatform/MiniSummaryCard.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
-import { utils } from "ethers"
+import { utils, BigNumber } from "ethers"
 import { mapGetters } from "vuex";
 import { mixin as clickaway } from "vue-clickaway";
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
@@ -515,21 +515,21 @@ export default {
       if (!this.isBountyAmountEach) {
        if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
          let amountBigNum = utils.parseEther(this.amount.toString())
-         amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
          this.amount = utils.formatEther(amountBigNum)
        } else if (this.amount && this.numBounties) {
          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
          this.amount = utils.formatUnits(amountBigNum, 8)     
        }
       } else {
        if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
          let amountBigNum = utils.parseEther(this.amount.toString())
-         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          this.amount = utils.formatEther(amountBigNum)
        } else if (this.amount && this.numBounties) {
          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          this.amount = utils.formatUnits(amountBigNum, 8)     
        }        
       }
@@ -563,11 +563,11 @@ export default {
       if (!this.isBountyAmountEach && this.amount && this.numBounties) {
        if (this.$store.state.devcashData.ethPrimary) {
          let amountBigNum = utils.parseEther(this.amount.toString())
-         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          return  utils.formatEther(amountBigNum)
        } else {
          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         amountBigNum = amountBigNum.div(utils.bigNumberify(this.numBounties))
+         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          return utils.formatUnits(amountBigNum, 8)     
        }        
       }
@@ -577,11 +577,11 @@ export default {
       if (this.isBountyAmountEach && this.amount && this.numBounties) {
         if (this.$store.state.devcashData.ethPrimary) {
           let amountBigNum = utils.parseEther(this.amount.toString())
-          amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
           return utils.formatEther(amountBigNum)
         } else {
           let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-          amountBigNum = amountBigNum.mul(utils.bigNumberify(this.numBounties))
+          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
           return utils.formatUnits(amountBigNum, 8)     
         }
       }
@@ -687,15 +687,15 @@ export default {
          if (this.isBountyAmountEach) {
            amountBigNum = amountBigNum.mul(this.numBounties)
          }
-         balanceBigNum = utils.bigNumberify(this.balance.primary.raw)
+         balanceBigNum = BigNumber.from(this.balance.primary.raw)
        } else {
          amountBigNum = utils.parseUnits(this.amount.toString(), 8)
          if (this.isBountyAmountEach) {
            amountBigNum = amountBigNum.mul(this.numBounties)
          }
-         balanceBigNum = utils.bigNumberify(this.balance.primary.approvedRaw)       
+         balanceBigNum = BigNumber.from(this.balance.primary.approvedRaw)       
        }
-       if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(utils.bigNumberify(0))) {
+       if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
          this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
          isValid = false
        } else {
@@ -781,6 +781,7 @@ export default {
           )
           try {
             // Post to backend
+            
             let res = await this.$axios.post('/bounty/post', bounty)
             if (res.status == 200) {
               await DevcashBounty.initEthConnector(this)
@@ -788,8 +789,9 @@ export default {
               await this.$store.state.devcash.connector.postBounty(
                 bounty,
                 this.numBounties,
-                this.amount,
+                BigNumber.from(this.amount),
                 this.getDeadlineS(),
+                BigNumber.from("0"),
                 this.curFee,
                 this.isBountyAmountEach
               )

@@ -1,4 +1,4 @@
-const { utils } = require("ethers")
+const { utils, BigNumber } = require("ethers")
 const { UBounty, Submission, Op } = require('../models');
 const { etherClient } = require('../utils/ether_client')
 const submission = require("../models/submission");
@@ -19,8 +19,8 @@ module.exports.getOverviewStats = async (req, res, next) => {
       include: { model: UBounty, as: 'ubounty' }
     })
     let totalSubmissions = submissions.count
-    let totalEarnedDC = utils.bigNumberify(0)
-    let totalEarnedWei = utils.bigNumberify(0)
+    let totalEarnedDC = BigNumber.from(0)
+    let totalEarnedWei = BigNumber.from(0)
 
     let hunterRewards = etherClient.event_logs.rewarded.filter((reward) => reward.hunter ? reward.hunter.toLowerCase() == address.toLowerCase() : false)
     for (const reward of hunterRewards) {
@@ -35,8 +35,8 @@ module.exports.getOverviewStats = async (req, res, next) => {
       include: { model: Submission, as: 'submissions' }
     })
     let totalBounties = bounties.count
-    let totalAwardedDC = utils.bigNumberify(0)
-    let totalAwardedWei = utils.bigNumberify(0)
+    let totalAwardedDC = BigNumber.from(0)
+    let totalAwardedWei = BigNumber.from(0)
     let bountyIDs = []  
     for (const bounty of bounties.rows) {
       if (bounty.creator != address) {
