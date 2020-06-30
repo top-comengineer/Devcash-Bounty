@@ -1,16 +1,27 @@
 <template>
-  <div click class="relative">
+  <div class="relative">
+    <!-- Confirm to Submit Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="isModalOpen"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-16 pb-12">
+          <sign-in-card v-on-clickaway="closeModal" />
+        </div>
+      </div>
+    </transition>
     <button
-      :class="[isOpen ? '-rotate-90' : 'rotate-0']"
+      :class="[isDropdownOpen ? '-rotate-90' : 'rotate-0']"
       class="flex flex-row items-center transform scale-100 focus:scale-115 hover:scale-115 transition-all ease-out duration-200"
-      @click="isOpen = !isOpen"
-      @blur="isOpen=false"
+      @click="isDropdownOpen = !isDropdownOpen"
     >
       <Icon class="md:hidden w-8 h-8 transform" type="menu" colorClass="text-c-text" />
     </button>
     <transition name="dropdownTransition">
       <div
-        v-if="isOpen"
+        v-if="isDropdownOpen"
+        v-on-clickaway="closeDropdown"
         class="text-c-background md:hidden absolute right-0 dropdown mt-4 text-xl font-bold"
       >
         <div
@@ -72,6 +83,7 @@
           </button>
           <!-- Sign In Button -->
           <button
+            @click.prevent="isDropdownOpen=false;isModalOpen=true"
             class="bg-c-background text-c-text w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
           >{{ $t("navigation.signIn") }}</button>
         </div>
@@ -81,22 +93,40 @@
 </template>
 <script>
 import Icon from "~/components/Icon.vue";
+import SignInCard from "~/components/BountyPlatform/SignInCard.vue";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
+  mixins: [clickaway],
   components: {
-    Icon
+    Icon,
+    SignInCard
   },
-  data: function() {
+  data() {
     return {
-      isOpen: false
+      isDropdownOpen: false,
+      isModalOpen: false
     };
   },
   methods: {
     changeTheme() { 
       this.$store.commit('changeTheme', this.$store.state.theme == 'dark' ? 'light' : 'dark');
-      this.isOpen=false
+      this.isDropdownOpen=false
       this.$root.$emit('themeChanged')
+    },
+    closeDropdown(){
+      this.isDropdownOpen = false
+    },
+    closeModal(){
+      this.isModalOpen = false
     }
-  }
+  },
+  head(){
+    return {
+      bodyAttrs: {
+        class: [ this.isModalOpen? 'overflow-hidden':'']
+      }
+    }
+  },
 };
 </script>
 <style>

@@ -401,7 +401,7 @@
         :buttonText="$t('bountyPlatform.post.buttonPostBounty')"
       />
     </div>
-    <sign-in-to-continue-wrapper v-else />
+    <sign-in-card-wrapper v-else />
   </div>
 </template>
 
@@ -413,7 +413,7 @@ import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
 import DatePicker from "~/components/DatePicker.vue";
 import CategoryPicker from "~/components/BountyPlatform/CategoryPicker.vue";
-import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import SignInCardWrapper from "~/components/BountyPlatform/SignInCardWrapper.vue";
 import MiniSummaryCard from "~/components/BountyPlatform/MiniSummaryCard.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import { utils, BigNumber } from "ethers"
@@ -453,7 +453,7 @@ export default {
     Icon,
     DatePicker,
     CategoryPicker,
-    SignInToContinueWrapper,
+    SignInCardWrapper,
     TextEditor,
     MiniSummaryCard,
     MultiPurposeModal

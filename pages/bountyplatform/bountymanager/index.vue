@@ -187,7 +187,7 @@
         </div>
       </div>
     </div>
-    <sign-in-to-continue-wrapper v-else />
+    <sign-in-card-wrapper v-else />
   </div>
 </template>
 
@@ -200,7 +200,7 @@ import SubmissionCardPlaceholder from "~/components/BountyPlatform/SubmissionCar
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
-import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import SignInCardWrapper from "~/components/BountyPlatform/SignInCardWrapper.vue";
 import ConfirmModal from "~/components/BountyPlatform/ConfirmModal.vue";
 import { DevcashBounty } from '../../../plugins/devcash/devcashBounty.client';
 
@@ -214,7 +214,7 @@ export default {
     BountyCard,
     BountyCardPlaceholder,
     CheckmarkButton,
-    SignInToContinueWrapper,
+    SignInCardWrapper,
     ConfirmModal
   },
   computed: {

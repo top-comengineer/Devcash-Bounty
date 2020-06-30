@@ -88,7 +88,7 @@
         </div>
       </div>
     </div>
-    <sign-in-to-continue-wrapper v-else class="mx-1 md:mx-4" />
+    <sign-in-card-wrapper v-else class="mx-1 md:mx-4" />
   </div>
 </template>
 
@@ -100,14 +100,14 @@ import { utils } from "ethers";
 import OverviewCard from "~/components/BountyPlatform/OverviewCard.vue";
 import OverviewCardPlaceholder from "~/components/BountyPlatform/OverviewCardPlaceholder.vue";
 import ActivityCard from "~/components/BountyPlatform/ActivityCard.vue";
-import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import SignInCardWrapper from "~/components/BountyPlatform/SignInCardWrapper.vue";
 export default {
   layout: "bountyPlatform",
   components: {
     OverviewCard,
     OverviewCardPlaceholder,
     ActivityCard,
-    SignInToContinueWrapper
+    SignInCardWrapper
   },
   computed: {
     // mix the getters into computed with object spread operator

@@ -1,6 +1,6 @@
 <template>
   <div
-    class="w-full flex flex-col justify-center items-center bg-c-background-sec border-2 border-c-text-05 shadow-2xl-sec rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-4 md:px-12 md:py-8"
+    class="w-full max-h-full overflow-y-scroll flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-2xl-sec rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-6 md:px-12 md:py-8"
   >
     <img
       class="w-32 h-auto relative -mt-4"
@@ -9,14 +9,14 @@
     />
     <h4
       class="text-c-primary text-2xl text-center font-bold mt-2"
-    >{{ $t("bountyPlatform.signInToContinue.header") }}</h4>
-    <p class="text-c-text text-center mt-2">{{ $t("bountyPlatform.signInToContinue.paragraph") }}</p>
+    >{{ $t("bountyPlatform.SignInCard.header") }}</h4>
+    <p class="text-c-text text-center mt-2">{{ $t("bountyPlatform.SignInCard.paragraph") }}</p>
     <div v-if="loggingInLoading" class="w-full max-w-xxs flex flex-col mt-4">
       <div class="w-12 h-12 flex flex-row flex-1 justify-center content-center">
         <h4
           class="whitespace-no-wrap text-c-dark text-lg font-extrabold ml-8 mr-10 text-center"
         >{{ $t("navigation.signingIn") }}</h4>
-      </div>      
+      </div>
     </div>
     <div v-else class="w-full max-w-xxs flex flex-col mt-4">
       <!-- MetaMask Button -->

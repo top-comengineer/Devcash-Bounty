@@ -345,7 +345,7 @@
         "headerActivity": "Activity"
       }
     },
-    "signInToContinue": {
+    "SignInCard": {
       "header": "Sign in to continue",
       "paragraph": "To use all the features of the Devcash Bounty Platform, you need to sign in with MetaMask, Authereum or Portis."
     },

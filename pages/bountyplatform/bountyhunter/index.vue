@@ -105,21 +105,24 @@
               </div>
             </div>
             <div class="flex flex-row flex-wrap my-3">
-              <CheckmarkButton 
-              :checked="bountyActiveChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'active')"
-              class="mx-3 my-2"
-              :text="$t('bountyPlatform.explore.sidebar.statusActive')" />
-              <CheckmarkButton 
-              :checked="bountyCompletedChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'completed')"
-              class="mx-3 my-2" 
-              :text="$t('bountyPlatform.explore.sidebar.statusCompleted')" />
-              <CheckmarkButton 
-              :checked="bountyExpiredChecked"
-              :callback="(checked) => bountyFilterChanged(checked, 'expired')"
-              class="mx-3 my-2" 
-              :text="$t('bountyPlatform.explore.sidebar.statusExpired')" />
+              <CheckmarkButton
+                :checked="bountyActiveChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'active')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusActive')"
+              />
+              <CheckmarkButton
+                :checked="bountyCompletedChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'completed')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
+              />
+              <CheckmarkButton
+                :checked="bountyExpiredChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'expired')"
+                class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusExpired')"
+              />
             </div>
           </div>
         </div>
@@ -162,7 +165,7 @@
         </div>
       </div>
     </div>
-    <sign-in-to-continue-wrapper v-else />
+    <sign-in-card-wrapper v-else />
   </div>
 </template>
 
@@ -176,7 +179,7 @@ import SubmissionCardPlaceholder from "~/components/BountyPlatform/SubmissionCar
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
-import SignInToContinueWrapper from "~/components/BountyPlatform/SignInToContinueWrapper.vue";
+import SignInCardWrapper from "~/components/BountyPlatform/SignInCardWrapper.vue";
 const defaultBountyLimit = 50;
 
 export default {
@@ -187,7 +190,7 @@ export default {
     BountyCard,
     BountyCardPlaceholder,
     CheckmarkButton,
-    SignInToContinueWrapper
+    SignInCardWrapper
   },
   computed: {
     // mix the getters into computed with object spread operator
