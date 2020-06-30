@@ -298,6 +298,9 @@ export default {
       for (const submission of this.submissions) {
         if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
           submission.status = 'approved'
+          if (objR.feedback && objR.feedback.length > 0) {
+            submission.feedback = objR.feedback
+          }          
         }
       }
     })
@@ -305,6 +308,9 @@ export default {
       for (const submission of this.submissions) {
         if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
           submission.status = 'rejected'
+          if (objR.feedback && objR.feedback.length > 0) {
+            submission.feedback = objR.feedback
+          }
         }
       }
     })    

@@ -468,7 +468,7 @@ export default {
                     duration: -1
                   });                  
                 }
-                ref.$root.$emit("subRejected", {bounty: uBountyIndex, submission: submissionIndex})
+                ref.$root.$emit("subRejected", {bounty: uBountyIndex, submission: submissionIndex, feedback: feedback})
               } catch (e) {
                 console.log(e)
               }
@@ -498,7 +498,7 @@ export default {
                     duration: -1
                   });                
                 }
-                ref.$root.$emit("subApproved", {bounty: uBountyIndex, submission: submissionIndex})
+                ref.$root.$emit("subApproved", {bounty: uBountyIndex, submission: submissionIndex, feedback: feedback})
               } catch (e) {
                 console.log(e)
               }

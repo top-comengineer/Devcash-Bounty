@@ -779,6 +779,8 @@ class EtherClient {
   overrideStatus(uI, sI, status, feedback) {
     if (!this.overriddenStatus[uI]) {
       this.overriddenStatus[uI] = {}
+    }
+    if (!this.overriddenStatus[uI][sI]) {
       this.overriddenStatus[uI][sI] = {}
     }
     this.overriddenStatus[uI][sI].event = status
