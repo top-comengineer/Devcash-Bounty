@@ -1,13 +1,13 @@
 <template>
   <div class="relative">
-    <!-- Confirm to Submit Modal -->
+    <!-- Sign In Card -->
     <transition name="modalBgTransition">
       <div
         v-if="isModalOpen && !isLoggedIn"
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
       >
         <div class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-16 pb-12">
-          <sign-in-card v-on-clickaway="closeModal" />
+          <sign-in-card v-on-clickaway="closeModal" :closeModal="closeModal" />
         </div>
       </div>
     </transition>
@@ -32,6 +32,7 @@
             <a
               @click="navigate"
               :href="href"
+              @keydown.esc.exact="isDropdownOpen=false"
               class="hover:bg-c-background-15 focus:bg-c-background-15 w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg px-4"
             >
               <div class="flex flex-col items-center">
@@ -49,6 +50,7 @@
             v-slot="{  navigate, href, isExactActive  }"
           >
             <a
+              @keydown.esc.exact="isDropdownOpen=false"
               @click="navigate"
               :href="href"
               class="hover:bg-c-background-15 focus:bg-c-background-15 w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg px-4"
@@ -69,6 +71,8 @@
           >{{ $t("navigation.dex") }}</a>-->
           <!-- Theme Switch -->
           <button
+            @keydown.esc.exact="isDropdownOpen=false"
+            @keydown.tab.exact="isLoggedIn?isDropdownOpen=false:null"
             @click="changeTheme"
             class="hover:bg-c-background-15 focus:bg-c-background-15 w-full flex flex-row py-2 my-1 justify-center items-center transition-all ease-out duration-200 rounded-lg"
           >
@@ -83,15 +87,11 @@
           </button>
           <!-- Sign In Button -->
           <button
+            @keydown.esc.exact="isDropdownOpen=false"
             v-if="!isLoggedIn"
             @click.prevent="isDropdownOpen=false;isModalOpen=true"
             class="bg-c-background text-c-text w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
           >{{ $t("navigation.signIn") }}</button>
-          <button
-            v-else
-            @click.prevent="signOut(); isDropdownOpen=false"
-            class="bg-c-background text-c-text w-full font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-2 my-2"
-          >{{ $t("navigation.signOut") }}</button>
         </div>
       </div>
     </transition>
@@ -108,8 +108,8 @@ export default {
     SignInCard
   },
   props: {
-    signOut: Function,
-    isLoggedIn: Boolean
+    isLoggedIn: Boolean,
+    loggingInLoading: Boolean
   },
   data() {
     return {

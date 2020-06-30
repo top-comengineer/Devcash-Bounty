@@ -1,5 +1,7 @@
 <template>
-  <div class="w-full flex flex-row justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6">
+  <div
+    class="w-full flex flex-row flex-wrap justify-between items-center px-4 py-3 md:py-4 lg:px-8 lg:py-6"
+  >
     <nuxt-link
       :to="localePath('index')"
       class="focus:scale-110 hover:scale-110 transform transition-transform duration-300"
@@ -225,14 +227,15 @@
           </div>
         </transition>
       </div>
-      <div v-else class="hidden md:block relative">
+      <div v-else class="relative">
         <!-- Avatar -->
         <button
           @click="toggleSignOutModal"
           @keydown.esc.exact="hideSignOutModal"
-          class="btn-text bg-c-text text-c-background flex flex-row items-center transform hover:scale-lg focus:scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
+          class="btn-text bg-c-text text-c-background flex flex-row items-center transform hover:scale-lg focus:scale-lg ml-3 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-full p-0_5"
         >
-          <Jazzicon class="flex" :diameter="32" :address="loggedInAccount" />
+          <Jazzicon class="hidden md:flex" :diameter="32" :address="loggedInAccount" />
+          <Jazzicon class="flex md:hidden" :diameter="28" :address="loggedInAccount" />
         </button>
         <!-- Sign Out Modal -->
         <transition name="signInModalTransition">
@@ -292,7 +295,12 @@
         </transition>
       </div>
       <!-- Menu icon shown on small screens -->
-      <MobileDropdown class="ml-2" :isLoggedIn="isLoggedIn" :signOut="signOut" />
+      <MobileDropdown
+        class="ml-3"
+        :isLoggedIn="isLoggedIn"
+        :signOut="signOut"
+        :loggingInLoading="loggingInLoading"
+      />
     </div>
   </div>
 </template>

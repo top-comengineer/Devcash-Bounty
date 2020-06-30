@@ -80,14 +80,16 @@ import {
   WalletProviders,
   DevcashBounty
 } from "~/plugins/devcash/devcashBounty.client";
-
 export default {
   data() {
     return {
       walletProviders: WalletProviders,
       loggingInLoading: false
     };
-  },  
+  },
+  props: {
+    closeModal: Function
+  },
   methods: {
     async signIn(provider) {
       // Sign in flow
@@ -98,6 +100,9 @@ export default {
         console.log(e)
       } finally {
         this.loggingInLoading = false;
+        if(this.closeModal){
+          this.closeModal()
+        }
       }
     },  
   }
