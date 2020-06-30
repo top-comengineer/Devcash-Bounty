@@ -435,6 +435,7 @@ export default {
     );
   },
   deactivated() {
+    this.activeTab = "submissions"
     this.$store.commit("setSidebarContext", null);
     this.isSubmissionModalOpen = false;
     this.isContributeModalOpen = false;
