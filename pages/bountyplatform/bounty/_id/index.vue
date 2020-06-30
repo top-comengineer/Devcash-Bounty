@@ -181,7 +181,8 @@
               {{
               $t("bountyPlatform.singleBounty.comments.headerComments")
               }}
-              <DisqusCount tag="span" class="text-sm font-light" :identifier="disqusID()" />
+              <!--
+              <DisqusCount tag="span" class="text-sm font-light" :identifier="disqusID()" />-->
             </button>
             <button
               :class="[activeTab=='activity'?'text-c-light':'hover:bg-c-text-15 focus:bg-c-text-15']"
