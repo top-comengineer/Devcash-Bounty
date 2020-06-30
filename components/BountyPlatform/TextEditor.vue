@@ -91,22 +91,6 @@
             >
               <icon class="w-7 h-7" type="redo" colorClass="text-c-text" />
             </button>
-            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-            <button
-              class="flex flex-row items-center font-bold p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-              @click="editor.setContent(placeholder)"
-            >
-              <icon class="w-6 h-6 inline-block" type="reset" colorClass="text-c-text" />
-              <span class="mx-1">{{$t("bountyPlatform.editor.reset")}}</span>
-            </button>
-            <div class="w-px h-7 bg-c-text-15 rounded-full mx-3"></div>
-            <button
-              class="flex flex-row items-center font-bold p-1 m-1 rounded-lg hover:bg-c-text-15 transition-colors duration-200 ease-out"
-              @click="editor.setContent('')"
-            >
-              <icon class="w-6 h-6 inline-block" type="cancel" colorClass="text-c-text" />
-              <span class="mx-1">{{$t("bountyPlatform.editor.clear")}}</span>
-            </button>
           </div>
         </editor-menu-bar>
       </div>
@@ -192,7 +176,7 @@
         </div>
       </editor-menu-bubble>
       <editor-content
-        :class="type=='feedback'?'editor-content editor-content-feedback':'editor-content'"
+        :class="[type=='feedback'?'editor-content editor-content-feedback':'editor-content', isPlaceholderVisible?'opacity-50':'']"
         :editor="editor"
       />
     </client-only>
@@ -206,7 +190,8 @@ export default {
   props: {
     editor: null,
     placeholder: null,
-    type: null
+    type: null,
+    isPlaceholderVisible: null
   },
   components: {
     EditorContent,

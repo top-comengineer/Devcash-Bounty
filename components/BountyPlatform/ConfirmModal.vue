@@ -74,7 +74,7 @@
         >{{$t("bountyPlatform.confirmModal.inputFeedback.optional") }}</span>
       </p>
       <client-only>
-        <text-editor :editor="editor" :placeholder="editorFeedbackPlaceholder" type="feedback" />
+        <text-editor :editor="editor" :placeholder="editorFeedbackPlaceholder" type="feedback" :isPlaceholderVisible="isPlaceholderVisible"/>
       </client-only>
     </div>
     <!-- Cancel & Confirm Buttons -->
@@ -131,6 +131,7 @@ export default {
         linkMenuIsActive: false,
         editor:null,
         editorFeedbackPlaceholder: `<p>Write your feedback here...</p>`,
+        isPlaceholderVisible: true,
       }
     },
     components: {
@@ -169,11 +170,13 @@ export default {
         onFocus: (e) => {
           if (this.editor.getHTML().trim() == this.editorFeedbackPlaceholder.trim()) {
             this.editor.clearContent()
+            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.editorFeedbackPlaceholder)
+            this.isPlaceholderVisible = true
           }
         },
         extensions: [

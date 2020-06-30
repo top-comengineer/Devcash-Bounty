@@ -83,7 +83,11 @@
           >{{$t('bountyPlatform.post.bountyDescription')}}</h4>
           <!-- Text editor for the description -->
           <client-only>
-            <text-editor :editor="editor" :placeholder="editorPlaceholder" />
+            <text-editor
+              :editor="editor"
+              :placeholder="editorPlaceholder"
+              :isPlaceholderVisible="isPlaceholderVisible"
+            />
           </client-only>
         </div>
         <!-- Error Field -->
@@ -507,7 +511,8 @@ export default {
       backupInterval: null,
       isBountyAmountEach: true,
       editorPlaceholder: `<h1>Bounty Description</h1><p>You can explain your bounty here.</p><p>What do you want hunters of this bounty to do?</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p><h2>Requirements</h2><p>What do hunters need to do for you to approve their submission?</p><ol><li><p>First requirement</p></li><li><p>Second requirement</p></li></ol><p></p>`,
-      submittedBounty: false
+      submittedBounty: false,
+      isPlaceholderVisible: true,
     };
   },
   watch: {
@@ -857,11 +862,13 @@ export default {
         onFocus: (e) => {
           if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
             this.editor.clearContent()
+            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.editorPlaceholder)
+            this.isPlaceholderVisible = true
           }
         },      
         extensions: [
@@ -941,6 +948,7 @@ export default {
           }
           this.contactName = cached.name
           this.contactEmail = cached.email
+          this.isPlaceholderVisible = false
         } else {
           Cookies.remove('devcash_postcache')
         }
