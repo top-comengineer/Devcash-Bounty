@@ -181,7 +181,6 @@ export default {
       this.description = this.$store.state.devcashData.submissionFormData[this.bounty.id].description
       this.contactName = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactName
       this.contactEmail = this.$store.state.devcashData.submissionFormData[this.bounty.id].contactEmail
-      this.isPlaceholderVisible = false
     }
   },
   mounted() {
@@ -190,15 +189,13 @@ export default {
     }
     this.editor =  new Editor({
         onFocus: (e) => {
-          if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+          if (this.isPlaceholderVisible) {
             this.editor.clearContent()
-            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.submissionEditorPlaceholder)
-            this.isPlaceholderVisible = true
           }
         },
         extensions: [
@@ -234,11 +231,17 @@ export default {
       if (!this.editor) {
         return 0
       }
-      if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+      if (this.isPlaceholderVisible) {
         return 0
       }
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
     },    
+    isPlaceholderVisible() {
+      if (this.editor) {
+        return this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()
+      }
+      return true
+    }
   },
   methods: {
     cacheAndClose() {
@@ -258,7 +261,7 @@ export default {
       if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
         isValid = false
       }
-      if (this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()) {
+      if (this.isPlaceholderVisible) {
         isValid = false
       }
       return isValid
@@ -376,10 +379,9 @@ export default {
       confirmWindowOpen: false,
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       editor: null,
-      submissionEditorPlaceholder: `<h1>Submission Description</h1><p>You can write your submission here.</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p>`,
+      submissionEditorPlaceholder: `<h1>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderTitle')}</h1><p>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderParagraph1')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderParagraph2')}</p>`,
       linkUrl: null,
-      linkMenuIsActive: false,
-      isPlaceholderVisible: true  
+      linkMenuIsActive: false
     };
   }
 };

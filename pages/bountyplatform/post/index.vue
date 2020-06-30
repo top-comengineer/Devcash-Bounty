@@ -510,9 +510,8 @@ export default {
       }),
       backupInterval: null,
       isBountyAmountEach: true,
-      editorPlaceholder: `<h1>Bounty Description</h1><p>You can explain your bounty here.</p><p>What do you want hunters of this bounty to do?</p><p>You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.</p><h2>Requirements</h2><p>What do hunters need to do for you to approve their submission?</p><ol><li><p>First requirement</p></li><li><p>Second requirement</p></li></ol><p></p>`,
-      submittedBounty: false,
-      isPlaceholderVisible: true,
+      editorPlaceholder: `<h1>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderTitle')}')}</h1><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph1')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph2')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph3')}</p><h2>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderRequirementsHeader')}</h2><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderParagraph4')}</p><ol><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderFirstRequirement')}</p></li><li><p>${this.$t('bountyPlatform.multiPurposeModal.postBounty.placeholderSecondRequirement')}</p></li></ol><p></p>`,
+      submittedBounty: false
     };
   },
   watch: {
@@ -559,10 +558,16 @@ export default {
       if (!this.editor) {
         return 0
       }
-      if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+      if (this.isPlaceholderVisible) {
         return 0
       }      
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
+    },
+    isPlaceholderVisible() {
+      if (this.editor) {
+        return this.editor.getHTML().trim() == this.editorPlaceholder.trim()
+      }
+      return true
     },
     singleAmount() {
       if (!this.isBountyAmountEach && this.amount && this.numBounties) {
@@ -652,7 +657,7 @@ export default {
     if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
        isValid = false
     }
-    if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+    if (this.isPlaceholderVisible) {
       isValid = false
     }    
     return isValid
@@ -860,15 +865,13 @@ export default {
     }
     this.editor =  new Editor({
         onFocus: (e) => {
-          if (this.editor.getHTML().trim() == this.editorPlaceholder.trim()) {
+          if (this.isPlaceholderVisible) {
             this.editor.clearContent()
-            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.editorPlaceholder)
-            this.isPlaceholderVisible = true
           }
         },      
         extensions: [
@@ -948,7 +951,6 @@ export default {
           }
           this.contactName = cached.name
           this.contactEmail = cached.email
-          this.isPlaceholderVisible = false
         } else {
           Cookies.remove('devcash_postcache')
         }

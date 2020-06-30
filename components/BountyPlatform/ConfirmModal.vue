@@ -130,8 +130,7 @@ export default {
         linkUrl: null,
         linkMenuIsActive: false,
         editor:null,
-        editorFeedbackPlaceholder: `<p>Write your feedback here...</p>`,
-        isPlaceholderVisible: true,
+        editorFeedbackPlaceholder: `<p>${this.$t('bountyPlatform.confirmModal.inputFeedback.placeholder')}</p>`,
       }
     },
     components: {
@@ -150,13 +149,19 @@ export default {
       },
       ethAmount() {
         return DevcashBounty.formatAmountSingleSubmissionEth(this.item.ubounty)
+      },
+      isPlaceholderVisible() {
+        if (this.editor) {
+          return this.editor.getHTML().trim() == this.editorFeedbackPlaceholder.trim() 
+        }
+        return true
       }
     },
     methods: {
         confirmClicked() {
           this.loading = true
           let feedback = ""
-          if (this.editor.getHTML().trim() != this.editorFeedbackPlaceholder.trim()) {
+          if (!this.isPlaceholderVisible) {
             feedback = this.turnDownSvc.turndown(this.editor.getHTML())
           }
           this.confirmCallback(feedback, this.item, this.type)
@@ -170,13 +175,11 @@ export default {
         onFocus: (e) => {
           if (this.editor.getHTML().trim() == this.editorFeedbackPlaceholder.trim()) {
             this.editor.clearContent()
-            this.isPlaceholderVisible = false
           }
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.editorFeedbackPlaceholder)
-            this.isPlaceholderVisible = true
           }
         },
         extensions: [
