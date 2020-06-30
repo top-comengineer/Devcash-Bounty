@@ -261,6 +261,10 @@
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to reject this submission. It might take 15-30 minutes for it to be processed by the network."
       },
+      "approveAmount": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to approve the amount. It might take 15-30 minutes for it to be processed by the network."
+      },
       "generic": {
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to continue."

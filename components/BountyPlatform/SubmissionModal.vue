@@ -385,15 +385,22 @@ export default {
 };
 </script>
 <style scoped>
-.submissionDescArea {
-  min-height: 18rem;
-  height: 18rem;
-  transform-origin: center top;
-}
 .closeButton {
   border-top-left-radius: 2rem;
   border-top-right-radius: 0.75rem;
   border-bottom-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
+}
+.modalBgTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-enter {
+  opacity: 0;
+}
+.modalBgTransition-leave-to {
+  opacity: 0;
 }
 </style>

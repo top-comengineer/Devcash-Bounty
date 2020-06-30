@@ -2,7 +2,7 @@
   <div
     class="max-w-full md:max-w-md h-auto flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-4xl rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg overflow-y-scroll"
   >
-    <!-- Confirm to Submit Modal -->
+    <!-- Confirm to Approve or Reject Modal-->
     <transition name="modalBgTransition">
       <div
         v-if="loading"
@@ -192,3 +192,17 @@ export default {
     }
 }
 </script>
+<style>
+.modalBgTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-enter {
+  opacity: 0;
+}
+.modalBgTransition-leave-to {
+  opacity: 0;
+}
+</style>
