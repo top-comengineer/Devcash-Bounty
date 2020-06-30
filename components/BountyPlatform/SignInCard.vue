@@ -1,16 +1,19 @@
 <template>
   <div
-    class="w-full max-h-full overflow-y-scroll flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 shadow-2xl-sec rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-6 md:px-12 md:py-8"
+    :class="type=='sign'?'shadow-4xl':'shadow-2xl-sec'"
+    class="w-full max-h-full overflow-y-scroll flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-6 md:px-12 md:py-8"
   >
     <img
-      class="w-32 h-auto relative -mt-4"
+      class="w-24 md:w-32 h-auto relative -mt-2 md:-mt-4"
       :src="require('~/assets/images/illustrations/foreground/lock.svg')"
       alt="Lock"
     />
     <h4
       class="text-c-primary text-2xl text-center font-bold mt-2"
-    >{{ $t("bountyPlatform.SignInCard.header") }}</h4>
-    <p class="text-c-text text-center mt-2">{{ $t("bountyPlatform.SignInCard.paragraph") }}</p>
+    >{{ type=='sign'?$t("bountyPlatform.signInCard.headerSignIn"):$t("bountyPlatform.signInCard.headerSignInToContinue") }}</h4>
+    <p
+      class="text-c-text text-center mt-2"
+    >{{type=='sign'?$t("bountyPlatform.signInCard.paragraphSignIn"): $t("bountyPlatform.signInCard.paragraphSignInToContinue") }}</p>
     <div v-if="loggingInLoading" class="w-full flex flex-row justify-center mt-4">
       <h4
         class="text-c-text text-lg font-extrabold ml-8 mr-10 text-center"
@@ -88,7 +91,8 @@ export default {
     };
   },
   props: {
-    closeModal: Function
+    closeModal: Function,
+    type: null
   },
   methods: {
     async signIn(provider) {
