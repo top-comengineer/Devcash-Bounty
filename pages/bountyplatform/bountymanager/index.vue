@@ -193,7 +193,7 @@
 
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
-import { utils } from "ethers";
+import { utils, BigNumber } from "ethers";
 import { mapGetters } from "vuex";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import SubmissionCardPlaceholder from "~/components/BountyPlatform/SubmissionCardPlaceholder.vue";
@@ -333,7 +333,7 @@ export default {
         );
         for (let bounty of res.data.items) {
           this.totalBountyAmount = this.totalBountyAmount.add(
-            utils.bigNumberify(bounty.bountyAmount)
+            BigNumber.from(bounty.bountyAmount)
           );
         }
         this.totalBountyAmountDisplay = utils.commify(
@@ -426,7 +426,7 @@ export default {
       submissionsLoading: true,
       page: 0,
       submissionsPage: 0,
-      totalBountyAmount: utils.bigNumberify("0"),
+      totalBountyAmount: BigNumber.from("0"),
       totalBountyAmountDisplay: "0.0",
       totalBountyCount: 0,
       totalSubmissionCount: 0,

@@ -1,4 +1,4 @@
-import { ethers, utils } from "ethers";
+import { ethers, utils, BigNumber } from "ethers";
 import CryptoJS from "crypto-js";
 import { Authereum, AuthereumSigner } from "authereum";
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from "./config.js";
@@ -56,7 +56,7 @@ export class DevcashBounty {
     if (delta <= 0) {
       return "0";
     }
-    let totalAmount = utils.bigNumberify(bounty.bountyAmount);
+    let totalAmount = BigNumber.from(bounty.bountyAmount);
     totalAmount = totalAmount.div(delta);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
@@ -69,7 +69,7 @@ export class DevcashBounty {
     if (delta <= 0) {
       return "0";
     }
-    let totalAmount = utils.bigNumberify(bounty.weiAmount);
+    let totalAmount = BigNumber.from(bounty.weiAmount);
     totalAmount = totalAmount.div(delta);
     totalAmount = utils.commify(utils.formatEther(totalAmount));
     return totalAmount;
@@ -79,7 +79,7 @@ export class DevcashBounty {
     if (bounty.available <= 0) {
       return "0"
     }
-    let totalAmount = utils.bigNumberify(bounty.bountyAmount);
+    let totalAmount = BigNumber.from(bounty.bountyAmount);
     totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.commify(utils.formatUnits(totalAmount, tokenDecimals));
     return totalAmount;
@@ -89,7 +89,7 @@ export class DevcashBounty {
     if (bounty.available <= 0) {
       return "0"
     }
-    let totalAmount = utils.bigNumberify(bounty.weiAmount);
+    let totalAmount = BigNumber.from(bounty.weiAmount);
     totalAmount = totalAmount.div(bounty.available);
     totalAmount = utils.formatEther(totalAmount);
     return totalAmount;
@@ -588,25 +588,20 @@ export class DevcashBounty {
   }
 
   // Methods for writing to the smart contract
-  async postBounty(bounty, available, amount, deadline, ethAmount, amountEach) {
+  async postBounty(bounty, available, amount, deadline, weiAmount, fee, amountEach) {
     if (!amount) {
-      amount = utils.bigNumberify(0);
+      amount = BigNumber.from(0);
     } else {
       amount = utils.parseUnits(amount.toString(), this.tokenDecimals);
       if (amountEach) {
         amount = amount.mul(available)
       }
     }
-    if (!ethAmount) {
-      ethAmount = utils.bigNumberify(0);
-    } else {
-      ethAmount = utils.parseEther(ethAmount);
-      if (amountEach) {
-        amount = amount.mul(available)
-      }
+    if (amountEach) {
+      weiAmount = weiAmount.mul(available)
     }
     let overrides = {
-      value: ethAmount,
+      value: weiAmount.add(fee),
       gasLimit: 3000000,
     };
     if (!bounty.hunter) {
@@ -614,7 +609,7 @@ export class DevcashBounty {
       return await this.uBCContract.postOpenBounty(
         "",
         bounty.hash,
-        parseInt(available),
+        available,
         amount,
         deadline,
         overrides
@@ -624,7 +619,7 @@ export class DevcashBounty {
       "",
       bounty.hash,
       bounty.hunter,
-      parseInt(available),
+      available,
       amount,
       deadline,
       overrides

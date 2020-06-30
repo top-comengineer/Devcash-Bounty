@@ -335,7 +335,7 @@
 import { mapGetters } from "vuex";
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
-import { utils } from "ethers";
+import { utils, BigNumber } from "ethers";
 import Icon from "~/components/Icon.vue";
 import RadioButton from "~/components/RadioButton.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
@@ -431,7 +431,7 @@ export default {
         this.approvalLoading = true
         await DevcashBounty.updateBalances(this)
         let amt = utils.parseUnits(this.toApprove.toString(), 8)
-        let avail = utils.bigNumberify(this.balance.primary.raw)
+        let avail = BigNumber.from(this.balance.primary.raw)
         if (amt.gt(avail)) {
           this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
           return

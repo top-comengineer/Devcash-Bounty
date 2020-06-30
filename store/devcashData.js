@@ -1,6 +1,6 @@
 
 import * as Cookies from "js-cookie"
-import { utils } from "ethers"
+import { utils, BigNumber } from "ethers"
 
 const ethSymbol = "Ξ"
 const devcashSymbol = "{D}"
@@ -164,9 +164,9 @@ export const mutations = {
       if (state.fee) {
         let rawBal
         if (state.ethIsPrimary) {
-          rawBal = utils.bigNumberify(state.balanceSecondary.raw)
+          rawBal = BigNumber.from(state.balanceSecondary.raw)
         } else {
-          rawBal = utils.bigNumberify(state.balancePrimary.raw)
+          rawBal = BigNumber.from(state.balancePrimary.raw)
         }
         let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)
         if (rawBal.gte(rawWaiver)) {
@@ -186,9 +186,9 @@ export const mutations = {
       // Update fee
       let rawBal
       if (state.ethIsPrimary && state.balanceSecondary.raw) {
-        rawBal = utils.bigNumberify(state.balanceSecondary.raw)
+        rawBal = BigNumber.from(state.balanceSecondary.raw)
       } else if (!state.ethIsPrimary && state.balancePrimary.raw) {
-        rawBal = utils.bigNumberify(state.balancePrimary.raw)
+        rawBal = BigNumber.from(state.balancePrimary.raw)
       }
       if (rawBal) {
         let rawWaiver = utils.parseUnits(state.fee.waiver.toString(), 8)

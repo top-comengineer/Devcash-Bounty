@@ -247,11 +247,22 @@
     "multiPurposeModal": {
       "postBounty": {
         "header": "Confirm the Transaction",
-        "paragraph": "Please confirm the transaction via your wallet to post this bounty. It might take 15-30 minutes for the bounty to become visible."
+        "paragraph": "Please confirm the transaction via your wallet to post this bounty. It might take 15-30 minutes for the bounty to become visible.",
+        "placeholderTitle": "Bounty Description",
+        "placeholderParagraph1": "You can explain your bounty here.",
+        "placeholderParagraph2": "What do you want hunters of this bounty to do?",
+        "placeholderParagraph3": "You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc.",
+        "placeholderRequirementsHeader": "Requirements",
+        "placeholderParagraph4": "What do hunters need to do for you to approve their submission?",
+        "placeholderFirstRequirement": "First requirement",
+        "placeholderSecondRequirement": "Second requirement"
       },
       "createSubmission": {
         "header": "Confirm the Transaction",
-        "paragraph": "Please confirm the transaction via your wallet to create this submission. It might take 15-30 minutes for the submission to become visible."
+        "paragraph": "Please confirm the transaction via your wallet to create this submission. It might take 15-30 minutes for the submission to become visible.",
+        "placeholderTitle": "Submission Description",
+        "placeholderParagraph1": "You can write your submission here.",
+        "placeholderParagraph2": "You can also use markdown shortcuts such as <code>#</code>, <code>##</code>, <code>*</code>, <code>**</code> etc."
       },
       "confirmToApprove": {
         "header": "Confirm the Transaction",

@@ -1,7 +1,7 @@
 "use strict";
 
 const _ = require('lodash')
-const { ethers, utils } = require("ethers");
+const { ethers, utils, BigNumber } = require("ethers");
 const web3 = require("web3");
 const {
   tokenAddress,
@@ -280,7 +280,7 @@ class EtherClient {
   }
 
   HexToInt(hex, decimals) {
-    return utils.formatUnits(utils.bigNumberify(hex), decimals);
+    return utils.formatUnits(BigNumber.from(hex), decimals);
   }
 
   HexToString(hex) {
@@ -722,7 +722,7 @@ class EtherClient {
       }
       let poster = "0x" + data[0].substring(26);
       let hunter = "0x" + data[1].substring(26);
-      let amount = utils.formatUnits(utils.bigNumberify(data[3]), 8);
+      let amount = utils.formatUnits(BigNumber.from(data[3]), 8);
       let description = web3.utils.toAscii(descriptionData);
       log.poster = poster;
       log.hunter = hunter;
@@ -764,8 +764,8 @@ class EtherClient {
 
   getSubmissionAmount(uI, sI) {
     let allRewarded = this.event_logs.rewarded.filter((reward) => reward.ubountyIndex == uI && reward.submissionIndex == sI)
-    let totalAmount = utils.bigNumberify(0)
-    let totalAmountWei = utils.bigNumberify(0)
+    let totalAmount = BigNumber.from(0)
+    let totalAmountWei = BigNumber.from(0)
     for (const reward of allRewarded) {
       totalAmount = totalAmount.add(utils.parseUnits(reward.rewardAmount, 8))
       totalAmountWei = totalAmountWei.add(utils.parseEther(reward.ethRewardAmount))
