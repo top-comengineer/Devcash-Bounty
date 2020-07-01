@@ -65,7 +65,7 @@ async function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
   // Fetch event logs
-  etherClient.gatherEventLogs()
+  await etherClient.gatherEventLogs()
   // Every 5 minutes update on-chain bounty cache 
   cron.schedule("* * * * *", async function() {
     await redis.updateBountyCache(etherClient)

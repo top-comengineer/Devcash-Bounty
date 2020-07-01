@@ -89,7 +89,7 @@ class EtherClient {
     uBounty.amount = (
       await this.tokenContract.balanceOf(uBounty.bc)
     ).toString();
-    uBounty.weiAmount = (await this.provider.getBalance(uBounty.bc)).toString()
+    uBounty.weiAmount = (await this.uBCContract.weiBountyAmount(uBounty.index)).toString()
     // Get submissions
     uBounty.submissions = await this.getBountySubmissions(uBounty);
     return uBounty;
@@ -149,7 +149,7 @@ class EtherClient {
   }
 
   // Event logs
-  async gatherEventLogs() {
+  async gatherEventLogs(retries = 0) {
     try {
       let event_logs = new Object();
 
@@ -252,9 +252,13 @@ class EtherClient {
       this.event_logs = event_logs;
     } catch (e) {
       console.log(e)
-      console.log("Retrying event log gather")
-      await this.redis.clearEventLogCache()
-      await this.gatherEventLogs()
+      if (retries < 3) {
+        console.log("Retrying event log gather")
+        await this.redis.clearEventLogCache()
+        await this.gatherEventLogs(retries+=1)
+      } else {
+        console.log(`CRITICAL: Event log gathering failed after ${retries} attempts`)
+      }
     }
   }
 

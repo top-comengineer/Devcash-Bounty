@@ -6,3 +6,6 @@ module.exports.SIDEBAR_CONTEXTS = {
   bountyHunter: "bountyHunter",
   bountyManager: "bountyManager"
 };
+
+module.exports.devcashSymbol = '{D}'
+module.exports.ethSymbol = 'Ξ'

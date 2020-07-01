@@ -401,7 +401,7 @@ export class DevcashBounty {
     uBounty.amount = (
       await this.tokenContract.balanceOf(uBounty.bc)
     ).toString();
-    uBounty.weiAmount = (await this.provider.getBalance(uBounty.bc)).toString()
+    uBounty.weiAmount = (await this.uBCContract.weiBountyAmount(uBounty.index)).toString()
     // Get submissions
     //uBounty.submissions = await this.getBountySubmissions(uBounty);
     return uBounty;
