@@ -84,6 +84,7 @@
           <!-- Text editor for the description -->
           <client-only>
             <text-editor
+              id="bountyDescription"
               :editor="editor"
               :placeholder="editorPlaceholder"
               :isPlaceholderVisible="isPlaceholderVisible"
@@ -95,7 +96,7 @@
           <p
             :class="[(mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount) ?'text-c-danger':'']"
             class="text-sm px-3 opacity-75"
-          >{{ mdDescriptionLength>0?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+          >{{ mdDescriptionLength>0 && !descriptionError?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}{{ descriptionError ? $t('bountyPlatform.post.descriptionError') : '' }}</p>
         </div>
       </div>
       <!-- Card for Bounty Type -->
@@ -489,11 +490,13 @@ export default {
       submitLoading: false,
       categories: {},
       // Form validation
+      errorList: {},
       minTitleLength: 10,
       maxTitleLength: 50,
       minContactNameLength: 2,
       maxContactNameLength: 50,
       titleError: false,
+      descriptionError: false,
       contactNameError: false,
       emailError: false,
       numBountiesError: false,
@@ -640,26 +643,40 @@ export default {
     } else {
       this.categoryError = false
     }
+    if (!isValid) {
+      this.errorList[6] = "#bountyCategory"
+    }       
     return isValid
   },
   validateTitle(){
     let isValid = true
     if (this.title.length < this.minTitleLength || this.title.length > this.maxTitleLength) {
        this.titleError = true 
-       return false
+       isValid = false
      } else {
        this.titleError = false
+     }
+     if (!isValid) {
+       this.errorList[1] = "#bountyTitle"
      }
      return isValid
   },
   validateDescription(){
     let isValid = true
+    this.descriptionError = false
     if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
        isValid = false
+       if (this.mdDescriptionLength == 0) {
+         this.descriptionError = true
+       }
     }
     if (this.isPlaceholderVisible) {
       isValid = false
-    }    
+      this.descriptionError = true
+    }
+     if (!isValid) {
+       this.errorList[2] = "#bountyDescription"
+     }    
     return isValid
   },
   validateHunterAddress(){
@@ -675,6 +692,9 @@ export default {
      } else {
        this.invalidHunterAddress = false
      }
+     if (!isValid) {
+       this.errorList[3] = "#hunterAddress"
+     }        
      return isValid
   },
   validateNumBounties(){
@@ -686,6 +706,9 @@ export default {
        this.numBountiesError = false
        isValid = true
      }
+     if (!isValid) {
+       this.errorList[4] = "#numberOfBounties"
+     }             
      return isValid
   },
   validateAmount(){
@@ -715,30 +738,39 @@ export default {
        this.amountError = this.$t('bountyPlatform.post.invalidAmount')
        isValid = false
      }
+     if (!isValid) {
+       this.errorList[5] = "#bountyAmount"
+     }      
      return isValid
   },
   validateContactName(){
     let isValid = true
     if (this.contactName.length == 0) {
-      return true
+      isValid = true
     } else if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
        isValid = false
        this.contactNameError = true 
      } else {
        this.contactNameError = false
      }
+    if (!isValid) {
+      this.errorList[8] = "#contactName"
+    }         
      return isValid
   },
   validateEmail(){
     let isValid = true
     if (this.contactEmail.length == 0) {
-      return true
+      isValid = true
     } else if (!this.emailRegex.test(this.contactEmail)) {
        isValid = false
        this.emailError = true
      } else {
        this.emailError = false
      }
+    if (!isValid) {
+      this.errorList[9] = "#contactEmail"
+    }      
      return isValid
   },
   validateDeadline(){
@@ -754,6 +786,9 @@ export default {
      } else {
        this.deadlineError = false
      }
+    if (!isValid) {
+      this.errorList[7] = "#bountyDeadline"
+    }      
      return isValid
   },
    validateForm() {
@@ -776,7 +811,9 @@ export default {
      return 0
    },
    async submitBounty() {
-     if (this.validateForm() && !this.submitLoading) {
+     this.errorList = {}
+     let valid = this.validateForm()
+     if (valid && !this.submitLoading) {
        try {
          this.submitLoading = true
           // Post bounty
@@ -840,6 +877,12 @@ export default {
          this.confirmWindowOpen = false
          this.submitLoading = false;
        }
+     } else if (!valid) {
+       let keys = Object.keys(this.errorList)
+       if (keys.length > 0) {
+         keys = keys.sort((a, b) => parseInt(a)-parseInt(b))
+         this.$scrollTo(this.errorList[keys[0]], 0, {offset: -150})
+       }
      }
    },
    showLinkMenu(attrs) {
@@ -868,11 +911,13 @@ export default {
           if (this.isPlaceholderVisible) {
             this.editor.clearContent()
           }
+          this.descriptionError = false
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.editorPlaceholder)
           }
+          this.validateDescription()
         },      
         extensions: [
           new Bold(),

@@ -152,6 +152,7 @@
       "deadlineError": "Deadline cannot be a past date.",
       "needCategoryError": "You need to pick a category.",
       "buttonPostAnotherBounty": "Post Another Bounty",
+      "descriptionError": "Description is required",
       "bountyPosted": {
         "header": "Your bounty has been posted!",
         "paragraph": "It'll become visible after it is confirmed by the network. This might take 15-30 minutes. In the mean time, you can post another bounty by clicking the button below."

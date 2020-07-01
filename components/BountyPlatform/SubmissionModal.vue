@@ -1,5 +1,6 @@
 <template>
   <div
+    id="submissionModal"
     class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
   >
     <!-- Confirm to Submit Modal -->
@@ -58,6 +59,7 @@
           <!-- Text editor for the description -->
           <client-only>
             <text-editor
+              id="submissionDescription"
               :editor="editor"
               :placeholder="submissionEditorPlaceholder"
               :isPlaceholderVisible="isPlaceholderVisible"
@@ -68,7 +70,7 @@
           <p
             :class="{'text-c-danger':(mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount)} "
             class="text-sm px-3 opacity-75"
-          >{{ mdDescriptionLength>0?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}</p>
+          >{{ mdDescriptionLength>0 && !descriptionError?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}{{ descriptionError ? $t('bountyPlatform.post.descriptionError') : '' }}</p>
         </div>
       </div>
       <!-- Card for Contact Name and Email -->
@@ -195,11 +197,13 @@ export default {
           if (this.isPlaceholderVisible) {
             this.editor.clearContent()
           }
+          this.descriptionError = false
         },
         onBlur: (e) => {
           if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
             this.editor.setContent(this.submissionEditorPlaceholder)
           }
+          this.validateDescription()
         },
         extensions: [
           new Bold(),
@@ -261,36 +265,50 @@ export default {
     },
     validateDescription(){
       let isValid = true
+      this.descriptionError = false
       if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
         isValid = false
+        if (this.mdDescriptionLength == 0) {
+          this.descriptionError = true
+        }
       }
       if (this.isPlaceholderVisible) {
         isValid = false
+        this.descriptionError = true
       }
+      if (!isValid) {
+        this.errorList[1] = "#submissionDescription"
+      }    
       return isValid
     },
     validateContactName(){
       let isValid = true
       if (this.contactName.length == 0) {
-        return true
+        isValid = true
       } else if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
         isValid = false
         this.contactNameError = true 
       } else {
         this.contactNameError = false
       }
+      if (!isValid) {
+        this.errorList[1] = "#submissionContactName"
+      }
       return isValid
     },
     validateEmail(){
       let isValid = true
       if (this.contactEmail.length == 0) {
-        return true      
+        isValid = true      
       } else if (!this.emailRegex.test(this.contactEmail)) {
         isValid = false
         this.emailError = true
       } else {
         this.emailError = false
       }
+      if (!isValid) {
+        this.errorList[1] = "#submissionContactEmail"
+      }      
       return isValid
     },
     validateForm() {
@@ -301,7 +319,9 @@ export default {
       return isValid
     },
     async submitSubmission() {
-      if (this.validateForm() && !this.submissionLoading) {
+      this.errorList = {}
+      let valid = this.validateForm()
+      if (valid && !this.submissionLoading) {
         try {
           this.submissionLoading = true
           // Create submission with hash
@@ -344,6 +364,12 @@ export default {
           this.confirmWindowOpen = false
           this.submissionLoading = false
         }
+      } else if (!valid) {
+       let keys = Object.keys(this.errorList)
+       if (keys.length > 0) {
+         keys = keys.sort((a, b) => parseInt(a)-parseInt(b))
+         this.$scrollTo(this.errorList[keys[0]], 0, { container: "#submissionModal"})
+       }        
       }
     },
     showLinkMenu(attrs) {
@@ -380,11 +406,13 @@ export default {
       contactNameError: false,
       emailError: false,
       confirmWindowOpen: false,
+      descriptionError: false,
       emailRegex: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
       editor: null,
       submissionEditorPlaceholder: `<h1>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderTitle')}</h1><p>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderParagraph1')}</p><p>${this.$t('bountyPlatform.multiPurposeModal.createSubmission.placeholderParagraph2')}</p>`,
       linkUrl: null,
-      linkMenuIsActive: false
+      linkMenuIsActive: false,
+      errorList: {}
     };
   }
 };
