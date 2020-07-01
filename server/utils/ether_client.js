@@ -150,105 +150,112 @@ class EtherClient {
 
   // Event logs
   async gatherEventLogs() {
-    let event_logs = new Object();
+    try {
+      let event_logs = new Object();
 
-    let event_logs_cache = await this.redis.getEventLogCache()    
-    let lastHadBlock = await this.redis.getLastBlockCount()
-    let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
-    let toBlock = await this.provider.getBlockNumber()
+      let event_logs_cache = await this.redis.getEventLogCache()    
+      let lastHadBlock = await this.redis.getLastBlockCount()
+      let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
+      let toBlock = await this.provider.getBlockNumber()
 
-    console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)    
+      console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)    
 
-    if (lastHadBlock >= toBlock) {
-      // Don't need to retrieve any logs
-      this.event_logs = event_logs_cache
-      return
+      if (lastHadBlock >= toBlock) {
+        // Don't need to retrieve any logs
+        this.event_logs = event_logs_cache
+        return
+      }
+
+      let createdTopic = utils.id("created(uint256,uint256,uint256,uint256)");
+      let submittedTopic = utils.id("submitted(uint256,uint256)");
+      let revisedTopic = utils.id("revised(uint256,uint256,uint256)");
+      let approvedTopic = utils.id("approved(uint256,uint256,string)");
+      let rejectedTopic = utils.id("rejected(uint256,uint256,string)");
+      let revisionRequestedTopic = utils.id(
+        "revisionRequested(uint256,uint256,string)"
+      );
+      let rewardedTopic = utils.id("rewarded(uint256,uint256,address,uint256,uint256)");
+      let reclaimedTopic = utils.id("reclaimed(uint256,uint256,uint256)");
+      let completedTopic = utils.id("completed(uint256)");
+      let feeChangeTopic = utils.id("feeChange(uint256,uint256)");
+      let waiverChangeTopic = utils.id("waiverChange(uint256,uint256)");
+
+      let createdFilter = this.createFilter(createdTopic, fromBlock, toBlock);
+      let submittedFilter = this.createFilter(submittedTopic, fromBlock, toBlock);
+      let revisedFilter = this.createFilter(revisedTopic, fromBlock, toBlock);
+      let approvedFilter = this.createFilter(approvedTopic, fromBlock, toBlock);
+      let rejectedFilter = this.createFilter(rejectedTopic, fromBlock, toBlock);
+      let revisionRequestedFilter = this.createFilter(revisionRequestedTopic, fromBlock, toBlock);
+      let rewardedFilter = this.createFilter(rewardedTopic, fromBlock, toBlock);
+      let reclaimedFilter = this.createFilter(reclaimedTopic, fromBlock, toBlock);
+      let completedFilter = this.createFilter(completedTopic, fromBlock, toBlock);
+      let feeChangedFilter = this.createFilter(feeChangeTopic, fromBlock, toBlock);
+      let waiverChangedFilter = this.createFilter(waiverChangeTopic, fromBlock, toBlock);
+
+      let createdLogs = await this.provider.getLogs(createdFilter);
+      let submittedLogs = await this.provider.getLogs(submittedFilter);
+      let revisedLogs = await this.provider.getLogs(revisedFilter);
+      let approvedLogs = await this.provider.getLogs(approvedFilter);
+      let rejectedLogs = await this.provider.getLogs(rejectedFilter);
+      let revisionRequestedLogs = await this.provider.getLogs(
+        revisionRequestedFilter
+      );
+      let rewardedLogs = await this.provider.getLogs(rewardedFilter);
+      let reclaimedLogs = await this.provider.getLogs(reclaimedFilter);
+      let completedLogs = await this.provider.getLogs(completedFilter);
+      let feeChangedLogs = await this.provider.getLogs(feeChangedFilter);
+      let waiverChangedLogs = await this.provider.getLogs(waiverChangedFilter);
+
+      let createdInfo = await this.getCreatedInfo(createdLogs);
+      let submittedInfo = await this.getSubmittedInfo(submittedLogs);
+      let revisedInfo = await this.getRevisedInfo(revisedLogs);
+      let approvedInfo = await this.getApprovedInfo(approvedLogs);
+      let rejectedInfo = await this.getRejectedInfo(rejectedLogs);
+      let revisionRequestedInfo = await this.getRevisionRequestedInfo(
+        revisionRequestedLogs
+      );
+      let rewardedInfo = await this.getRewardedInfo(rewardedLogs);
+      let reclaimedInfo = await this.getReclaimedInfo(reclaimedLogs);
+      let completedInfo = await this.getCompletedInfo(completedLogs);
+      let feeChangedInfo = await this.getFeeChangedInfo(feeChangedLogs);
+      let waiverChangedInfo = await this.getWaiverChangedInfo(waiverChangedLogs);
+
+
+      event_logs.approvedLogs = approvedLogs
+      event_logs.rejectedLogs = rejectedLogs
+      event_logs.created = createdInfo;
+      event_logs.submitted = submittedInfo;
+      event_logs.revised = revisedInfo;
+      event_logs.approved = approvedInfo;
+      event_logs.rejected = rejectedInfo;
+      event_logs.revisionRequested = revisionRequestedInfo;
+      event_logs.rewarded = rewardedInfo;
+      event_logs.reclaimed = reclaimedInfo;
+      event_logs.completed = completedInfo;
+      event_logs.feeChanged = feeChangedInfo;
+      event_logs.waiverChanged = waiverChangedInfo;
+
+      // Cache
+      if (event_logs_cache != null) {
+        _.mergeWith(event_logs, event_logs_cache, function(objValue, srcValue) { if (_.isArray(objValue)) { return _.union(objValue, srcValue); }})
+      }
+      await this.redis.setEventLogCache(event_logs, toBlock)
+
+      let orderedFeedback = await this.getOrderedFeedback(
+        event_logs.approvedLogs,
+        event_logs.rejectedLogs
+      );
+      event_logs.orderedFeedback = orderedFeedback
+
+      console.log(event_logs)
+      console.log("Finished gathering event logs")
+      this.event_logs = event_logs;
+    } catch (e) {
+      console.log(e)
+      console.log("Retrying event log gather")
+      await this.redis.clearEventLogCache()
+      await this.gatherEventLogs()
     }
-
-    let createdTopic = utils.id("created(uint256,uint256,uint256,uint256)");
-    let submittedTopic = utils.id("submitted(uint256,uint256)");
-    let revisedTopic = utils.id("revised(uint256,uint256,uint256)");
-    let approvedTopic = utils.id("approved(uint256,uint256,string)");
-    let rejectedTopic = utils.id("rejected(uint256,uint256,string)");
-    let revisionRequestedTopic = utils.id(
-      "revisionRequested(uint256,uint256,string)"
-    );
-    let rewardedTopic = utils.id("rewarded(uint256,uint256,address,uint256,uint256)");
-    let reclaimedTopic = utils.id("reclaimed(uint256,uint256,uint256)");
-    let completedTopic = utils.id("completed(uint256)");
-    let feeChangeTopic = utils.id("feeChange(uint256,uint256)");
-    let waiverChangeTopic = utils.id("waiverChange(uint256,uint256)");
-
-    let createdFilter = this.createFilter(createdTopic, fromBlock, toBlock);
-    let submittedFilter = this.createFilter(submittedTopic, fromBlock, toBlock);
-    let revisedFilter = this.createFilter(revisedTopic, fromBlock, toBlock);
-    let approvedFilter = this.createFilter(approvedTopic, fromBlock, toBlock);
-    let rejectedFilter = this.createFilter(rejectedTopic, fromBlock, toBlock);
-    let revisionRequestedFilter = this.createFilter(revisionRequestedTopic, fromBlock, toBlock);
-    let rewardedFilter = this.createFilter(rewardedTopic, fromBlock, toBlock);
-    let reclaimedFilter = this.createFilter(reclaimedTopic, fromBlock, toBlock);
-    let completedFilter = this.createFilter(completedTopic, fromBlock, toBlock);
-    let feeChangedFilter = this.createFilter(feeChangeTopic, fromBlock, toBlock);
-    let waiverChangedFilter = this.createFilter(waiverChangeTopic, fromBlock, toBlock);
-
-    let createdLogs = await this.provider.getLogs(createdFilter);
-    let submittedLogs = await this.provider.getLogs(submittedFilter);
-    let revisedLogs = await this.provider.getLogs(revisedFilter);
-    let approvedLogs = await this.provider.getLogs(approvedFilter);
-    let rejectedLogs = await this.provider.getLogs(rejectedFilter);
-    let revisionRequestedLogs = await this.provider.getLogs(
-      revisionRequestedFilter
-    );
-    let rewardedLogs = await this.provider.getLogs(rewardedFilter);
-    let reclaimedLogs = await this.provider.getLogs(reclaimedFilter);
-    let completedLogs = await this.provider.getLogs(completedFilter);
-    let feeChangedLogs = await this.provider.getLogs(feeChangedFilter);
-    let waiverChangedLogs = await this.provider.getLogs(waiverChangedFilter);
-
-    let createdInfo = await this.getCreatedInfo(createdLogs);
-    let submittedInfo = await this.getSubmittedInfo(submittedLogs);
-    let revisedInfo = await this.getRevisedInfo(revisedLogs);
-    let approvedInfo = await this.getApprovedInfo(approvedLogs);
-    let rejectedInfo = await this.getRejectedInfo(rejectedLogs);
-    let revisionRequestedInfo = await this.getRevisionRequestedInfo(
-      revisionRequestedLogs
-    );
-    let rewardedInfo = await this.getRewardedInfo(rewardedLogs);
-    let reclaimedInfo = await this.getReclaimedInfo(reclaimedLogs);
-    let completedInfo = await this.getCompletedInfo(completedLogs);
-    let feeChangedInfo = await this.getFeeChangedInfo(feeChangedLogs);
-    let waiverChangedInfo = await this.getWaiverChangedInfo(waiverChangedLogs);
-
-
-    event_logs.approvedLogs = approvedLogs
-    event_logs.rejectedLogs = rejectedLogs
-    event_logs.created = createdInfo;
-    event_logs.submitted = submittedInfo;
-    event_logs.revised = revisedInfo;
-    event_logs.approved = approvedInfo;
-    event_logs.rejected = rejectedInfo;
-    event_logs.revisionRequested = revisionRequestedInfo;
-    event_logs.rewarded = rewardedInfo;
-    event_logs.reclaimed = reclaimedInfo;
-    event_logs.completed = completedInfo;
-    event_logs.feeChanged = feeChangedInfo;
-    event_logs.waiverChanged = waiverChangedInfo;
-
-    // Cache
-    if (event_logs_cache != null) {
-      _.mergeWith(event_logs, event_logs_cache, function(objValue, srcValue) { if (_.isArray(objValue)) { return _.union(objValue, srcValue); }})
-    }
-    await this.redis.setEventLogCache(event_logs, toBlock)
-
-    let orderedFeedback = await this.getOrderedFeedback(
-      event_logs.approvedLogs,
-      event_logs.rejectedLogs
-    );
-    event_logs.orderedFeedback = orderedFeedback
-
-    console.log(event_logs)
-    console.log("Finished gathering event logs")
-    this.event_logs = event_logs;
   }
 
   createFilter(topic, fromBlock, toBlock) {

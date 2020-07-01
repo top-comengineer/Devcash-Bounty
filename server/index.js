@@ -61,7 +61,7 @@ async function start() {
 
 const redis = new RedisDB()
 
-function setupEthersJobs() {
+async function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
   // Fetch event logs

@@ -316,7 +316,11 @@ export default {
           }
         }
       }
-    })    
+    })   
+    this.$root.$on("signedIn", _ => {
+      this.loadMoreBounties()
+      this.loadMoreSubmissions()
+    })     
   },
   activated() {
     // Set sidebar context

@@ -405,7 +405,11 @@ export default {
       this.submissions.unshift(objR)
       this.applySubmissionFilters()
       }
-    })    
+    })
+    this.$root.$on("signedIn", _ => {
+      this.loadMoreBounties()
+      this.loadMoreSubmissions()
+    })
   },
   activated() {
     // Set sidebar context

@@ -177,6 +177,10 @@ export default {
       DevcashBounty.updateBalances(this)
       this.loadOverview()
     }
+    this.$root.$on("signedIn", _ => {
+      DevcashBounty.updateBalances(this)
+      this.loadOverview()
+    })    
   },
   head() {
     return {
