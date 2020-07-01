@@ -307,6 +307,7 @@
     "singleBounty": {
       "buttonHunt": "Hunt",
       "buttonContribute": "Contribute",
+      "buttonReclaimFunds": "Reclaim Funds",
       "bountyDescription": "Bounty Description",
       "tagActive": "Active",
       "tagCompleted": "Completed",

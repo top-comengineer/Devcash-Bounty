@@ -81,6 +81,14 @@
   box-shadow: -0.35rem 0.35rem 0 0 var(--c-text);
   outline: none !important;
 }
+.btn-background {
+  box-shadow: 0 0.5rem 1rem 0 var(--c-shdw-5), 0 0 0 0 var(--c-text);
+}
+.btn-background:hover,
+.btn-background:focus {
+  box-shadow: 0 0.5rem 1rem 0 var(--c-shdw-5), -0.35rem 0.35rem 0 0 var(--c-text);
+  outline: none !important;
+}
 ////////
 /// Transitions
 .modalBgTransition-enter-active {

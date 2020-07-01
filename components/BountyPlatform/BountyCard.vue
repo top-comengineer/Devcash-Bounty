@@ -34,6 +34,13 @@
           >({{$t('bountyPlatform.bountyHunter.you')}})</span>
         </h5>
       </div>
+      <div v-if="status=='expired'" class="flex flex-row">
+        <!-- Reclaim Funds button -->
+        <button
+          @click.prevent="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark')"
+          class="bg-c-primary text-c-light btn-primary transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1 mt-4 mb-1"
+        >{{ $t("bountyPlatform.singleBounty.buttonReclaimFunds") }}</button>
+      </div>
     </div>
     <!-- Divider -->
     <div class="bg-text md:hidden w-full h-px rounded-full opacity-5 my-3"></div>
