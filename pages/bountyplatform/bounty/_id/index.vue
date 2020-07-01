@@ -22,7 +22,7 @@
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
-          <ContributeModal :closeModal="() => this.isContributeModalOpen = false" />
+          <ContributeModal :bountyChest="bounty.bountyChest" :closeModal="() => this.isContributeModalOpen = false" />
         </div>
       </div>
     </transition>
