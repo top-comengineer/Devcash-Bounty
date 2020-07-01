@@ -1,9 +1,7 @@
 
 import * as Cookies from "js-cookie"
 import { utils, BigNumber } from "ethers"
-
-const ethSymbol = "Ξ"
-const devcashSymbol = "{D}"
+import { ethSymbol, devcashSymbol } from "~/config"
 
 // Devcash-related data
 export const state = () => ({

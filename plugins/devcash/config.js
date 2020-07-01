@@ -523,6 +523,12 @@ module.exports.uBCABI = [
 			},
 			{
 				"indexed": false,
+				"internalType": "uint256",
+				"name": "submissionIndex",
+				"type": "uint256"
+			},			
+			{
+				"indexed": false,
 				"internalType": "address",
 				"name": "Hunter",
 				"type": "address"

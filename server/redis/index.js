@@ -21,12 +21,12 @@ class RedisDB {
   }
 
   async setEventLogCache(event_log, block_number) {
-    await this.jsonCache.clearAll()
+    await this.jsonCache.set(`${prefix}:event_log`, event_log);
     await this.redis.set(`${prefix}:last_block_count`, block_number.toString());
   }
 
   async clearEventLogCache() {
-    await this.jsonCache.del(`${prefix}:event_log`)
+    await this.jsonCache.clearAll()
     await this.redis.del(`${prefix}:last_block_count`)
   }
 

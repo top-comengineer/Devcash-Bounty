@@ -65,7 +65,7 @@ async function setupEthersJobs() {
   // TODO - set sane cron intervals for production
 
   // Fetch event logs
-  etherClient.gatherEventLogs()
+  await etherClient.gatherEventLogs()
   // Every 5 minutes update on-chain bounty cache 
   cron.schedule("* * * * *", async function() {
     await redis.updateBountyCache(etherClient)
@@ -116,6 +116,7 @@ async function setupEthersJobs() {
   })*/
   // Approved
   etherClient.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
+    console.log(`event: approved ${uBountyIndex} ${submissionIndex}`)
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "approved", feedback)
     await Submission.update(
       { approved: true },
@@ -131,16 +132,18 @@ async function setupEthersJobs() {
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected", feedback)
   })    
   // Rewarded
-  etherClient.uBCContract.on("rewarded", async (uBountyIndex, submissionIndex, hunter, tokenAmount, weiAmount) => {
+  etherClient.uBCContract.on("rewarded", async (uBountyIndex, submissionIndex, Hunter, tokenAmount, weiAmount) => {
+    // event: rewarded 13, 0, 0, 10000000000, 0x41f2909e7442984DEcf8b7516Bb9Bf47ECfd641d
+    console.log(`event: rewarded ${uBountyIndex}, ${submissionIndex}, ${weiAmount}, ${tokenAmount}, ${Hunter}`)
     let timestamp = parseInt(new Date().getTime() / 1000)
     let devcashAmount = utils.formatUnits(tokenAmount, 8)
-    let ethAmount = utils.formatUnits(weiAmount, 18)
+    let ethAmount = utils.formatEther(weiAmount)
     etherClient.event_logs.rewarded.unshift({
       ethRewardAmount: ethAmount,
       ubountyIndex: uBountyIndex,
       submissionIndex: submissionIndex,
       timestamp: timestamp,
-      hunter: hunter,
+      hunter: Hunter,
       rewardAmount: devcashAmount
     })
     // Update cache
