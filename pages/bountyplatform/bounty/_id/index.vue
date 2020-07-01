@@ -104,7 +104,8 @@
             <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyExpired")}}</p>
             <!-- Reclaim Funds button -->
             <button
-              @click.prevent="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark')"
+              v-if="isReclaimable"
+              @click.prevent="reclaim"
               class="bg-c-background text-c-pending btn-background text-lg transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1 mt-1 mb-1"
             >{{ $t("bountyPlatform.singleBounty.buttonReclaimFunds") }}</button>
           </div>
@@ -282,6 +283,7 @@
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client";
 import { utils } from "ethers";
+import { mapGetters } from "vuex";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import SubmissionCard from "~/components/BountyPlatform/SubmissionCard.vue";
 import CommentCard from "~/components/BountyPlatform/CommentCard.vue";
@@ -313,6 +315,10 @@ export default {
     ContributeModal
   },
   computed: {
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount"
+    }),    
     currentLocale() {
       for (let locale of this.$i18n.locales) {
         if (locale.code == this.$i18n.locale) {
@@ -340,15 +346,18 @@ export default {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
     },
     status() {
-      if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
-        return "completed"
-      } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
+      if (new Date().getTime() / 1000 >= this.bounty.deadline) {
         return "expired"
+      } else  if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
+        return"completed"
       }
       return "active"
     },
     isReclaimable() {
-      return (this.bounty && this.bounty.creator == this.loggedInAccount && this.bounty.available > 0 && this.status == 'expired')
+      if (this.$store.state.devcashData.pendingReclaim.includes(this.bounty.id)) {
+        return false
+      }
+      return (this.isLoggedIn && this.bounty && this.bounty.creator.toLowerCase() == this.loggedInAccount.toLowerCase() && this.bounty.available > 0 && this.status == 'expired')
     }    
   },
   methods: {
@@ -365,6 +374,38 @@ export default {
     },
     formatTimeLeft() {
       return DevcashBounty.formatTimeLeft(this.bounty);
+    },
+    async reclaim() {
+      if (!this.isReclaimable) {
+        return
+      }
+      await DevcashBounty.initEthConnector(this)
+      try {
+        this.confirmWindowOpen = true
+        await this.$store.state.devcash.connector.reclaim(this.bounty)
+        this.$store.state.devcashData.pendingReclaim.push(this.bounty.id)
+        this.$notify({
+          group: 'main',
+          title: this.$t('notification.reclaimTitle'),
+          text: this.$t('notification.reclaimDescription'),
+          data: {},
+          duration: 60,
+        });            
+      } catch (e) {
+        if ('code' in e && e.code == 4001) {
+          console.log(e)
+        } else {
+          this.$notify({
+            group: 'main',
+            title: this.$t('errors.reclaimFailed'),
+            text: this.$t('errors.reclaimFailedDesc'),
+            data: {}
+          })
+          console.log(e)
+        }
+      } finally {
+        this.confirmWindowOpen = false
+      }
     },
     async loadMoreSubmissions() {
       this.page++;
@@ -427,6 +468,7 @@ export default {
   data() {
     return {
       activeTab: "submissions",
+      confirmWindowOpen: false,
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
       // For meta tags

@@ -104,12 +104,12 @@ export default {
       loggedInAccount: "devcashData/loggedInAccount"
     }),
     status() {
-      if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
-        return "completed"
-      } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
+      if (new Date().getTime() / 1000 >= this.bounty.deadline) {
         return "expired"
+      } else  if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
+        return"completed"
       }
-      return "active"      
+      return "active"
     },
     amount() {
       let tokenDecimals = 8
@@ -122,7 +122,10 @@ export default {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
     },
     isReclaimable() {
-      return (this.bounty && this.bounty.creator == this.loggedInAccount && this.bounty.available > 0 && this.status == 'expired')
+      if (this.$store.$state.devcashData.pendingReclaim.includes(this.bounty.id)) {
+        return false
+      }
+      return (this.isLoggedIn && this.bounty && this.bounty.creator.toLowerCase() == this.loggedInAccount.toLowerCase() && this.bounty.available > 0 && this.status == 'expired')
     }
   },
   methods: {  
