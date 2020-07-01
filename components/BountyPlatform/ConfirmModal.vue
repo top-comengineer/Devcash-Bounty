@@ -74,7 +74,12 @@
         >{{$t("bountyPlatform.confirmModal.inputFeedback.optional") }}</span>
       </p>
       <client-only>
-        <text-editor :editor="editor" :placeholder="editorFeedbackPlaceholder" type="feedback" :isPlaceholderVisible="isPlaceholderVisible"/>
+        <text-editor
+          :editor="editor"
+          :placeholder="editorFeedbackPlaceholder"
+          type="feedback"
+          :isPlaceholderVisible="isPlaceholderVisible"
+        />
       </client-only>
     </div>
     <!-- Cancel & Confirm Buttons -->
@@ -195,17 +200,3 @@ export default {
     }
 }
 </script>
-<style>
-.modalBgTransition-enter-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-leave-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-enter {
-  opacity: 0;
-}
-.modalBgTransition-leave-to {
-  opacity: 0;
-}
-</style>

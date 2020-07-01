@@ -3,6 +3,24 @@
     :class="type=='sign'?'shadow-4xl':'shadow-2xl-sec'"
     class="w-full max-h-full overflow-y-scroll flex flex-col items-center bg-c-background-sec border-2 border-c-text-05 rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg px-4 py-6 md:px-12 md:py-8"
   >
+    <!-- Verify via Wallet Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="loggingInLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="$t('bountyPlatform.multiPurposeModal.verifyToSignIn.header')"
+            :paragraph="$t('bountyPlatform.multiPurposeModal.verifyToSignIn.paragraph')"
+            :imgSrc="require('~/assets/images/illustrations/foreground/lock.svg')"
+            :hasSpinner="true"
+          />
+        </div>
+      </div>
+    </transition>
     <img
       class="w-24 md:w-32 h-auto relative -mt-2 md:-mt-4"
       :src="require('~/assets/images/illustrations/foreground/lock.svg')"
@@ -79,6 +97,7 @@
 </template>
 
 <script>
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import {
   WalletProviders,
   DevcashBounty
@@ -93,6 +112,9 @@ export default {
   props: {
     closeModal: Function,
     type: null
+  },
+  components: {
+    MultiPurposeModal
   },
   methods: {
     async signIn(provider) {

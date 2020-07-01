@@ -151,7 +151,9 @@
           @keydown.esc.exact="hideSignInModal"
           class="btn-text bg-c-text text-c-background flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
         >
-          <Spinner v-if="loggingInLoading" class="mr-1" />
+          <div class="w-4 h-4 relative mr-2 mb-1" v-if="loggingInLoading">
+            <Spinner />
+          </div>
           <h4>{{ loggingInLoading ? $t("navigation.signingIn") : $t("navigation.signIn") }}</h4>
         </button>
         <!-- Sign In Modal -->
@@ -294,6 +296,24 @@
           </div>
         </transition>
       </div>
+      <!-- Verify via Wallet Modal -->
+      <transition name="modalBgTransition">
+        <div
+          v-if="loggingInLoading"
+          class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+        >
+          <div
+            class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+          >
+            <multi-purpose-modal
+              :header="$t('bountyPlatform.multiPurposeModal.verifyToSignIn.header')"
+              :paragraph="$t('bountyPlatform.multiPurposeModal.verifyToSignIn.paragraph')"
+              :imgSrc="require('~/assets/images/illustrations/foreground/lock.svg')"
+              :hasSpinner="true"
+            />
+          </div>
+        </div>
+      </transition>
       <!-- Menu icon shown on small screens -->
       <MobileDropdown
         class="ml-3"
@@ -310,6 +330,7 @@ import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
 import Spinner from "~/components/Spinner.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import { mapGetters } from "vuex";
 import {
   WalletProviders,
@@ -325,7 +346,8 @@ export default {
     Icon,
     Jazzicon,
     Spinner,
-    MobileDropdown
+    MobileDropdown,
+    MultiPurposeModal
   },
   methods: {
     changeTheme() {
@@ -551,7 +573,14 @@ export default {
         this.ethersListeners = {}
       }
     })     
-  }
+  },
+  head(){
+    return {
+      bodyAttrs: {
+        class: [ this.loggingInLoading? 'overflow-hidden':'']
+      }
+    }
+  },
 };
 </script>
 <style>

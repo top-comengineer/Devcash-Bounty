@@ -1,9 +1,9 @@
 <template>
   <div class="lds-ring">
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
-    <div class="ring"></div>
+    <div :class="type=='primary'?'ring-primary':'ring'"></div>
+    <div :class="type=='primary'?'ring-primary':'ring'"></div>
+    <div :class="type=='primary'?'ring-primary':'ring'"></div>
+    <div :class="type=='primary'?'ring-primary':'ring'"></div>
   </div>
 </template>
 <style>
@@ -12,19 +12,23 @@
   border-color: var(--c-background) transparent transparent transparent;
   border-radius: 50%;
 }
+.ring-primary {
+  border: 0.125rem solid;
+  border-color: var(--c-primary) transparent transparent transparent;
+  border-radius: 50%;
+}
 .lds-ring {
   display: inline-block;
   position: relative;
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 100%;
+  height: 100%;
 }
 .lds-ring div {
   box-sizing: border-box;
   display: block;
   position: absolute;
-  width: 1rem;
-  height: 1rem;
-  margin: 0.125rem;
+  width: 100%;
+  height: 100%;
   animation: lds-ring 1s cubic-bezier(0.5, 0, 0.5, 1) infinite;
 }
 .lds-ring div:nth-child(1) {
@@ -45,3 +49,10 @@
   }
 }
 </style>
+<script>
+export default {
+  props: {
+    type: null
+  }
+}
+</script>

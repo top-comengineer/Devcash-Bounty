@@ -276,6 +276,10 @@
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to approve the amount. It might take 15-30 minutes for it to be processed by the network."
       },
+      "verifyToSignIn": {
+        "header": "Verify to Sign In",
+        "paragraph": "Verify your address via your wallet to sign in. If you have verified before, please wait for the process to complete."
+      },
       "generic": {
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to continue."

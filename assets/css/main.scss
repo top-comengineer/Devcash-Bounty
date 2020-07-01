@@ -81,7 +81,21 @@
   box-shadow: -0.35rem 0.35rem 0 0 var(--c-text);
   outline: none !important;
 }
-/////////////////
+////////
+/// Transitions
+.modalBgTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.modalBgTransition-enter {
+  opacity: 0;
+}
+.modalBgTransition-leave-to {
+  opacity: 0;
+}
+////////////////
 .modal {
   z-index: 200;
 }

@@ -396,16 +396,4 @@ export default {
   border-bottom-left-radius: 2rem;
   border-bottom-left-radius: 2rem;
 }
-.modalBgTransition-enter-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-leave-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-enter {
-  opacity: 0;
-}
-.modalBgTransition-leave-to {
-  opacity: 0;
-}
 </style>

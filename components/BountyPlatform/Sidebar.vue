@@ -2,7 +2,7 @@
   <div
     class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl whitespace-no-wrap"
   >
-  <!-- Approval Loading Modal -->
+    <!-- Approval Loading Modal -->
     <transition name="modalBgTransition">
       <div
         v-if="approvalLoading"
@@ -465,17 +465,3 @@ export default {
   }
 };
 </script>
-<style>
-.modalBgTransition-enter-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-leave-active {
-  transition: all 0.25s ease-out;
-}
-.modalBgTransition-enter {
-  opacity: 0;
-}
-.modalBgTransition-leave-to {
-  opacity: 0;
-}
-</style>
