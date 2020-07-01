@@ -238,7 +238,7 @@
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
-          <Disqus :identifier="disqusID()" />
+          <Disqus :key="$store.state.theme" :identifier="disqusID()" />
         </div>
         <!-- Activity -->
         <div v-if="activeTab=='activity'" class="w-full flex flex-col">
