@@ -7,6 +7,7 @@
       <div class="flex flex-row flex-wrap items-center">
         <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
         <button
+          @click.prevent="copyAddress"
           class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
         >
           <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
@@ -38,6 +39,10 @@
 <script>
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
+import Vue from "vue";
+import VueClipboard from "vue-clipboard2";
+VueClipboard.config.autoSetContainer = true; // add this line
+Vue.use(VueClipboard);
 export default {
   components: {
     Jazzicon,
@@ -56,7 +61,17 @@ export default {
         "<br>" +
         address.substring(28, 42)
       );
-    }
+    },
+    copyAddress() {
+      this.$copyText(this.bountyAddress);
+      this.$notify({
+          group: 'main',
+          title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
+          text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
+          data: {},
+          duration: 2000
+        });
+    },
   }
 };
 </script>

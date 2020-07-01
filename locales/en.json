@@ -334,7 +334,9 @@
         "customAmount": "Custom Amount",
         "customAmountPlaceholder": "Enter the amount",
         "buttonContribute": "Contribute",
-        "bountyAddress": "Bounty Address"
+        "bountyAddress": "Bounty Address",
+        "headerAddressCopied": "Address Copied",
+        "paragraphAddressCopied": "The bounty address has been copied to your clipboard."
       },
       "submissions": {
         "noSubmissions": "There are no submissions yet.",
