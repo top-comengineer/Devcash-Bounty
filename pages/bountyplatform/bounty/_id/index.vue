@@ -53,7 +53,7 @@
         <!-- Bounty Amount in Devcash -->
         <h2
           class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
-        >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?ethAmount:amount }}</h2>
+        >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?ethAmount:amount}}</h2>
         <!-- Bounty Amount in ETH & USD -->
         <h3
           class="text-lg md:text-xl text-left md:text-right mt-1"
