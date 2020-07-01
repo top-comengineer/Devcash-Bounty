@@ -51,21 +51,18 @@
             <button
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}10,000" }}</button>
-            <p>{{ "(Ξ0.0378 / $5)" }}</p>
           </div>
           <!-- {D}20,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}20,000" }}</button>
-            <p>{{ "(Ξ0.0757 / $10)" }}</p>
           </div>
           <!-- {D}40,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}40,000" }}</button>
-            <p>{{ "(Ξ0.1551 / $20)" }}</p>
           </div>
         </div>
       </div>
@@ -87,16 +84,20 @@
         <!-- Custom Amount -->
         <div class="w-full lg:w-2/3 flex flex-row justify-center items-start flex-wrap my-8">
           <!-- Enter Amount -->
-          <input
-            id="customAmount"
-            class="bg-c-background-ter hover:border-c-text focus:border-c-text active:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg px-4 py-2 transition-colors duration-200"
-            type="text"
-            :placeholder="
+          <div class="w-full md:flex-1 flex flex-row items-center relative">
+            <!-- Amount Symbol -->
+            <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 text-lg font-bold">{D}</span>
+            <input
+              id="customAmount"
+              class="bg-c-background-ter hover:border-c-text focus:border-c-text active:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg pl-10 pr-4 py-2 transition-colors duration-200"
+              type="text"
+              :placeholder="
               $t(
                 'bountyPlatform.singleBounty.contribute.customAmountPlaceholder'
               )
             "
-          />
+            />
+          </div>
           <!-- Contribute Button -->
           <button
             class="text-c-light btn-secondary w-full md:w-auto transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
