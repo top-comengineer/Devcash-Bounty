@@ -125,8 +125,10 @@
           <!-- Remaining Time -->
           <div class="text-left text-sm mt-2">
             <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
-            <span class="font-bold">{{ formatTimeLeft() }}</span>
-            <span class="opacity-75">
+            <span v-if="status=='active'" class="font-bold">{{  formatTimeLeft() }}</span>
+            <span v-else-if="status=='expired'" class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
+            <span v-else class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.completed') }}</span>
+            <span v-if="status == 'active'" class="opacity-75">
               {{
               $t("bountyPlatform.bountyCard.remaining")
               }}

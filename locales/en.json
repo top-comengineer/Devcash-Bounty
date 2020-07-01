@@ -104,7 +104,8 @@
       "tag": {
         "active": "Active",
         "completed": "Completed",
-        "expired": "Expired"
+        "expired": "Expired",
+        "reclaimable": "Reclaimable"
       }
     },
     "post": {
