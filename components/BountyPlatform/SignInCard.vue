@@ -28,16 +28,11 @@
     />
     <h4
       class="text-c-primary text-2xl text-center font-bold mt-2"
-    >{{ type=='sign'?$t("bountyPlatform.signInCard.headerSignIn"):$t("bountyPlatform.signInCard.headerSignInToContinue") }}</h4>
+    >{{ loggingInLoading?$t('bountyPlatform.multiPurposeModal.verifyToSignIn.header'):type=='sign'?$t("bountyPlatform.signInCard.headerSignIn"):$t("bountyPlatform.signInCard.headerSignInToContinue") }}</h4>
     <p
       class="text-c-text text-center mt-2"
-    >{{type=='sign'?$t("bountyPlatform.signInCard.paragraphSignIn"): $t("bountyPlatform.signInCard.paragraphSignInToContinue") }}</p>
-    <div v-if="loggingInLoading" class="w-full flex flex-row justify-center mt-4">
-      <h4
-        class="text-c-text text-lg font-extrabold ml-8 mr-10 text-center"
-      >{{ $t("navigation.signingIn") }}</h4>
-    </div>
-    <div v-else class="w-full max-w-xxs flex flex-col mt-4">
+    >{{loggingInLoading?$t('bountyPlatform.multiPurposeModal.verifyToSignIn.paragraph'):type=='sign'?$t("bountyPlatform.signInCard.paragraphSignIn"): $t("bountyPlatform.signInCard.paragraphSignInToContinue") }}</p>
+    <div v-if="!loggingInLoading" class="w-full max-w-xxs flex flex-col mt-4">
       <!-- MetaMask Button -->
       <button
         @click="signIn(walletProviders.metamask)"
