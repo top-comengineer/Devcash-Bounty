@@ -19,6 +19,8 @@ module.exports = {
       'c-primary-less-sat': "var(--c-primary-less-sat)",
       'c-secondary': "var(--c-secondary)",
       'c-background': "var(--c-background)",
+      'c-background-05': "var(--c-background-05)",
+      'c-background-10': "var(--c-background-10)",
       'c-background-15': "var(--c-background-15)",
       'c-background-75': "var(--c-background-75)",
       'c-background-sec': "var(--c-background-sec)",
@@ -171,7 +173,8 @@ module.exports = {
         "0_5": "0.125rem",
         "1_5": "0.375rem",
         "30": "7rem",
-        "11": "2.7rem"
+        "11": "2.7rem",
+        "9": "2.25rem"
       },
       inset: {
         full: "100%",

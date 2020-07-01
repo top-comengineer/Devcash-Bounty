@@ -275,33 +275,42 @@
         >
           <!-- Balance Text -->
           <h5
+            v-if="!$store.state.devcashData.ethIsPrimary"
             class="text-c-text text-sm opacity-75"
           >{{$t('bountyPlatform.sidebarContextual.balance') }}</h5>
           <h4
-            class="text-c-text font-extrabold text-lg mt-1 break-all"
+            v-if="!$store.state.devcashData.ethIsPrimary"
+            class="text-c-text font-extrabold text-lg mt-1 break-all mb-6"
           >{{ `${balance.primary.symbol}${balance.primary.amount ? balance.primary.amount: "N/A"}` }}</h4>
-          <!-- Balance in Devcash -->
+          <!-- Balance Approved -->
           <h5
-            class="text-c-text text-sm mt-6 opacity-75"
+            class="text-c-text text-sm opacity-75"
           >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</h5>
           <h4
-            v-if="balance.primary.hasApproved"
             class="font-extrabold text-c-primary text-xl mt-1 break-all"
-          >{{ `${balance.primary.symbol}${balance.primary.approved ? balance.primary.approved: "N/A"}` }}</h4>
+          >{{ `${balance.primary.symbol}${balance.primary.approved ? balance.primary.approved: balance.primary.amount}` }}</h4>
+          <h4
+            class="text-sm mt-1 break-all font-medium"
+          >{{ `+ ${balance.secondary.symbol}${balance.secondary.approved ? balance.secondary.approved: balance.secondary.amount}` }}</h4>
           <!-- Amount to Approve  -->
-          <h5
+          <label
             v-if="balance.primary.hasApproved"
+            for="amountToApprove"
             class="text-c-text font-bold mt-6"
-          >{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</h5>
+          >{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</label>
           <!-- Amount Input -->
-          <input
-            v-if="balance.primary.hasApproved"
-            v-model="toApprove"
-            class="bg-c-background-ter border-c-background-ter w-full font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="number"
-            min="1"
-            :placeholder="$t('bountyPlatform.sidebarContextual.amountToApprovePlaceholder')"
-          />
+          <div v-if="balance.primary.hasApproved" class="flex flex-row items-center relative mt-2">
+            <!-- Amount Symbol -->
+            <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold">{D}</span>
+            <input
+              v-model="toApprove"
+              name="amountToApprove"
+              class="bg-c-background-ter border-c-background-ter w-full font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pr-4 pl-9 py-2"
+              type="number"
+              min="1"
+              :placeholder="$t('bountyPlatform.sidebarContextual.amountToApprovePlaceholder')"
+            />
+          </div>
           <!-- Approve Button -->
           <button
             v-if="balance.primary.hasApproved"

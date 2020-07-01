@@ -64,8 +64,12 @@
     </div>
     <!-- Price in Devcash, Ethereum and Dollars -->
     <div class="w-full md:w-2/7 flex flex-col justify-center items-start md:items-end px-4">
-      <h4 class="text-c-primary font-extrabold text-xl text-left md:text-right">{D}{{ amount }}</h4>
-      <h5 class="text-lg text-left md:text-right mt-1">Ξ{{ ethAmount }}</h5>
+      <h4
+        class="text-c-primary font-extrabold text-xl text-left md:text-right"
+      >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?ethAmount:amount}}</h4>
+      <h5
+        class="text-lg text-left md:text-right mt-1"
+      >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?amount:ethAmount}}</h5>
     </div>
     <!-- Divider -->
     <div class="bg-c-text md:hidden w-full h-px rounded-full opacity-5 my-3"></div>

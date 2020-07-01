@@ -251,16 +251,37 @@
               class="bg-c-text text-c-background max-w-full min-w-xxxs flex flex-col relative origin-top-right shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
             >
               <!-- Balance Text -->
-              <div class="flex flex-col px-6 mt-4">
+              <div class="flex flex-col px-6 mt-2">
                 <p
-                  class="text-xs opacity-75 whitespace-no-wrap"
-                >{{$t('bountyPlatform.sidebarContextual.balance')}}</p>
-                <h6 class="text-lg font-bold">{{balance.primary.amount}}</h6>
-                <p
-                  v-if="balance.primary.hasApproved"
                   class="text-xs opacity-75 mt-3 whitespace-no-wrap"
                 >{{$t('bountyPlatform.sidebarContextual.approvedBalance')}}</p>
-                <h5 class="text-c-primary font-bold text-xl">{{balance.primary.approved}}</h5>
+                <h5
+                  class="text-c-primary font-bold text-xl mt-1"
+                >{{balance.primary.symbol}}{{balance.primary.hasApproved?balance.primary.approved:balance.primary.amount}}</h5>
+                <p
+                  class="mt-1 text-sm font-medium"
+                >+ {{balance.secondary.symbol}}{{balance.secondary.hasApproved?balance.secondary.approved:balance.secondary.amount}}</p>
+              </div>
+              <!-- DEV & ETH switch -->
+              <div
+                class="bg-c-background-10 border-c-background-10 max-w-full w-48 flex flex-row p-1 rounded-full border mx-4 mt-5 mb-2"
+              >
+                <div class="w-full flex flex-row relative">
+                  <div
+                    :class="{'left-0':!$store.state.devcashData.ethIsPrimary, 'left-full -translate-x-full': $store.state.devcashData.ethIsPrimary}"
+                    class="shadow-lg absolute w-1/2 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+                  ></div>
+                  <button
+                    :class="[!$store.state.devcashData.ethIsPrimary?'text-c-light':'font-medium hover:bg-c-background-15 focus:bg-c-background-15']"
+                    @click.prevent="$store.dispatch('devcashData/setDevcash');hideSignOutModalWithDelay()"
+                    class="w-1/2 text-sm font-bold leading-tight py-1_5 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                  >{D} DEV</button>
+                  <button
+                    :class="[$store.state.devcashData.ethIsPrimary?'text-c-light':'font-medium hover:bg-c-background-15 focus:bg-c-background-15']"
+                    @click.prevent="$store.dispatch('devcashData/setEthereum');hideSignOutModalWithDelay()"
+                    class="w-1/2 text-sm font-bold leading-tight py-1_5 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                  >Ξ ETH</button>
+                </div>
               </div>
               <!-- Divider -->
               <div class="bg-c-background w-full h-px2 rounded-full mt-3 mb-1 opacity-10"></div>
@@ -371,6 +392,11 @@ export default {
     },
     hideSignOutModal() {
       this.isSignOutModalOpen = false;
+    },
+    hideSignOutModalWithDelay() {
+      setTimeout(() => {
+        this.isSignOutModalOpen = false;
+      }, 150);
     },
     changeLang(locale) {
       this.$i18n.setLocaleCookie(locale);

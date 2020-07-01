@@ -7,8 +7,12 @@
       <h6
         class="text-sm opacity-75"
       >{{type=="earned"?$t("bountyPlatform.overview.totalEarned"):type=='awarded'?$t("bountyPlatform.overview.totalAwarded"):$t("bountyPlatform.overview.approvedBalance")}}</h6>
-      <h2 class="text-c-primary text-3xl font-extrabold break-all mt-1">{D}{{totalDEV}}</h2>
-      <h3 class="font-semibold mt-1 break-all">(Ξ{{totalETH}})</h3>
+      <h2
+        class="text-c-primary text-3xl font-extrabold break-all mt-1"
+      >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?totalETH:totalDEV}}</h2>
+      <h3
+        class="font-semibold mt-1 break-all"
+      >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?totalDEV:totalETH}}</h3>
       <!-- Bounties Hunted or Bounties Posted -->
       <div class="flex flex-col items-center mt-6" v-if="type == 'earned' || type == 'awarded'">
         <h6

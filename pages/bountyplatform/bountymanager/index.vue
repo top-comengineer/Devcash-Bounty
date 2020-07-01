@@ -115,12 +115,14 @@
           >
             <div class="flex flex-row flex-wrap my-2 mr-10">
               <div class="flex flex-col items-center mx-4">
-                <h6 class="opacity-75 text-sm">Count</h6>
-                <h5 class="font-bold">{{ totalBountyCount }}</h5>
+                <h6 class="opacity-75 text-sm">{{$t('bountyPlatform.bountyManager.count')}}</h6>
+                <h5 class="font-bold mt-1">{{ totalBountyCount }}</h5>
               </div>
               <div class="flex flex-col items-center mx-4">
-                <h6 class="opacity-75 text-sm">Amount</h6>
-                <h5 class="font-bold">{D}{{ totalBountyAmountDisplay }}</h5>
+                <h6 class="opacity-75 text-sm">{{$t('bountyPlatform.bountyManager.amount')}}</h6>
+                <h5
+                  class="font-bold mt-1"
+                >{{$store.state.devcashData.balancePrimary.symbol}}{{ totalBountyAmountDisplay }} + {{$store.state.devcashData.balanceSecondary.symbol}}{{ totalBountyAmountSecondaryDisplay }}</h5>
               </div>
             </div>
             <div class="flex flex-row flex-wrap my-3">
@@ -438,6 +440,7 @@ export default {
       submissionsPage: 0,
       totalBountyAmount: BigNumber.from("0"),
       totalBountyAmountDisplay: "0.0",
+      totalBountyAmountSecondaryDisplay: "0.0",
       totalBountyCount: 0,
       totalSubmissionCount: 0,
       hasMoreBounties: false,

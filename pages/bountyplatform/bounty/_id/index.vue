@@ -51,9 +51,13 @@
       <!-- Bounty Amount in Devcash, ETH & USD -->
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start md:items-end my-3">
         <!-- Bounty Amount in Devcash -->
-        <h2 class="font-extrabold text-2xl md:text-3xl text-left md:text-right">{{ '{D}' + amount }}</h2>
+        <h2
+          class="font-extrabold text-2xl md:text-3xl text-left md:text-right"
+        >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?ethAmount:amount }}</h2>
         <!-- Bounty Amount in ETH & USD -->
-        <h3 class="text-lg md:text-xl text-left md:text-right mt-1">{{ "Ξ" + ethAmount }}</h3>
+        <h3
+          class="text-lg md:text-xl text-left md:text-right mt-1"
+        >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?amount:ethAmount}}</h3>
       </div>
     </div>
     <!-- Bounty Description and Hunt & Contribue Cards -->

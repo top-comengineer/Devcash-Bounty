@@ -218,7 +218,9 @@
       "noYourBounties": "You didn't post any bounties yet.",
       "approve": "Approve",
       "reject": "Reject",
-      "leaveFeedback": "Leave Feedback"
+      "leaveFeedback": "Leave Feedback",
+      "count": "Count",
+      "amount": "Amount"
     },
     "editor": {
       "addLink": "Add Link",

@@ -61,7 +61,7 @@ export const mutations = {
     } else {
       Cookies.set("devcash_estype", state.currentSortType, { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
-  },  
+  },
   setSortDirection(state, direction) {
     state.orderDirection = direction
     if (state.orderDirection != "desc" && state.orderDirection != "asc") {
@@ -87,7 +87,7 @@ export const mutations = {
   setCategories(state, categories) {
     state.exploreCategories = categories
     if (!'create' in state.exploreCategories && !'enhance' in state.exploreCategories && !'bug' in state.exploreCategories &&
-    !'support' in state.exploreCategories && !'prototype' in state.exploreCategories && !'other' in state.exploreCategories) {
+      !'support' in state.exploreCategories && !'prototype' in state.exploreCategories && !'other' in state.exploreCategories) {
       Cookies.remove("devcash_explore_category")
       state.exploreCategories = {
         create: true,
@@ -100,7 +100,7 @@ export const mutations = {
     } else {
       Cookies.set("devcash_explore_category", JSON.stringify(state.exploreCategories), { expires: 365, secure: process.env.NODE_ENV === 'production' })
     }
-  },   
+  },
   setEthereum(state) {
     if (!state.ethIsPrimary) {
       state.ethIsPrimary = true
@@ -213,7 +213,7 @@ export const actions = {
     context.commit("setEthereum")
   },
   setDevcash(context) {
-    context.commit("setEthereum")
+    context.commit("setDevcash")
   },
   closeIBOBar(context) {
     context.commit("closeIBOBar")

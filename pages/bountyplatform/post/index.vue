@@ -49,7 +49,7 @@
       />
       <!-- Card for Bounty Title and Description -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-6 px-3 md:pt-6 md:pb-8 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-6 px-3 md:pt-6 md:pb-8 md:px-10 xl:px-24 mt-2"
       >
         <!-- Bounty Title -->
         <div class="w-full md:w-1/2 flex flex-col mt-3">
@@ -212,7 +212,9 @@
           </div>
           <div class="relative mt-3">
             <!-- Amount Symbol -->
-            <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl">{D}</span>
+            <span
+              class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
+            >{{$store.state.devcashData.ethIsPrimary?'&nbsp;':''}} {{$store.state.devcashData.balancePrimary.symbol}}</span>
             <input
               id="bountyAmount"
               v-model="amount"
