@@ -12,6 +12,8 @@ const {
 
 const eventLogDefaultFromBlock = process.env.NODE_ENV == 'production' ? 10362683 : 8195113;
 
+const ethNetwork = "ropsten" //process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+
 class EtherClient {
   constructor() {
     this.initialized = false
@@ -39,7 +41,14 @@ class EtherClient {
     
     // Etherscan provider (no signer)
     provider = new ethers.getDefaultProvider(
-      process.env.NODE_ENV !== "production" ? "ropsten" : undefined
+      ethNetwork,
+      {
+        infura: {
+          projectId: '64074292bca44137af981e11f413eae7',
+          projectSecret: '8bddd32c91d34bdc963f435d22809184'
+        },
+        etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+      }
     );
     tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
     uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);

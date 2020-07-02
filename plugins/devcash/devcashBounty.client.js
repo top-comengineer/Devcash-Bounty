@@ -22,7 +22,7 @@ export const WalletProviders = {
 };
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+const ethNetwork = "ropsten" //process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
 export class DevcashBounty {
   constructor(async_param) {
@@ -589,15 +589,8 @@ export class DevcashBounty {
 
   // Methods for writing to the smart contract
   async postBounty(bounty, available, amount, deadline, weiAmount, fee, amountEach) {
-    if (!amount) {
-      amount = BigNumber.from(0);
-    } else {
-      amount = utils.parseUnits(amount.toString(), this.tokenDecimals);
-      if (amountEach) {
-        amount = amount.mul(available)
-      }
-    }
     if (amountEach) {
+      amount = amount.mul(available)
       weiAmount = weiAmount.mul(available)
     }
     let overrides = {

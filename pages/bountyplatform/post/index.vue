@@ -383,12 +383,12 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountForEach')"
-          :text="`{D}${singleAmount}`"
+          :text="`${balance.primary.symbol}${singleAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountTotal')"
-          :text="`{D}${totalAmount}`"
+          :text="`${balance.primary.symbol}${totalAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
@@ -522,7 +522,7 @@ export default {
   watch: {
     isBountyAmountEach: function() {
       if (!this.isBountyAmountEach) {
-       if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
+       if (this.$store.state.devcashData.ethIsPrimary && this.amount && this.numBounties) {
          let amountBigNum = utils.parseEther(this.amount.toString())
          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
          this.amount = utils.formatEther(amountBigNum)
@@ -532,7 +532,7 @@ export default {
          this.amount = utils.formatUnits(amountBigNum, 8)     
        }
       } else {
-       if (this.$store.state.devcashData.ethPrimary && this.amount && this.numBounties) {
+       if (this.$store.state.devcashData.ethIsPrimary && this.amount && this.numBounties) {
          let amountBigNum = utils.parseEther(this.amount.toString())
          amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          this.amount = utils.formatEther(amountBigNum)
@@ -576,7 +576,7 @@ export default {
     },
     singleAmount() {
       if (!this.isBountyAmountEach && this.amount && this.numBounties) {
-       if (this.$store.state.devcashData.ethPrimary) {
+       if (this.$store.state.devcashData.ethIsPrimary) {
          let amountBigNum = utils.parseEther(this.amount.toString())
          amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
          return  utils.formatEther(amountBigNum)
@@ -590,7 +590,7 @@ export default {
     },
     totalAmount() {
       if (this.isBountyAmountEach && this.amount && this.numBounties) {
-        if (this.$store.state.devcashData.ethPrimary) {
+        if (this.$store.state.devcashData.ethIsPrimary) {
           let amountBigNum = utils.parseEther(this.amount.toString())
           amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
           return utils.formatEther(amountBigNum)
@@ -717,7 +717,8 @@ export default {
     let isValid = true
     try {
       let amountBigNum, balanceBigNum
-       if (this.$store.state.devcashData.ethPrimary) {
+       if (this.$store.state.devcashData.ethIsPrimary) {
+         console.l
          amountBigNum = utils.parseEther(this.amount.toString())
          if (this.isBountyAmountEach) {
            amountBigNum = amountBigNum.mul(this.numBounties)
@@ -838,9 +839,9 @@ export default {
               await this.$store.state.devcash.connector.postBounty(
                 bounty,
                 this.numBounties,
-                BigNumber.from(this.amount),
+                !this.$store.state.devcashData.ethIsPrimary ? utils.parseUnits(this.amount, 8) : BigNumber.from("0"),
                 this.getDeadlineS(),
-                BigNumber.from("0"),
+                this.$store.state.devcashData.ethIsPrimary ? utils.parseEther(this.amount) : BigNumber.from("0"),
                 this.curFee,
                 this.isBountyAmountEach
               )

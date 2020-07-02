@@ -67,9 +67,12 @@ async function setupEthersJobs() {
   // Fetch event logs
   await etherClient.gatherEventLogs()
   // Every 5 minutes update on-chain bounty cache 
-  cron.schedule("* * * * *", async function() {
+  cron.schedule("*/5 * * * *", async function() {
     await redis.updateBountyCache(etherClient)
   });
+  cron.schedule("*/30 * * * *", async function() {
+    await etherClient.gatherEventLogs()
+  });  
   // Listen to bounty event to confirm it
   etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
     console.log(`event: Bounty ${uBountyIndex} created`)
@@ -152,7 +155,7 @@ async function setupEthersJobs() {
   })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing
-  cron.schedule("* * * * *", async function() {
+  cron.schedule("*/7 * * * *", async function() {
     let uBounties = await redis.getUBounties()
     await verifyAndReleaseBounties(uBounties)
     uBounties.forEach(async uBounty => {
@@ -168,7 +171,7 @@ async function setupEthersJobs() {
     })
   })
   // Update bounty statuses and amounts
-  cron.schedule("*/10 * * * *", async function() {
+  cron.schedule("*/8 * * * *", async function() {
     let bounties = await UBounty.findAll({
       where: {
         complete: {[Op.eq]: false}
