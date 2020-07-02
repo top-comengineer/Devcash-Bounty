@@ -63,7 +63,7 @@ export default {
       );
     },
     copyAddress() {
-      this.$copyText(this.bountyAddress);
+      this.$copyText(this.address);
       this.$notify({
           group: 'main',
           title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
