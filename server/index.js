@@ -1,5 +1,6 @@
 const express = require('express');
 const cron = require("node-cron");
+const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const { Nuxt, Builder } = require('nuxt')
 const { etherClient } = require("./utils/ether_client")
@@ -38,6 +39,7 @@ async function start() {
   }
 
   // Other middlewares
+  app.use(cors())
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   // Setup API routes

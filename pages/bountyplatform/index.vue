@@ -39,7 +39,6 @@
 <script>
 import { SIDEBAR_CONTEXTS } from "~/config";
 import { mapGetters } from "vuex";
-import Axios from "axios";
 import BountyCard from "~/components/BountyPlatform/BountyCard.vue";
 import BountyCardPlaceholder from "~/components/BountyPlatform/BountyCardPlaceholder.vue";
 import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
@@ -143,7 +142,7 @@ export default {
         if (direction != 'desc' && direction != 'asc') {
           direction = 'desc'
         }
-        let res = await Axios.get(
+        let res = await this.$axios.get(
           `/bounty/list?page=${this.page}&limit=${this.perPage}${hunterParam}&sort=${sortType}&order=${direction}`
         );
 
