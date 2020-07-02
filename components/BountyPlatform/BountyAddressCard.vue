@@ -16,7 +16,7 @@
       <!-- Avatar and Address -->
       <div class="flex flex-row items-center mt-2">
         <Jazzicon class="flex" :diameter="48" :address="address" />
-        <h6 v-html="threeLineAddress(bountyAddress)" class="font-mono-jet text-sm ml-3"></h6>
+        <h6 v-html="threeLineAddress" class="font-mono-jet text-sm ml-3"></h6>
       </div>
     </div>
     <!-- QR Code -->
@@ -24,7 +24,7 @@
       class="flex flex-row justify-center h-32 w-32 rounded-lg overflow-hidden border-3 border-c-primary my-4 mx-1"
     >
       <vue-qr
-        :text="bountyAddress"
+        :text="qrValue"
         :size="400"
         :logoScale="0.3"
         :logoSize="40"
@@ -49,15 +49,15 @@ export default {
     Icon
   },
   props: {
-    address: null,
-    bountyAddress: null
+    address: String,
+    qrValue: String
   },
-  methods: {
-    threeLineAddress: function(address) {
+  computed: {
+    threeLineAddress() {
       return (
-        address.substring(0, 14) +
+        this.address.substring(0, 14) +
         "<br>" +
-        address.substring(14, 28) +
+        this.address.substring(14, 28) +
         "<br>" +
         address.substring(28, 42)
       );

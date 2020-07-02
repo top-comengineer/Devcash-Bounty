@@ -104,7 +104,8 @@
       "tag": {
         "active": "Active",
         "completed": "Completed",
-        "expired": "Expired"
+        "expired": "Expired",
+        "reclaimable": "Reclaimable"
       }
     },
     "post": {
@@ -430,14 +431,18 @@
     "yourSubmissionApprovedTitle": "Your submission for bounty \"%1\" has been approved!",
     "yourSubmissionRejectedTitle": "Your submission for bounty \"%1\" has been rejected!",
     "unknownNetworkTitle": "Unknown Network",
-    "unknownNetworkDescription": "Devcash runs on \"mainnet\", ensure your network settings in your wallet are correct."
+    "unknownNetworkDescription": "Devcash runs on \"mainnet\", ensure your network settings in your wallet are correct.",
+    "reclaimTitle": "Reclaim submitted",
+    "reclaimDescription": "Your funds will be reclaimed once its confirmed on the network."
   },
   "errors": {
     "errorTitle": "An error occured",
     "failedCreateSubmission": "Failed to create submission",
     "bountyCreateFailed": "Failed to create bounty",
     "approvalFailed": "Failed to approve submission",
-    "rejectFailed": "Failed to reject submission"
+    "rejectFailed": "Failed to reject submission",
+    "reclaimFailed": "Failed to reclaim bounty",
+    "reclaimFailedDesc": "Your reclaim request failed, if the issue persists please contact the platform maintainer."
   },
   "meta": {
     "home": {

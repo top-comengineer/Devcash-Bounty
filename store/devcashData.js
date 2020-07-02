@@ -16,6 +16,7 @@ export const state = () => ({
   isIBOBarClosed: false,
   submissionFormData: {},
   pendingSubStatus: [],
+  pendingReclaim: [],
   currentSortType: 'recency',
   orderDirection: 'desc',
   exploreStatus: {

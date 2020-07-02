@@ -49,18 +49,21 @@
           <!-- {D}10,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+            @click="() => preFillClicked(10000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}10,000" }}</button>
           </div>
           <!-- {D}20,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+            @click="() => preFillClicked(20000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}20,000" }}</button>
           </div>
           <!-- {D}40,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+              @click="() => preFillClicked(40000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}40,000" }}</button>
           </div>
@@ -90,16 +93,21 @@
             <input
               id="customAmount"
               class="bg-c-background-ter hover:border-c-text focus:border-c-text active:border-c-text commentArea w-full md:flex-1 text-lg font-bold border-2 border-c-secondary rounded-lg pl-10 pr-4 py-2 transition-colors duration-200"
-              type="text"
+              type="number"
+              v-model="customAmount"
               :placeholder="
               $t(
                 'bountyPlatform.singleBounty.contribute.customAmountPlaceholder'
               )
             "
+              @focus="amountError?amountError=false:null"
+              @blur="validateAmount"
             />
           </div>
+          <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
           <!-- Contribute Button -->
           <button
+            @click="contributeClicked"
             class="text-c-light btn-secondary w-full md:w-auto transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
           >{{ $t("bountyPlatform.singleBounty.contribute.buttonContribute") }}</button>
         </div>
@@ -110,8 +118,8 @@
       <div class="w-full flex flex-row justify-center mt-8">
         <div>
           <BountyAddressCard
-            address="0x8a90193c9d3339870dd310b0f6b77c429239340d06f05a4200b3393f242108c2"
-            bountyAddress="0x3cd6d449c38238474bc2fa50bb5665786d3f84b3"
+            :address="bountyChest"
+            :qrValue="qrValue"
           />
         </div>
       </div>
@@ -124,6 +132,9 @@ import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import BountyAddressCard from "~/components/BountyPlatform/BountyAddressCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
+import { tokenAddress } from "~/plugins/devcash/config";
+import { utils } from "ethers"
+
 export default {
   layout: "bountyPlatform",
   components: {
@@ -133,13 +144,47 @@ export default {
     Icon
   },
   props: {
-    closeModal: Function
+    closeModal: Function,
+    bountyChest: String
+  },
+  computed: {
+    qrValue() {
+      let qrContent = `ethereum:${this.bountyChest}&token=${this.tokenAddress}`
+      if (this.qrAmount) {
+        qrContent = `${qrContent}&value=${this.qrAmount}`
+      }
+      return qrContent
+    }
   },
   data() {
     return {
       isCloseHovered: false,
-      isCloseFocused: false
+      isCloseFocused: false,
+      customAmount: null,
+      amountError: "",
+      qrAmount: null
     };
+  },
+  methods: {
+    validateAmount() {
+      let isValid = true
+      try {
+        let amountBigNum = utils.parseUnits(this.customAmount.toString(), 8)
+        this.amountError = ""
+      } catch (e) {
+        this.amountError = this.$t('bountyPlatform.post.invalidAmount')
+        isValid = false
+      }  
+      return isValid 
+    },
+    contributeClicked() {
+      if (this.validateAmount()) {
+        this.qrAmount = utils.parseUnits(this.customAmount.toString(), 8).toString()
+      }
+    },
+    preFillClicked(amount) {
+      this.qrAmount = utils.parseUnits(amount.toString(), 8).toString()
+    }
   }
 };
 </script>

@@ -16,7 +16,7 @@
           v-if="status == 'completed' || status == 'expired'"
           :class="status == 'expired'?'text-c-pending bg-c-pending-10 border-c-pending-40':'text-c-success bg-c-success-10 border-c-success-40'"
           class="border text-sm font-bold px-3 py-0_5 rounded-full my-1_5"
-        >{{status=="expired" ?$t("bountyPlatform.bountyCard.tag.expired"):status=="completed"?$t("bountyPlatform.bountyCard.tag.completed"):''}}</div>
+        >{{isReclaimable ? $t("bountyPlatform.bountyCard.tag.reclaimable"): status=="expired" ?$t("bountyPlatform.bountyCard.tag.expired"):status=="completed"?$t("bountyPlatform.bountyCard.tag.completed"):''}}</div>
       </div>
       <div class="flex flex-row items-center mt-1">
         <Jazzicon class="flex" :diameter="20" :address="bounty.bountyChest" />
@@ -33,13 +33,6 @@
             class="font-mono-jet text-sm opacity-50"
           >({{$t('bountyPlatform.bountyHunter.you')}})</span>
         </h5>
-      </div>
-      <div v-if="status=='expired'" class="flex flex-row">
-        <!-- Reclaim Funds button -->
-        <button
-          @click.prevent="$store.commit('changeTheme', $store.state.theme == 'dark' ? 'light' : 'dark')"
-          class="bg-c-primary text-c-light btn-primary transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1 mt-4 mb-1"
-        >{{ $t("bountyPlatform.singleBounty.buttonReclaimFunds") }}</button>
       </div>
     </div>
     <!-- Divider -->
@@ -61,8 +54,10 @@
       <!-- Remaining Time -->
       <div class="text-right text-sm mt-2">
         <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
-        <span class="font-bold">{{ formatTimeLeft() }}</span>
-        <span class="opacity-75">
+        <span v-if="status=='active'" class="font-bold">{{  formatTimeLeft() }}</span>
+        <span v-else-if="status=='expired'" class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
+        <span v-else class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.completed') }}</span>
+        <span v-if="status == 'active'" class="opacity-75">
           {{
           $t("bountyPlatform.bountyCard.remaining")
           }}
@@ -104,12 +99,12 @@ export default {
       loggedInAccount: "devcashData/loggedInAccount"
     }),
     status() {
-      if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
-        return "completed"
-      } else if (new Date().getTime() / 1000 >= this.bounty.deadline) {
+      if (new Date().getTime() / 1000 >= this.bounty.deadline) {
         return "expired"
+      } else  if (this.bounty.submissions.filter(sub => sub.status == 'approved').length >= this.bounty.available) {
+        return"completed"
       }
-      return "active"      
+      return "active"
     },
     amount() {
       let tokenDecimals = 8
@@ -122,7 +117,10 @@ export default {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)
     },
     isReclaimable() {
-      return (this.bounty && this.bounty.creator == this.loggedInAccount && this.bounty.available > 0 && this.status == 'expired')
+      if (this.$store.state.devcashData.pendingReclaim.includes(this.bounty.id)) {
+        return false
+      }
+      return (this.isLoggedIn && this.bounty && this.bounty.creator.toLowerCase() == this.loggedInAccount.toLowerCase() && this.bounty.available > 0 && this.status == 'expired')
     }
   },
   methods: {  

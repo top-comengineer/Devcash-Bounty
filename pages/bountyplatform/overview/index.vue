@@ -35,7 +35,7 @@
           class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="balance"
           :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"
-          :totalETH="$store.state.devcashData.ethPrimary ? balance.primary.amount : balance.secondary.amount"
+          :totalETH="$store.state.devcashData.ethIsPrimary ? balance.primary.amount : balance.secondary.amount"
           :address="loggedInAccount"
         />
       </div>
