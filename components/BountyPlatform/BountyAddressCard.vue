@@ -59,7 +59,7 @@ export default {
         "<br>" +
         this.address.substring(14, 28) +
         "<br>" +
-        address.substring(28, 42)
+        this.address.substring(28, 42)
       );
     },
     copyAddress() {
