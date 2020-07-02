@@ -22,7 +22,10 @@
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
-          <ContributeModal :bountyChest="bounty.bountyChest" :closeModal="() => this.isContributeModalOpen = false" />
+          <ContributeModal
+            :bountyChest="bounty.bountyChest"
+            :closeModal="() => this.isContributeModalOpen = false"
+          />
         </div>
       </div>
     </transition>
@@ -108,6 +111,23 @@
               @click.prevent="reclaim"
               class="bg-c-background text-c-pending btn-background text-lg transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1 mt-1 mb-1"
             >{{ $t("bountyPlatform.singleBounty.buttonReclaimFunds") }}</button>
+            <!-- Reclaim Waiting -->
+            <transition name="modalBgTransition">
+              <div
+                v-if="isReclaimable && reclaimConfirmWindowOpen"
+                class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+              >
+                <div
+                  class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+                >
+                  <multi-purpose-modal
+                    :header="$t('bountyPlatform.multiPurposeModal.reclaim.header')"
+                    :paragraph="$t('bountyPlatform.multiPurposeModal.reclaim.paragraph')"
+                    :imgSrc="require('~/assets/images/illustrations/foreground/devcash-d.svg')"
+                  />
+                </div>
+              </div>
+            </transition>
           </div>
         </div>
         <!-- Submissions Left and Remaining Time -->
@@ -125,8 +145,11 @@
           <!-- Remaining Time -->
           <div class="text-left text-sm mt-2">
             <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
-            <span v-if="status=='active'" class="font-bold">{{  formatTimeLeft() }}</span>
-            <span v-else-if="status=='expired'" class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
+            <span v-if="status=='active'" class="font-bold">{{ formatTimeLeft() }}</span>
+            <span
+              v-else-if="status=='expired'"
+              class="font-bold"
+            >{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
             <span v-else class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.completed') }}</span>
             <span v-if="status == 'active'" class="opacity-75">
               {{
@@ -297,6 +320,7 @@ import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
 import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import marked from 'marked'
 
 const defaultSubmissionsLimit = 10;
@@ -314,7 +338,8 @@ export default {
     CreatorCard,
     BountyCardStatusTag,
     SubmissionModal,
-    ContributeModal
+    ContributeModal,
+    MultiPurposeModal
   },
   computed: {
     ...mapGetters({
@@ -383,7 +408,7 @@ export default {
       }
       await DevcashBounty.initEthConnector(this)
       try {
-        this.confirmWindowOpen = true
+        this.reclaimConfirmWindowOpen = true
         await this.$store.state.devcash.connector.reclaim(this.bounty)
         this.$store.state.devcashData.pendingReclaim.push(this.bounty.id)
         this.$notify({
@@ -391,7 +416,7 @@ export default {
           title: this.$t('notification.reclaimTitle'),
           text: this.$t('notification.reclaimDescription'),
           data: {},
-          duration: 60,
+          duration: -1,
         });            
       } catch (e) {
         if ('code' in e && e.code == 4001) {
@@ -406,7 +431,7 @@ export default {
           console.log(e)
         }
       } finally {
-        this.confirmWindowOpen = false
+        this.reclaimConfirmWindowOpen = false
       }
     },
     async loadMoreSubmissions() {
@@ -470,7 +495,7 @@ export default {
   data() {
     return {
       activeTab: "submissions",
-      confirmWindowOpen: false,
+      reclaimConfirmWindowOpen: false,
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
       // For meta tags

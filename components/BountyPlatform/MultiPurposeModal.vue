@@ -14,7 +14,7 @@
       </div>
       <h4 class="text-2xl font-bold text-c-primary">{{header}}</h4>
     </div>
-    <p class="mt-1 leading-relaxed">{{paragraph}}</p>
+    <p class="text-base font-normal text-c-text mt-1 leading-relaxed">{{paragraph}}</p>
   </div>
 </template>
 <script>
