@@ -56,8 +56,10 @@ module.exports = {
         strategy: "prefix_and_default",
         baseUrl: (c) => {
           if (process.server) {
-            const { req } = c
-            return req.protocol + '://' + req.get('host')
+              const { req } = c
+              let proto = req.get('x-forwarded-proto') ?  req.get('x-forwarded-proto') : req.protocol
+              let host = req.get('x-forwarded-host') ? req.get('x-forwarded-host') : req.get('host')
+              return proto + '://' + host
           }
           return window.location.protocol + "//" + window.location.host;
         },
