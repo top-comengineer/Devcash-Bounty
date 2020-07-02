@@ -449,9 +449,10 @@
     "reclaimFailed": "Failed to reclaim bounty",
     "reclaimFailedDesc": "Your reclaim request failed, if the issue persists please contact the platform maintainer."
   },
-  "404": {
+  "errorPage": {
     "header": "Oops!",
-    "paragraph": "The page you're looking for does not exist.",
+    "404paragraph": "The page you're looking for does not exist.",
+    "genericParagraph": "An error has occured on this page.",
     "buttonCTA": "Go Home"
   },
   "meta": {
@@ -479,9 +480,9 @@
         "pageDescription": "Crowdsource developer talent by posting a bounty on the Devcash Bounty Platform."
       }
     },
-    "404": {
-      "pageTitle": "Devcash | 404",
-      "pageDescription": "Oops! The page you're looking for does not exist."
+    "error": {
+      "pageTitle": "Devcash | Error",
+      "pageDescription": "Oops! An error has occurred on this page."
     }
   }
 }
