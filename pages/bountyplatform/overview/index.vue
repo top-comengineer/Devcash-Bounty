@@ -10,8 +10,8 @@
           v-else
           class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="earned"
-          :totalDEV="totalEarnedDC"
-          :totalETH="totalEarnedEth"
+          :totalPrimary="`${balance.primary.symbol}${$store.state.devcashData.ethIsPrimary?totalEarnedEth:totalEarnedDC}`"
+          :totalSecondary="`+ ${balance.secondary.symbol}${$store.state.devcashData.ethIsPrimary?totalEarnedDC:totalEarnedEth}`"
           :count="totalSubmissions"
         />
         <OverviewCardPlaceholder
@@ -22,8 +22,8 @@
           v-else
           class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="awarded"
-          :totalDEV="totalAwardedDC"
-          :totalETH="totalAwardedEth"
+          :totalPrimary="`${balance.primary.symbol}${$store.state.devcashData.ethIsPrimary?totalAwardedEth:totalAwardedDC}`"
+          :totalSecondary="`+ ${balance.secondary.symbol}${$store.state.devcashData.ethIsPrimary?totalAwardedDC:totalAwardedEth}`"
           :count="totalBounties"
         />
         <OverviewCardPlaceholder
@@ -34,8 +34,8 @@
           v-else
           class="w-full md:w-1/2 xl:w-1/3 mb-4 px-1 md:px-2"
           type="balance"
-          :totalDEV="balance.primary.hasApproved ? balance.primary.approved : 'N/A'"
-          :totalETH="$store.state.devcashData.ethIsPrimary ? balance.primary.amount : balance.secondary.amount"
+          :totalPrimary="`${balance.primary.symbol}${balance.primary.hasApproved ? balance.primary.approved : balance.primary.amount}`"
+          :totalSecondary="`+ ${balance.secondary.symbol}${balance.secondary.hasApproved ? balance.secondary.approved : balance.secondary.amount}`"
           :address="loggedInAccount"
         />
       </div>
