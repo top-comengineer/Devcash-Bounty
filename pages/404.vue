@@ -11,7 +11,7 @@
     <p class="text-xl mt-1">{{ $t("404.paragraph") }}</p>
     <nuxt-link
       class="mt-6 btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 md:px-12 py-2"
-      :to="localePath('bountyplatform')"
+      :to="localePath('/')"
     >{{ $t("404.buttonCTA") }}</nuxt-link>
   </div>
 </template>

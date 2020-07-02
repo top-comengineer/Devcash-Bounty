@@ -478,6 +478,10 @@
         "pageTitle": "Devcash | Bounty Platform | Post",
         "pageDescription": "Crowdsource developer talent by posting a bounty on the Devcash Bounty Platform."
       }
+    },
+    "404": {
+      "pageTitle": "Devcash | 404",
+      "pageDescription": "Oops! The page you're looking for does not exist."
     }
   }
 }
