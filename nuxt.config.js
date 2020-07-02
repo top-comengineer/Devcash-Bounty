@@ -94,7 +94,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://devcash.appditto.com' : 'http://localhost:3000'
+    baseURL: '/'
   },
   /*
    ** Build configuration
