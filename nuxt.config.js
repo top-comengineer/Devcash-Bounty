@@ -93,7 +93,9 @@ module.exports = {
    ** Axios module configuration
    ** See https://axios.nuxtjs.org/options
    */
-  axios: {},
+  axios: {
+    baseURL: process.env.NODE_ENV === 'production' ? 'https://devcash.appditto.com' : 'http://localhost:3000'
+  },
   /*
    ** Build configuration
    */
