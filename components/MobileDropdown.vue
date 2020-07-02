@@ -47,10 +47,7 @@
             </a>
           </nuxt-link>
           <!-- Bounty Platform -->
-          <nuxt-link
-            :to="localePath('bountyplatform')"
-            v-slot="{  navigate, href, isExactActive  }"
-          >
+          <nuxt-link :to="localePath('bountyplatform')" v-slot="{  navigate, href, isActive  }">
             <a
               @keydown.esc.exact="isDropdownOpen=false"
               @click="navigate"
@@ -60,7 +57,7 @@
               <div class="flex flex-col items-center">
                 <div>{{ $t("navigation.bountyPlatform") }}</div>
                 <div
-                  :class="[isExactActive?'transform scale-x-100':'transform scale-x-0']"
+                  :class="[isActive?'transform scale-x-100':'transform scale-x-0']"
                   class="bg-c-background h-px2 w-full rounded-tl-full rounded-br-full transition-all ease-out duration-200"
                 ></div>
               </div>
