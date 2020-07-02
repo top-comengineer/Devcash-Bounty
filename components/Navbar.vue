@@ -459,7 +459,7 @@ export default {
     time: 60000,
     method: 'updateBalance'
   },
-  mounted() {
+  mounted() {  
     // Initialize these here since it's client side
     this.hasMetamask = DevcashBounty.hasMetamask();
     this.updateBalance();

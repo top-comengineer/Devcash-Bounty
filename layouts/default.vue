@@ -27,8 +27,8 @@
                   class="flex flex-row items-start bg-c-light text-c-dark mb-2 shadow-2xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl relative"
                 >
                   <nuxt-link
-                    :event="props.item.data.href ? 'click' : ''"
-                    :to="props.item.data.href ? props.item.data.href : '/'"
+                    v-if="props.item.data.href"
+                    :to="props.item.data.href || '/nil'"
                     class="flex flex-row"
                   >
                     <div class="flex flex-col justify-center mx-3 my-2">
@@ -36,6 +36,10 @@
                       <p class="text-xs" v-html="props.item.text"></p>
                     </div>
                   </nuxt-link>
+                  <div @click="props.close" v-else class="flex flex-col justify-center mx-3 my-2 cursor-pointer">
+                    <p class="text-sm font-bold">{{props.item.title}}</p>
+                    <p class="text-xs" v-html="props.item.text"></p>
+                  </div>                  
                   <button
                     class="hover:bg-c-primary-35 focus:bg-c-primary-35 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
                     @click="props.close"
