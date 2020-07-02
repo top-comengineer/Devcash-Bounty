@@ -82,7 +82,8 @@
           :class="status == 'completed'?'bg-c-success':status == 'expired'?'bg-c-pending':'bg-c-secondary'"
           class="w-full flex flex-col items-center px-6 py-4"
         >
-          <div v-if="status=='active'" class="w-full flex flex-col items-center">
+          <!-- If status is active and logged in -->
+          <div v-if="status=='active' && isLoggedIn" class="w-full flex flex-col items-center">
             <button
               @click="isSubmissionModalOpen = true"
               class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
@@ -92,6 +93,37 @@
               class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
             >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
           </div>
+          <!-- If status is active and not logged in -->
+          <div
+            v-else-if="status=='active' && !isLoggedIn"
+            class="w-full flex flex-col items-center"
+          >
+            <p
+              class="text-c-light font-bold text-xl text-center"
+            >{{$t("bountyPlatform.singleBounty.signInToHunt") }}</p>
+            <button
+              @click.prevent="toggleSignInModal"
+              class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-4 mb-2"
+            >{{$t("navigation.signIn") }}</button>
+            <!-- Sign In Modal -->
+            <transition name="modalBgTransition">
+              <div
+                v-if="isSignInModalOpen && !isLoggedIn"
+                class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+              >
+                <div
+                  class="w-full md:max-w-xl h-full flex flex-row justify-center items-center px-2 pt-16 pb-12"
+                >
+                  <sign-in-card
+                    v-on-clickaway="closeSignInModal"
+                    :closeModal="closeSignInModal"
+                    type="sign"
+                  />
+                </div>
+              </div>
+            </transition>
+          </div>
+          <!-- If status is completed -->
           <div
             v-else-if="status=='completed'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
@@ -99,6 +131,7 @@
             <icon type="done" colorClass="text-c-background" class="w-12 h-12 md:w-16 md:h-16" />
             <p class="mt-1 mb-2">{{$t("bountyPlatform.singleBounty.bountyCompleted")}}</p>
           </div>
+          <!-- If status is expired -->
           <div
             v-else-if="status=='expired'"
             class="text-c-background font-extrabold text-lg flex flex-col items-center justify-center"
@@ -321,12 +354,15 @@ import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
-import marked from 'marked'
+import SignInCard from "~/components/BountyPlatform/SignInCard.vue";
+import marked from 'marked';
+import { mixin as clickaway } from "vue-clickaway";
 
 const defaultSubmissionsLimit = 10;
 
 export default {
   layout: "bountyPlatform",
+  mixins: [clickaway],
   components: {
     GreetingCard,
     SubmissionCard,
@@ -339,7 +375,8 @@ export default {
     BountyCardStatusTag,
     SubmissionModal,
     ContributeModal,
-    MultiPurposeModal
+    MultiPurposeModal,
+    SignInCard
   },
   computed: {
     ...mapGetters({
@@ -450,6 +487,12 @@ export default {
         this.submissionsLoading = false;
       }
     },
+    toggleSignInModal() {
+      this.isSignInModalOpen = !this.isSignInModalOpen;
+    },
+    closeSignInModal() {
+      this.isSignInModalOpen = false;
+    },
   },
   async asyncData({ error, params, $axios }) {
     try {
@@ -498,6 +541,7 @@ export default {
       reclaimConfirmWindowOpen: false,
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
+      isSignInModalOpen: false,
       // For meta tags
       pagePreview: `${process.env.BASE_URL}/previews/bounty-single.png`,
       pageThemeColor: "#675CFF",

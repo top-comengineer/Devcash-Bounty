@@ -320,6 +320,7 @@
       "bountyCompleted": "Bounty Completed",
       "bountyExpired": "Bounty Expired",
       "createdBy": "Created By",
+      "signInToHunt": "Sign in to hunt or contribute",
       "submission": {
         "cardHeader": "Send a Submission",
         "cardParagraph": "Enter the details of your submission below.",
