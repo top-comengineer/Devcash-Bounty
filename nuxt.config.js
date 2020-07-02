@@ -57,7 +57,9 @@ module.exports = {
         baseUrl: (c) => {
           if (process.server) {
               const { req } = c
-              return req.get('x-forwarded-proto') ?  req.get('x-forwarded-proto') : req.protocol + '://' + req.get('x-forwarded-host') ? req.get('x-forwarded-host') : req.get('host')
+              let proto = req.get('x-forwarded-proto') ?  req.get('x-forwarded-proto') : req.protocol
+              let host = req.get('x-forwarded-host') ? req.get('x-forwarded-host') : req.get('host')
+              return proto + '://' + host
           }
           return window.location.protocol + "//" + window.location.host;
         },

@@ -303,7 +303,7 @@
         </div>
         <!-- Comments -->
         <div v-if="activeTab=='comments'" class="w-full flex flex-col">
-          <Disqus :key="$store.state.theme" :identifier="disqusID()" />
+          <Disqus :key="$store.state.theme" :pageConfig="{identifier: disqusID}" />
         </div>
         <!-- Activity -->
         <div v-if="activeTab=='activity'" class="w-full flex flex-col">
@@ -422,12 +422,12 @@ export default {
         return false
       }
       return (this.isLoggedIn && this.bounty && this.bounty.creator.toLowerCase() == this.loggedInAccount.toLowerCase() && this.bounty.available > 0 && this.status == 'expired')
-    }    
+    },
+    disqusID() {
+      return `devcash:${process.env.NODE_ENV}-bounty-${this.bounty.id}`
+    },    
   },
   methods: {
-    disqusID() {
-      return (this.$route.path || window.location.pathname)
-    },
     formatDate(dtStr) {
       return DevcashBounty.formatDateStr(this.currentLocale.iso, dtStr)
     },
