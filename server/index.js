@@ -40,6 +40,9 @@ async function start() {
 
   // Other middlewares
   app.use(cors())
+  if (process.env.NODE_ENV === 'production') {
+    app.set('trust proxy', 'loopback')
+  }
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
   // Setup API routes
