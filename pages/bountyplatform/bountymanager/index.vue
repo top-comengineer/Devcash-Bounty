@@ -2,7 +2,7 @@
   <div class="w-full flex flex-row flex-wrap justify-center px-1 md:px-4">
     <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
       <!-- Confirm Modal -->
-      <transition name="confirmModalTransition">
+      <transition name="modalBgTransition">
         <div
           v-if="isConfirmModalOpen"
           class="bg-c-background-75 w-full h-screen fixed flex flex-row left-0 top-0 modal"
