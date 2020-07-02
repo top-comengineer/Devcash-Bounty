@@ -449,6 +449,11 @@
     "reclaimFailed": "Failed to reclaim bounty",
     "reclaimFailedDesc": "Your reclaim request failed, if the issue persists please contact the platform maintainer."
   },
+  "404": {
+    "header": "Oops!",
+    "paragraph": "The page you're looking for does not exist.",
+    "buttonCTA": "Go Home"
+  },
   "meta": {
     "home": {
       "pageTitle": "Devcash | Cash for the Developer Economy",
