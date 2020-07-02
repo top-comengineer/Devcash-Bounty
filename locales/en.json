@@ -284,6 +284,10 @@
         "header": "Verify to Sign In",
         "paragraph": "Verify your address via your wallet to sign in. If you have verified before, please wait for the process to complete."
       },
+      "reclaim": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to reclaim the funds. It might take 15-30 minutes for it to be processed by the network."
+      },
       "generic": {
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to continue."
@@ -433,7 +437,7 @@
     "unknownNetworkTitle": "Unknown Network",
     "unknownNetworkDescription": "Devcash runs on \"mainnet\", ensure your network settings in your wallet are correct.",
     "reclaimTitle": "Reclaim submitted",
-    "reclaimDescription": "Your funds will be reclaimed once its confirmed on the network."
+    "reclaimDescription": "Your funds will be reclaimed once it's confirmed on the network."
   },
   "errors": {
     "errorTitle": "An error occured",
