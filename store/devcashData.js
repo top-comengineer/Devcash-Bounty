@@ -9,8 +9,12 @@ export const state = () => ({
   provider: null,
   bounties: {},
   ethIsPrimary: false,
-  balancePrimary: {},
-  balanceSecondary: {},
+  balancePrimary: {
+    symbol: devcashSymbol
+  },
+  balanceSecondary: {
+    symbol: ethSymbol
+  },
   fee: null,
   curFee: null,
   isIBOBarClosed: false,
@@ -126,6 +130,12 @@ export const mutations = {
   setBalance(state, balance) {
     if (balance == null) {
       Cookies.remove("devcash_balance")
+      state.balancePrimary = {
+        symbol: devcashSymbol
+      }
+      state.balanceSecondary = {
+        symbol: ethSymbol
+      }
     } else {
       if (state.ethIsPrimary) {
         state.balancePrimary = {

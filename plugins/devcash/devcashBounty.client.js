@@ -264,6 +264,7 @@ export class DevcashBounty {
     vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
     vueComponent.$store.commit("devcashData/setBalance", null);
     vueComponent.$store.commit("devcash/setConnector", null);
+    vueComponent.$store.commit("devcashData/setDevcash");
     vueComponent.$root.$emit('connectorSet', null)
     vueComponent.$router.replace(vueComponent.localePath("/"));
   }
