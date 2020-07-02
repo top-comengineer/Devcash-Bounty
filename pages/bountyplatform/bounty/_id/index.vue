@@ -109,7 +109,7 @@
             <button
               v-if="isReclaimable"
               @click.prevent="reclaim"
-              class="bg-c-background text-c-pending btn-background text-lg transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1 mt-1 mb-1"
+              class="bg-c-background text-c-pending btn-background text-lg transform hover:scale-lg focus:scale-lg font-bold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1_5 mt-1 mb-1"
             >{{ $t("bountyPlatform.singleBounty.buttonReclaimFunds") }}</button>
             <!-- Reclaim Waiting -->
             <transition name="modalBgTransition">
