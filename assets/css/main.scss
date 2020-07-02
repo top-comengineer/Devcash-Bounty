@@ -103,6 +103,36 @@
 .modalBgTransition-leave-to {
   opacity: 0;
 }
+// 
+.modalScaleTransition-enter-active {
+  transition: all 0.2s ease-out;
+}
+.modalScaleTransition-leave-active {
+  transition: all 0.2s ease-out;
+}
+.modalScaleTransition-enter {
+  opacity: 0.25;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+.modalScaleTransition-leave-to {
+  opacity: 0;
+  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
+}
+//
+.dropdownTransition-enter-active {
+  transition: all 0.25s ease-out;
+}
+.dropdownTransition-leave-active {
+  transition: all 0.25s ease-out;
+}
+.dropdownTransition-enter {
+  opacity: 0;
+  transform: scaleX(0.25) scaleY(0.5) rotate(2.5deg) translateY(-4rem);
+}
+.dropdownTransition-leave-to {
+  opacity: 0;
+  transform: scaleX(0.25) scaleY(0.5) rotate(2.5deg) translateY(-4rem);
+}
 ////////////////
 .modal {
   z-index: 200;

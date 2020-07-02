@@ -82,7 +82,7 @@
           <div class="hidden lg:block h-px2 w-full"></div>
         </button>
         <!-- Language Modal -->
-        <transition name="langModalTransition">
+        <transition name="modalScaleTransition">
           <!-- Modal Wrapper -->
           <div
             v-on-clickaway="hideLangModal"
@@ -157,7 +157,7 @@
           <h4>{{ loggingInLoading ? $t("navigation.signingIn") : $t("navigation.signIn") }}</h4>
         </button>
         <!-- Sign In Modal -->
-        <transition name="signInModalTransition">
+        <transition name="modalScaleTransition">
           <!-- Modal Wrapper -->
           <div
             v-on-clickaway="hideSignInModal"
@@ -240,7 +240,7 @@
           <Jazzicon class="flex md:hidden" :diameter="28" :address="loggedInAccount" />
         </button>
         <!-- Sign Out Modal -->
-        <transition name="signInModalTransition">
+        <transition name="modalScaleTransition">
           <!-- Modal Wrapper -->
           <div
             v-on-clickaway="hideSignOutModal"
@@ -609,33 +609,3 @@ export default {
   },
 };
 </script>
-<style>
-.langModalTransition-enter-active {
-  transition: all 0.2s ease-out;
-}
-.langModalTransition-leave-active {
-  transition: all 0.2s ease-out;
-}
-.langModalTransition-enter {
-  opacity: 0.25;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
-}
-.langModalTransition-leave-to {
-  opacity: 0;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
-}
-.signInModalTransition-enter-active {
-  transition: all 0.2s ease-out;
-}
-.signInModalTransition-leave-active {
-  transition: all 0.2s ease-out;
-}
-.signInModalTransition-enter {
-  opacity: 0.25;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
-}
-.signInModalTransition-leave-to {
-  opacity: 0;
-  transform: scaleX(0.75) scaleY(0.25) translateY(-1rem);
-}
-</style>

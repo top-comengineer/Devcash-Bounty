@@ -173,7 +173,7 @@
               />
             </button>
             <!-- Sort Modal -->
-            <transition name="sortModalTransition">
+            <transition name="modalScaleTransition">
               <!-- Modal Wrapper -->
               <div
                 v-on-clickaway="hideSortModal"
