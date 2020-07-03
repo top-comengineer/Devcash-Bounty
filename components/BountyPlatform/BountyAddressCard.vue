@@ -62,6 +62,8 @@ export default {
         this.address.substring(28, 42)
       );
     },
+  },
+  methods: {
     copyAddress() {
       this.$copyText(this.address);
       this.$notify({
@@ -70,8 +72,8 @@ export default {
           text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
           data: {},
           duration: 2000
-        });
-    },
+        });      
+    }
   }
 };
 </script>
