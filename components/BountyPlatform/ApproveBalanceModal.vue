@@ -1,5 +1,15 @@
 <template>
+  <!-- Approval Waiting -->
+  <multi-purpose-modal
+    v-if="approvalLoading"
+    :header="$t('bountyPlatform.multiPurposeModal.approveAmount.header')"
+    :paragraph="$t('bountyPlatform.multiPurposeModal.approveAmount.paragraph')"
+    :imgSrc="require('~/assets/images/illustrations/foreground/devcash-d.svg')"
+  />
+  <!-- Approval Modal -->
   <div
+    v-else
+    v-on-clickaway="hideModal"
     @keydown.esc.exact="hideModal"
     class="w-full max-h-full flex flex-col items-center shadow-4xl overflow-auto bg-c-background-sec rounded-xl border-2 border-c-text-10 px-6 pt-4 pb-8 md:px-24 md:pt-8 md:pb-16 whitespace-initial"
   >
@@ -18,7 +28,10 @@
       class="text-c-text font-bold text-lg"
     >{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</label>
     <!-- Amount Input -->
-    <div v-if="balance.primary.hasApproved" class="w-full max-w-xxs flex flex-row items-center relative mt-2 text-c-text">
+    <div
+      v-if="balance.primary.hasApproved"
+      class="w-full max-w-xxs flex flex-row items-center relative mt-2 text-c-text"
+    >
       <!-- Amount Symbol -->
       <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold">{D}</span>
       <input
@@ -47,10 +60,15 @@
 import { mapGetters } from "vuex";
 import { utils, BigNumber } from "ethers";
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
-
+import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
+import { mixin as clickaway } from "vue-clickaway";
 export default {
+  mixins: [clickaway],
   props: {
     hideModal: Function
+  },
+  components: {
+    MultiPurposeModal
   },
   computed: {
     // mix the getters into computed with object spread operator

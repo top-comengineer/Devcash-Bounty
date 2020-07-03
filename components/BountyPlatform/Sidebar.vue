@@ -2,23 +2,6 @@
   <div
     class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl whitespace-no-wrap"
   >
-    <!-- Approval Loading Modal -->
-    <transition name="modalBgTransition">
-      <div
-        v-if="approvalLoading"
-        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
-      >
-        <div
-          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
-        >
-          <multi-purpose-modal
-            :header="$t('bountyPlatform.multiPurposeModal.approveAmount.header')"
-            :paragraph="$t('bountyPlatform.multiPurposeModal.approveAmount.paragraph')"
-            :imgSrc="require('~/assets/images/illustrations/foreground/devcash-d.svg')"
-          />
-        </div>
-      </div>
-    </transition>
     <!-- Sidebar Content -->
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
       <!-- Explore -->
@@ -338,6 +321,23 @@
         </div>
       </div>
     </div>
+    <!-- Approval Loading Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="approvalLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="$t('bountyPlatform.multiPurposeModal.approveAmount.header')"
+            :paragraph="$t('bountyPlatform.multiPurposeModal.approveAmount.paragraph')"
+            :imgSrc="require('~/assets/images/illustrations/foreground/devcash-d.svg')"
+          />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 <script>

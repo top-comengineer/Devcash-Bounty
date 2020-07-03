@@ -230,22 +230,6 @@
         </transition>
       </div>
       <div v-else class="relative">
-        <!-- Approve Amount Modal -->
-        <transition name="modalBgTransition">
-          <div
-            v-if="isApproveBalanceModalOpen && $store.state.devcashData.balancePrimary.hasApproved"
-            class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
-          >
-            <div
-              class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
-            >
-              <approve-balance-modal
-                v-on-clickaway="hideApproveBalanceModal"
-                :hideModal="hideApproveBalanceModal"
-              />
-            </div>
-          </div>
-        </transition>
         <!-- Avatar -->
         <button
           @click="toggleSignOutModal"
@@ -345,6 +329,21 @@
                   <h3 class="whitespace-no-wrap font-bold">{{$t("navigation.signOut")}}</h3>
                 </div>
               </button>
+            </div>
+          </div>
+        </transition>
+        <!-- Approve Amount Modal -->
+        <transition name="modalBgTransition">
+          <div
+            v-if="isApproveBalanceModalOpen && $store.state.devcashData.balancePrimary.hasApproved"
+            class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+          >
+            <div
+              class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+            >
+              <approve-balance-modal
+                :hideModal="hideApproveBalanceModal"
+              />
             </div>
           </div>
         </transition>
