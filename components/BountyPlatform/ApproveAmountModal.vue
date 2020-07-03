@@ -13,14 +13,16 @@
     <div class="w-full h-px2 rounded-full bg-c-text-10 mt-6 mb-7"></div>
     <!-- Amount to Approve  -->
     <label
+      v-if="balance.primary.hasApproved"
       for="amountToApprove"
       class="text-c-text font-bold text-lg"
     >{{$t('bountyPlatform.sidebarContextual.amountToApprove')}}</label>
     <!-- Amount Input -->
-    <div class="w-full max-w-xxs flex flex-row items-center relative mt-2 text-c-text">
+    <div v-if="balance.primary.hasApproved" class="w-full max-w-xxs flex flex-row items-center relative mt-2 text-c-text">
       <!-- Amount Symbol -->
       <span class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold">{D}</span>
       <input
+        v-model="toApprove"
         name="amountToApprove"
         class="bg-c-background-ter border-c-background-ter w-full font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pr-4 pl-9 py-2"
         type="number"
@@ -30,15 +32,72 @@
     </div>
     <!-- Approve Button -->
     <button
+      v-if="balance.primary.hasApproved"
+      :disabled="approvalLoading"
+      @click="approveBalance"
       class="w-full max-w-xxs btn-primary bg-c-primary transform hover:scale-md focus:scale-md duration-200 ease-out transition-all origin-bottom-left text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
     >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
-    <p class="text-c-danger text-xs px-3"></p>
+    <p
+      v-if="approvalError && balance.primary.hasApproved"
+      class="text-c-danger text-xs px-3"
+    >{{ approvalError }}</p>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+import { utils, BigNumber } from "ethers";
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+
 export default {
   props: {
     hideModal: Function
+  },
+  computed: {
+    // mix the getters into computed with object spread operator
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount",
+      balance: "devcashData/getBalance"
+    })
+  },  
+  data() {
+    return {
+      toApprove: null,
+      approvalLoading: false,
+      approvalError: ""
+    }
+  },
+  methods: {
+    async approveBalance() {
+      if (this.toApprove == null || this.toApprove < 0) {
+        this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
+        return
+      }
+      try {
+        this.approvalLoading = true
+        await DevcashBounty.updateBalances(this)
+        let amt = utils.parseUnits(this.toApprove.toString(), 8)
+        let avail = BigNumber.from(this.balance.primary.raw)
+        if (amt.gt(avail)) {
+          this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
+          return
+        }
+        this.approvalError = ""
+        await this.$store.state.devcash.connector.approveBalance(this.toApprove)
+        this.toApprove = ""
+        this.$notify({
+          group: 'main',
+          title: this.$t('notification.approvalPending'),
+          text: this.$t('notification.approvalDescription'),
+          data: {}
+        });
+        this.hideModal()
+      } catch (e) {
+        console.log(e)
+      } finally {
+        this.approvalLoading = false
+      }
+    }    
   }
 }
 </script>
