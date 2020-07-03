@@ -233,15 +233,15 @@
         <!-- Approve Amount Modal -->
         <transition name="modalBgTransition">
           <div
-            v-if="isApproveAmountModalOpen && $store.state.devcashData.balancePrimary.hasApproved"
+            v-if="isApproveBalanceModalOpen && $store.state.devcashData.balancePrimary.hasApproved"
             class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
           >
             <div
               class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
             >
-              <approve-amount-modal
-                v-on-clickaway="hideApproveAmountModal"
-                :hideModal="hideApproveAmountModal"
+              <approve-balance-modal
+                v-on-clickaway="hideApproveBalanceModal"
+                :hideModal="hideApproveBalanceModal"
               />
             </div>
           </div>
@@ -305,14 +305,16 @@
               <button
                 v-if="$store.state.devcashData.balancePrimary.hasApproved"
                 @keydown.esc.exact="hideSignOutModal"
-                @click="showApproveAmountModal"
+                @click="showApproveBalanceModal"
                 class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
                   <Icon colorClass="text-c-background" type="devcash" class="w-6 h-6" />
                 </div>
                 <div class="flex flex-row pr-6 pl-1">
-                  <h3 class="whitespace-no-wrap font-bold">Approve Amount</h3>
+                  <h3
+                    class="whitespace-no-wrap font-bold"
+                  >{{$t('bountyPlatform.sidebarContextual.headerApproveBalance')}}</h3>
                 </div>
               </button>
               <!-- Overview Button -->
@@ -383,7 +385,7 @@ import Icon from "~/components/Icon.vue";
 import Spinner from "~/components/Spinner.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
-import ApproveAmountModal from "~/components/BountyPlatform/ApproveAmountModal.vue";
+import ApproveBalanceModal from "~/components/BountyPlatform/ApproveBalanceModal.vue";
 import { mapGetters } from "vuex";
 import {
   WalletProviders,
@@ -401,7 +403,7 @@ export default {
     Spinner,
     MobileDropdown,
     MultiPurposeModal,
-    ApproveAmountModal
+    ApproveBalanceModal
   },
   props:{
     hideModals: Boolean,
@@ -434,12 +436,12 @@ export default {
         this.isSignOutModalOpen = false;
       }, 150);
     },
-    hideApproveAmountModal(){
-      this.isApproveAmountModalOpen = false
+    hideApproveBalanceModal(){
+      this.isApproveBalanceModalOpen = false
       this.isSignOutModalOpen = false
     },
-    showApproveAmountModal(){
-      this.isApproveAmountModalOpen = true
+    showApproveBalanceModal(){
+      this.isApproveBalanceModalOpen = true
       this.isSignOutModalOpen = false
     },
     changeLang(locale) {
@@ -492,7 +494,7 @@ export default {
       isLangModalOpen: false,
       isSignInModalOpen: false,
       isSignOutModalOpen: false,
-      isApproveAmountModalOpen: false,
+      isApproveBalanceModalOpen: false,
       hasMetamask: false,
       walletProviders: WalletProviders,
       loggingInLoading: false,
@@ -649,7 +651,7 @@ export default {
   head(){
     return {
       bodyAttrs: {
-        class: [ this.loggingInLoading || this.isApproveAmountModalOpen ? 'overflow-hidden':'']
+        class: [ this.loggingInLoading || this.isApproveBalanceModalOpen ? 'overflow-hidden':'']
       }
     }
   },
