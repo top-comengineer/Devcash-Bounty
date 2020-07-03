@@ -288,6 +288,10 @@
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to reclaim the funds. It might take 15-30 minutes for it to be processed by the network."
       },
+      "contribute": {
+        "header": "Confirm the Transaction",
+        "paragraph": "Please confirm the transaction via your wallet to contribute to the bounty. It might take 15-30 minutes for it to be processed by the network."
+      },
       "generic": {
         "header": "Confirm the Transaction",
         "paragraph": "Please confirm the transaction via your wallet to continue."

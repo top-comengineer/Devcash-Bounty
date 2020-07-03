@@ -9,7 +9,7 @@
         <div
           class="d-container h-full flex flex-row justify-center items-center px-2 md:px-12 lg:px-24 xl:px-32 pt-20 md:pt-24 pb-12"
         >
-          <SubmissionModal :bounty="bounty" :closeModal="() => this.isSubmissionModalOpen = false" />
+          <SubmissionModal :bounty="bounty" :closeModal="closeSubmissionModal" />
         </div>
       </div>
     </transition>
@@ -22,10 +22,7 @@
         <div
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
-          <ContributeModal
-            :bounty="bounty"
-            :closeModal="() => this.isContributeModalOpen = false"
-          />
+          <ContributeModal :bounty="bounty" :closeModal="closeContributeModal" />
         </div>
       </div>
     </transition>
@@ -493,6 +490,12 @@ export default {
     closeSignInModal() {
       this.isSignInModalOpen = false;
     },
+    closeSubmissionModal(){
+      this.isSubmissionModalOpen = false
+    },
+    closeContributeModal(){
+      this.isContributeModalOpen = false
+    }
   },
   async asyncData({ error, params, $axios }) {
     try {

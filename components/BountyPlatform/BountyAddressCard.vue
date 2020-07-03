@@ -7,7 +7,7 @@
       <div class="flex flex-row flex-wrap items-center">
         <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
         <button
-          @click.prevent="copyAddress"
+          @click.prevent="copyAddress()"
           class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
         >
           <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
@@ -52,16 +52,7 @@ export default {
     address: String,
     qrValue: String
   },
-  computed: {
-    threeLineAddress() {
-      return (
-        this.address.substring(0, 14) +
-        "<br>" +
-        this.address.substring(14, 28) +
-        "<br>" +
-        this.address.substring(28, 42)
-      );
-    },
+  methods: {
     copyAddress() {
       this.$copyText(this.address);
       this.$notify({
@@ -71,6 +62,17 @@ export default {
           data: {},
           duration: 2000
         });
+    }
+  },
+  computed: {
+    threeLineAddress() {
+      return (
+        this.address.substring(0, 14) +
+        "<br>" +
+        this.address.substring(14, 28) +
+        "<br>" +
+        this.address.substring(28, 42)
+      );
     },
   }
 };

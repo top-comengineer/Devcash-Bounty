@@ -25,7 +25,7 @@
             >
               <template slot="body" slot-scope="props">
                 <div
-                  class="flex flex-row items-start bg-c-light text-c-dark mb-2 shadow-2xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl relative"
+                  class="flex flex-row items-start justify-between bg-c-light text-c-dark mb-2 shadow-2xl border-l-8 border-c-secondary rounded-tl-md rounded-bl-md rounded-tr-md rounded-br-2xl relative"
                 >
                   <nuxt-link
                     v-if="props.item.data.href"
