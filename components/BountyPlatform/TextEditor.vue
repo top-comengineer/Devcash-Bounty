@@ -4,7 +4,7 @@
     class="w-full relative mt-3 rounded-lg"
   >
     <client-only>
-      <div class="bg-c-background-ter sticky top-0 z-20 rounded-tl-lg rounded-tr-lg">
+      <div class="bg-c-background-ter rounded-tl-lg rounded-tr-lg">
         <editor-menu-bar
           v-if="type!='feedback'"
           class="bg-c-text-10 rounded-tl-lg rounded-tr-lg px-2"
