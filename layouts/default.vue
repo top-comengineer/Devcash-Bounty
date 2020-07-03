@@ -7,6 +7,7 @@
       <div class="fixed w-full">
         <div class="d-container relative">
           <Navbar
+            :hideModals="hideNavbar"
             id="navbar"
             class="transition-all ease-out duration-200 rounded-bl-xl rounded-br-xl"
             :class="[
@@ -36,10 +37,14 @@
                       <p class="text-xs" v-html="props.item.text"></p>
                     </div>
                   </nuxt-link>
-                  <div @click="props.close" v-else class="flex flex-col justify-center mx-3 my-2 cursor-pointer">
+                  <div
+                    @click="props.close"
+                    v-else
+                    class="flex flex-col justify-center mx-3 my-2 cursor-pointer"
+                  >
                     <p class="text-sm font-bold">{{props.item.title}}</p>
                     <p class="text-xs" v-html="props.item.text"></p>
-                  </div>                  
+                  </div>
                   <button
                     class="hover:bg-c-primary-35 focus:bg-c-primary-35 p-1 rounded-full transition-colors duration-200 mr-0_5 mt-0_5"
                     @click="props.close"

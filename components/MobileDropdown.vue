@@ -22,7 +22,7 @@
     </button>
     <transition name="dropdownTransition">
       <div
-        v-if="isDropdownOpen"
+        v-if="isDropdownOpen && !hideModals"
         v-on-clickaway="closeDropdown"
         class="text-c-background md:hidden absolute right-0 dropdown mt-4 text-xl font-bold"
       >
@@ -109,7 +109,8 @@ export default {
   },
   props: {
     isLoggedIn: Boolean,
-    loggingInLoading: Boolean
+    loggingInLoading: Boolean,
+    hideModals: Boolean
   },
   data() {
     return {

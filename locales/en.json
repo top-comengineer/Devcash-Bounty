@@ -301,7 +301,9 @@
       "buttonApprove": "Approve",
       "buttonGoBack": "Go Back",
       "approveAmountRequired": "Amount is Required",
-      "approveAmountLow": "Balance too Low"
+      "approveAmountLow": "Balance too Low",
+      "headerApproveBalance": "Approve Balance",
+      "paragraphApproveBalance": "The approved balance can be used on the bounty platform to post bounties."
     },
     "statusTag": {
       "pending": "Pending",

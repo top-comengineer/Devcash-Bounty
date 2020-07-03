@@ -87,7 +87,7 @@
           <div
             v-on-clickaway="hideLangModal"
             class="origin-top-right absolute right-0 pt-2"
-            v-if="isLangModalOpen"
+            v-if="isLangModalOpen && !hideModals"
           >
             <div
               class="bg-c-text text-c-background w-56 flex flex-col relative shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
@@ -230,6 +230,22 @@
         </transition>
       </div>
       <div v-else class="relative">
+        <!-- Approve Amount Modal -->
+        <transition name="modalBgTransition">
+          <div
+            v-if="isApproveAmountModalOpen && $store.state.devcashData.balancePrimary.hasApproved"
+            class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+          >
+            <div
+              class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+            >
+              <approve-amount-modal
+                v-on-clickaway="hideApproveAmountModal"
+                :hideModal="hideApproveAmountModal"
+              />
+            </div>
+          </div>
+        </transition>
         <!-- Avatar -->
         <button
           @click="toggleSignOutModal"
@@ -245,7 +261,7 @@
           <div
             v-on-clickaway="hideSignOutModal"
             class="origin-top-right absolute right-0 pt-2"
-            v-if="isSignOutModalOpen && !loggingInLoading"
+            v-if="isSignOutModalOpen && !loggingInLoading && !hideModals"
           >
             <div
               class="bg-c-text text-c-background max-w-full min-w-xxxs flex flex-col relative origin-top-right shadow-2xl rounded-tl-2xl rounded-br-2xl rounded-bl-md rounded-tr-md overflow-hidden"
@@ -285,6 +301,20 @@
               </div>
               <!-- Divider -->
               <div class="bg-c-background w-full h-px2 rounded-full mt-3 mb-1 opacity-10"></div>
+              <!-- Approve Amount Button -->
+              <button
+                v-if="$store.state.devcashData.balancePrimary.hasApproved"
+                @keydown.esc.exact="hideSignOutModal"
+                @click="showApproveAmountModal"
+                class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
+              >
+                <div class="pl-6 pr-1">
+                  <Icon colorClass="text-c-background" type="devcash" class="w-6 h-6" />
+                </div>
+                <div class="flex flex-row pr-6 pl-1">
+                  <h3 class="whitespace-no-wrap font-bold">Approve Amount</h3>
+                </div>
+              </button>
               <!-- Overview Button -->
               <nuxt-link
                 :to="localePath('bountyplatform-overview')"
@@ -341,6 +371,7 @@
         :isLoggedIn="isLoggedIn"
         :signOut="signOut"
         :loggingInLoading="loggingInLoading"
+        :hideModals="hideModals"
       />
     </div>
   </div>
@@ -352,6 +383,7 @@ import Icon from "~/components/Icon.vue";
 import Spinner from "~/components/Spinner.vue";
 import MobileDropdown from "~/components/MobileDropdown.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
+import ApproveAmountModal from "~/components/BountyPlatform/ApproveAmountModal.vue";
 import { mapGetters } from "vuex";
 import {
   WalletProviders,
@@ -368,7 +400,11 @@ export default {
     Jazzicon,
     Spinner,
     MobileDropdown,
-    MultiPurposeModal
+    MultiPurposeModal,
+    ApproveAmountModal
+  },
+  props:{
+    hideModals: Boolean,
   },
   methods: {
     changeTheme() {
@@ -397,6 +433,14 @@ export default {
       setTimeout(() => {
         this.isSignOutModalOpen = false;
       }, 150);
+    },
+    hideApproveAmountModal(){
+      this.isApproveAmountModalOpen = false
+      this.isSignOutModalOpen = false
+    },
+    showApproveAmountModal(){
+      this.isApproveAmountModalOpen = true
+      this.isSignOutModalOpen = false
     },
     changeLang(locale) {
       this.$i18n.setLocaleCookie(locale);
@@ -448,6 +492,7 @@ export default {
       isLangModalOpen: false,
       isSignInModalOpen: false,
       isSignOutModalOpen: false,
+      isApproveAmountModalOpen: false,
       hasMetamask: false,
       walletProviders: WalletProviders,
       loggingInLoading: false,
@@ -603,7 +648,7 @@ export default {
   head(){
     return {
       bodyAttrs: {
-        class: [ this.loggingInLoading? 'overflow-hidden':'']
+        class: [ this.loggingInLoading || this.isApproveAmountModalOpen ? 'overflow-hidden':'']
       }
     }
   },
