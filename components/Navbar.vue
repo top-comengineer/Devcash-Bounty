@@ -530,6 +530,7 @@ export default {
                     ref.$root.$emit('bountyCreated', onChain.data)
                   }
                 } else {
+                  /*
                   ref.$notify({
                     group: 'main',
                     title: this.$t('notification.bountyTitle').replace("%1", onChain.data.title),
@@ -537,7 +538,7 @@ export default {
                     data: {
                       href: ref.localePath({name: 'bountyplatform-bounty-id', params: {id: uBountyIndex}})
                     }
-                  });
+                  });*/
                   ref.$root.$emit('bountyCreated', onChain.data)
                 }
               } catch (e) {

@@ -440,7 +440,9 @@
     "unknownNetworkTitle": "Unknown Network",
     "unknownNetworkDescription": "Devcash runs on \"mainnet\", ensure your network settings in your wallet are correct.",
     "reclaimTitle": "Reclaim submitted",
-    "reclaimDescription": "Your funds will be reclaimed once it's confirmed on the network."
+    "reclaimDescription": "Your funds will be reclaimed once it's confirmed on the network.",
+    "contributeFinishedTitle": "You've contributed %1%2 to the bounty",
+    "contributeFinishedDescription": "Any approved submissions will be rewarded your contribution."
   },
   "errors": {
     "errorTitle": "An error occured",
@@ -449,7 +451,8 @@
     "approvalFailed": "Failed to approve submission",
     "rejectFailed": "Failed to reject submission",
     "reclaimFailed": "Failed to reclaim bounty",
-    "reclaimFailedDesc": "Your reclaim request failed, if the issue persists please contact the platform maintainer."
+    "reclaimFailedDesc": "Your reclaim request failed, if the issue persists please contact the platform maintainer.",
+    "failedContribute": "Failed to contribute to bounty"
   },
   "errorPage": {
     "header": "Oops!",
