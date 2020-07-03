@@ -1,7 +1,7 @@
 <template>
   <div
     id="submissionModal"
-    class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-4 py-3 md:px-5 md:py-4 relative"
+    class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-3 py-2 md:px-5 md:py-4 relative"
   >
     <!-- Confirm to Submit Modal -->
     <transition name="modalBgTransition">
@@ -46,10 +46,10 @@
       class="my-1 md:my-2"
     />
     <!-- Submit Form -->
-    <div class="w-full" action>
+    <div class="w-full">
       <!-- Card for Description -->
       <div
-        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-6 md:px-10 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-3 md:px-10 mt-2"
       >
         <!-- Submission Description -->
         <div class="w-full flex flex-col my-3">
@@ -75,7 +75,7 @@
       </div>
       <!-- Card for Contact Name and Email -->
       <div
-        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative py-4 px-6 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
       >
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
