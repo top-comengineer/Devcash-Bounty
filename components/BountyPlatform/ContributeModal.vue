@@ -49,6 +49,7 @@
           <!-- {D}10,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+            :disabled="contributeLoading"
             @click="() => preFillClicked(10000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}10,000" }}</button>
@@ -56,6 +57,7 @@
           <!-- {D}20,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+            :disabled="contributeLoading"
             @click="() => preFillClicked(20000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}20,000" }}</button>
@@ -63,6 +65,7 @@
           <!-- {D}40,000 Button -->
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
+            :disabled="contributeLoading"
               @click="() => preFillClicked(40000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{ "{D}40,000" }}</button>
@@ -101,16 +104,17 @@
               )
             "
               @focus="amountError?amountError=false:null"
-              @blur="validateAmount"
+              @blur="() => validateAmount(customAmount)"
             />
           </div>
-          <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
           <!-- Contribute Button -->
           <button
+          :disabled="contributeLoading"
             @click="contributeClicked"
             class="text-c-light btn-secondary w-full md:w-auto transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-3 md:mt-0 md:ml-4"
           >{{ $t("bountyPlatform.singleBounty.contribute.buttonContribute") }}</button>
         </div>
+        <p class="text-c-danger text-xs px-3">{{ amountError?amountError:'&nbsp;' }}</p>
       </div>
       <!-- Divider -->
       <div class="bg-c-text w-full h-px2 opacity-10 rounded-tl-full rounded-br-full"></div>
@@ -118,8 +122,8 @@
       <div class="w-full flex flex-row justify-center mt-8">
         <div>
           <BountyAddressCard
-            :address="bountyChest"
-            :qrValue="qrValue"
+            :address="bounty.bountyChest"
+            :qrValue="bounty.bountyChest"
           />
         </div>
       </div>
@@ -132,8 +136,9 @@ import GreetingCard from "~/components/BountyPlatform/GreetingCard.vue";
 import BountyAddressCard from "~/components/BountyPlatform/BountyAddressCard.vue";
 import CTACard from "~/components/BountyPlatform/CTACard.vue";
 import Icon from "~/components/Icon.vue";
-import { tokenAddress } from "~/plugins/devcash/config";
-import { utils } from "ethers"
+import { utils, BigNumber } from "ethers"
+import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
+import { mapGetters } from "vuex";
 
 export default {
   layout: "bountyPlatform",
@@ -145,16 +150,14 @@ export default {
   },
   props: {
     closeModal: Function,
-    bountyChest: String
+    bounty: Object
   },
   computed: {
-    qrValue() {
-      let qrContent = `ethereum:${this.bountyChest}&token=${this.tokenAddress}`
-      if (this.qrAmount) {
-        qrContent = `${qrContent}&value=${this.qrAmount}`
-      }
-      return qrContent
-    }
+    ...mapGetters({
+      isLoggedIn: "devcashData/isLoggedIn",
+      loggedInAccount: "devcashData/loggedInAccount",
+      balance: "devcashData/getBalance"
+    }),  
   },
   data() {
     return {
@@ -162,28 +165,81 @@ export default {
       isCloseFocused: false,
       customAmount: null,
       amountError: "",
-      qrAmount: null
+      contributeLoading: false,
+      confirmWindowOpen: false
     };
   },
   methods: {
-    validateAmount() {
+    validateAmount(amount){
       let isValid = true
       try {
-        let amountBigNum = utils.parseUnits(this.customAmount.toString(), 8)
-        this.amountError = ""
+        let amountBigNum, balanceBigNum
+        amountBigNum = utils.parseUnits(amount.toString(), 8)
+        if (this.$store.state.devcashData.ethIsPrimary) {
+          balanceBigNum = BigNumber.from(this.balance.secondary.approvedRaw) 
+        } else {
+          balanceBigNum = BigNumber.from(this.balance.primary.approvedRaw)       
+        }
+        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
+          this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
+          isValid = false
+        } else {
+          this.amountError = ""
+        }
       } catch (e) {
         this.amountError = this.$t('bountyPlatform.post.invalidAmount')
         isValid = false
-      }  
-      return isValid 
+        console.log(e)
+      }
+      return isValid
     },
-    contributeClicked() {
-      if (this.validateAmount()) {
-        this.qrAmount = utils.parseUnits(this.customAmount.toString(), 8).toString()
+    async contributeClicked() {
+      if (this.validateAmount(this.customAmount)) {
+        let contributeAmount = utils.parseUnits(this.customAmount.toString(), 8)
+        await this.doContribute(contributeAmount)
       }
     },
-    preFillClicked(amount) {
-      this.qrAmount = utils.parseUnits(amount.toString(), 8).toString()
+    async preFillClicked(amount) {
+      if (this.validateAmount(amount)) {
+        let contributeAmount = utils.parseUnits(amount.toString(), 8)
+        await this.doContribute(contributeAmount)
+      }
+    },
+    async doContribute(amountBig) {
+      if (!this.contributeLoading) {
+        try {
+          this.contributeLoading = true
+          await DevcashBounty.initEthConnector(this)
+          this.confirmWindowOpen = true
+          await this.$store.state.devcash.connector.contribute(
+            this.bounty,
+            amountBig
+          )
+          this.closeModal()
+          this.$notify({
+            group: 'main',
+            title: this.$t('notification.contributeFinishedTitle').replace("%1", "{D}").replace("%2", utils.formatUnits(amountBig, 8)),
+            text: this.$t('notification.contributeFinishedDescription'),
+            data: {},
+            duration: -1
+          });              
+        } catch (e) {
+          if ('code' in e && e.code == 4001) {
+            console.log(e)
+          } else {
+            this.$notify({
+              group: 'main',
+              title: this.$t('errors.errorTitle'),
+              text: this.$t('errors.failedContribute'),
+              data: {}
+            })
+            console.log(e)
+          }
+        } finally {
+          this.confirmWindowOpen = false
+          this.contributeLoading = false
+        }      
+      }
     }
   }
 };

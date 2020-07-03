@@ -23,7 +23,7 @@
           class="d-container h-full flex flex-row items-center px-2 md:px-32 lg:px-48 pt-24 md:pt-30 pb-12 overflow-visible"
         >
           <ContributeModal
-            :bountyChest="bounty.bountyChest"
+            :bounty="bounty"
             :closeModal="() => this.isContributeModalOpen = false"
           />
         </div>

@@ -316,7 +316,7 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = "0x0ab27d1add579E4C71a341a9579244385066bBC1" //process.env.NODE_ENV === 'production' ? "0x73aa31Cd548AC14713F778f454348d90564e2dE1" : "0x0ab27d1add579E4C71a341a9579244385066bBC1"
+module.exports.uBCAddress = "0xeFF1A3fDa2136222b35a5C81eadb4dA06d1510dA" //process.env.NODE_ENV === 'production' ? "0x73aa31Cd548AC14713F778f454348d90564e2dE1" : "0x0ab27d1add579E4C71a341a9579244385066bBC1"
 module.exports.uBCABI = [
 	{
 		"inputs": [],
@@ -627,6 +627,26 @@ module.exports.uBCABI = [
 		"stateMutability": "nonpayable",
 		"type": "function"
 	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "contribute",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},	
 	{
 		"constant": false,
 		"inputs": [
