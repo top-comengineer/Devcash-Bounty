@@ -273,12 +273,12 @@
                   ></div>
                   <button
                     :class="[!$store.state.devcashData.ethIsPrimary?'text-c-light':'font-medium hover:bg-c-background-15 focus:bg-c-background-15']"
-                    @click.prevent="$store.dispatch('devcashData/setDevcash');hideSignOutModalWithDelay()"
+                    @click.prevent="$store.dispatch('devcashData/setDevcash')/*;hideSignOutModalWithDelay()*/"
                     class="w-1/2 text-sm font-bold leading-tight py-1_5 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
                   >{D} DEV</button>
                   <button
                     :class="[$store.state.devcashData.ethIsPrimary?'text-c-light':'font-medium hover:bg-c-background-15 focus:bg-c-background-15']"
-                    @click.prevent="$store.dispatch('devcashData/setEthereum');hideSignOutModalWithDelay()"
+                    @click.prevent="$store.dispatch('devcashData/setEthereum')/*;hideSignOutModalWithDelay()*/"
                     class="w-1/2 text-sm font-bold leading-tight py-1_5 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
                   >Ξ ETH</button>
                 </div>
@@ -341,9 +341,7 @@
             <div
               class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
             >
-              <approve-balance-modal
-                :hideModal="hideApproveBalanceModal"
-              />
+              <approve-balance-modal :hideModal="hideApproveBalanceModal" />
             </div>
           </div>
         </transition>
@@ -430,11 +428,11 @@ export default {
     hideSignOutModal() {
       this.isSignOutModalOpen = false;
     },
-    hideSignOutModalWithDelay() {
+    /* hideSignOutModalWithDelay() {
       setTimeout(() => {
         this.isSignOutModalOpen = false;
       }, 150);
-    },
+    }, */
     hideApproveBalanceModal(){
       this.isApproveBalanceModalOpen = false
       this.isSignOutModalOpen = false
