@@ -176,7 +176,7 @@
                 <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
-                    :src="require('~/assets/images/wallet-logos/MetaMask.svg')"
+                    :src="require('~/assets/images/wallet-logos/metamask.svg')"
                     alt="MetaMask"
                   />
                 </div>
@@ -195,7 +195,7 @@
                 <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
-                    :src="require('~/assets/images/wallet-logos/Portis.svg')"
+                    :src="require('~/assets/images/wallet-logos/portis.svg')"
                     alt="Portis"
                   />
                 </div>
@@ -215,7 +215,7 @@
                 <div class="bg-c-background-ter h-12 w-12 p-2">
                   <img
                     class="w-full h-full"
-                    :src="require('~/assets/images/wallet-logos/Authereum.svg')"
+                    :src="require('~/assets/images/wallet-logos/authereum.svg')"
                     alt="Authereum"
                   />
                 </div>

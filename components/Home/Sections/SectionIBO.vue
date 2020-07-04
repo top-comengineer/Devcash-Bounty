@@ -7,7 +7,7 @@
         <!-- Background Illustration Single D -->
         <img
           class="w-32 md:w-56 lg:w-64 h-auto absolute right-0 top-0 -mr-8 md:-mr-10 lg:-mr-32 opacity-15"
-          :src="require('~/assets/images/illustrations/background/d-mark-single.svg')"
+          :src="require('~/assets/images/illustrations/background/d-mark-only.svg')"
           alt="D Mark Single Illustration"
         />
         <!-- Background Illustration Cube -->
