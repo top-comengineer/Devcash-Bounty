@@ -302,9 +302,9 @@
             :disabled="approvalLoading"
           >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
           <p
-            v-if="approvalError && balance.primary.hasApproved"
-            class="text-c-danger text-xs px-3"
-          >{{ approvalError }}</p>
+            :class="approvalError && balance.primary.hasApproved?'text-c-danger':'text-transparent'"
+            class="text-c-danger text-xs px-1 mt-3"
+          >{{ approvalError?approvalError:'&nbsp;' }}</p>
         </div>
         <!-- If context is Single Bounty -->
         <div
@@ -324,7 +324,7 @@
     <!-- Approval Loading Modal -->
     <transition name="modalBgTransition">
       <div
-        v-if="approvalLoading"
+        v-if="isApprovalLoadingModalVisible"
         class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
       >
         <div
@@ -367,6 +367,7 @@ export default {
       isSearchFocused: false,
       toApprove: null,
       approvalLoading: false,
+      isApprovalLoadingModalVisible: false,
       approvalError: "",
       isSortModalOpen: false,
       searchText: ""
@@ -433,7 +434,7 @@ export default {
     },    
     async approveBalance() {
       if (this.toApprove == null || this.toApprove < 0) {
-        this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
+        this.approvalError = this.$t('bountyPlatform.sidebarContextual.approveAmountRequired')
         return
       }
       try {
@@ -442,10 +443,11 @@ export default {
         let amt = utils.parseUnits(this.toApprove.toString(), 8)
         let avail = BigNumber.from(this.balance.primary.raw)
         if (amt.gt(avail)) {
-          this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
+          this.approvalError = this.$t('bountyPlatform.sidebarContextual.approveAmountLow')
           return
         }
         this.approvalError = ""
+        this.isApprovalLoadingModalVisible = true;
         await this.$store.state.devcash.connector.approveBalance(this.toApprove)
         this.toApprove = ""
         this.$notify({
@@ -458,6 +460,7 @@ export default {
         console.log(e)
       } finally {
         this.approvalLoading = false
+        this.isApprovalLoadingModalVisible = false;
       }
     },
   },

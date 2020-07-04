@@ -304,8 +304,8 @@
       "amountToApprovePlaceholder": "Enter an amount",
       "buttonApprove": "Approve",
       "buttonGoBack": "Go Back",
-      "approveAmountRequired": "Amount is Required",
-      "approveAmountLow": "Balance too Low",
+      "approveAmountRequired": "Amount is required.",
+      "approveAmountLow": "Balance is too low.",
       "headerApproveBalance": "Approve Balance",
       "paragraphApproveBalance": "The approved balance can be used on the bounty platform to post bounties."
     },

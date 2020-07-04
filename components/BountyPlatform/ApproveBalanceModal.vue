@@ -11,7 +11,7 @@
     v-else
     v-on-clickaway="hideModal"
     @keydown.esc.exact="hideModal"
-    class="w-full max-h-full flex flex-col items-center shadow-4xl overflow-auto bg-c-background-sec rounded-xl border-2 border-c-text-10 px-6 pt-4 pb-8 md:px-24 md:pt-8 md:pb-16 whitespace-initial"
+    class="w-full max-h-full flex flex-col items-center shadow-4xl overflow-auto bg-c-background-sec rounded-xl border-2 border-c-text-10 px-6 py-5 md:px-24 md:py-8 whitespace-initial"
   >
     <!-- Header -->
     <h5
@@ -51,9 +51,9 @@
       class="w-full max-w-xxs btn-primary bg-c-primary transform hover:scale-md focus:scale-md duration-200 ease-out transition-all origin-bottom-left text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
     >{{$t('bountyPlatform.sidebarContextual.buttonApprove')}}</button>
     <p
-      v-if="approvalError && balance.primary.hasApproved"
-      class="text-c-danger text-xs px-3"
-    >{{ approvalError }}</p>
+      :class="approvalError && balance.primary.hasApproved?'text-c-danger':'text-transparent'"
+      class="text-xs px-3 mt-3"
+    >{{ approvalError?approvalError:"&nbsp;" }}</p>
   </div>
 </template>
 <script>
@@ -82,13 +82,15 @@ export default {
     return {
       toApprove: null,
       approvalLoading: false,
-      approvalError: ""
+      isApprovalLoadingModalVisible: false,
+      approvalError: "",
+      isApprovalLoadingModalVisible: false,
     }
   },
   methods: {
     async approveBalance() {
       if (this.toApprove == null || this.toApprove < 0) {
-        this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountRequired')
+        this.approvalError = this.$t('bountyPlatform.sidebarContextual.approveAmountRequired')
         return
       }
       try {
@@ -97,10 +99,11 @@ export default {
         let amt = utils.parseUnits(this.toApprove.toString(), 8)
         let avail = BigNumber.from(this.balance.primary.raw)
         if (amt.gt(avail)) {
-          this.approvalError = this.$t('bountyplatform.sidebarContextual.approveAmountLow')
+          this.approvalError = this.$t('bountyPlatform.sidebarContextual.approveAmountLow')
           return
         }
         this.approvalError = ""
+        this.isApprovalLoadingModalVisible = true
         await this.$store.state.devcash.connector.approveBalance(this.toApprove)
         this.toApprove = ""
         this.$notify({
@@ -114,6 +117,8 @@ export default {
         console.log(e)
       } finally {
         this.approvalLoading = false
+        this.isApprovalLoadingModalVisible = false
+        this.hideModal()
       }
     }    
   }
