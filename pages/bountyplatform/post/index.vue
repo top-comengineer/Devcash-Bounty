@@ -171,6 +171,7 @@
             class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
             type="number"
             min="1"
+            max="255"
             :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
             @focus="numBountiesError?numBountiesError=false:null"
             @blur="validateNumBounties"
@@ -183,14 +184,14 @@
         <div class="hidden md:block w-16"></div>
         <!-- Bounty Amount -->
         <div class="w-full md:flex-1 flex flex-col my-3">
-          <div class="flex flex-row flex-wrap">
+          <div class="flex flex-row items-center flex-wrap">
             <label
               for="bountyAmount"
               class="text-xl font-bold px-3"
             >{{$t('bountyPlatform.post.bountyAmount')}}</label>
             <!-- Each & Total Switch -->
             <div
-              class="bg-c-background-ter border-c-text-10 max-w-full w-48 flex flex-row p-0_5 rounded-full border"
+              class="bg-c-background-ter border-c-text-10 max-w-full w-48 flex flex-row p-0_5 rounded-full border my-1_5"
             >
               <div class="w-full flex flex-row relative">
                 <div
@@ -210,7 +211,7 @@
               </div>
             </div>
           </div>
-          <div class="relative mt-3">
+          <div class="relative mt-2">
             <!-- Amount Symbol -->
             <span
               class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
