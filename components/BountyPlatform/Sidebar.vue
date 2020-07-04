@@ -1,6 +1,8 @@
 <template>
   <div
-    class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl whitespace-no-wrap"
+    class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl"
+    @mouseover="showSidebarTextOnMd()"
+    @mouseleave="hideSidebarTextOnMd()"
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
@@ -21,8 +23,8 @@
           />
         </div>
         <h3
-          :class="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden sidebar-item lg:block ml-2"
+          :class="[$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.explore.header") }}</h3>
       </nuxt-link>
       <!-- Post -->
@@ -31,7 +33,7 @@
         class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
         :class="[{
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.post,
-            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.post)
+            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.post),
           }] "
       >
         <div class="w-7 h-7">
@@ -42,8 +44,8 @@
           />
         </div>
         <h3
-          :class="$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden sidebar-item lg:block ml-2"
+          :class="[$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden lg:block ml-2"
         >{{ $t("bountyPlatform.post.header") }}</h3>
       </nuxt-link>
       <!-- Overview -->
@@ -63,8 +65,8 @@
           />
         </div>
         <h3
-          :class="$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
+          :class="[$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden lg:block ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Hunter-->
@@ -84,8 +86,8 @@
           />
         </div>
         <h3
-          :class="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
+          :class="[$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden lg:block ml-2"
         >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Manager -->
@@ -105,16 +107,19 @@
           />
         </div>
         <h3
-          :class="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
-          class="text-lg font-bold hidden lg:block sidebar-item ml-2"
+          :class="[$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden lg:block ml-2"
         >{{ $t("bountyPlatform.bountyManager.header")}}</h3>
       </nuxt-link>
       <!-- Divider -->
-      <div class="px-4 md:px-6 mt-4 mb-5 hidden lg:block sidebar-item">
+      <div
+        :class="isSidebarTextVisibleOnMd?'md:block':'lg:block'"
+        class="px-4 md:px-6 mt-4 mb-5 hidden"
+      >
         <div class="bg-c-text w-full h-px2 rounded-full opacity-10"></div>
       </div>
       <!-- Context aware options -->
-      <div class="px-4 md:px-6 hidden lg:block sidebar-item">
+      <div :class="isSidebarTextVisibleOnMd?'md:block':'lg:block'" class="px-4 md:px-6 hidden">
         <!-- If context is Null -->
         <div v-if="$store.state.sidebarContext == null" class="flex flex-col"></div>
         <!-- If context is Explore -->
@@ -361,7 +366,7 @@ export default {
   props: {
     bountyName: null
   },
-  data: function() {
+  data() {
     return {
       sidebarContexts: SIDEBAR_CONTEXTS,
       isSearchFocused: false,
@@ -370,7 +375,8 @@ export default {
       isApprovalLoadingModalVisible: false,
       approvalError: "",
       isSortModalOpen: false,
-      searchText: ""
+      searchText: "",
+      isSidebarTextVisibleOnMd: false
     };
   },
   head(){
@@ -432,6 +438,16 @@ export default {
         this.isSortModalOpen = false;
       }, 50);
     },    
+    showSidebarTextOnMd(){
+      if(!this.isSidebarTextVisibleOnMd){
+        setTimeout(() => {
+        this.isSidebarTextVisibleOnMd = true
+      }, 200);
+      }
+    },
+    hideSidebarTextOnMd(){
+      this.isSidebarTextVisibleOnMd = false
+    },
     async approveBalance() {
       if (this.toApprove == null || this.toApprove < 0) {
         this.approvalError = this.$t('bountyPlatform.sidebarContextual.approveAmountRequired')

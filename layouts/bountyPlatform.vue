@@ -43,9 +43,6 @@ export default {
   .sidebar-container-inner:hover {
     width: 16rem;
   }
-  .sidebar-container-inner:hover .sidebar-item {
-    display: block;
-  }
 }
 @media only screen and (min-width: 1024px) {
   .sidebar-container-inner:hover {
