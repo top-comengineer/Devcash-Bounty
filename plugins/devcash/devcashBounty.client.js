@@ -1,6 +1,5 @@
 import { ethers, utils, BigNumber } from "ethers";
 import CryptoJS from "crypto-js";
-import { Authereum, AuthereumSigner } from "authereum";
 import { tokenAddress, tokenABI, uBCAddress, uBCABI } from "./config.js";
 import {
   NoAccountsFoundError,
@@ -9,10 +8,6 @@ import {
   InvalidHunterAddressError,
   InvalidEmailError,
 } from "./errors.js";
-
-if (process.client) {
-  var Portis = require("@portis/web3");
-}
 
 export const WalletProviders = {
   metamask: "metamask",
@@ -144,16 +139,14 @@ export class DevcashBounty {
         vueComponent.$store.commit("devcash/setConnector", connector);
         vueComponent.$root.$emit('connectorSet', connector)
       } catch (e) {
-        // TODO - handle these correctly
         if (e instanceof AccountNotFoundError) {
-          // TODO - re-use this sign out logic, maybe add an alert to tell them they're signed out?
           vueComponent.$store.commit("devcashData/setProvider", null);
           vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
           vueComponent.$store.commit("devcash/setConnector", null);
           vueComponent.$root.$emit('connectorSet', null)
           await this.initEthConnector(vueComponent);
         } else {
-          if (e.toString().toLowerCase().includes("contract not deployed")) {
+          if (e.toString().toLowerCase().includes("contract not deployed") || e.toString().toLowerCase().includes("underlying network changed")) {
             vueComponent.$store.commit("devcashData/setProvider", null);
             vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
             vueComponent.$store.commit("devcash/setConnector", null);
@@ -236,7 +229,7 @@ export class DevcashBounty {
           window.open("https://wallet.portis.io/", "_blank");
         }
       }
-      if (e.toString().toLowerCase().includes("contract not deployed")) {
+      if (e.toString().toLowerCase().includes("contract not deployed") || e.toString().toLowerCase().includes("underlying network changed")) {
         vueComponent.$store.commit("devcashData/setProvider", null);
         vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
         vueComponent.$store.commit("devcash/setConnector", null);
@@ -299,6 +292,7 @@ export class DevcashBounty {
       needsSigner = true;
     } else if (walletProvider == WalletProviders.authereum) {
       // Authereum
+      const { Authereum } = require("authereum")
       const authereum = new Authereum(
         ethNetwork
       );
@@ -311,6 +305,7 @@ export class DevcashBounty {
       needsSigner = true;
     } else if (walletProvider == WalletProviders.portis) {
       // Portis
+      const Portis = require("@portis/web3")
       const portis = new Portis(
         "5395216c-1124-49de-bfbe-7893409825be",
         ethNetwork
