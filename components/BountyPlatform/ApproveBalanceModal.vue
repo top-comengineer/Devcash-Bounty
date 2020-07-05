@@ -80,12 +80,16 @@ export default {
   },  
   data() {
     return {
+      hasMetamask: false,
       toApprove: null,
       approvalLoading: false,
       isApprovalLoadingModalVisible: false,
       approvalError: "",
       isApprovalLoadingModalVisible: false,
     }
+  },
+  mounted() {
+    this.hasMetamask = window.ethereum ? true : false
   },
   methods: {
     async approveBalance() {

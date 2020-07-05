@@ -189,6 +189,7 @@ export default {
     }
   },
   mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
     }
@@ -331,7 +332,7 @@ export default {
             // Post to backend
             let res = await this.$axios.post('/submission/post', sub)
             if (res.status == 200) {
-              await DevcashBounty.initEthConnector(this)
+              await DevcashBounty.initEthConnector(this, this.hasMetamask)
               this.confirmWindowOpen = true
               await this.$store.state.devcash.connector.postSubmission(
                 this.bounty,
@@ -390,6 +391,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       turnDownSvc: new TurndownService({
         headingStyle: 'atx',
         codeBlockStyle: 'fenced'

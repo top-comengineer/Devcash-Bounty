@@ -34,16 +34,6 @@ export class DevcashBounty {
     this.uBCContract = async_param.uBCContract;
   }
 
-  /**
-   * hasMetamask() - returns true if metamask is available
-   */
-  static hasMetamask() {
-    if (window.ethereum) {
-      return true;
-    }
-    return false;
-  }
-
   static formatAmount(bounty, tokenDecimals) {
     let delta =
       bounty.available -
@@ -129,12 +119,13 @@ export class DevcashBounty {
    *
    * @param {Component} vueComponent
    */
-  static async initEthConnector(vueComponent) {
+  static async initEthConnector(vueComponent, hasMetamask) {
     if (vueComponent.$store.state.devcash.connector == null) {
       try {
         let connector = await this.init(
           vueComponent.$store.state.devcashData.loggedInAccount,
-          vueComponent.$store.state.devcashData.provider
+          vueComponent.$store.state.devcashData.provider,
+          hasMetamask
         );
         vueComponent.$store.commit("devcash/setConnector", connector);
         vueComponent.$root.$emit('connectorSet', connector)
@@ -144,7 +135,7 @@ export class DevcashBounty {
           vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
           vueComponent.$store.commit("devcash/setConnector", null);
           vueComponent.$root.$emit('connectorSet', null)
-          await this.initEthConnector(vueComponent);
+          await this.initEthConnector(vueComponent, hasMetamask);
         } else {
           if (e.toString().toLowerCase().includes("contract not deployed") || e.toString().toLowerCase().includes("underlying network changed")) {
             vueComponent.$store.commit("devcashData/setProvider", null);
@@ -166,13 +157,63 @@ export class DevcashBounty {
     }
   }
 
+  static async approveRejectAction(vueComponent, type, submission, feedback) {
+    try {
+      vueComponent.confirmWindowOpen = true
+    if (type == 'reject') {
+      await vueComponent.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
+      vueComponent.$store.state.devcashData.pendingSubStatus.push({
+        bounty: submission.ubounty.id,
+        submission: submission.submission_id,
+        type: 'reject'
+      })
+      vueComponent.$notify({
+        group: 'main',
+        title: vueComponent.$t('notification.submissionRejectedTitle'),
+        text: vueComponent.$t('notification.submissionRejectedApprovedDescription'),
+        data: {},
+        duration: -1,
+      });            
+    } else {
+      await vueComponent.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
+      vueComponent.$store.state.devcashData.pendingSubStatus.push({
+        bounty: submission.ubounty.id,
+        submission: submission.submission_id,
+        type: 'approve'
+      })
+      vueComponent.$notify({
+        group: 'main',
+        title: vueComponent.$t('notification.submissionApprovedTitle'),
+        text: vueComponent.$t('notification.submissionRejectedApprovedDescription'),
+        data: {},
+        duration: -1
+      });        
+    }
+    } catch (e) {
+      if ('code' in e && e.code == 4001) {
+        console.log(e)
+      } else {
+        vueComponent.$notify({
+          group: 'main',
+          title: type == 'reject' ? this.$t('errors.rejectFailed') : this.$t('errors.approvalFailed'),
+          text: this.$t('errors.bountyCreateFailed'),
+          data: {}
+        })
+        console.log(e)
+      }
+    } finally {
+      vueComponent.isConfirmModalOpen = false;
+      vueComponent.confirmWindowOpen = false
+    }    
+  }
+
   /**
    * updateBalances() - Update balances for a given vue component
    *
    * @param {Component} Vue component
    */
   static async updateBalances(vueComponent) {
-    await this.initEthConnector(vueComponent);
+    await this.initEthConnector(vueComponent, vueComponent.hasMetamask);
     vueComponent.$store.dispatch(
       "devcashData/updateBalance",
       vueComponent.$store.state.devcash.connector
@@ -185,7 +226,7 @@ export class DevcashBounty {
    * @param {Component} Vue component
    */
   static async updateFees(vueComponent) {
-    await this.initEthConnector(vueComponent);
+    await this.initEthConnector(vueComponent, vueComponent.hasMetamask);
     vueComponent.$store.dispatch(
       "devcashData/updateFees",
       vueComponent.$store.state.devcash.connector
@@ -198,14 +239,14 @@ export class DevcashBounty {
    * @param {Component} Vue component
    * @param {*} provider 
    */
-  static async signIn(vueComponent, provider) {
-    if (provider == WalletProviders.metamask && !this.hasMetamask()) {
+  static async signIn(vueComponent, provider, hasMetamask) {
+    if (provider == WalletProviders.metamask && !hasMetamask) {
       window.open("https://metamask.io/download.html", "_blank");
       return;
     }
     try {
       // Initialize connector to ethereum
-      let connector = await DevcashBounty.init(null, provider);
+      let connector = await DevcashBounty.init(null, provider, hasMetamask);
       // Set state
       vueComponent.$store.commit("devcash/setConnector", connector);
       vueComponent.$root.$emit('connectorSet', connector)
@@ -270,7 +311,7 @@ export class DevcashBounty {
    * @returns DevcashBounty instance
    * @throws AccountNotFoundError if account is not null and account doesn't exist
    */
-  static async init(accountToLogin, walletProvider) {
+  static async init(accountToLogin, walletProvider, hasMetamask) {
     accountToLogin = accountToLogin || null;
     walletProvider = walletProvider || WalletProviders.etherscan;
 
@@ -282,7 +323,7 @@ export class DevcashBounty {
     let uBCContract;
 
     // Get provider
-    if (this.hasMetamask() && walletProvider == WalletProviders.metamask) {
+    if (hasMetamask && walletProvider == WalletProviders.metamask) {
       // Use web3 provider with signer
       await window.ethereum.enable();
       provider = new ethers.providers.Web3Provider(

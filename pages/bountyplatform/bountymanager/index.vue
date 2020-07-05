@@ -277,54 +277,8 @@ export default {
       this.isConfirmModalOpen = false;
     },
     async confirmConfirmModal(feedback, submission, type){
-      await DevcashBounty.initEthConnector(this)
-      try {
-        this.confirmWindowOpen = true
-      if (type == 'reject') {
-        await this.$store.state.devcash.connector.reject(submission.ubounty.id, submission.submission_id, feedback)
-        this.$store.state.devcashData.pendingSubStatus.push({
-          bounty: submission.ubounty.id,
-          submission: submission.submission_id,
-          type: 'reject'
-        })
-        this.$notify({
-          group: 'main',
-          title: this.$t('notification.submissionRejectedTitle'),
-          text: this.$t('notification.submissionRejectedApprovedDescription'),
-          data: {},
-          duration: -1,
-        });            
-      } else {
-        await this.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
-        this.$store.state.devcashData.pendingSubStatus.push({
-          bounty: submission.ubounty.id,
-          submission: submission.submission_id,
-          type: 'approve'
-        })
-        this.$notify({
-          group: 'main',
-          title: this.$t('notification.submissionApprovedTitle'),
-          text: this.$t('notification.submissionRejectedApprovedDescription'),
-          data: {},
-          duration: -1
-        });        
-      }
-      } catch (e) {
-        if ('code' in e && e.code == 4001) {
-          console.log(e)
-        } else {
-          this.$notify({
-            group: 'main',
-            title: type == 'reject' ? this.$t('errors.rejectFailed') : this.$t('errors.approvalFailed'),
-            text: this.$t('errors.bountyCreateFailed'),
-            data: {}
-          })
-          console.log(e)
-        }
-      } finally {
-        this.isConfirmModalOpen = false;
-        this.confirmWindowOpen = false
-      }
+      await DevcashBounty.initEthConnector(this, this.hasMetamask)
+      await DevcashBounty.approveRejectAction(this, type, submission, feedback)
     },
     async loadMoreBounties() {
       this.page++;
@@ -377,6 +331,7 @@ export default {
     },
   },
   mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
     if (this.isLoggedIn) {
       this.loadMoreBounties();
       this.loadMoreSubmissions();
@@ -425,6 +380,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       confirmWindowOpen: false,
       subRejectedChecked: true,
       subPendingChecked: true,

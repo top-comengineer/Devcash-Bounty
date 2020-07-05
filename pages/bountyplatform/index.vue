@@ -57,6 +57,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       loading: true,
       loadingMore: false,
       hasMore: false,
@@ -128,7 +129,7 @@ export default {
         this.loadingMore = true
       }
       try {
-        await DevcashBounty.initEthConnector(this);
+        await DevcashBounty.initEthConnector(this, this.hasMetamask);
         let hunterParam = this.isLoggedIn
           ? `&hunter=${this.loggedInAccount}`
           : "";
@@ -158,6 +159,7 @@ export default {
     }
   },
   mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
     this.getBounties();
     this.$root.$on('signedIn', () => {
       this.page = 0

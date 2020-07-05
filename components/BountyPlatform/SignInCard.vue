@@ -100,6 +100,7 @@ import {
 export default {
   data() {
     return {
+      hasMetamask: false,
       walletProviders: WalletProviders,
       loggingInLoading: false
     };
@@ -111,12 +112,15 @@ export default {
   components: {
     MultiPurposeModal
   },
+  mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
+  },
   methods: {
     async signIn(provider) {
       // Sign in flow
       this.loggingInLoading = true;
       try {
-        await DevcashBounty.signIn(this, provider)
+        await DevcashBounty.signIn(this, provider, this.hasMetamask)
       } catch (e) {
         console.log(e)
       } finally {

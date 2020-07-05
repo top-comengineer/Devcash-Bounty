@@ -156,6 +156,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       // For meta tags
       pageTitle: this.$t("meta.bountyPlatform.overview.pageTitle"),
       pageDescription: this.$t("meta.bountyPlatform.overview.pageDescription"),
@@ -173,6 +174,7 @@ export default {
     };
   },
   mounted() {
+    this.hasMetamask = window.ethereum ? true : false
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
       this.loadOverview()

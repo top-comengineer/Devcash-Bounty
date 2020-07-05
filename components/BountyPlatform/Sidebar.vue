@@ -368,6 +368,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       sidebarContexts: SIDEBAR_CONTEXTS,
       isSearchFocused: false,
       toApprove: null,
@@ -385,6 +386,9 @@ export default {
         class: [ this.approvalLoading? 'overflow-hidden':'']
       }
     }
+  },
+  mounted() {
+    this.hasMetamask = window.ethereum ? true : false
   },
   watch: {
     searchText: function() {

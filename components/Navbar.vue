@@ -451,7 +451,7 @@ export default {
       this.isSignInModalOpen = false;
       this.loggingInLoading = true;
       try {
-        await DevcashBounty.signIn(this, provider)
+        await DevcashBounty.signIn(this, provider, this.hasMetamask)
       } catch (e) {
         console.log(e)
       } finally {
@@ -505,7 +505,7 @@ export default {
   },
   mounted() {  
     // Initialize these here since it's client side
-    this.hasMetamask = DevcashBounty.hasMetamask();
+    this.hasMetamask = window.ethereum ? true : false;
     this.updateBalance();
     let ref = this
     this.$root.$on('connectorSet', (connector) => {
@@ -629,10 +629,20 @@ export default {
                         }
                       });
                       this.$root.$emit("managerSubmitted", onChainSub.data)
+                      this.$root.$emit("newSubmission", {bounty: uBountyIndex, submission: onChainSub.data})
                     } catch (e) {
                       console.log(e)
                     }    
                   }, 10000)        
+                } else {
+                  setTimeout(async () => {
+                    try {
+                      let onChainSub = await ref.$axios.get(`/submission/one?bounty_id=${uBountyIndex}&submission_id=${submissionIndex}`)
+                      this.$root.$emit("newSubmission", {bounty: uBountyIndex, submission: onChainSub.data})
+                    } catch (e) {
+                      console.log(e)
+                    }    
+                  }, 10000)                     
                 }
               } catch (e) {
                 console.log(e)
