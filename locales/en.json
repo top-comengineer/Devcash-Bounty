@@ -155,7 +155,7 @@
       "buttonPostAnotherBounty": "Post Another Bounty",
       "descriptionError": "Description is required",
       "bountyPosted": {
-        "header": "Your bounty will be posted!",
+        "header": "Your bounty is awaiting confirmation!",
         "paragraph": "It'll become visible after it is confirmed by the network. This might take 15-30 minutes. In the mean time, you can post another bounty by clicking the button below."
       }
     },
