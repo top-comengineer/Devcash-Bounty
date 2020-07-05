@@ -178,8 +178,12 @@ export default {
       customAmount: null,
       amountError: "",
       contributeLoading: false,
-      confirmWindowOpen: false
+      confirmWindowOpen: false,
+      hasMetamask: false
     };
+  },
+  mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
   },
   methods: {
     validateAmount(amount){
@@ -221,7 +225,7 @@ export default {
       if (!this.contributeLoading) {
         try {
           this.contributeLoading = true
-          await DevcashBounty.initEthConnector(this)
+          await DevcashBounty.initEthConnector(this, this.hasMetamask)
           this.confirmWindowOpen = true
           await this.$store.state.devcash.connector.contribute(
             this.bounty,

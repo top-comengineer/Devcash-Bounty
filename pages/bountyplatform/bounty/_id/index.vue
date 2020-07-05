@@ -26,6 +26,25 @@
         </div>
       </div>
     </transition>
+    <!-- Confirm Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="isConfirmModalOpen"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row left-0 top-0 modal"
+      >
+        <div
+          class="d-container flex flex-col items-center justify-center px-2 md:px-12 lg:px-24 xl:px-48 pt-20 md:pt-24 pb-12 overflow-y-scroll"
+        >
+          <ConfirmModal
+            address="0x569DE003A10dB0E057f009AA516673C418e7Fdf1"
+            :type="confirmModalType"
+            :item="confirmModalItem"
+            :cancelCallback="closeConfirmModal"
+            :confirmCallback="confirmConfirmModal"
+          />
+        </div>
+      </div>
+    </transition>    
     <!-- Header Card -->
     <div
       class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 mb-1 md:mb-2"
@@ -263,11 +282,13 @@
             <!-- If there are submissions -->
             <SubmissionCard
               class="my-2"
-              perspective="hunter"
+              :perspective="bounty.creator == loggedInAccount ? 'manager' : 'hunter'"
               v-for="(item, i) in submissions"
               :key="i"
               :submission="item"
               :ubounty="bounty"
+              :approveClicked="() => showConfirmModal(item, 'approve')"
+              :rejectClicked="() => showConfirmModal(item, 'reject')"              
             />
             <div
               v-if="hasMoreSubmissions && !submissionsLoading"
@@ -350,6 +371,7 @@ import CreatorCard from "~/components/BountyPlatform/CreatorCard.vue";
 import BountyCardStatusTag from "~/components/BountyPlatform/BountyCardStatusTag.vue";
 import SubmissionModal from "~/components/BountyPlatform/SubmissionModal.vue";
 import ContributeModal from "~/components/BountyPlatform/ContributeModal.vue";
+import ConfirmModal from "~/components/BountyPlatform/ConfirmModal.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import SignInCard from "~/components/BountyPlatform/SignInCard.vue";
 import marked from 'marked';
@@ -373,7 +395,8 @@ export default {
     SubmissionModal,
     ContributeModal,
     MultiPurposeModal,
-    SignInCard
+    SignInCard,
+    ConfirmModal
   },
   computed: {
     ...mapGetters({
@@ -397,7 +420,7 @@ export default {
     amount() {
       let tokenDecimals = 8;
       if (!this.$store.state.devcash.connector) {
-        DevcashBounty.initEthConnector(this);
+        DevcashBounty.initEthConnector(this, this.hasMetamask);
       } else {
         tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
       }
@@ -440,7 +463,7 @@ export default {
       if (!this.isReclaimable) {
         return
       }
-      await DevcashBounty.initEthConnector(this)
+      await DevcashBounty.initEthConnector(this, this.hasMetamask)
       try {
         this.reclaimConfirmWindowOpen = true
         await this.$store.state.devcash.connector.reclaim(this.bounty)
@@ -495,7 +518,20 @@ export default {
     },
     closeContributeModal(){
       this.isContributeModalOpen = false
-    }
+    },
+    showConfirmModal(submission, type) {
+      this.confirmModalType = type
+      this.confirmModalItem = submission
+      this.confirmModalItem.ubounty = this.bounty
+      this.isConfirmModalOpen = true
+    },
+    closeConfirmModal(){
+      this.isConfirmModalOpen = false;
+    },
+    async confirmConfirmModal(feedback, submission, type){
+      await DevcashBounty.initEthConnector(this, this.hasMetamask)
+      await DevcashBounty.approveRejectAction(this, type, submission, feedback)
+    },    
   },
   async asyncData({ error, params, $axios }) {
     try {
@@ -538,13 +574,46 @@ export default {
         });
       });
   },
+  mounted() {
+    this.hasMetamask = window.ethereum ? true : false;
+    this.$root.$on("newSubmission", (objR) => {
+      if (this.bounty.id == objR.bounty && this.submissions.filter((sub) => sub.id == objR.submission.id).length == 0) {
+        this.submissions.unshift(objR.submission)
+      }
+    })
+    // Auto update submission statuses
+    this.$root.$on("subApproved", (objR) => {
+      for (const submission of this.submissions) {
+        if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
+          submission.status = 'approved'
+          if (objR.feedback && objR.feedback.length > 0) {
+            submission.feedback = objR.feedback
+          }          
+        }
+      }
+    })
+    this.$root.$on("subRejected", (objR) => {
+      for (const submission of this.submissions) {
+        if (submission.ubounty_id == objR.bounty && submission.submission_id == objR.submission) {
+          submission.status = 'rejected'
+          if (objR.feedback && objR.feedback.length > 0) {
+            submission.feedback = objR.feedback
+          }          
+        }
+      }
+    })     
+  },
   data() {
     return {
+      hasMetamask: false,
       activeTab: "submissions",
       reclaimConfirmWindowOpen: false,
       isSubmissionModalOpen: false,
       isContributeModalOpen: false,
       isSignInModalOpen: false,
+      isConfirmModalOpen: false,
+      confirmModalType: '',
+      confirmModalItem: {},      
       // For meta tags
       pagePreview: `${process.env.BASE_URL}/previews/bounty-single.png`,
       pageThemeColor: "#675CFF",
@@ -669,7 +738,7 @@ export default {
         { rel: "manifest", href: "/site.webmanifest" }
       ],
       bodyAttrs: {
-        class: [ this.isSubmissionModalOpen || this.isContributeModalOpen? 'overflow-hidden':'']
+        class: [ this.isSubmissionModalOpen || this.isContributeModalOpen || this.isConfirmModalOpen ? 'overflow-hidden':'']
       }
     };
   }

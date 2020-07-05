@@ -464,6 +464,7 @@ export default {
   },
   data() {
     return {
+      hasMetamask: false,
       waitingConfirmation: false,
       confirmWindowOpen: false,
       editor: null,
@@ -835,7 +836,7 @@ export default {
             
             let res = await this.$axios.post('/bounty/post', bounty)
             if (res.status == 200) {
-              await DevcashBounty.initEthConnector(this)
+              await DevcashBounty.initEthConnector(this, this.hasMetamask)
               this.confirmWindowOpen = true
               await this.$store.state.devcash.connector.postBounty(
                 bounty,
@@ -906,6 +907,7 @@ export default {
     },
   },
   mounted() {  
+    this.hasMetamask = window.ethereum ? true : false;
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
       DevcashBounty.updateFees(this)
