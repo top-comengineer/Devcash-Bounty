@@ -163,7 +163,7 @@
             class="text-c-danger text-xs px-3 mt-2"
           >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
         </div>
-        <div class="w-full flex flex-row">
+        <div class="w-full flex flex-row my-3">
           <!-- Bounty Primary -->
           <div class="w-full md:flex-1 flex flex-col my-3">
             <div class="flex flex-row items-center flex-wrap">
@@ -195,28 +195,43 @@
             </div>
             <div class="mt-2 flex flex-row flex-wrap">
               <!-- Amount Primary -->
-              <div class="w-full md:flex-1 relative">
-                <!-- Amount Primary Symbol -->
+              <div
+                :class="$store.state.devcashData.ethIsPrimary?'order-last mt-3 md:mt-0':'order-first'"
+                class="w-full flex flex-row md:flex-1 relative"
+              >
                 <span
-                  class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
-                >{{ devcashSymbol }}</span>
-                <input
-                  id="bountyAmount"
-                  v-model="amount"
-                  class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
-                  type="number"
-                  :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
-                  @focus="amountError?amountError=false:null"
-                  @blur="validateAmount"
-                />
+                  v-if="$store.state.devcashData.ethIsPrimary"
+                  class="md:hidden font-bold text-3xl ml-1 mr-3"
+                >+</span>
+                <!-- Amount Primary Symbol -->
+                <div class="w-full relative">
+                  <span
+                    class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
+                  >{{ devcashSymbol }}</span>
+                  <input
+                    id="bountyAmount"
+                    v-model="amount"
+                    class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
+                    type="number"
+                    :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
+                    @focus="amountError?amountError=false:null"
+                    @blur="validateAmount"
+                  />
+                </div>
               </div>
               <!-- Divider -->
               <div class="hidden md:flex md:justify-center md:w-10 lg:w-16">
                 <span class="font-bold text-4xl text-center leading-tight">+</span>
               </div>
               <!-- Amount Secondary -->
-              <div class="w-full md:flex-1 flex flex-row mt-3 md:mt-0">
-                <span class="md:hidden font-bold text-3xl ml-1 mr-3">+</span>
+              <div
+                :class="$store.state.devcashData.ethIsPrimary?'order-first':'order-last mt-3 md:mt-0'"
+                class="w-full md:flex-1 flex flex-row"
+              >
+                <span
+                  v-if="!$store.state.devcashData.ethIsPrimary"
+                  class="md:hidden font-bold text-3xl ml-1 mr-3"
+                >+</span>
                 <div class="w-full relative">
                   <!-- Amount Secondary Symbol -->
                   <span
