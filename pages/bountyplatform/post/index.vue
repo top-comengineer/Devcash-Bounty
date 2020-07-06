@@ -408,12 +408,12 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountForEach')"
-          :text="`${devcashSymbol}${singleAmountDev} + ${ethSymbol}${singleAmountEth}`"
+          :text="`${$store.state.devcashData.ethIsPrimary?ethSymbol:devcashSymbol}${$store.state.devcashData.ethIsPrimary?singleAmountEth:singleAmountDev} + ${$store.state.devcashData.ethIsPrimary?devcashSymbol:ethSymbol}${$store.state.devcashData.ethIsPrimary?singleAmountDev:singleAmountEth}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountTotal')"
-          :text="`${devcashSymbol}${totalAmountDev} + ${ethSymbol}${totalAmountEth}`"
+          :text="`${$store.state.devcashData.ethIsPrimary?ethSymbol:devcashSymbol}${$store.state.devcashData.ethIsPrimary?totalAmountEth:totalAmountDev} + ${$store.state.devcashData.ethIsPrimary?devcashSymbol:ethSymbol}${$store.state.devcashData.ethIsPrimary?totalAmountDev:totalAmountEth}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
