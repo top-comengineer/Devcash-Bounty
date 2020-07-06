@@ -1,22 +1,5 @@
 <template>
   <div id="post-page" class="w-full flex flex-col justify-center items-center px-1 md:px-4">
-    <!-- Submission Modal -->
-    <transition name="modalBgTransition">
-      <div
-        v-if="submitLoading"
-        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
-      >
-        <div
-          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
-        >
-          <multi-purpose-modal
-            :header="$t('bountyPlatform.multiPurposeModal.postBounty.header')"
-            :paragraph="$t('bountyPlatform.multiPurposeModal.postBounty.paragraph')"
-            :imgSrc="require('~/assets/images/illustrations/foreground/bounty.svg')"
-          />
-        </div>
-      </div>
-    </transition>
     <!-- Bounty Posted -->
     <div
       v-if="submittedBounty"
@@ -69,7 +52,7 @@
               @blur="validateTitle"
             />
             <!-- Divider -->
-            <div class="hidden md:block w-8"></div>
+            <div class="hidden md:block md:w-5 lg:w-8"></div>
           </div>
           <p
             class="text-c-danger text-xs px-3 mt-2"
@@ -126,13 +109,12 @@
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
             </div>
+            <!-- Divider -->
+            <div class="hidden md:block md:w-10 lg:w-16"></div>
           </div>
           <!-- Spacer -->
           <p class="text-xs px-3 mt-2">{{'&nbsp;'}}</p>
         </div>
-
-        <!-- Divider -->
-        <div class="hidden md:block w-16"></div>
         <!-- Hunter's Address -->
         <transition name="hunterAddressTransition">
           <div v-if="!openBounty" class="w-full md:flex-1 flex flex-col my-3">
@@ -160,81 +142,111 @@
         class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Number of Bounties -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:w-1/2 flex flex-col my-3">
           <label
             for="numberOfBounties"
             class="text-xl font-bold px-3"
           >{{$t('bountyPlatform.post.bountyCount')}}</label>
-          <input
-            id="numberOfBounties"
-            v-model="numBounties"
-            class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
-            type="number"
-            min="1"
-            max="255"
-            :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
-            @focus="numBountiesError?numBountiesError=false:null"
-            @blur="validateNumBounties"
-          />
+          <div class="w-full flex flex-row">
+            <input
+              id="numberOfBounties"
+              v-model="numBounties"
+              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-3"
+              type="number"
+              min="1"
+              max="255"
+              :placeholder="$t('bountyPlatform.post.bountyCountPlaceholder')"
+              @focus="numBountiesError?numBountiesError=false:null"
+              @blur="validateNumBounties"
+            />
+            <!-- Divider -->
+            <div class="hidden md:block md:w-5 lg:w-8"></div>
+          </div>
           <p
             class="text-c-danger text-xs px-3 mt-2"
           >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
         </div>
-        <!-- Divider -->
-        <div class="hidden md:block w-16"></div>
-        <!-- Bounty Amount -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
-          <div class="flex flex-row items-center flex-wrap">
-            <label
-              for="bountyAmount"
-              class="text-xl font-bold px-3"
-            >{{$t('bountyPlatform.post.bountyAmount')}}</label>
-            <!-- Each & Total Switch -->
-            <div
-              class="bg-c-background-ter border-c-text-10 max-w-full w-48 flex flex-row p-0_5 rounded-full border my-1_5"
-            >
-              <div class="w-full flex flex-row relative">
-                <div
-                  :class="{'left-0':isBountyAmountEach, 'left-full -translate-x-full': !isBountyAmountEach}"
-                  class="shadow-lg absolute w-1/2 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
-                ></div>
-                <button
-                  :class="[isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
-                  @click.prevent="isBountyAmountEach=true"
-                  class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
-                >{{$t('bountyPlatform.post.bountyAmountEach')}}</button>
-                <button
-                  :class="[!isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
-                  @click.prevent="isBountyAmountEach=false"
-                  class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
-                >{{$t('bountyPlatform.post.bountyAmountTotal')}}</button>
+        <div class="w-full flex flex-row">
+          <!-- Bounty Primary -->
+          <div class="w-full md:flex-1 flex flex-col my-3">
+            <div class="flex flex-row items-center flex-wrap">
+              <label
+                for="bountyAmount"
+                class="text-xl font-bold px-3"
+              >{{$t('bountyPlatform.post.bountyAmount')}}</label>
+              <!-- Each & Total Switch -->
+              <div
+                class="bg-c-background-ter border-c-text-10 max-w-full w-48 flex flex-row p-0_5 rounded-full border my-1_5"
+              >
+                <div class="w-full flex flex-row relative">
+                  <div
+                    :class="{'left-0':isBountyAmountEach, 'left-full -translate-x-full': !isBountyAmountEach}"
+                    class="shadow-lg absolute w-1/2 h-full bg-c-primary left-0 rounded-full transform transition-all duration-200 ease-out"
+                  ></div>
+                  <button
+                    :class="[isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                    @click.prevent="isBountyAmountEach=true"
+                    class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                  >{{$t('bountyPlatform.post.bountyAmountEach')}}</button>
+                  <button
+                    :class="[!isBountyAmountEach?'text-c-light':'font-medium hover:bg-c-text-15 focus:bg-c-text-15']"
+                    @click.prevent="isBountyAmountEach=false"
+                    class="w-1/2 text-sm font-bold leading-tight py-1 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
+                  >{{$t('bountyPlatform.post.bountyAmountTotal')}}</button>
+                </div>
               </div>
             </div>
+            <div class="mt-2 flex flex-row flex-wrap">
+              <!-- Amount Primary -->
+              <div class="w-full md:flex-1 relative">
+                <!-- Amount Primary Symbol -->
+                <span
+                  class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
+                >{{$store.state.devcashData.ethIsPrimary?'&nbsp;':''}}{{balance.primary.symbol}}</span>
+                <input
+                  id="bountyAmount"
+                  v-model="amount"
+                  class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
+                  type="number"
+                  :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
+                  @focus="amountError?amountError=false:null"
+                  @blur="validateAmount"
+                />
+              </div>
+              <!-- Divider -->
+              <div class="hidden md:flex md:justify-center md:w-10 lg:w-16">
+                <span class="font-bold text-4xl text-center leading-tight">+</span>
+              </div>
+              <!-- Amount Secondary -->
+              <div class="w-full md:flex-1 flex flex-row mt-3 md:mt-0">
+                <span class="md:hidden font-bold text-3xl ml-1 mr-3">+</span>
+                <div class="w-full relative">
+                  <!-- Amount Secondary Symbol -->
+                  <span
+                    class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
+                  >{{$store.state.devcashData.ethIsPrimary?'':'&nbsp;'}} {{balance.secondary.symbol}}</span>
+                  <input
+                    id="bountyAmount"
+                    v-model="amount"
+                    class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
+                    type="number"
+                    :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
+                    @focus="amountError?amountError=false:null"
+                    @blur="validateAmount"
+                  />
+                </div>
+              </div>
+            </div>
+            <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
           </div>
-          <div class="relative mt-2">
-            <!-- Amount Symbol -->
-            <span
-              class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
-            >{{$store.state.devcashData.ethIsPrimary?'&nbsp;':''}} {{$store.state.devcashData.balancePrimary.symbol}}</span>
-            <input
-              id="bountyAmount"
-              v-model="amount"
-              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
-              type="number"
-              :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
-              @focus="amountError?amountError=false:null"
-              @blur="validateAmount"
-            />
-          </div>
-          <p class="text-c-danger text-xs px-3 mt-2">{{ amountError?amountError:'&nbsp;' }}</p>
         </div>
       </div>
       <!-- Card for Category and Deadline -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Bounty Category -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
           <label
             for="bountyCategory"
             class="text-xl font-bold px-3"
@@ -270,9 +282,9 @@
           >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
         </div>
         <!-- Divider -->
-        <div class="hidden md:block w-16"></div>
+        <div class="hidden md:block md:w-10 lg:w-16"></div>
         <!-- Deadline -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
           <label for="bountyDeadline" class="text-xl font-bold px-3">
             {{$t('bountyPlatform.post.bountyDeadline')}}
             <span
@@ -322,10 +334,10 @@
       </div>
       <!-- Card for Contact Name and Email -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
+        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
       >
         <!-- Contact Name -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col justify-end j my-3">
           <label for="contactName" class="text-xl font-bold px-3">
             {{$t('bountyPlatform.post.contactName')}}
             <span
@@ -346,9 +358,9 @@
           >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
         </div>
         <!-- Divider -->
-        <div class="hidden md:block w-16"></div>
+        <div class="hidden md:block md:w-10 lg:w-16"></div>
         <!-- Contact Email -->
-        <div class="w-full md:flex-1 flex flex-col my-3">
+        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
           <label for="contactEmail" class="text-xl font-bold px-3">
             {{$t('bountyPlatform.post.contactEmail')}}
             <span
@@ -384,12 +396,12 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountForEach')"
-          :text="`${balance.primary.symbol}${singleAmount}`"
+          :text="`${balance.primary.symbol}${singleAmount} + ${balance.secondary.symbol}${singleAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountTotal')"
-          :text="`${balance.primary.symbol}${totalAmount}`"
+          :text="`${balance.primary.symbol}${totalAmount} + ${balance.secondary.symbol}${totalAmount}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
@@ -406,6 +418,23 @@
       />
     </div>
     <sign-in-card-wrapper v-else />
+    <!-- Submission Modal -->
+    <transition name="modalBgTransition">
+      <div
+        v-if="submitLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
+      >
+        <div
+          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
+        >
+          <multi-purpose-modal
+            :header="$t('bountyPlatform.multiPurposeModal.postBounty.header')"
+            :paragraph="$t('bountyPlatform.multiPurposeModal.postBounty.paragraph')"
+            :imgSrc="require('~/assets/images/illustrations/foreground/bounty.svg')"
+          />
+        </div>
+      </div>
+    </transition>
   </div>
 </template>
 
