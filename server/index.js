@@ -161,7 +161,7 @@ async function setupEthersJobs() {
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing
   cron.schedule("*/3 * * * *", async function() {
-    let lock = redis.locker
+    let lock = redis.cronLockerOne
     lock.acquire(`devcash:verifyAndReleaseCron`).then(async () => {
       console.log("Updating bounty cache")
       let uBounties = await redis.getUBounties()
@@ -184,7 +184,7 @@ async function setupEthersJobs() {
   })
   // Update bounty statuses and amounts
   cron.schedule("*/5 * * * *", async function() {
-    let lock = redis.locker
+    let lock = redis.cronLockerTwo
     lock.acquire(`devcash:updateAmountStatusCron`).then(async () => {
       let curDtS = parseInt(new Date().getTime() / 1000)
       let bounties = await UBounty.findAll({

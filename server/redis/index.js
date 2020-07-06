@@ -13,6 +13,8 @@ class RedisDB {
     this.redis = new Redis();
     this.jsonCache = new JSONCache(this.redis);
     this.locker = redislock.createLock(this.redis, { timeout: 600000 });
+    this.cronLockerOne = redislock.createLock(this.redis, { timeout: 180000 });
+    this.cronLockerTwo = redislock.createLock(this.redis, { timeout: 300000 });
     this.retryingLocker = redislock.createLock(this.redis, {
       timeout: 200000,
       retries: 10,

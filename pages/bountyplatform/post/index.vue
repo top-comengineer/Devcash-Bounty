@@ -795,7 +795,11 @@ export default {
       let amountBigNum, balanceBigNum
       amountBigNum = utils.parseUnits(this.amount.toString(), 8)
       if (this.isBountyAmountEach) {
-        amountBigNum = amountBigNum.mul(this.numBounties)
+        if (this.numBounties == null || this.numBounties == "") {
+          amountBigNum = amountBigNum.mul(1)
+        } else {
+          amountBigNum = amountBigNum.mul(this.numBounties)
+        }
       }
       if (this.$store.state.devcashData.ethIsPrimary) {
         balanceBigNum = BigNumber.from(this.balance.secondary.raw)
@@ -821,7 +825,11 @@ export default {
       let amountBigNum, balanceBigNum
       amountBigNum = utils.parseEther(this.ethAmount.toString())
       if (this.isBountyAmountEach) {
-        amountBigNum = amountBigNum.mul(this.numBounties)
+        if (this.numBounties == null || this.numBounties == "") {
+          amountBigNum = amountBigNum.mul(1)
+        } else {
+          amountBigNum = amountBigNum.mul(this.numBounties)
+        }
       }
       if (this.$store.state.devcashData.ethIsPrimary) {
         balanceBigNum = BigNumber.from(this.balance.primary.raw)
