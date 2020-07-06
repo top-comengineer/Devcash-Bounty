@@ -160,38 +160,68 @@ async function setupEthersJobs() {
   })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing
-  cron.schedule("*/7 * * * *", async function() {
-    let uBounties = await redis.getUBounties()
-    await verifyAndReleaseBounties(uBounties)
-    uBounties.forEach(async uBounty => {
-      if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
-        await verifyAndReleaseSubmissions(uBounty.submissions)
-        /*
-        uBounty.submissions.forEach(async submission => {
-          if (submission.revisions != undefined && submission.revisions.length > 0) {
-            await verifyAndReleaseRevisions(submission.revisions)
-          }
-        })*/
-      }
-    })
+  cron.schedule("*/3 * * * *", async function() {
+    let lock = redis.locker
+    lock.acquire(`devcash:verifyAndReleaseCron`).then(async () => {
+      console.log("Updating bounty cache")
+      let uBounties = await redis.getUBounties()
+      await verifyAndReleaseBounties(uBounties)
+      uBounties.forEach(async uBounty => {
+        if (uBounty.submissions != undefined && uBounty.submissions.length > 0) {
+          await verifyAndReleaseSubmissions(uBounty.submissions)
+          /*
+          uBounty.submissions.forEach(async submission => {
+            if (submission.revisions != undefined && submission.revisions.length > 0) {
+              await verifyAndReleaseRevisions(submission.revisions)
+            }
+          })*/
+        }
+      })
+      return lock.release();
+    }, (err) => {
+      console.log(err)
+    })    
   })
   // Update bounty statuses and amounts
-  cron.schedule("*/8 * * * *", async function() {
-    let bounties = await UBounty.findAll({
-      where: {
-        complete: {[Op.eq]: false}
-      },
-      include: ['submissions']
-    })
-    bounties.every(async bounty => {
-      let onChain = await etherClient.getUBounty(bounty.id)
-      if (onChain) {
-        bounty.bountyAmount = onChain.amount
-        bounty.weiAmount = onChain.weiAmount
-        bounty.complete = bounty.submissions.filter(sub => sub.approved).length == bounty.available
-        await bounty.save()
-      }
-    })
+  cron.schedule("*/5 * * * *", async function() {
+    let lock = redis.locker
+    lock.acquire(`devcash:updateAmountStatusCron`).then(async () => {
+      let curDtS = parseInt(new Date().getTime() / 1000)
+      let bounties = await UBounty.findAll({
+        where: {
+          [Op.and]: [
+            {complete: {[Op.eq]: false}},
+            {deadline: {[Op.gt]: curDtS}}
+          ]
+        },
+        include: ['submissions']
+      })
+      bounties.every(async bounty => {
+        let onChain = await etherClient.getUBounty(bounty.id)
+        let updated = false
+        if (onChain) {
+          if (bounty.bountyAmount != onChain.amount) {
+            bounty.bountyAmount = onChain.amount
+            updated = true
+          }
+          if (bounty.weiAmount != onChain.weiAmount) {
+            bounty.weiAmount = onChain.weiAmount
+            updated = true
+          }
+          let complete = bounty.submissions.filter(sub => sub.approved).length == bounty.available
+          if (complete) {
+            bounty.complete = complete
+            updated = true
+          }
+          if (updated) {
+            await bounty.save()
+          }
+        }
+      })
+      return lock.release();
+    }, (err) => {
+      console.log(err)
+    })      
   })
   // Delete stale staged records
   cron.schedule("0 * * * *", async function() {

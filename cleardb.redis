@@ -1,3 +1,5 @@
+del devcash:updateAmountStatusCron
+del devcash:verifyAndReleaseCron
 del jc:devcash:uBounties
 del jc:devcash:uBounties_t
 del jc:devcash:event_log

@@ -16,7 +16,7 @@
       >{{ $t("bountyPlatform.post.bountyPosted.header") }}</h4>
       <p
         class="mt-2 max-w-md leading-relaxed mx-2 text-center"
-      >{{ $t("bountyPlatform.post.bountyPosted.paragraph") }}</p>
+        v-html="postedParagraph"></p>
       <button
         @click.prevent="submittedBounty=false"
         class="btn-primary bg-c-primary text-c-light text-center transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
@@ -203,7 +203,7 @@
                 <!-- Amount Primary Symbol -->
                 <span
                   class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
-                >{{$store.state.devcashData.ethIsPrimary?'&nbsp;':''}}{{balance.primary.symbol}}</span>
+                >{{ devcashSymbol }}</span>
                 <input
                   id="bountyAmount"
                   v-model="amount"
@@ -225,10 +225,10 @@
                   <!-- Amount Secondary Symbol -->
                   <span
                     class="absolute top-1/2 transform -translate-y-1/2 ml-2 font-bold text-xl"
-                  >{{$store.state.devcashData.ethIsPrimary?'':'&nbsp;'}} {{balance.secondary.symbol}}</span>
+                  >&nbsp;{{ ethSymbol }}</span>
                   <input
-                    id="bountyAmount"
-                    v-model="amount"
+                    id="bountyAmountEth"
+                    v-model="ethAmount"
                     class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out pl-11 pr-4 py-2"
                     type="number"
                     :placeholder="isBountyAmountEach?$t('bountyPlatform.post.bountyAmountEachPlaceholder'):$t('bountyPlatform.post.bountyAmountTotalPlaceholder')"
@@ -397,12 +397,12 @@
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountForEach')"
-          :text="`${balance.primary.symbol}${singleAmount} + ${balance.secondary.symbol}${singleAmount}`"
+          :text="`${devcashSymbol}${singleAmountDev} + ${ethSymbol}${singleAmountEth}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
           :header="$t('bountyPlatform.post.amountTotal')"
-          :text="`${balance.primary.symbol}${totalAmount} + ${balance.secondary.symbol}${totalAmount}`"
+          :text="`${devcashSymbol}${totalAmountDev} + ${ethSymbol}${totalAmountEth}`"
         />
         <mini-summary-card
           class="mx-2 my-2 w-48"
@@ -456,6 +456,7 @@ import { mixin as clickaway } from "vue-clickaway";
 import TextEditor from "~/components/BountyPlatform/TextEditor.vue";
 import TurndownService from 'turndown'
 import marked from 'marked'
+import { devcashSymbol, ethSymbol } from '~/config'
 // Import the editor
 import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
@@ -494,6 +495,9 @@ export default {
   },
   data() {
     return {
+      bountyPostedParagraph: this.$t("bountyPlatform.post.bountyPosted.paragraph"),
+      ethSymbol: ethSymbol,
+      devcashSymbol: devcashSymbol,
       hasMetamask: false,
       waitingConfirmation: false,
       confirmWindowOpen: false,
@@ -513,6 +517,7 @@ export default {
       hunter: "",
       numBounties: null,
       amount: null,
+      ethAmount: null,
       contactName: "",
       contactEmail: "",
       showDatePicker: false,
@@ -606,34 +611,61 @@ export default {
       }
       return true
     },
-    singleAmount() {
-      if (!this.isBountyAmountEach && this.amount && this.numBounties) {
-       if (this.$store.state.devcashData.ethIsPrimary) {
-         let amountBigNum = utils.parseEther(this.amount.toString())
-         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
-         return  utils.formatEther(amountBigNum)
-       } else {
-         let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
-         return utils.formatUnits(amountBigNum, 8)     
-       }        
+    singleAmountDev() {
+      try {
+        if (!this.isBountyAmountEach && this.amount && this.numBounties) {
+          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+          amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
+          return utils.formatUnits(amountBigNum, 8)     
+        }
+        return this.amount || "0"
+      } catch (e) {
+        return "0"
       }
-      return this.amount || "0"
     },
-    totalAmount() {
-      if (this.isBountyAmountEach && this.amount && this.numBounties) {
-        if (this.$store.state.devcashData.ethIsPrimary) {
-          let amountBigNum = utils.parseEther(this.amount.toString())
-          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
-          return utils.formatEther(amountBigNum)
-        } else {
+    singleAmountEth() {
+      try {
+        if (!this.isBountyAmountEach && this.amount && this.numBounties) {
+          let amountBigNum = utils.parseEther(this.ethAmount.toString())
+          amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
+          return  utils.formatEther(amountBigNum)   
+        }
+        return this.ethAmount || "0"
+      } catch (e) {
+        return "0"
+      }
+    },    
+    totalAmountDev() {
+      try {
+        if (this.isBountyAmountEach && this.amount && this.numBounties) {
           let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
           amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
           return utils.formatUnits(amountBigNum, 8)     
         }
+        return this.amount || "0"
+      } catch (e) {
+        return "0"
       }
-      return this.amount || "0"
-    }    
+    },
+    totalAmountEth() {
+      try {
+        if (this.isBountyAmountEach && this.amount && this.numBounties) {
+          let amountBigNum = utils.parseEther(this.ethAmount.toString())
+          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
+          return utils.formatEther(amountBigNum)
+        }
+        return this.ethAmount || "0"
+      } catch (e) {
+        return "0"
+      }
+    },
+    postedParagraph() {
+      let renderer = new marked.Renderer()
+      renderer.link = function( href, title, text ) {
+        return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
+      }
+      return this.$sanitize(marked(this.bountyPostedParagraph, {renderer: renderer}))
+    }     
   },  
   methods: {
    closePicker() {
@@ -745,37 +777,79 @@ export default {
      }             
      return isValid
   },
-  validateAmount(){
+  validateDevcashAmount() {
     let isValid = true
+    let errMsg = ""
     try {
       let amountBigNum, balanceBigNum
-       if (this.$store.state.devcashData.ethIsPrimary) {
-         console.l
-         amountBigNum = utils.parseEther(this.amount.toString())
-         if (this.isBountyAmountEach) {
-           amountBigNum = amountBigNum.mul(this.numBounties)
-         }
-         balanceBigNum = BigNumber.from(this.balance.primary.raw)
-       } else {
-         amountBigNum = utils.parseUnits(this.amount.toString(), 8)
-         if (this.isBountyAmountEach) {
-           amountBigNum = amountBigNum.mul(this.numBounties)
-         }
-         balanceBigNum = BigNumber.from(this.balance.primary.approvedRaw)       
-       }
+      amountBigNum = utils.parseUnits(this.amount.toString(), 8)
+      if (this.isBountyAmountEach) {
+        amountBigNum = amountBigNum.mul(this.numBounties)
+      }
+      if (this.$store.state.devcashData.ethIsPrimary) {
+        balanceBigNum = BigNumber.from(this.balance.secondary.raw)
+      } else {
+        balanceBigNum = BigNumber.from(this.balance.primary.raw)
+      }      
+      if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
+        errMsg = this.$t('bountyPlatform.post.insufficientBalance')
+        isValid = false
+      } else {
+        errMsg = ""
+      }
+     } catch (e) {
+       errMsg = this.$t('bountyPlatform.post.invalidAmount')
+       isValid = false
+     } 
+     return { valid: isValid, msg: errMsg }
+  },
+  validateEthAmount() {
+    let isValid = true
+    let errMsg = ""
+    try {
+      let amountBigNum, balanceBigNum
+      amountBigNum = utils.parseEther(this.ethAmount.toString())
+      if (this.isBountyAmountEach) {
+        amountBigNum = amountBigNum.mul(this.numBounties)
+      }
+      if (this.$store.state.devcashData.ethIsPrimary) {
+        balanceBigNum = BigNumber.from(this.balance.primary.raw)
+      } else {
+        balanceBigNum = BigNumber.from(this.balance.secondary.raw)
+      }
        if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
-         this.amountError = this.$t('bountyPlatform.post.insufficientBalance')
+         errMsg = this.$t('bountyPlatform.post.insufficientBalance')
          isValid = false
        } else {
-         this.amountError = ""
+         errMsg = ""
        }
      } catch (e) {
-       this.amountError = this.$t('bountyPlatform.post.invalidAmount')
+       errMsg = this.$t('bountyPlatform.post.invalidAmount')
        isValid = false
-     }
+     }   
+     return {valid: isValid, msg: errMsg}
+  },
+  validateAmount() {
+    let isValid = true
+    let devcashValid = this.validateDevcashAmount()
+    let ethValid = this.validateEthAmount()
+    isValid = devcashValid.valid || ethValid.valid
+    if (isValid) {
+      if (!devcashValid.valid && (this.amount != null && this.amount != "")) {
+        isValid = false
+        this.amountError = devcashValid.msg
+      } else if (!ethValid.valid && (this.ethAmount != null && this.ethAmount != "")) {
+        isValid = false
+        this.amountError = ethValid.msg
+      }
+    } else {
+      this.amountError = devcashValid.msg
+    }
      if (!isValid) {
        this.errorList[5] = "#bountyAmount"
-     }      
+     } else {
+       this.amountError = ""
+     }
      return isValid
   },
   validateContactName(){
@@ -863,20 +937,23 @@ export default {
           )
           try {
             // Post to backend
-            
             let res = await this.$axios.post('/bounty/post', bounty)
             if (res.status == 200) {
               await DevcashBounty.initEthConnector(this, this.hasMetamask)
               this.confirmWindowOpen = true
-              await this.$store.state.devcash.connector.postBounty(
+              let output = await this.$store.state.devcash.connector.postBounty(
                 bounty,
                 this.numBounties,
-                !this.$store.state.devcashData.ethIsPrimary ? utils.parseUnits(this.amount, 8) : BigNumber.from("0"),
+                this.amount != null && this.amount != "" ? utils.parseUnits(this.amount, 8) : BigNumber.from("0"),
                 this.getDeadlineS(),
-                this.$store.state.devcashData.ethIsPrimary ? utils.parseEther(this.amount) : BigNumber.from("0"),
+                this.ethAmount != null && this.ethAmount != "" ? utils.parseEther(this.ethAmount) : BigNumber.from("0"),
                 this.curFee,
                 this.isBountyAmountEach
               )
+              this.bountyPostedParagraph = this.$t("bountyPlatform.post.bountyPosted.paragraph")
+              if ('hash' in output) {
+                this.bountyPostedParagraph = this.bountyPostedParagraph.replace("%1", output.hash)
+              }
               this.confirmWindowOpen = false
               this.waitingConfirmation = true
               clearInterval(this.backupInterval)
@@ -886,6 +963,7 @@ export default {
               this.hutner = ""
               this.numBounties = null
               this.amount = null
+              this.ethAmount = null
               this.contactName = ""
               this.contactEmail = ""
               this.datePickerValue = null
@@ -1000,6 +1078,7 @@ export default {
             hunter: this.hunter,
             numBounties: this.numBounties,
             amount: this.amount,
+            ethAmount: this.ethAmount,
             categoryValue: this.categoryValue,
             category: this.categoryValueStr,
             deadline: this.datePickerValue ? this.datePickerValue.getTime() : null,
@@ -1027,6 +1106,7 @@ export default {
           this.hunter = cached.hunter,
           this.numBounties = cached.numBounties
           this.amount = cached.amount
+          this.ethAmount = cached.ethAmount
           this.categoryValue = cached.categoryValue
           this.categoryValueStr = cached.category
           if (cached.deadline) {
@@ -1194,5 +1274,17 @@ p.is-empty:first-child::before {
 .hunterAddressTransition-leave-to {
   opacity: 0;
   transform: translateX(-1rem);
+}
+#bounty-posted-card a {
+  margin-top: 0.75rem;
+  line-height: 1.9;
+  font-weight: 700;
+  color: var(--c-secondary);
+  text-decoration: underline var(--c-secondary);
+  transition: color 0.2s ease-out;
+}
+#bounty-posted-card a:hover {
+  color: var(--c-primary);
+  text-decoration: underline var(--c-primary);
 }
 </style>
