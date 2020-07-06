@@ -29,10 +29,10 @@
         alt="Bounty Posted"
       />
       <h4
-        class="max-w-sm text-2xl font-bold text-c-primary text-center"
+        class="max-w-md text-2xl font-bold text-c-primary text-center mx-2"
       >{{ $t("bountyPlatform.post.bountyPosted.header") }}</h4>
       <p
-        class="mt-2 max-w-md leading-relaxed"
+        class="mt-2 max-w-md leading-relaxed mx-2 text-center"
       >{{ $t("bountyPlatform.post.bountyPosted.paragraph") }}</p>
       <button
         @click.prevent="submittedBounty=false"
