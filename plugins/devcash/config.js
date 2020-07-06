@@ -985,9 +985,9 @@ module.exports.uBCABI = [
 				"type": "address"
 			},
 			{
-				"internalType": "uint256",
+				"internalType": "uint8",
 				"name": "available",
-				"type": "uint256"
+				"type": "uint8"
 			},
 			{
 				"internalType": "uint256",
