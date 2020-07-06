@@ -14,9 +14,7 @@
       <h4
         class="max-w-md text-2xl font-bold text-c-primary text-center mx-2"
       >{{ $t("bountyPlatform.post.bountyPosted.header") }}</h4>
-      <p
-        class="mt-2 max-w-md leading-relaxed mx-2 text-center"
-        v-html="postedParagraph"></p>
+      <p class="mt-2 max-w-md leading-relaxed mx-2 text-center" v-html="postedParagraph"></p>
       <button
         @click.prevent="submittedBounty=false"
         class="btn-primary bg-c-primary text-c-light text-center transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
@@ -110,8 +108,6 @@
                 class="w-1/2 text-sm font-bold md:text-lg leading-tight py-2 px-2 md:px-4 relative truncate rounded-full transition-all duration-300 ease-out"
               >{{$t('bountyPlatform.post.bountyTypePrivate')}}</button>
             </div>
-            <!-- Divider -->
-            <div class="hidden md:block md:w-10 lg:w-16"></div>
           </div>
           <!-- Spacer -->
           <p class="text-xs px-3 mt-2">{{'&nbsp;'}}</p>

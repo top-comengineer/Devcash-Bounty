@@ -8,18 +8,18 @@
       :src="require('~/assets/images/illustrations/background/arrows-left.svg')"
       alt="Arrows Left Illustration"
     />
-    <!-- Header and Paragraph -->
-    <button
-      :disabled="disabled"
-      @click="buttonAction"
-      class="btn-text-sec bg-c-light text-c-secondary max-w-full transform hover:scale-md focus:scale-md origin-bottom-left transition-all duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2"
-    >{{ buttonText!=null?buttonText:"Button" }}</button>
     <!-- Right Background Illustration -->
     <img
       class="h-full w-auto absolute right-0"
       :src="require('~/assets/images/illustrations/background/arrows-right.svg')"
       alt="Arrows Right Illustration"
     />
+    <!-- Header and Paragraph -->
+    <button
+      :disabled="disabled"
+      @click="buttonAction"
+      class="btn-text-sec bg-c-light text-c-secondary max-w-full transform hover:scale-md focus:scale-md origin-bottom-left transition-all duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2"
+    >{{ buttonText!=null?buttonText:"Button" }}</button>
   </div>
 </template>
 <script>
