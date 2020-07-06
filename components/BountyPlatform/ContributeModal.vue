@@ -61,7 +61,7 @@
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               :disabled="contributeLoading"
-              @click="() => preFillClicked(10000)"
+              @click="() => preFillClicked($store.state.devcashData.ethIsPrimary? 0.2 : 10000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{`${$store.state.devcashData.balancePrimary.symbol}${$store.state.devcashData.ethIsPrimary?'0.02':'10,000'}`}}</button>
           </div>
@@ -69,7 +69,7 @@
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               :disabled="contributeLoading"
-              @click="() => preFillClicked(20000)"
+              @click="() => preFillClicked($store.state.devcashData.ethIsPrimary? 0.04 : 20000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{`${$store.state.devcashData.balancePrimary.symbol}${$store.state.devcashData.ethIsPrimary?'0.04':'20,000'}`}}</button>
           </div>
@@ -77,7 +77,7 @@
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               :disabled="contributeLoading"
-              @click="() => preFillClicked(40000)"
+              @click="() => preFillClicked($store.state.devcashData.ethIsPrimary? 0.08 : 40000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{`${$store.state.devcashData.balancePrimary.symbol}${$store.state.devcashData.ethIsPrimary?'0.08':'40,000'}`}}</button>
           </div>
@@ -152,6 +152,7 @@ import Icon from "~/components/Icon.vue";
 import { utils, BigNumber } from "ethers"
 import { DevcashBounty } from "~/plugins/devcash/devcashBounty.client"
 import { mapGetters } from "vuex";
+import { devcashSymbol, ethSymbol } from "~/config"
 
 export default {
   layout: "bountyPlatform",
@@ -192,10 +193,11 @@ export default {
       let isValid = true
       try {
         let amountBigNum, balanceBigNum
-        amountBigNum = utils.parseUnits(amount.toString(), 8)
         if (this.$store.state.devcashData.ethIsPrimary) {
-          balanceBigNum = BigNumber.from(this.balance.secondary.approvedRaw) 
+          amountBigNum = utils.parseEther(amount.toString())
+          balanceBigNum = BigNumber.from(this.balance.primary.raw) 
         } else {
+          amountBigNum = utils.parseUnits(amount.toString(), 8)
           balanceBigNum = BigNumber.from(this.balance.primary.approvedRaw)       
         }
         if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
@@ -213,14 +215,26 @@ export default {
     },
     async contributeClicked() {
       if (this.validateAmount(this.customAmount)) {
-        let contributeAmount = utils.parseUnits(this.customAmount.toString(), 8)
-        await this.doContribute(contributeAmount)
+        if (this.$store.state.devcashData.ethIsPrimary) {
+          let contributeAmount = utils.parseEther(this.customAmount.toString())
+          await this.doContributeEth(contributeAmount)
+        } else {
+          let contributeAmount = utils.parseUnits(this.customAmount.toString(), 8)
+          await this.doContribute(contributeAmount)          
+        }
       }
     },
     async preFillClicked(amount) {
-      if (this.validateAmount(amount)) {
-        let contributeAmount = utils.parseUnits(amount.toString(), 8)
-        await this.doContribute(contributeAmount)
+      if (this.$store.state.devcashData.ethIsPrimary) {
+        if (this.validateAmount(amount)) {
+          let contributeAmount = utils.parseEther(amount.toString())
+          await this.doContributeEth(contributeAmount)
+        }
+      } else {
+        if (this.validateAmount(amount)) {
+          let contributeAmount = utils.parseUnits(amount.toString(), 8)
+          await this.doContribute(contributeAmount)
+        }        
       }
     },
     async doContribute(amountBig) {
@@ -235,7 +249,7 @@ export default {
           )
           this.$notify({
             group: 'main',
-            title: this.$t('notification.contributeFinishedTitle').replace("%1", "{D}").replace("%2", utils.formatUnits(amountBig, 8)),
+            title: this.$t('notification.contributeFinishedTitle').replace("%1", devcashSymbol).replace("%2", utils.formatUnits(amountBig, 8)),
             text: this.$t('notification.contributeFinishedDescription'),
             data: {},
             duration: -1
@@ -259,7 +273,44 @@ export default {
           this.closeModal()
         }      
       }
-    }
+    },
+    async doContributeEth(amountBig) {
+      if (!this.contributeLoading) {
+        try {
+          this.contributeLoading = true
+          await DevcashBounty.initEthConnector(this, this.hasMetamask)
+          this.confirmWindowOpen = true
+          await this.$store.state.devcash.connector.contributeWei(
+            this.bounty,
+            amountBig
+          )
+          this.$notify({
+            group: 'main',
+            title: this.$t('notification.contributeFinishedTitle').replace("%1", ethSymbol).replace("%2", utils.formatEther(amountBig)),
+            text: this.$t('notification.contributeFinishedDescription'),
+            data: {},
+            duration: -1
+          });
+          this.closeModal()            
+        } catch (e) {
+          if ('code' in e && e.code == 4001) {
+            console.log(e)
+          } else {
+            this.$notify({
+              group: 'main',
+              title: this.$t('errors.errorTitle'),
+              text: this.$t('errors.failedContribute'),
+              data: {}
+            })
+            console.log(e)
+          }
+        } finally {
+          this.confirmWindowOpen = false
+          this.contributeLoading = false
+          this.closeModal()
+        }      
+      }
+    }    
   }
 };
 </script>

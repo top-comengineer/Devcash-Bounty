@@ -418,13 +418,7 @@ export default {
       return this.$sanitize(marked(this.bounty.description, {renderer: renderer}))
     },
     amount() {
-      let tokenDecimals = 8;
-      if (!this.$store.state.devcash.connector) {
-        DevcashBounty.initEthConnector(this, this.hasMetamask);
-      } else {
-        tokenDecimals = this.$store.state.devcash.connector.tokenDecimals;
-      }
-      return DevcashBounty.formatAmountSingleSubmission(this.bounty, tokenDecimals);      
+      return DevcashBounty.formatAmountSingleSubmission(this.bounty, 8);      
     },
     ethAmount() {
       return DevcashBounty.formatAmountSingleSubmissionEth(this.bounty)

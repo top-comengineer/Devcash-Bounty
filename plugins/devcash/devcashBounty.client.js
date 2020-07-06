@@ -314,7 +314,6 @@ export class DevcashBounty {
   static async init(accountToLogin, walletProvider, hasMetamask) {
     accountToLogin = accountToLogin || null;
     walletProvider = walletProvider || WalletProviders.etherscan;
-
     let needsSigner = false;
     let signer;
     let provider;
@@ -659,6 +658,12 @@ export class DevcashBounty {
   // Contribute
   async contribute(bounty, rawAmount) {
     return await this.uBCContract.contribute(bounty.id, rawAmount)
+  }
+
+  async contributeWei(bounty, weiAmount) {
+   return await this.uBCContract.contributeWei(bounty.id, {
+      value: weiAmount
+    })
   }
 
   // Reclaim

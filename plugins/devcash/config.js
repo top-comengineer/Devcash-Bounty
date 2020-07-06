@@ -655,6 +655,21 @@ module.exports.uBCABI = [
 				"name": "ubountyIndex",
 				"type": "uint256"
 			},
+		],
+		"name": "contributeWei",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},	
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "ubountyIndex",
+				"type": "uint256"
+			},
 			{
 				"internalType": "address payable",
 				"name": "hunter",
