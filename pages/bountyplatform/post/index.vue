@@ -48,7 +48,8 @@
               type="text"
               :placeholder="$t('bountyPlatform.post.bountyTitlePlaceholder')"
               @focus="titleError?titleError=false:null"
-              @keyup.enter="$event.target.nextElementSibling.focus()"
+              @keydown.enter.exact="editor.focus()"
+              @keydown.tab.exact="editor.focus()"
               @blur="validateTitle"
             />
             <!-- Divider -->
