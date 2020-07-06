@@ -61,7 +61,7 @@
           <div class="w-full md:w-48 flex flex-col items-center my-2 mx-3">
             <button
               :disabled="contributeLoading"
-              @click="() => preFillClicked($store.state.devcashData.ethIsPrimary? 0.2 : 10000)"
+              @click="() => preFillClicked($store.state.devcashData.ethIsPrimary? 0.02 : 10000)"
               class="text-c-light btn-secondary w-full transform hover:scale-md focus:scale-md bg-c-secondary transition-all origin-bottom-left duration-200 ease-out font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2 mx-2"
             >{{`${$store.state.devcashData.balancePrimary.symbol}${$store.state.devcashData.ethIsPrimary?'0.02':'10,000'}`}}</button>
           </div>
