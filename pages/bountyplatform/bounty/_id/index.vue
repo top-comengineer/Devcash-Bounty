@@ -44,7 +44,7 @@
           />
         </div>
       </div>
-    </transition>    
+    </transition>
     <!-- Header Card -->
     <div
       class="shadow-lg w-full flex flex-row flex-wrap justify-between items-center bg-c-primary text-c-light relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-2 pb-4 px-6 md:pt-4 md:pb-6 md:px-12 mb-1 md:mb-2"
@@ -208,8 +208,7 @@
           </div>
         </div>
         <!-- Created By Text And Creator Card -->
-        <div class="w-full flex flex-col px-6 pb-6">
-          <h5 class="text-lg font-bold">{{$t("bountyPlatform.singleBounty.createdBy")}}</h5>
+        <div class="w-full flex flex-col px-6 pb-6 mt-2">
           <!-- Creator Card -->
           <CreatorCard
             :name="bounty.contactName"
@@ -288,7 +287,7 @@
               :submission="item"
               :ubounty="bounty"
               :approveClicked="() => showConfirmModal(item, 'approve')"
-              :rejectClicked="() => showConfirmModal(item, 'reject')"              
+              :rejectClicked="() => showConfirmModal(item, 'reject')"
             />
             <div
               v-if="hasMoreSubmissions && !submissionsLoading"

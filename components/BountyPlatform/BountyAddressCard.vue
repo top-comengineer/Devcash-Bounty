@@ -5,7 +5,7 @@
     <div class="flex flex-col justify-center items-center mx-3 mt-3 mb-4">
       <!-- Bounty Address Text and Copy Button  -->
       <div class="flex flex-row flex-wrap items-center">
-        <h5 class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</h5>
+        <p class="font-bold mr-2">{{ $t("bountyPlatform.singleBounty.contribute.bountyAddress") }}</p>
         <button
           @click.prevent="copyAddress()"
           class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
@@ -16,7 +16,9 @@
       <!-- Avatar and Address -->
       <div class="flex flex-row items-center mt-2">
         <Jazzicon class="flex" :diameter="48" :address="address" />
-        <h6 v-html="threeLineAddress" class="font-mono-jet text-sm ml-3"></h6>
+        <a class="hover:underline" target="_blank" :href="'https://etherscan.io/address/'+address">
+          <p v-html="threeLineAddress" class="font-mono-jet text-sm ml-3"></p>
+        </a>
       </div>
     </div>
     <!-- QR Code -->
@@ -60,7 +62,7 @@ export default {
           title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
           text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
           data: {},
-          duration: 2000
+          duration: 1500
         });
     }
   },

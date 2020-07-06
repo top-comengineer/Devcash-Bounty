@@ -15,7 +15,10 @@
             ]"
           />
           <!-- Notification -->
-          <div class="absolute right-0 px-4 md:px-6 lg:px-10 mt-4">
+          <div
+            :class="hideNavbar?'mt-12 md:mt-10 lg:mt-8':'mt-2'"
+            class="absolute right-0 px-4 md:px-6 lg:px-10"
+          >
             <notifications
               group="main"
               position="top right"
