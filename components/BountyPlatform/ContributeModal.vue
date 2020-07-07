@@ -34,7 +34,7 @@
     <!-- Greeting Card -->
     <GreetingCard
       :header="$t('bountyPlatform.singleBounty.contribute.cardHeader')"
-      :paragraph="$t('bountyPlatform.singleBounty.contribute.cardParagraph')"
+      :paragraph="isLoggedIn?$t('bountyPlatform.singleBounty.contribute.cardParagraph'):$t('bountyPlatform.singleBounty.contribute.cardParagraphSecondary')"
       type="contribute"
       class="my-1 md:my-2"
     />
@@ -43,7 +43,7 @@
       class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg pt-4 pb-8 px-6 md:pt-6 md:pb-10 md:px-10 mt-1 md:mt-2 mb-2"
     >
       <!-- Pick an amount -->
-      <div class="w-full flex flex-row flex-wrap">
+      <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap">
         <!-- Header -->
         <div class="w-full flex flex-row justify-center items-center mt-4">
           <!-- Line Left -->
@@ -84,7 +84,7 @@
         </div>
       </div>
       <!-- Or enter a custom one-->
-      <div class="w-full my-4 flex flex-col items-center">
+      <div v-if="isLoggedIn" class="w-full my-4 flex flex-col items-center">
         <!-- Header -->
         <div class="w-full flex flex-row justify-center items-center">
           <!-- Line Left -->
@@ -132,9 +132,12 @@
         </div>
       </div>
       <!-- Divider -->
-      <div class="bg-c-text w-full h-px2 opacity-10 rounded-tl-full rounded-br-full"></div>
+      <div
+        v-if="isLoggedIn"
+        class="bg-c-text w-full h-px2 opacity-10 rounded-tl-full rounded-br-full mb-6"
+      ></div>
       <!-- Bounty Address & QR Card -->
-      <div class="w-full flex flex-row justify-center mt-8">
+      <div class="w-full flex flex-row justify-center mt-2">
         <div>
           <BountyAddressCard :address="bounty.bountyChest" :qrValue="bounty.bountyChest" />
         </div>
