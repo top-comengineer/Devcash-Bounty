@@ -57,14 +57,26 @@
         <h1 class="font-extrabold text-2xl md:text-3xl">{{ bounty.title }}</h1>
         <!-- Avatar & Address -->
         <div class="flex flex-row items-center mt-1">
-          <Jazzicon class="flex" :diameter="24" :address="bounty.bountyChest" />
-          <h3 class="font-mono-jet font-medium text-lg md:text-xl ml-2">
-            {{
-            bounty.bountyChest.substring(0, 6) +
-            "..." +
-            bounty.bountyChest.substring(bounty.bountyChest.length - 4)
-            }}
-          </h3>
+          <Jazzicon class="flex mr-2" :diameter="24" :address="bounty.bountyChest" />
+          <a
+            :href="'https://etherscan.io/address/'+bounty.bountyChest"
+            class="hover:underline mr-1"
+            target="_blank"
+          >
+            <h3 class="font-mono-jet font-medium text-lg md:text-xl">
+              {{
+              bounty.bountyChest.substring(0, 6) +
+              "..." +
+              bounty.bountyChest.substring(bounty.bountyChest.length - 4)
+              }}
+            </h3>
+          </a>
+          <button
+            @click.prevent="copyAddress(bounty.bountyChest)"
+            class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
+          >
+            <icon colorClass="text-c-text" class="w-full h-full" type="copy" />
+          </button>
         </div>
       </div>
       <!-- Bounty Amount in Devcash, ETH & USD -->
@@ -524,7 +536,17 @@ export default {
     async confirmConfirmModal(feedback, submission, type){
       await DevcashBounty.initEthConnector(this, this.hasMetamask)
       await DevcashBounty.approveRejectAction(this, type, submission, feedback)
-    },    
+    },
+    copyAddress(address) {
+      this.$copyText(address);
+      this.$notify({
+          group: 'main',
+          title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
+          text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
+          data: {},
+          duration: 1500
+        });
+    }
   },
   async asyncData({ error, params, $axios }) {
     try {

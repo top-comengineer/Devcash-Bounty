@@ -12,10 +12,6 @@
             <span
               class="font-mono-jet font-bold"
             >{{address.substring(0, 6) + "..." + address.substring(address.length - 4)}}</span>
-            <span
-              v-if="perspective=='hunter' && address==selfAddress"
-              class="font-mono-jet text-sm opacity-75"
-            >({{$t('bountyPlatform.bountyHunter.you')}})</span>
           </h5>
         </div>
       </div>

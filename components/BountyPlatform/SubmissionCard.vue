@@ -12,10 +12,6 @@
             <span
               class="font-mono-jet font-bold"
             >{{submission.creator.substring(0, 6) + "..." + submission.creator.substring(submission.creator.length - 4)}}</span>
-            <span
-              v-if="perspective=='hunter' && submission.creator==loggedInAccount"
-              class="font-mono-jet text-sm opacity-75"
-            >({{$t('bountyPlatform.bountyHunter.you')}})</span>
             <span v-if="ubounty.title">-></span>
             <span v-if="ubounty.title" class="font-extrabold">{{ubounty.title}}</span>
           </h5>

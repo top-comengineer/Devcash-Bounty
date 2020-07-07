@@ -28,10 +28,6 @@
             bounty.creator.substring(bounty.bountyChest.length - 4)
             }}
           </span>
-          <span
-            v-if="this.isLoggedIn && bounty.hunter == this.loggedInAccount"
-            class="font-mono-jet text-sm opacity-50"
-          >({{$t('bountyPlatform.bountyHunter.you')}})</span>
         </h5>
       </div>
     </div>
@@ -54,8 +50,11 @@
       <!-- Remaining Time -->
       <div class="text-right text-sm mt-2">
         <Icon class="w-4 h-4 mb-0_5 mr-1 inline-block" colorClass="text-c-text" type="clock" />
-        <span v-if="status=='active'" class="font-bold">{{  formatTimeLeft() }}</span>
-        <span v-else-if="status=='expired'" class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
+        <span v-if="status=='active'" class="font-bold">{{ formatTimeLeft() }}</span>
+        <span
+          v-else-if="status=='expired'"
+          class="font-bold"
+        >{{ $t('bountyPlatform.bountyCard.tag.expired') }}</span>
         <span v-else class="font-bold">{{ $t('bountyPlatform.bountyCard.tag.completed') }}</span>
         <span v-if="status == 'active'" class="opacity-75">
           {{

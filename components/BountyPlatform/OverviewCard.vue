@@ -19,7 +19,15 @@
       <!-- Approved Balance -->
       <div v-else class="flex flex-row flex-1 justify-center items-center mt-6">
         <Jazzicon class="flex" :diameter="36" :address="address" />
-        <h2 class="font-mono-jet text-sm ml-2 font-bold" v-html="twoLineAddress(address)"></h2>
+        <a :href="'https://etherscan.io/address/'+address" class="hover:underline" target="_blank">
+          <h2 class="font-mono-jet text-sm ml-2 font-bold" v-html="twoLineAddress(address)"></h2>
+        </a>
+        <button
+          @click.prevent="copyAddress()"
+          class="ml-1 w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
+        >
+          <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
+        </button>
       </div>
     </div>
   </div>
@@ -51,6 +59,16 @@ export default {
         "<br>" +
         address.substring(28, 42)
       );
+    },
+    copyAddress() {
+      this.$copyText(this.address);
+      this.$notify({
+          group: 'main',
+          title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
+          text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
+          data: {},
+          duration: 1500
+        });
     }
   }
 };
