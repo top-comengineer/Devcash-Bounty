@@ -150,7 +150,7 @@ export default {
             : "bountyPlatform.overview.activityCard.general.bountyAwarded"
         ).replace(
           "1%",
-          `<span class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' +' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' +' + ethSymbol + this.item.ethAmount}</span>`
+          `<span class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' + ' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' + ' + ethSymbol + this.item.ethAmount}</span>`
         );
         return message;
       }
