@@ -31,7 +31,8 @@
         <div class="w-full md:w-auto flex flex-row flex-wrap items-center px-4 md:pr-0">
           <!-- Bounty Amount in DEV, ETH and USD -->
           <a
-            :href="submission.status== 'pending'?'https://etherscan.io/address/'+ubounty.bountyChest:''"
+            v-if="submission.status== 'pending' || (submission.blockHash && status == 'approved')"
+            :href="submission.status== 'pending'?'https://etherscan.io/address/'+ubounty.bountyChest:'https://etherscan.io/tx/'+submission.blockHash"
             class="hover:underline flex flex-col my-2"
             target="_blank"
           >
@@ -46,6 +47,19 @@
               class="text-sm text-left mt-1"
             >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?amount:ethAmount}}</h6>
           </a>
+          <!-- Bounty Amount in DEV, ETH and USD if there it's not pending and it doesn't have a block hash -->
+          <div v-else class="flex flex-col my-2">
+            <h5
+              :class="{
+              'text-c-pending': (submission.status == 'pending'),
+              'text-c-success': submission.status == 'approved',
+              'text-c-danger': submission.status == 'rejected'}"
+              class="font-bold text-left"
+            >{{$store.state.devcashData.balancePrimary.symbol}}{{$store.state.devcashData.ethIsPrimary?ethAmount:amount}}</h5>
+            <h6
+              class="text-sm text-left mt-1"
+            >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?amount:ethAmount}}</h6>
+          </div>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
             <!-- If Perspective is Manager -->
@@ -76,9 +90,8 @@
             </div>
             <!-- If Perspective is Hunter -->
             <StatusTag
-              :perspective="perspective"
+              v-if="perspective=='hunter' || submission.status == 'approved' || submission.status == 'rejected'"
               :status="getSimpleStatus()"
-              v-if="perspective=='hunter'"
             />
           </div>
         </div>
