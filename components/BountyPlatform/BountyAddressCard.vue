@@ -60,7 +60,7 @@ export default {
       this.$notify({
           group: 'main',
           title: this.$t("bountyPlatform.singleBounty.contribute.headerAddressCopied"),
-          text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopied"),
+          text: this.$t("bountyPlatform.singleBounty.contribute.paragraphAddressCopiedBounty"),
           data: {},
           duration: 1500
         });

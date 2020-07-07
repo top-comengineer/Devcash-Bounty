@@ -352,7 +352,8 @@
         "buttonContribute": "Contribute",
         "bountyAddress": "Bounty Address",
         "headerAddressCopied": "Address Copied",
-        "paragraphAddressCopied": "The bounty address has been copied to your clipboard."
+        "paragraphAddressCopiedBounty": "The bounty address has been copied to your clipboard.",
+        "paragraphAddressCopied": "The address has been copied to your clipboard."
       },
       "submissions": {
         "noSubmissions": "There are no submissions yet.",
