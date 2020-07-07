@@ -145,7 +145,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
         ethAmount: reward.ethRewardAmount
       }
       if ('eventInfo' in reward) {
-        item.blockhash = reward.eventInfo.blockHash
+        item.blockHash = reward.eventInfo.blockHash
       }
       activity.push(item)
     }
@@ -160,7 +160,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
         bountyId: reward.ubountyIndex
       }
       if ('eventInfo' in reward) {
-        item.blockhash = reward.eventInfo.blockhash
+        item.blockHash = reward.eventInfo.blockHash
       }
       activity.push(item)
     }

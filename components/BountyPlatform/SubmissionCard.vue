@@ -31,7 +31,7 @@
         <div class="w-full md:w-auto flex flex-row flex-wrap items-center px-4 md:pr-0">
           <!-- Bounty Amount in DEV, ETH and USD -->
           <a
-            v-if="submission.status== 'pending' || (submission.blockHash && status == 'approved')"
+            v-if="submission.status== 'pending' || (submission.blockHash && submission.status == 'approved')"
             :href="submission.status== 'pending'?'https://etherscan.io/address/'+ubounty.bountyChest:'https://etherscan.io/tx/'+submission.blockHash"
             class="hover:underline flex flex-col my-2"
             target="_blank"
