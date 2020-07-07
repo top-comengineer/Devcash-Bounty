@@ -136,24 +136,32 @@ module.exports.getOverviewStats = async (req, res, next) => {
 
     // Add rewarded
     for (const reward of hunterRewards) {
-      activity.push({
+      let item = {
         type: "rewarded",
         perspective: "hunter",
         createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
         amount: reward.rewardAmount,
         ethAmount: reward.ethRewardAmount
-      })
+      }
+      if ('eventInfo' in reward) {
+        item.blockhash = reward.eventInfo.blockHash
+      }
+      activity.push(item)
     }
 
     for (const reward of creatorRewards) {
-      activity.push({
+      let item = {
         type: "rewarded",
         perspective: "manager",
         createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
         amount: reward.rewardAmount,
         ethAmount: reward.ethRewardAmount,
         bountyId: reward.ubountyIndex
-      })
+      }
+      if ('eventInfo' in reward) {
+        item.blockhash = reward.eventInfo.blockhash
+      }
+      activity.push(item)
     }
 
     for (const reclaimed of reclaimedLog) {
