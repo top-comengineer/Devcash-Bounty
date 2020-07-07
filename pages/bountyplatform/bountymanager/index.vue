@@ -67,6 +67,7 @@
             :ubounty="item.ubounty"
             :approveClicked="() => showConfirmModal(item, 'approve')"
             :rejectClicked="() => showConfirmModal(item, 'reject')"
+            page="bountyManager"
           />
         </div>
         <!-- If there are no submissions -->

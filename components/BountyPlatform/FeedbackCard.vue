@@ -13,9 +13,15 @@
         <!-- Feedback Owners Address -->
         <div class="w-full md:w-auto flex flex-row md:items-center py-2">
           <Jazzicon class="flex m-1" :diameter="20" :address="address" />
-          <h5
-            class="text-left ml-2 mr-3 font-mono-jet font-bold"
-          >{{address.substring(0, 6) + "..." + address.substring(address.length - 4)}}</h5>
+          <a
+            :href="'https://etherscan.io/address/'+address"
+            class="hover:underline"
+            target="_blank"
+          >
+            <h5
+              class="text-left ml-2 mr-3 font-mono-jet font-bold"
+            >{{address.substring(0, 6) + "..." + address.substring(address.length - 4)}}</h5>
+          </a>
         </div>
         <!-- Status Tag -->
         <div class="w-full md:w-auto flex flex-row flex-wrap items-center">

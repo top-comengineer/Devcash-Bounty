@@ -19,7 +19,12 @@
               >{{submission.creator.substring(0, 6) + "..." + submission.creator.substring(submission.creator.length - 4)}}</span>
             </a>
             <span v-if="ubounty.title">-></span>
-            <span v-if="ubounty.title" class="font-extrabold">{{ubounty.title}}</span>
+            <nuxt-link
+              :to="localePath({name:'bountyplatform-bounty-id', params: {id: ubounty.id}})"
+              v-if="ubounty.title && (page=='bountyHunter' || page == 'bountyManager')"
+              class="font-extrabold hover:underline"
+            >{{ubounty.title}}</nuxt-link>
+            <span v-else-if="ubounty.title" class="font-extrabold">{{ubounty.title}}</span>
           </h5>
         </div>
         <!-- Bounty Amount and Status Tag or Approve Reject Options -->
@@ -157,7 +162,8 @@ export default {
     submission: Object,
     perspective: String,
     approveClicked: Function,
-    rejectClicked: Function
+    rejectClicked: Function,
+    page: String
   },
   data(){
     return {

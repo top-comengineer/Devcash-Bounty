@@ -49,6 +49,7 @@
             :key="i"
             :submission="item"
             :ubounty="item.ubounty"
+            page="bountyHunter"
           />
         </div>
         <!-- If there are no submissions -->
