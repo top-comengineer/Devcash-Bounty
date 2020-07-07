@@ -1,4 +1,8 @@
 {
+  "signToAuthenticate": {
+    "message":"Welcome to Devcash Bounty Platform! For your security, please sign the message to confirm your account."
+  },
+
   "home": {
     "heroSection": {
       "header": "Cash for the<br>developer economy",

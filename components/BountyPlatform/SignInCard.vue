@@ -120,7 +120,7 @@ export default {
       // Sign in flow
       this.loggingInLoading = true;
       try {
-        await DevcashBounty.signIn(this, provider, this.hasMetamask)
+        await DevcashBounty.signIn(this, provider, this.hasMetamask, this.$t('signToAuthenticate.message'))
       } catch (e) {
         console.log(e)
       } finally {

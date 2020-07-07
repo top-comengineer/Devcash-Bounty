@@ -239,7 +239,7 @@ export class DevcashBounty {
    * @param {Component} Vue component
    * @param {*} provider 
    */
-  static async signIn(vueComponent, provider, hasMetamask) {
+  static async signIn(vueComponent, provider, hasMetamask, messageToSign) {
     if (provider == WalletProviders.metamask && !hasMetamask) {
       window.open("https://metamask.io/download.html", "_blank");
       return;
@@ -247,6 +247,9 @@ export class DevcashBounty {
     try {
       // Initialize connector to ethereum
       let connector = await DevcashBounty.init(null, provider, hasMetamask);
+      if (connector.signer) {
+        await connector.signer.signMessage(messageToSign)
+      }
       // Set state
       vueComponent.$store.commit("devcash/setConnector", connector);
       vueComponent.$root.$emit('connectorSet', connector)
