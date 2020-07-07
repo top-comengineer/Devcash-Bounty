@@ -133,6 +133,10 @@
               @click.prevent="toggleSignInModal"
               class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-light text-c-secondary btn-text-sec font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 mt-4 mb-2"
             >{{$t("navigation.signIn") }}</button>
+            <button
+              @click="isContributeModalOpen = true"
+              class="w-full transform hover:scale-lg focus:scale-lg transition-all duration-200 ease-out origin-bottom-left bg-c-secondary text-c-light btn-text-sec border-2 border-c-light font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-8 py-2 my-2"
+            >{{ $t("bountyPlatform.singleBounty.buttonContribute") }}</button>
             <!-- Sign In Modal -->
             <transition name="modalBgTransition">
               <div

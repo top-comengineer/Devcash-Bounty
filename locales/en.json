@@ -1,8 +1,7 @@
 {
   "signToAuthenticate": {
-    "message":"Welcome to Devcash Bounty Platform! For your security, please sign the message to confirm your account."
+    "message": "Welcome to Devcash Bounty Platform! For your security, please sign the message to confirm your account."
   },
-
   "home": {
     "heroSection": {
       "header": "Cash for the<br>developer economy",
@@ -330,7 +329,7 @@
       "bountyCompleted": "Bounty Completed",
       "bountyExpired": "Bounty Expired",
       "createdBy": "Created By",
-      "signInToHunt": "Sign in to hunt or contribute",
+      "signInToHunt": "Sign in to hunt",
       "submission": {
         "cardHeader": "Send a Submission",
         "cardParagraph": "Enter the details of your submission below.",
@@ -345,6 +344,7 @@
       "contribute": {
         "cardHeader": "Contribute",
         "cardParagraph": "Pick or enter an amount to contribute.",
+        "cardParagraphSecondary": "Copy or scan the address to contribute.",
         "pickAmount": "Pick an amount",
         "orEnterCustomAmount": "Or enter a custom one",
         "customAmount": "Custom Amount",

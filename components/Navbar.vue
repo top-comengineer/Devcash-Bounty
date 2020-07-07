@@ -149,7 +149,7 @@
         <button
           @click="toggleSignInModal"
           @keydown.esc.exact="hideSignInModal"
-          class="btn-text bg-c-text text-c-background flex flex-row items-center hover_scale-lg focus_scale-lg ml-4 lg:ml-6 font-bold transition-all ease-out duration-200 rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
+          class="btn-text bg-c-text text-c-background flex flex-row items-center transform origin-bottom-left hover:scale-lg focus:scale-lg transition-all ease-out duration-200 ml-4 lg:ml-6 font-bold rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-5 py-1"
         >
           <div class="w-4 h-4 relative mr-2 mb-1" v-if="loggingInLoading">
             <Spinner />

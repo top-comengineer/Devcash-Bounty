@@ -9,7 +9,7 @@
         <Icon colorClass="text-c-text" class="w-full h-full" type="copy" />
       </button>
     </div>
-    <div class="flex flex-row md:justify-center items-center mt-3">
+    <div class="flex flex-row items-center mt-3">
       <Jazzicon class="flex" :diameter="48" :address="address" />
       <a class="hover:underline" target="_blank" :href="'https://etherscan.io/address/'+address">
         <p v-html="threeLineAddress(address)" class="font-mono-jet text-sm ml-3"></p>
