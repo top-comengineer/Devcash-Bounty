@@ -149,8 +149,7 @@ export default {
             : this.perspective == "hunter" ? "bountyPlatform.overview.activityCard.hunter.bountyAwarded"
             : "bountyPlatform.overview.activityCard.general.bountyAwarded"
         ).replace(
-          "1%",
-          `<span class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' + ' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' + ' + ethSymbol + this.item.ethAmount}</span>`
+          "1%", this.item.blockHash?`<a href="https://etherscan.io/tx/${this.item.blockHash}" target="_blank" class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' + ' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' + ' + ethSymbol + this.item.ethAmount}</a>`:`<span class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' + ' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' + ' + ethSymbol + this.item.ethAmount}</span>`
         );
         return message;
       }
