@@ -45,6 +45,7 @@ module.exports.getSubmissions = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
         rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
       }
@@ -96,6 +97,7 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
         rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
       }      
@@ -155,6 +157,7 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
       let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
       rObj.status = status.status
       rObj.feedback = status.feedback
+      rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
         rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
       }      
@@ -204,6 +207,7 @@ module.exports.getSingleSubmission = async (req, res, next) => {
     let status = etherClient.getSubmissionStatus(result.ubounty_id, result.submission_id)  
     result.status = status.status
     result.feedback = status.feedback
+    result.blockHash = status.blockHash
     if (result.status == "approved") {
       result.overrideAmount = etherClient.getSubmissionAmount(result.ubounty_id, result.submission_id)  
     }    

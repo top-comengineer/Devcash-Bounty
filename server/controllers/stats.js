@@ -43,6 +43,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
         rSub.feedback = status.feedback       
+        rSub.blockHash = status.blockHash
         if (rSub.status == "approved") {
           rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
         }             

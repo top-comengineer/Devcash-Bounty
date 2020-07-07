@@ -776,10 +776,18 @@ class EtherClient {
     if (!ret || ret == 'revision requested' || ret == 'awaiting feedback') {
       ret = "pending"
     }
-    return {
+    let retObj = {
       status: ret,
       feedback: feedback
     }
+    if (ret == "approved") {
+      for (const rewarded of this.event_logs.rewarded.filter((reward) => reward.ubountyIndex == uI && reward.submissionIndex == sI)) {
+        if ('eventInfo' in rewarded) {
+          retObj.blockHash = rewarded.eventInfo.blockHash
+        }
+      }
+    }
+    return retObj
   }
 
   getSubmissionAmount(uI, sI) {

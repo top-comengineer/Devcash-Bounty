@@ -71,7 +71,8 @@ module.exports.getUBounties = async (req, res, next) => {
       for (let rSub of jObj.submissions) {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
-        rSub.feedback = status.feedback       
+        rSub.feedback = status.feedback   
+        rSub.blockHash = status.blockHash    
         if (rSub.status == "approved") {
           rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
         }             
@@ -131,7 +132,8 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
       for (let rSub of jObj.submissions) {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
-        rSub.feedback = status.feedback        
+        rSub.feedback = status.feedback     
+        rSub.blockHash = status.blockHash   
         if (rSub.status == "approved") {
           rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
         }            
@@ -191,7 +193,8 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
       for (let rSub of jObj.submissions) {
         let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
         rSub.status = status.status
-        rSub.feedback = status.feedback        
+        rSub.feedback = status.feedback 
+        rSub.blockHash = status.blockHash       
         if (rSub.status == "approved") {
           rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
         }           
@@ -244,7 +247,8 @@ module.exports.getUBounty = async (req, res, next) => {
     for (let rSub of result.submissions) {
       let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
       rSub.status = status.status
-      rSub.feedback = status.feedback        
+      rSub.feedback = status.feedback    
+      rSub.blockHash = status.blockHash    
       if (rSub.status == "approved") {
         rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
       }         
