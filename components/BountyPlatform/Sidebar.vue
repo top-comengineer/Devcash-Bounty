@@ -45,7 +45,7 @@
         </div>
         <h3
           :class="[$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.post.header") }}</h3>
       </nuxt-link>
       <!-- Overview -->
@@ -66,7 +66,7 @@
         </div>
         <h3
           :class="[$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Hunter-->
@@ -87,7 +87,7 @@
         </div>
         <h3
           :class="[$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Manager -->
@@ -108,7 +108,7 @@
         </div>
         <h3
           :class="[$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden lg:block ml-2"
+          class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.bountyManager.header")}}</h3>
       </nuxt-link>
       <!-- Divider -->
