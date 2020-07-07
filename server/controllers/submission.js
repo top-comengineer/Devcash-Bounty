@@ -280,7 +280,7 @@ module.exports.validate = (method) => {
           }
         ),
         check('submissionData', "Data must be between 50 and 1000 characters").exists().isString().isLength({
-          min: 50,
+          min: 5,
           max: 1000
         }),
         check('ubounty_id', "ubounty_id must be a number").exists().isNumeric(),

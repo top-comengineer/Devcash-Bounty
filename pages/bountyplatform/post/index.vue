@@ -743,7 +743,7 @@ export default {
     this.descriptionError = false
     if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
        isValid = false
-       if (this.mdDescriptionLength == 0) {
+       if (this.mdDescriptionLength < minDescriptionCount) {
          this.descriptionError = true
        }
     }

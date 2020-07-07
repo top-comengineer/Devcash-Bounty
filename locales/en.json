@@ -157,7 +157,7 @@
       "deadlineError": "Deadline cannot be a past date.",
       "needCategoryError": "You need to pick a category.",
       "buttonPostAnotherBounty": "Post Another Bounty",
-      "descriptionError": "Description is required",
+      "descriptionError": "Text is too short",
       "bountyPosted": {
         "header": "Your bounty is awaiting confirmation!",
         "paragraph": "It'll become visible after it is confirmed by the network. This might take 15-30 minutes, you can view this transaction [here](https://etherscan.io/tx/%1) In the mean time, you can post another bounty by clicking the button below."
