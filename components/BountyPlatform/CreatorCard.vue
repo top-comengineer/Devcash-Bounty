@@ -1,7 +1,9 @@
 <template>
   <div class="w-full flex flex-col shadow-xl rounded-lg px-4 pt-2 pb-4 border border-c-text-10">
     <div class="flex flex-row flex-wrap items-center">
-      <p class="text-lg font-bold mr-1">{{$t("bountyPlatform.singleBounty.createdBy")}}</p>
+      <p
+        class="text-lg font-bold mr-1"
+      >{{!createdFor?$t("bountyPlatform.singleBounty.createdBy"):$t("bountyPlatform.singleBounty.createdFor")}}</p>
       <button
         @click.prevent="copyAddress()"
         class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
@@ -33,7 +35,8 @@ export default {
   props: {
     address: null,
     name: null,
-    email: null
+    email: null,
+    createdFor: Boolean,
   },
   methods: {
     threeLineAddress: function(address) {

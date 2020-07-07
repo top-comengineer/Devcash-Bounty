@@ -223,14 +223,18 @@
             </span>
           </div>
         </div>
-        <!-- Created By Text And Creator Card -->
-        <div class="w-full flex flex-col px-6 pb-6 mt-2">
+        <!-- Creator Card Wrapper -->
+        <div class="w-full flex flex-col px-6 pb-2 mt-2">
           <!-- Creator Card -->
           <CreatorCard
             :name="bounty.contactName"
             :email="bounty.contactEmail"
             :address="bounty.creator"
           />
+        </div>
+        <div v-if="bounty.hunter" class="w-full flex flex-col px-6 pb-6 mt-2">
+          <!-- Created for Card Wrapper If It's Private -->
+          <CreatorCard :address="bounty.hunter" :createdFor="true" />
         </div>
         <!-- Category of the Bounty -->
         <div class="w-full flex flex-row px-6 pb-6">
@@ -347,7 +351,7 @@
             messageType="bountyCompleted"
             :bountyName="bounty.title"
             :date="formatDate(bounty.activity[bounty.activity.length - 1]).createdAt"
-          />          
+          />
           <ActivityCard
             class="my-2"
             perspective="general"

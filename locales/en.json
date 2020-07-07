@@ -328,7 +328,8 @@
       "tagExpired": "Expired",
       "bountyCompleted": "Bounty Completed",
       "bountyExpired": "Bounty Expired",
-      "createdBy": "Created By",
+      "createdBy": "Created by",
+      "createdFor": "Created for",
       "signInToHunt": "Sign in to hunt",
       "submission": {
         "cardHeader": "Send a Submission",
