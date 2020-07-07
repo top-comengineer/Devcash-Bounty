@@ -1,7 +1,7 @@
 <template>
   <div
     class="bg-c-background-sec w-full h-full rounded-tl-xl rounded-tr-xl md:rounded-tr-3xl md:rounded-bl-sm md:rounded-tl-sm md:rounded-br-3xl lg:rounded-tl-xl lg:rounded-bl-xl"
-    @mouseover="showSidebarTextOnMd()"
+    @mouseenter="showSidebarTextOnMd()"
     @mouseleave="hideSidebarTextOnMd()"
   >
     <!-- Sidebar Content -->
@@ -377,7 +377,8 @@ export default {
       approvalError: "",
       isSortModalOpen: false,
       searchText: "",
-      isSidebarTextVisibleOnMd: false
+      isSidebarTextVisibleOnMd: false,
+      openTimeout: null,
     };
   },
   head(){
@@ -443,13 +444,13 @@ export default {
       }, 50);
     },    
     showSidebarTextOnMd(){
-      if(!this.isSidebarTextVisibleOnMd){
-        setTimeout(() => {
+      clearTimeout(this.openTimeout)
+      this.openTimeout = setTimeout(() => {
         this.isSidebarTextVisibleOnMd = true
-      }, 200);
-      }
+      }, 175);
     },
     hideSidebarTextOnMd(){
+      clearTimeout(this.openTimeout)
       this.isSidebarTextVisibleOnMd = false
     },
     async approveBalance() {
