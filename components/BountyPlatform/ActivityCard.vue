@@ -11,7 +11,7 @@
       <!-- Message -->
       <a
         v-if="item.blockHash && messageType == 'rewarded'"
-        :href="'https://etherscan.io/tx/'+blockHash"
+        :href="'https://etherscan.io/tx/'+item.blockHash"
         v-html="formattedMessage()"
         class="text-left px-4 hover:underline"
       ></a>
