@@ -32,9 +32,9 @@
     "tokenDetailsSection": {
       "header": "Token Details",
       "tokenSupplyHeader": "Token Supply",
-      "tokenSupplyText": "2,1B DEV",
+      "tokenSupplyText": "2.1B DEV",
       "tokenTypeHeader": "Token Type",
-      "tokenTypeText": "ERC 21",
+      "tokenTypeText": "ERC 20",
       "tokenAllocationHeader": "Token Allocation",
       "tokenAllocationText": "IBO"
     },
