@@ -37,7 +37,7 @@ export default {
 .sidebar-container-inner {
   width: 100%;
   height: 100%;
-  transition: all 250ms ease-out;
+  transition: all 200ms ease-out;
 }
 @media only screen and (min-width: 768px) {
   .sidebar-container-inner:hover {

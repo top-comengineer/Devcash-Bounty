@@ -447,7 +447,7 @@ export default {
       clearTimeout(this.openTimeout)
       this.openTimeout = setTimeout(() => {
         this.isSidebarTextVisibleOnMd = true
-      }, 175);
+      }, 200);
     },
     hideSidebarTextOnMd(){
       clearTimeout(this.openTimeout)
