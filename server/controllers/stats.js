@@ -105,6 +105,28 @@ module.exports.getOverviewStats = async (req, res, next) => {
       delete a.submissions
       return a
     })
+
+    // Add rewarded
+    for (const reward of hunterRewards) {
+      activity.push({
+        type: "rewarded",
+        perspective: "hunter",
+        createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
+        amount: reward.rewardAmount,
+        ethAmount: reward.ethRewardAmount        
+      })
+    }
+
+    for (const reward of creatorRewards) {
+      activity.push({
+        type: "rewarded",
+        perspective: "manager",
+        createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
+        amount: reward.rewardAmount,
+        ethAmount: reward.ethRewardAmount
+      })
+    }
+
     activity.filter((a) => {
       if (a.disregard) {
         return false
@@ -114,7 +136,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
   
     activity.sort((a, b) => {
       let aDt = new Date(a.createdAt)
-      let bDt = new Date(b.createdDt)
+      let bDt = new Date(b.createdAt)
       if (aDt < bDt) {
         return 1
       }

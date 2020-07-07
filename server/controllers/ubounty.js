@@ -254,7 +254,29 @@ module.exports.getUBounty = async (req, res, next) => {
       result.available = cached.available
       result.bountyAmount = cached.amount
       result.weiAmount = cached.weiAmount          
-    }    
+    }
+    // Add rewarded
+    let activity = []
+    let creatorRewards = etherClient.event_logs.rewarded.filter((reward) => result.id == reward.ubountyIndex)
+    for (const reward of creatorRewards) {
+      activity.push({
+        type: "rewarded",
+        perspective: "general",
+        createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
+        amount: reward.rewardAmount,
+        ethAmount: reward.ethRewardAmount
+      })
+    }
+    activity = activity.concat(result.submissions)
+    activity.sort((a, b) => {
+      let aDt = new Date(a.createdAt)
+      let bDt = new Date(b.createdAt)
+      if (aDt < bDt) {
+        return 1
+      }
+      return -1
+    })
+    result.activity = activity    
     return res.status(200).json(
       result
     )

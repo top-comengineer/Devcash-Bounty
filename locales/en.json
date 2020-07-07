@@ -197,7 +197,7 @@
           "submissionMade": "A submission has been made.",
           "submissionApproved": "A submission has been approved.",
           "submissionRejected": "A submission has been rejected.",
-          "bountyAwarded": "A bounty award has been given.",
+          "bountyAwarded": "A bounty award of 1% has been given.",
           "bountyReclaimed": "The funds for the bounty has been reclaimed.",
           "bountyCompleted": "The bounty has been completed."
         }

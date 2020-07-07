@@ -51,6 +51,7 @@
             class="mb-4"
             v-for="(item, i) in activity"
             :key="i"
+            :item="item"
             :perspective="item.perspective"
             :messageType="item.type"
             :address="item.address"

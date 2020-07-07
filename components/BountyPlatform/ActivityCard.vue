@@ -44,6 +44,7 @@
 <script>
 import Icon from "~/components/Icon.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
+import { ethSymbol, devcashSymbol } from "~/config";
 export default {
   components: {
     Icon,
@@ -54,7 +55,8 @@ export default {
     perspective: null,
     date: null,
     bountyName: null,
-    address: null
+    address: null,
+    item: Object
   },
   methods: {
     formattedMessage() {
@@ -140,14 +142,15 @@ export default {
         return message;
       }
       // Bounty Awarded
-      else if (this.messageType == "bountyAwarded") {
+      else if (this.messageType == "rewarded") {
         let message = this.$t(
           this.perspective == "manager"
             ? "bountyPlatform.overview.activityCard.manager.bountyAwarded"
-            : "bountyPlatform.overview.activityCard.hunter.bountyAwarded"
+            : this.perspective == "hunter" ? "bountyPlatform.overview.activityCard.hunter.bountyAwarded"
+            : "bountyPlatform.overview.activityCard.general.bountyAwarded"
         ).replace(
           "1%",
-          `"<span class="font-extrabold">${this.bountyName}</span>"`
+          `<span class="font-extrabold">${this.$store.state.devcashData.ethIsPrimary ? ethSymbol + this.item.ethAmount + ' +' + devcashSymbol + this.item.amount : devcashSymbol + this.item.amount + ' +' + ethSymbol + this.item.ethAmount}</span>`
         );
         return message;
       }
@@ -216,7 +219,7 @@ export default {
         return "cancel";
       }
       // Bounty Awarded
-      else if (this.messageType == "bountyAwarded") {
+      else if (this.messageType == "rewarded") {
         return "award";
       }
       // Fee Changed

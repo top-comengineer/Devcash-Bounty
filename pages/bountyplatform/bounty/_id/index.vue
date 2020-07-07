@@ -339,9 +339,10 @@
           <ActivityCard
             class="my-2"
             perspective="general"
-            v-for="(item, i) in bounty.submissions"
+            v-for="(item, i) in bounty.activity"
+            :item="item"
             :key="i"
-            :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : 'submissionMade'"
+            :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : item.type ? item.type : 'submissionMade'"
             :address="item.creator"
             :date="formatDate(item.createdAt)"
           />
@@ -351,6 +352,7 @@
             messageType="bountyCreated"
             :date="formatDate(bounty.createdAt)"
           />
+
           <!-- Load More Button -->
           <!-- 
           <div class="flex flex-row justify-center mt-2">
