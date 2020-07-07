@@ -337,6 +337,14 @@
         <!-- Activity -->
         <div v-if="activeTab=='activity'" class="w-full flex flex-col">
           <ActivityCard
+            v-if="status == 'completed' && bounty.activity.length > 0"
+            class="my-2"
+            perspective="general"
+            messageType="bountyCompleted"
+            :bountyName="bounty.title"
+            :date="formatDate(bounty.activity[bounty.activity.length - 1]).createdAt"
+          />          
+          <ActivityCard
             class="my-2"
             perspective="general"
             v-for="(item, i) in bounty.activity"

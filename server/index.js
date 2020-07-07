@@ -158,6 +158,22 @@ async function setupEthersJobs() {
     let onChain = await etherClient.getUBounty(uBountyIndex)
     await redis.addBounty(onChain)
   })
+  // Reclaimed
+  etherClient.uBCContract.on("reclaimed", async (uBountyIndex, tokenAmount, weiAmount) => {
+    console.log(`event: reclaimed ${uBountyIndex}, ${weiAmount}, ${tokenAmount}`)
+    let timestamp = parseInt(new Date().getTime() / 1000)
+    let devcashAmount = utils.formatUnits(tokenAmount, 8)
+    let ethAmount = utils.formatEther(weiAmount)
+    etherClient.event_logs.reclaimed.unshift({
+      ethReclaimedAmount: ethAmount,
+      ubountyIndex: uBountyIndex,
+      timestamp: timestamp,
+      reclaimedAmount: devcashAmount
+    })
+    // Update cache
+    let onChain = await etherClient.getUBounty(uBountyIndex)
+    await redis.addBounty(onChain)
+  })
   // Fallback for missed events
   // TODO - change to more reasonable schedule, 1 minute is for testing
   cron.schedule("*/3 * * * *", async function() {

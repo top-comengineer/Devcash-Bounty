@@ -671,7 +671,9 @@ export class DevcashBounty {
 
   // Reclaim
   async reclaim(bounty) {
-    return await this.uBCContract.reclaim(bounty.id)
+    return await this.uBCContract.reclaim(bounty.id, {
+      gasLimit: 3000000
+    })
   }
 
   // Submission

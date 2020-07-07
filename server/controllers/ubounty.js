@@ -267,6 +267,16 @@ module.exports.getUBounty = async (req, res, next) => {
         ethAmount: reward.ethRewardAmount
       })
     }
+    // Add reclaimed
+    let reclaimedLog = etherClient.event_logs.reclaimed.filter((reclaimed) => result.id == reclaimed.ubountyIndex)
+    for (const reclaimed of reclaimedLog) {
+      activity.push({
+        type: "bountyReclaimed",
+        perspective: "general",
+        createdAt: new Date(parseInt(parseInt(reclaimed.timestamp) * 1000)),
+        name: result.title
+      })
+    }    
     activity = activity.concat(result.submissions)
     activity.sort((a, b) => {
       let aDt = new Date(a.createdAt)
