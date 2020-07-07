@@ -30,7 +30,11 @@
         <!-- Bounty Amount and Status Tag or Approve Reject Options -->
         <div class="w-full md:w-auto flex flex-row flex-wrap items-center px-4 md:pr-0">
           <!-- Bounty Amount in DEV, ETH and USD -->
-          <div class="flex flex-col my-2">
+          <a
+            :href="submission.status== 'pending'?'https://etherscan.io/address/'+ubounty.bountyChest:''"
+            class="hover:underline flex flex-col my-2"
+            target="_blank"
+          >
             <h5
               :class="{
               'text-c-pending': (submission.status == 'pending'),
@@ -41,7 +45,7 @@
             <h6
               class="text-sm text-left mt-1"
             >+ {{$store.state.devcashData.balanceSecondary.symbol}}{{$store.state.devcashData.ethIsPrimary?amount:ethAmount}}</h6>
-          </div>
+          </a>
           <!-- Status Tag or Approve and Reject Buttons -->
           <div class="flex flex-col md:mx-4 my-2">
             <!-- If Perspective is Manager -->
