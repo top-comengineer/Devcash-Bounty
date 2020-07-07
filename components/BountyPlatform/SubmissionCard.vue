@@ -9,9 +9,15 @@
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
           <Jazzicon class="flex m-1" :diameter="20" :address="submission.creator" />
           <h5 class="text-left ml-2 mr-3">
-            <span
-              class="font-mono-jet font-bold"
-            >{{submission.creator.substring(0, 6) + "..." + submission.creator.substring(submission.creator.length - 4)}}</span>
+            <a
+              :href="'https://etherscan.io/address/'+submission.creator"
+              class="hover:underline"
+              target="_blank"
+            >
+              <span
+                class="font-mono-jet font-bold"
+              >{{submission.creator.substring(0, 6) + "..." + submission.creator.substring(submission.creator.length - 4)}}</span>
+            </a>
             <span v-if="ubounty.title">-></span>
             <span v-if="ubounty.title" class="font-extrabold">{{ubounty.title}}</span>
           </h5>

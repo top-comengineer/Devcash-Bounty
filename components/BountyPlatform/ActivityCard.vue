@@ -20,13 +20,19 @@
             class="bg-c-background-ter flex flex-row justify-start md:justify-end items-center rounded-full mb-2"
           >
             <Jazzicon class="flex m-1" :diameter="20" :address="address" />
-            <h5 class="font-mono-jet font-bold text-left ml-2 mr-3 break-all">
-              {{
-              address.substring(0, 6) +
-              "..." +
-              address.substring(address.length - 4)
-              }}
-            </h5>
+            <a
+              :href="'https://etherscan.io/address/'+address"
+              class="hover:underline"
+              target="_blank"
+            >
+              <h5 class="font-mono-jet font-bold text-left ml-2 mr-3 break-all">
+                {{
+                address.substring(0, 6) +
+                "..." +
+                address.substring(address.length - 4)
+                }}
+              </h5>
+            </a>
           </div>
         </div>
         <!-- Date -->
