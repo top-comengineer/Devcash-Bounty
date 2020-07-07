@@ -120,7 +120,7 @@
       "bountyTypePublic": "Public",
       "bountyTypePrivate": "Private",
       "bountyTypeHunterAddress": "Hunter's Address",
-      "bountyTypeHunterAddressPlaceholder": "Enter the adress of the hunter",
+      "bountyTypeHunterAddressPlaceholder": "Enter the address of the hunter",
       "bountyCount": "Number of Bounties",
       "bountyCountPlaceholder": "Enter the number of bounties",
       "bountyAmount": "Bounty Amount",
