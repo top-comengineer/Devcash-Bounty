@@ -259,13 +259,17 @@ module.exports.getUBounty = async (req, res, next) => {
     let activity = []
     let creatorRewards = etherClient.event_logs.rewarded.filter((reward) => result.id == reward.ubountyIndex)
     for (const reward of creatorRewards) {
-      activity.push({
+      let item = {
         type: "rewarded",
         perspective: "general",
         createdAt: new Date(parseInt(parseInt(reward.timestamp) * 1000)),
         amount: reward.rewardAmount,
         ethAmount: reward.ethRewardAmount
-      })
+      }
+      if ('eventInfo' in reward) {
+        item.blockHash = reward.eventInfo.blockHash
+      }
+      activity.push(item)
     }
     // Add reclaimed
     let reclaimedLog = etherClient.event_logs.reclaimed.filter((reclaimed) => result.id == reclaimed.ubountyIndex)
