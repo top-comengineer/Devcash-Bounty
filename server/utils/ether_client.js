@@ -162,16 +162,19 @@ class EtherClient {
     try {
       let event_logs = new Object();
 
-      let event_logs_cache = await this.redis.getEventLogCache()    
+      let event_logs_cache = await this.redis.getEventLogCache()
       let lastHadBlock = await this.redis.getLastBlockCount()
       let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
       let toBlock = await this.provider.getBlockNumber()
 
       console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)    
 
+      if (event_logs_cache) {
+        this.event_logs = event_logs_cache
+      }
+
       if (lastHadBlock >= toBlock) {
         // Don't need to retrieve any logs
-        this.event_logs = event_logs_cache
         return
       }
 
