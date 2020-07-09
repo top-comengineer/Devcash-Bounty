@@ -75,7 +75,7 @@
             @click.prevent="copyAddress(bounty.bountyChest)"
             class="w-8 h-8 rounded-full hover:bg-c-text-15 focus:bg-c-text-15 p-1 transition-colors duration-200"
           >
-            <icon colorClass="text-c-text" class="w-full h-full" type="copy" />
+            <icon colorClass="text-c-light" class="w-full h-full" type="copy" />
           </button>
         </div>
       </div>
@@ -230,7 +230,7 @@
           </div>
         </div>
         <!-- Creator Card Wrapper -->
-        <div class="w-full flex flex-col px-6 pb-2 mt-2">
+        <div class="w-full flex flex-col px-6">
           <!-- Creator Card -->
           <CreatorCard
             :name="bounty.contactName"
@@ -238,12 +238,12 @@
             :address="bounty.creator"
           />
         </div>
-        <div v-if="bounty.hunter" class="w-full flex flex-col px-6 pb-6 mt-2">
+        <div v-if="bounty.hunter" class="w-full flex flex-col px-6 mt-3">
           <!-- Created for Card Wrapper If It's Private -->
           <CreatorCard :address="bounty.hunter" :createdFor="true" />
         </div>
         <!-- Category of the Bounty -->
-        <div class="w-full flex flex-row px-6 pb-6">
+        <div class="w-full flex flex-row px-6 mt-6 pb-6">
           <h5>
             <span class="opacity-75">{{$t("bountyPlatform.explore.categories.category") + ' '}}</span>
             <span
