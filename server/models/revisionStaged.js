@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
-            key: 'submission_id'
+            key: 'id'
         }
     },
     // The hash of this revision data
