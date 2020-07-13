@@ -101,7 +101,7 @@
           <a
             class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
             target="_blank"
-            href
+            href = "https://discord.gg/qNxveH"
           >
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="discord" />
@@ -112,7 +112,7 @@
           <a
             class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
             target="_blank"
-            href
+            href = "https://www.facebook.com/groups/269238897785432"
           >
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="facebook" />
@@ -123,7 +123,7 @@
           <a
             class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
             target="_blank"
-            href
+            href="https://twitter.com/BlockchainDevsU"
           >
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="twitter" />
@@ -134,7 +134,7 @@
           <a
             class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
             target="_blank"
-            href
+            href = "https://medium.com/@devcashbounties"
           >
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="medium" />
@@ -145,7 +145,7 @@
           <a
             class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
             target="_blank"
-            href
+            href = "https://github.com/blockdevsunited"
           >
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="github" />
