@@ -635,7 +635,7 @@ export class DevcashBounty {
     let overrides = {
       value: weiAmount.add(fee)
     };
-    if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV !== 'production') {
       overrides.gasLimit = 3000000
     }
     if (!bounty.hunter) {
