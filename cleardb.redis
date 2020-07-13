@@ -4,11 +4,14 @@ del jc:devcash:uBounties
 del jc:devcash:uBounties_t
 del jc:devcash:event_log
 del jc:devcash:event_log_t
+del devcash:last_block_count
 del devcash:dev:last_block_count
 del jc:devcash:dev:uBounties
 del jc:devcash:dev:uBounties_t
 del jc:devcash:dev:event_log
 del jc:devcash:dev:event_log_t
 del devcash:dev:bountycachelock
+del devcash:bountycachelock
 del bounties
 del devcash:dev:bounties
+del devcash:bounties
