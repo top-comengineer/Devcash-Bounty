@@ -633,9 +633,11 @@ export class DevcashBounty {
       weiAmount = weiAmount.mul(available)
     }
     let overrides = {
-      value: weiAmount.add(fee),
-      gasLimit: 3000000,
+      value: weiAmount.add(fee)
     };
+    if (process.env.NODE_ENV === 'production') {
+      overrides.gasLimit = 3000000
+    }
     if (!bounty.hunter) {
       // Open Bounty
       return await this.uBCContract.postOpenBounty(
@@ -671,6 +673,9 @@ export class DevcashBounty {
 
   // Reclaim
   async reclaim(bounty) {
+    if (process.env.NODE_ENV === 'production') {
+      return await this.uBCContract.reclaim(bounty.id)
+    }
     return await this.uBCContract.reclaim(bounty.id, {
       gasLimit: 3000000
     })
