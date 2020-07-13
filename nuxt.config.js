@@ -71,12 +71,13 @@ module.exports = {
             name: "English",
             file: 'en.json'
           },
+          /*
           {
             code: "zhHans",
             iso: "zh-Hans",
             name: "简化字",
             file: 'zh-Hans.json'
-          }
+          }*/
         ],
         detectBrowserLanguage: {
           useCookie: true,

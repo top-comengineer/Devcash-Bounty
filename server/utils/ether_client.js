@@ -10,9 +10,9 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const eventLogDefaultFromBlock = 8195113 //process.env.NODE_ENV == 'production' ? 10362683 : 8195113;
+const eventLogDefaultFromBlock = process.env.NODE_ENV == 'production' ? 10451865 : 8195113;
 
-const ethNetwork = "ropsten" //process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
 class EtherClient {
   constructor() {
@@ -44,10 +44,10 @@ class EtherClient {
       ethNetwork,
       {
         infura: {
-          projectId: '64074292bca44137af981e11f413eae7',
-          projectSecret: '8bddd32c91d34bdc963f435d22809184'
+          projectId: process.env.INFURA_PROJECT_ID || '64074292bca44137af981e11f413eae7',
+          projectSecret: process.env.INFURA_PROJECT_SECRET || '8bddd32c91d34bdc963f435d22809184'
         },
-        etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        etherscan: process.env.ETHERSCAN_SECRET || 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
       }
     );
     tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
