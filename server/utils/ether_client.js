@@ -10,7 +10,7 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const eventLogDefaultFromBlock = process.env.NODE_ENV == 'production' ? 10451865 : 8195113;
+const eventLogDefaultFromBlock = process.env.NODE_ENV === 'production' ? 10451865 : 8195113;
 
 const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
