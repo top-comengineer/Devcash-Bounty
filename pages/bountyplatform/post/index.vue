@@ -488,7 +488,7 @@ import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
 import * as Cookies from "js-cookie"
 
 const minDescriptionCount = 50;
-const maxDescriptionCount = 1000;
+const maxDescriptionCount = 2500;
 
 export default {
   mixins: [clickaway],
@@ -577,7 +577,7 @@ export default {
        } else if (this.amount && this.numBounties) {
          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
          amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
-         this.amount = utils.formatUnits(amountBigNum, 8)     
+         this.amount = utils.formatUnits(amountBigNum, 8)
        }
       } else {
        if (this.$store.state.devcashData.ethIsPrimary && this.amount && this.numBounties) {
@@ -587,8 +587,8 @@ export default {
        } else if (this.amount && this.numBounties) {
          let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
          amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
-         this.amount = utils.formatUnits(amountBigNum, 8)     
-       }        
+         this.amount = utils.formatUnits(amountBigNum, 8)
+       }
       }
     }
   },
@@ -613,7 +613,7 @@ export default {
       }
       if (this.isPlaceholderVisible) {
         return 0
-      }      
+      }
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
     },
     isPlaceholderVisible() {
@@ -627,7 +627,7 @@ export default {
         if (!this.isBountyAmountEach && this.amount && this.numBounties) {
           let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
           amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
-          return utils.formatUnits(amountBigNum, 8)     
+          return utils.formatUnits(amountBigNum, 8)
         }
         return this.amount || "0"
       } catch (e) {
@@ -639,19 +639,19 @@ export default {
         if (!this.isBountyAmountEach && this.amount && this.numBounties) {
           let amountBigNum = utils.parseEther(this.ethAmount.toString())
           amountBigNum = amountBigNum.div(BigNumber.from(this.numBounties))
-          return  utils.formatEther(amountBigNum)   
+          return  utils.formatEther(amountBigNum)
         }
         return this.ethAmount || "0"
       } catch (e) {
         return "0"
       }
-    },    
+    },
     totalAmountDev() {
       try {
         if (this.isBountyAmountEach && this.amount && this.numBounties) {
           let amountBigNum = utils.parseUnits(this.amount.toString(), 8)
           amountBigNum = amountBigNum.mul(BigNumber.from(this.numBounties))
-          return utils.formatUnits(amountBigNum, 8)     
+          return utils.formatUnits(amountBigNum, 8)
         }
         return this.amount || "0"
       } catch (e) {
@@ -676,8 +676,8 @@ export default {
         return `<a target="_blank" href="${!href.startsWith('http://') && !href.startsWith('https://') ? `https://${href}` : href}" title="${title}">${text}</a>`;
       }
       return this.$sanitize(marked(this.bountyPostedParagraph, {renderer: renderer}))
-    }     
-  },  
+    }
+  },
   methods: {
    closePicker() {
      this.showDatePicker = false
@@ -722,13 +722,13 @@ export default {
     }
     if (!isValid) {
       this.errorList[6] = "#bountyCategory"
-    }       
+    }
     return isValid
   },
   validateTitle(){
     let isValid = true
     if (this.title.length < this.minTitleLength || this.title.length > this.maxTitleLength) {
-       this.titleError = true 
+       this.titleError = true
        isValid = false
      } else {
        this.titleError = false
@@ -753,7 +753,7 @@ export default {
     }
      if (!isValid) {
        this.errorList[2] = "#bountyDescription"
-     }    
+     }
     return isValid
   },
   validateHunterAddress(){
@@ -771,7 +771,7 @@ export default {
      }
      if (!isValid) {
        this.errorList[3] = "#hunterAddress"
-     }        
+     }
      return isValid
   },
   validateNumBounties(){
@@ -785,7 +785,7 @@ export default {
      }
      if (!isValid) {
        this.errorList[4] = "#numberOfBounties"
-     }             
+     }
      return isValid
   },
   validateDevcashAmount() {
@@ -805,7 +805,7 @@ export default {
         balanceBigNum = BigNumber.from(this.balance.secondary.raw)
       } else {
         balanceBigNum = BigNumber.from(this.balance.primary.raw)
-      }      
+      }
       if (amountBigNum.gt(balanceBigNum) || amountBigNum.eq(BigNumber.from(0))) {
         errMsg = this.$t('bountyPlatform.post.insufficientBalance')
         isValid = false
@@ -815,7 +815,7 @@ export default {
      } catch (e) {
        errMsg = this.$t('bountyPlatform.post.invalidAmount')
        isValid = false
-     } 
+     }
      return { valid: isValid, msg: errMsg }
   },
   validateEthAmount() {
@@ -845,7 +845,7 @@ export default {
      } catch (e) {
        errMsg = this.$t('bountyPlatform.post.invalidAmount')
        isValid = false
-     }   
+     }
      return {valid: isValid, msg: errMsg}
   },
   validateAmount() {
@@ -877,13 +877,13 @@ export default {
       isValid = true
     } else if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
        isValid = false
-       this.contactNameError = true 
+       this.contactNameError = true
      } else {
        this.contactNameError = false
      }
     if (!isValid) {
       this.errorList[8] = "#contactName"
-    }         
+    }
      return isValid
   },
   validateEmail(){
@@ -898,7 +898,7 @@ export default {
      }
     if (!isValid) {
       this.errorList[9] = "#contactEmail"
-    }      
+    }
      return isValid
   },
   validateDeadline(){
@@ -916,7 +916,7 @@ export default {
      }
     if (!isValid) {
       this.errorList[7] = "#bountyDeadline"
-    }      
+    }
      return isValid
   },
    validateForm() {
@@ -988,8 +988,8 @@ export default {
               this.datePickerValue = null
               this.datePickerValueStr = ""
               this.categoryValueStr = ""
-              this.categoryValue = null    
-              this.submittedBounty = true  
+              this.categoryValue = null
+              this.submittedBounty = true
               this.$scrollTo('#navbar')
             }
           } catch (e) {
@@ -1033,7 +1033,7 @@ export default {
       this.hideLinkMenu()
     },
   },
-  mounted() {  
+  mounted() {
     this.hasMetamask = window.ethereum ? true : false;
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
@@ -1051,7 +1051,7 @@ export default {
             this.editor.setContent(this.editorPlaceholder)
           }
           this.validateDescription()
-        },      
+        },
         extensions: [
           new Bold(),
           new Italic(),
@@ -1065,8 +1065,8 @@ export default {
           new Code(),
           new History(),
           new CustomCodeBlock(),
-          new CustomHardBreak(),        
-          new HorizontalRule(),   
+          new CustomHardBreak(),
+          new HorizontalRule(),
           new TrailingNode({
             node: 'paragraph',
             notAfter: ['paragraph'],
@@ -1106,7 +1106,7 @@ export default {
           }
           let serialized = JSON.stringify(cookie)
           Cookies.set(`devcash_postcache`, serialized, { secure: process.env.NODE_ENV === 'production' })
-        }      
+        }
       }
     }, 5000)
     // Restore data
@@ -1143,7 +1143,7 @@ export default {
     if (this.editor) {
       this.editor.destroy()
     }
-  },  
+  },
   deactivated() {
     if (this.backupInterval) {
       clearInterval(this.backupInterval)
