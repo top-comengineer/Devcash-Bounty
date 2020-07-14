@@ -364,7 +364,7 @@
             v-for="(item, i) in bounty.activity"
             :item="item"
             :key="i"
-            :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : item.type ? item.type : 'submissionMade'"
+            :messageType="item.type ? item.type : 'submissionMade'"
             :address="item.creator"
             :date="formatDate(item.createdAt)"
           />

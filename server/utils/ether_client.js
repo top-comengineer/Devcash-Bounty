@@ -260,7 +260,6 @@ class EtherClient {
       event_logs.orderedFeedback = orderedFeedback
 
       console.log(event_logs)
-      console.log(event_logs.approved[0].eventInfo)
       console.log("Finished gathering event logs")
       this.event_logs = event_logs;
     } catch (e) {
