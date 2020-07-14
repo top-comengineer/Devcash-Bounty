@@ -260,6 +260,7 @@ class EtherClient {
       event_logs.orderedFeedback = orderedFeedback
 
       console.log(event_logs)
+      console.log(event_logs.approved[0].eventInfo)
       console.log("Finished gathering event logs")
       this.event_logs = event_logs;
     } catch (e) {
@@ -755,6 +756,22 @@ class EtherClient {
       eventLogs.push(log);
     }
     return eventLogs;
+  }
+
+  getSubmissionApprovedTimestamp(uI, sI) {
+    let approved = this.event_logs.approved.filter((ap) => ap.ubountyIndex == uI && ap.submissionIndex == sI)
+    if (approved.length == 0) {
+      return null
+    }
+    return approved[0].timestamp
+  }
+
+  getSubmissionRejectedTimestamp(uI, sI) {
+    let rejected = this.event_logs.rejected.filter((ap) => ap.ubountyIndex == uI && ap.submissionIndex == sI)
+    if (rejected.length == 0) {
+      return null
+    }
+    return rejected[0].timestamp
   }
 
   getSubmissionStatus(uI, sI) {

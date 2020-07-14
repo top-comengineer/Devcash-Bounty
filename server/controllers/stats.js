@@ -103,13 +103,7 @@ module.exports.getOverviewStats = async (req, res, next) => {
         } else {
           a.disregard = true
         }
-        if (a.approved) {
-          a.type = "submissionApproved"
-        } else if (a.status == "rejected") {
-          a.type = "submissionRejected"
-        } else {
-          a.type = a.perspective == "hunter" ? "submissionSent" : "submissionReceived"
-        }        
+        a.type = a.perspective == "hunter" ? "submissionSent" : "submissionReceived"
       } else {
         // Bounties
         a.name = a.title
@@ -134,6 +128,28 @@ module.exports.getOverviewStats = async (req, res, next) => {
       delete a.submissions
       return a
     })
+
+    // Add approved
+    for (const a of activity.filter(a => a.submission_data)) {
+      let approvedTS = etherClient.getSubmissionApprovedTimestamp(a.ubounty_id, a.submission_id)
+      if (approvedTS) {
+        let b = Object.assign({}, a)
+        b.type = "submissionApproved"
+        b.createdAt = new Date(parseInt(parseInt(approvedTS) * 1000))
+        activity.push(b)
+      }
+    }
+
+    // Add rejected
+    for (const a of activity.filter(a => a.submission_data)) {
+      let rejectedTS = etherClient.getSubmissionRejectedTimestamp(a.ubounty_id, a.submission_id)
+      if (rejectedTS) {
+        let b = Object.assign({}, a)
+        b.type = "submissionRejected"
+        b.createdAt = new Date(parseInt(parseInt(rejectedTS) * 1000))
+        activity.push(b)
+      }
+    }
 
     // Add rewarded
     for (const reward of hunterRewards) {
