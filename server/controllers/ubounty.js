@@ -29,7 +29,7 @@ module.exports.getUBounties = async (req, res, next) => {
     if (page < 1) {
       return res.status(422).json({ error: "Page cannot be less than 1" });
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     let hunter = req.query.hunter
     let hunterQuery
@@ -69,23 +69,23 @@ module.exports.getUBounties = async (req, res, next) => {
     for (let rObj of result.rows) {
       let jObj = rObj.toJSON()
       for (let rSub of jObj.submissions) {
-        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)
         rSub.status = status.status
-        rSub.feedback = status.feedback   
-        rSub.blockHash = status.blockHash    
+        rSub.feedback = status.feedback
+        rSub.blockHash = status.blockHash
         if (rSub.status == "approved") {
-          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
-        }             
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)
+        }
       }
       // Get nAvailable
       let cached = await redis.getUBounty(jObj.id)
-      if (cached) {  
+      if (cached) {
         jObj.available = cached.available
         jObj.bountyAmount = cached.amount
         jObj.weiAmount = cached.weiAmount
       }
       ret.push(jObj)
-    }    
+    }
     return res.status(200).json(
       {
         count: result.count,
@@ -106,7 +106,7 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
     if (page < 1) {
       return res.status(422).json({ error: "Page cannot be less than 1" });
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     let hunter = req.query.hunter
     try {
@@ -130,23 +130,23 @@ module.exports.getPersonalUbounties = async (req, res, next) => {
     for (let rObj of result.rows) {
       let jObj = rObj.toJSON()
       for (let rSub of jObj.submissions) {
-        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)
         rSub.status = status.status
-        rSub.feedback = status.feedback     
-        rSub.blockHash = status.blockHash   
+        rSub.feedback = status.feedback
+        rSub.blockHash = status.blockHash
         if (rSub.status == "approved") {
-          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
-        }            
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)
+        }
       }
       // Get nAvailable
       let cached = await redis.getUBounty(jObj.id)
       if (cached) {
         jObj.available = cached.available
         jObj.bountyAmount = cached.amount
-        jObj.weiAmount = cached.weiAmount        
-      }      
+        jObj.weiAmount = cached.weiAmount
+      }
       ret.push(jObj)
-    }        
+    }
     return res.status(200).json(
       {
         count: result.count,
@@ -167,7 +167,7 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
     if (page < 1) {
       return res.status(422).json({ error: "Page cannot be less than 1" });
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     let creator = req.query.creator
     try {
@@ -191,22 +191,22 @@ module.exports.getCreatorUbounties = async (req, res, next) => {
     for (let rObj of result.rows) {
       let jObj = rObj.toJSON()
       for (let rSub of jObj.submissions) {
-        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+        let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)
         rSub.status = status.status
-        rSub.feedback = status.feedback 
-        rSub.blockHash = status.blockHash       
+        rSub.feedback = status.feedback
+        rSub.blockHash = status.blockHash
         if (rSub.status == "approved") {
-          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
-        }           
+          rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)
+        }
       }
       let cached = await redis.getUBounty(jObj.id)
       if (cached) {
         jObj.available = cached.available
         jObj.bountyAmount = cached.amount
-        jObj.weiAmount = cached.weiAmount    
-      }         
+        jObj.weiAmount = cached.weiAmount
+      }
       ret.push(jObj)
-    }        
+    }
     return res.status(200).json(
       {
         count: result.count,
@@ -245,19 +245,19 @@ module.exports.getUBounty = async (req, res, next) => {
     result = result.toJSON()
     result.descriptionMeta = descriptionMeta
     for (let rSub of result.submissions) {
-      let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)  
+      let status = etherClient.getSubmissionStatus(rSub.ubounty_id, rSub.submission_id)
       rSub.status = status.status
-      rSub.feedback = status.feedback    
-      rSub.blockHash = status.blockHash    
+      rSub.feedback = status.feedback
+      rSub.blockHash = status.blockHash
       if (rSub.status == "approved") {
-        rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)  
-      }         
+        rSub.overrideAmount = etherClient.getSubmissionAmount(rSub.ubounty_id, rSub.submission_id)
+      }
     }
     let cached = await redis.getUBounty(result.id)
     if (cached) {
       result.available = cached.available
       result.bountyAmount = cached.amount
-      result.weiAmount = cached.weiAmount          
+      result.weiAmount = cached.weiAmount
     }
     // Add rewarded
     let activity = []
@@ -284,7 +284,7 @@ module.exports.getUBounty = async (req, res, next) => {
         createdAt: new Date(parseInt(parseInt(reclaimed.timestamp) * 1000)),
         name: result.title
       })
-    }    
+    }
     activity = activity.concat(result.submissions)
     // Add approved
     for (const a of activity.filter(a => a.submission_data)) {
@@ -305,7 +305,7 @@ module.exports.getUBounty = async (req, res, next) => {
         b.createdAt = new Date(parseInt(parseInt(rejectedTS) * 1000))
         activity.push(b)
       }
-    } 
+    }
     activity.sort((a, b) => {
       let aDt = new Date(a.createdAt)
       let bDt = new Date(b.createdAt)
@@ -314,7 +314,7 @@ module.exports.getUBounty = async (req, res, next) => {
       }
       return -1
     })
-    result.activity = activity    
+    result.activity = activity
     return res.status(200).json(
       result
     )
@@ -359,7 +359,7 @@ module.exports.createUBounty = async (req, res, next) => {
 module.exports.validate = (method) => {
   switch (method) {
     case 'createUBounty': {
-     return [ 
+     return [
         check('creator', 'invalid creator address').exists().isString().custom(
           value => {
             try {
@@ -372,7 +372,7 @@ module.exports.validate = (method) => {
           min: 10,
           max: 50
         }),
-        check('description', "Description must be between 50 and 500 characters").exists().isString().isLength({
+        check('description', "Description must be between 50 and 2500 characters").exists().isString().isLength({
           min: 50,
           max: 2500
         }),
@@ -406,7 +406,7 @@ module.exports.validate = (method) => {
             try {
                 utils.getAddress(value);
             } catch (e) { return false; }
-            return true;            
+            return true;
           }
         ),
         check('contactName', 'Contact name must be between 2 and 25 characters').optional().isString().isLength({
@@ -414,7 +414,7 @@ module.exports.validate = (method) => {
           max: 50
         }),
         check('contactEmail', "Invalid contact email").optional().isEmail()
-       ]   
+       ]
     }
   }
 }

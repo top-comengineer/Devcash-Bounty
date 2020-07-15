@@ -26,7 +26,7 @@ module.exports.getSubmissions = async (req, res, next) => {
       res.status(422).json({ error: "Page cannot be less than 1" });
       return;
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     // Get submissions for given uBounty
     let result = await Submission.findAndCountAll({
@@ -42,12 +42,12 @@ module.exports.getSubmissions = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
       rObj.status = status.status
       rObj.feedback = status.feedback
       rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
-        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)
       }
       ret.push(rObj)
     }
@@ -77,7 +77,7 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
       res.status(422).json({ error: "Page cannot be less than 1" });
       return;
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     // Get submissions that are from bounties created by "creator"
     let result = await Submission.findAndCountAll({
@@ -94,20 +94,20 @@ module.exports.getSubmissionsForBountyCreator = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
       rObj.status = status.status
       rObj.feedback = status.feedback
       rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
-        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
-      }      
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)
+      }
       // Get nAvailable
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
         rObj.ubounty.available = cached.available
         rObj.ubounty.bountyAmount = cached.amount
-        rObj.ubounty.weiAmount = cached.weiAmount         
-      }      
+        rObj.ubounty.weiAmount = cached.weiAmount
+      }
       ret.push(rObj)
     }
     return res.status(200).json(
@@ -137,7 +137,7 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
       res.status(422).json({ error: "Page cannot be less than 1" });
       return;
     }
-    let limit = parseInt(req.query.limit) || 1000; 
+    let limit = parseInt(req.query.limit) || 1000;
     let offset = 0 + (page - 1) * limit
     // Get submissions that are from bounties created by "creator"
     let result = await Submission.findAndCountAll({
@@ -154,20 +154,20 @@ module.exports.getSubmissionsForBountyHunter = async (req, res, next) => {
     let ret = []
     for (let rObj of result.rows) {
       rObj = rObj.toJSON()
-      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)  
+      let status = etherClient.getSubmissionStatus(rObj.ubounty_id, rObj.submission_id)
       rObj.status = status.status
       rObj.feedback = status.feedback
       rObj.blockHash = status.blockHash
       if (rObj.status == "approved") {
-        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)  
-      }      
+        rObj.overrideAmount = etherClient.getSubmissionAmount(rObj.ubounty_id, rObj.submission_id)
+      }
       // Get nAvailable
       let cached = await redis.getUBounty(rObj.ubounty.id)
       if (cached) {
         rObj.ubounty.available = cached.available
         rObj.ubounty.bountyAmount = cached.amount
-        rObj.ubounty.weiAmount = cached.weiAmount            
-      }         
+        rObj.ubounty.weiAmount = cached.weiAmount
+      }
       ret.push(rObj)
     }
     return res.status(200).json(
@@ -191,7 +191,7 @@ module.exports.getSingleSubmission = async (req, res, next) => {
     let submissionId = parseInt(req.query.submission_id)
     if (isNaN(submissionId)) {
       return res.status(422).json({ error: "submission_id parameter is required" });
-    }    
+    }
     let result = await Submission.findOne({
       where: {
         [Op.and]: [{submission_id: submissionId}, {ubounty_id:bountyId}],
@@ -204,20 +204,20 @@ module.exports.getSingleSubmission = async (req, res, next) => {
       )
     }
     result = result.toJSON()
-    let status = etherClient.getSubmissionStatus(result.ubounty_id, result.submission_id)  
+    let status = etherClient.getSubmissionStatus(result.ubounty_id, result.submission_id)
     result.status = status.status
     result.feedback = status.feedback
     result.blockHash = status.blockHash
     if (result.status == "approved") {
-      result.overrideAmount = etherClient.getSubmissionAmount(result.ubounty_id, result.submission_id)  
-    }    
+      result.overrideAmount = etherClient.getSubmissionAmount(result.ubounty_id, result.submission_id)
+    }
     // Get nAvailable
     let cached = await redis.getUBounty(result.ubounty_id)
     if (cached) {
       result.ubounty.available = cached.available
       result.ubounty.bountyAmount = cached.amount
-      result.ubounty.weiAmount = cached.weiAmount          
-    }       
+      result.ubounty.weiAmount = cached.weiAmount
+    }
     return res.status(200).json(
       result
     )
@@ -274,7 +274,7 @@ module.exports.createSubmission = async (req, res, next) => {
 module.exports.validate = (method) => {
   switch (method) {
     case 'createSubmission': {
-     return [ 
+     return [
         check('creator', 'invalid creator address').exists().isString().custom(
           value => {
             try {
@@ -283,17 +283,17 @@ module.exports.validate = (method) => {
             return true;
           }
         ),
-        check('submissionData', "Data must be between 50 and 1000 characters").exists().isString().isLength({
+        check('submissionData', "Data must be between 5 and 2500 characters").exists().isString().isLength({
           min: 5,
-          max: 1000
+          max: 2500
         }),
         check('ubounty_id', "ubounty_id must be a number").exists().isNumeric(),
         check('contactName', 'Contact name must be between 2 and 25 characters').optional().isString().isLength({
           min: 2,
           max: 50
         }),
-        check('contactEmail', "Invalid contact email").optional().isEmail()        
-       ]   
+        check('contactEmail', "Invalid contact email").optional().isEmail()
+       ]
     }
   }
 }
