@@ -757,6 +757,22 @@ class EtherClient {
     return eventLogs;
   }
 
+  getSubmissionApprovedTimestamp(uI, sI) {
+    let approved = this.event_logs.approved.filter((ap) => ap.ubountyIndex == uI && ap.submissionIndex == sI)
+    if (approved.length == 0) {
+      return null
+    }
+    return approved[0].timestamp
+  }
+
+  getSubmissionRejectedTimestamp(uI, sI) {
+    let rejected = this.event_logs.rejected.filter((ap) => ap.ubountyIndex == uI && ap.submissionIndex == sI)
+    if (rejected.length == 0) {
+      return null
+    }
+    return rejected[0].timestamp
+  }
+
   getSubmissionStatus(uI, sI) {
     let ret
     let feedback

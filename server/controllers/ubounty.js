@@ -286,6 +286,26 @@ module.exports.getUBounty = async (req, res, next) => {
       })
     }    
     activity = activity.concat(result.submissions)
+    // Add approved
+    for (const a of activity.filter(a => a.submission_data)) {
+      let approvedTS = etherClient.getSubmissionApprovedTimestamp(a.ubounty_id, a.submission_id)
+      if (approvedTS) {
+        let b = Object.assign({}, a)
+        b.type = "submissionApproved"
+        b.createdAt = new Date(parseInt(parseInt(approvedTS) * 1000))
+        activity.push(b)
+      }
+    }
+    // Add rejected
+    for (const a of activity.filter(a => a.submission_data)) {
+      let rejectedTS = etherClient.getSubmissionRejectedTimestamp(a.ubounty_id, a.submission_id)
+      if (rejectedTS) {
+        let b = Object.assign({}, a)
+        b.type = "submissionRejected"
+        b.createdAt = new Date(parseInt(parseInt(rejectedTS) * 1000))
+        activity.push(b)
+      }
+    } 
     activity.sort((a, b) => {
       let aDt = new Date(a.createdAt)
       let bDt = new Date(b.createdAt)
@@ -354,7 +374,7 @@ module.exports.validate = (method) => {
         }),
         check('description', "Description must be between 50 and 500 characters").exists().isString().isLength({
           min: 50,
-          max: 1000
+          max: 2500
         }),
         check('category', "Invalid categoriy").exists().isString().custom(
           value => {

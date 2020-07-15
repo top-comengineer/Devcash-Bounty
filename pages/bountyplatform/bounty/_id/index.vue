@@ -83,7 +83,7 @@
       <div class="w-full md:w-1/2 flex flex-col justify-center items-start md:items-end my-3">
         <a
           :href="'https://etherscan.io/address/'+bounty.bountyChest"
-          class="hover:underline flex flex-col justify-center items-center md:items-end"
+          class="hover:underline flex flex-col justify-center md:items-end"
           target="_blank"
         >
           <!-- Bounty Amount in Devcash -->
@@ -364,7 +364,7 @@
             v-for="(item, i) in bounty.activity"
             :item="item"
             :key="i"
-            :messageType="item.status == 'rejected' ? 'submissionRejected' : item.approved ? 'submissionApproved' : item.type ? item.type : 'submissionMade'"
+            :messageType="item.type ? item.type : 'submissionMade'"
             :address="item.creator"
             :date="formatDate(item.createdAt)"
           />

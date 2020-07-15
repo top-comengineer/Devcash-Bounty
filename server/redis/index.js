@@ -10,7 +10,13 @@ const prefix = process.env.NODE_ENV == "production" ? "devcash" : "devcash:dev";
 class RedisDB {
   constructor() {
     // TODO allow customizing host/port
-    this.redis = new Redis();
+    let redisDB = parseInt(process.env.REDIS_DB)
+    if (isNaN(redisDB)) {
+      redisDB = 0
+    }
+    this.redis = new Redis({
+      db: redisDB
+    });
     this.jsonCache = new JSONCache(this.redis);
     this.locker = redislock.createLock(this.redis, { timeout: 600000 });
     this.cronLockerOne = redislock.createLock(this.redis, { timeout: 180000 });
