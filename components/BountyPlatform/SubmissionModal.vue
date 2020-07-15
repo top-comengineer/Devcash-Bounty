@@ -162,7 +162,7 @@ import { CustomCodeBlock } from '~/plugins/tiptap/CustomCodeBlock'
 import * as Cookies from "js-cookie"
 
 const minDescriptionCount = 5;
-const maxDescriptionCount = 1000;
+const maxDescriptionCount = 2500;
 
 export default {
   layout: "bountyPlatform",
@@ -219,8 +219,8 @@ export default {
           new Code(),
           new History(),
           new CustomCodeBlock(),
-          new CustomHardBreak(),        
-          new HorizontalRule(),   
+          new CustomHardBreak(),
+          new HorizontalRule(),
           new TrailingNode({
             node: 'paragraph',
             notAfter: ['paragraph'],
@@ -243,7 +243,7 @@ export default {
         return 0
       }
       return this.turnDownSvc.turndown(this.editor.getHTML()).length
-    },    
+    },
     isPlaceholderVisible() {
       if (this.editor) {
         return this.editor.getHTML().trim() == this.submissionEditorPlaceholder.trim()
@@ -279,7 +279,7 @@ export default {
       }
       if (!isValid) {
         this.errorList[1] = "#submissionDescription"
-      }    
+      }
       return isValid
     },
     validateContactName(){
@@ -288,7 +288,7 @@ export default {
         isValid = true
       } else if (this.contactName.length < this.minContactNameLength || this.contactName.length > this.maxContactNameLength) {
         isValid = false
-        this.contactNameError = true 
+        this.contactNameError = true
       } else {
         this.contactNameError = false
       }
@@ -300,7 +300,7 @@ export default {
     validateEmail(){
       let isValid = true
       if (this.contactEmail.length == 0) {
-        isValid = true      
+        isValid = true
       } else if (!this.emailRegex.test(this.contactEmail)) {
         isValid = false
         this.emailError = true
@@ -309,7 +309,7 @@ export default {
       }
       if (!isValid) {
         this.errorList[1] = "#submissionContactEmail"
-      }      
+      }
       return isValid
     },
     validateForm() {
@@ -346,7 +346,7 @@ export default {
                 text: this.$t('notification.submissionCreatedDescription'),
                 data: {},
                 duration: -1
-              });              
+              });
             }
           } catch (e) {
             if ('code' in e && e.code == 4001) {
@@ -360,7 +360,7 @@ export default {
               })
               console.log(e)
             }
-          }          
+          }
         } finally {
           this.confirmWindowOpen = false
           this.submissionLoading = false
@@ -370,7 +370,7 @@ export default {
        if (keys.length > 0) {
          keys = keys.sort((a, b) => parseInt(a)-parseInt(b))
          this.$scrollTo(this.errorList[keys[0]], 0, { container: "#submissionModal"})
-       }        
+       }
       }
     },
     showLinkMenu(attrs) {
@@ -395,14 +395,14 @@ export default {
       turnDownSvc: new TurndownService({
         headingStyle: 'atx',
         codeBlockStyle: 'fenced'
-      }),      
+      }),
       submissionLoading: false,
       isCloseHovered: false,
       isCloseFocused: false,
       minDescriptionCount: minDescriptionCount,
       maxDescriptionCount: maxDescriptionCount,
       contactName: "",
-      contactEmail: "", 
+      contactEmail: "",
       minContactNameLength: 2,
       maxContactNameLength: 50,
       contactNameError: false,
