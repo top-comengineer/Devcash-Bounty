@@ -1,7 +1,7 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center px-1 md:px-4">
     <GreetingCard class="mb-2" type="explore" />
-    <CategoriesBar class="my-2" />
+    
     <div v-if="loading" class="w-full flex flex-col justify-center items-center">
       <BountyCardPlaceholder class="my-2" v-for="(n, i ) in 10" :key="i" />
     </div>
@@ -99,7 +99,7 @@ export default {
         this.filteredBounties = this.filteredBounties.filter((bounty) => bounty.title.toLowerCase().includes(this.$store.state.devcashData.exploreSearchText))
       }
       let categoriesToExclude = []
-      if (!this.categories.create) {
+     /** if (!this.categories.create) {
         categoriesToExclude.push('create')
       }
       if (!this.categories.enhance) {
@@ -117,6 +117,7 @@ export default {
       if (!this.categories.other) {
         categoriesToExclude.push('other')
       }
+      **/
       if (categoriesToExclude.length > 0) {
         this.filteredBounties = this.filteredBounties.filter((bounty) => !categoriesToExclude.includes(bounty.category))
       }       
