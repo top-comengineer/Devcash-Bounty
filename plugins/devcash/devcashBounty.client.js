@@ -350,7 +350,7 @@ export class DevcashBounty {
       // Portis
       const Portis = require("@portis/web3")
       const portis = new Portis(
-        "5395216c-1124-49de-bfbe-7893409825be",
+        "2c71706f-4f39-41fb-b477-ed4eec1c88fa",
         ethNetwork
       );
       const portisProvider = portis.provider;
