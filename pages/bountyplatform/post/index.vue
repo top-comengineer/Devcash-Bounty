@@ -163,6 +163,55 @@
             class="text-c-danger text-xs px-3 mt-2"
           >{{ numBountiesError?$t('bountyPlatform.post.numBountiesError'):'&nbsp;' }}</p>
         </div>
+         <div class="hidden md:block md:w-10 lg:w-16"></div>
+        <!-- Deadline -->
+        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
+          <label for="bountyDeadline" class="text-xl font-bold px-3">
+            {{$t('bountyPlatform.post.bountyDeadline')}}
+            <span
+              class="font-normal text-base opacity-75"
+            >{{$t('bountyPlatform.post.optional')}}</span>
+          </label>
+          <div class="w-full flex flex-row items-center relative mt-2">
+            <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
+              <input
+                id="bountyDeadline"
+                v-model="datePickerValueStr"
+                class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
+                type="text"
+                @focus="showDatePicker=true"
+                @keydown.esc.exact="closePicker"
+                @keydown.tab.exact="closePicker"
+                readonly="true"
+                :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
+                @blur="validateDeadline"
+              />
+              <div class="relative">
+                <transition name="datePickerTransition">
+                  <DatePicker
+                    class="absolute z-50 top-0 mt-2 origin-top-left"
+                    v-if="showDatePicker"
+                    :closePicker="closePicker"
+                    :value="datePickerValue"
+                    :datePicked="datePickerSet"
+                    :futureOnly="true"
+                  />
+                </transition>
+              </div>
+            </div>
+            <!-- Clear button -->
+            <button
+              v-if="datePickerValue!=null || datePickerValueStr != ''"
+              class="btn-primary transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-primary text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
+              @click.prevent="datePickerValueStr=''; datePickerValue=null"
+            >
+              <Icon class="w-6 h-6" colorClass="text-c-light" type="cancel" />
+            </button>
+          </div>
+          <p
+            class="text-c-danger text-sm px-3"
+          >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
+        </div>
         <div class="w-full flex flex-row my-3">
           <!-- Bounty Primary -->
           <div class="w-full md:flex-1 flex flex-col my-3">
@@ -253,97 +302,7 @@
           </div>
         </div>
       </div>
-      <!-- Card for Category and Deadline -->
-      <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
-      >
-        <!-- Bounty Category -->
-        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
-          <label
-            for="bountyCategory"
-            class="text-xl font-bold px-3"
-          >{{$t('bountyPlatform.post.bountyCategory')}}</label>
-          <div v-on-clickaway="closeCategoryPicker" class="flex-1 flex flex-col">
-            <!-- Category Input -->
-            <input
-              id="bountyCategory"
-              v-model="categoryValueStr"
-              class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-              type="text"
-              :placeholder="$t('bountyPlatform.post.bountyCategoryPlaceholder')"
-              @focus="showCategoryPicker=true"
-              @keydown.esc.exact="closeCategoryPicker"
-              readonly="true"
-            />
-            <!-- Category Picker -->
-            <div class="relative">
-              <transition name="datePickerTransition">
-                <CategoryPicker
-                  class="absolute z-40 top-0 mt-2 origin-top-left"
-                  v-if="showCategoryPicker"
-                  :closePicker="closeCategoryPicker"
-                  :categories="Object.values(categories)"
-                  :categoryPicked="categoryPicked"
-                  :currentCategory="categoryValueStr"
-                />
-              </transition>
-            </div>
-          </div>
-          <p
-            class="text-c-danger text-xs px-3 mt-2"
-          >{{ categoryError?$t('bountyPlatform.post.needCategoryError'):'&nbsp;' }}</p>
-        </div>
-        <!-- Divider -->
-        <div class="hidden md:block md:w-10 lg:w-16"></div>
-        <!-- Deadline -->
-        <div class="w-full md:flex-1 flex flex-col justify-end my-3">
-          <label for="bountyDeadline" class="text-xl font-bold px-3">
-            {{$t('bountyPlatform.post.bountyDeadline')}}
-            <span
-              class="font-normal text-base opacity-75"
-            >{{$t('bountyPlatform.post.optional')}}</span>
-          </label>
-          <div class="w-full flex flex-row items-center relative mt-2">
-            <div v-on-clickaway="closePicker" class="flex-1 flex flex-col">
-              <input
-                id="bountyDeadline"
-                v-model="datePickerValueStr"
-                class="bg-c-background-ter border-c-background-ter text-c-text w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2"
-                type="text"
-                @focus="showDatePicker=true"
-                @keydown.esc.exact="closePicker"
-                @keydown.tab.exact="closePicker"
-                readonly="true"
-                :placeholder="$t('bountyPlatform.post.bountyDeadlinePlaceholder')"
-                @blur="validateDeadline"
-              />
-              <div class="relative">
-                <transition name="datePickerTransition">
-                  <DatePicker
-                    class="absolute z-50 top-0 mt-2 origin-top-left"
-                    v-if="showDatePicker"
-                    :closePicker="closePicker"
-                    :value="datePickerValue"
-                    :datePicked="datePickerSet"
-                    :futureOnly="true"
-                  />
-                </transition>
-              </div>
-            </div>
-            <!-- Clear button -->
-            <button
-              v-if="datePickerValue!=null || datePickerValueStr != ''"
-              class="btn-primary transform hover:scale-md focus:scale-md transition-all duration-200 ease-out origin-bottom-left bg-c-primary text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md p-2 ml-3"
-              @click.prevent="datePickerValueStr=''; datePickerValue=null"
-            >
-              <Icon class="w-6 h-6" colorClass="text-c-light" type="cancel" />
-            </button>
-          </div>
-          <p
-            class="text-c-danger text-sm px-3"
-          >{{ deadlineError?$t('bountyPlatform.post.deadlineError'):'&nbsp;' }}</p>
-        </div>
-      </div>
+     
       <!-- Card for Contact Name and Email -->
       <div
         class="bg-c-background-sec shadow-lg w-full flex flex-row flex-wrap items-end relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 xl:px-24 mt-1 md:mt-2"
