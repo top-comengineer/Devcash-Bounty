@@ -494,8 +494,8 @@ export default {
       showCategoryPicker: false,
       datePickerValue: null,
       datePickerValueStr: "",
-      categoryValueStr:"",
-      categoryValue: null,
+      categoryValueStr:"other",
+      categoryValue:"other",
       submitLoading: false,
       categories: {},
       // Form validation
