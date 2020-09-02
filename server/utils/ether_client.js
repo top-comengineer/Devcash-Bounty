@@ -38,14 +38,14 @@ class EtherClient {
     let tokenContract;
     let uBCContract;
 
-    
+
     // Etherscan provider (no signer)
     provider = new ethers.getDefaultProvider(
       ethNetwork,
       {
         infura: {
-          projectId: process.env.INFURA_PROJECT_ID || '64074292bca44137af981e11f413eae7',
-          projectSecret: process.env.INFURA_PROJECT_SECRET || '8bddd32c91d34bdc963f435d22809184'
+          projectId: process.env.INFURA_PROJECT_ID || '3ec2020d08084212a43092fd30e1b1ef',
+          projectSecret: process.env.INFURA_PROJECT_SECRET || 'bc74f955557243ada6f9750ff049dc3f'
         },
         etherscan: process.env.ETHERSCAN_SECRET || 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
       }
@@ -167,7 +167,7 @@ class EtherClient {
       let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
       let toBlock = await this.provider.getBlockNumber()
 
-      console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)    
+      console.log(`Gathering event logs from ${fromBlock} TO ${toBlock}`)
 
       if (event_logs_cache) {
         this.event_logs = event_logs_cache
