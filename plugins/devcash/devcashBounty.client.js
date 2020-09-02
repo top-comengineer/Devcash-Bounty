@@ -17,7 +17,7 @@ export const WalletProviders = {
 };
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+const ethNetwork = "ropsten"//process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
 export class DevcashBounty {
   constructor(async_param) {
@@ -141,13 +141,13 @@ export class DevcashBounty {
             vueComponent.$store.commit("devcashData/setProvider", null);
             vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
             vueComponent.$store.commit("devcash/setConnector", null);
-            vueComponent.$root.$emit('connectorSet', null)    
+            vueComponent.$root.$emit('connectorSet', null)
             vueComponent.$notify({
               group: 'main',
               title: vueComponent.$t('notification.unknownNetworkTitle'),
               text: vueComponent.$t('notification.unknownNetworkDescription'),
               data: {}
-            })    
+            })
             console.log(e)
           } else {
             console.log(e)
@@ -173,7 +173,7 @@ export class DevcashBounty {
         text: vueComponent.$t('notification.submissionRejectedApprovedDescription'),
         data: {},
         duration: -1,
-      });            
+      });
     } else {
       await vueComponent.$store.state.devcash.connector.approve(submission.ubounty.id, submission.submission_id, feedback)
       vueComponent.$store.state.devcashData.pendingSubStatus.push({
@@ -187,7 +187,7 @@ export class DevcashBounty {
         text: vueComponent.$t('notification.submissionRejectedApprovedDescription'),
         data: {},
         duration: -1
-      });        
+      });
     }
     } catch (e) {
       if ('code' in e && e.code == 4001) {
@@ -204,7 +204,7 @@ export class DevcashBounty {
     } finally {
       vueComponent.isConfirmModalOpen = false;
       vueComponent.confirmWindowOpen = false
-    }    
+    }
   }
 
   /**
@@ -235,9 +235,9 @@ export class DevcashBounty {
 
   /**
    * signIn() - Sign in to specified provider
-   * 
+   *
    * @param {Component} Vue component
-   * @param {*} provider 
+   * @param {*} provider
    */
   static async signIn(vueComponent, provider, hasMetamask, messageToSign) {
     if (provider == WalletProviders.metamask && !hasMetamask) {
@@ -277,13 +277,13 @@ export class DevcashBounty {
         vueComponent.$store.commit("devcashData/setProvider", null);
         vueComponent.$store.commit("devcashData/setLoggedInAccount", null);
         vueComponent.$store.commit("devcash/setConnector", null);
-        vueComponent.$root.$emit('connectorSet', null)    
+        vueComponent.$root.$emit('connectorSet', null)
         vueComponent.$notify({
           group: 'main',
           title: vueComponent.$t('notification.unknownNetworkTitle'),
           text: vueComponent.$t('notification.unknownNetworkDescription'),
           data: {}
-        })    
+        })
         console.log(e)
       } else {
         console.log(e)
@@ -293,7 +293,7 @@ export class DevcashBounty {
 
   /**
    * signOut() - trigger sign out
-   * 
+   *
    * @param {Component} Vue component
    */
   static signOut(vueComponent) {
@@ -531,7 +531,7 @@ export class DevcashBounty {
     }
     if (contactEmail && contactEmail.length > 0) {
       ubounty.contactEmail = contactEmail
-    }    
+    }
     if (hasHunter) {
       ubounty.hunter = hunter;
     }
@@ -549,14 +549,14 @@ export class DevcashBounty {
     let submission = {
       creator: creator,
       submissionData: data,
-      ubounty_id: ubounty_id,    
+      ubounty_id: ubounty_id,
     };
     if (contactName && contactName.length > 0) {
       submission.contactName = contactName
     }
     if (contactEmail && contactEmail.length > 0 && !emailRegexp.test(contactEmail)) {
       throw new InvalidEmailError("Contact email is invalid");
-    }    
+    }
     if (contactEmail && contactEmail.length > 0) {
       submission.contactEmail = contactEmail
     }
