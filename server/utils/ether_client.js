@@ -10,9 +10,9 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const eventLogDefaultFromBlock = 8195113//process.env.NODE_ENV === 'production' ? 10451865 : 8195113;
+const eventLogDefaultFromBlock = process.env.NODE_ENV === 'production' ? 10451865 : 8195113;
 
-const ethNetwork = "ropsten"//process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
 
 class EtherClient {
   constructor() {
