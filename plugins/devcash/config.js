@@ -1,4 +1,6 @@
-module.exports.tokenAddress = process.env.NODE_ENV === 'production' ? "0x0fca8Fdb0FB115A33BAadEc6e7A141FFC1bC7d5a" : "0x0f54093364b396461AAdf85C015Db597AAb56203"
+// Defaults to ropsten contract unless overriden in environment
+// DO NOT CHANGE ENV VARIABLE NAME WITHOUT RECONFIGURING SERVER
+module.exports.tokenAddress = process.env.TOKEN_ADDRESS || "0x4732e81cf99c4da963b80279aa291bf42c5f4cbd"
 module.exports.tokenABI = [
 	{
 		"inputs": [],
@@ -316,7 +318,9 @@ module.exports.tokenABI = [
 ]
 
 //uBountyCreator
-module.exports.uBCAddress = process.env.NODE_ENV === 'production' ? "0xf0172b2F74CD0541aFCa7b25592082721c11C5fC" : "0xeFF1A3fDa2136222b35a5C81eadb4dA06d1510dA"
+// Defaults to ropsten contract unless overriden in environment
+// DO NOT CHANGE ENV VARIABLE NAME WITHOUT RECONFIGURING SERVER
+module.exports.uBCAddress = process.env.UBOUNTY_ADDRESS || "0x0f54093364b396461AAdf85C015Db597AAb56203"
 module.exports.uBCABI = [
 	{
 		"inputs": [],

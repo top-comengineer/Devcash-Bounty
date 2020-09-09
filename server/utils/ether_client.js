@@ -12,7 +12,7 @@ const {
 
 const eventLogDefaultFromBlock = process.env.NODE_ENV === 'production' ? 10451865 : 8195113;
 
-const ethNetwork = process.env.NODE_ENV !== "production" ? "ropsten" : "mainnet"
+const ethNetwork = process.env.ETH_NETWORK || "ropsten"
 
 class EtherClient {
   constructor() {
