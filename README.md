@@ -2,7 +2,7 @@
 
 > Devcash frontend
 
-## Build Setup
+## Build Setup!
 
 ``` bash
 # install dependencies
@@ -73,9 +73,9 @@ $ cd ../../etc/systemd/system
 # create new service
 $ sudo vim devcash.service
 
-# Configure it like this
+```
 ![Image](devcash-service.png)
-
+``` bash
 
 # Test
 $ cd
@@ -90,11 +90,10 @@ $ sudo systemctl restart devcash
 $ cd
 $ sudo systemctl status devcash.service
 
-![Image](status.png)
-
-
-
 ```
+
+![Image](images/status.png)
+
 
 
 
