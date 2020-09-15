@@ -70,18 +70,32 @@ grant all privileges on database database_name to user_name;
 # Enter systemd directory
 $ cd ../../etc/systemd/system
 
-# create new serivice
+# create new service
 $ sudo vim devcash.service
 
 # Configure it like this
+![GitHub Logo](/images/devcash-service.png)
 
 # Test
 $ cd
-$ sudo systemctl start devcash.service
+$ sudo systemctl start devcash
+
+# Re-test
+$ cd
+$ sudo systemctl daemon-reload
+$ sudo systemctl restart devcash
+
+#Check status
+$ cd
+$ sudo systemctl status devcash.service
+
+![GitHub Logo](/images/status.png)
 
 
 
-``` bash
+```
+
+
 
 ### Install Devcash-Bounty-Platform
 
