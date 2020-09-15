@@ -74,7 +74,7 @@ $ cd ../../etc/systemd/system
 $ sudo vim devcash.service
 
 # Configure it like this
-![Devcash-Service](/images/devcash-service.png)
+![Devcash-Service](images/devcash-service.png)
 
 # Test
 $ cd
