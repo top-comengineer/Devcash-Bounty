@@ -74,7 +74,7 @@ $ cd ../../etc/systemd/system
 $ sudo vim devcash.service
 
 # Configure it like this
-![GitHub Logo](/images/devcash-service.png)
+![Devcash-Service](/images/devcash-service.png)
 
 # Test
 $ cd
@@ -89,7 +89,7 @@ $ sudo systemctl restart devcash
 $ cd
 $ sudo systemctl status devcash.service
 
-![GitHub Logo](/images/status.png)
+![Status](/images/status.png)
 
 
 
