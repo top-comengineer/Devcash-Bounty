@@ -74,7 +74,7 @@ $ cd ../../etc/systemd/system
 $ sudo vim devcash.service
 
 # Configure it like this
-![Image](https://github.com/BlockDevsUnited/Devcash-Bounty-Platform/blob/master/images/devcash-service.png?raw=true)
+![Image](images/devcash-service.png)
 
 # Test
 $ cd
