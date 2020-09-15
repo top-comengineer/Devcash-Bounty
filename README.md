@@ -74,7 +74,8 @@ $ cd ../../etc/systemd/system
 $ sudo vim devcash.service
 
 # Configure it like this
-![Image](images/devcash-service.png)
+![Image](devcash-service.png)
+
 
 # Test
 $ cd
@@ -89,7 +90,7 @@ $ sudo systemctl restart devcash
 $ cd
 $ sudo systemctl status devcash.service
 
-![Image](https://github.com/BlockDevsUnited/Devcash-Bounty-Platform/blob/master/images/status.png?raw=true)
+![Image](status.png)
 
 
 
