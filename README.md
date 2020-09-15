@@ -74,7 +74,7 @@ $ cd ../../etc/systemd/system
 $ sudo vim devcash.service
 
 ```
-![Image](devcash-service.png)
+![Image](images/devcash-service.png)
 ``` bash
 
 # Test
