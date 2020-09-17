@@ -22,10 +22,7 @@ const app = express();
 
 // Import and Set Nuxt.js options
 const config = require('../nuxt.config.js')
-
-
 config.dev = process.env.NODE_ENV !== 'production'
-console.log("config.dev = " + config.dev)
 
 async function start() {
   // Init Nuxt.js
@@ -57,7 +54,34 @@ async function start() {
   // Cookie parser
   app.use(cookieParser())
   // Give nuxt middleware to express
-  app.use(nux om chain
+  app.use(nuxt.render)
+
+  // Listen the server
+  app.listen(port, host)
+  consola.ready({
+    message: `Server listening on http://${host}:${port}`,
+    badge: true
+  })
+}
+
+const redis = new RedisDB()
+
+async function setupEthersJobs() {
+  // TODO - set sane cron intervals for production
+
+  // Fetch event logs
+  await etherClient.gatherEventLogs()
+  // Every 5 minutes update on-chain bounty cache 
+  cron.schedule("*/5 * * * *", async function() {
+    await redis.updateBountyCache(etherClient)
+  });
+  cron.schedule("*/30 * * * *", async function() {
+    await etherClient.gatherEventLogs()
+  });  
+  // Listen to bounty event to confirm it
+  etherClient.uBCContract.on("created", async (uBountyIndex, event) => {
+    console.log(`event: Bounty ${uBountyIndex} created`)
+    // Retrieve bounty from chain
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
     await redis.addBounty(uBounty)
@@ -70,7 +94,7 @@ async function start() {
     // Retrieve bounty and submission with hashes
     let uBounty = await etherClient.getUBounty(uBountyIndex)
     // Update in cache
-    await redis.addBounty(uBounty)
+    await redis.addBounty(uBounty)  
     uBounty.submissions.forEach(async submission => {
       if (submission.index == submissionIndex) {
         await verifyAndReleaseSubmissions([submission])
@@ -95,7 +119,7 @@ async function start() {
             }
           })
         }
-      })
+      })    
     }
   })*/
   // Approved
@@ -109,12 +133,12 @@ async function start() {
           [Op.and]: [{submission_id: submissionIndex}, {ubounty_id:uBountyIndex}],
         },
       },
-    );
+    );    
   })
   // Rejected
   etherClient.uBCContract.on("rejected", async (uBountyIndex, submissionIndex, feedback) => {
     etherClient.overrideStatus(uBountyIndex, submissionIndex, "rejected", feedback)
-  })
+  })    
   // Rewarded
   etherClient.uBCContract.on("rewarded", async (uBountyIndex, submissionIndex, Hunter, tokenAmount, weiAmount) => {
     // event: rewarded 13, 0, 0, 10000000000, 0x41f2909e7442984DEcf8b7516Bb9Bf47ECfd641d
@@ -172,7 +196,7 @@ async function start() {
       return lock.release();
     }, (err) => {
       console.log(err)
-    })
+    })    
   })
   // Update bounty statuses and amounts
   cron.schedule("*/5 * * * *", async function() {
@@ -213,7 +237,7 @@ async function start() {
       return lock.release();
     }, (err) => {
       console.log(err)
-    })
+    })      
   })
   // Delete stale staged records
   cron.schedule("0 * * * *", async function() {
