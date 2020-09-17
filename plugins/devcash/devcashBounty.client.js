@@ -365,10 +365,6 @@ export class DevcashBounty {
       provider = new ethers.getDefaultProvider(
         ethNetwork,
         {
-          infura: {
-            projectId: '3ec2020d08084212a43092fd30e1b1ef',
-            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
-          },
           etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
         }        
       );
@@ -406,10 +402,6 @@ export class DevcashBounty {
       provider = new ethers.getDefaultProvider(
         ethNetwork,
         {
-          infura: {
-            projectId: '3ec2020d08084212a43092fd30e1b1ef',
-            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
-          },
           etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
         }          
       );
