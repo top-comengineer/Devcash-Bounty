@@ -363,7 +363,14 @@ export class DevcashBounty {
     } else {
       // Etherscan provider (no signer)
       provider = new ethers.getDefaultProvider(
-        ethNetwork
+        ethNetwork,
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }        
       );
       needsSigner = false;
     }
@@ -397,7 +404,14 @@ export class DevcashBounty {
     } else {
       // Use default/etherscan provider
       provider = new ethers.getDefaultProvider(
-        ethNetwork
+        ethNetwork,
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }          
       );
       tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
