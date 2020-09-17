@@ -17,7 +17,7 @@ export const WalletProviders = {
 };
 
 const emailRegexp = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-const ethNetwork = process.env.ETH_NETWORK || "ropsten"
+const ethNetwork = process.env.NUXT_ENV_ETH_NETWORK || "ropsten"
 
 export class DevcashBounty {
   constructor(async_param) {

@@ -10,7 +10,7 @@ const {
   uBCABI,
 } = require("../../plugins/devcash/config.js");
 
-const ethNetwork = process.env.ETH_NETWORK || "ropsten"
+const ethNetwork = process.env.NUXT_ENV_ETH_NETWORK || "ropsten"
 
 const eventLogDefaultFromBlock = ethNetwork === 'mainnnet' ? 10451865 : 8195113;
 
