@@ -438,9 +438,8 @@ export class DevcashBounty {
     uBounty.creatorIndex = rawUBounty[3];
     uBounty.bountyChestIndex = rawUBounty[4];
     uBounty.deadline = rawUBounty[5];
-    uBounty.name = rawUBounty[7];
-    uBounty.description = rawUBounty[8];
-    uBounty.infoHash = rawUBounty[9];
+    uBounty.name = rawUBounty[6];
+    uBounty.description = rawUBounty[7];
     uBounty.index = id;
     uBounty.bc = await this.uBCContract.bCList(uBounty.bountyChestIndex);
     uBounty.amount = (
