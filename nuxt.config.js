@@ -97,7 +97,7 @@ module.exports = {
    ** See https://axios.nuxtjs.org/options
    */
   axios: {
-    baseURL: process.env.NODE_ENV === 'production' ? 'https://bdu.dev' : 'http://localhost:3000'
+    baseURL: process.env.NUXT_ENV_APP_URL || 'http://localhost:3000'
   },
   /*
    ** Build configuration

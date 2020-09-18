@@ -703,8 +703,8 @@ export default {
      let dtOptions = {
        timeZone: 'UTC',
        timeZoneName: 'short',
-       timeStyle: 'short',
-       dateStyle: 'short',
+       //timeStyle: 'short',
+       //dateStyle: 'short',
        year: 'numeric',
        month: 'numeric',
        day: 'numeric'
