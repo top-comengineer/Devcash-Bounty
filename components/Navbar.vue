@@ -302,32 +302,17 @@
                 </div>
               </button>
               <!-- Overview Button -->
-            
-               <nuxt-link
-                :to="localePath('bountyplatform-bountyhunter')"
+              <nuxt-link
+                :to="localePath('bountyplatform-overview')"
                 @keydown.esc.exact="hideSignOutModal"
                 @click.native="hideSignOutModal"
                 class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
               >
                 <div class="pl-6 pr-1">
-                  <Icon colorClass="text-c-background" type="bounty-hunter" class="w-6 h-6" />
+                  <Icon colorClass="text-c-background" type="overview" class="w-6 h-6" />
                 </div>
                 <div class="flex flex-row pr-6 pl-1">
-                  <h3 class="whitespace-no-wrap font-bold">{{$t("bountyPlatform.bountyHunter.header")}}</h3>
-                </div>
-              </nuxt-link>
-              
-               <nuxt-link
-                :to="localePath('bountyplatform-bountymanager')"
-                @keydown.esc.exact="hideSignOutModal"
-                @click.native="hideSignOutModal"
-                class="flex flex-row items-center hover:bg-c-primary-35 focus:bg-c-primary-35 transition-colors duration-200 ease-out py-3"
-              >
-                <div class="pl-6 pr-1">
-                  <Icon colorClass="text-c-background" type="bounty-manager" class="w-6 h-6" />
-                </div>
-                <div class="flex flex-row pr-6 pl-1">
-                  <h3 class="whitespace-no-wrap font-bold">{{ $t("bountyPlatform.bountyManager.header") }}</h3>
+                  <h3 class="whitespace-no-wrap font-bold">{{$t("bountyPlatform.overview.header")}}</h3>
                 </div>
               </nuxt-link>
               <!-- Sign Out Button -->

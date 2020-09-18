@@ -70,8 +70,47 @@
         >{{ $t("bountyPlatform.overview.header") }}</h3>
       </nuxt-link>
       <!-- Bounty Hunter-->
-     
-     
+      <nuxt-link
+        :to="localePath('bountyplatform-bountyhunter')"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
+        :class="[{
+            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyHunter,
+            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
+          }] "
+      >
+        <div class="w-7 h-7">
+          <Icon
+            type="bounty-hunter"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
+        <h3
+          :class="[$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden ml-2"
+        >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
+      </nuxt-link>
+      <!-- Bounty Manager -->
+      <nuxt-link
+        :to="localePath('bountyplatform-bountymanager')"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
+        :class="[{
+            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyManager,
+            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
+          }] "
+      >
+        <div class="w-7 h-7">
+          <Icon
+            type="bounty-manager"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
+        <h3
+          :class="[$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden ml-2"
+        >{{ $t("bountyPlatform.bountyManager.header")}}</h3>
+      </nuxt-link>
       <!-- Divider -->
       <div
         :class="isSidebarTextVisibleOnMd?'md:block':'lg:block'"
