@@ -151,6 +151,7 @@
       "contactNameLengthError": "Contact name must be between %1 and %2 characters.",
       "numBountiesError": "You must specify a value between 1 and 255.",
       "invalidAmount": "Invalid bounty amount.",
+      "invalidAmounts":"Bounty must have an ETH or DEV reward",
       "insufficientBalance": "Insufficient approved balance.",
       "invalidEmail": "Invalid email address.",
       "deadlineError": "Deadline cannot be a past date.",
