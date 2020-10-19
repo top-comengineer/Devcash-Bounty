@@ -853,7 +853,7 @@ export default {
     let devcashValid = this.validateDevcashAmount()
     let ethValid = this.validateEthAmount()
     isValid = devcashValid.valid || ethValid.valid
-    if (isValid) {
+    /*if (isValid) {
       if (!devcashValid.valid && (this.amount != null && this.amount != "")) {
         isValid = false
         this.amountError = devcashValid.msg
@@ -864,7 +864,9 @@ export default {
     } else {
       this.amountError = devcashValid.msg
     }
+    */
      if (!isValid) {
+       this.amountError=this.$t('bountyPlatform.post.invalidAmounts')
        this.errorList[5] = "#bountyAmount"
      } else {
        this.amountError = ""
