@@ -325,7 +325,12 @@ export class DevcashBounty {
     let uBCContract;
 
     // Get provider
+    console.log(ethNetwork)
+    console.log("has metamask: " + hasMetamask)
+    console.log("walletProvider: " + walletProvider)
+
     if (hasMetamask && walletProvider == WalletProviders.metamask) {
+      console.log("hasMetamask && walletProvider == WalletProviders.metamask")
       // Use web3 provider with signer
       await window.ethereum.enable();
       provider = new ethers.providers.Web3Provider(
@@ -334,6 +339,7 @@ export class DevcashBounty {
       );
       needsSigner = true;
     } else if (walletProvider == WalletProviders.authereum) {
+      console.log("walletProvider == WalletProviders.authereum")
       // Authereum
       const { Authereum } = require("authereum")
       const authereum = new Authereum(
@@ -347,6 +353,7 @@ export class DevcashBounty {
       );
       needsSigner = true;
     } else if (walletProvider == WalletProviders.portis) {
+      console.log("walletProvider == WalletProviders.portis")
       // Portis
       const Portis = require("@portis/web3")
       const portis = new Portis(
@@ -361,13 +368,16 @@ export class DevcashBounty {
       );
       needsSigner = true;
     } else {
+      console.log("other provider")
       // Etherscan provider (no signer)
-      provider = new ethers.getDefaultProvider(
-        ethNetwork,
-        {
-          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-        }        
-      );
+      // provider = new ethers.getDefaultProvider(
+      //   ethNetwork,
+      //   {
+      //     etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+      //   }
+      // );
+      provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
+
       needsSigner = false;
     }
 
@@ -399,12 +409,14 @@ export class DevcashBounty {
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, signer);
     } else {
       // Use default/etherscan provider
-      provider = new ethers.getDefaultProvider(
-        ethNetwork,
-        {
-          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-        }          
-      );
+      // provider = new ethers.getDefaultProvider(
+      //   ethNetwork,
+      //   {
+      //     etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+      //   }
+      // );
+      provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
+
       tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
     }
