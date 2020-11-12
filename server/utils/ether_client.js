@@ -12,8 +12,7 @@ const {
 
 const ethNetwork = process.env.NUXT_ENV_ETH_NETWORK || "ropsten"
 
-const eventLogDefaultFromBlock = ethNetwork === 'mainnnet' ? 10451865 : 8195113;
-
+const eventLogDefaultFromBlock = ethNetwork === 'mainnet' ? 10451865 : 8195113;
 
 class EtherClient {
   constructor() {
