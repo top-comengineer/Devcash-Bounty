@@ -37,19 +37,19 @@ class EtherClient {
     let tokenContract;
     let uBCContract;
 
-    provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
+    //provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
 
-    // Etherscan provider (no signer)
-    // provider = new ethers.getDefaultProvider(
-    //   ethNetwork,
-    //   {
-    //     infura: {
-    //       projectId: process.env.INFURA_PROJECT_ID || '3ec2020d08084212a43092fd30e1b1ef',
-    //       projectSecret: process.env.INFURA_PROJECT_SECRET || 'bc74f955557243ada6f9750ff049dc3f'
-    //     },
-    //     etherscan: process.env.ETHERSCAN_SECRET || 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-    //   }
-    // );
+  //Etherscan provider (no signer)
+    provider = new ethers.getDefaultProvider(
+      ethNetwork,
+      {
+        infura: {
+          projectId: '3ec2020d08084212a43092fd30e1b1ef',
+          projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+        },
+        etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+      }
+    );
     tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
     uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
 

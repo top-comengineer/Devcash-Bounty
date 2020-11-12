@@ -370,12 +370,16 @@ export class DevcashBounty {
     } else {
       console.log("other provider")
       // Etherscan provider (no signer)
-      // provider = new ethers.getDefaultProvider(
-      //   ethNetwork,
-      //   {
-      //     etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-      //   }
-      // );
+      provider = new ethers.getDefaultProvider(
+        ethNetwork,
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }
+      );
       provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
 
       needsSigner = false;
@@ -409,13 +413,16 @@ export class DevcashBounty {
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, signer);
     } else {
       // Use default/etherscan provider
-      // provider = new ethers.getDefaultProvider(
-      //   ethNetwork,
-      //   {
-      //     etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-      //   }
-      // );
-      provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
+      provider = new ethers.getDefaultProvider(
+        ethNetwork,
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }
+      );
 
       tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
       uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
