@@ -120,7 +120,7 @@
         </transition>
       </div>
       <!-- Notifications New -->
-      <!-- 
+      <!--
         <button
         class="hover:bg-c-text-15 focus:bg-c-text-15 hidden md:block rounded-full lg:ml-2 p-1 transition-all ease-out duration-200"
       >
@@ -450,9 +450,13 @@ export default {
       // Sign in flow
       this.isSignInModalOpen = false;
       this.loggingInLoading = true;
+      console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+      console.log(this.hasMetamask)
       try {
         await DevcashBounty.signIn(this, provider, this.hasMetamask, this.$t('signToAuthenticate.message'))
+        console.log("success")
       } catch (e) {
+      console.log("failed")
         console.log(e)
       } finally {
         this.loggingInLoading = false;
@@ -466,7 +470,7 @@ export default {
         await DevcashBounty.updateBalances(this)
         await DevcashBounty.updateFees(this)
       }
-    }    
+    }
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -503,7 +507,7 @@ export default {
     time: 60000,
     method: 'updateBalance'
   },
-  mounted() {  
+  mounted() {
     // Initialize these here since it's client side
     this.hasMetamask = window.ethereum ? true : false;
     this.updateBalance();
@@ -552,7 +556,7 @@ export default {
             bounty: uBountyIndex,
             sub: submissionIndex,
             feedback: feedback
-          })      
+          })
           if (!ref.historicalCreated.includes(asObj)) {
             ref.historicalCreated.push(asObj)
             if (ref.isLoggedIn) {
@@ -567,14 +571,14 @@ export default {
                       href: ref.localePath('bountyplatform-bountyhunter')
                     },
                     duration: -1
-                  });                  
+                  });
                 }
                 ref.$root.$emit("subRejected", {bounty: uBountyIndex, submission: submissionIndex, feedback: feedback})
               } catch (e) {
                 console.log(e)
               }
             }
-          }    
+          }
         });
         connector.uBCContract.on("approved", async (uBountyIndex, submissionIndex, feedback) => {
           let asObj = JSON.stringify({
@@ -582,7 +586,7 @@ export default {
             bounty: uBountyIndex,
             sub: submissionIndex,
             feedback: feedback
-          })      
+          })
           if (!ref.historicalCreated.includes(asObj)) {
             ref.historicalCreated.push(asObj)
             if (ref.isLoggedIn) {
@@ -597,14 +601,14 @@ export default {
                       href: ref.localePath('bountyplatform-bountyhunter')
                     },
                     duration: -1
-                  });                
+                  });
                 }
                 ref.$root.$emit("subApproved", {bounty: uBountyIndex, submission: submissionIndex, feedback: feedback})
               } catch (e) {
                 console.log(e)
               }
             }
-          }    
+          }
         });
         connector.uBCContract.on("submitted", async (uBountyIndex, submissionIndex, event) => {
           let asObj = JSON.stringify({
@@ -632,8 +636,8 @@ export default {
                       this.$root.$emit("newSubmission", {bounty: uBountyIndex, submission: onChainSub.data})
                     } catch (e) {
                       console.log(e)
-                    }    
-                  }, 10000)        
+                    }
+                  }, 10000)
                 } else {
                   setTimeout(async () => {
                     try {
@@ -641,8 +645,8 @@ export default {
                       this.$root.$emit("newSubmission", {bounty: uBountyIndex, submission: onChainSub.data})
                     } catch (e) {
                       console.log(e)
-                    }    
-                  }, 10000)                     
+                    }
+                  }, 10000)
                 }
               } catch (e) {
                 console.log(e)
@@ -653,7 +657,7 @@ export default {
       } else {
         this.ethersListeners = {}
       }
-    })     
+    })
   },
   head(){
     return {
