@@ -163,6 +163,8 @@ class EtherClient {
 
       let event_logs_cache = await this.redis.getEventLogCache()
       let lastHadBlock = await this.redis.getLastBlockCount()
+
+
       let fromBlock = lastHadBlock < 0 ? eventLogDefaultFromBlock : lastHadBlock
       let toBlock = await this.provider.getBlockNumber()
 
