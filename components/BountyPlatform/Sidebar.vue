@@ -6,27 +6,6 @@
   >
     <!-- Sidebar Content -->
     <div class="w-full flex flex-row md:flex-col justify-center py-0 md:py-8">
-      <!-- Explore -->
-      <nuxt-link
-        :to="localePath('bountyplatform')"
-        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
-        :class="[{
-            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty,
-            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty)
-          }] "
-      >
-        <div class="w-7 h-7">
-          <Icon
-            :colorClass="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
-            type="explore"
-            class="w-7 h-7"
-          />
-        </div>
-        <h3
-          :class="[$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden ml-2"
-        >{{ $t("bountyPlatform.explore.header") }}</h3>
-      </nuxt-link>
       <!-- Post -->
       <nuxt-link
         :to="localePath('bountyplatform-post')"
@@ -47,6 +26,27 @@
           :class="[$store.state.sidebarContext == sidebarContexts.post?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
           class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.post.header") }}</h3>
+      </nuxt-link>
+      <!-- Explore -->
+      <nuxt-link
+        :to="localePath('bountyplatform')"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
+        :class="[{
+            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty,
+            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty)
+          }] "
+      >
+        <div class="w-7 h-7">
+          <Icon
+            :colorClass="$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text'"
+            type="explore"
+            class="w-7 h-7"
+          />
+        </div>
+        <h3
+          :class="[$store.state.sidebarContext == sidebarContexts.explore || $store.state.sidebarContext == sidebarContexts.singleBounty?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden ml-2"
+        >{{ $t("bountyPlatform.explore.header") }}</h3>
       </nuxt-link>
       <!-- Overview -->
       <nuxt-link
@@ -69,27 +69,6 @@
           class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
       </nuxt-link>
-      <!-- Bounty Hunter-->
-      <nuxt-link
-        :to="localePath('bountyplatform-bountyhunter')"
-        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
-        :class="[{
-            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyHunter,
-            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
-          }] "
-      >
-        <div class="w-7 h-7">
-          <Icon
-            type="bounty-hunter"
-            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
-            class="w-7 h-7"
-          />
-        </div>
-        <h3
-          :class="[$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
-          class="text-lg font-bold hidden ml-2"
-        >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
-      </nuxt-link>
       <!-- Bounty Manager -->
       <nuxt-link
         :to="localePath('bountyplatform-bountymanager')"
@@ -98,8 +77,9 @@
             'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyManager,
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
           }] "
+        v-show="isBountyManager"
       >
-        <div class="w-7 h-7">
+        <div class="w-7 h-7" bountyManagerTab>
           <Icon
             type="bounty-manager"
             :colorClass="$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text'"
@@ -110,6 +90,28 @@
           :class="[$store.state.sidebarContext == sidebarContexts.bountyManager?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
           class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.bountyManager.header")}}</h3>
+      </nuxt-link>
+      <!-- Bounty Hunter-->
+      <nuxt-link
+        :to="localePath('bountyplatform-bountyhunter')"
+        class="flex flex-row justify-center md:justify-start items-center px-4 py-3 md:px-6 transition-colors ease-out duration-200"
+        :class="[{
+            'bg-c-primary': $store.state.sidebarContext == sidebarContexts.bountyHunter,
+            'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
+          }] "
+         v-show="isBountyHunter"
+      >
+        <div class="w-7 h-7" id="bountyHunterTab">
+          <Icon
+            type="bounty-hunter"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text'"
+            class="w-7 h-7"
+          />
+        </div>
+        <h3
+          :class="[$store.state.sidebarContext == sidebarContexts.bountyHunter?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
+          class="text-lg font-bold hidden ml-2"
+        >{{ $t("bountyPlatform.bountyHunter.header") }}</h3>
       </nuxt-link>
       <!-- Divider -->
       <div
@@ -379,6 +381,8 @@ export default {
       searchText: "",
       isSidebarTextVisibleOnMd: false,
       openTimeout: null,
+      isBountyManager: true,
+      isBountyHunter: true,
     };
   },
   head(){
@@ -390,6 +394,8 @@ export default {
   },
   mounted() {
     this.hasMetamask = window.ethereum ? true : false
+    this.loadMoreBounties();
+    this.loadMoreSubmissions();
   },
   watch: {
     searchText: function() {
@@ -482,6 +488,50 @@ export default {
       } finally {
         this.approvalLoading = false
         this.isApprovalLoadingModalVisible = false;
+      }
+    },
+    async loadMoreBounties() {
+      this.page++;
+      this.bountiesLoading = true;
+      try {
+        let res = await this.$axios.get(
+          `/bounty/listcreated?page=${this.page}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
+        );
+        for (let bounty of res.data.items) {
+          this.totalBountyAmount = this.totalBountyAmount.add(
+            BigNumber.from(bounty.bountyAmount)
+          );
+        }
+        this.totalBountyAmountDisplay = utils.commify(
+          utils.formatUnits(this.totalBountyAmount, 8)
+        );
+        this.bounties = this.bounties.concat(res.data.items);
+        this.applyBountyFilters()
+        this.totalBountyCount = res.data.count;
+        this.hasMoreBounties = this.totalBountyCount > this.bounties.length
+      } catch (e) {
+        this.page--;
+      } finally {
+        this.initialBountiesLoading = false;
+        this.bountiesLoading = false;
+      }
+    },
+    async loadMoreSubmissions() {
+      this.submissionsPage++;
+      this.submissionsLoading = true;
+      try {
+        let res = await this.$axios.get(
+          `/submission/listcreator?page=${this.submissionsPage}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
+        );
+        this.submissions = this.submissions.concat(res.data.items);
+        this.applySubmissionFilters()
+        this.totalSubmissionCount = res.data.count;
+        this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
+      } catch (e) {
+        this.submissionsPage--;
+      } finally {
+        this.initialSubmissionsLoading = false;
+        this.submissionsLoading = false;
       }
     },
   },

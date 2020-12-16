@@ -7,7 +7,8 @@ const { etherClient } = require("./utils/ether_client")
 const { utils } = require("ethers");
 const { RedisDB } = require("./redis")
 const { verifyAndReleaseBounties, verifyAndReleaseSubmissions, verifyAndReleaseRevisions } = require("./utils/release_data")
-
+const isBountyManager = "true"
+const isBountyHunter = "false"
 // DB Models
 const { sequelize, UBounty, Op, Submission, UBountyStaged, SubmissionStaged } = require("./models");
 
