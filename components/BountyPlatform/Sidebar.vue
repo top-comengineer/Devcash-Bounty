@@ -68,7 +68,6 @@
           :class="[$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
           class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
-        <h3>{{ totalSubmissionCount }}</h3>
 
       </nuxt-link>
       <!-- Bounty Manager -->
