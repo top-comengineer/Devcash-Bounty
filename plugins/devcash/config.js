@@ -320,7 +320,7 @@ module.exports.tokenABI = [
 //uBountyCreator
 // Defaults to ropsten contract unless overriden in environment
 // DO NOT CHANGE ENV VARIABLE NAME WITHOUT RECONFIGURING SERVER
-module.exports.uBCAddress = process.env.NUXT_ENV_UBOUNTY_ADDRESS || "0x917f95642d07d328476b853fcca644dcfd744cab"
+module.exports.uBCAddress = process.env.NUXT_ENV_UBOUNTY_ADDRESS || "0xcf4e301112444dD9cac8762d59D818d60FBD1b05"
 module.exports.uBCABI = [
 	{
 		"inputs": [],

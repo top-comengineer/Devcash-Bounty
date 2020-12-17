@@ -68,6 +68,8 @@
           :class="[$store.state.sidebarContext == sidebarContexts.overview?'text-c-light':'text-c-text', isSidebarTextVisibleOnMd?'md:block':'lg:block']"
           class="text-lg font-bold hidden ml-2"
         >{{ $t("bountyPlatform.overview.header") }}</h3>
+        <h3>{{ totalSubmissionCount }}</h3>
+
       </nuxt-link>
       <!-- Bounty Manager -->
       <nuxt-link
@@ -78,6 +80,7 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyManager)
           }] "
         v-show="isBountyManager"
+        v-if="!bountiesLoading"
       >
         <div class="w-7 h-7" bountyManagerTab>
           <Icon
@@ -100,6 +103,7 @@
             'hover:bg-c-primary-25 focus:bg-c-primary-25':  !($store.state.sidebarContext == sidebarContexts.bountyHunter)
           }] "
          v-show="isBountyHunter"
+         v-if="!bountiesLoading"
       >
         <div class="w-7 h-7" id="bountyHunterTab">
           <Icon
@@ -357,6 +361,7 @@ import RadioButton from "~/components/RadioButton.vue";
 import CheckmarkButton from "~/components/CheckmarkButton.vue";
 import MultiPurposeModal from "~/components/BountyPlatform/MultiPurposeModal.vue";
 import { mixin as clickaway } from "vue-clickaway";
+
 export default {
   mixins: [clickaway],
   components: {
@@ -381,8 +386,37 @@ export default {
       searchText: "",
       isSidebarTextVisibleOnMd: false,
       openTimeout: null,
-      isBountyManager: true,
-      isBountyHunter: true,
+      isBountyManager: false,
+      isBountyHunter: false,
+      numPersonalBounties: 0,
+      hasMetamask: false,
+      confirmWindowOpen: false,
+      subRejectedChecked: true,
+      subPendingChecked: true,
+      subApprovedChecked: true,
+      bountyActiveChecked: true,
+      bountyCompletedChecked: true,
+      bountyExpiredChecked: true,      
+      initialBountiesLoading: true,
+      initialSubmissionsLoading: true,
+      bountiesLoading: true,
+      submissionsLoading: true,
+      page: 0,
+      submissionsPage: 0,
+      totalBountyAmount: BigNumber.from("0"),
+      totalBountyAmountDisplay: "0.0",
+      totalBountyAmountSecondaryDisplay: "0.0",
+      totalBountyCount: 0,
+      totalSubmissionCount: 0,
+      hasMoreBounties: false,
+      hasMoreSubmissions: false,
+      isConfirmModalOpen: false,
+      confirmModalType: '',
+      confirmModalItem: {},
+      bounties: [],
+      filteredBounties: [],
+      submissions: [],
+      filteredSubmissions: [],
     };
   },
   head(){
@@ -394,8 +428,10 @@ export default {
   },
   mounted() {
     this.hasMetamask = window.ethereum ? true : false
-    this.loadMoreBounties();
-    this.loadMoreSubmissions();
+    if (this.isLoggedIn) {
+      this.loadMoreBounties();
+      this.loadMoreSubmissions();
+    }
   },
   watch: {
     searchText: function() {
@@ -495,20 +531,13 @@ export default {
       this.bountiesLoading = true;
       try {
         let res = await this.$axios.get(
-          `/bounty/listcreated?page=${this.page}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
+          `/bounty/listcreated?page=${this.page}&limit=${50}&creator=${this.loggedInAccount}`
         );
-        for (let bounty of res.data.items) {
-          this.totalBountyAmount = this.totalBountyAmount.add(
-            BigNumber.from(bounty.bountyAmount)
-          );
-        }
-        this.totalBountyAmountDisplay = utils.commify(
-          utils.formatUnits(this.totalBountyAmount, 8)
-        );
-        this.bounties = this.bounties.concat(res.data.items);
-        this.applyBountyFilters()
+      
         this.totalBountyCount = res.data.count;
-        this.hasMoreBounties = this.totalBountyCount > this.bounties.length
+        if(this.totalBountyCount>0){
+          this.isBountyManager = true
+        }
       } catch (e) {
         this.page--;
       } finally {
@@ -520,12 +549,25 @@ export default {
       this.submissionsPage++;
       this.submissionsLoading = true;
       try {
+        
         let res = await this.$axios.get(
-          `/submission/listcreator?page=${this.submissionsPage}&limit=${defaultBountyLimit}&creator=${this.loggedInAccount}`
+          `/submission/listhunter?limit=${50}&hunter=${this.loggedInAccount}`
         );
-        this.submissions = this.submissions.concat(res.data.items);
-        this.applySubmissionFilters()
+
+        let res2 = await this.$axios.get(
+          `/bounty/listpersonal?page=${this.page}&limit=${50}&hunter=${this.loggedInAccount}`
+        );
+      
+        //this.submissions = this.submissions.concat(res.data.items);
+        //this.applySubmissionFilters()
         this.totalSubmissionCount = res.data.count;
+        //this.totalSubmissionCount = this.submissions.length;
+
+        this.numPersonalBounties = res2.data.count;
+
+        if(this.totalSubmissionCount>0||this.numPersonalBounties>0){
+          this.isBountyHunter = true
+        }
         this.hasMoreSubmissions = this.totalSubmissionCount > this.submissions.length
       } catch (e) {
         this.submissionsPage--;
