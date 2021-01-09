@@ -65,13 +65,14 @@
     <slot />
     <Footer />
     <!-- Optional IBO bar below -->
-    <!-- <IBOBar :devDistributed="231231" :devTotalToDistribute="1231231" /> -->
+    <IBOBar :devDistributed="4000000" :devTotalToDistribute="140000000" />
   </div>
 </template>
 <script>
 import Navbar from "~/components/Navbar.vue";
 import Footer from "~/components/Footer.vue";
 import Icon from "~/components/Icon.vue";
+import IBOBar from "~/components/IBOBar.vue";
 import Vue from 'vue'
 
 // Optional IBO bar below
@@ -82,7 +83,7 @@ export default {
     Footer,
     Icon,
     // Optional IBO bar below
-    //IBOBar
+    IBOBar
   },
   head() {
     const i18nSeo = this.$nuxtI18nSeo()

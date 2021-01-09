@@ -66,7 +66,7 @@ export default {
     },
     methods: {
       calculateDistributionRatio(){
-        this.distributionRatio = this.devDistributed/this.devTotalToDistribute
+        this.distributionRatio = Math.sqrt(this.devDistributed)/Math.sqrt(this.devTotalToDistribute)
         return this.distributionRatio;
       },
       closeIBOBar(){
