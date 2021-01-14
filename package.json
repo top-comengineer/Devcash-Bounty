@@ -9,7 +9,7 @@
     "debug": "cross-env NODE_ENV=development DEBUG='nuxt:*' nodemon server/index.js --watch server",
     "build_mainnet": "cross-env NUXT_ENV_APP_URL=https://bdu.dev NUXT_ENV_ETH_NETWORK=mainnet NUXT_ENV_UBOUNTY_ADDRESS=0xf0172b2F74CD0541aFCa7b25592082721c11C5fC NUXT_ENV_TOKEN_ADDRESS=0x0fca8fdb0fb115a33baadec6e7a141ffc1bc7d5a nuxt build",
     "build_ropsten": "cross-env NUXT_ENV_APP_URL=https://ropsten.bdu.dev NUXT_ENV_ETH_NETWORK=ropsten NUXT_ENV_UBOUNTY_ADDRESS=0xcf4e301112444dD9cac8762d59D818d60FBD1b05 NUXT_ENV_TOKEN_ADDRESS=0x0f54093364b396461AAdf85C015Db597AAb56203 nuxt build",
-    "build_xdai": "cross-env NUXT_ENV_APP_URL=https://xdai.bdu.dev NUXT_ENV_ETH_NETWORK=xdai NUXT_ENV_UBOUNTY_ADDRESS=0xA34917a6e2a7D409C7581Fd46341aDA9e07d368f NUXT_ENV_TOKEN_ADDRESS=0x248e081e3c9e738d7c1ded5d471069dcf4fd9b15 nuxt build",
+    "build_xdai": "cross-env NUXT_ENV_APP_URL=https://xdaii.bdu.dev NUXT_ENV_ETH_NETWORK=xdai NUXT_ENV_UBOUNTY_ADDRESS=0xA34917a6e2a7D409C7581Fd46341aDA9e07d368f NUXT_ENV_TOKEN_ADDRESS=0x248e081e3c9e738d7c1ded5d471069dcf4fd9b15 nuxt build",
     "start": "cross-env NODE_ENV=production node server/index.js",
     "generate": "nuxt generate"
   },
