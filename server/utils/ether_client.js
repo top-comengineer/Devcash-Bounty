@@ -11,7 +11,18 @@ const {
 } = require("../../plugins/devcash/config.js");
 
 const ethNetwork = process.env.NUXT_ENV_ETH_NETWORK || "ropsten"
-const eventLogDefaultFromBlock = ethNetwork === 'mainnet' ? 10451865 : 8729552;
+let eventLogDefaultFromBlock
+
+if(ethNetwork=="xdai"){
+  eventLogDefaultFromBlock = 12872755
+} else if(ethNetwork=="mumbai"){
+  eventLogDefaultFromBlock = 8729552
+} else if(ethNetwork=="mainnet"){
+  eventLogDefaultFromBlock = 10451865
+} else if(ethNetwork=="ropsten"){
+  eventLogDefaultFromBlock = 8729552
+}
+
 
 class EtherClient {
   constructor() {
@@ -37,14 +48,32 @@ class EtherClient {
     let tokenContract;
     let uBCContract;
 
+    provider = new ethers.providers.JsonRpcProvider('https://rpc.xdaichain.com/')
 
     if(ethNetwork=="xdai"){
+      eventLogDefaultFromBlock = 12872755
+
       provider = new ethers.providers.JsonRpcProvider('https://rpc.xdaichain.com/')
-    } else if(ethNetwork="mumbai"){
+    } else if(ethNetwork=="mumbai"){
+      eventLogDefaultFromBlock = 8729552
+
       provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/v1/109aa3468523236e6ef476e934b6023765e64fc2')
-    } else{
+    } else if(ethNetwork=="mainnet"){
+      eventLogDefaultFromBlock = 10451865
       provider = new ethers.getDefaultProvider(
-        ethNetwork,
+        "mainnet",
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }
+      );
+    } else if(ethNetwork=="ropsten"){
+      eventLogDefaultFromBlock = 8729552
+      provider = new ethers.getDefaultProvider(
+        "ropsten",
         {
           infura: {
             projectId: '3ec2020d08084212a43092fd30e1b1ef',

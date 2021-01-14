@@ -326,6 +326,7 @@ export class DevcashBounty {
 
     // Get provider
     console.log(ethNetwork)
+    console.log(provider)
     console.log("has metamask: " + hasMetamask)
     console.log("walletProvider: " + walletProvider)
 
