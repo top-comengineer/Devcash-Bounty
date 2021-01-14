@@ -37,21 +37,24 @@ class EtherClient {
     let tokenContract;
     let uBCContract;
 
-    //provider = new ethers.providers.JsonRpcProvider("https://mainnet.infura.io/v3/3ec2020d08084212a43092fd30e1b1ef")
 
-  //Etherscan provider (no signer)
-    //provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/v1/109aa3468523236e6ef476e934b6023765e64fc2')
+    if(ethNetwork=="xdai"){
+      provider = new ethers.providers.JsonRpcProvider('https://rpc.xdaichain.com/')
+    } else if(ethNetwork="mumbai"){
+      provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.maticvigil.com/v1/109aa3468523236e6ef476e934b6023765e64fc2')
+    } else{
+      provider = new ethers.getDefaultProvider(
+        ethNetwork,
+        {
+          infura: {
+            projectId: '3ec2020d08084212a43092fd30e1b1ef',
+            projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
+          },
+          etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
+        }
+      );
+    }
 
-    provider = new ethers.getDefaultProvider(
-      ethNetwork,
-      {
-        infura: {
-          projectId: '3ec2020d08084212a43092fd30e1b1ef',
-          projectSecret: 'bc74f955557243ada6f9750ff049dc3f'
-        },
-        etherscan: 'H5JDJB1M52EURV4VH68CKGK1WSWAWRMMFT'
-      }
-    );
     tokenContract = new ethers.Contract(tokenAddress, tokenABI, provider);
     uBCContract = new ethers.Contract(uBCAddress, uBCABI, provider);
 
