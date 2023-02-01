@@ -376,6 +376,10 @@
   </div>
 </template>
 <script>
+
+//file name: Navbar.vue
+//description: Navbar component
+//date: 2023-02-01
 import Logo from "~/components/Logo.vue";
 import Jazzicon from "~/components/Jazzicon.vue";
 import Icon from "~/components/Icon.vue";
