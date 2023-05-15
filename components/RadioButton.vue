@@ -1,12 +1,10 @@
 <template>
   <div>
-    <label
-      :for="name"
-      class="radio-container flex flex-row items-center p-1 hover:bg-c-primary-15 focus:bg-c-primary-15 transition-colors ease-out duration-200 rounded-md"
-    >
+    <label :for="name"
+      class="radio-container flex flex-row items-center p-1 hover:bg-c-primary-15 focus:bg-c-primary-15 transition-colors ease-out duration-200 rounded-md">
       <input :id="`${name.toLowerCase()}`" :checked="checked" @click="changed" type="radio" :name="name" />
       <span class="border-c-text radio-checkmark"></span>
-      <h5 class="text-c-text leading-tight font-bold">{{text}}</h5>
+      <h5 class="text-c-text leading-tight font-bold">{{ text }}</h5>
     </label>
   </div>
 </template>
@@ -62,11 +60,11 @@ export default {
 /* .radio-container:hover input ~ .radio-checkmark {}
 
 /* When the radio button is checked, add a blue background */
-.radio-container input:checked ~ .radio-checkmark {
+.radio-container input:checked~.radio-checkmark {
   border-color: var(--c-primary);
 }
 
-.radio-container input:checked ~ h5 {
+.radio-container input:checked~h5 {
   color: var(--c-primary);
 }
 
@@ -78,7 +76,7 @@ export default {
 }
 
 /* Show the indicator (dot/circle) when checked */
-.radio-container input:checked ~ .radio-checkmark:after {
+.radio-container input:checked~.radio-checkmark:after {
   display: block;
 }
 

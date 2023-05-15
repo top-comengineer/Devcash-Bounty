@@ -6,9 +6,8 @@
         <!-- Line Left -->
         <div class="flex-1 h-px2 bg-c-primary rounded-br-full"></div>
         <!-- Header Text -->
-        <h2
-          class="font-bold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6"
-        >{{ $t("home.tokenDetailsSection.header") }}</h2>
+        <h2 class="font-bold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6">{{
+          $t("home.tokenDetailsSection.header") }}</h2>
         <!-- Line Left -->
         <div class="flex-1 h-px2 bg-c-primary rounded-bl-full"></div>
       </div>
@@ -20,46 +19,32 @@
           <!-- Token Supply -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <img
-                class="w-full h-auto"
-                :src="require('~/assets/images/illustrations/foreground/token-supply.svg')"
-                alt="Token Supply Illustration"
-              />
+              <img class="w-full h-auto" :src="require('~/assets/images/illustrations/foreground/token-supply.svg')"
+                alt="Token Supply Illustration" />
             </div>
             <p class="text-base text-center">{{ $t("home.tokenDetailsSection.tokenSupplyHeader") }}</p>
-            <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
-            >{{ $t("home.tokenDetailsSection.tokenSupplyText") }}</h3>
+            <h3 class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2">{{
+              $t("home.tokenDetailsSection.tokenSupplyText") }}</h3>
           </div>
           <!-- Token Type -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <img
-                class="w-full h-auto"
-                :src="require('~/assets/images/illustrations/foreground/token-type.svg')"
-                alt="Token Type Illustration"
-              />
+              <img class="w-full h-auto" :src="require('~/assets/images/illustrations/foreground/token-type.svg')"
+                alt="Token Type Illustration" />
             </div>
             <p class="text-base text-center">{{ $t("home.tokenDetailsSection.tokenTypeHeader") }}</p>
-            <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
-            >{{ $t("home.tokenDetailsSection.tokenTypeText") }}</h3>
+            <h3 class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2">{{
+              $t("home.tokenDetailsSection.tokenTypeText") }}</h3>
           </div>
           <!-- Token Allocation -->
           <div class="w-7/12 md:w-1/3 lg:w-1/4 flex flex-col p-4">
             <div class="w-full flex flex-row justify-center">
-              <img
-                class="w-full h-auto"
-                :src="require('~/assets/images/illustrations/foreground/token-allocation.svg')"
-                alt="Token Allocation Illustration"
-              />
+              <img class="w-full h-auto" :src="require('~/assets/images/illustrations/foreground/token-allocation.svg')"
+                alt="Token Allocation Illustration" />
             </div>
-            <p
-              class="text-base text-center"
-            >{{ $t("home.tokenDetailsSection.tokenAllocationHeader") }}</p>
-            <h3
-              class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2"
-            >{{ $t("home.tokenDetailsSection.tokenAllocationText") }}</h3>
+            <p class="text-base text-center">{{ $t("home.tokenDetailsSection.tokenAllocationHeader") }}</p>
+            <h3 class="font-extrabold text-2xl md:text-3xl text-center leading-tight text-c-primary px-6 mt-2">{{
+              $t("home.tokenDetailsSection.tokenAllocationText") }}</h3>
           </div>
         </div>
       </div>

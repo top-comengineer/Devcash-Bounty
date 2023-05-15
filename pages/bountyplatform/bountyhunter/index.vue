@@ -3,37 +3,22 @@
     <div v-if="isLoggedIn" class="w-full flex flex-row flex-wrap justify-center">
       <!-- Submissions Sent Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mb-2"
-      >
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 mb-2">
         <!-- Header Row -->
         <div class="flex flex-row flex-wrap justify-between items-center">
           <!-- Header -->
-          <h2
-            class="text-2xl font-extrabold mx-4 my-2"
-          >{{$t('bountyPlatform.bountyHunter.submissionsSent')}}</h2>
+          <h2 class="text-2xl font-extrabold mx-4 my-2">{{ $t('bountyPlatform.bountyHunter.submissionsSent') }}</h2>
           <!-- Checkboxes -->
-          <div
-            v-if="submissions.length>0 && !submissionsLoading"
-            class="flex flex-row flex-wrap justify end"
-          >
-            <CheckmarkButton
-              :checked="subPendingChecked"
-              :callback="(checked) => submissionFilterChanged(checked, 'pending')"
-              class="my-3 mx-3"
-              :text="$t('bountyPlatform.statusTag.pending')"
-            />
-            <CheckmarkButton
-              :checked="subApprovedChecked"
-              :callback="(checked) => submissionFilterChanged(checked, 'approved')"
-              class="my-3 mx-3"
-              :text="$t('bountyPlatform.statusTag.approved')"
-            />
-            <CheckmarkButton
-              :checked="subRejectedChecked"
-              :callback="(checked) => submissionFilterChanged(checked, 'rejected')"
-              class="my-3 mx-3"
-              :text="$t('bountyPlatform.statusTag.rejected')"
-            />
+          <div v-if="submissions.length > 0 && !submissionsLoading" class="flex flex-row flex-wrap justify end">
+            <CheckmarkButton :checked="subPendingChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'pending')" class="my-3 mx-3"
+              :text="$t('bountyPlatform.statusTag.pending')" />
+            <CheckmarkButton :checked="subApprovedChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'approved')" class="my-3 mx-3"
+              :text="$t('bountyPlatform.statusTag.approved')" />
+            <CheckmarkButton :checked="subRejectedChecked"
+              :callback="(checked) => submissionFilterChanged(checked, 'rejected')" class="my-3 mx-3"
+              :text="$t('bountyPlatform.statusTag.rejected')" />
           </div>
         </div>
         <!-- Loading -->
@@ -41,60 +26,40 @@
           <SubmissionCardPlaceholder v-for="num in 2" :key="num" class="my-2" />
         </div>
         <!-- If there are submissions -->
-        <div v-else-if="submissions.length>0" class="w-full flex flex-col flex-wrap my-4">
-          <SubmissionCard
-            class="my-2"
-            perspective="hunter"
-            v-for="(item, i) in filteredSubmissions"
-            :key="i"
-            :submission="item"
-            :ubounty="item.ubounty"
-            page="bountyHunter"
-          />
+        <div v-else-if="submissions.length > 0" class="w-full flex flex-col flex-wrap my-4">
+          <SubmissionCard class="my-2" perspective="hunter" v-for="(item, i) in filteredSubmissions" :key="i"
+            :submission="item" :ubounty="item.ubounty" page="bountyHunter" />
         </div>
         <!-- If there are no submissions -->
         <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
-          <img
-            class="max-w-xxxs h-auto relative"
+          <img class="max-w-xxxs h-auto relative"
             :src="require('~/assets/images/illustrations/foreground/submission-sent.svg')"
-            alt="No Submissions Illustration"
-          />
-          <h6
-            class="opacity-75 text-center mt-4 md:max-w-xs"
-          >{{$t('bountyPlatform.bountyHunter.noSubmissionsSent')}}</h6>
+            alt="No Submissions Illustration" />
+          <h6 class="opacity-75 text-center mt-4 md:max-w-xs">{{ $t('bountyPlatform.bountyHunter.noSubmissionsSent') }}
+          </h6>
           <!-- Hunt Bounties Call to Action -->
           <div class="flex flex-row justify-center">
-            <nuxt-link
-              :to="localePath('bountyplatform')"
-              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
-            >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+            <nuxt-link :to="localePath('bountyplatform')"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6">{{
+                $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
           </div>
         </div>
         <!-- Load More Button -->
-        <div
-          v-if="hasMoreSubmissions && !submissionsLoading"
-          class="flex flex-row justify-center mt-2"
-        >
+        <div v-if="hasMoreSubmissions && !submissionsLoading" class="flex flex-row justify-center mt-2">
           <button
-            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
-          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1">{{
+              $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
       </div>
       <!-- Personal Bounties Card -->
       <div
-        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2"
-      >
+        class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6 px-4 md:px-8 md:py-8 my-2">
         <!-- Header Row -->
         <div class="flex flex-row flex-wrap justify-between items-center">
           <!-- Header -->
-          <h2
-            class="text-2xl font-extrabold mx-4 my-2"
-          >{{$t('bountyPlatform.bountyHunter.personalBounties')}}</h2>
+          <h2 class="text-2xl font-extrabold mx-4 my-2">{{ $t('bountyPlatform.bountyHunter.personalBounties') }}</h2>
           <!-- Count, Amount & Checkboxes -->
-          <div
-            v-if="bounties.length>0 && !bountiesLoading"
-            class="flex flex-row flex-wrap items-center"
-          >
+          <div v-if="bounties.length > 0 && !bountiesLoading" class="flex flex-row flex-wrap items-center">
             <div class="flex flex-row flex-wrap my-2 mr-10">
               <div class="flex flex-col items-center mx-4">
                 <h6 class="opacity-75 text-sm">Count</h6>
@@ -106,24 +71,15 @@
               </div>
             </div>
             <div class="flex flex-row flex-wrap my-3">
-              <CheckmarkButton
-                :checked="bountyActiveChecked"
-                :callback="(checked) => bountyFilterChanged(checked, 'active')"
-                class="mx-3 my-2"
-                :text="$t('bountyPlatform.explore.sidebar.statusActive')"
-              />
-              <CheckmarkButton
-                :checked="bountyCompletedChecked"
-                :callback="(checked) => bountyFilterChanged(checked, 'completed')"
-                class="mx-3 my-2"
-                :text="$t('bountyPlatform.explore.sidebar.statusCompleted')"
-              />
-              <CheckmarkButton
-                :checked="bountyExpiredChecked"
-                :callback="(checked) => bountyFilterChanged(checked, 'expired')"
-                class="mx-3 my-2"
-                :text="$t('bountyPlatform.explore.sidebar.statusExpired')"
-              />
+              <CheckmarkButton :checked="bountyActiveChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'active')" class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusActive')" />
+              <CheckmarkButton :checked="bountyCompletedChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'completed')" class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusCompleted')" />
+              <CheckmarkButton :checked="bountyExpiredChecked"
+                :callback="(checked) => bountyFilterChanged(checked, 'expired')" class="mx-3 my-2"
+                :text="$t('bountyPlatform.explore.sidebar.statusExpired')" />
             </div>
           </div>
         </div>
@@ -131,38 +87,27 @@
           <BountyCardPlaceholder type="secondary" v-for="num in 4" :key="num" class="my-2" />
         </div>
         <!-- If there are personal bounties -->
-        <div v-else-if="bounties.length>0" class="w-full flex flex-col flex-wrap my-4">
-          <BountyCard
-            type="secondary"
-            v-for="(item, i) in filteredBounties"
-            :key="i"
-            class="my-2"
-            :bounty="item"
-          />
+        <div v-else-if="bounties.length > 0" class="w-full flex flex-col flex-wrap my-4">
+          <BountyCard type="secondary" v-for="(item, i) in filteredBounties" :key="i" class="my-2" :bounty="item" />
         </div>
         <!-- If there are no personal bounties -->
         <div v-else class="w-full flex flex-col justify-center items-center flex-wrap">
-          <img
-            class="max-w-xxxs h-auto relative"
+          <img class="max-w-xxxs h-auto relative"
             :src="require('~/assets/images/illustrations/foreground/bounty-personal.svg')"
-            alt="No Personal Bounty Illustration"
-          />
-          <h6
-            class="opacity-75 text-center mt-4 md:max-w-xs"
-          >{{$t('bountyPlatform.bountyHunter.noPersonalBounties')}}</h6>
+            alt="No Personal Bounty Illustration" />
+          <h6 class="opacity-75 text-center mt-4 md:max-w-xs">{{ $t('bountyPlatform.bountyHunter.noPersonalBounties') }}
+          </h6>
           <!-- Hunt Bounties Call to Action -->
           <div class="flex flex-row justify-center">
-            <nuxt-link
-              :to="localePath('bountyplatform')"
-              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6"
-            >{{ $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
+            <nuxt-link :to="localePath('bountyplatform')"
+              class="btn-primary bg-c-primary text-c-light transform hover:scale-md focus:scale-md transition-all ease-out duration-200 origin-bottom-left font-extrabold text-xl rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-12 py-2 my-6">{{
+                $t("home.bountyPlatformSection.huntBountyButton") }}</nuxt-link>
           </div>
         </div>
         <div v-if="hasMoreBounties && !bountiesLoading" class="flex flex-row justify-center mt-2">
-          <button
-            @click="loadMoreBounties()"
-            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1"
-          >{{ $t("bountyPlatform.buttonLoadMore") }}</button>
+          <button @click="loadMoreBounties()"
+            class="bg-c-background-sec text-c-text border-2 border-c-text btn-text text-lg transform hover:scale-lg focus:scale-lg font-extrabold transition-all ease-out duration-200 origin-bottom-left rounded-tl-xl rounded-br-xl rounded-tr rounded-bl px-6 py-1">{{
+              $t("bountyPlatform.buttonLoadMore") }}</button>
         </div>
       </div>
     </div>
@@ -187,7 +132,7 @@ export default {
   layout: "bountyPlatform",
   components: {
     SubmissionCard,
-    SubmissionCardPlaceholder,    
+    SubmissionCardPlaceholder,
     BountyCard,
     BountyCardPlaceholder,
     CheckmarkButton,
@@ -208,7 +153,7 @@ export default {
         return "expired"
       }
       return "active"
-    },    
+    },
     applyBountyFilters() {
       this.filteredBounties = this.bounties.filter((bounty) => (this.getBountyStatus(bounty) == 'active' && this.bountyActiveChecked) || (this.getBountyStatus(bounty) == 'expired' && this.bountyExpiredChecked) || (this.getBountyStatus(bounty) == 'completed' && this.bountyCompletedChecked))
     },
@@ -227,7 +172,7 @@ export default {
           break;
       }
       this.applyBountyFilters()
-    },    
+    },
     applySubmissionFilters() {
       this.filteredSubmissions = this.submissions.filter((sub) => (sub.status == 'approved' && this.subApprovedChecked) || (sub.status == 'pending' && this.subPendingChecked) || (sub.status == 'rejected' && this.subRejectedChecked))
     },
@@ -290,7 +235,7 @@ export default {
         this.initialSubmissionsLoading = false;
         this.submissionsLoading = false;
       }
-    }    
+    }
   },
   mounted() {
     if (this.isLoggedIn) {
@@ -304,7 +249,7 @@ export default {
           submission.status = 'approved'
           if (objR.feedback && objR.feedback.length > 0) {
             submission.feedback = objR.feedback
-          }          
+          }
         }
       }
     })
@@ -317,11 +262,11 @@ export default {
           }
         }
       }
-    })   
+    })
     this.$root.$on("signedIn", _ => {
       this.loadMoreBounties()
       this.loadMoreSubmissions()
-    })     
+    })
   },
   activated() {
     // Set sidebar context
