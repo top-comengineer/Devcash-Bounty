@@ -10,12 +10,12 @@ const prefix = process.env.NODE_ENV == "production" ? "devcash" : "devcash:dev";
 class RedisDB {
   constructor() {
     // TODO allow customizing host/port
-    let redisDB = parseInt(process.env.REDIS_DB)
+    let redisDB = parseInt(process.env.REDIS_DB);
     if (isNaN(redisDB)) {
-      redisDB = 0
+      redisDB = 0;
     }
     this.redis = new Redis({
-      db: redisDB
+      db: redisDB,
     });
     this.jsonCache = new JSONCache(this.redis);
     this.locker = redislock.createLock(this.redis, { timeout: 600000 });
@@ -34,8 +34,8 @@ class RedisDB {
   }
 
   async clearEventLogCache() {
-    await this.jsonCache.clearAll()
-    await this.redis.del(`${prefix}:last_block_count`)
+    await this.jsonCache.clearAll();
+    await this.redis.del(`${prefix}:last_block_count`);
   }
 
   async getEventLogCache() {
@@ -52,47 +52,56 @@ class RedisDB {
 
   async addBounty(bounty) {
     if (bounty && bounty.index) {
-      await this.redis.hset(`${prefix}:bounties`, bounty.index.toString(), JSON.stringify(bounty))
+      await this.redis.hset(
+        `${prefix}:bounties`,
+        bounty.index.toString(),
+        JSON.stringify(bounty)
+      );
     }
   }
 
   async getUBounty(index) {
-    let cached = await this.redis.hget(`${prefix}:bounties`, index.toString())
+    let cached = await this.redis.hget(`${prefix}:bounties`, index.toString());
     if (cached) {
-      return JSON.parse(cached)
+      return JSON.parse(cached);
     }
-    return null
+    return null;
   }
 
   async getUBounties() {
-    let cached = await this.redis.hgetall(`${prefix}:bounties`)
-    let ret = []
+    let cached = await this.redis.hgetall(`${prefix}:bounties`);
+    let ret = [];
     if (cached) {
       for (const [key, value] of Object.entries(cached)) {
         try {
-          ret.push(JSON.parse(value))
-        } catch (e) {
-
-        }
+          ret.push(JSON.parse(value));
+        } catch (e) {}
       }
     }
-    return ret
+    return ret;
   }
 
   async updateBountyCache(etherClient) {
-    let lock = this.locker
-    lock.acquire(`${prefix}:bountycachelock`).then(async () => {
-      console.log("Updating bounty cache")
-      let nBounties = await etherClient.getNUbounties()
-      let uBounties = await etherClient.getUbounties(nBounties)
-      for (const bounty of uBounties) {
-        await this.redis.hset(`${prefix}:bounties`, bounty.index.toString(), JSON.stringify(bounty))
+    let lock = this.locker;
+    lock.acquire(`${prefix}:bountycachelock`).then(
+      async () => {
+        console.log("Updating bounty cache");
+        let nBounties = await etherClient.getNUbounties();
+        let uBounties = await etherClient.getUbounties(nBounties);
+        for (const bounty of uBounties) {
+          await this.redis.hset(
+            `${prefix}:bounties`,
+            bounty.index.toString(),
+            JSON.stringify(bounty)
+          );
+        }
+        console.log("Finished updating cache");
+        return lock.release();
+      },
+      (err) => {
+        console.log(err);
       }
-      console.log("Finished updating cache")
-      return lock.release();
-    }, (err) => {
-      console.log(err)
-    })
+    );
   }
 }
 
