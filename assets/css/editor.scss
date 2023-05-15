@@ -78,15 +78,15 @@
   border: 1px solid var(--c-secondary-15);
   background-color: var(--c-secondary-10);
   margin-top: 1rem;
-  white-space: pre-line
+  white-space: pre-line;
 }
 
 .editor-content strong {
   font-weight: 800;
 }
 
-.editor-content > *:first-child{
-    margin-top: 0rem !important;
+.editor-content > *:first-child {
+  margin-top: 0rem !important;
 }
 
 .ProseMirror {
@@ -97,8 +97,8 @@
   background-color: var(--c-background-ter);
   min-height: 26rem;
 }
-.ProseMirror *:first-child{
-    margin-top: 0rem!important;
+.ProseMirror *:first-child {
+  margin-top: 0rem !important;
 }
 @media only screen and (min-width: 768px) {
   .ProseMirror {

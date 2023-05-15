@@ -12,25 +12,21 @@
           </div>
           <!-- Navigation Items -->
           <!-- Home -->
-          <nuxt-link
-            :to="localePath('index')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.home") }}</nuxt-link>
+          <nuxt-link :to="localePath('index')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("navigation.home") }}</nuxt-link>
           <!-- IBO -->
-          <nuxt-link
-            :to="localePath({name: 'index', hash: '#IBO'})"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.ibo") }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'index', hash: '#IBO' })"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("navigation.ibo") }}</nuxt-link>
           <!-- Bounty Platform-->
-          <nuxt-link
-            :to="localePath('bountyplatform')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.bountyPlatform") }}</nuxt-link>
+          <nuxt-link :to="localePath('bountyplatform')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("navigation.bountyPlatform") }}</nuxt-link>
           <!-- DEX -->
-          <nuxt-link
-            :to="localePath({name: 'index', hash: '#DEX'})"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("navigation.dex") }}</nuxt-link>
+          <nuxt-link :to="localePath({ name: 'index', hash: '#DEX' })"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("navigation.dex") }}</nuxt-link>
         </div>
         <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
           <!-- Bounty Platform Header -->
@@ -42,34 +38,25 @@
           </div>
           <!-- Bounty Platform Items -->
           <!-- Bounty Platform / Explore -->
-          <nuxt-link
-            :to="localePath('bountyplatform')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.exploreBounties") }}</nuxt-link>
+          <nuxt-link :to="localePath('bountyplatform')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("bountyPlatform.exploreBounties") }}</nuxt-link>
           <!-- Bounty Platform / Post -->
-          <nuxt-link
-            v-if="isLoggedIn"
-            :to="localePath('bountyplatform-post')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.postABounty") }}</nuxt-link>
+          <nuxt-link v-if="isLoggedIn" :to="localePath('bountyplatform-post')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("bountyPlatform.postABounty") }}</nuxt-link>
           <!-- Bounty Platform / Overview -->
-          <nuxt-link
-            v-if="isLoggedIn"
-            :to="localePath('bountyplatform-overview')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.overview.header") }}</nuxt-link>
+          <nuxt-link v-if="isLoggedIn" :to="localePath('bountyplatform-overview')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("bountyPlatform.overview.header") }}</nuxt-link>
           <!-- Bounty Platform / Bounty Hunter -->
-          <nuxt-link
-            v-if="isLoggedIn"
-            :to="localePath('bountyplatform-bountyhunter')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.bountyHunter.header") }}</nuxt-link>
+          <nuxt-link v-if="isLoggedIn" :to="localePath('bountyplatform-bountyhunter')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("bountyPlatform.bountyHunter.header") }}</nuxt-link>
           <!-- Bounty Platform / Bounty Manager -->
-          <nuxt-link
-            v-if="isLoggedIn"
-            :to="localePath('bountyplatform-bountymanager')"
-            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-          >{{ $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
+          <nuxt-link v-if="isLoggedIn" :to="localePath('bountyplatform-bountymanager')"
+            class="text-c-text hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200">{{
+              $t("bountyPlatform.bountyManager.header") }}</nuxt-link>
         </div>
         <!-- DEX -->
         <!-- <div class="w-full md:w-1/2 lg:w-auto items-center lg:items-start flex flex-col my-3">
@@ -98,55 +85,40 @@
           </div>
           <!-- Social Items -->
           <!-- Discord -->
-          <a
-            class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-            target="_blank"
-            href = "https://discord.gg/KqQgEgJ"
-          >
+          <a class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank" href="https://discord.gg/KqQgEgJ">
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="discord" />
               <p class="text-c-text ml-2 md:ml-3">{{ $t("social.discord") }}</p>
             </div>
           </a>
           <!-- Facebook -->
-          <a
-            class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-            target="_blank"
-            href = "https://www.facebook.com/groups/269238897785432"
-          >
+          <a class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank" href="https://www.facebook.com/groups/269238897785432">
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="facebook" />
               <p class="text-c-text ml-2 md:ml-3">{{ $t("social.facebook") }}</p>
             </div>
           </a>
           <!-- Twitter -->
-          <a
-            class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-            target="_blank"
-            href="https://twitter.com/BlockDevsU"
-          >
+          <a class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank" href="https://twitter.com/BlockDevsU">
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="twitter" />
               <p class="text-c-text ml-2 md:ml-3">{{ $t("social.twitter") }}</p>
             </div>
           </a>
           <!-- Medium -->
-          <a
-            class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-            target="_blank"
-            href = "https://medium.com/@devcashbounties"
-          >
+          <a class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank" href="https://medium.com/@devcashbounties">
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="medium" />
               <p class="text-c-text ml-2 md:ml-3">{{ $t("social.medium") }}</p>
             </div>
           </a>
           <!-- GitHub -->
-          <a
-            class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
-            target="_blank"
-            href = "https://github.com/blockdevsunited"
-          >
+          <a class="hover:bg-c-text-15 focus:bg-c-text-15 my-1 px-3 py-1 rounded-full transition-colors ease-out duration-200"
+            target="_blank" href="https://github.com/blockdevsunited">
             <div class="flex flex-row items-center">
               <Icon colorClass="text-c-text" class="w-5 h-5" type="github" />
               <p class="text-c-text ml-2 md:ml-3">{{ $t("social.github") }}</p>
@@ -179,7 +151,7 @@ export default {
       loggedInAccount: "devcashData/loggedInAccount"
     })
   },
-  data: function() {
+  data: function () {
     return {
       currentYear: new Date().getFullYear()
     };
