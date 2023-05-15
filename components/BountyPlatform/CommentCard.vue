@@ -1,17 +1,15 @@
 <template>
   <div class="flex">
     <div
-      class="bg-c-background-qua shadow-lg w-full flex flex-col flex-wrap justify-between items-center rounded-lg overflow-hidden"
-    >
+      class="bg-c-background-qua shadow-lg w-full flex flex-col flex-wrap justify-between items-center rounded-lg overflow-hidden">
       <!-- Top Part -->
       <div class="w-full flex flex-row flex-wrap justify-between items-center py-2">
         <!-- Senders Address and Project Name -->
         <div class="w-full md:w-auto flex flex-row md:items-center px-4 py-2">
           <Jazzicon class="flex m-1" :diameter="20" :address="address" />
           <h5 class="text-left ml-2 mr-3">
-            <span
-              class="font-mono-jet font-bold"
-            >{{address.substring(0, 6) + "..." + address.substring(address.length - 4)}}</span>
+            <span class="font-mono-jet font-bold">{{ address.substring(0, 6) + "..." + address.substring(address.length -
+              4) }}</span>
           </h5>
         </div>
       </div>
@@ -22,7 +20,7 @@
         <!-- Message -->
         <p class="break-all" v-html="message"></p>
         <!-- Date -->
-        <p class="text-sm opacity-75 mt-6">{{date}}</p>
+        <p class="text-sm opacity-75 mt-6">{{ date }}</p>
       </div>
     </div>
   </div>
