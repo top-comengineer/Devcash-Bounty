@@ -30,10 +30,12 @@
               'text-c-success': submission.status == 'approved',
               'text-c-danger': submission.status == 'rejected'
             }" class="font-bold text-left">
-              {{ $store.state.devcashData.balancePrimary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? ethAmount : amount }}
+              {{ $store.state.devcashData.balancePrimary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? ethAmount :
+                amount }}
             </h5>
             <h6 class="text-sm text-left mt-1">+
-              {{ $store.state.devcashData.balanceSecondary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? amount : ethAmount }}
+              {{ $store.state.devcashData.balanceSecondary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? amount :
+                ethAmount }}
             </h6>
           </a>
           <!-- Bounty Amount in DEV, ETH and USD if there it's not pending and it doesn't have a block hash -->
@@ -43,10 +45,12 @@
               'text-c-success': submission.status == 'approved',
               'text-c-danger': submission.status == 'rejected'
             }" class="font-bold text-left">
-              {{ $store.state.devcashData.balancePrimary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? ethAmount : amount }}
+              {{ $store.state.devcashData.balancePrimary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? ethAmount :
+                amount }}
             </h5>
             <h6 class="text-sm text-left mt-1">+
-              {{ $store.state.devcashData.balanceSecondary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? amount : ethAmount }}
+              {{ $store.state.devcashData.balanceSecondary.symbol }}{{ $store.state.devcashData.ethIsPrimary ? amount :
+                ethAmount }}
             </h6>
           </div>
           <!-- Status Tag or Approve and Reject Buttons -->
@@ -69,7 +73,8 @@
               </button>
             </div>
             <!-- If Perspective is Hunter -->
-            <StatusTag v-if="perspective == 'hunter' || submission.status == 'approved' || submission.status == 'rejected'"
+            <StatusTag
+              v-if="perspective == 'hunter' || submission.status == 'approved' || submission.status == 'rejected'"
               :status="getSimpleStatus()" />
           </div>
         </div>
@@ -102,7 +107,8 @@
             <Icon :class="isFeedbackVisible ? '-rotate-180' : ''"
               class="w-5 h-5 transform transition-all duration-300 ease-out" type="arrow-down" colorClass="text-c-text" />
             <h5 class="text-c-text font-extrabold mx-1">
-              {{ isFeedbackVisible ? $t('bountyPlatform.bountyHunter.hideFeedback') : $t('bountyPlatform.bountyHunter.showFeedback') }}
+              {{ isFeedbackVisible ? $t('bountyPlatform.bountyHunter.hideFeedback') :
+                $t('bountyPlatform.bountyHunter.showFeedback') }}
             </h5>
           </button>
         </div>
@@ -228,5 +234,4 @@ export default {
 .feedbackTransition-leave-to {
   opacity: 0;
   transform: scaleY(0.5) translateY(-1.5rem);
-}
-</style>
+}</style>

@@ -12,7 +12,8 @@
           'hover:bg-c-primary-25 focus:bg-c-primary-25': !($store.state.sidebarContext == sidebarContexts.post),
         }]">
         <div class="w-7 h-7">
-          <Icon type="post" :colorClass="$store.state.sidebarContext == sidebarContexts.post ? 'text-c-light' : 'text-c-text'"
+          <Icon type="post"
+            :colorClass="$store.state.sidebarContext == sidebarContexts.post ? 'text-c-light' : 'text-c-text'"
             class="w-7 h-7" />
         </div>
         <h3
@@ -95,8 +96,8 @@
         <!-- If context is Explore -->
         <div v-if="$store.state.sidebarContext == sidebarContexts.explore" class="flex flex-col">
           <!-- Search Text and Search Bar -->
-          <label for="searchBar"
-            class="text-c-text text-lg font-bold">{{ $t("bountyPlatform.explore.sidebar.searchHeader") }}</label>
+          <label for="searchBar" class="text-c-text text-lg font-bold">{{
+            $t("bountyPlatform.explore.sidebar.searchHeader") }}</label>
           <div class="flex flex-row relative mt-2">
             <Icon :colorClass="isSearchFocused ? 'text-c-primary' : 'text-c-text'"
               class="absolute h-5 w-5 transform -translate-y-1/2 top-1/2 ml-3" type="search" />
@@ -128,7 +129,8 @@
                       <Icon :colorClass="sortDirection == 'desc' ? 'text-c-light' : 'text-transparent'" type="done"
                         class="w-5 h-5" />
                     </div>
-                    <h6 class="whitespace-no-wrap font-bold">{{ $t("bountyPlatform.explore.sidebar.sortDescending") }}</h6>
+                    <h6 class="whitespace-no-wrap font-bold">{{ $t("bountyPlatform.explore.sidebar.sortDescending") }}
+                    </h6>
                   </button>
                   <!-- Ascending Button -->
                   <button @click="orderChanged('asc'); hideSortModalWithDelay()" @keydown.tab.exact="hideSortModal"
@@ -178,8 +180,8 @@
           <h4 class="text-sm mt-1 break-all font-medium">{{ `+ ${balance.secondary.symbol}${balance.secondary.approved ?
             balance.secondary.approved : balance.secondary.amount}` }}</h4>
           <!-- Amount to Approve  -->
-          <label v-if="balance.primary.hasApproved" for="amountToApprove"
-            class="text-c-text font-bold mt-6">{{ $t('bountyPlatform.sidebarContextual.amountToApprove') }}</label>
+          <label v-if="balance.primary.hasApproved" for="amountToApprove" class="text-c-text font-bold mt-6">{{
+            $t('bountyPlatform.sidebarContextual.amountToApprove') }}</label>
           <!-- Amount Input -->
           <div v-if="balance.primary.hasApproved" class="flex flex-row items-center relative mt-2">
             <!-- Amount Symbol -->
@@ -191,8 +193,8 @@
           <!-- Approve Button -->
           <button v-if="balance.primary.hasApproved"
             class="btn-primary bg-c-primary transform hover:scale-md focus:scale-md duration-200 ease-out transition-all origin-bottom-left text-c-light font-extrabold text-lg rounded-tl-2xl rounded-br-2xl rounded-tr-md rounded-bl-md px-6 py-1_5 mt-3"
-            @click="approveBalance"
-            :disabled="approvalLoading">{{ $t('bountyPlatform.sidebarContextual.buttonApprove') }}</button>
+            @click="approveBalance" :disabled="approvalLoading">{{ $t('bountyPlatform.sidebarContextual.buttonApprove')
+            }}</button>
           <p :class="approvalError && balance.primary.hasApproved ? 'text-c-danger' : 'text-transparent'"
             class="text-c-danger text-xs px-1 mt-3">{{ approvalError ? approvalError : '&nbsp;' }}</p>
         </div>

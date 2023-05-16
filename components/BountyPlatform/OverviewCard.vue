@@ -4,14 +4,16 @@
       class="bg-c-background-sec shadow-lg w-full flex flex-col flex-wrap items-center rounded-tl-3xl rounded-br-3xl rounded-tr-lg rounded-bl-lg py-6">
       <!-- Total Earned or Total Awarded -->
       <h6 class="text-sm opacity-75">
-        {{ type == "earned" ? $t("bountyPlatform.overview.totalEarned") : type == 'awarded' ? $t("bountyPlatform.overview.totalAwarded") : $t("bountyPlatform.overview.approvedBalance") }}
+        {{ type == "earned" ? $t("bountyPlatform.overview.totalEarned") : type == 'awarded' ?
+          $t("bountyPlatform.overview.totalAwarded") : $t("bountyPlatform.overview.approvedBalance") }}
       </h6>
       <h2 class="text-c-primary text-3xl font-extrabold break-all mt-1">{{ totalPrimary }}</h2>
       <h3 class="font-semibold mt-1 break-all">{{ totalSecondary }}</h3>
       <!-- Bounties Hunted or Bounties Posted -->
       <div class="flex flex-col items-center mt-6" v-if="type == 'earned' || type == 'awarded'">
         <h6 class="text-sm opacity-75">
-          {{ type == "earned" ? $t("bountyPlatform.overview.bountiesHunted") : $t("bountyPlatform.overview.bountiesPosted") }}
+          {{ type == "earned" ? $t("bountyPlatform.overview.bountiesHunted") :
+            $t("bountyPlatform.overview.bountiesPosted") }}
         </h6>
         <h2 class="text-3xl font-extrabold break-all mt-1">{{ count }}</h2>
       </div>

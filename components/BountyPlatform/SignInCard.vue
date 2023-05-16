@@ -15,10 +15,12 @@
     <img class="w-24 md:w-32 h-auto relative -mt-2 md:-mt-4"
       :src="require('~/assets/images/illustrations/foreground/lock.svg')" alt="Lock" />
     <h4 class="text-c-primary text-2xl text-center font-bold mt-2">{{
-      loggingInLoading ? $t('bountyPlatform.multiPurposeModal.verifyToSignIn.header') : type == 'sign' ? $t("bountyPlatform.signInCard.headerSignIn") : $t("bountyPlatform.signInCard.headerSignInToContinue")
+      loggingInLoading ? $t('bountyPlatform.multiPurposeModal.verifyToSignIn.header') : type == 'sign' ?
+      $t("bountyPlatform.signInCard.headerSignIn") : $t("bountyPlatform.signInCard.headerSignInToContinue")
     }}</h4>
     <p class="text-c-text text-center mt-2">
-      {{ loggingInLoading ? $t('bountyPlatform.multiPurposeModal.verifyToSignIn.paragraph') : type == 'sign' ? $t("bountyPlatform.signInCard.paragraphSignIn") :
+      {{ loggingInLoading ? $t('bountyPlatform.multiPurposeModal.verifyToSignIn.paragraph') : type == 'sign' ?
+        $t("bountyPlatform.signInCard.paragraphSignIn") :
         $t("bountyPlatform.signInCard.paragraphSignInToContinue") }}</p>
     <div v-if="!loggingInLoading" class="w-full max-w-xxs flex flex-col mt-4">
       <!-- MetaMask Button -->

@@ -74,7 +74,8 @@
             class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
             type="text" :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
             @focus="emailError ? emailError = false : null" @blur="validateEmail" />
-          <p class="text-c-danger text-xs px-3 mt-2">{{ emailError ? $t('bountyPlatform.post.invalidEmail') : '&nbsp;' }}</p>
+          <p class="text-c-danger text-xs px-3 mt-2">{{ emailError ? $t('bountyPlatform.post.invalidEmail') : '&nbsp;' }}
+          </p>
         </div>
       </div>
     </div>
