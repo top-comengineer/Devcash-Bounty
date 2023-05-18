@@ -1,135 +1,87 @@
 <template>
-  <div
-    id="submissionModal"
-    class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-3 py-2 md:px-5 md:py-4 relative"
-  >
+  <div id="submissionModal"
+    class="bg-c-background-sec shadow-4xl overflow-auto w-full max-h-full justify-center rounded-tl-4xl rounded-br-4xl rounded-tr-2xl rounded-bl-2xl px-3 py-2 md:px-5 md:py-4 relative">
     <!-- Confirm to Submit Modal -->
     <transition name="modalBgTransition">
-      <div
-        v-if="submissionLoading"
-        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal"
-      >
-        <div
-          class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36"
-        >
-          <multi-purpose-modal
-            :header="$t('bountyPlatform.multiPurposeModal.createSubmission.header')"
+      <div v-if="submissionLoading"
+        class="bg-c-background-75 w-full h-screen fixed flex flex-row justify-center items-center left-0 top-0 modal">
+        <div class="max-w-xl h-full flex flex-row justify-center items-center px-2 pt-24 pb-12 md:pt-36">
+          <multi-purpose-modal :header="$t('bountyPlatform.multiPurposeModal.createSubmission.header')"
             :paragraph="$t('bountyPlatform.multiPurposeModal.createSubmission.paragraph')"
-            :imgSrc="require('~/assets/images/illustrations/foreground/submission-sent.svg')"
-          />
+            :imgSrc="require('~/assets/images/illustrations/foreground/submission-sent.svg')" />
         </div>
       </div>
     </transition>
     <!-- Close Button -->
     <div class="absolute top-0 right-0 z-40">
-      <button
-        @mouseover="isCloseHovered=true"
-        @mouseleave="isCloseHovered=false"
-        @focus="isCloseFocused=true"
-        @blur="isCloseFocused=false"
-        @click="cacheAndClose()"
-        class="bg-c-background-sec fixed closeButton p-3 md:p-4 transform -translate-x-full z-40"
-      >
-        <Icon
-          :class="isCloseHovered || isCloseFocused? 'scale-120':'scale-100'"
-          colorClass="text-c-text"
-          class="w-6 h-6 md:w-8 md:h-8 transition-all duration-200 ease-out transform"
-          type="cancel"
-        />
+      <button @mouseover="isCloseHovered = true" @mouseleave="isCloseHovered = false" @focus="isCloseFocused = true"
+        @blur="isCloseFocused = false" @click="cacheAndClose()"
+        class="bg-c-background-sec fixed closeButton p-3 md:p-4 transform -translate-x-full z-40">
+        <Icon :class="isCloseHovered || isCloseFocused ? 'scale-120' : 'scale-100'" colorClass="text-c-text"
+          class="w-6 h-6 md:w-8 md:h-8 transition-all duration-200 ease-out transform" type="cancel" />
       </button>
     </div>
     <!-- Greeting Card -->
-    <GreetingCard
-      :header="$t('bountyPlatform.singleBounty.submission.cardHeader')"
-      :paragraph="$t('bountyPlatform.singleBounty.submission.cardParagraph')"
-      type="submission"
-      class="my-1 md:my-2"
-    />
+    <GreetingCard :header="$t('bountyPlatform.singleBounty.submission.cardHeader')"
+      :paragraph="$t('bountyPlatform.singleBounty.submission.cardParagraph')" type="submission" class="my-1 md:my-2" />
     <!-- Submit Form -->
     <div class="w-full">
       <!-- Card for Description -->
       <div
-        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-3 md:px-10 mt-2"
-      >
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative rounded-tl-3xl rounded-tr-lg pt-4 pb-8 px-3 md:px-10 mt-2">
         <!-- Submission Description -->
         <div class="w-full flex flex-col my-3">
-          <h3
-            class="text-2xl font-bold px-3"
-          >{{$t('bountyPlatform.singleBounty.submission.descriptionHeader')}}</h3>
+          <h3 class="text-2xl font-bold px-3">{{ $t('bountyPlatform.singleBounty.submission.descriptionHeader') }}</h3>
           <!-- Text editor for the description -->
           <client-only>
-            <text-editor
-              id="submissionDescription"
-              :editor="editor"
-              :placeholder="submissionEditorPlaceholder"
-              :isPlaceholderVisible="isPlaceholderVisible"
-            />
+            <text-editor id="submissionDescription" :editor="editor" :placeholder="submissionEditorPlaceholder"
+              :isPlaceholderVisible="isPlaceholderVisible" />
           </client-only>
         </div>
         <div class="w-full flex flex-col">
-          <p
-            :class="{'text-c-danger':(mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount)} "
-            class="text-sm px-3 opacity-75"
-          >{{ mdDescriptionLength>0 && !descriptionError?`${mdDescriptionLength}/${maxDescriptionCount}`:'&nbsp;' }}{{ descriptionError ? $t('bountyPlatform.post.descriptionError') : '' }}</p>
+          <p :class="{ 'text-c-danger': (mdDescriptionLength > maxDescriptionCount || mdDescriptionLength < minDescriptionCount) }"
+            class="text-sm px-3 opacity-75">{{ mdDescriptionLength > 0 &&
+              !descriptionError ? `${mdDescriptionLength}/${maxDescriptionCount}` : '&nbsp;' }}{{ descriptionError ?
+    $t('bountyPlatform.post.descriptionError') : '' }}</p>
         </div>
       </div>
       <!-- Card for Contact Name and Email -->
       <div
-        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2"
-      >
+        class="bg-c-background-sec shadow-xl w-full flex flex-row flex-wrap relative py-4 px-3 md:pt-6 md:pb-5 md:px-10 mt-1 md:mt-2">
         <!-- Contact Name -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
           <label for="submissionContactName" class="text-xl font-bold px-3">
-            {{$t('bountyPlatform.post.contactName')}}
-            <span
-              class="font-normal text-base opacity-75"
-            >{{$t('bountyPlatform.post.optional')}}</span>
+            {{ $t('bountyPlatform.post.contactName') }}
+            <span class="font-normal text-base opacity-75">{{ $t('bountyPlatform.post.optional') }}</span>
           </label>
-          <input
-            id="submissionContactName"
-            v-model="contactName"
+          <input id="submissionContactName" v-model="contactName"
             class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
-            @focus="contactNameError?contactNameError=false:null"
-            @blur="validateContactName"
-          />
-          <p
-            class="text-c-danger text-xs px-3 mt-2"
-          >{{ contactNameError ? $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2", maxContactNameLength):'&nbsp;' }}</p>
+            type="text" :placeholder="$t('bountyPlatform.post.contactNamePlaceholder')"
+            @focus="contactNameError ? contactNameError = false : null" @blur="validateContactName" />
+          <p class="text-c-danger text-xs px-3 mt-2">{{ contactNameError ?
+            $t('bountyPlatform.post.contactNameLengthError').replace("%1", minContactNameLength).replace("%2",
+              maxContactNameLength) : '&nbsp;' }}</p>
         </div>
         <!-- Divider -->
         <div class="hidden md:block w-12"></div>
         <!-- Contact Email -->
         <div class="w-full md:flex-1 flex flex-col mt-3">
           <label for="submissionContactEmail" class="text-xl font-bold px-3">
-            {{$t('bountyPlatform.post.contactEmail')}}
-            <span
-              class="font-normal text-base opacity-75"
-            >{{$t('bountyPlatform.post.optional')}}</span>
+            {{ $t('bountyPlatform.post.contactEmail') }}
+            <span class="font-normal text-base opacity-75">{{ $t('bountyPlatform.post.optional') }}</span>
           </label>
-          <input
-            id="submissionContactEmail"
-            v-model="contactEmail"
+          <input id="submissionContactEmail" v-model="contactEmail"
             class="bg-c-background-ter border-c-background-ter w-full text-lg font-bold border focus:border-c-primary rounded-lg transition-all duration-200 ease-out px-4 py-2 mt-2"
-            type="text"
-            :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
-            @focus="emailError?emailError=false:null"
-            @blur="validateEmail"
-          />
-          <p
-            class="text-c-danger text-xs px-3 mt-2"
-          >{{ emailError?$t('bountyPlatform.post.invalidEmail'):'&nbsp;' }}</p>
+            type="text" :placeholder="$t('bountyPlatform.post.contactEmailPlaceholder')"
+            @focus="emailError ? emailError = false : null" @blur="validateEmail" />
+          <p class="text-c-danger text-xs px-3 mt-2">{{ emailError ? $t('bountyPlatform.post.invalidEmail') : '&nbsp;' }}
+          </p>
         </div>
       </div>
     </div>
     <!-- Call to Action Card -->
-    <CTACard
-      class="my-1 md:my-2"
-      :buttonAction="submitSubmission"
-      :buttonText="$t('bountyPlatform.singleBounty.submission.buttonSubmit')"
-      :disabled="submissionLoading"
-    />
+    <CTACard class="my-1 md:my-2" :buttonAction="submitSubmission"
+      :buttonText="$t('bountyPlatform.singleBounty.submission.buttonSubmit')" :disabled="submissionLoading" />
   </div>
 </template>
 
@@ -193,41 +145,41 @@ export default {
     if (this.isLoggedIn) {
       DevcashBounty.updateBalances(this)
     }
-    this.editor =  new Editor({
-        onFocus: (e) => {
-          if (this.isPlaceholderVisible) {
-            this.editor.clearContent()
-          }
-          this.descriptionError = false
-        },
-        onBlur: (e) => {
-          if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
-            this.editor.setContent(this.submissionEditorPlaceholder)
-          }
-          this.validateDescription()
-        },
-        extensions: [
-          new Bold(),
-          new Italic(),
-          new Heading({ levels: [1, 2, 3] }),
-          new BulletList(),
-          new OrderedList(),
-          new ListItem(),
-          new Link({
-            openOnClick: false
-          }),
-          new Code(),
-          new History(),
-          new CustomCodeBlock(),
-          new CustomHardBreak(),
-          new HorizontalRule(),
-          new TrailingNode({
-            node: 'paragraph',
-            notAfter: ['paragraph'],
-          }),
-        ],
-        content: this.description ? this.description : this.submissionEditorPlaceholder,
-      });
+    this.editor = new Editor({
+      onFocus: (e) => {
+        if (this.isPlaceholderVisible) {
+          this.editor.clearContent()
+        }
+        this.descriptionError = false
+      },
+      onBlur: (e) => {
+        if (this.editor.getHTML().trim() == "" || this.editor.getHTML().trim() == "<p></p>") {
+          this.editor.setContent(this.submissionEditorPlaceholder)
+        }
+        this.validateDescription()
+      },
+      extensions: [
+        new Bold(),
+        new Italic(),
+        new Heading({ levels: [1, 2, 3] }),
+        new BulletList(),
+        new OrderedList(),
+        new ListItem(),
+        new Link({
+          openOnClick: false
+        }),
+        new Code(),
+        new History(),
+        new CustomCodeBlock(),
+        new CustomHardBreak(),
+        new HorizontalRule(),
+        new TrailingNode({
+          node: 'paragraph',
+          notAfter: ['paragraph'],
+        }),
+      ],
+      content: this.description ? this.description : this.submissionEditorPlaceholder,
+    });
   },
   computed: {
     // mix the getters into computed with object spread operator
@@ -264,7 +216,7 @@ export default {
     clearCache() {
       delete this.$store.state.devcashData.submissionFormData[this.bounty.id]
     },
-    validateDescription(){
+    validateDescription() {
       let isValid = true
       this.descriptionError = false
       if (this.mdDescriptionLength < minDescriptionCount || this.mdDescriptionLength > maxDescriptionCount) {
@@ -282,7 +234,7 @@ export default {
       }
       return isValid
     },
-    validateContactName(){
+    validateContactName() {
       let isValid = true
       if (this.contactName.length == 0) {
         isValid = true
@@ -297,7 +249,7 @@ export default {
       }
       return isValid
     },
-    validateEmail(){
+    validateEmail() {
       let isValid = true
       if (this.contactEmail.length == 0) {
         isValid = true
@@ -366,11 +318,11 @@ export default {
           this.submissionLoading = false
         }
       } else if (!valid) {
-       let keys = Object.keys(this.errorList)
-       if (keys.length > 0) {
-         keys = keys.sort((a, b) => parseInt(a)-parseInt(b))
-         this.$scrollTo(this.errorList[keys[0]], 0, { container: "#submissionModal"})
-       }
+        let keys = Object.keys(this.errorList)
+        if (keys.length > 0) {
+          keys = keys.sort((a, b) => parseInt(a) - parseInt(b))
+          this.$scrollTo(this.errorList[keys[0]], 0, { container: "#submissionModal" })
+        }
       }
     },
     showLinkMenu(attrs) {

@@ -1,22 +1,17 @@
 <template>
-  <div
-    :class="{
-            'bg-c-pending-10 border-c-pending-40': status=='pending',
-            'bg-c-success-10 border-c-success-40': status=='approved',
-            'bg-c-danger-10 border-c-danger-40': status=='rejected',
-            'bg-c-text-10 border-c-text-40': status=='feedback',
-            }"
-    class="flex flex-row items-center px-2 py-1 border rounded-md my-2 mx-3 md:mr-2"
-  >
+  <div :class="{
+    'bg-c-pending-10 border-c-pending-40': status == 'pending',
+    'bg-c-success-10 border-c-success-40': status == 'approved',
+    'bg-c-danger-10 border-c-danger-40': status == 'rejected',
+    'bg-c-text-10 border-c-text-40': status == 'feedback',
+  }" class="flex flex-row items-center px-2 py-1 border rounded-md my-2 mx-3 md:mr-2">
     <Icon class="w-4 h-4" :type="pickIcon()" :colorClass="pickIconColorClass()" />
-    <h6
-      :class="{
-                'text-c-pending': status=='pending',
-                'text-c-success': status=='approved',
-                'text-c-danger': status=='rejected',
-                'text-c-text': status=='feedback'}"
-      class="font-bold mx-1 text-sm"
-    >{{pickStatusTagText()}}</h6>
+    <h6 :class="{
+      'text-c-pending': status == 'pending',
+      'text-c-success': status == 'approved',
+      'text-c-danger': status == 'rejected',
+      'text-c-text': status == 'feedback'
+    }" class="font-bold mx-1 text-sm">{{ pickStatusTagText() }}</h6>
   </div>
 </template>
 <script>
