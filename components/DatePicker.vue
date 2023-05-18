@@ -44,7 +44,9 @@
 </template>
 
 <script>
-
+//file name: DatePickter.vue
+//description: Component for pick up date
+//date: 2023-02-01
 export default {
   data() {
     return {

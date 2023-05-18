@@ -11,6 +11,9 @@
   </svg>
 </template>
 <script>
+//file name: Logo.vue
+//description: Logo file
+//date: 2023-02-01
 export default {
   props: {
     markClass: String,
