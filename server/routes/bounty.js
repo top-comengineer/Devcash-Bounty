@@ -1,31 +1,19 @@
-const express = require('express')
+const express = require("express");
 const router = express.Router();
-const uBountyController = require('../controllers/ubounty')
+const uBountyController = require("../controllers/ubounty");
 
 router.post(
-  '/post', 
-  uBountyController.validate('createUBounty'), 
-  uBountyController.createUBounty,
-)
+  "/post",
+  uBountyController.validate("createUBounty"),
+  uBountyController.createUBounty
+);
 
-router.get(
-  '/list', 
-  uBountyController.getUBounties,
-)
+router.get("/list", uBountyController.getUBounties);
 
-router.get(
-  '/listpersonal', 
-  uBountyController.getPersonalUbounties,
-)
+router.get("/listpersonal", uBountyController.getPersonalUbounties);
 
-router.get(
-  '/listcreated', 
-  uBountyController.getCreatorUbounties,
-)
+router.get("/listcreated", uBountyController.getCreatorUbounties);
 
-router.get(
-  '/one', 
-  uBountyController.getUBounty,
-)
+router.get("/one", uBountyController.getUBounty);
 
 module.exports = router;
